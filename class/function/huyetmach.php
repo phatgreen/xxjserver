@@ -369,63 +369,49 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_quest_update')) {
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_awaken')) {
     function huyetmach_awaken($sid, $dblj){
         $player = getplayer($sid, $dblj);
+        if (!$player || intval($player->huyetmach_id) <= 0) {
+            return array('ok' => false, 'msg' => 'Bạn chưa có Huyết Mạch.', 'new_stage' => 0);
+        }
         $currentStage = intval($player->huyetmach_awaken_stage);
-        $currentId = intval($player->huyetmach_id);
-
-        if ($currentId <= 0) {
-            return array('ok' => false, 'msg' => 'Bạn chưa có Huyết Mạch.');
+        $gate = huyetmach_vessel_break_rows($sid, $dblj);
+        if (!$gate['next']) {
+            return array('ok' => false, 'msg' => 'Đã thức tỉnh tối đa.', 'new_stage' => $currentStage);
         }
-
-        $awakenInfo = huyetmach_get_awakening_info($currentStage);
-        if (!$awakenInfo) {
-            return array('ok' => false, 'msg' => 'Đã thức tỉnh tối đa.');
-        }
-
-        $realmMinLevel = intval($awakenInfo['realm_min_level']);
-        if ($player->ulv < $realmMinLevel) {
-            return array('ok' => false, 'msg' => 'Cần đạt cảnh giới ' . $awakenInfo['realm_require'] . ' (cấp ' . $realmMinLevel . '+).');
-        }
-
-        if (isset($awakenInfo['boss_drop_require']) && $awakenInfo['boss_drop_require']) {
-            $config = huyetmach_info($sid, $dblj);
-            $hmKey = huyetmach_get_key_by_id($currentId);
-            $stageKey = 'stage_' . intval($awakenInfo['to_stage']);
-            $awakenAll = huyetmach_awakening_config_all();
-            $bossList = isset($awakenAll['boss_list']) ? $awakenAll['boss_list'] : array();
-
-            if ($hmKey && isset($bossList[$hmKey][$stageKey])) {
-                $bossId = $bossList[$hmKey][$stageKey]['name'];
-                if (!huyetmach_boss_killed($sid, $bossId, $dblj)) {
-                    return array('ok' => false, 'msg' => 'Cần đánh bại boss "' . $bossId . '" trước.');
-                }
+        if (!$gate['ready']) {
+            foreach ($gate['rows'] as $row) {
+                if (!$row['ok']) return array('ok' => false, 'msg' => 'Chưa đủ điều kiện: ' . $row['text'] . '.', 'new_stage' => $currentStage);
             }
         }
+        $next = $gate['next'];
+        $toStage = intval($next['stage']);
+        $mid = intval($next['material_id']); $mamt = intval($next['material_amount']);
+        $lt  = intval($next['linh_thach_cost']);
 
-        if (isset($awakenInfo['material_id']) && intval($awakenInfo['material_id']) > 0) {
-            $materialId = intval($awakenInfo['material_id']);
-            $materialAmount = intval($awakenInfo['material_amount']);
-            $stmt = $dblj->prepare("SELECT djsum FROM playerdaoju WHERE sid = ? AND djid = ? LIMIT 1");
-            $stmt->execute(array($sid, $materialId));
-            $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-            $have = $row ? intval($row['djsum']) : 0;
-            if ($have < $materialAmount) {
-                $matName = huyetmach_get_material_name($materialId);
-                return array('ok' => false, 'msg' => $matName . ' không đủ. Cần ' . $materialAmount . ', có ' . $have . '.');
+        $dblj->beginTransaction();
+        try {
+            if ($mid > 0 && $mamt > 0) {
+                $stmt = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum - ? WHERE sid = ? AND djid = ? AND djsum >= ?");
+                $stmt->execute(array($mamt, $sid, $mid, $mamt));
+                if ($stmt->rowCount() !== 1) throw new Exception('thieu vat lieu');
             }
-            $stmtConsume = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum - ? WHERE sid = ? AND djid = ? AND djsum >= ?");
-            $stmtConsume->execute(array($materialAmount, $sid, $materialId, $materialAmount));
+            if ($lt > 0) {
+                $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb - ? WHERE sid = ? AND uyxb >= ?");
+                $stmt->execute(array($lt, $sid, $lt));
+                if ($stmt->rowCount() !== 1) throw new Exception('thieu linh thach');
+            }
+            $stmt = $dblj->prepare("UPDATE game1 SET huyetmach_awaken_stage = ? WHERE sid = ?");
+            $stmt->execute(array($toStage, $sid));
+            $dblj->prepare("INSERT INTO player_huyetmach_awaken_log (sid, from_stage, to_stage, boss_killed, success, created_at)
+                VALUES (?, ?, ?, ?, 1, NOW())")->execute(array($sid, $currentStage, $toStage,
+                $gate['boss_name'] !== '' ? $gate['boss_name'] : null));
+            $dblj->commit();
+        } catch (Exception $e) {
+            $dblj->rollBack();
+            return array('ok' => false, 'msg' => 'Thức tỉnh thất bại, thử lại sau.', 'new_stage' => $currentStage);
         }
-
-        $toStage = intval($awakenInfo['to_stage']);
-        $stmtUp = $dblj->prepare("UPDATE game1 SET huyetmach_awaken_stage = ? WHERE sid = ?");
-        $stmtUp->execute(array($toStage, $sid));
-
-        $stmtLog = $dblj->prepare("INSERT INTO player_huyetmach_awaken_log (sid, from_stage, to_stage, success, created_at) VALUES (?, ?, ?, 1, NOW())");
-        $stmtLog->execute(array($sid, $currentStage, $toStage));
 
         player_cache_clear($sid);
-
-        $toName = isset($awakenInfo['to_name']) ? $awakenInfo['to_name'] : 'Stage ' . $toStage;
+        $toName = $next['name'];
         return array('ok' => true, 'msg' => 'Thức tỉnh thành công! Huyết Mạch đã lên ' . $toName . '.', 'new_stage' => $toStage);
     }
 }
@@ -522,7 +508,8 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_can_transform')) {
         $player = getplayer($sid, $dblj);
         $hpCostPercent = 20;
         $hpCost = intval($player->umaxhp * $hpCostPercent / 100);
-        if ($player->uxx < $hpCost) {
+        // HP, khong phai uxx (Hut Máu) — bug cu tru nham cot
+        if (intval($player->uhp) < $hpCost) {
             return array('ok' => false, 'msg' => 'HP không đủ để biến thân (cần ' . number_format($hpCost) . ' HP).');
         }
 
@@ -546,9 +533,10 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_activate_transform')) {
         $player = getplayer($sid, $dblj);
         $hpCostPercent = intval($transform['hp_cost_percent']);
         $hpCost = intval($player->umaxhp * $hpCostPercent / 100);
-        $newHP = max(1, $player->uxx - $hpCost);
+        // HP, khong phai uxx (Hut Máu) — bug cu tru nham cot
+        $newHP = max(1, intval($player->uhp) - $hpCost);
 
-        $stmtHP = $dblj->prepare("UPDATE game1 SET uxx = ? WHERE sid = ?");
+        $stmtHP = $dblj->prepare("UPDATE game1 SET uhp = ? WHERE sid = ?");
         $stmtHP->execute(array($newHP, $sid));
 
         $cdMinutes = intval($transform['cooldown_minutes']);

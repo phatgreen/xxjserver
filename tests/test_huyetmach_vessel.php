@@ -202,6 +202,48 @@ tassert('da win boss -> ready', $g['ready'], true);
 
 $db->prepare("DELETE FROM player_huyetmach_boss WHERE sid = ?")->execute(array($TESTSID));
 
+// ===== E: thuc tinh + bien than =====
+hm_ensure_player($db, $TESTSID);
+hm_reset($db, $TESTSID);
+$db->prepare("UPDATE game1 SET huyetmach_id = 1, huyetmach_quality = 1, huyetmach_awaken_stage = 0,
+    ulv = 100, uyxb = 5000, uhp = 10000, umaxhp = 10000, uxx = 50 WHERE sid = ?")->execute(array($TESTSID));
+foreach (array(1,2,3,4,5,6,7,8) as $v) hm_set_level($db, $TESTSID, $v, 4);
+\player\player_cache_clear($TESTSID);
+
+$r = \player\huyetmach_awaken($TESTSID, $db);
+tassert('awaken stage 1 ok', $r['ok'], true);
+tassert('stage len 1', intval($db->query("SELECT huyetmach_awaken_stage FROM game1 WHERE sid='$TESTSID'")->fetchColumn()), 1);
+tassert('log duoc ghi', intval($db->query("SELECT COUNT(*) FROM player_huyetmach_awaken_log WHERE sid='$TESTSID'")->fetchColumn()) >= 1, true);
+tassert('tru 5000 Linh Thach stage 1', intval($db->query("SELECT uyxb FROM game1 WHERE sid='$TESTSID'")->fetchColumn()), 0);
+
+// stage 1 -> 2: bo qua cac dieu kien khac de dung lai ngu chan boss
+foreach (array(1,2,3,4,5,6,7,8) as $v) hm_set_level($db, $TESTSID, $v, 8);
+$db->prepare("UPDATE game1 SET ulv = 150, uyxb = 20000 WHERE sid = ?")->execute(array($TESTSID));
+$db->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum, djname, djzl, djinfo)
+    VALUES (?, 990112, 112, 20, 'Huyết Thạch', '112', 'test') ON DUPLICATE KEY UPDATE djsum = 20")->execute(array($TESTSID));
+\player\player_cache_clear($TESTSID);
+$r = \player\huyetmach_awaken($TESTSID, $db);
+tassert('stage 2 can boss', strpos($r['msg'], 'Rồng Ngàn Tuổi') !== false, true);
+
+// bug cu: bien than tru vao uxx (Hut Mau) chu khong phai uhp
+$db->prepare("UPDATE game1 SET huyetmach_awaken_stage = 3, uhp = 10000, umaxhp = 10000, uxx = 50 WHERE sid = ?")->execute(array($TESTSID));
+$db->prepare("UPDATE game1 SET huyetmach_transform_cd = NULL WHERE sid = ?")->execute(array($TESTSID));
+\player\player_cache_clear($TESTSID);
+// umaxhp do getplayer tinh lai (trang bi + the chat + huyet mach + mach), khong phai 10000 cot nguyen
+$prePlayer = \player\getplayer($TESTSID, $db);
+$hpPct = intval(\player\huyetmach_get_transform(1)['hp_cost_percent']);
+$expHP = 10000 - intval($prePlayer->umaxhp * $hpPct / 100);
+$r = \player\huyetmach_activate_transform($TESTSID, $db);
+tassert('bien than ok', $r['ok'], true);
+$after = $db->query("SELECT uhp, uxx FROM game1 WHERE sid='$TESTSID'")->fetch(PDO::FETCH_ASSOC);
+tassert('tru uhp theo umaxhp tinh lai', intval($after['uhp']), $expHP);
+tassert('uxx khong doi', intval($after['uxx']), 50);
+tassert('co cd', $db->query("SELECT huyetmach_transform_cd FROM game1 WHERE sid='$TESTSID'")->fetchColumn() !== null, true);
+
+$db->prepare("DELETE FROM player_huyetmach_awaken_log WHERE sid = '$TESTSID'")->execute();
+$db->prepare("UPDATE game1 SET huyetmach_id = 0, huyetmach_awaken_stage = 0, huyetmach_transform_cd = NULL WHERE sid = ?")->execute(array($TESTSID));
+hm_reset($db, $TESTSID);
+
 // ===== don ve sinh DB =====
 hm_reset($db, $TESTSID);
 $db->prepare("UPDATE game1 SET huyetmach_id = 0 WHERE sid = ?")->execute(array($TESTSID));
