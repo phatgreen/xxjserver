@@ -1,0 +1,46 @@
+{
+  "schema": "linhcan_element_v1",
+  "elements": {
+    "kim":  {"key":"kim","name":"Kim","icon":"🪙","color":"#C0C0C0","order":1,"slot":[50,12],
+      "per_lv":{"atk":2},"per_stage_atk_pct":0.5,
+      "desc":"Kim chủ sát — mũi nhọn cứng sắc. Mỗi Lv tăng Công Kích; mỗi bậc Kim bồi thêm 0,5% Công Kích của vòng."},
+    "moc":  {"key":"moc","name":"Mộc","icon":"🌿","color":"#228B22","order":2,"slot":[80,38],
+      "per_lv":{"hp":14,"pet_atk_pct":0.4,"pet_hp_pct":0.4},
+      "desc":"Mộc sinh trưởng — huyết dài, thú nuôi thêm mạnh."},
+    "thuy": {"key":"thuy","name":"Thủy","icon":"💧","color":"#1E90FF","order":3,"slot":[20,38],
+      "per_lv":{"absorb_pct":0.18,"exp_pct":0.08},
+      "desc":"Thủy tu luyện — hút linh khí nhanh hơn, kinh nghiệm mỗi giờ nhiều hơn."},
+    "hoa":  {"key":"hoa","name":"Hỏa","icon":"🔥","color":"#FF4500","order":4,"slot":[69,81],
+      "per_lv":{"crit":0.12,"atk":0.6},
+      "desc":"Hỏa bạo liệt — đòn bùng nổ, vừa bạo vừa nặng."},
+    "tho":  {"key":"tho","name":"Thổ","icon":"🏔","color":"#8B4513","order":5,"slot":[31,81],
+      "per_lv":{"def":1.2,"hp":6},
+      "desc":"Thổ vững chãi — thân như núi, khó xuyên."}
+  },
+  "stat_labels": {"atk":"Công Kích","hp":"Khí Huyết","def":"Phòng Ngự","crit":"Bạo Kích",
+    "absorb_pct":"Hút Linh Khí","exp_pct":"Tốc Độ Tu Luyện","pet_atk_pct":"Công Kích Thú","pet_hp_pct":"HP Thú","lifesteal":"Hút Máu"},
+  "stages": {
+    "0": {"stage":0,"name":"Phàm Căn","lv_cap":15,"color":"#6b7280","icon":"🌱","break":null},
+    "1": {"stage":1,"name":"Huyền Căn","lv_cap":30,"color":"#4caf50","icon":"⭐","break":{"binh_anh":1,"linh_thach":5000,"uexp":0,"boss_to_stage":1}},
+    "2": {"stage":2,"name":"Địa Căn","lv_cap":50,"color":"#ff9800","icon":"🔶","break":{"binh_anh":2,"linh_thach":20000,"uexp":5000,"boss_to_stage":2}},
+    "3": {"stage":3,"name":"Thiên Căn","lv_cap":70,"color":"#f44336","icon":"💫","break":{"binh_anh":4,"linh_thach":80000,"uexp":20000,"boss_to_stage":3}},
+    "4": {"stage":4,"name":"Thánh Căn","lv_cap":90,"color":"#ffd700","icon":"👑","break":{"binh_anh":8,"linh_thach":250000,"uexp":80000,"boss_to_stage":4}}
+  },
+  "train_cost": {"stone_base":1,"stone_per_lv":15,"stone_cap":7,"lt_base":100,"lt_per_lv":15},
+  "da_map": {"kim":35,"moc":34,"thuy":33,"hoa":32,"tho":36,"binh_anh":37},
+  "milestones": {
+    "1": {"total_lv":60,"bonus_percent":5,"name":"Ngũ Khí Thông Minh"},
+    "2": {"total_lv":150,"bonus_percent":10,"name":"Ngũ Hành Tương Sanh"},
+    "3": {"total_lv":270,"bonus_percent":15,"name":"Ngũ Đức Quy Nguyên"},
+    "4": {"total_lv":400,"bonus_percent":20,"name":"Ngũ Hành Viên Dung"}
+  },
+  "title_rules": [
+    {"id":"vo_cuc","name":"Vô Cực Linh Thể","icon":"🌌","color":"#ffd700","require":{"all_lv_min":70}},
+    {"id":"vien_man","name":"Ngũ Hành Viên Mãn","icon":"🌐","color":"#a78bfa","require":{"all_lv_min":30}},
+    {"id":"chan_linh","name":"Chân Linh Căn","icon":"🗡️","color":"#f472b6","require":{"one_lv_min":40,"others_lv_max":14}},
+    {"id":"song_nghi","name":"Song Nghi Linh Căn","icon":"☯️","color":"#4ade80","require":{"two_lv_min":30}},
+    {"id":"pham_can","name":"Phàm Căn","icon":"🌱","color":"#9ca3af","require":{"total_lv_max":24}},
+    {"id":"mac_dinh","name":"Linh Căn Đã Chắc Lọc","icon":"🌿","color":"#e2e8f0","require":{}}
+  ],
+  "material_names": {"32":"Hỏa Tinh Thạch","33":"Thủy Tinh Thạch","34":"Mộc Tinh Thạch","35":"Kim Tinh Thạch","36":"Thổ Tinh Thạch","37":"Bình Anh Tinh Thạch"}
+}

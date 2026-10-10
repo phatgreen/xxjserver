@@ -83,7 +83,7 @@
 - Consumes: nothing.
 - Produces: file JSON doc duoi day (Task 2 doc); 4 bang DB.
 
-- [ ] **Step 1: Kiem ke consumer `linhcan_id` (so thi hoa 10/10, ke lai vao commit message)**
+- [x] **Step 1: Kiem ke consumer `linhcan_id` (so thi hoa 10/10, ke lai vao commit message)**
 
 Run:
 ```bash
@@ -92,7 +92,7 @@ grep -rn "linhcan_id" --include=*.php . | grep -v "^./bak/" | grep -v "^./docs/"
 Expected duoc do 10/10 (neu lech → ghi chu vao `docs/UI_LINHCAN.md` §Chưa làm):
 `class/player.php:113,304,746-747,2025-2031`; `class/function/linhcan_boss.php:40,44,102`; `class/function/linhcan.php:164-204,502-596`; `game/linhcan.php:6,11`; `game.php:192` (INSERT character moi, GIU). Khong con o `paihang`/cho nao khac.
 
-- [ ] **Step 2: Kiem ke nguon da 32..37**
+- [x] **Step 2: Kiem ke nguon da 32..37**
 
 Run:
 ```bash
@@ -101,7 +101,7 @@ grep -rln "shop\|cuahang" class/config/*.json | head
 ```
 Ghi ket qua (quai roi da nao, shop co ban 32..36 khong, gia bao nhieu) vao `docs/UI_LINHCAN.md` §Nguon-da — Task 6/12 dung. Neu shop khong ton tai: ghi "nguon da = boss the gioi + quai roi", bao chu du an.
 
-- [ ] **Step 3: Tao `class/config/linhcan_element_config.json`** (noi dung nguyen chan):
+- [x] **Step 3: Tao `class/config/linhcan_element_config.json`** (noi dung nguyen chan):
 
 ```json
 {
@@ -153,7 +153,7 @@ Ghi ket qua (quai roi da nao, shop co ban 32..36 khong, gia bao nhieu) vao `docs
 ```
 Ghi chu co y: lech voi spec — `stone_cap` thuc te dat 6 (L max 89 → 1+floor(89/15)=6), giu 7 de phong; rule `chan_linh` "4 hanh con lai < 15" → `others_lv_max:14`. Toa do `slot` la ngu giac deu tren hop anh, **gia tri khoi diem** — Task 10 buoc do anh that se chinh (bai hoc v13 Nhuc Than: do truc anh, khong lay 50%).
 
-- [ ] **Step 4: Quet CJK/smart-quote + validate JSON**
+- [x] **Step 4: Quet CJK/smart-quote + validate JSON**
 
 Run (bo quet nhu ke hoach Mach Huyet):
 ```bash
@@ -165,7 +165,7 @@ $d=json_decode($s,true); echo $d===null?"JSON INVALID\n":("json ok elems=".count
 ```
 Expected: `no CJK`, `quotes clean`, `json ok elems=5 stages=5 titles=6`.
 
-- [ ] **Step 5: Tao `sql/sql_linhcan_element.sql`**
+- [x] **Step 5: Tao `sql/sql_linhcan_element.sql`**
 
 ```sql
 -- =====================================================
@@ -233,7 +233,7 @@ echo "executed=$n\n";'
 ```
 Expected: `executed=4` (hoac tinh theo cau khong rong — moi 4 CREATE deu OK, khong loi).
 
-- [ ] **Step 6: `tests/test_linhcan_schema.php`** — copy khung `tests/test_huyetmach_schema.php:1-28` (tassert + col() + tbl()), doan kiem tra thay vao:
+- [x] **Step 6: `tests/test_linhcan_schema.php`** — copy khung `tests/test_huyetmach_schema.php:1-28` (tassert + col() + tbl()), doan kiem tra thay vao:
 ```php
 tassert('table player_linhcan_node', tbl($db,'player_linhcan_node'), true);
 tassert('table linhcan_boss_personal', tbl($db,'linhcan_boss_personal'), true);
@@ -250,7 +250,7 @@ tassert('skill skill_id varchar40', intval(col($db,'player_linhcan_skill','skill
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 7: Sua `tests/deploy_preflight.php`** — them 4 dong vao `$SID_VARCHAR` (khoi `:19-37`):
+- [x] **Step 7: Sua `tests/deploy_preflight.php`** — them 4 dong vao `$SID_VARCHAR` (khoi `:19-37`):
 ```php
 'player_linhcan_node'      => 'sid',
 'linhcan_boss_personal'    => 'sid',
@@ -258,7 +258,7 @@ exit($fails === 0 ? 0 : 1);
 'player_linhcan_skill'     => 'sid',
 ```
 
-- [ ] **Step 8: Chay test + commit**
+- [x] **Step 8: Chay test + commit**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_schema.php

@@ -35,6 +35,10 @@ $SID_VARCHAR = array(
     'player_huyetmach_vessel'       => 'sid',
     'huyetmach_boss'                => 'sid',
     'player_huyetmach_upgrade_log'  => 'sid',
+    'player_linhcan_node'           => 'sid',
+    'linhcan_boss_personal'         => 'sid',
+    'player_linhcan_break_log'      => 'sid',
+    'player_linhcan_skill'          => 'sid',
 );
 
 try {
