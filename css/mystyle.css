@@ -7660,3 +7660,116 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 /* Hai class trang game/huyetmach_upgrade.php dung; source go inline style nen clone khong co. */
 .hmq-lt{color:#38bdf8;font-weight:800;margin-bottom:6px}
 .hmq-form{text-align:center;margin-top:12px}
+
+/* ============================================================
+   LINH CAN — VONG NGU HANH (game/linhcan.php)
+   Khuon: block .hm-* (mach huyet). Toa do .slot-* DO TU ANH that
+   (images/linhcan/vong-ngu-hanh.jpg, 900x900) bang GD centroid —
+   xem docs/UI_LINHCAN.md muc 3. KHONG dung .main button (nut <a>).
+   ============================================================ */
+.lc-wrap{max-width:660px;margin:0 auto;padding:10px;color:#e2e8f0}
+.lc-card{background:linear-gradient(160deg,#111a35,#0b1024);border:1px solid rgba(148,163,184,.16);border-radius:14px;padding:12px;margin-bottom:10px;position:relative;isolation:isolate}
+.lc-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.lc-title{font-weight:700;letter-spacing:2px;color:#7dd3fc}
+.lc-badge{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--lc-color,#22d3ee);color:var(--lc-color,#22d3ee)}
+.lc-rail{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.lc-stage-chip{display:flex;flex-direction:column;align-items:center;min-width:56px;padding:4px 6px;border-radius:10px;border:1px solid rgba(148,163,184,.2);text-decoration:none;color:#94a3b8;font-size:11px}
+.lc-stage-chip.is-done{color:#e2e8f0}
+.lc-stage-chip.is-cur{border-color:#fbbf24;color:#fde68a}
+.lc-stage-chip.is-view{background:rgba(34,211,238,.12)}
+.lc-stage-chip.is-lock{opacity:.45}
+.lc-chip-icon{font-size:15px;line-height:1.2}
+.lc-chip-name{font-weight:700}
+.lc-chip-stage{opacity:.8}
+.lc-viewline{font-size:12px;color:#9fb3c8;margin-bottom:6px}
+.lc-stage{position:relative;width:100%;max-width:440px;margin:0 auto}
+.lc-ring-img{width:100%;display:block;border-radius:12px}
+.lc-gem{position:absolute;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25),var(--gem,#64748b));box-shadow:0 0 var(--glow,0px) var(--gem,#64748b);border:1px solid rgba(255,255,255,.25);color:#0b1024;font-size:11px;z-index:2}
+.lc-gem.is-lock{filter:grayscale(.8);opacity:.5}
+.lc-gem.is-view{outline:2px solid rgba(255,255,255,.6)}
+.lc-gem-icon{font-size:18px;line-height:1.1}
+.lc-gem-lv{font-weight:700}
+/* Toa do 5 ngoc = tam 5 dai tren ANH (do bang GD, khong phai so tron) */
+.slot-kim{left:50%;top:12.9%}
+.slot-moc{left:85.4%;top:37%}
+.slot-hoa{left:72.4%;top:72.5%}
+.slot-tho{left:27.6%;top:72.5%}
+.slot-thuy{left:14.6%;top:37%}
+.lc-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;text-align:center;z-index:2}
+.lc-core-icon{display:block;font-size:26px;line-height:1.2;text-shadow:0 0 var(--lc-glow,6px) var(--lc-color,#22d3ee)}
+.lc-core-name{display:block;font-weight:700;font-size:13px;white-space:nowrap;color:var(--lc-color,#22d3ee);text-shadow:0 0 6px var(--lc-color,#22d3ee)}
+.lc-forge{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.lc-btn{padding:8px 14px;border-radius:10px;font-weight:700;text-decoration:none;font-size:13px}
+.lc-btn small{display:block;font-weight:400;font-size:11px;opacity:.85}
+.lc-btn-train{background:linear-gradient(120deg,#0e7490,#22d3ee);color:#06121f}
+.lc-btn-break{background:linear-gradient(120deg,#b45309,#fbbf24);color:#1f1306}
+.lc-btn-boss{background:linear-gradient(120deg,#7f1d1d,#ef4444);color:#fff}
+.lc-btn-off{background:#1e293b;color:#64748b}
+.lc-notice{padding:6px 10px;border-radius:8px;background:rgba(74,222,128,.12);color:#4ade80;margin-bottom:8px;text-align:center;font-weight:700}
+.lc-notice.bad{background:rgba(248,113,113,.12);color:#f87171}
+.lc-cols{display:grid;grid-template-columns:1fr;gap:10px}
+.lc-col-title{font-weight:700;color:#7dd3fc;margin-bottom:6px}
+.lc-attr-row{font-size:12px;padding:3px 0;color:#cbd5e1}
+.lc-attr-row.is-dom{color:#fde68a}
+.lc-ms{margin-top:6px;font-size:12px;color:#a5b4fc}
+.lc-reqs-row{font-size:12px;padding:2px 0}
+.lc-reqs-num{color:#64748b}
+.lc-skillcard{margin-top:8px;font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(34,211,238,.08)}
+.lc-skillgate{color:#64748b}
+/* --- fx ladder: bac 0 van PHAI thay gi do (halo tinh), bac cang cao cang dong --- */
+.lc-fx0{--lc-dur:0s;--lc-aura:.05;--lc-glow:6px}
+.lc-fx1{--lc-dur:0s;--lc-aura:.07;--lc-glow:9px}
+.lc-fx2{--lc-dur:12s;--lc-aura:.10;--lc-glow:12px}
+.lc-fx3{--lc-dur:12s;--lc-aura:.14;--lc-glow:16px}
+.lc-fx4{--lc-dur:12s;--lc-aura:.18;--lc-glow:20px}
+/* Bac 0: chi co halo tinh o nhan danh hieu — tuyet doi khong dong nao. */
+.lc-core{border-radius:50%}
+.lc-core:before{content:"";position:absolute;inset:-14% -8%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 50% 50%,var(--lc-color,#22d3ee) 0%,rgba(0,0,0,0) 68%);mix-blend-mode:screen;opacity:var(--lc-aura,.05)}
+/* fx1: nhan hieu tho dai */
+.lc-fx1 .lc-core,.lc-fx2 .lc-core,.lc-fx3 .lc-core,.lc-fx4 .lc-core{animation:lc-breathe 3.2s ease-in-out infinite}
+/* fx2: vong conic quat tren mat vong (blend screen + isolation tren .lc-card) */
+.lc-stage:after{content:"";position:absolute;left:5%;top:5%;width:90%;height:90%;border-radius:50%;z-index:1;pointer-events:none;opacity:0;background:conic-gradient(from 0deg,rgba(0,0,0,0) 0deg,var(--lc-color,#22d3ee) 60deg,rgba(0,0,0,0) 130deg);mix-blend-mode:screen}
+.lc-fx2 .lc-stage:after,.lc-fx3 .lc-stage:after,.lc-fx4 .lc-stage:after{opacity:calc(var(--lc-aura,.05) + .04);animation:lc-sweep var(--lc-dur,12s) linear infinite}
+/* fx3: 5 ngoc phat tia mau hanh cua chinh no */
+.lc-fx3 .lc-gem:before,.lc-fx4 .lc-gem:before{content:"";position:absolute;inset:-40%;z-index:-1;border-radius:50%;background:conic-gradient(from 0deg,rgba(0,0,0,0) 0deg,var(--gem,#64748b) 18deg,rgba(0,0,0,0) 40deg,rgba(0,0,0,0) 180deg,var(--gem,#64748b) 198deg,rgba(0,0,0,0) 220deg);opacity:.5;animation:lc-ray 2.4s linear infinite}
+/* fx4: ca vong tu xoay cham (tom tat fx3) */
+.lc-fx4 .lc-ring-img{animation:lc-spin 40s linear infinite}
+/* Danh hieu VO CUC: chu chay cau vong (background-clip LUON dat SAU shorthand) */
+.lc-core-vo .lc-core-name{background:linear-gradient(90deg,#f87171,#fbbf24,#4ade80,#38bdf8,#c084fc,#f87171);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:lc-rainbow 6s linear infinite}
+@keyframes lc-breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.04)}}
+@keyframes lc-sweep{to{transform:rotate(360deg)}}
+@keyframes lc-ray{to{transform:rotate(360deg)}}
+@keyframes lc-spin{to{transform:rotate(360deg)}}
+@keyframes lc-rainbow{to{background-position:-200% 0}}
+/* Tat hieu ung khi he thong yeu cau it dong nhat (animation:none, khong play-state) */
+@media(prefers-reduced-motion:reduce){
+.lc-fx1 .lc-core,.lc-fx2 .lc-core,.lc-fx3 .lc-core,.lc-fx4 .lc-core,.lc-fx2 .lc-stage:after,.lc-fx3 .lc-stage:after,.lc-fx4 .lc-stage:after,.lc-fx3 .lc-gem:before,.lc-fx4 .lc-gem:before,.lc-fx4 .lc-ring-img,.lc-core-vo .lc-core-name{animation:none}
+.lc-stage:after{display:none}
+}
+/* Panel 660px CHUNG cua server (do that: .hm-wrap cung ra 622px o 840/1337) —
+   KHONG mo rong. >=601 chi doi 2 card duoi thanh 2 cot. */
+@media (min-width:601px){.lc-cols{grid-template-columns:1fr 1fr}.lc-stage{max-width:520px}}
+/* --- Bar duoi: 4 nut (Luyen Can / Nhiem Vu / Boss / Nhan Vat).
+   Copy khuon .hm-tabbar (7401) vi .main a:link (0,1,1) de rule 1 lop. --- */
+.lc-tabbar{display:flex;justify-content:center;gap:6px;margin:10px 0 2px;padding:7px 6px;border-radius:18px;border:1px solid rgba(125,211,252,.22);background:linear-gradient(180deg,rgba(9,22,52,.88),rgba(4,11,30,.94))}
+.lc-tabbar a,.lc-tabbar a:link,.lc-tabbar a:visited,.lc-tabbar a:hover,.lc-tabbar a:active,.lc-tabbar a:focus{box-sizing:border-box;flex:0 1 auto;min-width:calc((100% - 30px)/6);max-width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;min-height:58px;padding:7px 3px 6px;margin:0;border-radius:12px;border:1px solid transparent;background:none;color:#94b8dd;text-decoration:none;font-weight:1000}
+.lc-tabbar a i{display:block;width:100%;height:24px;line-height:24px;overflow:hidden;font-style:normal;font-size:19px;text-align:center;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;filter:grayscale(.35)}
+.lc-tabbar a b{display:block;width:100%;text-align:center;font-size:11px;font-weight:1000;letter-spacing:.2px}
+.lc-tabbar a.on,.lc-tabbar a.on:link,.lc-tabbar a.on:visited{color:#ffd77a;border-color:rgba(255,205,120,.42);background:radial-gradient(circle at 50% 26%,rgba(120,74,14,.55),rgba(28,16,2,.35));box-shadow:0 0 18px rgba(255,178,66,.18)}
+.lc-tabbar a.on i{filter:none}
+.lc-tabbar a:hover,.lc-tabbar a:active,.lc-tabbar a:focus{background:rgba(255,255,255,.12);color:#e2e8f0}
+.lc-tabbar a.on:hover,.lc-tabbar a.on:active,.lc-tabbar a.on:focus{color:#ffd77a;background:radial-gradient(circle at 50% 26%,rgba(140,88,18,.62),rgba(34,20,2,.42))}
+@media(max-width:760px){
+.lc-tabbar{gap:4px;padding:6px 5px}
+.lc-tabbar a,.lc-tabbar a:link,.lc-tabbar a:visited,.lc-tabbar a:hover,.lc-tabbar a:active,.lc-tabbar a:focus{min-width:calc((100% - 20px)/6);min-height:52px;padding:6px 2px 5px}
+.lc-tabbar a i{height:22px;line-height:22px;font-size:18px}
+.lc-tabbar a b{font-size:10px}
+}
+/* --- Reset <a> cua he thong (gamecss.css:70 a:link = display:inline-block +
+   margin 4px 3px 2px 4px; :85 a = padding 1px 10px). a:link la (0,1,1) nen
+   .lc-gem (0,1,0) THUA — phai dung .main a.lc-* (0,2,1) nhu khuon .main .hm-act.
+   Khong co dong nay thi 5 ngoc lech 4px va span trong ngoc khong xep cot. --- */
+.main a.lc-gem,.main a.lc-stage-chip,.main a.lc-btn{box-sizing:border-box;margin:0;padding:0}
+.main a.lc-gem{display:flex;flex-direction:column}
+.main a.lc-stage-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px}
+.main a.lc-btn{padding:8px 14px}

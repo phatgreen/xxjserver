@@ -273,3 +273,174 @@ còn `linhcan_bonus.all = 10` và `none = 0` trong khi **hệ mới không sinh 
 | 9 Step 5 | (harness cua toi) `t9_smoke.php` tra `len=3` cho ca 12 route | **Bug cua harness** (`shell_exec('curl -s ' . escapeshellarg($url))` goi lien tiep tren Git Bash), KHONG phai loi game — cung URL do curl truc tiep → HTTP 200, 7712 byte | Do lai bang vong lap curl trong bash: `linhcan`/`linhcan_wash`/`linhcan_quest`/`zhuangtai` = HTTP 200, `grep -c "Fatal error\|Uncaught\|SQLSTATE\|Warning:"` = **0** |
 
 
+
+---
+
+## Trang Vong Ngu Hanh — Task 10, 2026-10-11
+
+### 10.1 Route va file (ban do hien trang)
+
+| Thu | Gia tri | Ghi chu do duoc |
+|---|---|---|
+| Route trang | `cmd=linhcan` (`game.php:352-355`), include `game.php:596` | trang doc `$cmd/$sid/$canshu/$el` toan cuc (`parse_str` `game.php:114`), **cam `$_GET`** |
+| Chon hanh | `&el=kim\|moc\|thuy\|hoa\|tho` | `el=xyz` -> tu ve hanh chu dao, khong loi, khong notice |
+| Hanh dong | `&canshu=train` / `&canshu=break` | GET thuong, khong form/JS; `canshu=boom` bi bo qua |
+| Ban | `cmd=linhcan_quest`, `cmd=linhcan_boss` | **van la trang cu** — Task 11 viet lai |
+| Trang | `game/linhcan.php` 208 dong (viet moi hoan toan) | header/init copy khuon `game/huyetmach.php:1-8` |
+| CSS | `css/mystyle.css:7664-7779`, **77 rule `.lc-`** | cuoi file, sau khoi `hmq-*` cua Mach Hyet |
+| Anh vong | `images/linhcan/vong-ngu-hanh.jpg` 900x900, 172.337 B | nguon **ImageGen** (no 3, muc 10.7) |
+| Cache | `game.php:502` `css/mystyle.css?v=2026101104` | moi sua CSS **bat buoc bump** |
+| Anh chung minh | `docs/img/linhcan/`: `_lc390_dangcho`, `_lc1337_dangcho`, `_lcfx0.._lcfx4`, `_lcvo`, `_fxbang` | Chrome CLI, KHONG browser-use MCP |
+
+### 10.2 Cay cau truc `.lc-*`
+
+```
+.lc-wrap.lc-fx{0..4}  (inline: --lc-tier, --lc-color)
+├─ .lc-notice[.bad]              thong bao train/break (chi hien khi co $lcmsg)
+├─ .lc-card.lc-card-ring
+│  ├─ .lc-head  → .lc-title "LINH CĂN" + .lc-badge (danh hieu · tổng Lv)
+│  ├─ .lc-rail  → 5 × a.lc-stage-chip(.is-done|.is-cur|.is-lock|.is-view)
+│  │                └─ .lc-chip-icon / .lc-chip-name / .lc-chip-stage
+│  ├─ .lc-viewline               "Kim · bậc 2 (Địa Căn) — Lv 40/50 — <skill>"
+│  ├─ .lc-forge-wrap
+│  │  ├─ .lc-stage  → img.lc-ring-img + 5 × a.lc-gem.slot-<el> + .lc-core[.lc-core-vo]
+│  │  │                 .lc-gem └─ .lc-gem-icon / .lc-gem-lv   (--gem, --glow inline)
+│  │  │                 .lc-core └─ .lc-core-icon / .lc-core-name (+ :before halo tinh)
+│  │  └─ .lc-forge  → a.lc-btn-train · a.lc-btn-break|a.lc-btn-boss|span.lc-btn-off
+│  └─ nav.lc-tabbar → 4 × a(<i>icon</i><b>nhãn</b>), tab dang dung class="on"
+└─ .lc-card.lc-cols (≥601px: 2 cot)
+   ├─ .lc-col → .lc-col-title "Thuộc Tính Kích Hoạt" + 5 × .lc-attr-row[.is-dom] + .lc-ms
+   └─ .lc-col → .lc-col-title "Đột Phá <hanh>" + .lc-reqs(5 × .lc-reqs-row + .lc-reqs-num)
+                + .lc-skillcard(.lc-skillgate)
+```
+
+### 10.3 Toa do 5 ngoc — do tu ANH that, khong phai so tron
+
+Anh 900x900. Buoc 1: GD centroid theo mau (`E:/window/Temp/lcimg.php`).
+Buoc 2: GD do lai trong vung nhiep (`lctho2.php`) vi aura mau lem ra ngoai dai.
+Buoc 3: **ep doi xung qua tam 50%** (dia vong doi xung, centroid lech 1-2% do aura),
+roi verify bang mat tren `_lc390` + `_lc1337`: ca 5 ngoc nam vung tren dai te.
+
+| Hanh | GD centroid (buoc 1) | GD vung nhiep (buoc 2) | **CSS chot** | px tuong ung tren anh 900x900 |
+|---|---|---|---|---|
+| Kim | 50.2% / 12.9% | (dai trang, khong do mau) | `left:50%; top:12.9%` | 450 / 116 |
+| Moc | 84.3% / 36.5% | 79.3% / 37.5% | `left:85.4%; top:37%` | 769 / 333 |
+| Thuy | 13.6% / 37.5% | 16.0% / 37.4% | `left:14.6%; top:37%` | 131 / 333 |
+| Hoa | 72.9% / 73.7% | 72.0% / 72.1% | `left:72.4%; top:72.5%` | 652 / 653 |
+| Tho | (vang — giong Kim) | 28.2% / 71.3% | `left:27.6%; top:72.5%` | 248 / 653 |
+
+Do lại trong trinh duyet (`_lcm.html`, Chrome headless `--dump-dom`, zoom ve 1):
+`slot-kim @50.0,12.9 · slot-moc @85.4,37.0 · slot-thuy @14.6,37.0 · slot-hoa @72.4,72.5 · slot-tho @27.6,72.5`
+— trung khop tuyet doi ca @390 va @840, ngoc 56px.
+
+### 10.4 Thang hieu ung `lc-fx0 … lc-fx4` (phan bac theo bac dot pha CAO NHAT trong 5 hanh)
+
+`$lcmaxStage = max(stage cua 5 node)` → class `lc-fx<N>` tren `.lc-wrap`.
+Bac **thap nhat van phai thay gi do**: `lc-fx0` co halo tinh sau nhan hieu (`.lc-core:before`, opacity `.05`).
+
+| Bậc | `--lc-aura` | `--lc-glow` | Halo tinh nhan hieu | Nhãn hiệu thở | Vòng conic quét | 5 ngọc phát tia | Cả vòng tự xoay |
+|---|---|---|---|---|---|---|---|
+| fx0 | .05 | 6px | ✔ (tĩnh) | ✘ | ✘ | ✘ |  |
+| fx1 | .07 | 9px | ✔ | ✔ `lc-breathe 3.2s` | ✘ |  | ✘ |
+| fx2 | .10 | 12px | ✔ | ✔ | ✔ `lc-sweep 12s` | ✘ |  |
+| fx3 | .14 | 16px | ✔ | ✔ | ✔ | ✔ `lc-ray 2.4s` | ✘ |
+| fx4 | .18 | 20px | ✔ | ✔ | ✔ | ✔ | ✔ `lc-spin 40s` |
+
+**Số đo thật** (`_lcm.html` dump computed style của `::before/::after`, state kim lv50/stage3):
+
+```
+FX=lc-fx3 | .lc-stage::after op=0.18 anim=lc-sweep 12s blend=screen
+          | .lc-gem::before  op=0.5  anim=lc-ray  2.4s
+          | .lc-core::before op=0.14 anim=none    blend=screen   (halo tinh)
+          | ringAnim=none   coreAnim=lc-breathe
+```
+Quet 5 bac: `fx0` → sweep `op=0 anim=none`; `fx1` → `coreAnim=lc-breathe`, sweep van 0;
+`fx2/3/4` → sweep `op=.14/.18/.22`; `fx4` → `ringAnim=lc-spin`. Khong bac nao mat het dau.
+
+**`prefers-reduced-motion: reduce`** (do bang `chrome --force-prefers-reduced-motion`, state fx2):
+`anim=none` cho **moï** rule, `.lc-stage::after → display:none`; halo tinh `.lc-core::before` **van con**
+(`op=0.1`) → tat hieu ung khong lam trang ve man hinh tinh khac.
+
+**Danh hieu Vu Cuc (id `vo_cuc`, ten hien ra: "Vô Cực Linh Thể")**: `title_rules` khop theo **tong Lv 5 hanh**,
+khong phai bac. Seed ca 5 hanh `lv=90 stage=4` → tong 450 → `.lc-core` duoc them `lc-core-vo`,
+ten chay cau vong 6 mau (`lc-rainbow 6s`, `background-clip:text` dat **SAU** shorthand `background:`
+vi thieu thu tu do lam an het chu — da dung 1 lan o mach huyet). Anh: `_lcvo.png`.
+
+### 10.5 Loi chot va ten nut (nguyen van, Task 11/12 phai dung lai dung chuoi nay)
+
+| Vi tri | Chuoi |
+|---|---|
+| Tieu de card | `LINH CĂN` |
+| Badge | `<icon> <danh hieu> · tổng Lv <tổng>` |
+| Rail chip | `<icon>` / `<tên hành>` / `bậc <N>` (3 dong cot) |
+| Viewline | `<icon> <hành> · bậc <N> (<tên bậc>) — Lv <cur>/<cap> — <skill>` |
+| Skill chưa mở | `🔒 kỹ năng cần <tên bậc unlock>` (unlock = `Địa Căn`) |
+| Nút luyện | `LUYỆN <HÀNH HOA>` + `<stone> đá (có <have>) · <lt> LT` |
+| Trần Lv | `ĐÃ CHẠM TRẦN Lv <cap>` (span `.lc-btn-off`, khong phai link) |
+| Nút đột phá (đủ) | `✦ ĐỘT PHÁ LÊN <tên bậc kế>` |
+| Nút boss (thiếu) | `⚔ Boss đột phá <hành>` |
+| Trần bậc | `<Thánh Căn> — tối đa` |
+| Cột trái | `Thuộc Tính Kích Hoạt` / dong: `<icon> <hành> Lv <N> · <stat> +<val>, …` |
+| Cộng hưởng | `Cộng hưởng tổng Lv <N>: +<%> <tên mốc>` + ` — mốc kế: Lv <N> (+<%> <tên>)` hoặc ` — đã đạt đỉnh` |
+| Cột phải | `Đột Phá <icon> <hành>` + `[Đủ]`/`[Thiếu]` `<nhãn> <cur>/<need>` |
+| Thẻ skill | `<icon> <tên> — <mô tả> — đã mở · hồi <N> phút · tốn <N>% khí huyết` |
+| Notice | `Luyện <hành> lên Lv <N+1>.` / `Chưa đủ điều kiện: <danh sách row thiếu>.` |
+| Tab bar | `☯ Luyện Căn` · `📜 Nhiệm Vụ` · `👹 Boss Ngũ Hành` · `👤 Nhân Vật` |
+
+Nhan nhieu dong trong nut (`.lc-btn` 130x60 @390) → **can giua bang flex, khong dung `.main button`**
+(khuon `.main button` cua he thong lam lech chu — xem `docs/UI_HUYETMACH.md` §13).
+
+### 10.6 Quy trinh kiem chung (lap lai duoc tren may nay)
+
+```bash
+P="D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe"
+# 0) Server dev: Apache phpStudy THAT — dung built-in PHP 5.6 (dang chay: 8199, 8123)
+#    D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -S 127.0.0.1:8199 -t .
+# 1) Lint + quet ky tu la + dead-link (Bat buoc, khong duoc bo)
+$P -l game/linhcan.php
+grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" game/linhcan.php css/mystyle.css || echo CLEAN
+grep -n "linhcan_upgrade" game/linhcan.php || echo NO-DEAD-LINK
+# 2) Route that (fixture e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2, uid 987650)
+cd E:/window/Temp && $P lcget.php "cmd=linhcan&sid={SID}&el=kim"   # in LEN + PHP-ERR, luu lcpage.html
+$P lcread.php                                                      # doc het label tren trang (khong phai mo mat)
+$P lcget.php "cmd=linhcan&sid={SID}&el=hoa&canshu=train"           # duot that: Lv tang + notice
+# 3) Do layout / pseudo-element (zoom ve 1 trong iframe harness)
+bash E:/window/Temp/lcshot.sh kim MEASURE 390
+bash E:/window/Temp/lcshot.sh kim MEASURE 840
+# 4) Anh chung minh (Chrome CLI, KHONG dung browser-use MCP)
+bash E:/window/Temp/lcshot.sh kim _lc390_dangcho.png 390 1360 500,1400
+bash E:/window/Temp/lcshot.sh kim _lc1337_dangcho.png 1337 1200 1337,1200
+# 5) Seed thang fx: lcempty.php <sid> roi lcseed.php <sid> <el> <lv> <stage>
+# 6) Ghep 6 anh fx0..fx4+vo thanh 1 bang doi chieu
+$P E:/window/Temp/lcfx.php "" 195 612 165      # -> docs/img/linhcan/_fxbang.png
+```
+**Ba bay harness da dung hoat dong nay** (khong phai loi game):
+1. `cmd` blob **dung mot lan** — `encode` co chong replay; dung lai blob cu → `game.php:391`
+   `refresh:1;url=index.php`, body **3 byte (chỉ BOM)**. Moi lan goi/chup **phai encode lai**.
+2. `php -S` **mot luong** → request sat lien tiep co luc tra 3 byte; nghi ngò thi goi lai, dung ket luan ngay.
+3. `--screenshot` can **duong dan tuyet doi kieu Windows** (`D:\...`), duong dan tuong doi bi "cannot find the path".
+
+### 10.7 SO NO Task 10 — CHƯA test / CHƯA làm
+
+| # | No | Muc do | Ghi chu |
+|---|---|---|---|
+| 1 | **CHAM THAT tren mobile** (ngon tay, 5 ngoc + 4 tab + 2 nut) | **CHƯA TEST** | moi thu chi duy cua Chrome headless 390px trong iframe + curl. Chua ai ngam may that, chua test vuong tay 44px (nut `.lc-btn` cao 60px ✔ theo so, nhung ngoc 56px sat nhau o `slot-moc/thuy` cach nhau ~90px — phai ngam tren may). |
+| 2 | **fx trong game that** (tốc độ thật, không virtual-time) | **CHƯA TEST** | `--virtual-time-budget=18000` dong dong ho cua Chrome → anh chup **khong** chung minh duoc `lc-sweep 12s`/`lc-spin 40s` chay mong hay giot. Moi thay duoc: computed style dung ten/thoi luong/opacity (10.4). |
+| 3 | **Anh vong ngu hanh: nguon ImageGen** | **NO du lieu** | `E:/window/Temp` + 2 thu muc source game (MuH5 / TuTienPhucMa / NaTra tren F: va E:) **khong co** asset vong ngu hanh nao → dung anh ImageGen `vibe_images/vong-ngu-hanh_1791658141369_c6b27b20.png`, GD resample 1024→900 JPEG. Chu du an quyét: thay anh khac → **phai do lai 5 toa do 10.3** va bump `$lcImgVer` (`game/linhcan.php:10`) . |
+| 4 | Trang `linhcan_quest` + `linhcan_boss` | **VAN LA TRANG CU** | Task 11. 2 tab tren bar da tro dung route nen khong dead-link, nhung noi dung chua theo khuon `.lc-*`. |
+| 5 | Di trú 22 căn cũ → node Ngũ Hành | **CHƯA chạy** | Task 12. Trang nay doc bang `player_linhcan_node`; nguoi choi that chua co dong nao → ho thay Lv 0/bậc 0 (khong loi, nhung phai di trú). |
+| 6 | Deploy production | **CHƯA** | Repo **khong co remote**; moi thay doi o day phai di tay + `docs/DEPLOY_PRODUCTION_LINHCAN.md` (Task 12 viet). |
+| 7 | `.lc-gem` khi 5 hanh deu Lv 90 (chu "Lv90" dai nhat) | **MOI TEST 1 state** | `_lcvo.png` co 5 ngoc Lv90 → van trong tron ngoc 56px. Chua test Chu Nhat nho nhat thuc te (man 320px). |
+| 9 | Harness `_lcshot.html` + `_lcm.html` **con nam trong thu muc game** (web root) | **PHAI XOA** | dung cho `lcshot.sh` do/chup; Task 11 can lai, **Task 12 Step cuoi phai xoa het** (khi do copy `E:/window/Temp/`). Chua commit lan nao (untracked). |
+| 8 | Server dev 8199 (PID 12104) + 8123 (PID 24600) | **DANG MO** | Ban giao phai tat hoac bao chu du an; `tongquan.php` **dang co credentials** trong file → **khong duoc commit** (Task 12). |
+
+### 10.8 Loi da tim va sua trong Task 10
+
+| Bay | Nguyen nhan that | Cach sua |
+|---|---|---|
+| 5 ngoc lech +4px truc x va y, `display:flex` mat, icon+Lv nam canh nhau | `css/gamecss.css:70-75` `a:link{display:inline-block;margin:4px 3px 2px 4px}` **dac (0,1,1)** > `.lc-gem` (0,1,0) | reset bang `.main a.lc-gem,.main a.lc-stage-chip,.main a.lc-btn` (**0,2,1**) — cung cach khuon `.main .hm-act` da dung o mach huyet. Sau khi sua: do lai trung khop 100% toa do 10.3 |
+| Chip rail in "Kimbậc 2" dinh lien | cung `a:link` lam `.lc-stage-chip{display:flex;flex-direction:column}` bi vo hieu hoa | `.main a.lc-stage-chip{display:flex;flex-direction:column;align-items:center;gap:2px}` → do ra 56x76 (3 dong) |
+| Nhan hieu 2 dong cheo ra ngoai dai giua | `.lc-core{width:38%}` hep hon chu "Linh Căn Đã Chắc Lọc" (130px) | `width:42%` + `.lc-core-name{white-space:nowrap}` → do ra `.lc-core-name` 133x23 @390 (1 dong), 192x23 @840 |
+| `Parse error: unexpected ')' game/linhcan.php:193` | dong nhat ternary 2 nhanh vao 1 bieu thuc, dong dau `)` truoc `:` | tach `$lcSkillCard` thanh bien tinh rieng phia tren khoi render |
+| `max-width:840px` tren `.lc-wrap` khong tac dung | khung chung cua server **660px** (do `.hm-wrap` cung ra 622px @840) | **khong noi khung chung** — xoa override chieu rong, o ≥601px chi doi `.lc-cols` 2 cot + `.lc-stage{max-width:520px}` |
+| The skill: mo ta dinh lien "…1 turn đã mở · hồi 5 phút" | thieu tach giua `description` va `lc-skillgate` | them ` — ` truoc `<span class="lc-skillgate">` |
