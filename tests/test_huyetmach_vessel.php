@@ -68,13 +68,18 @@ function hm_set_level($db, $sid, $vid, $lv) {
     $db->prepare("INSERT INTO player_huyetmach_vessel (sid, vessel_id, level, updated_at)
         VALUES (?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE level = VALUES(level)")->execute(array($sid, $vid, $lv));
 }
-
-if (!$db->query("SELECT COUNT(*) FROM game1 WHERE sid = '$TESTSID'")->fetchColumn()) {
-    // test can mot dong game1 de doc stage; dong nay bi xoa vo dieu kien o cuoi test
-    $db->prepare("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, huyetmach_id, huyetmach_quality, huyetmach_awaken_stage)
-        VALUES ('$TESTSID', 990112, 'HMTEST', 300, 1000, 10000, NOW(), 0, 1, 0)")->execute();
+function hm_ensure_player($db, $sid) {
+    // moi phan B/C/D deu can mot dong game1 de doc stage; don duoc o cuoi test
+    $st = $db->prepare("SELECT COUNT(*) FROM game1 WHERE sid = ?");
+    $st->execute(array($sid));
+    if (!intval($st->fetchColumn())) {
+        $db->prepare("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, huyetmach_id, huyetmach_quality, huyetmach_awaken_stage)
+            VALUES (?, 990112, 'HMTEST', 300, 1000, 10000, NOW(), 0, 1, 0)")->execute(array($sid));
+    }
+    $db->prepare("UPDATE game1 SET uid = 990112 WHERE sid = ?")->execute(array($sid));
 }
-$db->prepare("UPDATE game1 SET uid = 990112 WHERE sid = ?")->execute(array($TESTSID));
+
+hm_ensure_player($db, $TESTSID);
 
 hm_reset($db, $TESTSID);
 
@@ -126,11 +131,7 @@ tassert('pen cap 15', $b4['pen'], 15.0);
 hm_reset($db, $TESTSID);
 
 // ===== C: Luyen Mach =====
-if (!$db->query("SELECT COUNT(*) FROM game1 WHERE sid = '$TESTSID'")->fetchColumn()) {
-    $db->prepare("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, huyetmach_id, huyetmach_quality, huyetmach_awaken_stage)
-        VALUES ('$TESTSID', 990112, 'HMTEST', 300, 1000, 10000, NOW(), 0, 1, 0)")->execute();
-}
-$db->prepare("UPDATE game1 SET uid = 990112 WHERE sid = ?")->execute(array($TESTSID));
+hm_ensure_player($db, $TESTSID);
 
 $ok = \player\huyetmach_vessel_refine($TESTSID, $db, 99);
 tassert('refine vessel loi', $ok['ok'], false);
@@ -160,8 +161,50 @@ $ok = \player\huyetmach_vessel_refine($TESTSID, $db, 2);
 tassert('tran stage 0', strpos($ok['msg'], 'trần') !== false || strpos($ok['msg'], 'Trần') !== false, true);
 tassert('lv dung tran', \player\huyetmach_vessel_levels($TESTSID, $db)[2], 8);
 
+// ===== D: checklist thuc tinh =====
+hm_ensure_player($db, $TESTSID);
+hm_reset($db, $TESTSID);
+$db->prepare("UPDATE game1 SET huyetmach_awaken_stage = 0, uyxb = 0, ulv = 300, huyetmach_id = 0 WHERE sid = ?")->execute(array($TESTSID));
+\player\player_cache_clear($TESTSID); // break_rows doc qua getplayer cache (per-request)
+$g = \player\huyetmach_vessel_break_rows($TESTSID, $db);
+tassert('next la stage 1', $g['next']['stage'], 1);
+tassert('chua san', $g['ready'], false);
+tassert('dong tong cap', $g['rows'][0]['text'], 'Tổng cấp Bát Mạch: 0 / 32');
+tassert('stage 0 khong can boss', $g['boss_name'], '');
+
+// du 32 cap (8 mach x 4) nhung chua du Linh Thach + canh gioi
+foreach (array(1,2,3,4,5,6,7,8) as $v) hm_set_level($db, $TESTSID, $v, 4);
+$db->prepare("UPDATE game1 SET ulv = 100, uyxb = 5000 WHERE sid = ?")->execute(array($TESTSID));
+\player\player_cache_clear($TESTSID); // break_rows doc qua getplayer cache (per-request)
+$g = \player\huyetmach_vessel_break_rows($TESTSID, $db);
+tassert('du tong cap', $g['rows'][0]['ok'], true);
+tassert('du canh gioi', $g['rows'][1]['ok'], true);
+tassert('du linh thach', $g['rows'][2]['ok'], true);
+tassert('san sang stage 1', $g['ready'], true);
+
+// stage 1 -> 2: CAN boss
+$db->prepare("UPDATE game1 SET huyetmach_awaken_stage = 1, ulv = 150 WHERE sid = ?")->execute(array($TESTSID));
+foreach (array(1,2,3,4,5,6,7,8) as $v) hm_set_level($db, $TESTSID, $v, 8);
+$db->prepare("UPDATE game1 SET uyxb = 20000 WHERE sid = ?")->execute(array($TESTSID));
+$db->prepare("UPDATE game1 SET huyetmach_id = 1 WHERE sid = ?")->execute(array($TESTSID)); // Chân Long
+\player\player_cache_clear($TESTSID); // break_rows doc qua getplayer cache (per-request)
+$g = \player\huyetmach_vessel_break_rows($TESTSID, $db);
+tassert('boss_name dung', $g['boss_name'], 'Rồng Ngàn Tuổi');
+tassert('thieu boss -> chưa ready', $g['ready'], false);
+$hasBossRow = false;
+foreach ($g['rows'] as $r) if (strpos($r['text'], 'Rồng Ngàn Tuổi') !== false) $hasBossRow = true;
+tassert('co dong boss trong checklist', $hasBossRow, true);
+
+\player\huyetmach_boss_mark($TESTSID, 'Rồng Ngàn Tuổi', $db);
+\player\player_cache_clear($TESTSID); // break_rows doc qua getplayer cache (per-request)
+$g = \player\huyetmach_vessel_break_rows($TESTSID, $db);
+tassert('da win boss -> ready', $g['ready'], true);
+
+$db->prepare("DELETE FROM player_huyetmach_boss WHERE sid = ?")->execute(array($TESTSID));
+
 // ===== don ve sinh DB =====
 hm_reset($db, $TESTSID);
+$db->prepare("UPDATE game1 SET huyetmach_id = 0 WHERE sid = ?")->execute(array($TESTSID));
 $db->prepare("DELETE FROM playerdaoju WHERE sid = ?")->execute(array($TESTSID));
 $db->prepare("DELETE FROM game1 WHERE sid = ?")->execute(array($TESTSID));
 

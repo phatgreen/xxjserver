@@ -761,6 +761,75 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_stat_label')) {
     }
 }
 
+/** ===== MANG MACH HUYET: checklist thuc tinh ===== */
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_next_stage')) {
+    function huyetmach_vessel_next_stage($stage){
+        $next = huyetmach_vessel_tier(intval($stage) + 1);
+        return $next ? $next : false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_boss_name')) {
+    /** Ten boss can win de len `toStage`, theo huyet mach dang mang. */
+    function huyetmach_vessel_boss_name($bloodlineId, $toStage){
+        $key = huyetmach_get_key_by_id($bloodlineId);
+        if (!$key) return '';
+        $all = huyetmach_awakening_config_all();
+        $list = isset($all['boss_list']) ? $all['boss_list'] : array();
+        $sk = 'stage_' . intval($toStage);
+        if (isset($list[$key][$sk]['name'])) return $list[$key][$sk]['name'];
+        return '';
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_break_rows')) {
+    function huyetmach_vessel_break_rows($sid, $dblj){
+        $rows = array(); $ready = true; $bossName = '';
+        $player = getplayer($sid, $dblj);
+        if (!$player) return array('rows' => $rows, 'ready' => false, 'next' => false, 'boss_name' => '');
+
+        $stage = intval($player->huyetmach_awaken_stage);
+        $next = huyetmach_vessel_next_stage($stage);
+        if (!$next) return array('rows' => $rows, 'ready' => false, 'next' => false, 'boss_name' => '');
+
+        $b = huyetmach_vessel_bonuses($sid, $dblj);
+        $need = intval($next['total_lv_require']);
+        $ok = $b['total_lv'] >= $need; $ready = $ready && $ok;
+        $rows[] = array('ok' => $ok, 'text' => 'Tổng cấp Bát Mạch: ' . $b['total_lv'] . ' / ' . $need);
+
+        $needLv = intval($next['realm_min_level']);
+        $ok = intval($player->ulv) >= $needLv; $ready = $ready && $ok;
+        $rows[] = array('ok' => $ok, 'text' => 'Cảnh giới: cấp ' . intval($player->ulv) . ' / ' . $needLv);
+
+        $mid = intval($next['material_id']); $mamt = intval($next['material_amount']);
+        if ($mid > 0 && $mamt > 0) {
+            $have = huyetmach_vessel_daoju_have($sid, $dblj, $mid);
+            $ok = $have >= $mamt; $ready = $ready && $ok;
+            $rows[] = array('ok' => $ok, 'text' => huyetmach_get_material_name($mid) . ': ' . $have . ' / ' . $mamt);
+        }
+
+        $lt = intval($next['linh_thach_cost']);
+        if ($lt > 0) {
+            $ok = intval($player->uyxb) >= $lt; $ready = $ready && $ok;
+            $rows[] = array('ok' => $ok, 'text' => 'Linh Thạch: ' . number_format(intval($player->uyxb)) . ' / ' . number_format($lt));
+        }
+
+        if (intval($next['boss_require']) === 1) {
+            $bossName = huyetmach_vessel_boss_name(intval($player->huyetmach_id), intval($next['stage']));
+            if ($bossName !== '') {
+                // boss_id trong player_huyetmach_boss luu THE TEN boss — Task 8 phai mark bang dung ten nay
+                $ok = huyetmach_boss_killed($sid, $bossName, $dblj); $ready = $ready && $ok;
+                $rows[] = array('ok' => $ok, 'text' => 'Boss mạch huyết: ' . $bossName . ($ok ? ' (đã giết)' : ' (chưa giết)'));
+            } else {
+                // chuyen huyet mach chua co boss tuong ung -> khong chan, ghi de debug
+                $rows[] = array('ok' => true, 'text' => 'Boss mạch huyết: chưa có cấu hình cho huyết mạch này');
+            }
+        }
+
+        return array('rows' => $rows, 'ready' => $ready, 'next' => $next, 'boss_name' => $bossName);
+    }
+}
+
 /** ===== MANG MACH HUYET: Luyen Mach ===== */
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_daoju_have')) {
     function huyetmach_vessel_daoju_have($sid, $dblj, $djid){
