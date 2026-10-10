@@ -291,7 +291,7 @@ git commit -m "feat(linhcan): config vong ngu hanh + schema 4 bang + preflight"
   - `linhcan_milestone($total)` → `array('percent'=>float,'name'=>string,'next_percent'=>float,'next_total'=>int,'next_name'=>string)`.
   - `linhcan_give_stone($sid,$djid,$amount,$dblj)` → bool — cong hang THAT + hook quest.
 
-- [ ] **Step 1: Viet test phan A (that truoc khi code)** — `tests/test_linhcan_element.php`:
+- [x] **Step 1: Viet test phan A (that truoc khi code)** — `tests/test_linhcan_element.php`:
 
 ```php
 <?php
@@ -365,10 +365,10 @@ exit($fails === 0 ? 0 : 1);
 ```
 Ghi chu A5 cuoi: `f` tong=19<25 → **pham_can** (rule 5 uu tien hon mac dinh — dung theo spec).
 
-- [ ] **Step 2: Chay — that bai vi ham chua ton tai**
+- [x] **Step 2: Chay — that bai vi ham chua ton tai**
 Run: `php.exe tests/test_linhcan_element.php` → Fatal `linhcan_element_defs`. OK de tiep.
 
-- [ ] **Step 3: Viet `class/function/linhcan.php` (phan doc thuan tuy)**
+- [x] **Step 3: Viet `class/function/linhcan.php` (phan doc thuan tuy)**
 
 File bat dau bang `<?php namespace player;` (dang cau lenh, KHONG ngoac dong cuoi file — nhu `huyetmach.php`). Cac ham cu (`linhcan_config_get`, `linhcan_upgrade_config_all`, `linhcan_get_upgrade_info`, `linhcan_find_next_tier_id`, `linhcan_upgrade`, `linhcan_get_element_multiplier`, `linhcan_apply_element_damage`...) **GIU NGUYEN tam thoi** — van con caller song: `class/player.php:746-747,2025-2031` (xoa o Task 9/7), `game/linhcan.php` (viet lai o Task 10), `game/linhcan_upgrade.php` (xoa o Task 11), `linhcan_boss.php:40-44,188` (viet lai o Task 5). **Task 11 moi xoa het ham cu** (rieng `linhcan_get_element_multiplier` + `linhcan_apply_element_damage` GIU VINH VIEN — pve/boss/nguhanh dang dung). Cac ham moi boi `if (!function_exists(__NAMESPACE__ . '\\x'))`:
 
@@ -439,7 +439,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_train_cost')) {
 ```
 `linhcan_train_cost(0)` stone=1 ✓ (floor 0). Test A1 lv0/89 khop.
 
-- [ ] **Step 4: Node + dominant + title + milestone + give_stone**
+- [x] **Step 4: Node + dominant + title + milestone + give_stone**
 
 ```php
 if (!function_exists(__NAMESPACE__ . '\\linhcan_node_rows')) {
@@ -569,9 +569,9 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_give_stone')) {
 }
 ```
 
-- [ ] **Step 5: Chay test A** — `php.exe tests/test_linhcan_element.php` → tat ca PASS (neu `linhcan_milestone` A6 fail, kiem tra `ksort` da ap dung).
+- [x] **Step 5: Chay test A** — `php.exe tests/test_linhcan_element.php` → tat ca PASS (neu `linhcan_milestone` A6 fail, kiem tra `ksort` da ap dung).
 
-- [ ] **Step 6: `php -l` ca 2 file + commit**
+- [x] **Step 6: `php -l` ca 2 file + commit**
 ```bash
 git add class/function/linhcan.php tests/test_linhcan_element.php
 git commit -m "feat(linhcan): core doc thuan tuy — node/dominant/title/milestone + give_stone that"

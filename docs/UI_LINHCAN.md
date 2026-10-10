@@ -69,3 +69,12 @@ nếu cửa hàng còn bán Bình Anh 100 Linh thạch. Chặn bán là quyết 
 5. `docs/UI_LINHCAN.md` mới có phần kiểm kê Task 1; 10 mục còn lại của khung (so ảnh 1:1, sổ nợ, playbook lệnh)
    sẽ viết dần ở Task 10-12.
 
+## Sổ nợ plan — lỗi phát hiện khi chạy từng task
+
+| Task | Chỗ trong plan | Thực tế | Cách xử lý |
+|---|---|---|---|
+| 1 Step 5 | Lệnh tách SQL theo `;` rồi bỏ chunk bắt đầu bằng `--` | 2/4 statement bị bỏ (`player_linhcan_node`, `player_linhcan_skill`) | Gỡ dòng comment TRƯỚC khi tách → `executed=4`, 4 bảng đủ |
+| 2 Step 1 | `tassert('A5 chan linh ten kem hanh', title['name'], 'Chân Linh Căn')` | Code Step 4 (§Task 2) nối `' · ' . $domName` → trả `Chân Linh Căn · Kim` | Test bắt buộc FAIL chính code cùng task. Giữ **code** (tên kèm hành đúng ý "tên kèm hành"), sửa **test** thành `'Chân Linh Căn · Kim'` |
+| 2 Step 1 | `tassert('A6 tong 60', milestone(60)['percent'], 5)` | `linhcan_milestone()` dùng `floatval` → `5.0`, mà `tassert` so `===` | Nhất quán kiểu: `percent`/`next_percent` khai báo `0.0` ngay từ đầu, test đổi `5`→`5.0`, `0`→`0.0` |
+| 2 Step 1 | Test A1 thiếu `linhcan_binh_anh_id()` | Hàm này có trong map inter-task (File Structure) | Thêm `tassert('A1 binh anh', ..., 37)` |
+
