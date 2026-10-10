@@ -836,6 +836,14 @@ function getplayer($sid,$dblj){
         $player->umaxhp += $hmB['stats']['hp'];
         $player->ubj    += $hmB['stats']['crit'];
         $player->uxx    += $hmB['stats']['lifesteal'];
+
+        // Mang mach huyet: cong don 4 chi so duong, chi so am ap o Task 11
+        if (!empty($hmB['vessel']) && is_array($hmB['vessel'])) {
+            $player->ugj    += intval($hmB['vessel']['atk']);
+            $player->umaxhp += intval($hmB['vessel']['hp']);
+            $player->ubj    += intval($hmB['vessel']['crit']);
+            $player->uxx    += intval($hmB['vessel']['lifesteal']);
+        }
     }
 
     $expRateIndex = min($i, count($rangesexp) - 1);

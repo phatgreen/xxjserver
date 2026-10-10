@@ -55,5 +55,77 @@ tassert('ms max pct', $mMax['bonus_percent'], 30.0);  // = gia tri moc 4 trong c
 tassert('label atk', \player\huyetmach_vessel_stat_label('atk'), 'Công Kích');
 tassert('label junk', \player\huyetmach_vessel_stat_label('zzz'), 'zzz');
 
+// ===== B: cap mach + tong hop chi so (DB local `game`) =====
+$TESTSID = str_repeat('f', 32);
+$db = new PDO('mysql:host=localhost;dbname=game;charset=utf8', 'root', 'www.aae.ink',
+    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+function hm_reset($db, $sid) {
+    $db->prepare("DELETE FROM player_huyetmach_vessel WHERE sid = ?")->execute(array($sid));
+    $db->prepare("UPDATE game1 SET huyetmach_awaken_stage = 0 WHERE sid = ?")->execute(array($sid));
+}
+function hm_set_level($db, $sid, $vid, $lv) {
+    $db->prepare("INSERT INTO player_huyetmach_vessel (sid, vessel_id, level, updated_at)
+        VALUES (?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE level = VALUES(level)")->execute(array($sid, $vid, $lv));
+}
+
+$hasPlayer = $db->query("SELECT COUNT(*) FROM game1 WHERE sid = '$TESTSID'")->fetchColumn();
+if (!$hasPlayer) {
+    // test can mot dong game1 de doc stage; tao transient row da dung (xoa o cuoi test)
+    $db->prepare("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, huyetmach_id, huyetmach_quality, huyetmach_awaken_stage)
+        VALUES ('$TESTSID', 990112, 'HMTEST', 300, 1000, 10000, NOW(), 0, 1, 0)")->execute();
+    $hmTmpRow = true;
+} else { $hmTmpRow = false; }
+$db->prepare("UPDATE game1 SET uid = 990112 WHERE sid = ?")->execute(array($TESTSID));
+
+hm_reset($db, $TESTSID);
+
+$lv0 = \player\huyetmach_vessel_levels($TESTSID, $db);
+tassert('levels du 8 phan tu', count($lv0), 8);
+tassert('levels mac dinh 0', intval($lv0[1]), 0);
+tassert('total 0', \player\huyetmach_vessel_total($lv0), 0);
+
+$b0 = \player\huyetmach_vessel_bonuses($TESTSID, $db);
+tassert('bonus stage 0', $b0['stage'], 0);
+tassert('bonus cap 8', $b0['cap'], 8);
+tassert('bonus atk 0', $b0['atk'], 0);
+tassert('bonus ms name', $b0['milestone_name'], '');
+
+hm_set_level($db, $TESTSID, 1, 5);
+hm_set_level($db, $TESTSID, 2, 5);
+$b1 = \player\huyetmach_vessel_bonuses($TESTSID, $db);
+tassert('total 10', $b1['total_lv'], 10);
+tassert('atk 5x3', $b1['atk'], 15);
+tassert('hp 5x24', $b1['hp'], 120);
+
+// cap 15 van dung vi tran 8 bi stage 0 chan o 8 -> dat tran thi milestone + cap van theo stage
+hm_set_level($db, $TESTSID, 3, 8);
+hm_set_level($db, $TESTSID, 4, 8);
+hm_set_level($db, $TESTSID, 5, 8);
+hm_set_level($db, $TESTSID, 6, 8);
+hm_set_level($db, $TESTSID, 7, 8);
+hm_set_level($db, $TESTSID, 8, 8);
+$b2 = \player\huyetmach_vessel_bonuses($TESTSID, $db);
+tassert('total 58', $b2['total_lv'], 58);
+tassert('ms dat Khai Mach', $b2['milestone_name'], 'Khai Mạch');
+tassert('ms pct 5', $b2['milestone_percent'], 5.0);
+tassert('atk nhan milestone', $b2['atk'], 16);          // round(3*5*1.05) = 16, KHONG phai 22 (round tung mach)
+tassert('am stat reduce', $b2['reduce'], 2.0);           // 0.25 x min(8, tran 8) -> FLOAT vi ham dung round(..,2)
+tassert('am stat luck', $b2['luck'], 2.0);
+
+// stage 2: tran 24, milestone van theo tong cap
+$db->prepare("UPDATE game1 SET huyetmach_awaken_stage = 2 WHERE sid = ?")->execute(array($TESTSID));
+$b3 = \player\huyetmach_vessel_bonuses($TESTSID, $db);
+tassert('stage 2 cap 24', $b3['cap'], 24);
+
+// chan 15% cho chi so am: 8 mach am x per_lv 0.25 x 80 cap -> vuot 15
+for ($i = 5; $i <= 8; $i++) hm_set_level($db, $TESTSID, $i, 80);
+$b4 = \player\huyetmach_vessel_bonuses($TESTSID, $db);
+tassert('dodge cap 15', $b4['dodge'], 15.0);
+tassert('pen cap 15', $b4['pen'], 15.0);
+
+hm_reset($db, $TESTSID);
+if ($hmTmpRow) $db->prepare("DELETE FROM game1 WHERE sid = '$TESTSID'")->execute();
+
 echo $fails === 0 ? "ALL PASS\n" : "FAILS: $fails\n";
 exit($fails === 0 ? 0 : 1);

@@ -219,11 +219,14 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_calc_bonuses')) {
             'icon' => '',
             'transform_name' => '',
             'transform_icon' => '',
-            'can_transform' => false
+            'can_transform' => false,
+            'vessel' => array()
         );
 
         $config = huyetmach_info($sid, $dblj);
-        if (!$config) return $empty;
+        if (!$config) {
+            return array_merge($empty, array('vessel' => huyetmach_vessel_bonuses($sid, $dblj)));
+        }
 
         $quality = isset($config['_quality']) ? intval($config['_quality']) : 1;
         $awakenStage = isset($config['_awaken_stage']) ? intval($config['_awaken_stage']) : 0;
@@ -258,7 +261,8 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_calc_bonuses')) {
             'icon' => isset($config['icon']) ? $config['icon'] : '🩸',
             'transform_name' => isset($config['transform_name']) ? $config['transform_name'] : '',
             'transform_icon' => isset($config['transform_icon']) ? $config['transform_icon'] : '',
-            'can_transform' => $canTransform
+            'can_transform' => $canTransform,
+            'vessel' => huyetmach_vessel_bonuses($sid, $dblj)
         );
     }
 }
@@ -753,5 +757,74 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_stat_label')) {
         $all = huyetmach_vessel_config_all();
         $labels = isset($all['stat_labels']) ? $all['stat_labels'] : array();
         return isset($labels[$stat]) ? $labels[$stat] : $stat;
+    }
+}
+
+/** ===== MANG MACH HUYET: cap mach + tong hop chi so ===== */
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_levels')) {
+    function huyetmach_vessel_levels($sid, $dblj){
+        $levels = array();
+        foreach (huyetmach_vessel_defs() as $id => $def) $levels[intval($id)] = 0;
+        try {
+            $stmt = $dblj->prepare("SELECT vessel_id, level FROM player_huyetmach_vessel WHERE sid = ?");
+            $stmt->execute(array($sid));
+            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $vid = intval($row['vessel_id']);
+                if (isset($levels[$vid])) $levels[$vid] = max(0, intval($row['level']));
+            }
+        } catch (Exception $e) { /* bang chua ton tai (production): xem nhu chua luyen */ }
+        return $levels;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_total')) {
+    function huyetmach_vessel_total($levels){
+        $total = 0;
+        foreach ($levels as $lv) $total += intval($lv);
+        return $total;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_bonuses')) {
+    function huyetmach_vessel_bonuses($sid, $dblj){
+        $defs  = huyetmach_vessel_defs();
+        $all   = huyetmach_vessel_config_all();
+        $caps  = isset($all['stat_cap']) ? $all['stat_cap'] : array();
+        $stage = 0;
+        $stmt = $dblj->prepare("SELECT huyetmach_awaken_stage FROM game1 WHERE sid = ? LIMIT 1");
+        $stmt->execute(array($sid));
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($row) $stage = intval($row['huyetmach_awaken_stage']);
+        $cap = huyetmach_vessel_cap($stage);
+
+        $levels = huyetmach_vessel_levels($sid, $dblj);
+        $total  = huyetmach_vessel_total($levels);
+        $ms     = huyetmach_vessel_milestone($total);
+        $mult   = 1 + floatval($ms['bonus_percent']) / 100;
+
+        $out = array('atk' => 0, 'hp' => 0, 'crit' => 0, 'lifesteal' => 0,
+                     'dodge' => 0, 'pen' => 0, 'reduce' => 0, 'luck' => 0);
+        foreach ($defs as $id => $def) {
+            $lv = intval($levels[intval($id)]);
+            $stat = $def['stat'];
+            $val = floatval($def['per_lv']) * $lv;
+            if (isset($caps[$stat])) {
+                // chi so am: o day chi chan tuyet doi stat_cap; tran cap theo stage do Task 4 chan luc ghi
+                $out[$stat] = min(floatval($caps[$stat]), round($out[$stat] + $val, 2));
+            } else {
+                $out[$stat] = $out[$stat] + round($val * $mult);
+            }
+        }
+        // atk/hp la diem THO cong vao cot INT (ugj/umaxhp) -> chan ve int SAU khi cong don;
+        // crit/lifesteal + 4 chi so am van la float (per_lv 0.2/0.4/0.25).
+        $out['atk'] = intval($out['atk']);
+        $out['hp'] = intval($out['hp']);
+        return array_merge($out, array(
+            'levels' => $levels, 'total_lv' => $total, 'cap' => $cap, 'stage' => $stage,
+            'milestone_name' => $ms['name'], 'milestone_percent' => floatval($ms['bonus_percent']),
+            'next_milestone_name' => $ms['next_milestone_name'],
+            'next_milestone_percent' => floatval($ms['next_milestone_percent']),
+            'next_milestone_lv' => intval($ms['next_milestone_lv']),
+        ));
     }
 }
