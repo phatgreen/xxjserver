@@ -2060,15 +2060,7 @@ function usedaoju($djid, $djsum, $sid, $dblj){
         $assigned = \player\thechat_assign($sid, $dblj, $id, $quality);
     }
     elseif ($use == 'linhcan') {
-        if ($realLinhcan > 0) {
-            return array('ok' => false, 'msg' => 'Ngươi đã có Linh Căn, không thể dùng Tố Thể Đan.');
-        }
-        $type = \player\linhcan_random();
-        if (!$type) return array('ok' => false, 'msg' => 'Roll Linh Căn thất bại.');
-        $id = intval($type['id']);
-        $name = isset($type['name']) ? $type['name'] : 'Linh Căn';
-        $assigned = \player\linhcan_assign($sid, $dblj, $id);
-        $quality = 1;
+        return array('ok' => false, 'msg' => 'Linh Căn không còn gán ngẫu nhiên. Mở trang Linh Căn để tự luyện từng hành.');
     }
     elseif ($use == 'huyetmach') {
         if ($realHuyetmach > 0) {

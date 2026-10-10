@@ -19,7 +19,7 @@ if (isset($djid) && intval($djid) > 0) {
             $useType = 'bad';
         } else {
             // Giới hạn 2 lần dùng trong đời cho các đan reroll
-            if (in_array($effectType, array('reroll_thechat', 'reroll_huyetmach', 'reroll_linhcan'))) {
+            if (in_array($effectType, array('reroll_thechat', 'reroll_huyetmach'))) {
                 $djused = isset($playerDj->djused) ? intval($playerDj->djused) : 0;
                 if ($djused >= 2) {
                     $useNotice = 'Đạo cụ này đã dùng tối đa 2 lần, không thể dùng tiếp.';
@@ -82,29 +82,11 @@ if (isset($djid) && intval($djid) > 0) {
                     $useType = 'bad';
                 }
 
-            } elseif ($effectType === 'reroll_linhcan') {
-                // Tẩy Linh Đan - Random lại Linh Căn (có both type + quality)
-                \player\deledjsum(intval($djid), 1, $sid, $dblj);
-                $stmt = $dblj->prepare("UPDATE playerdaoju SET djused = djused + 1 WHERE sid = ? AND djid = ?");
-                $stmt->execute(array($sid, intval($djid)));
-
-                $lc = \player\linhcan_random_with_quality(1, 2);
-                if ($lc) {
-                    $lcType = $lc['type'];
-                    $lcQuality = $lc['quality'];
-                    \player\linhcan_assign($sid, $dblj, intval($lcType['id']), $lcQuality);
-                    $lcName = isset($lcType['name']) ? $lcType['name'] : 'Không rõ';
-                    $lcIcon = isset($lcType['icon']) ? $lcType['icon'] : '?';
-                    $lcColor = isset($lcType['color']) ? $lcType['color'] : '#fff';
-                    $lcQName = \player\linhcan_quality_name($lcQuality);
-                    $djName = isset($config['djname']) ? $config['djname'] : 'Vật phẩm';
-                    $remain = 2 - ($djused + 1);
-                    $useNotice = "Sử dụng {$djName} thành công! Nhận được: <font color={$lcColor}>{$lcIcon} {$lcName} - Thiên tư: {$lcQName}</font> (Còn {$remain} lần)";
-                } else {
-                    $useNotice = 'Thanh lọc thất bại, thử lại sau.';
-                    $useType = 'bad';
-                }
-
+            } elseif ($effectType === 'linhcan_wash') {
+                // Tẩy Linh Đan: khong reroll o day; dan mo trang chon hanh (Task 7)
+                $washCmd = $encode->encode("cmd=linhcan_wash&sid=$sid");
+                header("Location: game.php?cmd=$washCmd");
+                exit;
             } else {
                 // Stat boost items (cũ)
                 $stat = isset($effect['stat']) ? $effect['stat'] : '';

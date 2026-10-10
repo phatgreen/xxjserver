@@ -125,5 +125,45 @@ tassert('C9 milestone 5% nhan absorb', round($B2['absorb_bonus'], 4), 3.78);
 $db->exec("DELETE FROM player_linhcan_node WHERE sid='" . $TESTSID . "'");
 $db->exec("DELETE FROM playerdaoju WHERE sid='" . $TESTSID . "' AND djid=35");
 
+// ===== D: tay linh dan (Task 7) =====
+$db->exec("DELETE FROM player_linhcan_node WHERE sid = '" . $TESTSID . "'");
+$db->exec("DELETE FROM playerdaoju WHERE sid = '" . $TESTSID . "' AND djid IN (35, 111)");
+$db->exec("UPDATE game1 SET uyxb = 0 WHERE sid = '" . $TESTSID . "'");
+\player\linhcan_node_set($TESTSID, 'kim', 10, 1, $db);
+\player\player_cache_clear($TESTSID);
+
+// D1: chua co dan → fail, khong mat gi
+$w0 = \player\linhcan_wash($TESTSID, $db, 'kim');
+tassert('D1 khong co dan fail', $w0['ok'], false);
+$n0 = \player\linhcan_node_get($TESTSID, 'kim', $db);
+tassert('D1 node giu nguyen', $n0['level'] . '/' . $n0['stage'], '10/1');
+
+// D2: du dan → reset Lv ve 0, GIU bac, hoan 80% da + 100% LT (ty le tinh tren cost_sum(0,10)=10 da/1675 LT)
+\player\adddj($TESTSID, 111, 1, $db);
+$w1 = \player\linhcan_wash($TESTSID, $db, 'kim');
+tassert('D2 wash ok', $w1['ok'], true);
+tassert('D2 stone_back = floor(10*0.8)', intval($w1['stone_back']), 8);
+tassert('D2 lt_back = 1675', intval($w1['lt_back']), 1675);
+$n1 = \player\linhcan_node_get($TESTSID, 'kim', $db);
+tassert('D2 lv ve 0', intval($n1['level']), 0);
+tassert('D2 stage VAN giu 1 (spec 2.5)', intval($n1['stage']), 1);
+$da = \player\getplayerdaoju($TESTSID, 35, $db);
+tassert('D2 da hoan vao inventory', intval($da->djsum), 8);
+$lt = intval($db->query("SELECT uyxb FROM game1 WHERE sid = '" . $TESTSID . "'")->fetchColumn());
+tassert('D2 LT hoan 100%', $lt, 1675);
+$pill = $db->query("SELECT djsum FROM playerdaoju WHERE sid = '" . $TESTSID . "' AND djid = 111")->fetchColumn();
+tassert('D2 dan bi tieu hao', intval($pill), 0);
+
+// D3: hanh chua luyen → fail; hanh la → fail
+$w2 = \player\linhcan_wash($TESTSID, $db, 'moc');
+tassert('D3 moc lv0 fail', $w2['ok'], false);
+\player\adddj($TESTSID, 111, 1, $db);
+$w3 = \player\linhcan_wash($TESTSID, $db, 'khong_phai_hanh');
+tassert('D3 hanh la fail', $w3['ok'], false);
+$pill3 = $db->query("SELECT djsum FROM playerdaoju WHERE sid = '" . $TESTSID . "' AND djid = 111")->fetchColumn();
+tassert('D3 fail khong truu dan', intval($pill3), 1);
+
+$db->exec("DELETE FROM player_linhcan_node WHERE sid = '" . $TESTSID . "'");
+$db->exec("DELETE FROM playerdaoju WHERE sid = '" . $TESTSID . "' AND djid IN (35, 111)");
 echo "\n" . ($fails === 0 ? "ALL PASS\n" : "SO FAIL = " . $fails . "\n");
 exit($fails === 0 ? 0 : 1);

@@ -963,3 +963,44 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_break')) {
             'stage' => $toStage);
     }
 }
+
+// ==================== TAY LINH DAN (dj 111) ====================
+// Spec 2.5: chon 1 hanh, reset ve Lv 0 NHUNG GIU BAC (kill boss + break van con),
+// hoan 80% da + 100% LT da nan (chi phan LUYEN, khong hoan nguyen lieu dot pha).
+// Dung adddj truc tiep, KHONG dung linhcan_give_stone — hoan lai khong duoc tinh
+// quest receive_stone (ne bot farm: luyen -> tay -> dem quest).
+
+if (!function_exists(__NAMESPACE__ . '\\linhcan_wash')) {
+    function linhcan_wash($sid, $dblj, $element){
+        $def = linhcan_element_def($element);
+        if (!$def) return array('ok' => false, 'msg' => 'Hành không hợp lệ.', 'stone_back' => 0, 'lt_back' => 0, 'stage' => 0);
+        $node = linhcan_node_get($sid, $element, $dblj);
+        $lv = intval($node['level']);
+        if ($lv <= 0) {
+            return array('ok' => false, 'msg' => $def['name'] . ' chưa luyện gì để mà tẩy.', 'stone_back' => 0, 'lt_back' => 0, 'stage' => intval($node['stage']));
+        }
+        $pill = getplayerdaoju($sid, 111, $dblj);
+        if (!$pill || intval($pill->djsum) < 1) {
+            return array('ok' => false, 'msg' => 'Ngươi không có Tẩy Linh Đan.', 'stone_back' => 0, 'lt_back' => 0, 'stage' => intval($node['stage']));
+        }
+
+        $cost = linhcan_train_cost_sum(0, $lv);
+        $stoneBack = intval(floor($cost['stone'] * 0.8));
+        $ltBack = intval($cost['linh_thach']);
+
+        if (!deledjsum(111, 1, $sid, $dblj)) {
+            return array('ok' => false, 'msg' => 'Tiêu hao đan thất bại, chưa tẩy.', 'stone_back' => 0, 'lt_back' => 0, 'stage' => intval($node['stage']));
+        }
+        $stoneId = linhcan_da_id($element);
+        if ($stoneBack > 0 && $stoneId > 0) adddj($sid, $stoneId, $stoneBack, $dblj);
+        if ($ltBack > 0) {
+            $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ? WHERE sid = ?")->execute(array($ltBack, $sid));
+        }
+        linhcan_node_set($sid, $element, 0, intval($node['stage']), $dblj);
+        player_cache_clear($sid);
+
+        return array('ok' => true,
+            'msg' => 'Tẩy thành công! ' . $def['name'] . " về Lv 0 (giữ bậc " . intval($node['stage']) . "), hoàn {$stoneBack} đá + {$ltBack} linh thạch.",
+            'stone_back' => $stoneBack, 'lt_back' => $ltBack, 'stage' => intval($node['stage']));
+    }
+}

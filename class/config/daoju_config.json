@@ -393,7 +393,7 @@
         "djyxb": 30000,
         "djjg": 0,
         "use_effect": {
-            "type": "reroll_linhcan"
+            "type": "linhcan_wash"
         }
     },
     "112": {

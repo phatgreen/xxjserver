@@ -98,6 +98,38 @@ Test: `tests/test_linhcan_quest.php` F1–F7 — config 5 hook đúng tên, từ
 `receive_stone` nhảy theo `linhcan_give_stone`, claim phụ fail, claim đủ 5/5 cap **500 LT + Binh Anh vao
 inventory that** (`playerdaoju.djsum` > 0), claim lap lai bi chan. **CHƯA test trong game thật.**
 
+## Tẩy Linh Đan (111) — số đang chạy (Task 7, 2026-10-11)
+
+`linhcan_wash()` (`class/function/linhcan.php` cuối file) + `game/linhcan_wash.php` + route `game.php:353`:
+
+| Mục | Giá trị |
+|---|---|
+| Điều kiện | có ≥1 đan 111 **và** hành đó `level > 0` |
+| Kết quả | hành đó về **Lv 0**, **GIỮ bậc** (stage) — boss đột phá + kỹ năng không mất |
+| Hoàn lại | `floor(80% × đá đã luyện)` vào `playerdaoju` + `100% LT đã luyện` vào `game1.uyxb` |
+| KHÔNG hoàn | Bình Anh (37) + linh khí đã nạp lúc đột phá (ghi ngay trên trang) |
+| Cố ý | hoàn đá bằng `adddj` trực tiếp, **không** qua `linhcan_give_stone` → không đếm hook `receive_stone` (chống cày quest: luyện → tẩy → đếm) |
+| Ví dụ đo | Kim Lv 5: hoàn **4 đá + 650 LT**; Hỏa Lv 12: hoàn **9 đá + 2190 LT** |
+
+Đường tắt cũ đã cắt: `game/linhcan_upgrade.php` **không còn trên working tree** (archive ở
+`bak/linhcan_upgrade.20261011_truoc_vongnguhanh.php`), route `linhcan_upgrade` bị xóa,
+nút "⬆ Nâng cấp" trên trang cũ chuyển thành "🌀 Tẩy Linh Đan" → `cmd=linhcan_wash`;
+`use_effect.type` của đan 111: `reroll_linhcan` → `linhcan_wash`; `use_dj.php` không còn random căn,
+chỉ redirect; `class/player.php` nhánh `djuse == 'linhcan'` trả chuỗi "không còn gán ngẫu nhiên".
+
+**Kiểm kê nợ trừ oan (Step 7 — chỉ báo, KHÔNG tự hoàn):**
+
+| Số đo local | Giá trị |
+|---|---|
+| `player_linhcan_log` (bảng code cũ INSERT) | **KHÔNG TỒN TẠI** → mỗi lần bấm Nâng cấp: trừ LT → trừ uexp → trừ đá → **PDO fatat**, nguyên liệu mất, căn giữ nguyên, **không có log để đối chiếu** |
+| Nhân vật local | 13 |
+| Đang âm LT hoặc uexp | **0** |
+| Từng có `linhcan_id > 0` | 5 (căn 1 ×2, căn 4, 6, 16) |
+| Đang giữ đan 111 | 0 |
+
+→ Thiệt hại quá khứ **không định lượng được bằng dữ liệu hiện có**. Muốn hoàn cho ai phải do chủ dự án
+tự quyết mức (không có sổ để tra). **CHƯA tự cộng tiền cho nhân vật nào.**
+
 ## Chưa làm / chờ chủ dự án chốt
 
 1. **(Task 1 phát hiện, Task 5 xác nhận) Cửa hàng bán Bình Anh Tinh Thạch (37) giá 100 Linh thạch, mua không giới hạn.**
@@ -113,6 +145,11 @@ inventory that** (`playerdaoju.djsum` > 0), claim lap lai bi chan. **CHƯA test 
    Sau Task 9 cột này không còn được đọc → dữ liệu chết. Nên đổi sang seed node (Task 10/12 dùng `lcseed.php`).
 5. `docs/UI_LINHCAN.md` mới có phần kiểm kê Task 1; 10 mục còn lại của khung (so ảnh 1:1, sổ nợ, playbook lệnh)
    sẽ viết dần ở Task 10-12.
+6. **(Task 7 phát hiện) Túi đồ KHÔNG có nút "Dùng" cho đan 111** — không món nào trong `daoju_config.json`
+   có key `djuse` (`getdaoju(111)->djuse = NULL`), nên `usedaoju()` chặn ngay bằng
+   "Đạo cụ này không thể sử dụng."; nhánh `djuse == 'linhcan'` trong `class/player.php` vì thế **vốn đã chết**
+   từ trước khi rework. Lối vào trang Tẩy hiện tại = nút "🌀 Tẩy Linh Đan" trên trang Linh Căn.
+   Cần chốt: (a) thêm `djuse` cho các đan để túi đồ có nút, hay (b) giữ lối vào duy nhất qua trang hệ.
 
 ## Sổ nợ plan — lỗi phát hiện khi chạy từng task
 
@@ -127,10 +164,15 @@ inventory that** (`playerdaoju.djsum` > 0), claim lap lai bi chan. **CHƯA test 
 | 5 Step 6 | `html` in `"{$stone} {$bossElement} Tinh Thạch"` | In key không dấu → "3 hoa Tinh Thạch" | Dùng `linhcan_element_name($bossElement)` → "3 Hỏa Tinh Thạch" (hàm giữ đời Task 2) |
 | 5 Step 2 | Test E phần Cleanup `djid IN (34, 35, 37)` | E4 rơi đá hành Hỏa = **djid 32** → nhân test còn rác sau chạy | Thêm 32 vào danh sách dọn |
 | 5 (ngoài plan) | `tongquan.php:614` đọc `$dr['da_ngu_hanh_count']` | Key bị Task 5 xóa → trang tổng quan in "Đá Ngũ Hành" số trống + Notice PHP | Viết lại mô tả theo công thức drop mới (`tinh_thach`/`binh_anh` min–max). **Ngoài danh sách File của plan** nhưng là consumer thật. `tongquan.php` **không được commit** (file chưa tracked + `:68` chứa mật khẩu DB local) → bản sửa đang nằm ở working tree |
-| 5 (ngoài plan) | `docs/LINHCAN_DEV.md:65,87,162,167` ghi typo `element_bones` + `system道具` | Code hiện tại không hề đọc key `element_bones` (grep 0 kết quả) → 3 dòng là bug report **đã lỗi thời** | Đổi thành `element_bosses`; dòng 162 ghi rõ "ĐÃ SỬA xong"; dòng 167 bỏ CJK. **Không commit** — file legacy chưa tracked, Task 12 sẽ thay |
-| — (môi trường) | `tests/test_nguhanh_market.php` chạy ra **12 FAIL** | KHÔNG phải regression: Apache phpstudy **đang tắt** (`netstat` chỉ có `:3306`; `curl http://localhost/game.php` → exit 7, `http_code=000`, size=0). 12 assert fail đều là assert đọc HTML qua `get_http()`; 2 assert "khong co loi PDO" PASS giả vì chuỗi rỗng không khớp regex | Không sửa code. Muốn chạy lại suite này phải bật Apache trong phpStudy. **Ghi chú nợ**: suite nên fail-fast khi server không reachable thay vì PASS giả |
+| 5 (ngoài plan) | `docs/LINHCAN_DEV.md:65,87,162,167` ghi typo `element_bones` + `system dao-ju` | Code hiện tại không hề đọc key `element_bones` (grep 0 kết quả) → 3 dòng là bug report **đã lỗi thời** | Đổi thành `element_bosses`; dòng 162 ghi rõ "ĐÃ SỬA xong"; dòng 167 bỏ CJK. **Không commit** — file legacy chưa tracked, Task 12 sẽ thay |
+| — (môi trường) | `tests/test_nguhanh_market.php` chạy ra **12 FAIL**, `tests/test_nguhanh_combat.php` **3 FAIL** | KHÔNG phải regression: web server phpStudy **đang tắt** (`netstat` chỉ có `:3306`; `curl http://localhost/game.php` → exit 7, `http_code=000`, size=0). Mọi assert fail đều là assert đọc HTML qua `get_http()` ("HTTP 200 (have html)" + các assert chuỗi nối tiếp); 2 assert "khong co loi PDO" PASS giả vì chuỗi rỗng không khớp regex. Các suite CLI thuần vẫn xanh: schema 12/12, element 63/63, boss 44/44, quest 14/14, nguhanh 82/82, random 23/23 | Không sửa code. Muốn chạy lại 2 suite này phải bật nginx/Apache trong phpStudy (sẽ hỏi chủ trước khi bật dịch vụ). **Ghi chú nợ**: 2 suite nên fail-fast khi server không reachable thay vì PASS giả |
 | 6 Step 2 | Test `tests/test_linhcan_quest.php` của plan chỉ DELETE/`UPDATE game1` rồi gọi hàm | **Không nhân vật nào tồn tại** → `adddj()` đọc `uid` từ `getplayer()` ra `null` → FATAL `Column 'uid' cannot be null` tại `class/player.php:1309` (plan giả định nhân test còn sót từ suite khác) | Thêm seed tự thân: `INSERT INTO game1 (...) VALUES (sid 990112) ON DUPLICATE KEY UPDATE ...` ngay sau PDO. Test không còn phụ thuộc suite khác |
 | 6 Step 1 | Plan ghi "per-quest reward key bị xóa — không fatal vì `game/linhcan_quest.php:117` có isset-guard" | Đúng là không crash, nhưng trang quest in **"0 Đá Ngũ Hành"** (thưởng thiệt là 1–2 Bình Anh) → panel thưởng **nói dối** | Sửa sớm 2 dòng `:117-118` + `:124` ở Task 6 (đọc `total_reward_binh_anh_min/max`) thay vì chờ Task 11 viết lại trang. `game/linhcan_quest.php` **chưa tracked** → bản sửa nằm ở working tree, commit cùng Task 11 |
-| 6 (ngoài plan) | `tongquan.php:683` dựng `$rows3` từ `reward_linhthach`/`reward_da_ngu_hanh`; `:690` header vẫn 6 cột cho data 4 cột; `:687` ghi "Linh căn tuần → Đá Ngũ Hành" | Consumer thật, không nằm trong File Structure của plan → bảng tổng quan lệch cột + thưởng sai | `$rows3` còn 4 cột (tên/mô tả/hook/mục tiêu), header khớp 4 cột, caption in `500 LT + 1-2 Bình Anh`, nhãn → "LT + Bình Anh Tinh Thạch". **Không commit** (untracked + `:68` chứa mật khẩu DB) |
+| 6 (ngoài plan) | `tongquan.php:683` dựng `$rows3` từ `reward_linhthach`/`reward_da_ngu_hanh`; `:690` header vẫn 6 cột cho data 4 cột; `:687` ghi "Linh căn tuần → Đá Ngũ Hành" | Consumer thật, không nằm trong File Structure của plan → bảng tổng quan lệch cột + thưởng sai | `$rows3` còn 4 cột (tên/mô tả/hook/mục tiêu), header khớp 4 cột, caption in `500 LT + 1-2 Bình Anh`, nhãn → "LT + Bình Anh Tinh Thạch". `tongquan.php` **có tracked** nhưng không commit kèm (`:68` chứa mật khẩu DB local) — gom vào commit tài liệu riêng ở Task 12 |
+| 7 Step 3 | `git rm game/linhcan_upgrade.php` | File **chưa từng được git track** → `git rm` fail; xóa luôn = mất vĩnh viễn (không có trong history) | Archive reversibly: `cp` sang `bak/linhcan_upgrade.20261011_truoc_vongnguhanh.php` rồi `rm` khỏi working tree. Route vẫn xóa như plan |
+| 7 Step 3 | "grep Expected: 0 kết quả ngoài `class/function/linhcan.php`" | Còn **2 dòng ngoài plan**: `game/linhcan.php:145` (`$upgradeCmd = encode("cmd=linhcan_upgrade…")`) và `:248` (nút "⬆ Nâng cấp") → sau khi xóa route, nút thành **lối chết** ngay trên trang người chơi đang thấy | Sửa 2 dòng: route → `linhcan_wash`, nhãn → "🌀 Tẩy Linh Đan". `game/linhcan.php` chưa tracked + Task 10 viết lại toàn trang nên **không commit** |
+| 7 Step 6 | Plan viết "giữ `djuse` như cũ; đường `djuse=='linhcan'` đã thành chuỗi báo" | `getdaoju(111)->djuse` = **NULL**; không món nào trong `daoju_config.json` có key `djuse` → `usedaoju()` chặn từ `:2019` "Đạo cụ này không thể sử dụng", nhánh `linhcan` **vốn đã chết** từ trước rework | Vẫn đổi nhánh thành chuỗi báo theo plan (không đổi hành vi). Đường dùng đan thật = `game/use_dj.php` (`use_effect.type`). Ghi vào §Chưa làm mục 6: túi đồ không có nút "Dùng" cho đan 111 — chờ chủ chốt |
+| 7 Step 8 | Gate "CLEAN" trên `class/player.php` + `game.php` | `class/player.php` có **11 dòng comment chữ Hán** ở `:998, :1034, :1152, :1453, :1459, :1468, :1471, :1850, :2094, :2095, :2324` (comment nội bộ của code gốc Trung Quốc, không phải chuỗi hiển thị cho người chơi) và `game.php` có 2 dòng `:160, :231` dùng cặp ngoặc vuông chữ Hán trong tin nhắn hệ thống — **đều có sẵn trong HEAD** (`git show HEAD:` + cùng scanner = đúng 13 dòng), không phải chuỗi do Task 7 thêm | Không sửa (ngoài phạm vi; 2 dòng `game.php` là style tin nhắn "[Hệ thống]" đang chạy thật). Gate thu hẹp: chỉ quét **dòng do Task 7 thêm** (`git diff -U0` qua byte-level scanner) → 0 ký tự lạ. Scanner: `E:/window/Temp/t7_scan2.php` |
+| 7 Step 4 | Plan chỉ yêu cầu `php -l` cho trang mới | Web server phpStudy **đang tắt** nên chưa render được qua router | Dựng harness `E:/window/Temp/t7_render.php` include trực tiếp `game/linhcan_wash.php` (tự seed Kim Lv5/bậc1 + Hỏa Lv12 + 2 đan): xem = 1212 byte đủ 5 hàng, tẩy Kim = `Lv 5→0, bậc 1 giữ nguyên, +4 đá (35), +650 LT, đan 2→1`. **Vẫn CHƯA test qua `game.php` thật** |
 
 

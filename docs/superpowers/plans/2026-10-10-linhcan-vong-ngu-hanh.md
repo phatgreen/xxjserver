@@ -1600,7 +1600,7 @@ git commit -m "feat(linhcan): quest tuan 5/5 hook that + thuong binh anh vao inv
 - Produces: `linhcan_wash($sid,$dblj,$element)` → `array('ok','msg','stone_back','lt_back','stage')`.
 - **TUYET DOI TRUONG HOP (sua thoi du trong Task 7, khong doi Task 11):** `game/linhcan_upgrade.php` (route `game.php:353`) dang **truu LT + uexp + da ROI** moi INSERT `player_linhcan_log` — bang **KHONG TON TAI** trong DB (do information_schema + `sql/backup_game_20261004_162045.sql`) → PDO exception fatat **giua chung**, nguoi choi mat nguyen lieu ma linh căn giu nguyen (class/function/linhcan.php:546→554→574→591). Duong nay phai DAT truoc khi he moi boc len — vi vay xoa route + file ngay trong Task 7 (Task 11 chi con don ham chet).
 
-- [ ] **Step 1: Test phan D (wash) — them vao `tests/test_linhcan_element.php` truoc `exit(...)`**
+- [x] **Step 1: Test phan D (wash) — them vao `tests/test_linhcan_element.php` truoc `exit(...)`**
 
 ```php
 // ===== D: tay linh dan (Task 7) =====
@@ -1646,7 +1646,7 @@ $db->exec("DELETE FROM playerdaoju WHERE sid = '" . $TESTSID . "' AND djid IN (3
 ```
 Run → FAIL `Call to undefined ... linhcan_wash()`. Red hop le.
 
-- [ ] **Step 2: Them `linhcan_wash` vao cuoi `class/function/linhcan.php`**
+- [x] **Step 2: Them `linhcan_wash` vao cuoi `class/function/linhcan.php`**
 
 ```php
 // ==================== TAY LINH DAN (dj 111) ====================
@@ -1691,7 +1691,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_wash')) {
 }
 ```
 
-- [ ] **Step 3: Doi `game/linhcan_upgrade.php` — xoa duong loi tai nguyen lieu**
+- [x] **Step 3: Doi `game/linhcan_upgrade.php` — xoa duong loi tai nguyen lieu**
 
 ```bash
 git rm game/linhcan_upgrade.php
@@ -1702,7 +1702,7 @@ grep -rn "linhcan_upgrade" game.php game/*.php class/ --include=*.php | grep -v 
 ```
 Expected: 0 ket qua ngoai `class/function/linhcan.php` (ham cu `linhcan_upgrade()` trong function file chi bi goi boi trang vua xoa — xoa ham o Task 11; **KHONG xoa function luc nay** vi `linhcan.php:164-204` la doc config cu con dung cho `class/player.php:746-747` toi Task 9).
 
-- [ ] **Step 4: Tao `game/linhcan_wash.php`** — trang chon hanh toi thieu dung duoc (Task 10/11 moi son lai; tien to `lcw-*`). **Mo dau file, CHEP NGUYEN 5-8 dong khoi tao cua `game/linhcan_quest.php:1-12`** (cach trang nay nhan `$sid/$dblj/$encode` tu `game.php`), roi noi dung duoi day:
+- [x] **Step 4: Tao `game/linhcan_wash.php`** — trang chon hanh toi thieu dung duoc (Task 10/11 moi son lai; tien to `lcw-*`). **Mo dau file, CHEP NGUYEN 5-8 dong khoi tao cua `game/linhcan_quest.php:1-12`** (cach trang nay nhan `$sid/$dblj/$encode` tu `game.php`), roi noi dung duoi day:
 
 ```php
 $notice = '';
@@ -1747,7 +1747,7 @@ echo $html;
 ```
 `$notice/$sel` giu nguyen nhu tren; `header`/`exit` khong can vi day la trang render. Neu `game/linhcan_quest.php` dung bien khac `$gonowmid` cho link "ve", dung theo dung bien do.
 
-- [ ] **Step 5: Sua `game/use_dj.php`**
+- [x] **Step 5: Sua `game/use_dj.php`**
 - `:22`: THAY `array('reroll_thechat', 'reroll_huyetmach', 'reroll_linhcan')` → `array('reroll_thechat', 'reroll_huyetmach')` (Tẩy Linh Đan là đan reset, dùng không giới hạn — spec 2.5).
 - `:85-106`: THAY ca nhanh `elseif ($effectType === 'reroll_linhcan') { ... }` bang:
 ```php
@@ -1759,7 +1759,7 @@ echo $html;
 
 ```
 
-- [ ] **Step 6: Sua `class/player.php` + `class/config/daoju_config.json`**
+- [x] **Step 6: Sua `class/player.php` + `class/config/daoju_config.json`**
 - `class/player.php` `:2062-2072`: XOA nhanh `elseif ($use == 'linhcan') { ... }`, thay chu dan duong:
 ```php
     elseif ($use == 'linhcan') {
@@ -1769,7 +1769,7 @@ echo $html;
 - `daoju_config.json` `:396`: `"type": "reroll_linhcan"` → `"type": "linhcan_wash"` (giu `djuse` nhu cu; duong `djuse=='linhcan'` da thanh chuat duoc o tren).
 - Chay lenh kiem tra dj 111 con nguyen nhan o `daoju_config` (`grep -n -A3 '"111"' class/config/daoju_config.json | head -20`) va JSON con valid (lenh `json_decode` nhu Task 1 Step 4, doi duong dan file).
 
-- [ ] **Step 7: Kiem ke no tru oan (bao cao, KHONG tu hoan)**
+- [x] **Step 7: Kiem ke no tru oan (bao cao, KHONG tu hoan)**
 
 He cu: moi lan bam "Nâng cấp" bi mat LT/uexp/da roi fatat (Step 3 da chan). Khong co log de doi chieu chinh xac (`player_linhcan_log` tung chang he ton tai). Chay:
 ```bash
@@ -1782,7 +1782,7 @@ echo "players_tung_co_linhcan_cu=$old\n";'
 ```
 Ghi 2 so nay + ke that "nghi mat nguyen lieu nang cap cu — chua hoan, cho chu quyet" vao `docs/UI_LINHCAN.md` §So-no. **KHONG tu cong tien cho ai.**
 
-- [ ] **Step 8: Chay toan bo test + lint + scan**
+- [x] **Step 8: Chay toan bo test + lint + scan**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_element.php
@@ -1794,7 +1794,7 @@ grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" class/fun
 ```
 Expected: `ALL PASS`; 5x `No syntax errors`; `CLEAN`. (Nếu `game/linhcan_wash.php` lint fail vi trang can bien `$sid/$dblj/$encode` — do route nap — `php -l` van phai `No syntax errors` vi chi lint cu phap.)
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add class/function/linhcan.php game/linhcan_wash.php game/use_dj.php class/player.php game.php class/config/daoju_config.json docs/UI_LINHCAN.md

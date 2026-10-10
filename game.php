@@ -350,7 +350,7 @@ switch ($cmd){
 			'taozhuang'=>'game/taozhuang.php',
 			'gocp'=>'game/congphap.php',
 			'linhcan'=>'game/linhcan.php',
-			'linhcan_upgrade'=>'game/linhcan_upgrade.php',
+			'linhcan_wash'=>'game/linhcan_wash.php',
 			'linhcan_quest'=>'game/linhcan_quest.php',
 			'linhcan_boss'=>'game/linhcan_boss.php',
 			'luonden'=>'game/luonden.php',
