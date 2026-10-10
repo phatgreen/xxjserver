@@ -1682,7 +1682,7 @@ git commit -m "feat(huyetmach): one-screen meridian network UI (.hm-*) cloned fr
 > "🪨 3 Đá" ma **khong cong vao `playerdaoju`** (trong code con dong `// TODO: Thêm đá ngũ hành`).
 > `huyetmach_boss_finish()` duoi day phat that, theo mau `class/function/chetao.php:198-202`.
 
-- [ ] **Step 1: Sinh config 33 boss** — KHONG go tay ten boss (master ten la `huyetmach_awakening_config.json → boss_list`):
+- [x] **Step 1: Sinh config 33 boss** — KHONG go tay ten boss (master ten la `huyetmach_awakening_config.json → boss_list`):
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r '
@@ -1725,14 +1725,14 @@ D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r "\$hb=json_decod
 ```
 Dùng `huyetmach_get_key_by_id()` (`class/function/huyetmach.php:430`) làm bảng thay nếu config thiếu `key` — **KHÔNG tự đặt tên boss mới**.
 
-- [ ] **Step 2: Quét CJK + validate JSON** (làm lại lệnh ở Task 1 Step 2 trên file mới), rồi kiểm đếm:
+- [x] **Step 2: Quét CJK + validate JSON** (làm lại lệnh ở Task 1 Step 2 trên file mới), rồi kiểm đếm:
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r "\$d=json_decode(file_get_contents('class/config/huyetmach_boss_config.json'),true);echo count(\$d['bosses']).PHP_EOL;"
 ```
 Expected: `33`
 
-- [ ] **Step 3: Test bai** `tests/test_huyetmach_boss.php` (toan bo file):
+- [x] **Step 3: Test bai** `tests/test_huyetmach_boss.php` (toan bo file):
 
 ```php
 <?php
@@ -1787,6 +1787,11 @@ for ($i = 0; $i < $need; $i++) {
         VALUES (?, 'filler', 'Filler', 'none', 1, 1, 1, 1, 1, 0, NOW(), 'killed')")->execute(array($TESTSID));
 }
 tassert('fights_today dat max', \player\huyetmach_boss_fights_today($TESTSID, $db) >= $max, true);
+// Spawn uu tien boss dang chieu: nguoi choi dang danh do phai danh tiep duoc,
+// nen chan luot chi test duoc khi KHONG con boss nao song.
+$bAgain = \player\huyetmach_boss_spawn($TESTSID, $db);
+tassert('spawn tro lai boss dang chieu', intval($bAgain['id']), intval($b['id']));
+$db->prepare("UPDATE huyetmach_boss SET status = 'killed', killed_at = NOW() WHERE sid = ? AND status = 'active'")->execute(array($TESTSID));
 tassert('spawn bi chan khi het luot', \player\huyetmach_boss_spawn($TESTSID, $db), false);
 $st = \player\huyetmach_boss_status($TESTSID, $db);
 tassert('status blocked', $st['state'], 'blocked');
@@ -1831,9 +1836,9 @@ echo $fails === 0 ? "ALL PASS\n" : "$fails FAIL\n";
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 4: Chay test -> FAIL** (`Call to undefined function player\huyetmach_boss_config_all`)
+- [x] **Step 4: Chay test -> FAIL** (`Call to undefined function player\huyetmach_boss_config_all`)
 
-- [ ] **Step 5: Viet `class/function/huyetmach_boss.php`** (toan bo):
+- [x] **Step 5: Viet `class/function/huyetmach_boss.php`** (toan bo):
 
 ```php
 <?php
@@ -2079,9 +2084,9 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_status')) {
 ?>
 ```
 
-- [ ] **Step 6: Chay test -> PASS** — `php.exe tests/test_huyetmach_boss.php` (kiu `ALL PASS`), lint `class/function/huyetmach_boss.php` + file test.
+- [x] **Step 6: Chay test -> PASS** — `php.exe tests/test_huyetmach_boss.php` (kiu `ALL PASS`), lint `class/function/huyetmach_boss.php` + file test.
 
-- [ ] **Step 7: Viet `game/huyetmach_boss.php`** (toan bo noi dung). Khuon dung `.hm-*` cua Task 7 — **khong** `<style>` rieng (khong lap `.lcb-*`), thanh HP dung `.hm-ms-bar/.hm-ms-fill`:
+- [x] **Step 7: Viet `game/huyetmach_boss.php`** (toan bo noi dung). Khuon dung `.hm-*` cua Task 7 — **khong** `<style>` rieng (khong lap `.lcb-*`), thanh HP dung `.hm-ms-bar/.hm-ms-fill`:
 
 ```php
 <?php
@@ -2099,7 +2104,12 @@ $st     = \player\huyetmach_boss_status($sid, $dblj);
 $hmVb   = \player\huyetmach_vessel_bonuses($sid, $dblj);   // doc 1 lan, dung cho Ne + Giam
 
 $battleLog = '';
-if (isset($attack) && $boss && intval($boss['hp']) > 0) {
+$hmCanFight = isset($attack) && $boss && intval($boss['hp']) > 0;
+if ($hmCanFight && intval($player->uhp) <= 0) {
+    // Cung cach pve.php:500 - het Khi Huyet thi khong duoc danh tiep.
+    // (Phat sinh khi Step 10 that: tai khoan E2E uhp=35 bi boss phan don xuong 0.)
+    $battleLog = "<font color='#f87171'>Ngươi đang trọng thương (Khí Huyết = 0) — phải hồi phục trước khi khiêu chiến.</font>";
+} elseif ($hmCanFight) {
     $res = \player\huyetmach_boss_calc_damage($player, $boss);
     $dmg = intval($res['damage']);
     $critText = $res['crit'] ? " <font color='#FFD700'>[Bạo kích!]</font>" : '';
@@ -2175,21 +2185,21 @@ if (isset($attack) && $boss && intval($boss['hp']) > 0) {
 </div>
 ```
 
-- [ ] **Step 8: Kiem tra ten bien `attack` trung lap** — `parse_str($Dcmd)` (`game.php:89`) bien `attack=1` thanh `$attack`; bien nay toi doi pho bien. Chay:
+- [x] **Step 8: Kiem tra ten bien `attack` trung lap** — `parse_str($Dcmd)` (`game.php:89`) bien `attack=1` thanh `$attack`; bien nay toi doi pho bien. Chay:
 
 ```bash
 grep -rn 'isset($attack)\|\$attack *=' --include=*.php game/ class/ | grep -v bak/
 ```
 Nếu có trang nào khác đã dùng `$attack`, đổi URL Task 8 thành `cmd=huyetmach_boss&hm_attack=1&sid=` và điều kiện thành `isset($hm_attack)`. Ghi quyết định vào `docs/UI_HUYETMACH.md` (Task 12).
 
-- [ ] **Step 9: Doi chieu vong tron voi Task 5/6** — sau khi co boss that, chay lai `tests/test_huyetmach_vessel.php` (phan D+E) va kiem tra:
+- [x] **Step 9: Doi chieu vong tron voi Task 5/6** — sau khi co boss that, chay lai `tests/test_huyetmach_vessel.php` (phan D+E) va kiem tra:
   - `huyetmach_vessel_break_rows()` tra row `Boss mạch huyết: <tên> (đã giết)` voi `ok = true` sau khi `huyetmach_boss_finish()` chay that (khong phai mark tay).
   - Ten boss trong `huyetmach_boss_config.json` **trung tuyen doi** voi `boss_list` (Task 5 doc `boss_list` de lay ten de checklist). Neu sau này gộp master về `huyetmach_boss_config.json`, sửa `huyetmach_vessel_boss_name()` trong Task 5 doc file mới — ghi rõ ở `docs/UI_HUYETMACH.md` muc 2.
   - `huyetmach_awaken()` (Task 6) chi tang stage khi boss da giết + du vat pham.
 
-- [ ] **Step 10: Nghiem thu bang mat** (playbook `docs/UI_XIULIAN.md` muc 9.1): seed tai khoan E2E `huyetmach_id=1, huyetmach_awaken_stage=1`, mo `game.php?cmd=huyetmach_boss`, bam **Tấn Công** 1 lan → `battleLog` phai xuat hien (chung minh `isset($attack)` chay, khong benh nhu Linh Căn); kiem `playerdaoju.djsum` tang; kiem `huyetmach_boss.status = 'killed'`; kiem tin `【Hệ Thống】` xuat hien dung dang trong khung chat (`game/nowmid.php:404` dung `tcg_chat_format_msg`).
+- [x] **Step 10: Nghiem thu bang mat** (playbook `docs/UI_XIULIAN.md` muc 9.1): seed tai khoan E2E `huyetmach_id=1, huyetmach_awaken_stage=1`, mo `game.php?cmd=huyetmach_boss`, bam **Tấn Công** 1 lan → `battleLog` phai xuat hien (chung minh `isset($attack)` chay, khong benh nhu Linh Căn); kiem `playerdaoju.djsum` tang; kiem `huyetmach_boss.status = 'killed'`; kiem tin `【Hệ Thống】` xuat hien dung dang trong khung chat (`game/nowmid.php:404` dung `tcg_chat_format_msg`).
 
-- [ ] **Step 11: Commit**
+- [x] **Step 11: Commit**
 
 ```bash
 git add class/config/huyetmach_boss_config.json class/function/huyetmach_boss.php game/huyetmach_boss.php tests/test_huyetmach_boss.php

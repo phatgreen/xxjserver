@@ -22,6 +22,7 @@ require_once __DIR__ . '/function/chetao.php';
 require_once __DIR__ . '/function/nap_hanh.php';
 require_once __DIR__ . '/function/thechat.php';
 require_once __DIR__ . '/function/huyetmach.php';
+require_once __DIR__ . '/function/huyetmach_boss.php';
 require_once __DIR__ . '/function/nhiemvu.php';
 require_once __DIR__ . '/function/chatmsg.php';
 
