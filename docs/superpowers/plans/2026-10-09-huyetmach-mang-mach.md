@@ -24,6 +24,8 @@
 - So do UI bat buoc (do truc tiep tren `css/`, 09/10): `.tcg-main-panel` 660px o desktop (`css/mystyle.css:199`), padding 16px/18px -> **nội dung 624px**; `.hm-wrap{margin:0}` nhu `.nb-wrap` (`css/mystyle.css:6991`), KHONG dat `max-width` rieng cho `.hm-wrap` (them max-width la mo rong khung chung - da bi bac o v13); `.xl-page` 760px chi la cua man Tu Luyen, khong phai chuan cua man nay; breakpoint layout `min-width:601px`; bar duoi cung cao 80px bang chim `.xl-tabbar`/`.nb-tabbar`.
 - **Landmine phai reset (spec §1.5, do `css/mystyle.css:5035`)**: trong `@media(max-width:760px)` có `.tcg-main-panel *,:before,:after{max-width:100%!important;box-sizing:border-box!important}` và `.tcg-main-panel img{height:auto!important}` — mỗi thành phần định vị tuyệt đối (`.hm-gem` trên ảnh kinh mạch) PHẢI dùng `!important` và reset padding/margin/background ở mọi state; `css/mystyle.css:7029` đã ghi chú lại bẫy này cho phía `.nb-gem`, khối `.hm-*` clone lại phải giữ.
 
+- **ĐÃ ĐỔI TÊN CLASS (Task 7 phát hiện, mọi task sau phải dùng tên mới)**: `.hm-btn` → `.hm-act`, `.hm-empty` → `.hm-note`, `--hm-btn-dur` → `--hm-act-dur`. Lý do: 2 tên `.hm-btn` và `.hm-empty` ĐÃ bị `game/hammo.php` (Hầm Mỏ Linh Khoáng, CSS `css/mystyle.css:6413-6444`) dùng trước, trong đó `.hm-btn{color:#fff!important}` sẽ đè màu nút ghost. Không sửa khối hammo; khối `.hm-*` đổi tên để hai tính năng không đụng nhau. Mọi ví dụ CSS/PHP trong Task 8-12 còn ghi `hm-btn`/`hm-empty` phải đọc là `hm-act`/`hm-note`.
+
 ## File Structure
 
 | File | Vai tro | Task |
@@ -72,7 +74,7 @@
   - `huyetmach_vessel_milestone($total): array('name'=>string,'bonus_percent'=>float,'next_milestone_name'=>string,'next_milestone_percent'=>float,'next_milestone_lv'=>int)`.
   - `huyetmach_vessel_stat_label($stat): string`.
 
-- [ ] **Step 1: Tao `class/config/huyetmach_vessel_config.json`** (noi dung nguyen chan):
+- [x] **Step 1: Tao `class/config/huyetmach_vessel_config.json`** (noi dung nguyen chan):
 
 ```json
 {
@@ -112,7 +114,7 @@
 
 > **KY THUAT CUOI TRO**: `tool Write` o repo nay tung chen ky tu Trung Hoa lac cho vao chuoi tieng Viet co dau. Step 2 bat buoc chay de bao dam JSON sach.
 
-- [ ] **Step 2: Quet CJK + validate JSON**
+- [x] **Step 2: Quet CJK + validate JSON**
 
 Run:
 ```bash
@@ -127,7 +129,7 @@ echo $d===null ? "JSON INVALID\n" : ("json ok, vessels=".count($d["vessels"]).",
 ```
 Expected: `no CJK` va `json ok, vessels=8, tiers=5`. Neu thay CJK: mo file, sua dung chuoi tieng Viet viet khong dau nhu o tren, chay lai.
 
-- [ ] **Step 3: Viet test bai** `tests/test_huyetmach_vessel.php` (phan A):
+- [x] **Step 3: Viet test bai** `tests/test_huyetmach_vessel.php` (phan A):
 
 ```php
 <?php
@@ -191,12 +193,12 @@ echo $fails === 0 ? "ALL PASS\n" : "FAILS: $fails\n";
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 4: Chay test, xac nhan FAIL** (ham chua ton tai)
+- [x] **Step 4: Chay test, xac nhan FAIL** (ham chua ton tai)
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_vessel.php`
 Expected: Fatal error `Call to undefined function player\huyetmach_vessel_defs()`
 
-- [ ] **Step 5: Them khoi ham vao `class/function/huyetmach.php`** (dat cuoi file, trong cung `namespace player`, theo dung gioi han `function_exists` cua file):
+- [x] **Step 5: Them khoi ham vao `class/function/huyetmach.php`** (dat cuoi file, trong cung `namespace player`, theo dung gioi han `function_exists` cua file):
 
 ```php
 /** ===== MANG MACH HUYET: config + ham thuan tuy ===== */
@@ -316,17 +318,17 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_stat_label')) {
 }
 ```
 
-- [ ] **Step 6: Chay test -> PASS**
+- [x] **Step 6: Chay test -> PASS**
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_vessel.php`
 Expected: `ALL PASS`, exit 0.
 
-- [ ] **Step 7: Lint**
+- [x] **Step 7: Lint**
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -l class/function/huyetmach.php`
 Expected: `No syntax errors detected`
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add class/config/huyetmach_vessel_config.json class/function/huyetmach.php tests/test_huyetmach_vessel.php
@@ -346,7 +348,7 @@ git commit -m "feat(huyetmach): vessel config + pure readers for meridian networ
 - Consumes: Task 1 (chua co gi thuoc ham).
 - Produces: bang `player_huyetmach_vessel (sid VARCHAR(64), vessel_id TINYINT, level INT, updated_at DATETIME)`, `huyetmach_boss (id, sid, cfg_key, name, element, level, hp, maxhp, atk, def, crit, spawned_at, killed_at, status)`, `player_huyetmach_upgrade_log (id, sid, from_quality, to_quality, success, created_at)`.
 
-- [ ] **Step 1: Viet `tests/test_huyetmach_schema.php` (test bai)**
+- [x] **Step 1: Viet `tests/test_huyetmach_schema.php` (test bai)**
 
 ```php
 <?php
@@ -398,12 +400,12 @@ echo $fails === 0 ? "ALL PASS\n" : "FAILS: $fails\n";
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 2: Chay test -> FAIL**
+- [x] **Step 2: Chay test -> FAIL**
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_schema.php`
 Expected: `FAIL table player_huyetmach_vessel` (got false), 3 FAIL bang.
 
-- [ ] **Step 3: Viet `sql/sql_huyetmach_vessel.sql`**
+- [x] **Step 3: Viet `sql/sql_huyetmach_vessel.sql`**
 
 ```sql
 -- =====================================================
@@ -452,7 +454,7 @@ CREATE TABLE IF NOT EXISTS player_huyetmach_upgrade_log (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-- [ ] **Step 4: Ap dung vao DB local `game`**
+- [x] **Step 4: Ap dung vao DB local `game`**
 
 Run:
 ```bash
@@ -466,12 +468,12 @@ echo "ap xong\n";
 ```
 Expected: `ap xong`. (Truoc do chay `mysqldump game player_huyetmach_vessel huyetmach_boss player_huyetmach_upgrade_log > E:/window/Temp/pre_hm.sql` de co duong rollback; 3 bang nay moi nen rollback = DROP.)
 
-- [ ] **Step 5: Chay test -> PASS**
+- [x] **Step 5: Chay test -> PASS**
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_schema.php`
 Expected: `ALL PASS`
 
-- [ ] **Step 6: Nho preflight cua production** — sua `tests/deploy_preflight.php`, trong `$SID_VARCHAR` them:
+- [x] **Step 6: Nho preflight cua production** — sua `tests/deploy_preflight.php`, trong `$SID_VARCHAR` them:
 
 ```php
     'player_huyetmach_vessel'       => 'sid',
@@ -482,7 +484,7 @@ Expected: `ALL PASS`
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -l tests/deploy_preflight.php`
 Expected: `No syntax errors detected`
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add sql/sql_huyetmach_vessel.sql tests/test_huyetmach_schema.php tests/deploy_preflight.php
@@ -509,7 +511,7 @@ git commit -m "feat(huyetmach): schema for vessels, per-player bloodline bosses,
   - `huyetmach_calc_bonuses()` tra them key `vessel` (chinh `huyetmach_vessel_bonuses`) va
     `stats` cua no da duoc nhan them milestone.
 
-- [ ] **Step 1: Them phan B vao `tests/test_huyetmach_vessel.php`** (truoc dong `echo $fails === 0 ...`):
+- [x] **Step 1: Them phan B vao `tests/test_huyetmach_vessel.php`** (truoc dong `echo $fails === 0 ...`):
 
 ```php
 // ===== B: cap mach + tong hop chi so (DB local `game`) =====
@@ -585,9 +587,9 @@ hm_reset($db, $TESTSID);
 if ($hmTmpRow) $db->prepare("DELETE FROM game1 WHERE sid = '$TESTSID'")->execute();
 ```
 
-- [ ] **Step 2: Chay test -> FAIL** (`Call to undefined function huyetmach_vessel_levels`)
+- [x] **Step 2: Chay test -> FAIL** (`Call to undefined function huyetmach_vessel_levels`)
 
-- [ ] **Step 3: Them 3 ham vao `class/function/huyetmach.php`**
+- [x] **Step 3: Them 3 ham vao `class/function/huyetmach.php`**
 
 ```php
 /** ===== MANG MACH HUYET: cap mach + tong hop chi so ===== */
@@ -667,12 +669,12 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_bonuses')) {
 > `round(3*5*1.05) + round(0)` = **16**, KHONG PHAI 22
 > (do phat sinh tu phep round tung mach, da ghi ro o day de nguoi thuc thi khong "sua ham cho khop test").
 
-- [ ] **Step 4: Cho `huyetmach_calc_bonuses()` tra them mach** — sua trong ham hien co (`class/function/huyetmach.php:206-263`):
+- [x] **Step 4: Cho `huyetmach_calc_bonuses()` tra them mach** — sua trong ham hien co (`class/function/huyetmach.php:206-263`):
   - Trong `$empty` array (dong 207-223) them: `'vessel' => array(),`.
   - Ngay sau `huyetmach_info($sid, $dblj)` tra ve `!$config` thi van doc mach duoc (mach song duoc khi chua co huyet mach), nen trong doan `return array_merge` cuoi ham them key `'vessel' => huyetmach_vessel_bonuses($sid, $dblj),`.
   - Voi nhanh `!$config` (`return $empty;`) thay `$empty` bang `array_merge($empty, array('vessel' => huyetmach_vessel_bonuses($sid, $dblj)))`.
 
-- [ ] **Step 5: Ap mach vao nhan vat** — `class/player.php`, ngay sau khoi cong `huyetmach` (sau dong 839):
+- [x] **Step 5: Ap mach vao nhan vat** — `class/player.php`, ngay sau khoi cong `huyetmach` (sau dong 839):
 
 ```php
         // Mang mach huyet: cong don 4 chi so duong, chi so am ap o Task 11
@@ -684,11 +686,11 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_bonuses')) {
         }
 ```
 
-- [ ] **Step 6: Chay test -> PASS**
+- [x] **Step 6: Chay test -> PASS**
 
-- [ ] **Step 7: Lint 3 file** (`php.exe -l` cho `class/function/huyetmach.php`, `class/player.php`, `tests/test_huyetmach_vessel.php`)
+- [x] **Step 7: Lint 3 file** (`php.exe -l` cho `class/function/huyetmach.php`, `class/player.php`, `tests/test_huyetmach_vessel.php`)
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add class/function/huyetmach.php class/player.php tests/test_huyetmach_vessel.php
@@ -713,7 +715,7 @@ git commit -m "feat(huyetmach): vessel levels and stat aggregation"
   - `huyetmach_vessel_refine($sid, $dblj, $vesselId): array('ok'=>bool,'msg'=>string,'level'=>int,'cost'=>array)`
   - `game1` item: `112 Huyet Thach`, `113 Huyet Mach Dan` (khong co `use_effect`).
 
-- [ ] **Step 1: Test bai (phan C)**
+- [x] **Step 1: Test bai (phan C)**
 
 ```php
 // ===== C: Luyen Mach =====
@@ -743,8 +745,8 @@ tassert('tran stage 0', strpos($ok['msg'], 'trần') !== false || strpos($ok['ms
 tassert('lv dung tran', \player\huyetmach_vessel_levels($TESTSID, $db)[2], 8);
 ```
 
-- [ ] **Step 2: Chay -> FAIL** (`Call to undefined function huyetmach_vessel_refine`)
-- [ ] **Step 3: Them 2 entry vao `class/config/daoju_config.json`** (copy khuon entry 100, dong 296-303):
+- [x] **Step 2: Chay -> FAIL** (`Call to undefined function huyetmach_vessel_refine`)
+- [x] **Step 3: Them 2 entry vao `class/config/daoju_config.json`** (copy khuon entry 100, dong 296-303):
 
 ```json
     "112": {
@@ -769,8 +771,8 @@ tassert('lv dung tran', \player\huyetmach_vessel_levels($TESTSID, $db)[2], 8);
 > Expected `no CJK` (JSON goc 75 entry dang sach) va `json ok`. Neu thay CJK thi chuoi do da bi Edit
 > chen hong — viet lai bang tieng Viet co dau chuan.
 
-- [ ] **Step 4: `thechat_get_material_name()` (`class/function/thechat.php:469`):** them `112 => 'Huyết Thạch', 113 => 'Huyết Mạch Đan',`. Tương tự `huyetmach_get_material_name()` (`class/function/huyetmach.php:443`). Ten vat pham la chuoi UI nen VIET CO DAU, khop kieu voi 100 => 'Tinh Thể Đá' — chuoi nay rong ra tan man hinh qua `huyetmach_get_material_name()`, de khong dau la lo.
-- [ ] **Step 5: An nut dung cho vat pham khong co `use_effect`** — mo `game/use_dj.php`, tim cho `use_effect` (dòng ~10-22) va them chan:
+- [x] **Step 4: `thechat_get_material_name()` (`class/function/thechat.php:469`):** them `112 => 'Huyết Thạch', 113 => 'Huyết Mạch Đan',`. Tương tự `huyetmach_get_material_name()` (`class/function/huyetmach.php:443`). Ten vat pham la chuoi UI nen VIET CO DAU, khop kieu voi 100 => 'Tinh Thể Đá' — chuoi nay rong ra tan man hinh qua `huyetmach_get_material_name()`, de khong dau la lo.
+- [x] **Step 5: An nut dung cho vat pham khong co `use_effect`** — mo `game/use_dj.php`, tim cho `use_effect` (dòng ~10-22) va them chan:
 
 ```php
         $effectType = isset($item['use_effect']['type']) ? $item['use_effect']['type'] : '';
@@ -784,7 +786,7 @@ tassert('lv dung tran', \player\huyetmach_vessel_levels($TESTSID, $db)[2], 8);
 
 > Doc `game/use_dj.php` phan dau file de dat doan nay DUNG cho sau khi da lay `$item` va TRUOC khi kiem tra `djsum`; neu file da co san nhanh nay thi khong them, chi kiem chung 112/113 bi chan dung.
 
-- [ ] **Step 6: Ham Luyen Mach** (them vao `class/function/huyetmach.php`):
+- [x] **Step 6: Ham Luyen Mach** (them vao `class/function/huyetmach.php`):
 
 ```php
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_daoju_have')) {
@@ -861,8 +863,8 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_refine')) {
 }
 ```
 
-- [ ] **Step 7: Chay test -> PASS**, lint `class/function/huyetmach.php`, `game/use_dj.php`
-- [ ] **Step 8: Commit** `git add class/config/daoju_config.json class/function/huyetmach.php class/function/thechat.php game/use_dj.php tests/test_huyetmach_vessel.php && git commit -m "feat(huyetmach): huyết thạch items + vessel refinement"`
+- [x] **Step 7: Chay test -> PASS**, lint `class/function/huyetmach.php`, `game/use_dj.php`
+- [x] **Step 8: Commit** `git add class/config/daoju_config.json class/function/huyetmach.php class/function/thechat.php game/use_dj.php tests/test_huyetmach_vessel.php && git commit -m "feat(huyetmach): huyết thạch items + vessel refinement"`
 
 ---
 
@@ -876,7 +878,7 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_refine')) {
 - Consumes: Task 1 (`huyetmach_vessel_tier`), Task 3 (`huyetmach_vessel_bonuses`), Task 4 (`huyetmach_vessel_daoju_have`), bang `player_huyetmach_boss` (da ton tai trong DB, `sid VARCHAR(64)`, khoa (sid, boss_id)).
 - Produces: `huyetmach_vessel_break_rows($sid, $dblj): array('rows'=>array(array('ok'=>bool,'text'=>string)),'ready'=>bool,'next'=>array|false,'boss_name'=>string)` — `next` la tier stage ke (hoac false khi da stage 4), `boss_name` la ten boss can win (rung khi tier khong yeu cau boss).
 
-- [ ] **Step 1: Test bai (phan D)**
+- [x] **Step 1: Test bai (phan D)**
 
 ```php
 // ===== D: checklist thuc tinh =====
@@ -919,9 +921,9 @@ $db->prepare("UPDATE game1 SET huyetmach_id = 0 WHERE sid = ?")->execute(array($
 hm_reset($db, $TESTSID);
 ```
 
-- [ ] **Step 2: Chay -> FAIL** (`Call to undefined function huyetmach_vessel_break_rows`)
+- [x] **Step 2: Chay -> FAIL** (`Call to undefined function huyetmach_vessel_break_rows`)
 
-- [ ] **Step 3: Implement**
+- [x] **Step 3: Implement**
 
 ```php
 /** ===== MANG MACH HUYET: checklist thuc tinh ===== */
@@ -995,8 +997,8 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_break_rows')) {
 
 > `huyetmach_vessel_bonuses()` dung `huyetmach_get_key_by_id()`/`huyetmach_awakening_config_all()` da co san (`class/function/huyetmach.php:283`, `:430`). Trong test, `$db` (PDO) duoc truyen thang lam `$dblj` — giong cach `tests/test_nguhanh.php` dung.
 
-- [ ] **Step 4: Chay test -> PASS**, lint
-- [ ] **Step 5: Commit** `git commit -am "feat(huyetmach): awakening gate checklist with real boss requirement"`
+- [x] **Step 4: Chay test -> PASS**, lint
+- [x] **Step 5: Commit** `git commit -am "feat(huyetmach): awakening gate checklist with real boss requirement"`
 
 ---
 
@@ -1010,7 +1012,7 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_break_rows')) {
 - Consumes: Task 5 (`huyetmach_vessel_break_rows`).
 - Produces: `huyetmach_awaken($sid, $dblj): array('ok'=>bool,'msg'=>string,'new_stage'=>int)` — chi tang stage khi `break_rows.ready === true`; tieu hao `material_id/amount` va `linh_thach_cost` cua tier; ghi `player_huyetmach_awaken_log`. Bien than khong con sot `uxx`.
 
-- [ ] **Step 1: Test bai (phan E)**
+- [x] **Step 1: Test bai (phan E)**
 
 ```php
 // ===== E: thuc tinh + bien than =====
@@ -1043,8 +1045,8 @@ $db->prepare("UPDATE game1 SET huyetmach_id = 0, huyetmach_awaken_stage = 0, huy
 hm_reset($db, $TESTSID);
 ```
 
-- [ ] **Step 2: Chay -> FAIL** o `awaken stage 1 ok` (ham cu kiem `boss_drop_require` ngay tu stage 1→2 khac cach, va khong yeu cau tong cap) hoac `tru uhp`.
-- [ ] **Step 3: Viet lai `huyetmach_awaken()`** — thay toan bo than ham (giu nguyen ten + chu ky):
+- [x] **Step 2: Chay -> FAIL** o `awaken stage 1 ok` (ham cu kiem `boss_drop_require` ngay tu stage 1→2 khac cach, va khong yeu cau tong cap) hoac `tru uhp`.
+- [x] **Step 3: Viet lai `huyetmach_awaken()`** — thay toan bo than ham (giu nguyen ten + chu ky):
 
 ```php
     function huyetmach_awaken($sid, $dblj){
@@ -1096,16 +1098,16 @@ hm_reset($db, $TESTSID);
     }
 ```
 
-- [ ] **Step 4: Xoa `quest_require`** — tim moi cham `quest_require` trong `huyetmach.php` (ham cu khong kiem tra, nhung `game/huyetmach_awakening.php:44-47` co dan chu) va dua no ra khoi UI o Task 7. GIU lai khoa trong JSON `huyetmach_awakening_config.json` cho toi khi Task 12 quyet xoa hay giu (xem muc 8.2 cua spec).
-- [ ] **Step 5: Sua bug bien than** — `class/function/huyetmach.php`:
+- [x] **Step 4: Xoa `quest_require`** — tim moi cham `quest_require` trong `huyetmach.php` (ham cu khong kiem tra, nhung `game/huyetmach_awakening.php:44-47` co dan chu) va dua no ra khoi UI o Task 7. GIU lai khoa trong JSON `huyetmach_awakening_config.json` cho toi khi Task 12 quyet xoa hay giu (xem muc 8.2 cua spec).
+- [x] **Step 5: Sua bug bien than** — `class/function/huyetmach.php`:
   - `huyetmach_can_transform()` dong 520: `if ($player->uxx < $hpCost)` -> `if (intval($player->uhp) < $hpCost)`; dong 517 giu `getplayer`.
   - `huyetmach_activate_transform()` dong 544-547: `$newHP = max(1, $player->uxx - $hpCost);` -> `$newHP = max(1, intval($player->uhp) - $hpCost);` va `UPDATE game1 SET uxx = ?` -> `UPDATE game1 SET uhp = ?`.
   - Them chu thich NGAN (1 dong) o cho sua: `// HP, khong phai uxx (Hut Máu) — bug cu tru nham cot`.
 
 > **LUU Y: `getplayer()` co the lang cache** — trong test goi `player_cache_clear($TESTSID)` truoc khi doc `$player` sau moi lan ghi DB, neu khong `uhp` doc duoc la gia tri cu va test sai.
 
-- [ ] **Step 6: Chay test -> PASS**, lint `class/function/huyetmach.php`
-- [ ] **Step 7: Commit** `git commit -am "fix(huyetmach): awaken gated by real requirements; transform spends HP not lifesteal"`
+- [x] **Step 6: Chay test -> PASS**, lint `class/function/huyetmach.php`
+- [x] **Step 7: Commit** `git commit -am "fix(huyetmach): awaken gated by real requirements; transform spends HP not lifesteal"`
 
 ---
 ### Task 7: UI — một màn `game/huyetmach.php` (khối `.hm-*`) + ray 5 bậc + 8 ngọc

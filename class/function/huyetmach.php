@@ -593,33 +593,22 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_quality_icon')) {
 
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_awaken_name')) {
     function huyetmach_awaken_name($stage){
-        $map = array(
-            0 => 'Vĩnh Viễn Trầm Mệnh',
-            1 => 'Sơ Giác',
-            2 => 'Thức Tỉnh',
-            3 => 'Chân Thân',
-            4 => 'Huyết Thống Viên Mãn'
-        );
-        return isset($map[$stage]) ? $map[$stage] : 'Vĩnh Viễn Trầm Mệnh';
+        $tier = huyetmach_vessel_tier(intval($stage));
+        return $tier ? $tier['name'] : 'Vĩnh Viễn Trầm Mệnh';
     }
 }
 
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_awaken_color')) {
     function huyetmach_awaken_color($stage){
-        $map = array(
-            0 => '#666666', 1 => '#4caf50', 2 => '#ff9800',
-            3 => '#f44336', 4 => '#ffd700'
-        );
-        return isset($map[$stage]) ? $map[$stage] : '#666666';
+        $tier = huyetmach_vessel_tier(intval($stage));
+        return $tier ? $tier['color'] : '#6b7280';
     }
 }
 
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_awaken_icon')) {
     function huyetmach_awaken_icon($stage){
-        $map = array(
-            0 => '🔒', 1 => '🌟', 2 => '⭐', 3 => '💫', 4 => '👑'
-        );
-        return isset($map[$stage]) ? $map[$stage] : '🔒';
+        $tier = huyetmach_vessel_tier(intval($stage));
+        return $tier ? $tier['icon'] : '🔒';
     }
 }
 
