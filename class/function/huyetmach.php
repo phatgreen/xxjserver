@@ -448,7 +448,8 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_get_material_name')) {
         $names = array(
             100 => 'Tinh Thể Đá', 101 => 'Huyền Thạch', 102 => 'Địa Linh Ngọc',
             103 => 'Thiên Cơ Đá', 104 => 'Thánh Thạch', 105 => 'Tiên Lộ',
-            106 => 'Thần Thạch', 107 => 'Đế Lệnh', 108 => 'Đạo Nguyên'
+            106 => 'Thần Thạch', 107 => 'Đế Lệnh', 108 => 'Đạo Nguyên',
+            112 => 'Huyết Thạch', 113 => 'Huyết Mạch Đan'
         );
         return isset($names[$djid]) ? $names[$djid] : 'Vật phẩm';
     }
@@ -757,6 +758,80 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_stat_label')) {
         $all = huyetmach_vessel_config_all();
         $labels = isset($all['stat_labels']) ? $all['stat_labels'] : array();
         return isset($labels[$stat]) ? $labels[$stat] : $stat;
+    }
+}
+
+/** ===== MANG MACH HUYET: Luyen Mach ===== */
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_daoju_have')) {
+    function huyetmach_vessel_daoju_have($sid, $dblj, $djid){
+        $stmt = $dblj->prepare("SELECT djsum FROM playerdaoju WHERE sid = ? AND djid = ? LIMIT 1");
+        $stmt->execute(array($sid, intval($djid)));
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row ? intval($row['djsum']) : 0;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_refine')) {
+    /** Luyen 1 mach +1 cap. Thanh cong 100%. Ton Huyet Thach + Linh Thach. */
+    function huyetmach_vessel_refine($sid, $dblj, $vesselId){
+        $def = huyetmach_vessel_def($vesselId);
+        if (!$def) return array('ok' => false, 'msg' => 'Mach huyet khong ton tai.', 'level' => 0, 'cost' => array());
+
+        $stage = 0;
+        $stmt = $dblj->prepare("SELECT huyetmach_awaken_stage, uyxb FROM game1 WHERE sid = ? LIMIT 1");
+        $stmt->execute(array($sid));
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$row) return array('ok' => false, 'msg' => 'Khong tim thay nhan vat.', 'level' => 0, 'cost' => array());
+        $stage = intval($row['huyetmach_awaken_stage']);
+        $linhThach = intval($row['uyxb']);
+
+        $levels = huyetmach_vessel_levels($sid, $dblj);
+        $vid = intval($def['id']);
+        $lv = intval($levels[$vid]);
+        $cap = huyetmach_vessel_cap($stage);
+        if ($lv >= $cap) {
+            return array('ok' => false, 'msg' => $def['name'] . ' đã đạt trần ' . $cap . ' cấp — phải thức tỉnh Huyết Mạch để luyện tiếp.',
+                'level' => $lv, 'cost' => array());
+        }
+
+        $cost = huyetmach_vessel_refine_cost($lv);
+        $have = huyetmach_vessel_daoju_have($sid, $dblj, $cost['material_id']);
+        if ($have < $cost['material_amount']) {
+            return array('ok' => false,
+                'msg' => huyetmach_get_material_name($cost['material_id']) . ' không đủ: cần '
+                    . $cost['material_amount'] . ', có ' . $have . '.',
+                'level' => $lv, 'cost' => $cost);
+        }
+        if ($linhThach < $cost['linh_thach_cost']) {
+            return array('ok' => false,
+                'msg' => 'Linh Thạch không đủ: cần ' . number_format($cost['linh_thach_cost'])
+                    . ', có ' . number_format($linhThach) . '.',
+                'level' => $lv, 'cost' => $cost);
+        }
+
+        $dblj->beginTransaction();
+        try {
+            $stmt = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum - ? WHERE sid = ? AND djid = ? AND djsum >= ?");
+            $stmt->execute(array($cost['material_amount'], $sid, $cost['material_id'], $cost['material_amount']));
+            if ($stmt->rowCount() !== 1) throw new Exception('mat Huyet Thach');
+
+            $dblj->prepare("UPDATE game1 SET uyxb = uyxb - ? WHERE sid = ?")
+                ->execute(array($cost['linh_thach_cost'], $sid));
+
+            $dblj->prepare("INSERT INTO player_huyetmach_vessel (sid, vessel_id, level, updated_at)
+                VALUES (?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE level = ?, updated_at = NOW()")
+                ->execute(array($sid, $vid, $lv + 1, $lv + 1));
+
+            $dblj->commit();
+        } catch (Exception $e) {
+            $dblj->rollBack();
+            return array('ok' => false, 'msg' => 'Luyen mach that bai, thu lai sau.', 'level' => $lv, 'cost' => $cost);
+        }
+
+        player_cache_clear($sid);
+        return array('ok' => true,
+            'msg' => 'Luyện ' . $def['name'] . ' thành công — cấp ' . ($lv + 1) . '.',
+            'level' => $lv + 1, 'cost' => $cost);
     }
 }
 

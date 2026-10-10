@@ -476,7 +476,9 @@ if (!function_exists(__NAMESPACE__ . '\\thechat_get_material_name')) {
             105 => 'Tiên Lộ',
             106 => 'Thần Thạch',
             107 => 'Đế Lệnh',
-            108 => 'Đạo Nguyên'
+            108 => 'Đạo Nguyên',
+            112 => 'Huyết Thạch',
+            113 => 'Huyết Mạch Đan'
         );
         return isset($names[$djid]) ? $names[$djid] : 'Vật phẩm';
     }

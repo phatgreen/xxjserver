@@ -396,6 +396,22 @@
             "type": "reroll_linhcan"
         }
     },
+    "112": {
+        "djname": "Huyết Thạch",
+        "djzl": "112",
+        "djinfo": "Kết từ huyết mạch thú, dùng tôi luyện tám mạch và đột phá cảnh giới huyết mạch.",
+        "djid": 112,
+        "djyxb": 800,
+        "djjg": 0
+    },
+    "113": {
+        "djname": "Huyết Mạch Đan",
+        "djzl": "113",
+        "djinfo": "Đơn dược cô đúc từ bản nguyên huyết mạch, cần cho thức tỉnh Huyết Thống Viên Mãn.",
+        "djid": 113,
+        "djyxb": 50000,
+        "djjg": 0
+    },
 
     "50": {
         "djname": "Linh Chi Huyết Sắc",

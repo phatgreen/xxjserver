@@ -69,13 +69,11 @@ function hm_set_level($db, $sid, $vid, $lv) {
         VALUES (?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE level = VALUES(level)")->execute(array($sid, $vid, $lv));
 }
 
-$hasPlayer = $db->query("SELECT COUNT(*) FROM game1 WHERE sid = '$TESTSID'")->fetchColumn();
-if (!$hasPlayer) {
-    // test can mot dong game1 de doc stage; tao transient row da dung (xoa o cuoi test)
+if (!$db->query("SELECT COUNT(*) FROM game1 WHERE sid = '$TESTSID'")->fetchColumn()) {
+    // test can mot dong game1 de doc stage; dong nay bi xoa vo dieu kien o cuoi test
     $db->prepare("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, huyetmach_id, huyetmach_quality, huyetmach_awaken_stage)
         VALUES ('$TESTSID', 990112, 'HMTEST', 300, 1000, 10000, NOW(), 0, 1, 0)")->execute();
-    $hmTmpRow = true;
-} else { $hmTmpRow = false; }
+}
 $db->prepare("UPDATE game1 SET uid = 990112 WHERE sid = ?")->execute(array($TESTSID));
 
 hm_reset($db, $TESTSID);
@@ -124,8 +122,48 @@ $b4 = \player\huyetmach_vessel_bonuses($TESTSID, $db);
 tassert('dodge cap 15', $b4['dodge'], 15.0);
 tassert('pen cap 15', $b4['pen'], 15.0);
 
+// dong game1 tam giu lai cho phan C; don duoc o cuoi file
 hm_reset($db, $TESTSID);
-if ($hmTmpRow) $db->prepare("DELETE FROM game1 WHERE sid = '$TESTSID'")->execute();
+
+// ===== C: Luyen Mach =====
+if (!$db->query("SELECT COUNT(*) FROM game1 WHERE sid = '$TESTSID'")->fetchColumn()) {
+    $db->prepare("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, huyetmach_id, huyetmach_quality, huyetmach_awaken_stage)
+        VALUES ('$TESTSID', 990112, 'HMTEST', 300, 1000, 10000, NOW(), 0, 1, 0)")->execute();
+}
+$db->prepare("UPDATE game1 SET uid = 990112 WHERE sid = ?")->execute(array($TESTSID));
+
+$ok = \player\huyetmach_vessel_refine($TESTSID, $db, 99);
+tassert('refine vessel loi', $ok['ok'], false);
+
+hm_reset($db, $TESTSID);
+$db->prepare("UPDATE game1 SET uyxb = 0 WHERE sid = ?")->execute(array($TESTSID));
+$ok = \player\huyetmach_vessel_refine($TESTSID, $db, 1);
+tassert('refine thieu Huyet Thach', strpos($ok['msg'], 'Huyết Thạch') !== false, true);
+
+// cap du 112 x 5 va Linh Thach 100000
+$ins = $db->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum, djname, djzl, djinfo)
+    VALUES (?, 990112, 112, 5, 'Huyết Thạch', '112', 'test') ON DUPLICATE KEY UPDATE djsum = 5");
+$ins->execute(array($TESTSID));
+$db->prepare("UPDATE game1 SET uyxb = 100000 WHERE sid = ?")->execute(array($TESTSID));
+$ok = \player\huyetmach_vessel_refine($TESTSID, $db, 1);
+tassert('refine ok', $ok['ok'], true);
+tassert('refine lv 1', $ok['level'], 1);
+tassert('tru 1 Huyet Thach', intval($db->query("SELECT djsum FROM playerdaoju WHERE sid='$TESTSID' AND djid=112")->fetchColumn()), 4);
+tassert('tru 200 Linh Thach', intval($db->query("SELECT uyxb FROM game1 WHERE sid='$TESTSID'")->fetchColumn()), 99800);
+
+// nap them de kiem tra chan tran chu khong phai thieu vat lieu
+$db->prepare("UPDATE playerdaoju SET djsum = 30 WHERE sid = ? AND djid = 112")->execute(array($TESTSID));
+
+// chan tran stage 0 = 8
+for ($i = 1; $i <= 8; $i++) \player\huyetmach_vessel_refine($TESTSID, $db, 2);
+$ok = \player\huyetmach_vessel_refine($TESTSID, $db, 2);
+tassert('tran stage 0', strpos($ok['msg'], 'trần') !== false || strpos($ok['msg'], 'Trần') !== false, true);
+tassert('lv dung tran', \player\huyetmach_vessel_levels($TESTSID, $db)[2], 8);
+
+// ===== don ve sinh DB =====
+hm_reset($db, $TESTSID);
+$db->prepare("DELETE FROM playerdaoju WHERE sid = ?")->execute(array($TESTSID));
+$db->prepare("DELETE FROM game1 WHERE sid = ?")->execute(array($TESTSID));
 
 echo $fails === 0 ? "ALL PASS\n" : "FAILS: $fails\n";
 exit($fails === 0 ? 0 : 1);
