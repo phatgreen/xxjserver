@@ -15,6 +15,12 @@ $db = new PDO('mysql:host=localhost;dbname=game;charset=utf8', 'root', 'www.aae.
     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 require_once __DIR__ . '/../class/player.php'; // player.php tu require function/linhcan.php (:16); can adddj/player_cache_clear cho node_set + give_stone
 $TESTSID = str_repeat('f', 32);
+// Seed NHAN VAT cua rieng test nay — adddj (:1409) can game1.uid, khong duoc phu thuoc test khac
+$db->exec("INSERT INTO game1 (sid, uid, uname, ulv, uhp, umaxhp, endtime, ugj, ufy, ubj, uyxb, uexp)
+    VALUES ('$TESTSID', 990112, 'LCELEM', 30, 5000, 5000, NOW(), 3000, 1000, 20, 0, 10000)
+    ON DUPLICATE KEY UPDATE uid = 990112, ulv = 30, uhp = 5000, umaxhp = 5000, endtime = NOW(),
+        ugj = 3000, ufy = 1000, ubj = 20, uyxb = 0, uexp = 10000");
+\player\player_cache_clear($TESTSID);
 
 // A1: config
 $d = \player\linhcan_element_defs();

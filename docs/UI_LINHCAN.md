@@ -130,6 +130,47 @@ chỉ redirect; `class/player.php` nhánh `djuse == 'linhcan'` trả chuỗi "kh
 → Thiệt hại quá khứ **không định lượng được bằng dữ liệu hiện có**. Muốn hoàn cho ai phải do chủ dự án
 tự quyết mức (không có sổ để tra). **CHƯA tự cộng tiền cho nhân vật nào.**
 
+## 5 kỹ năng ngũ hành vào thực chiến (Task 8, 2026-10-11)
+
+`class/config/linhcan_skill_config.json` — 5 skill, ổ khóa là **bậc của hành chủ đạo** (Địa Căn = bậc 2),
+KHÔNG phải `ulv`. Số lấy nguyên từ spec đã duyệt:
+
+| id | Tên | Hành | `unlock_stage` | Hiệu lực thực chiến | Khí huyết | Hồi chiêu |
+|---|---|---|---|---|---|---|
+| hoa_diem_chuong | Hỏa Diệm Chưởng | Hỏa | 2 | x1.5 sát thương (`aoe: true` — cố ý CHƯA dùng, PVE đánh 1 mục tiêu) | 10% max | 5 phút |
+| thuy_ho_thuat | Thủy Hộ Thuật | Thủy | 2 | hồi 8%/lượt x 3 lượt = **24% khí huyết** | 10% max | 5 phút |
+| moc_linh_thuat | Mộc Linh Thuật | Mộc | 2 | +25% hút máu | 10% max | 5 phút |
+| kim_cuong_chuong | Kim Cương Chưởng | Kim | 2 | +40% chí mạng | 10% max | 5 phút |
+| tho_ho_thuat | Thổ Hộ Thuật | Thổ | 2 | +30% phòng ngự | 10% max | 5 phút |
+
+Hàm trong `class/function/linhcan_skill.php` (189 → **233** dòng, scanner ký tự CLEAN):
+- `linhcan_skill_can_use($player, $skill, $lcStage)` — **3 tham số**; cổng 1 = bậc hành, cổng 2 =
+  `uhp` phải **lớn hơn** chi phí (để skill không tự cạn máu tới 0).
+- `linhcan_skill_for_stage($sid, $dblj)` — node → `linhcan_dominant` → `element_to_skill`; `false` khi bậc < 2.
+- `linhcan_skill_combat_mods($skill)` — chốt **8 key**: `atk_mult / crit_add / lifesteal_add / def_pct /
+  heal_pct / ignore_def_pct / name / icon`.
+- `linhcan_skill_apply()` vẫn còn nhưng **không dùng trong combat** (docblock ghi rõ, Task 11 sẽ xét xóa).
+
+Nút + wiring (số dòng **đo lại sau khi chèn**):
+- `game/pve.php`: nút `:27-35`, init `$lcMods` `:126`, `case 'uselcskill'` `:141-162`,
+  stat mods `:210-219`, ignore_def `:294-296`, atk_mult `:301-303`, render `:976`.
+- `game/boss.php`: nút `:10-19`, `case` **standalone** `:191-212` (vì `switch($canshu)` của file bị
+  comment hoá ở `:180-198`), stat mods `:248-257`, ignore_def `:291-293`, atk_mult `:298-300`, render `:918`.
+- Chuỗi chặn hồi chiêu giống nhau ở 2 trang: "Kỹ năng còn hồi chiêu".
+
+**Biến thể so với spec 2.3 (PHẢI báo chủ dự án)**: 1 request = 1 lượt chiến, nên hiệu lực theo lượt
+(hồi 3 lượt, buff) chỉ sống **trong đúng 1 request**. Đây là bản rút gọn của "hiệu lực theo lượt",
+không phải nguyên văn §2.3.
+
+Bằng chứng — `tests/test_linhcan_combat.php` (26 assert CLI) + `--live` (20 assert route thật,
+`php -S 127.0.0.1:8199` vì phpStudy đang tắt): **ALL PASS**, chạy lặp 2 lần.
+- E2.4b: chi phí in trong lời = **10% `umaxhp` SAU buff** (3407 trên 34079), không phải cột thô.
+- E3.2: hồi = 24% max sau buff = **8179** máu; E3.4 máu cuối trận bị chặn đúng ceiling.
+- E4: chí mạng 150 đòn thường vs 150 đòn có skill — lần 1 `59.3% → 78.0%`, lần 2 `64% → 85.3%`
+  (lý thuyết 61.5% → 81.5%, dung sai ±10 điểm %, delta ≥10).
+- E5.1/E5.2: trang boss cũng có nút + lời "Thi triển", máu boss giảm thật.
+- **CHƯA test trong game thật**: chưa bấm nút bằng mắt trên trình duyệt; mới chỉ assert HTML trả về
+  từ route (`E5.0` đo độ dài HTML + `strpos`). Trang Vòng Ngũ Hành + ảnh + fx = Task 10.
 ## Chưa làm / chờ chủ dự án chốt
 
 1. **(Task 1 phát hiện, Task 5 xác nhận) Cửa hàng bán Bình Anh Tinh Thạch (37) giá 100 Linh thạch, mua không giới hạn.**
@@ -174,5 +215,10 @@ tự quyết mức (không có sổ để tra). **CHƯA tự cộng tiền cho n
 | 7 Step 6 | Plan viết "giữ `djuse` như cũ; đường `djuse=='linhcan'` đã thành chuỗi báo" | `getdaoju(111)->djuse` = **NULL**; không món nào trong `daoju_config.json` có key `djuse` → `usedaoju()` chặn từ `:2019` "Đạo cụ này không thể sử dụng", nhánh `linhcan` **vốn đã chết** từ trước rework | Vẫn đổi nhánh thành chuỗi báo theo plan (không đổi hành vi). Đường dùng đan thật = `game/use_dj.php` (`use_effect.type`). Ghi vào §Chưa làm mục 6: túi đồ không có nút "Dùng" cho đan 111 — chờ chủ chốt |
 | 7 Step 8 | Gate "CLEAN" trên `class/player.php` + `game.php` | `class/player.php` có **11 dòng comment chữ Hán** ở `:998, :1034, :1152, :1453, :1459, :1468, :1471, :1850, :2094, :2095, :2324` (comment nội bộ của code gốc Trung Quốc, không phải chuỗi hiển thị cho người chơi) và `game.php` có 2 dòng `:160, :231` dùng cặp ngoặc vuông chữ Hán trong tin nhắn hệ thống — **đều có sẵn trong HEAD** (`git show HEAD:` + cùng scanner = đúng 13 dòng), không phải chuỗi do Task 7 thêm | Không sửa (ngoài phạm vi; 2 dòng `game.php` là style tin nhắn "[Hệ thống]" đang chạy thật). Gate thu hẹp: chỉ quét **dòng do Task 7 thêm** (`git diff -U0` qua byte-level scanner) → 0 ký tự lạ. Scanner: `E:/window/Temp/t7_scan2.php` |
 | 7 Step 4 | Plan chỉ yêu cầu `php -l` cho trang mới | Web server phpStudy **đang tắt** nên chưa render được qua router | Dựng harness `E:/window/Temp/t7_render.php` include trực tiếp `game/linhcan_wash.php` (tự seed Kim Lv5/bậc1 + Hỏa Lv12 + 2 đan): xem = 1212 byte đủ 5 hàng, tẩy Kim = `Lv 5→0, bậc 1 giữ nguyên, +4 đá (35), +650 LT, đan 2→1`. **Vẫn CHƯA test qua `game.php` thật** |
+| 8 Step 6 | Plan seed `UPDATE game1 SET uhp = umaxhp` cho fixture live | Cột thô `umaxhp` của fixture = **35**, còn `getplayer()` trả `umaxhp` **đã buff = 34079** → cổng MP chặn đúng ("còn trên 3407 HP"), 4 assert live FAIL oan | Không sửa code. Thêm `$lcTopUp()` ghi **giá trị sau buff** (cùng khuôn `game/pve.php:107 changeplayersx('uhp', $player->umaxhp, ...)`) + E2.4 so với `getplayer()->umaxhp` thay vì cột thô |
+| 8 Step 6 | Plan assert E3 "đòn thường không chứa tên skill" | Trang PVE in tên skill trên **nút** nên chuỗi "Thủy Hộ Thuật" luôn hiện diện → FAIL do test, không do code | Siết assert thành chuỗi **lời thi triển** (`'Thủy Hộ Thuật: hồi'`, `'khí huyết)!'`) |
+| 8 Step 6 | Plan "don that giam mau boss" = 1 đòn | `game/boss.php:363-368` có nhánh `$sb = mt_rand(1,100); if ($sb > 80) { $gphurt = 0; }` → **20% đòn của người chơi bị né**, đơn đòn là trò tung đồng xu | Loop tối đa 5 đòn (`E5.2 ... (sau toi da 5 don)`); đã chứng minh đòn thật bằng probe riêng (`E:/window/Temp/t8_bprobe.php`: 6382 sát thương trên boss mới) |
+| 8 Step 7 | Gate "grep Expected: CLEAN" trên `game/pve.php` + `game/boss.php` | 2 file kế thừa có sẵn comment chữ Hán / ngoặc vuông chữ Hán: **pve 4 dòng, boss 36 dòng**. Đo `git show HEAD:` bằng cùng byte-level scanner → **đúng 4 và 36**, số không đổi sau Task 8 | Gate thu hẹp: chỉ quét **dòng thêm trong diff** (`E:/window/Temp/t8_diffscan.php`) → **0 ký tự lạ / 0 dòng**. 3 file còn lại (skill lib, config json, test) CLEAN tuyệt đối. Không sửa comment legacy (ngoài phạm vi) |
+| 8 (ngoài plan) | `tests/test_linhcan_element.php` chạy đơn độc | FATAL tại `class/player.php:1309` (`adddj()` cần `game1.uid`): test chưa từng tự seed nhân vật, chỉ xanh khi chạy **sau** `test_linhcan_quest.php` → nợ cách ly có sẵn từ Task 6/7, **không phải regression Task 8** | Thêm seed `game1` tự thân (uid 990112, `ON DUPLICATE KEY UPDATE`) ngay sau PDO → ALL PASS khi chạy một mình. Commit kèm Task 8 |
 
 

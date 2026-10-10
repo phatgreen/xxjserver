@@ -1,0 +1,76 @@
+{
+  "skills": {
+    "hoa_diem_chuong": {
+      "id": "hoa_diem_chuong",
+      "name": "Hỏa Diệm Chưởng",
+      "element": "hoa",
+      "type": "damage",
+      "description": "Gây sát thương AOE bằng 150% ATK",
+      "multiplier": 1.5,
+      "aoe": true,
+      "mp_cost_percent": 10,
+      "cooldown_minutes": 5,
+      "unlock_stage": 2,
+      "icon": "🔥"
+    },
+    "thuy_ho_thuat": {
+      "id": "thuy_ho_thuat",
+      "name": "Thủy Hộ Thuật",
+      "element": "thuy",
+      "type": "heal",
+      "description": "Hồi 8% HP mỗi turn trong 3 turn",
+      "heal_percent": 8,
+      "duration_turns": 3,
+      "mp_cost_percent": 10,
+      "cooldown_minutes": 5,
+      "unlock_stage": 2,
+      "icon": "💧"
+    },
+    "moc_linh_thuat": {
+      "id": "moc_linh_thuat",
+      "name": "Mộc Linh Thuật",
+      "element": "moc",
+      "type": "buff",
+      "description": "Tăng 25% hút máu trong 3 turn",
+      "lifesteal_bonus": 25,
+      "duration_turns": 3,
+      "mp_cost_percent": 10,
+      "cooldown_minutes": 5,
+      "unlock_stage": 2,
+      "icon": "🌿"
+    },
+    "kim_cuong_chuong": {
+      "id": "kim_cuong_chuong",
+      "name": "Kim Cương Chưởng",
+      "element": "kim",
+      "type": "buff",
+      "description": "Tăng 40% bạo kích trong 1 turn",
+      "crit_bonus": 40,
+      "duration_turns": 1,
+      "mp_cost_percent": 10,
+      "cooldown_minutes": 5,
+      "unlock_stage": 2,
+      "icon": "🪙"
+    },
+    "tho_ho_thuat": {
+      "id": "tho_ho_thuat",
+      "name": "Thổ Hộ Thuật",
+      "element": "tho",
+      "type": "buff",
+      "description": "Tăng 30% phòng ngự trong 3 turn",
+      "def_bonus": 30,
+      "duration_turns": 3,
+      "mp_cost_percent": 10,
+      "cooldown_minutes": 5,
+      "unlock_stage": 2,
+      "icon": "🏔"
+    }
+  },
+  "element_to_skill": {
+    "hoa": "hoa_diem_chuong",
+    "thuy": "thuy_ho_thuat",
+    "moc": "moc_linh_thuat",
+    "kim": "kim_cuong_chuong",
+    "tho": "tho_ho_thuat"
+  }
+}

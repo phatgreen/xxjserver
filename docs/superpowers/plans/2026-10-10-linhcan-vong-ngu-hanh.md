@@ -1823,7 +1823,7 @@ git commit -m "feat(linhcan): Tay Linh Dan thanh dan rua hanh + cat duong nang c
 - **Quyet dinh thoi luong (1 request = 1 luot chien):** H5 khong co turn luu giua request → `duration_turns` khong the ton tai nhu ban cu mo. Skill = hieu ung NGAY trong luot bam: buff/debuff chi ap dung cho luot do; heal dot toan bo `heal_percent × duration_turns` (Thủy 8%×3=24% max HP). Ghi chu NAY must duoc bao cho chu du an luc ban giao — do la don phuc bien the, khong phai truong thanh cua 2.3.
 - `aoe: true` (Hỏa Diệm Chưởng): PVE/boss hien chi 1 muc tieu → flag giu nguyen trong config, mods bo qua (ghi chu thich trong `linhcan_skill_combat_mods`).
 
-- [ ] **Step 1: Sua `class/config/linhcan_skill_config.json`**
+- [x] **Step 1: Sua `class/config/linhcan_skill_config.json`**
 - XOA object `hu_khong_chuong` va key `"none"` trong `element_to_skill`.
 - Moi skill: XOA `"unlock_level": N`, thay `"unlock_stage": 2`.
 - Validate:
@@ -1832,7 +1832,7 @@ D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r '$d=json_decode(
 ```
 Expected: `cfg ok`.
 
-- [ ] **Step 2: Sua `class/function/linhcan_skill.php`**
+- [x] **Step 2: Sua `class/function/linhcan_skill.php`**
 
 THAY toan bo `linhcan_skill_can_use` (`:51-68`) + them 2 ham moi (nguyen van):
 ```php
@@ -1898,7 +1898,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_skill_combat_mods')) {
 }
 ```
 
-- [ ] **Step 3: Test CLI `tests/test_linhcan_combat.php` (phan A-D)** — khung bootstrap copy `tests/test_huyetmach_combat.php:9-24` (`$ROOT`, require player.php + encode.php + function/linhcan_skill.php), doi ten bien `HM_*`→`LC_*`, $TESTSID nhu Task 2. Noi dung:
+- [x] **Step 3: Test CLI `tests/test_linhcan_combat.php` (phan A-D)** — khung bootstrap copy `tests/test_huyetmach_combat.php:9-24` (`$ROOT`, require player.php + encode.php + function/linhcan_skill.php), doi ten bien `HM_*`→`LC_*`, $TESTSID nhu Task 2. Noi dung:
 
 ```php
 // A: combat_mods dung tung skill (so lieu = config da doi o Step 1)
@@ -1948,7 +1948,7 @@ $db->exec("DELETE FROM player_linhcan_node WHERE sid = '" . $TESTSID . "'");
 $db->exec("DELETE FROM player_linhcan_skill WHERE sid = '" . $TESTSID . "'");
 ```
 
-- [ ] **Step 4: Cắm `game/pve.php`** — 5 edit theo anchor THAT (so `:x` duoi day = hien trang, doi chieu khi mo file):
+- [x] **Step 4: Cắm `game/pve.php`** — 5 edit theo anchor THAT (so `:x` duoi day = hien trang, doi chieu khi mo file):
 
 4a. **Command nut** (sau `$usejn3` `:25`):
 ```php
@@ -2021,7 +2021,7 @@ if (function_exists('player\\linhcan_skill_for_stage')) {
 ```
 4f. **Nut** (skill box `:915-919`): them `{$lcskillHtml}` dong cuoi ben trong `<div class="pve-skill-box">` (heredoc `<<<HTML` tu noi bien — `$lcskillHtml` da la chuoi `<a href=...>` hoan chinh, rong khi chua mo skill).
 
-- [ ] **Step 5: Cắm `game/boss.php`** — khuon SONG SONG (file chua `switch` canshu dang bi chu thich hoa `:180-198`, dung nhanh `if` doc lap):
+- [x] **Step 5: Cắm `game/boss.php`** — khuon SONG SONG (file chua `switch` canshu dang bi chu thich hoa `:180-198`, dung nhanh `if` doc lap):
 - Anchor lenh: sau khi `$player` duoc nap (`:130` khu `pvbgj`), them `case` bang doan:
 ```php
     $lcMods = array();
@@ -2058,7 +2058,7 @@ if (function_exists('player\\linhcan_skill_for_stage')) {
 - Nut: trong action block cua `game/boss.php` (grep `Tấn công` de tim), them `$lcs0 = \player\linhcan_skill_for_stage($sid, $dblj);` + link `cmd=pvbgj&canshu=uselcskill&bossid=$bossid&nowmid=$nowmid&sid=$sid` qua `$encode->encode`, hien `icon name` — mau nhu nut tan cong.
 - LUU Y: `$tishihtml` trong boss.php co the da duoc khoi tao — kiem tra `grep -n 'tishihtml' game/boss.php | head` va dung `.=` neu no da co noi dung; dung `=` de lap (pve.php:124 cung dung `=` trong case — giu nhat quan).
 
-- [ ] **Step 6: Live route E trong `tests/test_linhcan_combat.php`** — copy khuon `tests/test_huyetmach_combat.php:94-170` (`$enc`, `LC_BASE mặc định http://127.0.0.1:8123`, `$lcGet()`), thay noi dung:
+- [x] **Step 6: Live route E trong `tests/test_linhcan_combat.php`** — copy khuon `tests/test_huyetmach_combat.php:94-170` (`$enc`, `LC_BASE mặc định http://127.0.0.1:8123`, `$lcGet()`), thay noi dung:
 ```php
 // E.1 seed fixture: ep endtime, node kim 35/2 (chu dao → kim_cuong_chuong crit +40)
 $db->exec("UPDATE game1 SET endtime = DATE_ADD(NOW(), INTERVAL 3000 SECOND) WHERE sid = '$E2ESID'");
@@ -2109,7 +2109,7 @@ D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_
 ```
 Expected: `ALL PASS`. Chu y: message chan cooldown o CA HAI trang (pve + boss) da thong nhat la "Kỹ năng còn hồi chiêu" — neu thay khac giua 2 file la loi chep, thi phat bang cach soi `grep -n "hồi chiêu\|cooldown" game/pve.php game/boss.php`. (Assert E2.5 dung dang `|| strpos($h2,'Thi triển')===false` nen khong nhay cam voi ngu canh.)
 
-- [ ] **Step 7: Chay CLI + lint + scan**
+- [x] **Step 7: Chay CLI + lint + scan**
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_combat.php
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -l class/function/linhcan_skill.php game/pve.php game/boss.php
@@ -2117,7 +2117,7 @@ grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" class/fun
 ```
 Expected: `ALL PASS` (live SKIP khi khong co `--live`); lint sach; `CLEAN`.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 ```bash
 git add class/config/linhcan_skill_config.json class/function/linhcan_skill.php game/pve.php game/boss.php tests/test_linhcan_combat.php
 git commit -m "feat(linhcan): 5 skill ngu hanh vao pve+boss, mo khoa theo Dia Can hanh chu dao"

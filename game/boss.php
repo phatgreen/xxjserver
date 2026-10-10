@@ -6,6 +6,16 @@ $gonowmid = $encode->encode("cmd=gomid&newmid=$player->nowmid&sid=$player->sid")
 // $pgjcmd = $encode->encode("cmd=pvb&canshu=ptgj&bossid=$bossid&sid=$sid");原有的boss攻击
 
 $pgjcmd = $encode->encode("cmd=pvbgj&bossid=$bossid&sid=$player->sid&nowmid=$nowmid");
+// Nut ky nang Linh Can (Task 8) — cung mau voi nut tan cong
+$lcskillHtmlBoss = '';
+if (function_exists('player\\linhcan_skill_for_stage')) {
+    $lcs0b = \player\linhcan_skill_for_stage($sid, $dblj);
+    if ($lcs0b) {
+        $lcskillCmdBoss = $encode->encode("cmd=pvbgj&canshu=uselcskill&bossid=$bossid&sid=$sid&nowmid=$nowmid");
+        $lcskillHtmlBoss = '<a class="battle-btn attack" href="?cmd=' . $lcskillCmdBoss . '">'
+            . $lcs0b['icon'] . ' ' . $lcs0b['name'] . '</a>';
+    }
+}
 // $pgjcmd = $encode->encode("cmd=pvbgj&bossid=$bossid&sid=$player->sid&nowmid=$nowmid");
 $boss = \player\getboss($bossid,$dblj);
 $yboss = new \player\boss();
@@ -176,6 +186,30 @@ HTML;
     //普通攻击
     $hurt = false;
     $ghurt = 0;
+
+    // === KY NANG LINH CAN (Task 8) — switch canshu o day dang bi chu thich hoa nen dung if doc lap ===
+    $lcMods = array();
+    if (isset($canshu) && $canshu == 'uselcskill') {
+        $lcskill = \player\linhcan_skill_for_stage($sid, $dblj);
+        $lcnodes = \player\linhcan_node_rows($sid, $dblj);
+        $lcdom = \player\linhcan_dominant($lcnodes);
+        $lcStage = ($lcdom !== '') ? intval($lcnodes[$lcdom]['stage']) : 0;
+        $lcCan = \player\linhcan_skill_can_use($player, $lcskill, $lcStage);
+        if (!$lcskill) {
+            $tishihtml = "<font color='#cc0000'>Chưa mở kỹ năng — đạt Địa Căn (bậc 2) cho hành chủ đạo.</font><br/>";
+        } elseif (!$lcCan['ok']) {
+            $tishihtml = "<font color='#cc0000'>⚠ " . $lcCan['msg'] . "</font><br/>";
+        } elseif (!\player\linhcan_skill_check_cooldown($sid, $lcskill['id'], $dblj)) {
+            $tishihtml = "<font color='#cc0000'>Kỹ năng còn hồi chiêu " . \player\linhcan_skill_cooldown_text($sid, $lcskill['id'], $dblj) . "</font><br/>";
+        } else {
+            $lcMods = \player\linhcan_skill_combat_mods($lcskill);
+            $newHp = max(1, intval($player->uhp) - intval($lcCan['mp_cost']));
+            \player\changeplayersx('uhp', $newHp, $sid, $dblj);
+            $player->uhp = $newHp;
+            \player\linhcan_skill_record_use($sid, $lcskill['id'], $dblj);
+            $tishihtml = "<font color='#4CAF50'><b>" . $lcMods['icon'] . " Thi triển</b>: <b>{$lcMods['name']}</b> (−{$lcCan['mp_cost']} khí huyết)!</font><br/>";
+        }
+    }
     // $jineng = new \player\jineng();
 
     // if (isset($canshu)){
@@ -210,6 +244,22 @@ HTML;
         $gwbj = 'Trọng kích';
     }
 
+    // === KY NANG LINH CAN — mod trong luot bam (request = 1 luot) ===
+    if (!empty($lcMods['crit_add'])) $player->ubj += intval($lcMods['crit_add']);
+    if (!empty($lcMods['lifesteal_add'])) $player->uxx += intval($lcMods['lifesteal_add']);
+    if (!empty($lcMods['def_pct'])) {
+        $lcDefAdd = round($player->ufy * floatval($lcMods['def_pct']) / 100);
+        $player->ufy += $lcDefAdd;
+        $tishihtml .= "<font color='#ff9800'>🏔 Thổ Hộ Thuật: phòng ngự +{$lcDefAdd}</font><br/>";
+    }
+    if (!empty($lcMods['heal_pct'])) {
+        $lcHeal = max(1, round($player->umaxhp * floatval($lcMods['heal_pct']) / 100));
+        $lcNewHp = min(intval($player->umaxhp), intval($player->uhp) + $lcHeal);
+        \player\changeplayersx('uhp', $lcNewHp, $sid, $dblj);
+        $player->uhp = $lcNewHp;
+        $tishihtml .= "<font color='#4CAF50'>💧 Thủy Hộ Thuật: hồi {$lcHeal} khí huyết</font><br/>";
+    }
+
     $phurt = round($boss->bossgj - ($player->ufy * 0.75),0);//boss攻击计算
 	
     if ($phurt < $boss->bossgj*0.15){
@@ -238,9 +288,16 @@ HTML;
     if ($hmBossFy < $boss->bossfy) {
         $tishihtml .= "<font color='#26c6da'>🏹 Âm Duy Mạch (Xuyên Giảm): phòng ngự {$boss->bossname} bị xuyên ".($boss->bossfy - $hmBossFy)." điểm</font><br/>";
     }
+    if (!empty($lcMods['ignore_def_pct'])) {
+        $hmBossFy = round($hmBossFy * max(0, 100 - floatval($lcMods['ignore_def_pct'])) / 100);
+    }
     $gphurt = round($cwgj + $player->ugj - ($hmBossFy * 0.75),0);//主角攻击怪物扣血情况，本身攻击+宠物攻击
     if ($gphurt < $player->ugj*0.15){
         $gphurt = round( $player->ugj * 0.15);
+    }
+    if (!empty($lcMods) && $lcMods['atk_mult'] != 1.0) {
+        $gphurt = round($gphurt * floatval($lcMods['atk_mult']));
+        $tishihtml .= "<font color='#ff5722'>" . $lcMods['icon'] . ' ' . $lcMods['name'] . ": x" . $lcMods['atk_mult'] . " sát thương</font><br/>";
     }
 
     // Tương khắc ngũ hành: ưu tiên element từ trang bị, fallback linh căn.
@@ -858,6 +915,7 @@ $html=<<<HTML
 
         <div class="battle-actions">
             <a class="battle-btn attack" href="?cmd=$pgjcmd">⚔ Tấn Công</a>
+            {$lcskillHtmlBoss}
             <a class="battle-btn escape" href="?cmd=$tp">🏃 Chạy Thôi</a>
         </div>
 
