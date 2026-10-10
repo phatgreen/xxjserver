@@ -119,6 +119,9 @@ class player
     var $linhcan_exp_bonus;
     var $linhcan_stats;
     var $linhcan_pet_bonus;
+    var $linhcan_icon;
+    var $linhcan_title_id;
+    var $linhcan_total_lv;
 
     // Thể Chất: thuộc tính tạm tính khi getplayer()
     var $thechat_id;
@@ -742,15 +745,20 @@ function getplayer($sid,$dblj){
             $player->ubj = max(0, intval($player->ubj * (100 - min(80, $lcB['penalty_crit_percent'])) / 100));
         }
 
-        // Load thông tin hiển thị
-        if (!empty($player->linhcan_id)) {
-            $lcConfig = linhcan_config_get($player->linhcan_id);
-            if ($lcConfig) {
-                $player->linhcan_name = isset($lcConfig['name']) ? $lcConfig['name'] : '';
-                $player->linhcan_element = isset($lcConfig['element']) ? $lcConfig['element'] : '';
-                $player->linhcan_color = isset($lcConfig['color']) ? $lcConfig['color'] : '#FFFFFF';
-                $player->linhcan_tier = isset($lcConfig['tier']) ? intval($lcConfig['tier']) : 1;
-            }
+        // Thong tin hien thi — nguon node Ngu Hanh (khong doc config 22 can ngau nhien nua).
+        $lcNodes = linhcan_node_rows($player->sid, $dblj);
+        $lcTitle = linhcan_title($lcNodes);
+        $lcTotalLv = 0;
+        foreach ($lcNodes as $ndLc) { $lcTotalLv += intval($ndLc['level']); }
+        $player->linhcan_name     = $lcTitle['name'];
+        $player->linhcan_color    = $lcTitle['color'];
+        $player->linhcan_icon     = $lcTitle['icon'];
+        $player->linhcan_title_id = $lcTitle['id'];
+        $player->linhcan_total_lv = $lcTotalLv;
+        $player->linhcan_tier     = 0;
+        $player->linhcan_element  = $lcB['element'];
+        if ($lcB['element'] !== '') {
+            $player->linhcan_tier = intval($lcNodes[$lcB['element']]['stage']);
         }
     }
 

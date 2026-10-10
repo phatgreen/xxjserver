@@ -171,6 +171,51 @@ Bằng chứng — `tests/test_linhcan_combat.php` (26 assert CLI) + `--live` (2
 - E5.1/E5.2: trang boss cũng có nút + lời "Thi triển", máu boss giảm thật.
 - **CHƯA test trong game thật**: chưa bấm nút bằng mắt trên trình duyệt; mới chỉ assert HTML trả về
   từ route (`E5.0` đo độ dài HTML + `strpos`). Trang Vòng Ngũ Hành + ảnh + fx = Task 10.
+## getplayer + Trạng thái đọc node Ngũ Hành (Task 9, 2026-10-11)
+
+Từ task này, **mọi chỉ số và mọi chữ "Linh Căn" trong game đều lấy từ `player_linhcan_node`** —
+`game1.linhcan_id` / `linhcan_quality` không còn được `getplayer()` đọc nữa (cột vẫn tồn tại trong DB,
+Task 12 mới xử lý).
+
+`class/player.php`:
+- Thêm 3 `var`: `linhcan_icon` (`:122-124`), `linhcan_title_id`, `linhcan_total_lv`.
+- Khối `===== BUFF LINH CĂN (Passive) =====` (`:701-762`): giữ nguyên reset + hợp đồng 16 key + cộng stat +
+  penalty; **thay** 10 dòng "Load thông tin hiển thị" (đọc `linhcan_config_get($player->linhcan_id)`)
+  bằng `linhcan_node_rows()` + `linhcan_title()`; `$player->linhcan_element = $lcB['element']` (hành chủ đạo).
+- Field mới trên `$player`: `linhcan_element` (key không dấu `kim|moc|thuy|hoa|tho` hoặc `''`),
+  `linhcan_name` (danh hiệu + ' · ' + tên hành), `linhcan_color`, `linhcan_icon`, `linhcan_title_id`,
+  `linhcan_tier` = **bậc của hành chủ đạo** (0..4), `linhcan_total_lv` = tổng Lv 5 hành.
+- `game/zhuangtai.php:424-485` thay khối cũ: điều kiện hiển thị là `!empty($player->linhcan_element)`
+  (không còn `linhcan_id`), nhãn bậc lấy `linhcan_stage_def()`, thêm dòng "Cộng hưởng Ngũ Hành"/"Mốc cộng
+  hưởng kế" từ `linhcan_milestone()`, `round(...,2)` cho Hấp thụ/Tốc độ (giờ là float %).
+  **Xóa** `tierNames/tierIcons` 0..5 (có 'Niết' không tồn tại trong hệ mới) và `$elementIcons` có key
+  `'không'`/`'mộc'` có dấu → không bao giờ khớp key không dấu, rơi vào 🌀 (lỗi hiển thị cũ).
+
+Caller còn sót của hệ cũ (lệnh `grep -rn "linhcan_config_get\|linhcan_random\|linhcan_assign" class/ game/ tests/ --include=*.php`
+trừ `class/function/linhcan.php`): **duy nhất `game/linhcan.php:11`** — trang cũ, Task 10 viết lại.
+→ **Cửa trang cũ `cmd=linhcan` vẫn sống đến Task 10** (đo: HTTP 200, 7712 byte, 0 fatal), nhưng tên nó in
+bây giờ là **danh hiệu mới** vì đọc `$player->linhcan_name` — lệch nhất quán tạm thời, chấp nhận.
+
+Bảng Trạng thái đo thật (fixture e2e, node `kim 45/2` + `moc 12/1`):
+```
+🗡️ Linh Căn: Chân Linh Căn · Kim   Địa Căn · Kim · Tổng Lv 57
+Linh Căn Công +91 | Linh Căn Huyết +168 | Mốc cộng hưởng kế: Tổng Lv 60 (+5%)
+☯ Nội tại ngũ hành: Hợp căn 2 món — bậc 1 +3% (Kim +41, Mộc +7, Hỏa +1, Thổ +86)
+```
+(`game/zhuangtai.php` in đúng icon danh hiệu 🗡️ chứ không còn 🌀 lạc lỗi; Nạp Hành vẫn chạy vì
+`nguhanh_*` đọc đúng `linhcan_element`.)
+
+Đo test — `tests/test_linhcan_passive.php`: 17 FAIL trước khi sửa → **21 assert CLI + 6 assert live
+= ALL PASS** (`--live` qua `php -S 127.0.0.1:8199`, L1/L2/L3/L4/L5 + tự restore node snapshot + endtime).
+Hồi quy sau khi đổi `getplayer()` (blast radius = mọi trang): element 63, quest 14, boss 44, combat 25,
+nguhanh 82, **nguhanh_random 25 (đã viết lại nhánh C)**, huyetmach schema/vessel/upgrade/combat/boss = ALL PASS,
+linhcan_schema 12/12.
+- **CHƯA test trong game thật**: chưa mở trình duyệt bấm vào trang Trạng thái của nhân vật thật;
+  mới assert HTML trả về từ route + in thử bảng bằng fixture. Ảnh + trang Vòng Ngũ Hành = Task 10.
+
+Cấu hình chết cần chủ dự án chốt (đã ghi §Chưa làm từ Task 1, nay thành hiện thực): `nguhanh_config.json`
+còn `linhcan_bonus.all = 10` và `none = 0` trong khi **hệ mới không sinh ra được 2 khoá đó** → nhánh C của
+`tests/test_nguhanh_random.php` phải chuyển từ `all` sang `hoa` (+10, cùng số) để vẫn test được trần 95%.
 ## Chưa làm / chờ chủ dự án chốt
 
 1. **(Task 1 phát hiện, Task 5 xác nhận) Cửa hàng bán Bình Anh Tinh Thạch (37) giá 100 Linh thạch, mua không giới hạn.**
@@ -220,5 +265,11 @@ Bằng chứng — `tests/test_linhcan_combat.php` (26 assert CLI) + `--live` (2
 | 8 Step 6 | Plan "don that giam mau boss" = 1 đòn | `game/boss.php:363-368` có nhánh `$sb = mt_rand(1,100); if ($sb > 80) { $gphurt = 0; }` → **20% đòn của người chơi bị né**, đơn đòn là trò tung đồng xu | Loop tối đa 5 đòn (`E5.2 ... (sau toi da 5 don)`); đã chứng minh đòn thật bằng probe riêng (`E:/window/Temp/t8_bprobe.php`: 6382 sát thương trên boss mới) |
 | 8 Step 7 | Gate "grep Expected: CLEAN" trên `game/pve.php` + `game/boss.php` | 2 file kế thừa có sẵn comment chữ Hán / ngoặc vuông chữ Hán: **pve 4 dòng, boss 36 dòng**. Đo `git show HEAD:` bằng cùng byte-level scanner → **đúng 4 và 36**, số không đổi sau Task 8 | Gate thu hẹp: chỉ quét **dòng thêm trong diff** (`E:/window/Temp/t8_diffscan.php`) → **0 ký tự lạ / 0 dòng**. 3 file còn lại (skill lib, config json, test) CLEAN tuyệt đối. Không sửa comment legacy (ngoài phạm vi) |
 | 8 (ngoài plan) | `tests/test_linhcan_element.php` chạy đơn độc | FATAL tại `class/player.php:1309` (`adddj()` cần `game1.uid`): test chưa từng tự seed nhân vật, chỉ xanh khi chạy **sau** `test_linhcan_quest.php` → nợ cách ly có sẵn từ Task 6/7, **không phải regression Task 8** | Thêm seed `game1` tự thân (uid 990112, `ON DUPLICATE KEY UPDATE`) ngay sau PDO → ALL PASS khi chạy một mình. Commit kèm Task 8 |
+| 9 Step 1 | Plan dự đoán dong red dau la `N1 total_lv = 0` ("property chua ton tai → null !== 0") | Test cua plan bao `intval($p0->linhcan_total_lv)` → `intval(null) === 0` **PASS ngay** | Red that la **17 dong** (toan bo field hien thi). Giu `intval()` nhu plan, ghi lai doan red |
+| 9 Step 1 | `tassert('N2 ten danh hiem', $p1->linhcan_name, 'Chân Linh Căn')` | `linhcan_title()` (Task 2, da commit + da test o `test_linhcan_element:66`) noi `' · ' . $domName` → tra `Chân Linh Căn · Kim` | Lang theo **code da ban** (dung y "ten kem hanh"), sua test → `'Chân Linh Căn · Kim'`. Lan thu 2 lap lai nay (see row Task 2 Step 1) |
+| 9 Step 1 | Test N1/N6 cua plan ngầm định "chua mo he → ten rong" | `title_rules` co `pham_can: {"total_lv_max":24}` → tong Lv **0** van khop rule nay → ten = `Phàm Căn`, icon `🌱`, KHONG phai `''` | Doi thanh assert dung thoi cuan: `linhcan_name = 'Phàm Căn'`, `linhcan_title_id = 'pham_can'`, `linhcan_icon = '🌱'`. Bang zhuangtai van AN vi dieu kien la `!empty($player->linhcan_element)` (element van `''`) |
+| 9 Step 2 | `linhcan_node_rows()` goi trong khoi hien thi cua `getplayer()` | `linhcan_calc_bonuses()` **da goi** `linhcan_node_rows()` ben trong → 1 lần cache miss = **2 SELECT** cung mot bang | Chap nhan theo plan (getplayer duoc cache; do so: fixture 2 node → 21 assert PASS, khong co bai nào ve hieu nang). Ghi no: co the gop 1 query neu ve sau can |
+| 9 (ngoai plan) | `tests/test_nguhanh_random.php` nhan `linhcan_id = 3/21` roi assert `linhcan_element = 'thuy'/'all'` | Day chinh la no du bao o §Kiem ke Task 1. Sau Task 9 → **4 FAIL**: fixture element `''`, C element `''`, C rate `[90]` thay vi `[95]`, ti le 89.7% | Viet lai theo nguon moi: fixture seed **node thuy 10/0** (+0 → rate 90), nhanh C seed **node hoa 20/0** (+10 = dung bang `all` cu → 90+10 chan tran 95). Them `DELETE FROM player_linhcan_node` vao `rnd_cleanup` (test khong con de lai rac / doc rac). **ALL PASS 2600 roll that** |
+| 9 Step 5 | (harness cua toi) `t9_smoke.php` tra `len=3` cho ca 12 route | **Bug cua harness** (`shell_exec('curl -s ' . escapeshellarg($url))` goi lien tiep tren Git Bash), KHONG phai loi game — cung URL do curl truc tiep → HTTP 200, 7712 byte | Do lai bang vong lap curl trong bash: `linhcan`/`linhcan_wash`/`linhcan_quest`/`zhuangtai` = HTTP 200, `grep -c "Fatal error\|Uncaught\|SQLSTATE\|Warning:"` = **0** |
 
 

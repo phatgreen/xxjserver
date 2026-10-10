@@ -2140,7 +2140,7 @@ git commit -m "feat(linhcan): 5 skill ngu hanh vao pve+boss, mo khoa theo Dia Ca
   - `linhcan_name` (ten danh hiem tu `linhcan_title`), `linhcan_color`, `linhcan_icon`, `linhcan_title_id`, `linhcan_tier` (bac 0..4 cua hanh chu dao), `linhcan_total_lv`.
 - Sau Task 9, `linhcan_config_get` het caller trong `class/player.php` (con sot: `game/linhcan.php` cu — Task 10 viet lai; ham cu trong function file — Task 11 xoa). Chay `grep -rn "linhcan_config_get\|linhcan_random\|linhcan_assign" class/ game/ --include=*.php` va ghi lai danh sach con lai vao commit message.
 
-- [ ] **Step 1: Test fail-truoc — `tests/test_linhcan_passive.php`**
+- [x] **Step 1: Test fail-truoc — `tests/test_linhcan_passive.php`**
 
 ```php
 <?php
@@ -2215,7 +2215,7 @@ exit($fails === 0 ? 0 : 1);
 
 Run: `php.exe tests/test_linhcan_passive.php` → FAIL `N1 element rong` khong doi (code cu cung tra `''` khi id=0)! **Cac dong that bai dau la N2 (ten van `''` vi :746 can `linhcan_id` > 0) va N1 `total_lv` (property chua ton tai → null !== 0).** Do la red hop le.
 
-- [ ] **Step 2: Sua `class/player.php`**
+- [x] **Step 2: Sua `class/player.php`**
 
 2a. Sau `var $linhcan_pet_bonus;` (`:121`) them:
 ```php
@@ -2244,7 +2244,7 @@ Run: `php.exe tests/test_linhcan_passive.php` → FAIL `N1 element rong` khong d
 (`linhcan_element` khong can gan o day — `:708` da reset `''`; gan gia tri chu dao ngay sau khi doc hop dong: them 1 dong `$player->linhcan_element = $lcB['element'];` cuoi khoi, TRUOC dong dong `}` cua `if (function_exists...)`. Do `:750` bi xoa nen day la noi duyet nhat gan gia tri nay — nap_hanh + pve/boss doc dung field nay.)
 `linhcan_node_rows` la 1 SELECT chuan bi — chap nhan duoc vi getplayer du che boi `player_cache_clear($sid)` (Task 2). Khoi `nguhanh_apply_passive` `:757-761` KHONG dong nguoi — no doc `linhcan_element` vua gan o tren.
 
-- [ ] **Step 3: Thay khoi Linh Căn trong `game/zhuangtai.php` (`:424-477`, nguyen van):**
+- [x] **Step 3: Thay khoi Linh Căn trong `game/zhuangtai.php` (`:424-477`, nguyen van):**
 
 ```php
 if (!empty($player->linhcan_element)) {
@@ -2312,7 +2312,7 @@ HTML;
 ```
 Xoa het trong khoi nay: `tierNames/tierIcons` 0..5 (Niết), `$elementIcons` co key `'không'`, dieu kien cu `!empty($player->linhcan_id) && !empty($player->linhcan_name)`, 2 dong Hấp thụ/Tốc độ cu (giu nguan nhan nhung doi `round(...,2)` vi now la float %). `linhcan_id` DB column van còn — Task 12 mới xử.
 
-- [ ] **Step 4: Chay test → PASS; lint + scan**
+- [x] **Step 4: Chay test → PASS; lint + scan**
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_passive.php
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -l class/player.php game/zhuangtai.php
@@ -2320,11 +2320,11 @@ grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" class/pla
 ```
 Live (can server local dang chay, khuôn `LC_BASE` nhu Task 8 Step 6): `php.exe tests/test_linhcan_passive.php --live` → `L1/L2 PASS`. Nếu `e2e_fixture.php` khong expose `$enc` (kiem tra `grep -n 'enc' tests/e2e_fixture.php`) thi tao `$enc = new \encode\encode();` theo dung cach `tests/test_huyetmach_combat.php:94-170` da lam.
 
-- [ ] **Step 5: Smoke tuong mo (CHUA test trong game that — ghi no)**
+- [x] **Step 5: Smoke tuong mo (CHUA test trong game that — ghi no)**
 
 Task 9 xong truoc Task 10 → trang cu `game/linhcan.php` van con mo duoc cho nguoi co `linhcan_id > 0` DB cua, nhung ten hien thi bay gio la danh hieu moi (vi no doc `$player->linhcan_name`). Mo tay: `game.php?cmd=linhcan&sid=<fixture>` — khong fatal, chi lech nhat quan nhe; `docs/UI_LINHCAN.md` ghi 1 dong "cửa trang cu song den Task 10".
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add class/player.php game/zhuangtai.php tests/test_linhcan_passive.php docs/UI_LINHCAN.md
 git commit -m "feat(linhcan): getplayer+zhuangtai doc node Ngu Hanh — danh hieu, chu dao, cong huong"

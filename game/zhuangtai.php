@@ -421,39 +421,47 @@ $html = <<<HTML
 
 HTML;
 
-if (!empty($player->linhcan_id) && !empty($player->linhcan_name)) {
+if (!empty($player->linhcan_element)) {
     $lcColor = $player->linhcan_color;
     $lcElement = $player->linhcan_element;
     $lcName = $player->linhcan_name;
+    $lcIcon = !empty($player->linhcan_icon) ? $player->linhcan_icon : \player\linhcan_element_icon($lcElement);
+    $lcStage = intval($player->linhcan_tier);
+    $lcTotalLv = isset($player->linhcan_total_lv) ? intval($player->linhcan_total_lv) : 0;
 
-    $lcAbsorb = $player->linhcan_absorb;
-    $lcExpBonus = $player->linhcan_exp_bonus;
-
-    $tierNames = [0=>'Phàm', 1=>'Huyền', 2=>'Địa', 3=>'Thiên', 4=>'Thánh', 5=>'Niết'];
-    $tierIcons = [0=>'', 1=>'✦', 2=>'✦✦', 3=>'✦✦✦', 4=>'✧✧✧✧', 5=>'✧✧✧✧✧'];
-    $tierName = isset($tierNames[$player->linhcan_tier]) ? $tierNames[$player->linhcan_tier] : 'Phàm';
-    $tierIcon = isset($tierIcons[$player->linhcan_tier]) ? $tierIcons[$player->linhcan_tier] : '';
-
-    $elementIcons = ['kim'=>'🪙','mộc'=>'🌿','thủy'=>'💧','hỏa'=>'🔥','thổ'=>'🏔','không'=>'🌀'];
-    $lcIcon = isset($elementIcons[$lcElement]) ? $elementIcons[$lcElement] : '🌀';
+    $lcStageName = 'Phàm';
+    if (function_exists('player\linhcan_stage_def')) {
+        $lcSd = player\linhcan_stage_def($lcStage);
+        if ($lcSd && isset($lcSd['name'])) { $lcStageName = $lcSd['name']; }
+    }
+    $lcMs = array('percent' => 0, 'name' => '', 'next_total' => 0, 'next_percent' => 0, 'next_name' => '');
+    if (function_exists('player\linhcan_milestone')) {
+        $lcMs = player\linhcan_milestone($lcTotalLv);
+    }
+    $lcElemName = function_exists('player\zhuangbei_element_name')
+        ? player\zhuangbei_element_name($lcElement) : $lcElement;
 
     $lcDetails = '';
-    if ($lcAbsorb != 0) {
-        $absorbSign = $lcAbsorb > 0 ? '+' : '';
-        $lcDetails .= "<div class='profile-stat'><span>Hấp thụ linh khí</span><strong>{$absorbSign}{$lcAbsorb}%</strong></div>";
+    if ($player->linhcan_absorb != 0) {
+        $absorbSign = $player->linhcan_absorb > 0 ? '+' : '';
+        $lcDetails .= "<div class='profile-stat'><span>Hấp thụ linh khí</span><strong>{$absorbSign}" . round($player->linhcan_absorb, 2) . "%</strong></div>";
     }
-    if ($lcExpBonus != 0) {
-        $expSign = $lcExpBonus > 0 ? '+' : '';
-        $lcDetails .= "<div class='profile-stat'><span>Tốc độ tu luyện</span><strong>{$expSign}{$lcExpBonus}%</strong></div>";
+    if ($player->linhcan_exp_bonus != 0) {
+        $expSign = $player->linhcan_exp_bonus > 0 ? '+' : '';
+        $lcDetails .= "<div class='profile-stat'><span>Tốc độ tu luyện</span><strong>{$expSign}" . round($player->linhcan_exp_bonus, 2) . "%</strong></div>";
     }
-
     $stats = $player->linhcan_stats;
     $statNames = ['atk'=>'Công','def'=>'Thủ','hp'=>'Huyết','crit'=>'Bạo','lifesteal'=>'Hút'];
     foreach ($stats as $k => $v) {
         if ($v != 0 && isset($statNames[$k])) {
             $sign = $v > 0 ? '+' : '';
-            $lcDetails .= "<div class='profile-stat'><span>{$statNames[$k]}</span><strong>{$sign}{$v}</strong></div>";
+            $lcDetails .= "<div class='profile-stat'><span>Linh Căn {$statNames[$k]}</span><strong>{$sign}{$v}</strong></div>";
         }
+    }
+    if (floatval($lcMs['percent']) > 0) {
+        $lcDetails .= "<div class='profile-stat'><span>Cộng hưởng Ngũ Hành</span><strong>+" . $lcMs['percent'] . "% — {$lcMs['name']}</strong></div>";
+    } elseif (intval($lcMs['next_total']) > 0) {
+        $lcDetails .= "<div class='profile-stat'><span>Mốc cộng hưởng kế</span><strong>Tổng Lv " . intval($lcMs['next_total']) . " (+" . $lcMs['next_percent'] . "%)</strong></div>";
     }
 
     // Nội tại nạp ngũ hành (spec docs/DESIGN_NGUHANH_KICHHOAT.md §4) — chỉ hiện khi có món hợp căn.
@@ -467,7 +475,7 @@ if (!empty($player->linhcan_id) && !empty($player->linhcan_name)) {
 
     $html .= <<<HTML
     <div class="profile-section">
-        <div class="profile-section-title" style="color:{$lcColor}">{$lcIcon} Linh Căn: {$lcName} <span style="font-size:12px;opacity:0.8">{$tierIcon} {$tierName} {$lcElement}</span></div>
+        <div class="profile-section-title" style="color:{$lcColor}">{$lcIcon} Linh Căn: {$lcName} <span style="font-size:12px;opacity:0.8">{$lcStageName} · {$lcElemName} · Tổng Lv {$lcTotalLv}</span></div>
         <div class="profile-stat-grid">
             {$lcDetails}
         </div>
