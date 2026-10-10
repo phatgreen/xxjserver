@@ -220,63 +220,57 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_info')) {
  * - supported_cp_element: element tương thích công pháp
  */
 if (!function_exists(__NAMESPACE__ . '\\linhcan_calc_bonuses')) {
+    /** HOP DONG 16 KEY — cam doi ten/kieu (Global Constraints). */
     function linhcan_calc_bonuses($sid, $dblj){
-        $config = linhcan_info($sid, $dblj);
-        if (!$config) {
-            return array(
-                'absorb_bonus' => 0,
-                'exp_bonus' => 0,
-                'quality' => 1,
-                'quality_mult' => 1.0,
-                'stats' => array('atk' => 0, 'def' => 0, 'hp' => 0, 'crit' => 0, 'lifesteal' => 0),
-                'pet_atk_bonus' => 0,
-                'pet_hp_bonus' => 0,
-                'pet_exp_bonus' => 0,
-                'pet_crit_bonus' => 0,
-                'element' => '',
-                'supported_cp_element' => '',
-                'penalty_atk_percent' => 0,
-                'penalty_def_percent' => 0,
-                'penalty_maxhp_percent' => 0,
-                'penalty_crit_percent' => 0,
-                'penalty_absorb_percent' => 0
-            );
+        $nodes = linhcan_node_rows($sid, $dblj);
+        $defs = linhcan_element_defs();
+        $total = 0;
+        foreach ($nodes as $n) { $total += intval($n['level']); }
+        $ms = linhcan_milestone($total);
+        $mult = 1 + floatval($ms['percent']) / 100;
+
+        $p = array('atk'=>0,'def'=>0,'hp'=>0,'crit'=>0,'absorb_pct'=>0,'exp_pct'=>0,'pet_atk_pct'=>0,'pet_hp_pct'=>0);
+        $maxStage = 0;
+        foreach ($nodes as $k => $n) {
+            $lv = intval($n['level']); $stg = intval($n['stage']);
+            if ($stg > $maxStage) $maxStage = $stg;
+            if (!isset($defs[$k]) || $lv <= 0) continue;
+            $perLv = isset($defs[$k]['per_lv']) ? $defs[$k]['per_lv'] : array();
+            foreach ($perLv as $stat => $per) {
+                if (isset($p[$stat])) $p[$stat] += floatval($per) * $lv;
+            }
+        }
+        // Kim cuc hard: +0.5% Cong Kich moi bac Kim (nhan vao thanh phan atk cua vong)
+        $atkMult = 1;
+        if (isset($defs['kim']['per_stage_atk_pct'])) {
+            $atkMult = 1 + (floatval($defs['kim']['per_stage_atk_pct']) * intval($nodes['kim']['stage']) / 100);
         }
 
-        $quality = isset($config['_quality']) ? intval($config['_quality']) : 1;
-        $qualityMult = isset($config['quality_mult']) ? floatval($config['quality_mult']) : 1.0;
-
-        $rawStats = array(
-            'atk' => intval(isset($config['stats']['atk']) ? $config['stats']['atk'] : 0),
-            'def' => intval(isset($config['stats']['def']) ? $config['stats']['def'] : 0),
-            'hp' => intval(isset($config['stats']['hp']) ? $config['stats']['hp'] : 0),
-            'crit' => intval(isset($config['stats']['crit']) ? $config['stats']['crit'] : 0),
-            'lifesteal' => intval(isset($config['stats']['lifesteal']) ? $config['stats']['lifesteal'] : 0)
+        $stats = array(
+            'atk'       => intval(round($p['atk'] * $atkMult * $mult)),
+            'def'       => intval(round($p['def'] * $mult)),
+            'hp'        => intval(round($p['hp'] * $mult)),
+            'crit'      => intval(round($p['crit'] * $mult)),
+            'lifesteal' => 0
         );
-
-        // Nhân stats với quality_mult
-        $scaledStats = array();
-        foreach ($rawStats as $k => $v) {
-            $scaledStats[$k] = intval(round($v * $qualityMult));
-        }
-
+        $dom = linhcan_dominant($nodes);
         return array(
-            'absorb_bonus' => floatval(isset($config['absorb_bonus']) ? $config['absorb_bonus'] : 0),
-            'exp_bonus' => floatval(isset($config['exp_bonus']) ? $config['exp_bonus'] : 0),
-            'quality' => $quality,
-            'quality_mult' => $qualityMult,
-            'stats' => $scaledStats,
-            'pet_atk_bonus' => floatval(isset($config['pet_atk_bonus']) ? $config['pet_atk_bonus'] : 0),
-            'pet_hp_bonus' => floatval(isset($config['pet_hp_bonus']) ? $config['pet_hp_bonus'] : 0),
-            'pet_exp_bonus' => floatval(isset($config['pet_exp_bonus']) ? $config['pet_exp_bonus'] : 0),
-            'pet_crit_bonus' => floatval(isset($config['pet_crit_bonus']) ? $config['pet_crit_bonus'] : 0),
-            'element' => isset($config['element']) ? $config['element'] : '',
-            'supported_cp_element' => isset($config['supported_cp_element']) ? $config['supported_cp_element'] : '',
-            'penalty_atk_percent' => floatval(isset($config['penalty_atk_percent']) ? $config['penalty_atk_percent'] : 0),
-            'penalty_def_percent' => floatval(isset($config['penalty_def_percent']) ? $config['penalty_def_percent'] : 0),
-            'penalty_maxhp_percent' => floatval(isset($config['penalty_maxhp_percent']) ? $config['penalty_maxhp_percent'] : 0),
-            'penalty_crit_percent' => floatval(isset($config['penalty_crit_percent']) ? $config['penalty_crit_percent'] : 0),
-            'penalty_absorb_percent' => floatval(isset($config['penalty_absorb_percent']) ? $config['penalty_absorb_percent'] : 0)
+            'absorb_bonus' => $p['absorb_pct'] * $mult,
+            'exp_bonus'    => $p['exp_pct'] * $mult,
+            'quality'      => $maxStage + 1,
+            'quality_mult' => 1.0,
+            'stats'        => $stats,
+            'pet_atk_bonus'=> $p['pet_atk_pct'] * $mult,
+            'pet_hp_bonus' => $p['pet_hp_pct'] * $mult,
+            'pet_exp_bonus'=> 0,
+            'pet_crit_bonus'=> 0,
+            'element'      => $dom,
+            'supported_cp_element' => $dom,
+            'penalty_atk_percent'    => 0,
+            'penalty_def_percent'    => 0,
+            'penalty_maxhp_percent'  => 0,
+            'penalty_crit_percent'   => 0,
+            'penalty_absorb_percent' => 0
         );
     }
 }
@@ -802,5 +796,56 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_give_stone')) {
             linhcan_quest_update($sid, 'receive_stone', $amount, $dblj);
         }
         return true;
+    }
+}
+
+// ============================================================
+// Task 3 — Luyen hanh (100% thanh cong, khong may rui) +
+// tong chi phi (Task 7 hoan Tay Linh Can dung).
+// ============================================================
+if (!function_exists(__NAMESPACE__ . '\\linhcan_train_cost_sum')) {
+    /** Tong chi phi tu Lv $fromLv den $toLv-1 (Task 7 hoan Tay Linh Can dung). */
+    function linhcan_train_cost_sum($fromLv, $toLv){
+        $stone = 0; $lt = 0;
+        for ($i = intval($fromLv); $i < intval($toLv); $i++) {
+            $c = linhcan_train_cost($i);
+            $stone += $c['stone']; $lt += $c['linh_thach'];
+        }
+        return array('stone' => $stone, 'linh_thach' => $lt);
+    }
+}
+if (!function_exists(__NAMESPACE__ . '\\linhcan_train')) {
+    function linhcan_train($sid, $dblj, $element){
+        if (!linhcan_element_def($element)) return array('ok'=>false,'msg'=>'Hành không tồn tại.','lv'=>0);
+        $node = linhcan_node_get($sid, $element, $dblj);
+        $cap = linhcan_stage_cap($node['stage']);
+        if (intval($node['level']) >= $cap) {
+            $t = linhcan_stage_def($node['stage']);
+            return array('ok'=>false,'msg'=>'Đã chạm trần bậc ' . $t['name'] . ' (Lv ' . $cap . '). Cần đột phá.','lv'=>intval($node['level']));
+        }
+        $cost = linhcan_train_cost($node['level']);
+        $stoneId = linhcan_da_id($element);
+        $have = getplayerdaoju($sid, $stoneId, $dblj);
+        $haveSum = $have ? intval($have->djsum) : 0;
+        if ($haveSum < $cost['stone']) {
+            return array('ok'=>false,'msg'=>'Thiếu ' . $cost['stone'] . ' ' . $element . ' Tinh Thạch (đang có ' . $haveSum . ').','lv'=>intval($node['level']));
+        }
+        $player = getplayer($sid, $dblj);
+        if (!$player || intval($player->uyxb) < $cost['linh_thach']) {
+            return array('ok'=>false,'msg'=>'Thiếu ' . $cost['linh_thach'] . ' linh thạch.','lv'=>intval($node['level']));
+        }
+        // Thu tu an toan: tru LT truoc (co rowCount kiem tra), roi tru da, roi ghi node.
+        $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb - ? WHERE sid = ? AND uyxb >= ?");
+        $stmt->execute(array($cost['linh_thach'], $sid, $cost['linh_thach']));
+        if ($stmt->rowCount() === 0) {
+            return array('ok'=>false,'msg'=>'Trừ linh thạch thất bại.','lv'=>intval($node['level']));
+        }
+        deledjsum($stoneId, $cost['stone'], $sid, $dblj);
+        $newLv = intval($node['level']) + 1;
+        linhcan_node_set($sid, $element, $newLv, intval($node['stage']), $dblj);
+        if (function_exists(__NAMESPACE__ . '\\linhcan_quest_update')) {
+            linhcan_quest_update($sid, 'train_element', 1, $dblj); // hook Task 6; chua upgrade thi false an toan
+        }
+        return array('ok'=>true,'msg'=>'Luyện ' . $element . ' lên Lv ' . $newLv . '.','lv'=>$newLv);
     }
 }

@@ -587,7 +587,7 @@ git commit -m "feat(linhcan): core doc thuan tuy — node/dominant/title/milesto
 - Consumes: Task 2 tat ca.
 - Produces: `linhcan_train($sid,$dblj,$element)` → `array('ok'=>bool,'msg'=>string,'lv'=>int)`; `linhcan_train_cost_sum($fromLv,$toLv)` → `array('stone'=>int,'linh_thach'=>int)` (Task 7 tinh hoan); `linhcan_calc_bonuses($sid,$dblj)` → **du 16 key cu**, `element` = hanh chu dao ('' khi chua mo), `penalty_*` = 0, `quality` = max stage + 1, `quality_mult` = 1.0.
 
-- [ ] **Step 1: Test phan B (train) + C (hop dong bonus) — them TRUOC `exit(...)`**
+- [x] **Step 1: Test phan B (train) + C (hop dong bonus) — them TRUOC `exit(...)`**
 
 ```php
 // ===== B: train =====
@@ -644,9 +644,9 @@ $db->exec("DELETE FROM player_linhcan_node WHERE sid='" . $TESTSID . "'");
 $db->exec("DELETE FROM playerdaoju WHERE sid='" . $TESTSID . "' AND djid=35");
 ```
 
-- [ ] **Step 2: Chay → fail B1 (ham chua ton tai)** — `php.exe tests/test_linhcan_element.php`.
+- [x] **Step 2: Chay → fail B1 (ham chua ton tai)** — `php.exe tests/test_linhcan_element.php`.
 
-- [ ] **Step 3: them `linhcan_train_cost_sum` + `linhcan_train`** (noi dung `class/function/linhcan.php`, cuoi khoi Task 2):
+- [x] **Step 3: them `linhcan_train_cost_sum` + `linhcan_train`** (noi dung `class/function/linhcan.php`, cuoi khoi Task 2):
 
 ```php
 if (!function_exists(__NAMESPACE__ . '\\linhcan_train_cost_sum')) {
@@ -697,7 +697,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_train')) {
 }
 ```
 
-- [ ] **Step 4: THAY THE toan bo `linhcan_calc_bonuses` cu** (`class/function/linhcan.php:223-281` — gi dung vong `if (!function_exists(...))` bao):
+- [x] **Step 4: THAY THE toan bo `linhcan_calc_bonuses` cu** (`class/function/linhcan.php:223-281` — gi dung vong `if (!function_exists(...))` bao):
 
 ```php
 if (!function_exists(__NAMESPACE__ . '\\linhcan_calc_bonuses')) {
@@ -758,10 +758,10 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_calc_bonuses')) {
 ```
 Test C3 so sinh: `p['atk']=2*30=60`, kim stage1 → `atkMult=1.005` → `60*1.005*1.0=60.3` → round 60 ✓. `round($B['absorb_bonus'],4)` 3.6 ✓ (float so sanh bang round — dung `=== 3.6` sau round).
 
-- [ ] **Step 5: Chay test A+B+C → all PASS; `php -l` 2 file**
+- [x] **Step 5: Chay test A+B+C → all PASS; `php -l` 2 file**
 Run: `php.exe tests/test_linhcan_element.php` — sua den khi exit 0.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add class/function/linhcan.php tests/test_linhcan_element.php
 git commit -m "feat(linhcan): train 100% + calc_bonuses doc node gi hop dong 16 key"
