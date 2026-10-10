@@ -7773,3 +7773,74 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .main a.lc-gem{display:flex;flex-direction:column}
 .main a.lc-stage-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px}
 .main a.lc-btn{padding:8px 14px}
+
+/* ==================== LINH CAN — TASK 11: .lcq-* / .lcb-* / .lcw-* ====================
+   Portal widths theo khuon: mobile 660, desktop >=601px -> 840. Khong dong vao rule cua hm / lc / nb.
+   LANDMINE (nhu Task 10): css/gamecss.css dinh nghia `a:link{color:#fbfeff;display:inline-block;
+   margin:4px 3px 2px 4px}` = (0,1,1) — THUA moi selector 1 lop `.lcq-btn`/`.lcb-btn`/`.lcb-chip`
+   (0,1,0). Vi vay moi dieu khien dang <a> phai co them nhom `.main a.lc*` (0,2,1). */
+.lcq-wrap { max-width:660px; margin:0 auto; padding:10px; }
+.lcq-card { background:linear-gradient(160deg,#111a35,#0b1024); border:1px solid rgba(148,163,184,.16); border-radius:14px; padding:14px 16px; }
+.lcq-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.lcq-title { font-size:18px; font-weight:bold; color:#FFD700; white-space:nowrap; }
+.lcq-week { font-size:12px; color:#9fb3c8; white-space:nowrap; }
+.lcq-notice { padding:10px 12px; border-radius:8px; margin:8px 0; font-size:13px; }
+.lcq-good { background:rgba(76,175,80,.15); border:1px solid #4CAF50; color:#8bc34a; }
+.lcq-bad { background:rgba(244,67,54,.12); border:1px solid #f44336; color:#ef9a9a; }
+.lcq-status { text-align:center; padding:8px; border-radius:8px; margin:8px 0; font-size:13px; }
+.lcq-status.is-done { background:rgba(76,175,80,.15); color:#4CAF50; border:1px solid #4CAF50; }
+.lcq-status.is-ready { background:rgba(76,175,80,.12); color:#8bc34a; border:1px solid rgba(76,175,80,.55); }
+.lcq-status.is-open { background:rgba(255,215,0,.08); color:#FFD700; border:1px solid rgba(255,215,0,.3); }
+.lcq-item { padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.lcq-item.lcq-done { opacity:.85; }
+.lcq-item-head { display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:bold; color:#eee; }
+.lcq-count { color:#FFD700; font-weight:normal; font-size:13px; margin-left:6px; }
+.lcq-item.lcq-done .lcq-count { color:#4CAF50; }
+.lcq-desc { font-size:12px; color:#9fb3c8; margin:3px 0 6px; }
+.lcq-bar { height:8px; border-radius:4px; background:rgba(255,255,255,.08); overflow:hidden; }
+.lcq-bar-fill { height:100%; background:linear-gradient(90deg,#FFD700,#FFA000); border-radius:4px; transition:width .4s; }
+.lcq-reward { margin-top:12px; padding:10px; background:rgba(0,0,0,.3); border-radius:8px; font-size:13px; color:#ccc; text-align:center; }
+.lcq-claimwrap { text-align:center; margin-top:12px; }
+.lcq-btn { display:inline-block; padding:12px 34px; background:linear-gradient(135deg,#FFD700,#FFA000); color:#000; font-weight:bold; font-size:16px; border-radius:12px; text-decoration:none; }
+.main a.lcq-btn,.main a.lcq-btn:link,.main a.lcq-btn:visited { color:#000; margin:0; }
+@media (min-width:601px) { .lcq-wrap { max-width:840px; } }
+
+.lcb-wrap { max-width:660px; margin:0 auto; padding:10px; }
+.lcb-head { text-align:center; margin-bottom:8px; }
+.lcb-title { font-size:18px; font-weight:700; color:#7dd3fc; letter-spacing:2px; }
+.lcb-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-bottom:12px; }
+.lcb-chip { display:inline-flex; align-items:center; padding:10px 14px; border-radius:10px; font-size:12px; text-decoration:none; color:#94a3b8; background:rgba(148,163,184,.06); border:1px solid rgba(148,163,184,.2); }
+.lcb-chip.is-active { color:#fff; background:rgba(148,163,184,.14); border-color:var(--lcb-color,#ffd77a); box-shadow:0 0 10px var(--lcb-color,#ffd77a); font-weight:bold; }
+.main a.lcb-chip,.main a.lcb-chip:link,.main a.lcb-chip:visited { margin:0; color:#94a3b8; }
+.main a.lcb-chip.is-active,.main a.lcb-chip.is-active:link { color:#fff; }
+.lcb-card { background:linear-gradient(160deg,#111a35,#0b1024); border:1px solid var(--lcb-color,#94a3b8); border-radius:14px; padding:16px; text-align:center; box-shadow:0 0 16px -6px var(--lcb-color,#94a3b8); }
+.lcb-icon { font-size:52px; line-height:1.15; margin-bottom:6px; }
+/* Ten boss de MAU TRANG: color cua hanh co mau toi (tho #8B4513, moc #228B22) -> khong doc
+   duoc tren nen navy; mau hanh mang qua border + glow cua card va cua chip. */
+.lcb-name { font-size:20px; font-weight:bold; color:#fff; text-shadow:0 0 10px var(--lcb-color,#94a3b8); }
+.lcb-level { font-size:12px; color:#9fb3c8; margin-top:2px; }
+.lcb-hpbar { height:20px; background:rgba(255,255,255,.1); border-radius:10px; overflow:hidden; margin:12px 0 4px; }
+.lcb-hpfill { height:100%; background:linear-gradient(90deg,#f44336,#FF9800); border-radius:10px; transition:width .4s; }
+.lcb-hptext { font-size:13px; color:#aaa; }
+.lcb-stats { display:flex; justify-content:space-around; margin:10px 0; font-size:13px; color:#aaa; }
+.lcb-btn { display:inline-block; margin-top:12px; padding:13px 40px; background:linear-gradient(120deg,#7f1d1d,#ef4444); color:#fff; font-weight:bold; font-size:17px; border-radius:12px; text-decoration:none; }
+.main a.lcb-btn,.main a.lcb-btn:link,.main a.lcb-btn:visited { color:#fff; margin:12px 0 0; }
+.lcb-dead { color:#4CAF50; font-size:16px; font-weight:bold; padding:14px 0; }
+.lcb-empty { text-align:center; color:#9fb3c8; padding:22px; background:rgba(17,26,53,.7); border:1px dashed rgba(148,163,184,.25); border-radius:14px; margin-bottom:10px; }
+.lcb-log { margin-top:12px; padding:12px; background:rgba(0,0,0,.35); border-radius:8px; font-size:14px; line-height:1.7; text-align:left; }
+.lcb-hint { margin-top:12px; padding:12px; background:rgba(255,215,0,.08); border:1px solid rgba(255,215,0,.3); border-radius:10px; font-size:13px; color:#eee; text-align:center; }
+.lcb-hint a,.lcb-hint a:link { color:#FFD700; }
+.lcb-footnote { margin-top:10px; font-size:12px; color:#9fb3c8; text-align:center; line-height:1.5; }
+@media (min-width:601px) { .lcb-wrap { max-width:840px; } }
+
+.lcw-wrap { max-width:660px; margin:0 auto; padding:10px; }
+.lcw-head { text-align:center; font-size:16px; font-weight:bold; color:#a78bfa; margin-bottom:8px; }
+.lcw-notice { padding:10px; border-radius:8px; margin:8px 0; font-size:13px; text-align:center; background:rgba(167,139,250,.12); border:1px solid rgba(167,139,250,.4); color:#d1c4e9; }
+.lcw-list { background:rgba(30,30,40,.95); border:1px solid rgba(167,139,250,.3); border-radius:12px; padding:6px 12px; }
+.lcw-row { padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:13px; color:#ddd; }
+.lcw-row.lcw-off { color:#777; }
+.lcw-row a,.lcw-row a:link { color:#a78bfa; font-weight:bold; text-decoration:none; }
+.lcw-note { margin-top:8px; font-size:11px; color:#888; line-height:1.5; }
+.lcw-back { display:inline-block; margin-top:10px; padding:8px 16px; background:rgba(167,139,250,.15); color:#a78bfa; border-radius:8px; text-decoration:none; font-size:13px; }
+.main a.lcw-back,.main a.lcw-back:link,.main a.lcw-back:visited { color:#a78bfa; margin:10px 0 0; }
+@media (min-width:601px) { .lcw-wrap { max-width:840px; } }

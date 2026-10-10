@@ -444,3 +444,149 @@ $P E:/window/Temp/lcfx.php "" 195 612 165      # -> docs/img/linhcan/_fxbang.png
 | `Parse error: unexpected ')' game/linhcan.php:193` | dong nhat ternary 2 nhanh vao 1 bieu thuc, dong dau `)` truoc `:` | tach `$lcSkillCard` thanh bien tinh rieng phia tren khoi render |
 | `max-width:840px` tren `.lc-wrap` khong tac dung | khung chung cua server **660px** (do `.hm-wrap` cung ra 622px @840) | **khong noi khung chung** — xoa override chieu rong, o ≥601px chi doi `.lc-cols` 2 cot + `.lc-stage{max-width:520px}` |
 | The skill: mo ta dinh lien "…1 turn đã mở · hồi 5 phút" | thieu tach giua `description` va `lc-skillgate` | them ` — ` truoc `<span class="lc-skillgate">` |
+
+---
+
+## 11. TASK 11 — Trang Nhiệm Vụ + Boss Ngũ Hành + xoá 13 hàm cũ (22 căn)
+
+**Pham vi:** 2 trang `game/linhcan_quest.php` + `game/linhcan_boss.php` viet lai theo khuon
+`.lc-*` Task 10; khoi CSS `.lcq-*` / `.lcb-*` / `.lcw-*`; **xoá 13 ham dead-code** cua duong
+22 can + upgrade RNG; `linhcan_quality_name` doi nghia theo spec §3.1.
+
+### 11.1 File da cham
+
+| File | Truoc | Sau | Ghi chu |
+|---|---|---|---|
+| `game/linhcan_quest.php` | 61 (trang cu) | **88** | viet lai hoan toan, khong inline style |
+| `game/linhcan_boss.php` | 96 (trang cu) | **222** | **mot trang hai che do**: khong `el` = the gioi, `el=hanh` = ca nhan |
+| `class/function/linhcan.php` | **1006** | **621** | xoa 385 dong dead code (13 ham + docblock moi) |
+| `css/mystyle.css` | 7772 | **7843** | +71 dong khu Task 11 (58 rule), khong sua rule hm/nb/lc cu |
+| `game.php` | — | — | chi `:502` mystyle.css `v=2026101111` |
+| `tests/test_linhcan_pages.php` | — | **172** | **MOI** — 40 assertion chay qua HTTP that (cong 8199) |
+
+### 11.2 Hai nut chet — chung cu + chinh sach xu ly (CHO CHU DU AN)
+
+`game.php:114` `parse_str` bien moi cap trong `cmd=` thanh **bien toan cuc**, va
+`$cmd` **luon bang ten trang** (route `game.php:352-355`). Vi vay dieu kien cu:
+
+| Nut | Dong cu | Chinh | Lan cuoi chay |
+|---|---|---|---|
+| NHAAN THUONG | `game/linhcan_quest.php:8` (cu) `if ($cmd == 'claim_reward')` | `$cmd == 'linhcan_quest'` mai mai → nhanh **CHET** | **khong co** (toan bo lich su local) |
+| TAN CONG boss | `game/linhcan_boss.php:37` (cu) `if ($cmd == 'attack_lc_boss')` | tuong tu → **CHET** | **khong co** |
+
+**Hau qua nguoi dung:** khong ai tung nhan duoc thuong quest tuan (500 LT + Binh Anh) va khong
+ai danh duoc boss Linh Can the gioi bang nut do — toan bo duong `linhcan_quest_claim()` /
+`linhcan_boss_drops()` **chua lan nao chay trong game that**.
+
+**Chinh sach de xuat (CHƯA lam, doi chu quyet):**
+1. **Khong auto-refund.** Quet `player_linhcan_quest` xem bao nhieu nguoi choi co `completed=0`
+   va du 5/5 → cho them mot lan `claim_reward` mien phi? Rui ro kinh te (moi nguoi +500 LT).
+2. Phuong an lanh: **chi audit** — danh sach nguoi bi anh huong, khong tra lai; nguoi choi tu
+   nhan khi version moi len (ho mo lai trang, nhan binh thuong).
+3. **Chot phuong an truoc khi deploy production** (Task 12).
+
+Khuon dung nay: `game/huyetmach_boss.php:16` `isset($attack)` — **da kiem chung** bang G2/G4
+(chup qua URL that, tien +500 LT that, HP boss giam that).
+
+### 11.3 Hop dong da dung (khong doi)
+
+| Ham | Trang goi | Y nghia |
+|---|---|---|
+| `linhcan_quest_get_progress` / `linhcan_quest_claim` | quest | claim tra `array(ok,msg,linhthach,binh_anh)`; `completed=1` khoa nhan doi |
+| `lcboss_active` → `lcboss_spawn` | boss `el=` | **tu spawn khi mo trang** — gate `stage<max && level>=cap && !killed` nam TRONG ham, trang khong tu suy dien |
+| `lcboss_calc_damage` / `lcboss_boss_counter` | boss `el=` | counter = `max(1, atk - ufy*0.6)` |
+| `lcboss_mark_killed` / `lcboss_drops` | boss `el=` | **`mark_killed` tu UPDATE status killed, hp=0** → trang **KHONG** duoc UPDATE lai (G5 kiem chung) |
+| `linhcan_boss_check_spawn` → `linhcan_boss_spawn` | boss the gioi | song 2h, chung toan server |
+| `linhcan_boss_mark_killed` / `linhcan_boss_drops` | boss the gioi | drop **that** vao `playerdaoju` + `INSERT ggliaotian` (mau: huyetmach_boss.php:36-39) |
+
+**Bat buoc:** hook `kill_boss` / `receive_stone` **nam san** trong `lcboss_drops` +
+`linhcan_boss_drops` + `linhcan_give_stone`. Trang **tuyet doi khong** goi
+`linhcan_quest_update` lap lai → G5 do delta = **dung 1** (khong double-count).
+
+### 11.4 So do layout (@390px trong iframe harness, `body.zoom=1`)
+
+```
+.lcq-wrap 350x708 @13 | .lcq-card 330x596 @23 pad 14/16 | .lcq-head 296x22 (1 dong)
+.lcb-wrap 350 @13 | .lcb-card 330 | .lcb-chips 6 chip (3+2) | .lcb-log 14px
+scrollW = 375 < 390 → khong tran ngang
+```
+Trung khop ho Linh Can: `.lc-wrap` 350 @13 / `.lc-card` 330 @23 (Task 10) va `.hm-wrap` 350
+(Mach Huyet). **Da doi chieu 1:1 bang anh**: `_lcb_kim.png` vs anh tham chieu
+`huyetmach_boss` cung viewport (anh ref de ngoai repo, khong commit).
+
+### 11.5 Lech so voi CSS trong plan (4 quyet dinh, co so do)
+
+| Plan | Thuc te | Ly do |
+|---|---|---|
+| `.lcb-chip.is-active` nen = `var(--lcb-color)`, chu trang | nen `rgba(148,163,184,.14)` + **border/glow** mau hanh, chu trang | do ra **trang tren #C0C0C0 = ~1.4:1** (Kim) → khong doc duoc |
+| `.lcb-icon` 52px **hai icon** (hanh + boss) | **mot icon hanh**, 52px | 2 bang `linhcan_boss` / `linhcan_boss_personal` **khong co cot `icon`** → `$row['icon']` chi ton tai tren request vua spawn → trang **doi hinh lien tuc** (coin+coin vs coin+devil) |
+| `.lcb-name` color = `var(--lcb-color)` | `color:#fff` + `text-shadow:0 0 10px var(--lcb-color)` | **Tho #8B4513** va **Moc #228B22** tren nen navy ~2:1 → mat ten boss; mau hanh van mang qua border + glow + chip |
+| card nen `rgba(30,30,40,.95)` + border **2px mau dam** | `linear-gradient(160deg,#111a35,#0b1024)` + **1px** `rgba(148,163,184,.16)` (border boss van giu mau hanh) | so anh 1:1 voi Task 10: khung mau sac + nen xam dac lam 3 tab **cung mot tinh nang** nom nhu 3 game khac nhau |
+
+Nho: `.lcb-footnote` 11→**12px**, `#777`→`#9fb3c8` · `.lcb-log` 13→**14px** · `.lcb-chip`
+radius 14→**10** + padding 10/14 (~37px cao, de cham) · `.lcb-btn` gradient giong het
+`.lc-btn-boss` Task 10 · `.lcb-empty` + `.lcb-level` + `.lcq-week` + `.lcq-desc` doi sang
+`#9fb3c8` cho de doc tren navy.
+
+### 11.6 Dead code: 13 ham da xoa (chung cu tung ham)
+
+`linhcan_config_path` · `linhcan_config_all` · `linhcan_config_get` · `linhcan_random` ·
+`linhcan_random_with_quality` · `linhcan_assign` · `linhcan_info` · `linhcan_tier_name` ·
+`linhcan_upgrade_config_path` · `linhcan_upgrade_config_all` · `linhcan_get_upgrade_info` ·
+`linhcan_find_next_tier_id` · `linhcan_upgrade`.
+
+Cua ngan: grep ten tung ham tren **toan repo** (`.php`, loa tru chinh `class/function/linhcan.php`)
+→ **0 caller ngoai file** cho ca 13 ham (ke ca `game/linhcan.php`, `class/player.php`, `api/`, `admin/`).
+Sau khi xoa: `php -l` sạch + **10 suite** chay lai (ket qua 11.9).
+
+`linhcan_quality_name($stage)` giu lai nhung **doi nghia** theo spec §3.1: tra ten bac
+(`linhcan_stage_def`) thay vi map 1..5 "Tap/Chan/Dia/Thien/Tien Thien". **Hien 0 caller**
+→ doi an toan; giu lai vi `docs/` va admin co the can.
+
+**§3.2 quyet dinh:** file sau khi xoa con **621 dòng < 700** → **giu mot file `linhcan.php`**,
+khong tach (tach chi them dead-index).
+
+`class/config/linhcan_config.json` + `linhcan_upgrade_config.json` **van con tren dia** —
+Task 12 di trú xong moi chuyen sang `bak/linhcan/`.
+
+### 11.7 Sổ nợ Task 11 — CHƯA test / CHƯA làm
+
+| # | No | Muc do | Ghi chu |
+|---|---|---|---|
+| 1 | **Cham that tren dien thoai** (6 chip + nut TAN CONG + tab bar) | **CHƯA TEST** | moi chung minh la Chrome headless 390px trong iframe. Chip cao ~37px **duoi** nguong 44px → phai ngam tren may that. |
+| 2 | **Boss ca nhan trong vong lap 2h / reset tuan that** | **CHƯA TEST** | `quest_week` dung `date('Y').date('W')`; chua choi qua ranh gioi tuan (Chua Nhat 24h). |
+| 3 | **`lcboss_spawn` tu spawn khi MO TRANG** | **CHƯA xin phep chu** | thiet ke plan cho phep, nhung nghia la *mo tab Boss = tao dong DB*. Can chu chot: giu nguyên hay doi thanh nut "Khiêu chiến"? |
+| 4 | **2 nut chet trong lich su — co refund khong** | **CHO CHU QUYET** | xem 11.2. |
+| 5 | `test_nguhanh_market.php` **12 FAIL** + `test_nguhanh_combat.php` **3 FAIL** | **MOI TRUONG, khong phai regression** | 2 test cu **hardcode `http://localhost/`** (Apache :80 **DANG TAT**); FAIL dau cua combat la `HTTP 200 (have html) got:false`. **12 FAIL nay da co tu Task 5** (dem khong doi). Fix = doi sang cong 8199 hoac bat Apache (can chu cho phep). |
+| 6 | Header "Linh thạch" **le mot request** sau khi claim/kills | **BIET, KHONG SUA** | `game.php` render header **truoc** khi include page → moi trang lam bien currency deu tre 1 lan tai. Tien **DB van dung** (G2 do `uyxb` +500). Pre-existing toan he thong (ca `huyetmach_boss`). |
+| 7 | Harness `_lcq.html` + `_lcshot.html` + `_lcm.html` nam trong web root | **PHAI XOA Task 12** | untracked, chua commit lan nao. |
+| 8 | `game/linhcan_quest.php` + `game/linhcan_boss.php` + `tests/test_linhcan_pages.php` + `docs/img/linhcan/*` | **UNTRACKED** | commit Task 11 **phai `git add` tung file**; **TUYET DOI khong add `tongquan.php`** (`:67-68` chua `root` / mat khau DB). |
+| 9 | Deploy production | **CHƯA** | repo khong co remote; Task 12 viet `docs/DEPLOY_PRODUCTION_LINHCAN.md`. |
+
+### 11.8 Lỗi đã tìm + sửa trong Step 7 (chup anh / do 1:1)
+
+| Bay | Nguyen nhan that | Cach sua + chung minh |
+|---|---|---|
+| **Nhan xong thuong ma nut NHAAN THUONG van con** | `$isCompleted = !empty($questData['completed'])` tinh **TRUOC** khoi `if (isset($claim_reward))`; `claim()` co `UPDATE completed=1`, trang doc lai `$questData` nhung **khong tinh lai** `$isCompleted` | doi thu tu (tinh **sau** khi claim). Test G2 them 2 assertion: page claim **khong con** `class="lcq-btn"` + status doi chu. **Khong phai loi mat tien** — `claim()` tu tu choi lan 2 (`Da nhan thuong tuan nay roi.`), chi sai hieu thi. |
+| Boss nom "lech" gia hai trang thai | `.lcb-icon` in `icon_hanh + icon_boss`, ma `icon_boss` **khong co trong DB** | 11.5 dong 2 — chi dung icon hanh. |
+| Ten boss **Thổ** gan nhu vo hinh | `#8B4513` tren `#111a35` ~2:1 | 11.5 dong 3 — chu trang + glow mau hanh; do lai bang anh boss Thổ. |
+| Title quest **xuong 2 dong**, "Tuần 202641" bi nep | them `letter-spacing:1px` lam `.lcq-title` 211→228px vuot 294px trong khi `.lcq-week` can 68px | bo letter-spacing + `white-space:nowrap` ca hai; do lai `.lcq-head 296x22` (1 dong). |
+| Status "Đang thực hiện — nhận khi đủ 5/5" hien khi **da du 5/5** | trang chi co 2 trang thai (`is-open` / `is-done`) | them `is-ready` + chu "Da du 5/5 nhiem vu — nhan thuong ben duoi". |
+| Seed quest bi mat sau khi chay test | `test_linhcan_pages.php` **xoa** dong `player_linhcan_quest` cua fixture luc cleanup → `UPDATE ... WHERE sid` **0 row**, `get_progress` tao dong moi = 0/5 | seed bang `DELETE + INSERT` (khong dung UPDATE mot minh). |
+
+### 11.9 Chung cu Task 11
+
+* `php -l` sạch: `game/linhcan_quest.php` · `game/linhcan_boss.php` · `class/function/linhcan.php` · `game.php`.
+* Quet ky tu la (CJK `4E00-9FFF`, smart quotes, NBSP) trong 5 file cham: **sach**.
+  Chu `U+3010/3011` trong `INSERT ggliaotian(name,...)` **co y** — mau nguyen ven
+  `game/huyetmach_boss.php:36`, nam NGOAI vung CJK nen khong bi cua ngan quet.
+* `tests/test_linhcan_pages.php`: **40/40 ALL PASS** qua HTTP that (cong 8199), gom:
+  G1 render · G2 claim that (+500 LT, +1-2 Binh Anh, `completed=1`, **an nut**) · G3 chan claim kep ·
+  G4 boss the gioi HP giam + phan dong ghi `game1` · G5 boss ca nhan tu spawn → giot →
+  `status=killed`, `hp=0` → **khong UPDATE lai** → da Kim vao toi → hook `kill_boss` **+1 dung** ·
+  G6 `uhp=0` khong mat mau · G7 trang tay linh · G8 `el=kimchi` tu suy ve the gioi, khong loi PHP.
+* 9 suite con lai: `test_linhcan_{boss,combat,element,passive,quest,schema}` · `test_nguhanh` ·
+  `test_nguhanh_random` → **ALL PASS**. `test_nguhanh_{market,combat}` → 11.7 dong 5.
+* 6 anh chung minh (`docs/img/linhcan/`, 390px, CSS `v=2026101111`):
+  `_lcq_partial.png` (2 bar le) · `_lcq_ready.png` (5/5 + nut) · `_lcq_claim.png` (da nhan, an nut) ·
+  `_lcb_world.png` (Moc Linh Vuong) · `_lcb_kim.png` · `_lcb_kim_hit.png` (log chien dau + bar 40%).
