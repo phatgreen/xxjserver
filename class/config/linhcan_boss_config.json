@@ -1,0 +1,68 @@
+{
+  "boss_config": {
+    "spawn_interval_minutes": 120,
+    "base_stats": {
+      "hp": 5000,
+      "atk": 200,
+      "def": 100,
+      "crit": 20,
+      "lifesteal": 5
+    },
+    "level_scaling": {
+      "hp_per_level": 500,
+      "atk_per_level": 20,
+      "def_per_level": 10
+    },
+    "drops": {
+      "linh_thach_min": 100,
+      "linh_thach_max": 500,
+      "da_ngu_hanh_count": 3,
+      "rare_drop_chance": 0.1
+    },
+    "personal_boss": {
+      "hp_base": 8000, "hp_per_lv": 220,
+      "atk_base": 260, "atk_per_lv": 7,
+      "def_base": 100, "def_per_lv": 10,
+      "crit_base": 10, "crit_per_stage": 2,
+      "drop_stone_min": 1, "drop_stone_max": 2
+    },
+    "element_bosses": {
+      "kim": {
+        "name": "Kim Linh Tộc Trưởng",
+        "icon": "🪙",
+        "color": "#C0C0C0",
+        "description": "Boss hệ Kim, phòng ngự cao, bạo kích mạnh"
+      },
+      "moc": {
+        "name": "Mộc Linh Vương",
+        "icon": "🌿",
+        "color": "#228B22",
+        "description": "Boss hệ Mộc,HP cao, hút máu mạnh"
+      },
+      "thuy": {
+        "name": "Thủy Long Vương",
+        "icon": "💧",
+        "color": "#1E90FF",
+        "description": "Boss hệ Thủy, phòng ngự cao, hồi phục nhanh"
+      },
+      "hoa": {
+        "name": "Hỏa Phượng Hoàng",
+        "icon": "🔥",
+        "color": "#FF4500",
+        "description": "Boss hệ Hỏa, sát thương cao, bạo kích mạnh"
+      },
+      "tho": {
+        "name": "Thổ Lân Thú",
+        "icon": "🏔",
+        "color": "#8B4513",
+        "description": "Boss hệ Thổ,HP cực cao, phòng ngự vững"
+      },
+      "none": {
+        "name": "Hư Không Ma Vương",
+        "icon": "🌀",
+        "color": "#9C27B0",
+        "description": "Boss hệ Không, cân bằng mọi stats"
+      }
+    }
+  }
+}

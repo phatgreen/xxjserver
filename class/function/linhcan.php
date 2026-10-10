@@ -849,3 +849,117 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_train')) {
         return array('ok'=>true,'msg'=>'Luyện ' . $element . ' lên Lv ' . $newLv . '.','lv'=>$newLv);
     }
 }
+
+// ==================== DOT PHA BAC HANH ====================
+// 100% thanh cong, khong quay RNG (bai hoc `linhcan_upgrade` cu: success_rate 20%
+// + truu tien TRUOC khi check dieu kien → fatat giua chung mat oan. Duoi day thu
+// check-truoc-sau-tru, moi buoc truu that bai hoan lai cac buoc da truu.)
+
+if (!function_exists(__NAMESPACE__ . '\\linhcan_break_requirements')) {
+    function linhcan_break_requirements($sid, $dblj, $element){
+        $def = linhcan_element_def($element);
+        if (!$def) return array('ok' => false, 'to_stage' => 0, 'rows' => array());
+        $player = getplayer($sid, $dblj);
+        if (!$player) return array('ok' => false, 'to_stage' => 0, 'rows' => array());
+        $node = linhcan_node_get($sid, $element, $dblj);
+        $stage = intval($node['stage']);
+        if ($stage >= linhcan_stage_max()) {
+            return array('ok' => false, 'to_stage' => $stage, 'rows' => array(
+                array('key' => 'max', 'label' => 'Đã đạt bậc tối đa (Thánh Căn)',
+                      'cur' => $stage, 'need' => $stage, 'ok' => true)));
+        }
+        $toStage = $stage + 1;
+        $sd = linhcan_stage_def($toStage);
+        $bc = (isset($sd['break']) && is_array($sd['break'])) ? $sd['break'] : array();
+
+        $rows = array();
+        $cap = linhcan_stage_cap($stage);
+        $lvCur = intval($node['level']);
+        $rows[] = array('key' => 'lv_cap', 'label' => 'Lv ' . $def['name'] . ' chạm trần bậc ' . $stage,
+                        'cur' => $lvCur, 'need' => $cap, 'ok' => ($lvCur >= $cap));
+
+        $bossNeed = isset($bc['boss_to_stage']) ? intval($bc['boss_to_stage']) : $toStage;
+        $bossOk = lcboss_killed($sid, $dblj, $element, $bossNeed);
+        $rows[] = array('key' => 'boss', 'label' => 'Thắng boss đột phá ' . $def['name'],
+                        'cur' => $bossOk ? 1 : 0, 'need' => 1, 'ok' => $bossOk);
+
+        $baNeed = isset($bc['binh_anh']) ? intval($bc['binh_anh']) : 0;
+        $baRow = $baNeed > 0 ? getplayerdaoju($sid, linhcan_binh_anh_id(), $dblj) : false;
+        $baCur = $baRow ? intval($baRow->djsum) : 0;
+        $rows[] = array('key' => 'binh_anh', 'label' => 'Binh Anh Tinh Thạch',
+                        'cur' => $baCur, 'need' => $baNeed, 'ok' => ($baCur >= $baNeed));
+
+        $ltNeed = isset($bc['linh_thach']) ? intval($bc['linh_thach']) : 0;
+        $ltCur = intval($player->uyxb);
+        $rows[] = array('key' => 'linh_thach', 'label' => 'Linh thạch',
+                        'cur' => $ltCur, 'need' => $ltNeed, 'ok' => ($ltCur >= $ltNeed));
+
+        $uxNeed = isset($bc['uexp']) ? intval($bc['uexp']) : 0;
+        $uxCur = intval($player->uexp);
+        $rows[] = array('key' => 'uexp', 'label' => 'Linh khí (tu vi)',
+                        'cur' => $uxCur, 'need' => $uxNeed, 'ok' => ($uxCur >= $uxNeed));
+
+        $ok = true;
+        foreach ($rows as $r) { if (!$r['ok']) { $ok = false; } }
+        return array('ok' => $ok, 'to_stage' => $toStage, 'rows' => $rows);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\linhcan_break')) {
+    function linhcan_break($sid, $dblj, $element){
+        $def = linhcan_element_def($element);
+        if (!$def) return array('ok' => false, 'msg' => 'Hành không hợp lệ.', 'stage' => 0);
+        $req = linhcan_break_requirements($sid, $dblj, $element);
+        if (!$req['ok']) {
+            $thieu = array();
+            foreach ($req['rows'] as $r) { if (!$r['ok']) { $thieu[] = $r['label']; } }
+            return array('ok' => false, 'msg' => 'Chưa đủ điều kiện: ' . implode(', ', $thieu) . '.', 'stage' => 0);
+        }
+        $node = linhcan_node_get($sid, $element, $dblj);
+        $stage = intval($node['stage']);
+        $toStage = intval($req['to_stage']);
+        $sd = linhcan_stage_def($toStage);
+        $bc = isset($sd['break']) ? $sd['break'] : array();
+        $ltNeed = intval($bc['linh_thach']);
+        $uxNeed = intval($bc['uexp']);
+        $baNeed = intval($bc['binh_anh']);
+        $baId = linhcan_binh_anh_id();
+
+        $st = $dblj->prepare("UPDATE game1 SET uyxb = uyxb - ? WHERE sid = ? AND uyxb >= ?");
+        $st->execute(array($ltNeed, $sid, $ltNeed));
+        if ($st->rowCount() === 0) {
+            return array('ok' => false, 'msg' => 'Trừ linh thạch thất bại, chưa đột phá.', 'stage' => 0);
+        }
+        if ($uxNeed > 0) {
+            $st2 = $dblj->prepare("UPDATE game1 SET uexp = uexp - ? WHERE sid = ? AND uexp >= ?");
+            $st2->execute(array($uxNeed, $sid, $uxNeed));
+            if ($st2->rowCount() === 0) {
+                $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ? WHERE sid = ?")->execute(array($ltNeed, $sid));
+                return array('ok' => false, 'msg' => 'Trừ linh khí thất bại, chưa đột phá.', 'stage' => 0);
+            }
+        }
+        if ($baNeed > 0) {
+            if (!deledjsum($baId, $baNeed, $sid, $dblj)) {
+                $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ? WHERE sid = ?")->execute(array($ltNeed, $sid));
+                if ($uxNeed > 0) {
+                    $dblj->prepare("UPDATE game1 SET uexp = uexp + ? WHERE sid = ?")->execute(array($uxNeed, $sid));
+                }
+                return array('ok' => false, 'msg' => 'Trừ Bình Anh Tinh Thạch thất bại, chưa đột phá.', 'stage' => 0);
+            }
+        }
+
+        linhcan_node_set($sid, $element, intval($node['level']), $toStage, $dblj);
+        $dblj->prepare("INSERT INTO player_linhcan_break_log (sid, element, from_stage, to_stage, created_at)
+            VALUES (?, ?, ?, ?, NOW())")->execute(array($sid, $element, $stage, $toStage));
+        if (function_exists(__NAMESPACE__ . '\\linhcan_quest_update')) {
+            linhcan_quest_update($sid, 'break_once', 1, $dblj); // hook Task 6
+        }
+        player_cache_clear($sid);
+
+        $newName = $sd['name'];
+        $newColor = $sd['color'];
+        return array('ok' => true,
+            'msg' => 'Đột phá thành công! ' . $def['name'] . " đạt <font color='{$newColor}'>{$newName}</font> — trần Lv mới " . linhcan_stage_cap($toStage) . '.',
+            'stage' => $toStage);
+    }
+}

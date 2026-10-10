@@ -788,7 +788,7 @@ git commit -m "feat(linhcan): train 100% + calc_bonuses doc node gi hop dong 16 
   - `linhcan_break_requirements($sid,$dblj,$element)` → `array('ok','to_stage','rows')`, mỗi row `array('key','label','cur','need','ok')` với key ∈ lv_cap/boss/binh_anh/linh_thach/uexp (Task 10 render `[Đủ/Thiếu]`, Task 11 không cần — trang chính gộp luôn)
   - `linhcan_break($sid,$dblj,$element)` → `array('ok','msg','stage')`
 
-- [ ] **Step 1: Đối chiếu số boss cá nhân với boss thế giới đang chạy (đóng số trước khi code — note spec §3.4)**
+- [x] **Step 1: Đối chiếu số boss cá nhân với boss thế giới đang chạy (đóng số trước khi code — note spec §3.4)**
 
 Run:
 ```bash
@@ -804,7 +804,7 @@ foreach(array(10,30,60,90) as $lv){
 ```
 Expected: hp personal ≤ 1.2× world ở mọi mốc (boss cá nhân là solo gate, phải dễ hơn world share-đạn-dược). Số `8000+220L / 260+7L` đã chủ dự án duyệt ở spec (dấu `[]` = chốt khi duyệt spec). **Nếu ratio > 1.2 ở lv cao: KHÔNG tự đổi số — ghi vào `docs/UI_LINHCAN.md` §Chưa-làm và báo chủ dự án.**
 
-- [ ] **Step 2: Thêm `personal_boss` vào `class/config/linhcan_boss_config.json`**
+- [x] **Step 2: Thêm `personal_boss` vào `class/config/linhcan_boss_config.json`**
 
 Chèn vào trong object `boss_config` (trước `element_bosses`), nguyên văn:
 ```json
@@ -822,7 +822,7 @@ D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r '$d=json_decode(
 ```
 Expected: `personal_boss ok`.
 
-- [ ] **Step 3: Test failing — `tests/test_linhcan_boss.php`** (nội dung nguyên văn)
+- [x] **Step 3: Test failing — `tests/test_linhcan_boss.php`** (nội dung nguyên văn)
 
 ```php
 <?php
@@ -932,12 +932,12 @@ echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 4: Chạy test → xác nhận FAIL đúng nguyên nhân**
+- [x] **Step 4: Chạy test → xác nhận FAIL đúng nguyên nhân**
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_boss.php`
 Expected: fatal `Call to undefined function player\lcboss_spawn()` (D1). Đây là test-red hợp lệ.
 
-- [ ] **Step 5: Nối khối `lcboss_*` vào `class/function/linhcan_boss.php`** (nguyên văn; xóa `?>` cuối file cũ khi nối)
+- [x] **Step 5: Nối khối `lcboss_*` vào `class/function/linhcan_boss.php`** (nguyên văn; xóa `?>` cuối file cũ khi nối)
 
 ```php
 // ==================== BOSS CA NHAN DOT PHA LINH CAN (khuon huyetmach_boss_*) ====================
@@ -1075,7 +1075,7 @@ if (!function_exists(__NAMESPACE__ . '\\lcboss_drops')) {
 }
 ```
 
-- [ ] **Step 6: Nối `linhcan_break_requirements` + `linhcan_break` vào CUỐI `class/function/linhcan.php`** (nguyên văn)
+- [x] **Step 6: Nối `linhcan_break_requirements` + `linhcan_break` vào CUỐI `class/function/linhcan.php`** (nguyên văn)
 
 ```php
 // ==================== DOT PHA BAC HANH ====================
@@ -1193,7 +1193,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_break')) {
 }
 ```
 
-- [ ] **Step 7: Chạy test + lint PHP 5.6**
+- [x] **Step 7: Chạy test + lint PHP 5.6**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_boss.php
@@ -1202,14 +1202,14 @@ D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -l class/function/l
 ```
 Expected: `ALL PASS`, exit 0; hai file `No syntax errors`. Nếu FAIL D2/D7/D8 → kiểm tra static cache config (`linhcan_boss_config_all` có `static $cache`, CLI process mới sẽ đọc `personal_boss` mới — chạy lại lệnh, không sửa test).
 
-- [ ] **Step 8: Quét ký tự lỗi trong 2 file vừa nối**
+- [x] **Step 8: Quét ký tự lỗi trong 2 file vừa nối**
 
 ```bash
 grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" class/function/linhcan_boss.php class/function/linhcan.php || echo CLEAN
 ```
 Expected: `CLEAN` (nhãn UI tiếng Việt có dấu trong msg là chủ ý, chỉ cấm CJK/smart-quote/NBSP).
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add class/config/linhcan_boss_config.json class/function/linhcan_boss.php class/function/linhcan.php tests/test_linhcan_boss.php
