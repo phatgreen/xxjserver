@@ -1231,7 +1231,7 @@ git commit -m "feat(linhcan): boss dot pha ca nhan theo hanh + linhcan_break 100
 - Produces: `linhcan_boss_world_element($dblj)` → 1 trong 5 key `kim|moc|thuy|hoa|tho`. **XÓA** `linhcan_boss_get_dominant_element` (đọc `game1.linhcan_id` đã ngừng cập nhật — lỗi 1.4 của spec).
 - Giữ nguyên chữ ký `linhcan_boss_spawn($dblj)` / `linhcan_boss_drops($player,$bossRow,$dblj)` / `linhcan_boss_check_spawn` / `linhcan_boss_mark_killed` vì `game/linhcan_boss.php` cũ còn gọi (`:7,12,39,62` — trang chỉ đọc `$drops['html']`; trang sẽ bị viết lại ở Task 11).
 
-- [ ] **Step 1: Sửa `class/config/linhcan_boss_config.json`** (3_edit, không viết lại cả file)
+- [x] **Step 1: Sửa `class/config/linhcan_boss_config.json`** (3_edit, không viết lại cả file)
 
 1. `drops`: THAY toàn bộ object
    ```json
@@ -1252,7 +1252,7 @@ D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r '$d=json_decode(
 ```
 Expected: `cfg ok`.
 
-- [ ] **Step 2: Nối test phần E vào `tests/test_linhcan_boss.php`** (trước `// Cleanup`)
+- [x] **Step 2: Nối test phần E vào `tests/test_linhcan_boss.php`** (trước `// Cleanup`)
 
 ```php
 // ===== E: boss the gioi (Task 5) =====
@@ -1294,15 +1294,15 @@ tassert('E4 html co chu', strpos($d['html'], 'Linh') !== false, true);
 $db->exec("DELETE FROM linhcan_boss WHERE id = " . intval($w['id'])); // don boss gia vua spawn
 ```
 
-- [ ] **Step 3: Chạy → FAIL** (`linhcan_boss_world_element` undefined tại E1). Xác nhận rồi tiếp.
+- [x] **Step 3: Chạy → FAIL** (`linhcan_boss_world_element` undefined tại E1). Xác nhận rồi tiếp.
 
-- [ ] **Step 4: Xóa `linhcan_boss_get_dominant_element`** — xóa nguyên block `:34-47` (comment + `if (!function_exists...)` bọc function). Grep đối chiếu:
+- [x] **Step 4: Xóa `linhcan_boss_get_dominant_element`** — xóa nguyên block `:34-47` (comment + `if (!function_exists...)` bọc function). Grep đối chiếu:
 ```bash
 grep -rn "linhcan_boss_get_dominant_element" --include=*.php . | grep -v "^./bak/"
 ```
 Expected: **0 kết quả** sau khi xóa (không ai gọi ngoài `linhcan_boss_spawn` đã sửa ở Step 5).
 
-- [ ] **Step 5: Thêm `linhcan_boss_world_element` + sửa `linhcan_boss_spawn`** (thay 2 đoạn trong `class/function/linhcan_boss.php`)
+- [x] **Step 5: Thêm `linhcan_boss_world_element` + sửa `linhcan_boss_spawn`** (thay 2 đoạn trong `class/function/linhcan_boss.php`)
 
 Chèn khối mới ngay sau `linhcan_boss_config_all`:
 ```php
@@ -1330,7 +1330,7 @@ Trong `linhcan_boss_spawn($dblj)`:
 - THAY default array `'name' => 'Hư Không Ma Vương'...` → `array('name' => 'Linh Thú Lạc', 'icon' => '👹', 'color' => '#9C27B0')` (chỉ dùng khi config thiếu hành — không còn đường nào dẫn tới `none`).
 - THAY `SELECT AVG(ulv) as avg_lv FROM game1 WHERE linhcan_id > 0` → `SELECT AVG(ulv) as avg_lv FROM game1` (mọi nhân vật, vì `linhcan_id` đã nguội).
 
-- [ ] **Step 6: Viết lại `linhcan_boss_drops`** — THAY toàn bộ thân hàm cũ (`:167-206`, bỏ TODO `:192`), nguyên văn:
+- [x] **Step 6: Viết lại `linhcan_boss_drops`** — THAY toàn bộ thân hàm cũ (`:167-206`, bỏ TODO `:192`), nguyên văn:
 
 ```php
 /**
@@ -1372,7 +1372,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_drops')) {
 }
 ```
 
-- [ ] **Step 7: Chạy test + lint + quét ký tự**
+- [x] **Step 7: Chạy test + lint + quét ký tự**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_boss.php
@@ -1381,7 +1381,7 @@ grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" class/fun
 ```
 Expected: `ALL PASS`; `No syntax errors`; `CLEAN`.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add class/config/linhcan_boss_config.json class/function/linhcan_boss.php tests/test_linhcan_boss.php

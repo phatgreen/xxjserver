@@ -50,14 +50,36 @@ chờ chủ dự án chốt (xem §Chưa làm).
 - **Cửa hàng có bán**, tab Đạo Cụ (`game/shangdian.php:339` duyệt toàn bộ `daoju_config_all()`,
   chỉ trừ djid 112/113/114). Không món nào bị chặn ở `:308` vì `djuse` đều trống.
 
-→ **Nguồn đá = cửa hàng (50/100 Linh thạch, mua không giới hạn) + boss thế giới (Task 5) + quest tuần (Task 6).**
-⚠️ **PHẢI BÁO CHỦ DỰ ÁN**: thiết kế "Bình Anh là đá HIẾM, nguồn hiếm = boss thế giới 2h" sẽ **bị vô hiệu**
-nếu cửa hàng còn bán Bình Anh 100 Linh thạch. Chặn bán là quyết định của chủ dự án — xem §Chưa làm.
+→ **Nguồn đá = cửa hàng (50/100 Linh thạch, mua không giới hạn) + boss thế giới (Task 5 ĐÃ xong) + quest tuần (Task 6).**
+⚠️ **VẪN PHẢI BÁO CHỦ DỰ ÁN**: từ Task 5, boss thế giới 2h rơi **THẬT** 1–2 Bình Anh Tinh Thạch vào túi đồ,
+nhưng cửa hàng vẫn bán Bình Anh **100 Linh thạch không giới hạn** → "đá hiếm" vẫn mua được bằng tiền.
+Chặn bán là quyết định của chủ dự án — xem §Chưa làm mục 1.
+
+## Boss thế giới — số đang chạy (Task 5, 2026-10-11)
+
+`class/function/linhcan_boss.php` + `class/config/linhcan_boss_config.json`:
+
+| Mục | Giá trị | Nguồn |
+|---|---|---|
+| Chu kỳ spawn | 120 phút | `spawn_interval_minutes` (giữ nguyên) |
+| Hành boss | **ngẫu nhiên 1 trong 5** `kim\|moc\|thuy\|hoa\|tho` | `world_element_pick: "random_of_5"` + `linhcan_boss_world_element()` |
+| Cấp boss | `AVG(ulv)` của **mọi** nhân vật trong `game1` (không lọc `linhcan_id > 0` nữa) | `linhcan_boss_spawn()` |
+| Máu / Công / Thủ | `5000 + 500·lv` / `200 + 20·lv` / `100 + 10·lv` | `base_stats` + `level_scaling` (giữ nguyên công thức cũ) |
+| Drop Linh Thạch | 100–500 | `drops.linh_thach_min/max` |
+| Drop đá **đúng hành boss** | 2–4 viên id 32/33/34/35/36 → `playerdaoju` THẬT | `drops.tinh_thach_min/max` + `linhcan_give_stone()` |
+| Drop Bình Anh | 1–2 viên id 37 → `playerdaoju` THẬT | `drops.binh_anh_min/max` |
+| Đã xóa | `element_bosses.none` (Hư Không Ma Vương), `da_ngu_hanh_count`, `rare_drop_chance`, `linhcan_boss_get_dominant_element()` | config + code |
+
+Test: `tests/test_linhcan_boss.php` phần **E1–E4** (11 assert) — 200 lần quay chỉ ra đúng 5 hành,
+spawn theo `AVG(ulv)` toàn DB, đá chỉ rơi **đúng hành boss** (id 33/34/35/36 = 0 dòng khi boss hành Hỏa),
+Bình Anh có mặt trong `playerdaoju` đúng số hàm trả về. **CHƯA test trong game thật** (mới có harness CLI).
+
 
 ## Chưa làm / chờ chủ dự án chốt
 
-1. **(Task 1 phát hiện) Cửa hàng bán Bình Anh Tinh Thạch (37) giá 100 Linh thạch, mua không giới hạn.**
-   Boss thế giới 2h mà Task 5 dựng sẽ không còn là "nguồn đá hiếm" nữa. Ba lựa chọn:
+1. **(Task 1 phát hiện, Task 5 xác nhận) Cửa hàng bán Bình Anh Tinh Thạch (37) giá 100 Linh thạch, mua không giới hạn.**
+   Từ Task 5 boss thế giới 2h rơi THẬT 1–2 Bình Anh, nhưng ai có Linh thạch thì vẫn mua được vô hạn →
+   điều kiện "boss đột phá không cày được" chỉ còn chặn ở **boss cá nhân + số lượng đá mỗi trận**. Ba lựa chọn:
    (a) chặn 32..37 khỏi tab Đạo Cụ, (b) giới hạn số lượt mua mỗi tuần, (c) chấp nhận — đá không hiếm.
    **CHƯA tự sửa** vì đụng trang `shangdian.php` ngoài phạm vi plan.
 2. **(Task 1 phát hiện) Nạp Ngũ Hành mất thưởng `all` (+10%) và `none` (0%)** do 2 khoá này từng tới từ
@@ -77,4 +99,12 @@ nếu cửa hàng còn bán Bình Anh 100 Linh thạch. Chặn bán là quyết 
 | 2 Step 1 | `tassert('A5 chan linh ten kem hanh', title['name'], 'Chân Linh Căn')` | Code Step 4 (§Task 2) nối `' · ' . $domName` → trả `Chân Linh Căn · Kim` | Test bắt buộc FAIL chính code cùng task. Giữ **code** (tên kèm hành đúng ý "tên kèm hành"), sửa **test** thành `'Chân Linh Căn · Kim'` |
 | 2 Step 1 | `tassert('A6 tong 60', milestone(60)['percent'], 5)` | `linhcan_milestone()` dùng `floatval` → `5.0`, mà `tassert` so `===` | Nhất quán kiểu: `percent`/`next_percent` khai báo `0.0` ngay từ đầu, test đổi `5`→`5.0`, `0`→`0.0` |
 | 2 Step 1 | Test A1 thiếu `linhcan_binh_anh_id()` | Hàm này có trong map inter-task (File Structure) | Thêm `tassert('A1 binh anh', ..., 37)` |
+| 4 Step 8 | Gate ký tự "Expected: CLEAN" trên `class/function/linhcan_boss.php` | Dòng 192 **code cũ** chứa 2 ký tự CJK `(dao-ju)` (comment TODO) → gate FAIL ngay khi file chưa kịp sạch | Sửa comment thành tiếng Việt không dấu, giữ nguyên logic; ghi rõ Task 5 sẽ viết lại hàm chứa nó |
+| 5 Step 6 | "THAY toàn bộ thân hàm cũ `:167-206`" | Hàm thật đóng ở **`:209`** (3 dòng `return array(...)` dài) — cắt theo 206 sẽ để lại rác | Cắt 167–209, chèn hàm mới |
+| 5 Step 6 | `html` in `"{$stone} {$bossElement} Tinh Thạch"` | In key không dấu → "3 hoa Tinh Thạch" | Dùng `linhcan_element_name($bossElement)` → "3 Hỏa Tinh Thạch" (hàm giữ đời Task 2) |
+| 5 Step 2 | Test E phần Cleanup `djid IN (34, 35, 37)` | E4 rơi đá hành Hỏa = **djid 32** → nhân test còn rác sau chạy | Thêm 32 vào danh sách dọn |
+| 5 (ngoài plan) | `tongquan.php:614` đọc `$dr['da_ngu_hanh_count']` | Key bị Task 5 xóa → trang tổng quan in "Đá Ngũ Hành" số trống + Notice PHP | Viết lại mô tả theo công thức drop mới (`tinh_thach`/`binh_anh` min–max). **Ngoài danh sách File của plan** nhưng là consumer thật. `tongquan.php` **không được commit** (file chưa tracked + `:68` chứa mật khẩu DB local) → bản sửa đang nằm ở working tree |
+| 5 (ngoài plan) | `docs/LINHCAN_DEV.md:65,87,162,167` ghi typo `element_bones` + `system道具` | Code hiện tại không hề đọc key `element_bones` (grep 0 kết quả) → 3 dòng là bug report **đã lỗi thời** | Đổi thành `element_bosses`; dòng 162 ghi rõ "ĐÃ SỬA xong"; dòng 167 bỏ CJK. **Không commit** — file legacy chưa tracked, Task 12 sẽ thay |
+| — (môi trường) | `tests/test_nguhanh_market.php` chạy ra **12 FAIL** | KHÔNG phải regression: Apache phpstudy **đang tắt** (`netstat` chỉ có `:3306`; `curl http://localhost/game.php` → exit 7, `http_code=000`, size=0). 12 assert fail đều là assert đọc HTML qua `get_http()`; 2 assert "khong co loi PDO" PASS giả vì chuỗi rỗng không khớp regex | Không sửa code. Muốn chạy lại suite này phải bật Apache trong phpStudy. **Ghi chú nợ**: suite nên fail-fast khi server không reachable thay vì PASS giả |
+
 

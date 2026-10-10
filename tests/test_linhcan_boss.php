@@ -96,10 +96,47 @@ tassert('D9 stage giu nguyen 2', intval($node9['stage']), 2);
 // D10: sau break, can lv 50 (cap stage 2) moi sinh boss tiep → chan ky
 tassert('D10 lv 30 < cap 50 → khong sinh', \player\lcboss_spawn($TESTSID, $db, 'kim'), false);
 
+// ===== E: boss the gioi (Task 5) =====
+$seen = array();
+for ($i = 0; $i < 200; $i++) {
+    $e = \player\linhcan_boss_world_element($db);
+    $seen[$e] = true;
+}
+tassert('E1 world element chi trong 5 hanh', count($seen), 5);
+tassert('E1 khong con none', isset($seen['none']), false);
+
+$cfgW = \player\linhcan_boss_config_all();
+tassert('E2 config khong con boss none', isset($cfgW['boss_config']['element_bosses']['none']), false);
+
+// E3: spawn the gioi dung AVG(ulv) TOAN BO game1 (khong loc linhcan_id nua)
+$db->exec("DELETE FROM linhcan_boss WHERE status = 'active'"); // local harness — bao cao chu neu co boss dang chieu
+$w = \player\linhcan_boss_spawn($db);
+$avgAll = max(1, intval($db->query("SELECT AVG(ulv) FROM game1")->fetchColumn()));
+tassert('E3 level = avg ulv moi nguoi', intval($w['level']), $avgAll);
+tassert('E3 hp cong thuc cu giu nguyen', intval($w['hp']), 5000 + 500 * $avgAll);
+
+// E4: drop THAT vao playerdaoju
+$playerW = \player\getplayer($TESTSID, $db);
+$db->exec("DELETE FROM playerdaoju WHERE sid = '$TESTSID' AND djid IN (31, 32, 33, 34, 35, 36, 37)");
+$db->exec("UPDATE game1 SET uyxb = 0 WHERE sid = '$TESTSID'");
+\player\player_cache_clear($TESTSID);
+$d = \player\linhcan_boss_drops($playerW, array('element' => 'hoa'), $db);
+$lt = intval($db->query("SELECT uyxb FROM game1 WHERE sid = '$TESTSID'")->fetchColumn());
+tassert('E4 LT roi 100..500', ($lt >= 100 && $lt <= 500), true);
+$daHoa = intval($db->query("SELECT djsum FROM playerdaoju WHERE sid = '$TESTSID' AND djid = 32")->fetchColumn());
+tassert('E4 da hoa roi 2..4', ($daHoa >= 2 && $daHoa <= 4), true);
+$daHanhKhac = intval($db->query("SELECT COUNT(*) FROM playerdaoju WHERE sid = '$TESTSID' AND djid IN (33,34,35,36)")->fetchColumn());
+tassert('E4 chi roi da dung hanh boss', $daHanhKhac, 0);
+tassert('E4 binh anh roi 1..2', ($d['binh_anh'] >= 1 && $d['binh_anh'] <= 2), true);
+$daBA = intval($db->query("SELECT djsum FROM playerdaoju WHERE sid = '$TESTSID' AND djid = 37")->fetchColumn());
+tassert('E4 binh anh co trong inventory', ($daBA === intval($d['binh_anh'])), true);
+tassert('E4 html co chu', strpos($d['html'], 'Linh') !== false, true);
+
+$db->exec("DELETE FROM linhcan_boss WHERE id = " . intval($w['id'])); // don boss gia vua spawn
 // Cleanup
 $db->exec("DELETE FROM linhcan_boss_personal WHERE sid = '$TESTSID'");
 $db->exec("DELETE FROM player_linhcan_break_log WHERE sid = '$TESTSID'");
-$db->exec("DELETE FROM playerdaoju WHERE sid = '$TESTSID' AND djid IN (34, 35, 37)");
+$db->exec("DELETE FROM playerdaoju WHERE sid = '$TESTSID' AND djid IN (32, 34, 35, 37)");
 $db->exec("DELETE FROM player_linhcan_node WHERE sid = '$TESTSID'");
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

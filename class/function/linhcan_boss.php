@@ -32,17 +32,20 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_config_all')) {
 }
 
 /**
- * Lấy element phổ biến nhất từ player online có linh căn.
+ * Boss thế giới chọn hành ngẫu nhiên trong 5 hành config.
+ * KHÔNG đọc game1.linhcan_id nữa (cột đã ngừng cập nhật — lỗ hỏng 1.4).
  */
-if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_get_dominant_element')) {
-    function linhcan_boss_get_dominant_element($dblj){
-        // Lấy element phổ biến nhất từ player có linh căn
-        $stmt = $dblj->query("SELECT linhcan_id, COUNT(*) as cnt FROM game1 WHERE linhcan_id > 0 GROUP BY linhcan_id ORDER BY cnt DESC LIMIT 1");
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        if (!$row) return 'none';
-
-        $lcConfig = linhcan_config_get(intval($row['linhcan_id']));
-        return isset($lcConfig['element']) ? $lcConfig['element'] : 'none';
+if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_world_element')) {
+    function linhcan_boss_world_element($dblj){
+        $cfg = linhcan_boss_config_all();
+        $eb = isset($cfg['boss_config']['element_bosses']) ? $cfg['boss_config']['element_bosses'] : array();
+        $keys = array();
+        foreach ($eb as $k => $v) {
+            if ($k === 'none') continue;
+            $keys[] = $k;
+        }
+        if (!$keys) return 'kim';
+        return $keys[array_rand($keys)];
     }
 }
 
@@ -88,18 +91,18 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_spawn')) {
         $levelScaling = isset($bossConfig['level_scaling']) ? $bossConfig['level_scaling'] : array();
         $elementBosses = isset($bossConfig['element_bosses']) ? $bossConfig['element_bosses'] : array();
 
-        // Lấy element phổ biến
-        $element = linhcan_boss_get_dominant_element($dblj);
+        // Chọn hành ngẫu nhiên trong 5 hành config (không đọc linhcan_id nữa)
+        $element = linhcan_boss_world_element($dblj);
 
         // Lấy tên boss theo element
         $bossInfo = isset($elementBosses[$element]) ? $elementBosses[$element] : array(
-            'name' => 'Hư Không Ma Vương',
-            'icon' => '🌀',
+            'name' => 'Linh Thú Lạc',
+            'icon' => '👹',
             'color' => '#9C27B0'
         );
 
-        // Tính level = avg level của players có linh căn
-        $stmt = $dblj->query("SELECT AVG(ulv) as avg_lv FROM game1 WHERE linhcan_id > 0");
+        // Tinh level = avg ulv cua MOI nhan vat (cot linhcan_id da nguoi)
+        $stmt = $dblj->query("SELECT AVG(ulv) as avg_lv FROM game1");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
         $avgLevel = $row ? max(1, intval($row['avg_lv'])) : 1;
 
@@ -162,7 +165,8 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_calc_damage')) {
 }
 
 /**
- * Xử lý boss linh căn bị tiêu diệt - Rơi xuống phần thưởng.
+ * Boss the gioi bi giot: LT + da hanh cua boss + Binh Anh Tinh Thach, cong THAT
+ * vao playerdaoju (adddj), khong con "roi ao" nhu ban cu.
  */
 if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_drops')) {
     function linhcan_boss_drops($player, $bossRow, $dblj){
@@ -170,38 +174,31 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_drops')) {
         $bossConfig = isset($config['boss_config']) ? $config['boss_config'] : array();
         $drops = isset($bossConfig['drops']) ? $bossConfig['drops'] : array();
 
-        $linhThachMin = intval(isset($drops['linh_thach_min']) ? $drops['linh_thach_min'] : 100);
-        $linhThachMax = intval(isset($drops['linh_thach_max']) ? $drops['linh_thach_max'] : 500);
-        $daCount = intval(isset($drops['da_ngu_hanh_count']) ? $drops['da_ngu_hanh_count'] : 3);
-        $rareChance = floatval(isset($drops['rare_drop_chance']) ? $drops['rare_drop_chance'] : 0.1);
+        $lt = mt_rand(intval($drops['linh_thach_min']), intval($drops['linh_thach_max']));
+        $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ? WHERE sid = ?")
+             ->execute(array($lt, $player->sid));
 
-        $linhThach = mt_rand($linhThachMin, $linhThachMax);
+        $html = "<font color='#FFD700'>💰 {$lt} Linh thạch</font><br/>";
 
-        // Cộng linh thạch
-        $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ? WHERE sid = ?");
-        $stmt->execute(array($linhThach, $player->sid));
-
-        $dropsHtml = "<font color='#FFD700'>💰 {$linhThach} Linh thạch</font><br/>";
-
-        // Random đá ngũ hành theo element boss
-        $bossElement = isset($bossRow['element']) ? $bossRow['element'] : 'none';
-        $daConfig = linhcan_upgrade_config_all();
-        $daIds = isset($daConfig['da_ngu_hanh_ids']) ? $daConfig['da_ngu_hanh_ids'] : array();
-        $daId = isset($daIds[$bossElement]) ? intval($daIds[$bossElement]) : 1;
-
-        // TODO: Thêm đá ngũ hành vào inventory (Task 5 — dung linhcan_give_stone)
-        $dropsHtml .= "<font color='#4CAF50'>🪨 {$daCount} Đá {$bossElement}</font><br/>";
-
-        // Random rare drop
-        if (mt_rand(1, 1000) <= intval($rareChance * 1000)) {
-            $dropsHtml .= "<font color='#E91E63'>✨ Vật phẩm hiếm rơi ra!</font><br/>";
+        $bossElement = isset($bossRow['element']) ? $bossRow['element'] : '';
+        $stoneId = linhcan_da_id($bossElement);
+        $stone = 0;
+        if ($stoneId > 0) {
+            $stone = mt_rand(intval($drops['tinh_thach_min']), intval($drops['tinh_thach_max']));
+            linhcan_give_stone($player->sid, $stoneId, $stone, $dblj);
+            $html .= "<font color='#4CAF50'>🪨 {$stone} " . linhcan_element_name($bossElement) . " Tinh Thạch</font><br/>";
         }
 
-        return array(
-            'linhthach' => $linhThach,
-            'da_ngu_hanh' => $daCount,
-            'html' => $dropsHtml
-        );
+        $binhAnh = mt_rand(intval($drops['binh_anh_min']), intval($drops['binh_anh_max']));
+        linhcan_give_stone($player->sid, linhcan_binh_anh_id(), $binhAnh, $dblj);
+        $html .= "<font color='#E91E63'>✨ {$binhAnh} Bình Anh Tinh Thạch</font><br/>";
+
+        if (function_exists(__NAMESPACE__ . '\\linhcan_quest_update')) {
+            linhcan_quest_update($player->sid, 'kill_boss', 1, $dblj); // hook Task 6
+        }
+
+        return array('linhthach' => $lt, 'stone_id' => $stoneId, 'stone' => $stone,
+                     'binh_anh' => $binhAnh, 'html' => $html);
     }
 }
 

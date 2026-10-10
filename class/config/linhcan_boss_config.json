@@ -14,11 +14,11 @@
       "def_per_level": 10
     },
     "drops": {
-      "linh_thach_min": 100,
-      "linh_thach_max": 500,
-      "da_ngu_hanh_count": 3,
-      "rare_drop_chance": 0.1
+      "binh_anh_min": 1, "binh_anh_max": 2,
+      "tinh_thach_min": 2, "tinh_thach_max": 4,
+      "linh_thach_min": 100, "linh_thach_max": 500
     },
+    "world_element_pick": "random_of_5",
     "personal_boss": {
       "hp_base": 8000, "hp_per_lv": 220,
       "atk_base": 260, "atk_per_lv": 7,
@@ -56,12 +56,6 @@
         "icon": "🏔",
         "color": "#8B4513",
         "description": "Boss hệ Thổ,HP cực cao, phòng ngự vững"
-      },
-      "none": {
-        "name": "Hư Không Ma Vương",
-        "icon": "🌀",
-        "color": "#9C27B0",
-        "description": "Boss hệ Không, cân bằng mọi stats"
       }
     }
   }
