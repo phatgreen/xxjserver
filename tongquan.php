@@ -399,6 +399,49 @@ tq_sec('nuoi-duong', 'huyet-mach', '🩸', 'Huyết mạch', count($rows) + coun
     tq_searchable('tbl-hm', array('Huyết mạch', 'Hành', 'Phẩm', 'Trọng số', 'Chỉ số nền', 'Mô tả'), $rows, '<b>Danh sách:</b>')
     . tq_searchable('tbl-hma', array('Giai đoạn', 'Điều kiện', 'Thưởng chỉ số', 'Thưởng hành', 'Bị động'), $rows2, '<b>Thức tỉnh:</b>')
     . tq_searchable('tbl-hmt', array('Form biến hóa', 'Dòng máu', 'Hiệu quả', 'Tiêu hao', 'Thời lượng', 'Hồi'), $rows3, '<b>Biến hóa:</b>'));
+$hmV = tq_cfg('huyetmach_vessel_config');
+$rowsV = array();
+if (is_array($hmV)) {
+    $labels = (array)(isset($hmV['stat_labels']) ? $hmV['stat_labels'] : array());
+    $caps   = (array)(isset($hmV['stat_cap']) ? $hmV['stat_cap'] : array());
+    foreach ((array)(isset($hmV['vessels']) ? $hmV['vessels'] : array()) as $e) {
+        $stat = $e['stat'];
+        $cap  = isset($caps[$stat]) ? ' (trần ' . tq_n($caps[$stat]) . '%)' : '';
+        $rowsV[] = array(tq_show($e['name']), tq_show($e['short']),
+            tq_show(isset($labels[$stat]) ? $labels[$stat] : tq_h($stat)) . $cap,
+            '+' . tq_n($e['per_lv']) . '/cấp', tq_show($e['group']), tq_show($e['slot']),
+            tq_cut($e['desc'], 90));
+    }
+    $rowsT4 = array();
+    foreach ((array)(isset($hmV['tiers']) ? $hmV['tiers'] : array()) as $e) {
+        $mat = ($e['material_id'] > 0 && isset($hmV['material_names'][$e['material_id']]))
+            ? tq_show($hmV['material_names'][$e['material_id']]) . ' x' . tq_n($e['material_amount']) : '—';
+        $rowsT4[] = array(tq_dot($e['color']) . $e['icon'] . ' ' . tq_show($e['name']),
+            '+' . tq_n($e['lv_cap']) . '/mạch', tq_n($e['total_lv_require']),
+            tq_realm_req($e['realm_min_level']), $mat, tq_n($e['linh_thach_cost']),
+            tq_n($e['boss_require']) . ' boss mạch huyết', tq_cut($e['desc'], 70));
+    }
+    $rowsM4 = array();
+    foreach ((array)(isset($hmV['milestones']) ? $hmV['milestones'] : array()) as $e) {
+        $rowsM4[] = array(tq_show($e['name']), tq_n($e['total_lv']), '+' . tq_n($e['bonus_percent']) . '%');
+    }
+    $rv = $hmV['refine'];
+    tq_sec('nuoi-duong', 'mach-huyet', '❤', 'Mạch Huyết (8 mạch luyện được)', count($rowsV) + count($rowsT4) + count($rowsM4),
+        'Lớp chỉ số thứ 4 của nhân vật: 8 mạch (4 mạch dương cộng chỉ số sẵn có, 4 mạch âm can thiệp phần trăm trực tiếp lúc đánh nhau).',
+        array('UI: game/huyetmach.php (cmd=huyetmach)', 'Boss riêng cho từng người chơi: bảng huyetmach_boss',
+            'Chỉ số âm: Né Tránh / Xuyên Giảm / Giảm Vật Lý / Vận May',
+            'Xuyên Giảm KHÔNG áp dụng khi PvP (đo pen 12% +9,32%, pen 15% +29,59%, ngưỡng 8%)',
+            'Số liệu: player_huyetmach_vessel (sid, vessel_id, level)'),
+        tq_searchable('tbl-mh', array('Mạch', 'Viết tắt', 'Chỉ số', 'Mỗi cấp', 'Nhóm', 'Vị trí ảnh', 'Mô tả'), $rowsV,
+            '<b>Luyện mạch:</b> mỗi cấp +1 tốn ' . tq_n($rv['material_base']) . ' Huyết Thạch (cứ ' . tq_n($rv['material_per_lv'])
+            . ' cấp tăng thêm 1) + ' . tq_n($rv['linh_thach_base']) . ' Linh Thạch (cộng ' . tq_n($rv['linh_thach_per_lv']) . '/cấp).')
+        . tq_searchable('tbl-mht', array('Thức tỉnh', 'Trần mỗi mạch', 'Cần tổng cấp', 'Cần cảnh giới', 'Vật liệu', 'Linh Thạch', 'Boss', 'Mô tả'), $rowsT4, '<b>5 bậc thức tỉnh:</b>')
+        . tq_searchable('tbl-mhm', array('Mốc', 'Tổng cấp 8 mạch', 'Nhân chỉ số'), $rowsM4, '<b>Mốc tổng cấp:</b>'));
+} else {
+    tq_sec('nuoi-duong', 'mach-huyet', '❤', 'Mạch Huyết (chưa cài đặt)', 0,
+        'class/config/huyetmach_vessel_config.json chưa tồn tại — Task 1 chưa chạy.',
+        array('Chưa deploy'), '');
+}
 
 $petAllC = tq_cfg('pet_config');
 $rows = array();
