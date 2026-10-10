@@ -558,7 +558,8 @@ if (!empty($player->huyetmach_name)) {
     }
 
     $hmStats = $player->huyetmach_stats;
-    $hmStatNames = array('atk'=>'Công','hp'=>'Huyết','crit'=>'Bạo','lifesteal'=>'Hút máu');
+    // 4 chi so goc cua huyet mach (nhan theo pham chat)
+    $hmStatNames = array('atk'=>'Công Kích','hp'=>'Khí Huyết','crit'=>'Bạo Kích','lifesteal'=>'Hút Máu');
     $hmDetails = '';
     foreach ($hmStats as $k => $v) {
         if ($v != 0 && isset($hmStatNames[$k])) {
@@ -567,16 +568,32 @@ if (!empty($player->huyetmach_name)) {
     }
     if ($player->huyetmach_element_dmg > 0) {
         $hmElName = function_exists('player\\huyetmach_element_name') ? player\huyetmach_element_name($player->huyetmach_element) : $player->huyetmach_element;
-        $hmDetails .= "<div class='profile-stat'><span>Element DMG ({$hmElName})</span><strong>+" . $player->huyetmach_element_dmg . "%</strong></div>";
+        $hmDetails .= "<div class='profile-stat'><span>Tổn hại {$hmElName}</span><strong>+" . $player->huyetmach_element_dmg . "%</strong></div>";
     }
     if ($player->huyetmach_passive_element > 0) {
-        $hmDetails .= "<div class='profile-stat'><span>Element Bonus</span><strong>+" . $player->huyetmach_passive_element . "%</strong></div>";
+        $hmDetails .= "<div class='profile-stat'><span>Bổ sung nguyên tố</span><strong>+" . $player->huyetmach_passive_element . "%</strong></div>";
     }
     if ($player->huyetmach_passive_crit > 0) {
-        $hmDetails .= "<div class='profile-stat'><span>Crit Rate</span><strong>+" . $player->huyetmach_passive_crit . "%</strong></div>";
+        $hmDetails .= "<div class='profile-stat'><span>Tỷ lệ bạo kích</span><strong>+" . $player->huyetmach_passive_crit . "%</strong></div>";
     }
     if ($player->huyetmach_passive_exp > 0) {
-        $hmDetails .= "<div class='profile-stat'><span>EXP Bonus</span><strong>+" . $player->huyetmach_passive_exp . "%</strong></div>";
+        $hmDetails .= "<div class='profile-stat'><span>EXP thưởng</span><strong>+" . $player->huyetmach_passive_exp . "%</strong></div>";
+    }
+
+    // 8 chi so MẠCH (cộng thẳng, milestone đa nhân trong huyetmach_vessel_bonuses)
+    $hmVes = (isset($player->huyetmach_vessel) && is_array($player->huyetmach_vessel)) ? $player->huyetmach_vessel : array();
+    if (!empty($hmVes) && function_exists('player\\huyetmach_vessel_stat_label')) {
+        foreach (array('atk','hp','crit','lifesteal','dodge','pen','reduce','luck') as $vk) {
+            $vv = isset($hmVes[$vk]) ? floatval($hmVes[$vk]) : 0;
+            if ($vv == 0) continue;
+            $vl = player\huyetmach_vessel_stat_label($vk);
+            $vd = in_array($vk, array('atk','hp')) ? number_format($vv) : $vv;
+            $hmDetails .= "<div class='profile-stat'><span>Mạch {$vl}</span><strong>+{$vd}</strong></div>";
+        }
+        $hmVesTotal = isset($hmVes['total_lv']) ? intval($hmVes['total_lv']) : 0;
+        if ($hmVesTotal > 0) {
+            $hmDetails .= "<div class='profile-stat'><span>Tổng cấp mạch</span><strong>{$hmVesTotal}</strong></div>";
+        }
     }
 
     $html .= <<<HTML

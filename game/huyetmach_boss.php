@@ -43,7 +43,7 @@ if ($hmCanFight && intval($player->uhp) <= 0) {
         $st = \player\huyetmach_boss_status($sid, $dblj);
     } else {
         if (\player\huyetmach_boss_vessel_dodge($hmVb)) {
-            $battleLog .= "<font color='#6ee7b7'>Mạch Né Tranh — ngươi tránh được đòn của " . htmlspecialchars($boss['name'], ENT_QUOTES, 'UTF-8') . "!</font><br/>";
+            $battleLog .= "<font color='#6ee7b7'>Mạch Né Tránh — ngươi tránh được đòn của " . htmlspecialchars($boss['name'], ENT_QUOTES, 'UTF-8') . "!</font><br/>";
         } else {
             $bDmg = max(1, intval(round(intval($boss['atk']) - intval($player->ufy) * 0.75)));
             $bDmg = \player\huyetmach_boss_vessel_reduce($hmVb, $bDmg);

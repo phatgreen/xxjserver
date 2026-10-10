@@ -86,12 +86,12 @@
     "4": {"id": 4, "name": "Đới Mạch", "short": "Đới", "stat": "lifesteal", "per_lv": 0.4, "slot": "waist", "group": "duong", "desc": "Đới mạch buộc ngang thắt lưng, kéo huyết đối phương. Mỗi cấp tăng Hút Máu."},
     "5": {"id": 5, "name": "Dương Duy Mạch", "short": "Duy Trái", "stat": "reduce", "per_lv": 0.25, "slot": "arm-left", "group": "am", "desc": "Liên kết dương khí toàn thân, giáp ngoài cứng hơn. Mỗi cấp tăng Giảm Vật Lý."},
     "6": {"id": 6, "name": "Âm Duy Mạch", "short": "Duy Phải", "stat": "pen", "per_lv": 0.25, "slot": "arm-right", "group": "am", "desc": "Liên kết âm khí, mũi nhọn thấm sâu. Mỗi cấp tăng Xuyên Giảm (xuyên Phong Thu đối phương)."},
-    "7": {"id": 7, "name": "Âm Kiều Mạch", "short": "Kiều Trái", "stat": "dodge", "per_lv": 0.25, "slot": "leg-left", "group": "am", "desc": "Kiều mạch chủ sự nhanh nhẹn, né trong một nhịp. Mỗi cấp tăng Né Tranh."},
+    "7": {"id": 7, "name": "Âm Kiều Mạch", "short": "Kiều Trái", "stat": "dodge", "per_lv": 0.25, "slot": "leg-left", "group": "am", "desc": "Kiều mạch chủ sự nhanh nhẹn, né trong một nhịp. Mỗi cấp tăng Né Tránh."},
     "8": {"id": 8, "name": "Dương Kiều Mạch", "short": "Kiều Phải", "stat": "luck", "per_lv": 0.25, "slot": "leg-right", "group": "am", "desc": "Dương khí hanh thông, của ngon rơi xuống. Mỗi cấp tăng Vận May."}
   },
   "stat_labels": {
     "atk": "Công Kích", "hp": "Khí Huyết", "crit": "Bạo Kích", "lifesteal": "Hút Máu",
-    "dodge": "Né Tranh", "pen": "Xuyên Giảm", "reduce": "Giảm Vật Lý", "luck": "Vận May"
+    "dodge": "Né Tránh", "pen": "Xuyên Giảm", "reduce": "Giảm Vật Lý", "luck": "Vận May"
   },
   "stat_cap": {"dodge": 15, "pen": 15, "reduce": 15, "luck": 15},
   "tiers": {
@@ -2135,7 +2135,7 @@ if ($hmCanFight && intval($player->uhp) <= 0) {
         $st = \player\huyetmach_boss_status($sid, $dblj);
     } else {
         if (\player\huyetmach_boss_vessel_dodge($hmVb)) {
-            $battleLog .= "<font color='#6ee7b7'>Mạch Né Tranh — ngươi tránh được đòn của " . htmlspecialchars($boss['name'], ENT_QUOTES, 'UTF-8') . "!</font><br/>";
+            $battleLog .= "<font color='#6ee7b7'>Mạch Né Tránh — ngươi tránh được đòn của " . htmlspecialchars($boss['name'], ENT_QUOTES, 'UTF-8') . "!</font><br/>";
         } else {
             $bDmg = max(1, intval(round(intval($boss['atk']) - intval($player->ufy) * 0.75)));
             $bDmg = \player\huyetmach_boss_vessel_reduce($hmVb, $bDmg);
@@ -2789,7 +2789,7 @@ git commit -m "feat(huyetmach): 9-step bloodline quality upgrade + upgrade scree
 
 > **VI SAO TASK NAY TON TAI RIENG**: Task 7 clone `.nb-fx0..fx5` → `.hm-fx0..fx4` bang `sed`, nghĩa là thang hiệu ứng chưa từng được đo trên màn mới. Ba loi ma sed khong the tu bat: (1) `.nb-fx0{--nb-dur:0s}` — 0s KHONG tat duoc animation trong Chrome (landmine `docs/UI_THECHAT.md` §12), phai co rule `animation:none` tuong ung; (2) rule `.nb-fx5`/`.nb-t5` bi xoa o Task 7 co the de lai thuoc bien `--t-glow` cua bac 5 trong ray 5 o; (3) `zhuangtai.php` van chi in 4 chi so cu + 4 nhan Anh — 8 mach moi vo hình tren trang tong hop.
 
-- [ ] **Step 1: Doc lai khoi `.hm-fx*` sau clone**
+- [x] **Step 1: Doc lai khoi `.hm-fx*` sau clone**
 
 ```bash
 grep -n "^.hm-fx[0-4]{\|^.hm-t[0-4]{\|^.hm-fx0 " css/mystyle.css
@@ -2807,7 +2807,7 @@ Ky vong (gia tri clone tu `.nb-*`, doi ten bien):
 | fx3 (Chân Thân) | 5.5s | .13 | 14px | 3.4s |
 | fx4 (Viên Mãn) | 3.6s | .17 | 19px | 2.8s |
 
-- [ ] **Step 2: Sua cho fx0 that su "tinh ma van thay"** — neu `--hm-dur:0s` clone sang ma khong co `animation:none` cho element cua `.hm-*`, them khoi sau (dat CUI NGAY duoi `.hm-fx4`, truoc `@media (prefers-reduced-motion)`):
+- [x] **Step 2: Sua cho fx0 that su "tinh ma van thay"** — neu `--hm-dur:0s` clone sang ma khong co `animation:none` cho element cua `.hm-*`, them khoi sau (dat CUI NGAY duoi `.hm-fx4`, truoc `@media (prefers-reduced-motion)`):
 
 ```css
 /* fx0: --hm-dur:0s KHONG tat duoc animation (Chrome git khung 0%), phai viet animation:none.
@@ -2820,7 +2820,7 @@ Ky vong (gia tri clone tu `.nb-*`, doi ten bien):
 
 > Ten element phai kiem tra bang `grep -o "\.hm-[a-z-]*" css/mystyle.css | sort -u` truoc khi paste — Task 7 clone tu `.nb-*` nen `hm-aura/hm-sweep/hm-tier/hm-ms-fill/hm-gem-disc/hm-badge` deu ton tai; bat ki ten nao khong co trong file la sed da doi khac, dung them rule vo nghia.
 
-- [ ] **Step 3: Harness do thang fx (Chrome CLI, KHONG dung browser-use MCP)**
+- [x] **Step 3: Harness do thang fx (Chrome CLI, KHONG dung browser-use MCP)**
 
 Tao `E:/window/Temp/_hmfx.html`: khung iframe 390px tro toi `game.php?cmd=huyetmach` ( encode sid E2E), moi lan doi `huyetmach_awaken_stage` 0..4 roi do `getComputedStyle`:
 
@@ -2870,7 +2870,7 @@ done
 
 Ky vong: `hm-fx0 → hm-fx4` xuat hien dung theo stage; `--hm-aura` va `--hm-glow` TANG DON DIEU theo bang Step 1; chieu cao `.hm-stage` KHONG doi giua 5 stage (hieu ung 0px geometry); `.hm-btn-refine` co `--hm-btn-dur` giam dan.
 
-- [ ] **Step 4: Chup bang chung hinh anh** — 5 bac, moi bac 1 anh, luan ten theo stage:
+- [x] **Step 4: Chup bang chung hinh anh** — 5 bac, moi bac 1 anh, luan ten theo stage:
 
 ```bash
 mkdir -p docs/img/huyetmach
@@ -2883,7 +2883,7 @@ done
 
 Sau do DUNG GHEP Anh (le `verify-visually-not-just-by-metrics`: so do computed style khong bat duoc loi thi giac): dung `python`/PIL dat 5 anh canh nhau thanh `docs/img/huyetmach/fx-ladder.png`, mo bang `start docs/img/huyetmach/fx-ladder.png` va NHIN: bac 0 van phai co quang mong quanh huyet mach (khong phai man hinh tran), bac 4 phai ro hon bac 0, khong co chu nao bien mat vi `color:transparent` ma quen `-webkit-text-fill-color`.
 
-- [ ] **Step 5: Kiem `prefers-reduced-motion`** — chay lai Step 3 them co quan `--force-prefers-reduced-motion`:
+- [x] **Step 5: Kiem `prefers-reduced-motion`** — chay lai Step 3 them co quan `--force-prefers-reduced-motion`:
 
 ```bash
 "/c/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --disable-gpu \
@@ -2899,7 +2899,7 @@ Ky vong: `hm-fx4` van cho `--hm-dur:3.6s` (bien khong doi) nhung `animationName`
 
 > **DAO NGUOC CO TREN**: `.hm-wrap.is-dao .hm-badge` (ruoi Dao Phẩm, Task 7 Step 4.4) khong thuoc `.hm-fx*` — no theo PHẨM CHẤT. Luc kiem reduced-motion phai dat `huyetmach_quality=10` (khong phai 1) thi moi thay chu cai ruoi; dung quen, neu khong se bao kien "khong chay" gia.
 
-- [ ] **Step 6: Trang Nhân Vật phai noi du 8 mach** — `game/zhuangtai.php`, trong khoi `// ===== HUYẾT MẠCH =====` (dong 536→590):
+- [x] **Step 6: Trang Nhân Vật phai noi du 8 mach** — `game/zhuangtai.php`, trong khoi `// ===== HUYẾT MẠCH =====` (dong 536→590):
 
 Thay `foreach ($hmStats as $k => $v)` + 4 dong `Element DMG / Element Bonus / Crit Rate / EXP Bonus` bang:
 
@@ -2946,7 +2946,7 @@ Thay `foreach ($hmStats as $k => $v)` + 4 dong `Element DMG / Element Bonus / Cr
 
 > `huyetmach_stats` chi la 4 chi so goc; mach nam o `$hmB['vessel']` (Task 3). Nen Step 6 PHAI di kem Step 7 (gan `huyetmach_vessel` len `$player`), neu khong doan tren luon rong.
 
-- [ ] **Step 7: Lo `vessel` ra nhan vat** — `class/player.php`, ngay sau dong `$player->huyetmach_stats = $hmB['stats'];` (dong 823):
+- [x] **Step 7: Lo `vessel` ra nhan vat** — `class/player.php`, ngay sau dong `$player->huyetmach_stats = $hmB['stats'];` (dong 823):
 
 ```php
         $player->huyetmach_vessel = isset($hmB['vessel']) ? $hmB['vessel'] : array();
@@ -2954,7 +2954,7 @@ Thay `foreach ($hmStats as $k => $v)` + 4 dong `Element DMG / Element Bonus / Cr
 
 va trong khoi gia tri mac dinh (dong 807-811) them `$player->huyetmach_vessel = array();`. Class `player` khai bao `var $huyetmach_stats;` o dong 146 → them `var $huyetmach_vessel;` canh do (le cua repo: `var` khai bao tường minh, thieu la ` Undefined property`).
 
-- [ ] **Step 8: Quet nut trang san `.main button` trong 3 man Huyết Mach**
+- [x] **Step 8: Quet nut trang san `.main button` trong 3 man Huyết Mach**
 
 ```bash
 grep -n "<button" game/huyetmach.php game/huyetmach_transform.php game/huyetmach_upgrade.php
@@ -2963,7 +2963,7 @@ grep -n "class=\"hm-btn" game/huyetmach.php game/huyetmach_transform.php game/hu
 
 Ky vong: moi `<button>` deu mang `hm-btn` + mot lop `.main .hm-btn-*` (Task 7 Step 4.8). Nut Quay lai o man transform PHAI la `<a class="hm-btn">` (link), khong phai `<button>`. Do bang harness Step 3: `getComputedStyle(btn).backgroundColor` khong duoc la `rgb(255, 255, 255)`; `paddingTop` = 11px.
 
-- [ ] **Step 9: Do 3 con so tren man transform + upgrade (mobile 390px)**
+- [x] **Step 9: Do 3 con so tren man transform + upgrade (mobile 390px)**
 
 | Phần tử | Kỳ vọng |
 |---|---|
@@ -2971,7 +2971,7 @@ Ky vong: moi `<button>` deu mang `hm-btn` + mot lop `.main .hm-btn-*` (Task 7 St
 | `.hmq-card` (man upgrade) | width = noi dung card (624px desktop); `height` q1 == q10 |
 | `.hm-empty` (man upgrade, `huyetmach_id=0`) | xuat hien, khong co `Undefined variable`/`Notice` trong nguon trang |
 
-- [ ] **Step 10: Chay lai toan bo test + lint**
+- [x] **Step 10: Chay lai toan bo test + lint**
 
 ```bash
 PHP=D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe
@@ -2984,10 +2984,45 @@ grep -nP "[\\\\x{4e00}-\\\\x{9fff}]" game/zhuangtai.php class/player.php | head 
 
 Ky vong: 3 file test `ALL PASS`. Neu `test_huyetmach_vessel.php` FAIL o phan B vi row `game1` cua `$TESTSID` bi Step 3 xoa, chay lai Task 3 Step truoc khi ket luan — do la le cua harness, khong phai bug.
 
+**KET QA THUC TE — Task 10** (do ngay 2026-10-10, harness iframe 390px, so fx-on vs fx-off)
+
+| stage | class | --hm-dur | --hm-aura | --hm-glow | --hm-act-dur | --t-glow | mau bac |
+|---|---|---|---|---|---|---|---|
+| 0 | `hm-fx0` | 0s | .04 | 4px | 6s | 4px | `#6b7280` |
+| 1 | `hm-fx1` | 10s | .06 | 7px | 5s | 8px | `#4caf50` |
+| 2 | `hm-fx2` | 8s | .09 | 10px | 4.2s | 11px | `#ff9800` |
+| 3 | `hm-fx3` | 5.5s | .13 | 14px | 3.4s | 15px | `#f44336` |
+| 4 | `hm-fx4` | 3.6s | .17 | 19px | 2.8s | 19px | `#ffd700` |
+
+- **DELTA (cao stage / wrap / page) = 0 o ca 5 bac** → hieu ung chi them anh sang, khong them hinh dang. Dat tieu chi Step 4.
+- Shine nut: `animation-name: hmShine`, duration dung bac 6s/5s/4.2s/3.4s/2.8s; `disabled=false`; nen `linear-gradient(135deg, rgb(249,115,22), ...)` → KHONG phai trang he thong, Step 8 dat.
+- fx0 "tinh ma van thay": `.hm-sweep` `display:none`, `.hm-aura` `animation:none` nhung `opacity=.04` tinh; `.hm-badge` `box-shadow:0 0 4px` tinh.
+- Reduced motion (`--force-prefers-reduced-motion`): moi `animationName` ve `none` hoac `display:none` (sweep, `.hm-ms-fill:after`, shine); `opacity` aura van == bien fx (.04…17); bien fx KHONG doi; DELTA=0. Step 5 dat.
+- Step 6 (trang Nhan Vat): **16** dong `.profile-stat`, trong do **8** dong `Mach …` + `Tong cap mach`; nhan Anh con sot = 0. Anh `docs/img/huyetmach/nhanvat-8mach.png` crop theo toa do do duoc (`top=1606, height=766`, `zoom=1`).
+- Step 9: 5 trang `warn=0`. `.hm-act-break` (man transform) = gradient `rgb(124,58,237)→rgb(219,39,119)`, `color rgb(255,255,255)`, `paddingTop 11px`, `borderRadius 12px`; `.hm-act-ghost` `rgba(255,255,255,0.08)` / `rgb(203,213,225)`; `.hmq-card` **rong 350 o moi trang thai**, cao q1=281 / q9=296 / q10=70 / `huyetmach_id=0` → 66; empty-state `"Huyet Mach chua khai mo — dung To The Dan de nhan huyet mach."`.
+- Step 10: lint `game/zhuangtai.php`, `class/player.php`, `game/huyetmach.php`, `game/huyetmach_boss.php` OK; `test_huyetmach_vessel` / `test_huyetmach_boss` / `test_huyetmach_upgrade` = **ALL PASS**; CJK = 0 trong zhuangtai / huyetmach / mystyle (player.php chi con CJK comment cua vendor).
+
+**PLAN SAI SO VOI THUC TE** (da xac minh, de Task 11/12 khong lam lai)
+
+1. Step 1/2 gia dinh `.hm-fx*` chua ton tai → **Task 7 da clone san 5 class + rule `animation:none` cho fx0**. Task 10 KHONG sua `css/mystyle.css` dong nao.
+2. Ten bien trong plan la `--hm-btn-dur`; thuc te code la **`--hm-act-dur`** (Task 7 dat ten). Bang so tri khop 100%.
+3. Step 2 goi them rule cho `.hm-btn:after` → **khong co selector do** trong CSS (nut la `.hm-act-*`); rule shine that nam o `.hm-act-refine:after,.hm-act-break:after` (dong 7356).
+4. Step 9 ky vong `height` cua `.hmq-card` **q1 == q10** → **bat kha thi ve thiet ke**: q10 la trang thai "da toi da" nen khong con form nang pham, card thap han (70px so voi 281px). Chi so dung de so sanh la **rong khong doi (= 350)** va **khong overflow**.
+5. Man `game/huyetmach_transform.php` **khong gan `hm-fxN`** (fx la cua man chinh) → do shine o do chi ra gia tri mac dinh, khong phai gia tri theo bac.
+6. `--hm-dur:0s` **KHONG** tat animation o Chrome (landmine da ghi o Task 7) → phai dua vao rule `animation:none`; Step 2 cua plan viet nhu the chi bien duration la du.
+
+**NO MOI PHAT SINH TU TASK 10** (chuyen thang vao so no Task 12)
+
+- Nhan `pen` = **"Xuyen Giam"** la thuat ngu tu che, **chua chu du an duyet** (phương án gợi ý: "Phá Giáp" / "Xuyên Thấu"). Giữ nguyên cho tới khi chủ chốt.
+- Giá trị 4 mạch % hiển thị `+0.75` / `+1.25` **không kèm đơn vị** (dung theo khoi code plan giao). CHƯA thêm "%" vì Task 11 mới chốt bản chất 0,75 là % hay điểm phẳng trong công thức chiến đấu.
+- **DA SUA trong Task 10**: typo `"Né Tranh"` → `"Né Tránh"` (thiếu dấu ngã trên a) trong `class/config/huyetmach_vessel_config.json` (`stat_labels.dodge` + `desc` mach 7), `game/huyetmach_boss.php:46`, va **7 dong trong chinh plan nay** (Task 11 nap ma nguyen van tu plan nen loi se lay lan neu khong sua tan goc).
+- **Task 11 PHAI** lay nhan qua `huyetmach_vessel_stat_label()` / `stat_labels` trong config, **khong hardcode** nhan vao chuoi battle log.
+
 - [ ] **Step 11: Commit**
 
 ```bash
-git add css/mystyle.css game/zhuangtai.php class/player.php docs/img/huyetmach
+# Task 10 KHONG doi css/mystyle.css (Step 1/2 da co san tu Task 7); anh PNG bang chung de ngoai repo theo thong le.
+git add game/zhuangtai.php class/player.php class/config/huyetmach_vessel_config.json game/huyetmach_boss.php docs/superpowers/plans/2026-10-09-huyetmach-mang-mach.md
 git commit -m "feat(huyetmach): verified fx ladder + 8 meridian stats on status screen"
 ```
 
@@ -3314,7 +3349,7 @@ Nếu `test_huyetmach_boss.php` FAIL ở `khong co mach thi khong ne`: wrapper �
     }
     if ($hmCs['dodge'] > 0 && $hmIncoming > 0 && \player\huyetmach_combat_roll_dodge($hmCs['dodge'])) {
         $hmIncoming = 0;
-        $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tranh): {$boss->bossname} vung trúng khoảng không</font><br/>";
+        $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tránh): {$boss->bossname} vung trúng khoảng không</font><br/>";
     }
     $phurt = $hmIncoming;
 ```
@@ -3364,7 +3399,7 @@ Hệ quả có chủ đích, phải ghi vào `docs/UI_HUYETMACH.md` (Task 12): v
     }
     if ($hmCs['dodge'] > 0 && $hmIncoming > 0 && \player\huyetmach_combat_roll_dodge($hmCs['dodge'])) {
         $hmIncoming = 0;
-        $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tranh): {$guaiwu->gname} vung trúng khoảng không</font><br/>";
+        $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tránh): {$guaiwu->gname} vung trúng khoảng không</font><br/>";
     }
     $phurt = $hmIncoming;
 ```
@@ -3482,7 +3517,7 @@ if ($LIVE) {
     // E.3 — quay 60 don PVE + 20 don BOSS, dem 3 chuoi thong bao mach am
     $hmMsgPen    = 'Âm Duy Mạch (Xuyên Giảm)';
     $hmMsgReduce = 'Dương Duy Mạch (Giảm Vật Lý)';
-    $hmMsgDodge  = 'Âm Kiều Mạch (Né Tranh)';
+    $hmMsgDodge  = 'Âm Kiều Mạch (Né Tránh)';
     $nPve = 60; $nBoss = 20;
     $cPen = 0; $cRed = 0; $cDodge = 0; $cShort = 0;
     $bPen = 0; $bRed = 0; $bDodge = 0; $bShort = 0;
@@ -3715,7 +3750,7 @@ if (is_array($hmV)) {
     tq_sec('nuoi-duong', 'mach-huyet', '❤', 'Mạch Huyết (8 mạch luyện được)', count($rowsV) + count($rowsT4) + count($rowsM4),
         'Lớp chỉ số thứ 4 của nhân vật: 8 mạch (4 mạch dương cộng chỉ số sẵn có, 4 mạch âm can thiệp phần trăm trực tiếp lúc đánh nhau).',
         array('UI: game/huyetmach.php (cmd=huyetmach)', 'Boss riêng cho từng người chơi: bảng huyetmach_boss',
-            'Chỉ số âm: Né Tranh / Xuyên Giảm / Giảm Vật Lý / Vận May',
+            'Chỉ số âm: Né Tránh / Xuyên Giảm / Giảm Vật Lý / Vận May',
             'Xuyên Giảm KHÔNG áp dụng khi PvP (đo mean +29,59%, ngưỡng 8%)',
             'Số liệu: player_huyetmach_vessel (sid, vessel_id, level)'),
         tq_searchable('tbl-mh', array('Mạch', 'Viết tắt', 'Chỉ số', 'Mỗi cấp', 'Nhóm', 'Vị trí ảnh', 'Mô tả'), $rowsV,

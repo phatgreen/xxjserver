@@ -145,6 +145,7 @@ class player
     var $huyetmach_color;
     var $huyetmach_icon;
     var $huyetmach_stats;
+    var $huyetmach_vessel;
     var $huyetmach_element_dmg;
     var $huyetmach_passive_element;
     var $huyetmach_passive_crit;
@@ -810,6 +811,7 @@ function getplayer($sid,$dblj){
     $player->huyetmach_color = '#9e9e9e';
     $player->huyetmach_icon = '🩸';
     $player->huyetmach_stats = array('atk' => 0, 'hp' => 0, 'crit' => 0, 'lifesteal' => 0);
+    $player->huyetmach_vessel = array();
     $player->huyetmach_element_dmg = 0;
     $player->huyetmach_passive_element = 0;
     $player->huyetmach_passive_crit = 0;
@@ -822,6 +824,7 @@ function getplayer($sid,$dblj){
         $player->huyetmach_quality = $hmB['quality'];
         $player->huyetmach_awaken_stage = $hmB['awaken_stage'];
         $player->huyetmach_stats = $hmB['stats'];
+        $player->huyetmach_vessel = isset($hmB['vessel']) ? $hmB['vessel'] : array();
         $player->huyetmach_element_dmg = $hmB['element_dmg'];
         $player->huyetmach_passive_element = $hmB['passive_element'];
         $player->huyetmach_passive_crit = $hmB['passive_crit'];
