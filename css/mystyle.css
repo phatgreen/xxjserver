@@ -7078,6 +7078,13 @@ a.nb-btn-break:link,a.nb-btn-break:visited,a.nb-btn-break:hover,a.nb-btn-break:a
 .nb-btn-refine{width:100%;background:linear-gradient(135deg,#f97316,#eab308);box-shadow:0 0 14px rgba(249,115,22,.32)}
 .nb-btn-break{width:100%;background:linear-gradient(135deg,#7c3aed,#db2777);box-shadow:0 0 14px rgba(168,85,247,.32)}
 .nb-btn[disabled],.nb-btn.is-off{opacity:.45;pointer-events:none;box-shadow:none}
+/* --- BUTTON SUBMIT: .main button (gamecss.css:122, dac tinh 0-1-1) danh thua
+   .nb-btn (0-1-0) nen phai dung selector 2 lop 0-2-0; neu khong nut submit
+   do mau TRANG cua he thong, khong con gradient cua chinh no. --- */
+.main .nb-btn{padding:11px 18px;border:0;border-radius:12px;font-size:15px;font-weight:1000;color:#fff}
+.main .nb-btn-refine{background:linear-gradient(135deg,#f97316,#eab308)}
+.main .nb-btn-break{background:linear-gradient(135deg,#7c3aed,#db2777)}
+.main .nb-btn[disabled],.main .nb-btn.is-off{opacity:.45;box-shadow:none}
 .nb-capnote{font-size:13px;color:#f87171;margin-top:10px}
 
 /* --- Dai 2: 2 cot Thuoc Tinh | Dot Pha --- */
