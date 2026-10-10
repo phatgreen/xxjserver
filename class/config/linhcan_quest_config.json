@@ -1,0 +1,47 @@
+{
+  "weekly_quests": {
+    "1": {
+      "id": 1,
+      "name": "Luyện căn cần mẫn",
+      "description": "Luyện bất kỳ linh căn hành nào 10 lần",
+      "type": "train_element",
+      "target": 10,
+      "icon": "🧘"
+    },
+    "2": {
+      "id": 2,
+      "name": "Diệt trừ yêu ma",
+      "description": "Đánh bại 10 quái vật",
+      "type": "kill_monsters",
+      "target": 10,
+      "icon": "⚔"
+    },
+    "3": {
+      "id": 3,
+      "name": "Săn boss",
+      "description": "Đánh bại 1 boss (thế giới, cá nhân hoặc boss thường)",
+      "type": "kill_boss",
+      "target": 1,
+      "icon": "👑"
+    },
+    "4": {
+      "id": 4,
+      "name": "Thu thập tinh thạch",
+      "description": "Nhận 5 đá ngũ hành / Bình Anh từ boss và nhiệm vụ",
+      "type": "receive_stone",
+      "target": 5,
+      "icon": "🪨"
+    },
+    "5": {
+      "id": 5,
+      "name": "Đột phá cảnh giới",
+      "description": "Đột phá 1 bậc linh căn",
+      "type": "break_once",
+      "target": 1,
+      "icon": "✨"
+    }
+  },
+  "total_reward_linhthach": 500,
+  "total_reward_binh_anh_min": 1,
+  "total_reward_binh_anh_max": 2
+}

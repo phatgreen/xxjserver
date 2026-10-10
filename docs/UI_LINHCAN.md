@@ -75,6 +75,29 @@ spawn theo `AVG(ulv)` toàn DB, đá chỉ rơi **đúng hành boss** (id 33/34/
 Bình Anh có mặt trong `playerdaoju` đúng số hàm trả về. **CHƯA test trong game thật** (mới có harness CLI).
 
 
+## Quest tuần — số đang chạy (Task 6, 2026-10-11)
+
+`class/config/linhcan_quest_config.json` + `class/function/linhcan_quest.php`:
+
+| # | Task | Hook thật | Mục tiêu | Nguồn increment |
+|---|---|---|---|---|
+| 1 | tu luyện ngũ hành | `train_element` | 10 | `linhcan_train()` (Task 3) |
+| 2 | đánh quái | `kill_monsters` | 10 | pve hit path |
+| 3 | giết boss thế giới | `kill_boss` | 1 | `linhcan_boss_drops()` (Task 5) |
+| 4 | nhận đá ngũ hành | `receive_stone` | 5 | `linhcan_give_stone()` (Task 2) |
+| 5 | đột phá | `break_once` | 1 | `linhcan_break()` (Task 4) |
+
+| Mục | Giá trị |
+|---|---|
+| Thưởng hoàn 5/5 | **500 Linh Thạch** (`game1.uyxb`) + **1–2 Bình Anh Tinh Thạch** (djid 37, vào `playerdaoju` THẬT qua `linhcan_give_stone`) |
+| Đã xóa | `reward_linhthach` / `reward_da_ngu_hanh` per-quest (3 quest cũ `xiulian_minutes`/`use_item`/`boss_kill` không có hook thật) |
+| Chặn nhận 2 lần | cột `completed` (KHÔNG phải progress) — `linhcan_quest_claim` chỉ cộng thưởng khi `completed = 0` |
+| Side effect cố ý | `give_stone` bên trong claim làm `receive_stone` nhích thêm — vô hại vì tuần đã `completed` |
+
+Test: `tests/test_linhcan_quest.php` F1–F7 — config 5 hook đúng tên, từng hook tang dung quest,
+`receive_stone` nhảy theo `linhcan_give_stone`, claim phụ fail, claim đủ 5/5 cap **500 LT + Binh Anh vao
+inventory that** (`playerdaoju.djsum` > 0), claim lap lai bi chan. **CHƯA test trong game thật.**
+
 ## Chưa làm / chờ chủ dự án chốt
 
 1. **(Task 1 phát hiện, Task 5 xác nhận) Cửa hàng bán Bình Anh Tinh Thạch (37) giá 100 Linh thạch, mua không giới hạn.**
@@ -106,5 +129,8 @@ Bình Anh có mặt trong `playerdaoju` đúng số hàm trả về. **CHƯA tes
 | 5 (ngoài plan) | `tongquan.php:614` đọc `$dr['da_ngu_hanh_count']` | Key bị Task 5 xóa → trang tổng quan in "Đá Ngũ Hành" số trống + Notice PHP | Viết lại mô tả theo công thức drop mới (`tinh_thach`/`binh_anh` min–max). **Ngoài danh sách File của plan** nhưng là consumer thật. `tongquan.php` **không được commit** (file chưa tracked + `:68` chứa mật khẩu DB local) → bản sửa đang nằm ở working tree |
 | 5 (ngoài plan) | `docs/LINHCAN_DEV.md:65,87,162,167` ghi typo `element_bones` + `system道具` | Code hiện tại không hề đọc key `element_bones` (grep 0 kết quả) → 3 dòng là bug report **đã lỗi thời** | Đổi thành `element_bosses`; dòng 162 ghi rõ "ĐÃ SỬA xong"; dòng 167 bỏ CJK. **Không commit** — file legacy chưa tracked, Task 12 sẽ thay |
 | — (môi trường) | `tests/test_nguhanh_market.php` chạy ra **12 FAIL** | KHÔNG phải regression: Apache phpstudy **đang tắt** (`netstat` chỉ có `:3306`; `curl http://localhost/game.php` → exit 7, `http_code=000`, size=0). 12 assert fail đều là assert đọc HTML qua `get_http()`; 2 assert "khong co loi PDO" PASS giả vì chuỗi rỗng không khớp regex | Không sửa code. Muốn chạy lại suite này phải bật Apache trong phpStudy. **Ghi chú nợ**: suite nên fail-fast khi server không reachable thay vì PASS giả |
+| 6 Step 2 | Test `tests/test_linhcan_quest.php` của plan chỉ DELETE/`UPDATE game1` rồi gọi hàm | **Không nhân vật nào tồn tại** → `adddj()` đọc `uid` từ `getplayer()` ra `null` → FATAL `Column 'uid' cannot be null` tại `class/player.php:1309` (plan giả định nhân test còn sót từ suite khác) | Thêm seed tự thân: `INSERT INTO game1 (...) VALUES (sid 990112) ON DUPLICATE KEY UPDATE ...` ngay sau PDO. Test không còn phụ thuộc suite khác |
+| 6 Step 1 | Plan ghi "per-quest reward key bị xóa — không fatal vì `game/linhcan_quest.php:117` có isset-guard" | Đúng là không crash, nhưng trang quest in **"0 Đá Ngũ Hành"** (thưởng thiệt là 1–2 Bình Anh) → panel thưởng **nói dối** | Sửa sớm 2 dòng `:117-118` + `:124` ở Task 6 (đọc `total_reward_binh_anh_min/max`) thay vì chờ Task 11 viết lại trang. `game/linhcan_quest.php` **chưa tracked** → bản sửa nằm ở working tree, commit cùng Task 11 |
+| 6 (ngoài plan) | `tongquan.php:683` dựng `$rows3` từ `reward_linhthach`/`reward_da_ngu_hanh`; `:690` header vẫn 6 cột cho data 4 cột; `:687` ghi "Linh căn tuần → Đá Ngũ Hành" | Consumer thật, không nằm trong File Structure của plan → bảng tổng quan lệch cột + thưởng sai | `$rows3` còn 4 cột (tên/mô tả/hook/mục tiêu), header khớp 4 cột, caption in `500 LT + 1-2 Bình Anh`, nhãn → "LT + Bình Anh Tinh Thạch". **Không commit** (untracked + `:68` chứa mật khẩu DB) |
 
 

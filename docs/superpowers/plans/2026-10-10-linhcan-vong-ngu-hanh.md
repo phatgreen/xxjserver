@@ -1402,7 +1402,7 @@ git commit -m "feat(linhcan): boss the gioi element random-of-5 + drop that vao 
 - Consumes: `linhcan_give_stone` (Task 2 — hook `receive_stone` tự đếm quest 4), hook đã đặt sẵn: `train_element` (Task 3 trong `linhcan_train`), `break_once` + `kill_boss` (Task 4 trong `lcboss_*`/`linhcan_break`), `kill_monsters` (`game/pve.php:352-353` ĐÃ có), `kill_boss` (`game/boss.php:342-343` ĐÃ có).
 - Produces: `linhcan_quest_claim($sid,$dblj)` → `array('ok','msg','linhthach','binh_anh')` (Task 11 render). Engine (`get_progress`/`update`/`progress_text`) GIU NGUYEN — chi doi config + claim.
 
-- [ ] **Step 1: Viết lại `class/config/linhcan_quest_config.json`** (nguyen chan; 3 quest cu `xiulian_minutes`/`use_items`/`pet_exp` KHONG CO hook bi loai het — lo ngi 1.3 "track 2/5"):
+- [x] **Step 1: Viết lại `class/config/linhcan_quest_config.json`** (nguyen chan; 3 quest cu `xiulian_minutes`/`use_items`/`pet_exp` KHONG CO hook bi loai het — lo ngi 1.3 "track 2/5"):
 
 ```json
 {
@@ -1455,7 +1455,7 @@ git commit -m "feat(linhcan): boss the gioi element random-of-5 + drop that vao 
 ```
 Ghi chu: `reward_linhthach`/`reward_da_ngu_hanh` per-quest bi xoa — trang cu `game/linhcan_quest.php` chi doc `total_reward_linhthach` (isset-guard, `:117`) nen khong fatat; trang bi viet lai o Task 11.
 
-- [ ] **Step 2: Test failing — `tests/test_linhcan_quest.php`** (nguyen van):
+- [x] **Step 2: Test failing — `tests/test_linhcan_quest.php`** (nguyen van):
 
 ```php
 <?php
@@ -1538,7 +1538,7 @@ exit($fails === 0 ? 0 : 1);
 ```
 Run → Expected FAIL F1 (config cu chua doi type) — neu Step 1 chua chay. Thu tu: Step 1 roi Step 2 moi red hop ly; neu chay Step 2 sau Step 1 thi do FAIL o F5 (binh anh chua roi that).
 
-- [ ] **Step 3: Sua `linhcan_quest_claim` trong `class/function/linhcan_quest.php`** — THAY doan `:138-156` (tu `// Tính tổng thưởng` den het return) bang:
+- [x] **Step 3: Sua `linhcan_quest_claim` trong `class/function/linhcan_quest.php`** — THAY doan `:138-156` (tu `// Tính tổng thưởng` den het return) bang:
 
 ```php
         // Tinh + cap thuong THAT (LT vao game1, Binh Anh vao playerdaoju qua give_stone)
@@ -1565,7 +1565,7 @@ Run → Expected FAIL F1 (config cu chua doi type) — neu Step 1 chua chay. Thu
 ```
 Luu y vong luon: `give_stone` trong claim lai hook `receive_stone` — nhung `completed=1` da dat TRUOC nen lan sau claim tu chan (`update` return false tai canh `if ($current['completed'])`). Thu tu trong code tren (dat completed SAU give_stone) se lam progress tuan nay tang nhe — KHONG anh huong vi cot `completed` la khoa, khong phai progress; chap nhan, ghi chu thich trong code.
 
-- [ ] **Step 4: Chay test + lint + scan**
+- [x] **Step 4: Chay test + lint + scan**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_linhcan_quest.php
@@ -1574,7 +1574,7 @@ grep -nP "[\x{4e00}-\x{9fff}\x{2018}\x{2019}\x{201C}\x{201D}\x{00a0}]" class/fun
 ```
 Expected: `ALL PASS`; `No syntax errors`; `CLEAN`.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add class/config/linhcan_quest_config.json class/function/linhcan_quest.php tests/test_linhcan_quest.php
