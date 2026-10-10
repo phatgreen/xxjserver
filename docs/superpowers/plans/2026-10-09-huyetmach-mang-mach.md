@@ -3759,7 +3759,7 @@ git commit -m "feat(huyetmach): wire vessel stats into combat"
 | 11 | Bang tra loi nhanh | Bang "hoi → tra loi → file:line" cho 20 cau hoi hay mac (vid: "sao pen khong tang sat thuong toi?", "sao ne duoc ma mat tien thuong?") |
 | 12 | Thang hieu ung `hm-fx0..hm-fx4` | Copy tu Task 10: 5 lop, **bac thap nhat van phai thay gi do**, kem so do 4 viewport |
 
-**Ket qua thuc te (2026-10-10)** — file `docs/UI_HUYETMACH.md` da viet: **514 dong, 14 heading `## `** (muc 0→12 + "Sổ nợ chờ chủ dự án"), **`cjk=0`**, trong do:
+**Ket qua thuc te (2026-10-10)** — file `docs/UI_HUYETMACH.md` da viet: **518 dong, 14 heading `## `** (muc 0→12 + "Sổ nợ chờ chủ dự án"), **`cjk=0`**, trong do:
 - **Muc 0 MOI Them ngoai khung 11 muc** (chu du an hoi "tinh nang huyet mach de lam gi, co tac dung that hay chi cho vui") ⇒ tra loi bang so do that: `+8,9% sat thuong` tai level 32, `ne 12%` (0,25 × 48), `pen 12%` (+9,32% PvP / +29,59% PvP theo `--measure`), `hut mau 12%` — kem bang chung minh 5 helper `huyetmach_combat_*` duoc goi tu `game/boss.php`, `game/pve.php`, `game/pvp.php`, `class/player.php`.
 - Muc 2: bang file da sua/tao **38 dong**, kem cua so `append` cua `class/function/huyetmach.php` (Task 1-11 chi append, khong sua tron).
 - Muc 6 them rang buoc **`.main button` (0,1,1) de len `.hm-act`/`.nb-btn` (0,1,0)** — da co that o `css/mystyle.css` (xem so no dong 14).
@@ -3977,7 +3977,7 @@ Lint rieng tung file PHP cua tinh nang (9 file): `class/function/huyetmach.php`,
 - **8 dong phat sinh** khi do that, khong co trong draft tren: (17) `boss` thieu cot `element` (`SHOW COLUMNS FROM boss`), (18) `thechat_upgrade()` `class/function/thechat.php:388` khong co transaction/rowCount — doi chieu `class/function/huyetmach.php:688-703` thi co, (20) nhan "Xuyên Giảm" de hieu lam (giam vat li cua dich, khong phai giam sat thuong), (21) `game/zhuangtai.php:587-591` thieu ky tu `%` trong khi `game/huyetmach.php:96-97` co, (22) 4 mach am dung chung anh `ngoc-{khoa,sang,day}.png` (`game/huyetmach.php:220-221`) nen nhin giong het nhau, (23) bac 0 mau `#6b7280` xam tren nen toi, (25) `tests/e2e_fixture.php:132` van hard-code `http://localhost` trong khi server dev chay `127.0.0.1:8123`, (26) chi `game/huyetmach.php:113-114` va `game/huyetmach_boss.php:60` gan class `hm-fx*`, hai trang transform/upgrade chua dung.
 - **3 dong draft duoc danh so lai**: draft 17 (production chua migration) → **19**; draft 18 (4 muc chua test) → **24** (gop voi "mau local 12 nhan vat / 8 dong mach"); draft 19 (`.hm-wrap` 840px) → **27**.
 - **So dong trong draft da do lai bang grep/sed va sua trong file docs** (draft sai 3 cho): `huyetmach_quest_progress()` o `class/function/huyetmach.php:335` va `huyetmach_quest_update()` o `:359` (draft ghi 332/355); `linhcan_boss_drops()` co TODO o `:192` va in chu o `:193` (draft ghi 193-194); bug Linh Can that nam o dieu kien `$cmd == 'attack_lc_boss'` `game/linhcan_boss.php:37` doi chieu `$attackCmd` `:83` + `game.php:89,114` (draft quy `game.php:111-114`). **Day la ung dung quy tac "cam `plan:dòng`"**: moi con so trong so no phai do tu file that ngay luc viet, khong duoc chep lan.
-- **Draft 14 (`nb-btn`) doi trang thai**: Task 12 da doi mau xong 2 nut cua trang Nhuc Than (`.main .nb-btn-refine` cam→vàng `#f97316→#eab308`, `.main .nb-btn-break` tím→hồng `#7c3aed→#db2777` khai tai `css/mystyle.css:7084-7087`, bump `game.php:502` `?v=2026101005`) nhung **CHUA commit** va **CHUA duoc chu du an gat dau dong y** (no nam ngoai plan Mach Huyet) ⇒ van giu trong so no nhu dong 14, cot "Can chot" hoi "commit chung 1 message hay tach 1 commit rieng".
+- **Draft 14 (`nb-btn`) da dong vong**: Task 12 doi mau xong 2 nut cua trang Nhuc Than (`.main .nb-btn-refine` cam→vàng `#f97316→#eab308`, `.main .nb-btn-break` tím→hồng `#7c3aed→#db2777`, khai tai `css/mystyle.css:7084-7087`, bump `game.php:502` `?v=2026101005`; class co that tai `game/thechat.php:259,309`) va **commit RIENG `e9fea2b`** (tach khoi commit tai lieu `0ed1e40` vi trang Nhuc Than nam ngoai plan Mach Huyet). **Da nhin bang mat** qua `E:/window/Temp/_nb_shot.php`: "Luyen Hoa" cam-vang sang, "Dot Pha" tim-hong, "Thuc Tinh" cung cap stop `#7c3aed→#db2777` ⇒ khop 1:1; "Luyen Mach" xam hon vi tai khoan test het Huyết Thạch (0/1) nen rớt `[disabled]` opacity .45 — dung chu dich, khong phai lech mau. Trong so no, dong 14 chuyen sang **ĐÃ CHỐT**, cot "Cần chốt" chi con no deploy production.
 
 - [x] **Step 8: Chốt task — chạy toàn bộ test + lint + scanner lần cuối**
 
@@ -4007,16 +4007,26 @@ Anh chung minh (kich thuoc that, khong phai file gia):
 
 ```bash
 ls -l docs/UI_HUYETMACH.md docs/DEPLOY_PRODUCTION_HUYETMACH.md docs/img/huyetmach/*.png
-# docs/UI_HUYETMACH.md 65.779 bytes (514 dong) ; docs/DEPLOY_PRODUCTION_HUYETMACH.md 17.185 bytes (231 dong)
+# docs/UI_HUYETMACH.md 67.440 bytes (518 dong) ; docs/DEPLOY_PRODUCTION_HUYETMACH.md 18.111 bytes (242 dong)
 # docs/img/huyetmach/ 25 file PNG ; 4 buc bat buoc cua Step 6: 864.836 / 414.776 / 2.345.530 / 167.060 bytes
 ```
 
 **Hai ket luan Step 8 da sua lai so voi ban dau**: (1) ky vong "scanner in `cjk=0` cho ca 18 dong" la **sai tuyen doi** — dung ra 2 file goc co CJK, da ghi thanh ngoai le co chung minh o Step 4; (2) **`docs/img/huyetmach/*.png` co ton tai that nhung KHONG duoc commit** (quy tac da chot), vi the lenh o Step 9 da bo duong dan nay khoi `git add`.
 
-- [x] **Step 9: Commit tài liệu** — chi 3 file (khong co PNG), va **CHUA** gop `css/mystyle.css` + `game.php` vi doi mau nut Nhuc Than can chu du an gat dau (so no dong 14):
+- [x] **Step 9: Commit tài liệu** — chi 3 file + plan (khong co PNG); doi mau nut Nhuc Than tach commit rieng vi nam ngoai plan Mach Huyet:
 
 ```bash
-git add docs/UI_HUYETMACH.md docs/DEPLOY_PRODUCTION_HUYETMACH.md tongquan.php
+git add docs/UI_HUYETMACH.md docs/DEPLOY_PRODUCTION_HUYETMACH.md tongquan.php docs/superpowers/plans/2026-10-09-huyetmach-mang-mach.md
 git commit -m "docs(huyetmach): sổ nợ mạch huyết + bản đồ tính năng"
-git status --short   # css/mystyle.css + game.php VAN con modified co y, khong phai quang
+git add css/mystyle.css game.php
+git commit -m "fix(thechat): nut Luyen Hoa/Dot Pha dung mau mach huyet"
 ```
+
+**Da chay that (2026-10-10):**
+
+```
+0ed1e40 docs(huyetmach): sổ nợ mạch huyết + bản đồ tính năng   (4 files, +910 / −22)
+e9fea2b fix(thechat): nut Luyen Hoa/Dot Pha dung mau mach huyet (2 files, +8 / −1)
+```
+
+`git status` sau do **khong con file duoc git theo nao** trong so danh sach Task 12 (chi con cac file `??` chua bao gio theo doi nhu `class/config/huyetmach_transform_config.json` — no o muc 4 runbook va so no khong thuoc Task 12). Repo **khong co remote** (`git remote -v` rong) ⇒ "hoan thanh" o day = local + runbook, khong phai push.

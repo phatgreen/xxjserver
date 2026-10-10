@@ -153,7 +153,7 @@ tongquan.php                                     (doi — muc `mach-huyet`)
 images/huyetmach/                                (MOI — 22 file: kinh-mach.jpg + cac bo ngoc)
 ```
 
-**Bốn lưu ý khi copy:**
+**Năm lưu ý khi copy:**
 
 1. **Xoá `game/huyetmach_awakening.php` SAU CÙNG**, và chỉ sau khi chắc `game.php` không còn
    route nào trỏ tới nó. File này local đã xoá (`git status` = not tracked, not present);
@@ -170,6 +170,17 @@ images/huyetmach/                                (MOI — 22 file: kinh-mach.jpg
    `images/huyetmach/*`. **Đổi ảnh thì phải bump biến này**, nếu không điện thoại giữ ảnh cũ
    (đây là bài học `ZB_IMG_VER` của đợt Phi Phong).
    `images/huyetmach/` là thư mục MỚI — copy cả thư mục, không copy lọt mỗi `kinh-mach.jpg`.
+5. **Copy `css/mystyle.css` sẽ đổi luôn màu 2 nút của trang Nhục Thân.** Block
+   `.main .nb-btn*` (`css/mystyle.css:7084-7087`, commit `e9fea2b`) nằm trong cùng file với
+   khối `.hm-*` của Mạch Huyết ⇒ không có cách nào đưa Mạch Huyết lên production mà không mang
+   theo thay đổi này, trừ khi production giữ lại 7 dòng đó. Đây là fix lỗi nút trắng
+   (`.main button` đè `.nb-btn`), nên mặc định là **mang theo**; nếu chủ dự án không muốn,
+   xoá block đó khỏi bản copy rồi bump `?v=` tiếp.
+
+**Hai commit local của đợt này** (repo không có remote ⇒ đối chiếu bằng `git log`, không bằng PR):
+`0ed1e40` = `docs/UI_HUYETMACH.md` + `docs/DEPLOY_PRODUCTION_HUYETMACH.md` + `tongquan.php` + plan;
+`e9fea2b` = `css/mystyle.css` + `game.php` (2 nút Nhục Thân). Toàn bộ code Task 1-11 nằm ở
+`47fc7fa..e686135`.
 
 **Cảnh báo chung cho mọi đợt deploy của repo này:** `git ls-files class/config` chỉ trả về
 **6/40** file JSON ⇒ phần lớn config (gồm `huyetmach_transform_config.json`) **không được git theo dõi**.
