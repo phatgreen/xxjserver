@@ -106,6 +106,18 @@ if (isset($canshu)){
                 $hurtNum = round($player->ugj*0.05);
             }
 
+            // ===== MACH HUYET (Task 11): mach cua NGUOI BI DAN trung lap =====
+            // pen CO Y khong ap dung PvP: do mean +29.59% (nguong 8%) — xem 11.0b + Task 12.
+            $hmCsDef = \player\huyetmach_combat_stats(isset($pvper->huyetmach_vessel) ? $pvper->huyetmach_vessel : array());
+            $hmDodged = false;
+            if ($hmCsDef['reduce'] > 0 && $hurtNum > 0) {
+                $hurtNum = \player\huyetmach_combat_phys_reduce($hmCsDef['reduce'], $hurtNum);
+            }
+            if ($hmCsDef['dodge'] > 0 && $hurtNum > 0 && \player\huyetmach_combat_roll_dodge($hmCsDef['dodge'])) {
+                $hurtNum = 0;
+                $hmDodged = true;
+                $tishihtml .= '<div class="pvp-log bad">💨 Âm Kiều Mạch: đối phương nghiêng người tránh khỏi đòn</div>';
+            }
             $pvpxx = round($hurtNum*($player->uxx/100));
             $sql = "update game1 set uhp = GREATEST(0, uhp - $hurtNum) WHERE sid = '$pvper->sid'";
             $dblj->exec($sql);
@@ -114,7 +126,7 @@ if (isset($canshu)){
             $player =  player\getplayer($sid,$dblj);
 
             $pvper = \player\getplayer1($uid,$dblj);
-            $pvperhurt = '<span class="pvp-damage">-'.$hurtNum.'</span>';
+            $pvperhurt = $hmDodged ? '<span class="pvp-damage">Né (0)</span>' : '<span class="pvp-damage">-'.$hurtNum.'</span>';
             if ($pvpxx > 0) {
                 $tishihtml .= '<div class="pvp-log heal">✚ Hút máu hồi phục +'.$pvpxx.'</div>';
             }

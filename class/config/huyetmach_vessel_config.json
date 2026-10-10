@@ -6,7 +6,7 @@
     "3": {"id": 3, "name": "Xung Mạch", "short": "Xung", "stat": "crit", "per_lv": 0.2, "slot": "chest-right", "group": "duong", "desc": "Xung mạch giữ huyết hải, đòn đánh bùng lên. Mỗi cấp tăng Bạo Kích."},
     "4": {"id": 4, "name": "Đới Mạch", "short": "Đới", "stat": "lifesteal", "per_lv": 0.4, "slot": "waist", "group": "duong", "desc": "Đới mạch buộc ngang thắt lưng, kéo huyết đối phương. Mỗi cấp tăng Hút Máu."},
     "5": {"id": 5, "name": "Dương Duy Mạch", "short": "Duy Trái", "stat": "reduce", "per_lv": 0.25, "slot": "arm-left", "group": "am", "desc": "Liên kết dương khí toàn thân, giáp ngoài cứng hơn. Mỗi cấp tăng Giảm Vật Lý."},
-    "6": {"id": 6, "name": "Âm Duy Mạch", "short": "Duy Phải", "stat": "pen", "per_lv": 0.25, "slot": "arm-right", "group": "am", "desc": "Liên kết âm khí, mũi nhọn thấm sâu. Mỗi cấp tăng Xuyên Giảm (xuyên Phong Thu đối phương)."},
+    "6": {"id": 6, "name": "Âm Duy Mạch", "short": "Duy Phải", "stat": "pen", "per_lv": 0.25, "slot": "arm-right", "group": "am", "desc": "Liên kết âm khí, mũi nhọn thấm sâu. Mỗi cấp tăng Xuyên Giảm (xuyên Phong Thu của quái/BOSS). Không áp dụng khi PvP."},
     "7": {"id": 7, "name": "Âm Kiều Mạch", "short": "Kiều Trái", "stat": "dodge", "per_lv": 0.25, "slot": "leg-left", "group": "am", "desc": "Kiều mạch chủ sự nhanh nhẹn, né trong một nhịp. Mỗi cấp tăng Né Tránh."},
     "8": {"id": 8, "name": "Dương Kiều Mạch", "short": "Kiều Phải", "stat": "luck", "per_lv": 0.25, "slot": "leg-right", "group": "am", "desc": "Dương khí hanh thông, của ngon rơi xuống. Mỗi cấp tăng Vận May."}
   },

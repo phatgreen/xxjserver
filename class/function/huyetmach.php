@@ -1090,3 +1090,59 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_bonuses')) {
         ));
     }
 }
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_stats')) {
+    /** Clamp 4 chi so mach am ve [0, stat_cap]. Nhan thang mang vessel Task 3, KHONG query DB. */
+    function huyetmach_combat_stats($vessel){
+        $all  = huyetmach_vessel_config_all();
+        $caps = isset($all['stat_cap']) ? $all['stat_cap'] : array();
+        $out  = array('dodge' => 0.0, 'pen' => 0.0, 'reduce' => 0.0, 'luck' => 0.0);
+        if (!is_array($vessel)) return $out;
+        foreach (array('dodge', 'pen', 'reduce', 'luck') as $k) {
+            $cap = isset($caps[$k]) ? floatval($caps[$k]) : 15.0;
+            $val = isset($vessel[$k]) ? floatval($vessel[$k]) : 0.0;
+            if ($val < 0) $val = 0.0;
+            $out[$k] = min($cap, $val);
+        }
+        return $out;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_roll_dodge')) {
+    /** % co the le (0.25/muc) -> quay 1/10000 de 12.0% = 1200/10000. */
+    function huyetmach_combat_roll_dodge($pct){
+        $pct = min(15.0, max(0.0, floatval($pct)));
+        if ($pct <= 0) return false;
+        return mt_rand(1, 10000) <= intval(round($pct * 100));
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_phys_reduce')) {
+    /** % tru sat thuong vat ly phai nhan. Don 0 giu 0 (khong ep max(1) nhu ham cu cua Task 8). */
+    function huyetmach_combat_phys_reduce($pct, $dmg){
+        $pct = min(15.0, max(0.0, floatval($pct)));
+        $dmg = intval($dmg);
+        if ($dmg <= 0) return 0;
+        if ($pct <= 0) return $dmg;
+        return max(1, intval(round($dmg * (100 - $pct) / 100)));
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_pierce_def')) {
+    /** % xuyen phong ngo; tra ve phong ngo CON LAI, khong am. */
+    function huyetmach_combat_pierce_def($pct, $def){
+        $pct = min(15.0, max(0.0, floatval($pct)));
+        $def = floatval($def);
+        if ($def <= 0 || $pct <= 0) return intval($def);
+        return max(0, intval(round($def * (100 - $pct) / 100)));
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_luck_gate')) {
+    /** Van may NHAN nguong roi do (khong cong tran), vi du 21 -> 24 o 15%. */
+    function huyetmach_combat_luck_gate($pct, $gate){
+        $pct  = min(15.0, max(0.0, floatval($pct)));
+        $gate = intval($gate);
+        if ($gate <= 0 || $pct <= 0) return $gate;
+        return intval(round($gate * (100 + $pct) / 100));
+    }
+}

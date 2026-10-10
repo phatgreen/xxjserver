@@ -21,6 +21,7 @@ if (!$hasPlayer) {
     $db->prepare("UPDATE game1 SET huyetmach_id = 1, huyetmach_quality = 1, huyetmach_awaken_stage = 1 WHERE sid = ?")->execute(array($TESTSID));
 }
 $db->prepare("DELETE FROM huyetmach_boss WHERE sid = ?")->execute(array($TESTSID));
+$db->prepare("DELETE FROM player_huyetmach_vessel WHERE sid = ?")->execute(array($TESTSID));
 $db->prepare("DELETE FROM player_huyetmach_boss WHERE sid = ?")->execute(array($TESTSID));
 $db->prepare("DELETE FROM playerdaoju WHERE sid = ? AND djid IN (112,113)")->execute(array($TESTSID));
 \player\player_cache_clear($TESTSID);
@@ -87,6 +88,7 @@ $vb2 = array('dodge' => 100, 'reduce' => 100);   // bi chan 15%
 tassert('reduce chan 15', \player\huyetmach_boss_vessel_reduce($vb2, 100), 85);
 
 $db->prepare("DELETE FROM huyetmach_boss WHERE sid = ?")->execute(array($TESTSID));
+$db->prepare("DELETE FROM player_huyetmach_vessel WHERE sid = ?")->execute(array($TESTSID));
 $db->prepare("DELETE FROM player_huyetmach_boss WHERE sid = ?")->execute(array($TESTSID));
 $db->prepare("DELETE FROM playerdaoju WHERE sid = ? AND djid IN (112,113)")->execute(array($TESTSID));
 if ($tmpRow) {

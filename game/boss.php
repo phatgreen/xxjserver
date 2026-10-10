@@ -232,7 +232,13 @@ HTML;
         }
     }
 	 
-    $gphurt = round($cwgj + $player->ugj - ($boss->bossfy * 0.75),0);//主角攻击怪物扣血情况，本身攻击+宠物攻击
+    // ===== MACH HUYET (Task 11): 4 chi so mach am dung luc cham dot =====
+    $hmCs = \player\huyetmach_combat_stats(isset($player->huyetmach_vessel) ? $player->huyetmach_vessel : array());
+    $hmBossFy = \player\huyetmach_combat_pierce_def($hmCs['pen'], $boss->bossfy);
+    if ($hmBossFy < $boss->bossfy) {
+        $tishihtml .= "<font color='#26c6da'>🏹 Âm Duy Mạch (Xuyên Giảm): phòng ngự {$boss->bossname} bị xuyên ".($boss->bossfy - $hmBossFy)." điểm</font><br/>";
+    }
+    $gphurt = round($cwgj + $player->ugj - ($hmBossFy * 0.75),0);//主角攻击怪物扣血情况，本身攻击+宠物攻击
     if ($gphurt < $player->ugj*0.15){
         $gphurt = round( $player->ugj * 0.15);
     }
@@ -275,6 +281,19 @@ HTML;
     if ($phurt <= 0){
         $hurt = true;
     }
+    $hmIncoming = intval($phurt);
+    if ($hmCs['reduce'] > 0 && $hmIncoming > 0) {
+        $hmBlocked = \player\huyetmach_combat_phys_reduce($hmCs['reduce'], $hmIncoming);
+        if ($hmBlocked < $hmIncoming) {
+            $tishihtml .= "<font color='#66bb6a'>🧱 Dương Duy Mạch (Giảm Vật Lý): đòn của {$boss->bossname} bị chặn ".($hmIncoming - $hmBlocked)." sát thương</font><br/>";
+            $hmIncoming = $hmBlocked;
+        }
+    }
+    if ($hmCs['dodge'] > 0 && $hmIncoming > 0 && \player\huyetmach_combat_roll_dodge($hmCs['dodge'])) {
+        $hmIncoming = 0;
+        $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tránh): {$boss->bossname} vung trúng khoảng không</font><br/>";
+    }
+    $phurt = $hmIncoming;
 
     if ($phurt < $pvbxx){
         $pvbxx = $phurt - 7;
@@ -379,7 +398,7 @@ HTML;
 
         $sjjv = mt_rand(1,120-$xyz);
 		
-        if ($boss->dljv >=$sjjv && $boss->bosszb != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->dljv) >=$sjjv && $boss->bosszb != ''){
             $retzb = \player\zhuangbei_config_rows_by_ids($boss->bosszb);
             if (!empty($retzb)){
                 $sjdl = mt_rand(0,count($retzb)-1);
@@ -406,7 +425,7 @@ HTML;
         }
 		//道具计算
         $sjjv = mt_rand(1,100);
-        if ($boss->djjv >= $sjjv && $boss->bossdj != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->djjv) >= $sjjv && $boss->bossdj != ''){
             $retdj = \player\daoju_config_rows_by_ids($boss->bossdj);
             if (!empty($retdj)){
                 $sjdj = mt_rand(0,count($retdj)-1);
@@ -424,7 +443,7 @@ HTML;
         }
         yp:
         $sjjv = mt_rand(1,100);
-        if ($boss->ypjv >= $sjjv && $boss->bossyp != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->ypjv) >= $sjjv && $boss->bossyp != ''){
             $retyp = \player\yaopin_config_rows_by_ids($boss->bossyp);
             if (!empty($retyp)){
                 $sjyp = mt_rand(0, count($retyp) - 1);

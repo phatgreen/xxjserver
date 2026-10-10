@@ -3018,7 +3018,7 @@ Ky vong: 3 file test `ALL PASS`. Neu `test_huyetmach_vessel.php` FAIL o phan B v
 - **DA SUA trong Task 10**: typo `"Né Tranh"` → `"Né Tránh"` (thiếu dấu ngã trên a) trong `class/config/huyetmach_vessel_config.json` (`stat_labels.dodge` + `desc` mach 7), `game/huyetmach_boss.php:46`, va **7 dong trong chinh plan nay** (Task 11 nap ma nguyen van tu plan nen loi se lay lan neu khong sua tan goc).
 - **Task 11 PHAI** lay nhan qua `huyetmach_vessel_stat_label()` / `stat_labels` trong config, **khong hardcode** nhan vao chuoi battle log.
 
-- [ ] **Step 11: Commit**
+- [x] **Step 11: Commit**
 
 ```bash
 # Task 10 KHONG doi css/mystyle.css (Step 1/2 da co san tu Task 7); anh PNG bang chung de ngoai repo theo thong le.
@@ -3080,7 +3080,7 @@ Hai hệ quả phải báo cáo chứ không sửa ngầm (Task 12):
 1. **Pen gần như vô dụng khi cày đúng cấp** vì sàn 15% của công thức cũ (`$gphurt < $player->ugj*0.15`) chặn 78% cặp PVE và 100% cặp BOSS trong dữ liệu local. Đây là hệ quả của công thức có trước, không phải bug mới.
 2. Mẫu local mỏng (`bossinfo` rỗng, `midguaiwu` chỉ 78 dòng cấp ≤ 73) ⇒ **chạy lại `--measure` sau khi deploy production** rồi hãy chốt pen cho PvP.
 
-- [ ] **Step 1: Kiểm tra tiền đề Task 10** (field phải tồn tại và là mảng 8 keys trước khi đụng trang chiến đấu):
+- [x] **Step 1: Kiểm tra tiền đề Task 10** (field phải tồn tại và là mảng 8 keys trước khi đụng trang chiến đấu):
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r '
@@ -3092,7 +3092,7 @@ echo "\n";'
 ```
 Expected: `OK vessel=17` (8 chỉ số + `levels, total_lv, cap, stage, milestone_name, milestone_percent, next_*` — nếu `count` khác 17 thì **dừng**, đối chiếu lại Task 3 Step 3/4, vì Step 6 của task này đọc trực tiếp `$cs['pen']`). Nếu in `THIEU`: Task 10 chưa xong, không được làm tiếp Task 11.
 
-- [ ] **Step 2: Viết test bại** `tests/test_huyetmach_combat.php` — toàn bộ file gồm khối A-D. Khối E (`--live`) và F (`--measure`) được nối vào ở Step 13–14, chèn **trước** hai dòng `echo/exit` cuối file:
+- [x] **Step 2: Viết test bại** `tests/test_huyetmach_combat.php` — toàn bộ file gồm khối A-D. Khối E (`--live`) và F (`--measure`) được nối vào ở Step 13–14, chèn **trước** hai dòng `echo/exit` cuối file:
 
 ```php
 <?php
@@ -3192,14 +3192,14 @@ echo "\n" . ($fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n");
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 3: Chạy test → phải BẠI** (helper chưa tồn tại):
+- [x] **Step 3: Chạy test → phải BẠI** (helper chưa tồn tại):
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_combat.php
 ```
 Expected: `Fatal error: Call to undefined function player\huyetmach_combat_stats()`. Nếu báo `huyetmach_boss_vessel_dodge` chưa có nghĩa là Task 8 chưa xong — dừng, làm Task 8 trước.
 
-- [ ] **Step 4: Cài 5 helper** — nối vào **cuối** `class/function/huyetmach.php`. (File này khai báo `namespace player;` dạng câu lệnh — `class/function/huyetmach.php:2` — nên viết thẳng ra cuối file, không có ngoặc đóng namespace; đúng như mô tả Files của Task 1 đã được chốt.)
+- [x] **Step 4: Cài 5 helper** — nối vào **cuối** `class/function/huyetmach.php`. (File này khai báo `namespace player;` dạng câu lệnh — `class/function/huyetmach.php:2` — nên viết thẳng ra cuối file, không có ngoặc đóng namespace; đúng như mô tả Files của Task 1 đã được chốt.)
 
 ```php
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_stats')) {
@@ -3260,14 +3260,14 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_combat_luck_gate')) {
 }
 ```
 
-- [ ] **Step 5: Chạy test → PASS khối A**
+- [x] **Step 5: Chạy test → PASS khối A**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_combat.php
 ```
 Kỳ vọng: 21 dòng `PASS` khối A (5 helper ở Step 4 đã đủ cho khối A và C), rồi `FAIL` ở khối B — wrapper Task 8 vẫn còn công thức cũ, phải đợi Step 6 mới sửa. Khối D in `SKIP` (cần seed DB). Không sốt vì khối B FAIL ở bước này.
 
-- [ ] **Step 6: Refactor Task 8 để không có hai bộ máy tính chồng nhau** — sửa `class/function/huyetmach_boss.php` 3 chỗ (file này đã phụ thuộc `class/function/huyetmach.php` từ Task 8 vì gọi `huyetmach_vessel_bonuses()`):
+- [x] **Step 6: Refactor Task 8 để không có hai bộ máy tính chồng nhau** — sửa `class/function/huyetmach_boss.php` 3 chỗ (file này đã phụ thuộc `class/function/huyetmach.php` từ Task 8 vì gọi `huyetmach_vessel_bonuses()`):
 
 (a) Hai wrapper — thay nguyên khối `huyetmach_boss_vessel_dodge` và `huyetmach_boss_vessel_reduce` bằng:
 
@@ -3316,14 +3316,14 @@ $db->prepare("DELETE FROM player_huyetmach_vessel WHERE sid = ?")->execute(array
 
 
 
-- [ ] **Step 7: Chạy lại 2 test** — `test_huyetmach_combat.php` in `PASS` khối A+B+C+D rồi `ALL PASS` (khối E/F **chưa tồn tại** ở thời điểm này, hai khối đó được nối vào tại Step 13–14), và `test_huyetmach_boss.php` vẫn `ALL PASS` giống trước khi refactor.
+- [x] **Step 7: Chạy lại 2 test** — `test_huyetmach_combat.php` in `PASS` khối A+B+C+D rồi `ALL PASS` (khối E/F **chưa tồn tại** ở thời điểm này, hai khối đó được nối vào tại Step 13–14), và `test_huyetmach_boss.php` vẫn `ALL PASS` giống trước khi refactor.
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_combat.php
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_boss.php
 ```
 Nếu `test_huyetmach_boss.php` FAIL ở `khong co mach thi khong ne`: wrapper đang nhận `$vb = array('dodge'=>0,...)` nhưng `huyetmach_combat_stats()` gọi `huyetmach_vessel_config_all()` — kiểm tra config Task 1 có `stat_cap` (`dodge/pen/reduce/luck = 15`).
 
-- [ ] **Step 8: Nối `game/boss.php` (3 chỗ).** Trước khi sửa, chạy `grep -n "hmCs\|hmIncoming\|hmBlocked" game/boss.php` → phải ra 0 kết quả (không trùng tên biến).
+- [x] **Step 8: Nối `game/boss.php` (3 chỗ).** Trước khi sửa, chạy `grep -n "hmCs\|hmIncoming\|hmBlocked" game/boss.php` → phải ra 0 kết quả (không trùng tên biến).
 
 (a) **Âm Duy Mạch (pen)** — chèn **ngay trên** dòng `game/boss.php:235` (dòng bắt đầu `$gphurt = round($cwgj + $player->ugj - ($boss->bossfy * 0.75),0);`; dòng này có chú thích tiếng Trung ở cuối, **chỉ chèn phía trên, không gõ lại chú thích đó**), rồi đổi `($boss->bossfy * 0.75)` thành `($hmBossFy * 0.75)` ngay trên dòng ấy (chuỗi `($boss->bossfy * 0.75)` chỉ xuất hiện 1 lần — đã đo `grep -c` = 1):
 
@@ -3367,7 +3367,7 @@ Hệ quả có chủ đích, phải ghi vào `docs/UI_HUYETMACH.md` (Task 12): v
         if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->ypjv) >= $sjjv && $boss->bossyp != ''){
 ```
 
-- [ ] **Step 9: Nối `game/pve.php` (3 chỗ).** `grep -n "hmCs\|hmIncoming\|hmPierceFrom" game/pve.php` phải ra 0 kết quả trước khi sửa.
+- [x] **Step 9: Nối `game/pve.php` (3 chỗ).** `grep -n "hmCs\|hmIncoming\|hmPierceFrom" game/pve.php` phải ra 0 kết quả trước khi sửa.
 
 (a) Định nghĩa `$hmCs` **ngay trên** dòng `game/pve.php:229` (`    $guaiwuFyForDamage = $guaiwu->gfy;`):
 
@@ -3416,7 +3416,7 @@ Hệ quả có chủ đích, phải ghi vào `docs/UI_HUYETMACH.md` (Task 12): v
         if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $yguaiwu->ypjv) >= $sjjv && $yguaiwu->gyp != ''){
 ```
 
-- [ ] **Step 10: Nối `game/pvp.php` — CHỈ dodge/reduce của phe bị đánh, KHÔNG pen** (số đo 11.0b: pen trong PvP = mean +29,59% ≫ ngưỡng 8%). `grep -n "hmCsDef\|hmDodged" game/pvp.php` phải ra 0 kết quả.
+- [x] **Step 10: Nối `game/pvp.php` — CHỈ dodge/reduce của phe bị đánh, KHÔNG pen** (số đo 11.0b: pen trong PvP = mean +29,59% ≫ ngưỡng 8%). `grep -n "hmCsDef\|hmDodged" game/pvp.php` phải ra 0 kết quả.
 
 (a) Chèn **giữa** khối sàn 5% (dòng 105-107) và `$pvpxx = round($hurtNum*($player->uxx/100));` (dòng 109):
 
@@ -3443,7 +3443,7 @@ Hệ quả có chủ đích, phải ghi vào `docs/UI_HUYETMACH.md` (Task 12): v
 
 Không có chiều "người đánh né đòn phản công" vì `game/pvp.php` **không có phản công** (đã kiểm chứng ở 11.0).
 
-- [ ] **Step 11: Sửa mô tả mạch pen trong config** để tooltip nói đúng phạm vi (Task 7 hiển thị `desc` nguyên văn): `class/config/huyetmach_vessel_config.json`, id 6 (`stat: pen`), đổi `desc` thành:
+- [x] **Step 11: Sửa mô tả mạch pen trong config** để tooltip nói đúng phạm vi (Task 7 hiển thị `desc` nguyên văn): `class/config/huyetmach_vessel_config.json`, id 6 (`stat: pen`), đổi `desc` thành:
 
 ```
 "Liên kết âm khí, mũi nhọn thấm sâu. Mỗi cấp tăng Xuyên Giảm (xuyên Phong Thu của quái/BOSS). Không áp dụng khi PvP."
@@ -3451,7 +3451,7 @@ Không có chiều "người đánh né đòn phản công" vì `game/pvp.php` *
 
 Chạy lại kiểm tra JSON + CJK như Task 1 Step 2 (expected `no CJK` và `json ok, vessels=8, tiers=5`).
 
-- [ ] **Step 12: Lint 5 file vừa sửa** (PHP 5.6, không được có cú pháp mới):
+- [x] **Step 12: Lint 5 file vừa sửa** (PHP 5.6, không được có cú pháp mới):
 
 ```bash
 for f in class/function/huyetmach.php class/function/huyetmach_boss.php game/boss.php game/pve.php game/pvp.php; do
@@ -3460,18 +3460,23 @@ done
 ```
 Expected: 5 dòng `No syntax errors detected`.
 
-- [ ] **Step 13: Khối E — route THẬT qua HTTP** (nối vào `tests/test_huyetmach_combat.php`, **chèn trước** hai dòng `echo "\n" . ($fails === 0 ...)`) Yêu cầu: Apache đang chạy (`http://localhost/game.php`) và `tests/e2e_fixture.php` đã chạy. Số liệu thật đã đo để chọn giá trị seed: fixture `e2e2e2e2...` có `uid=987650, ulv=1000, uhp=35, ugj=12, ufy=5, umaxstamina=100, nowmid=225`; `midguaiwu` có 14 cột; `boss` có 20 cột (`bossid, bossname, bossinfo, bosslv, bosshp, bossmaxhp, bossgj, bossfy, bossbj, bossxx, bosszb, dljv, bossdj, djjv, bs, bosstime, sid, bossyp, ypjv, bossexp`) và hiện chỉ có 4 dòng `bossid` 1-4, nên `9001` là vùng an toàn.
+- [x] **Step 13: Khối E — route THẬT qua HTTP** (nối vào `tests/test_huyetmach_combat.php`, **chèn trước** hai dòng `echo "\n" . ($fails === 0 ...)`) Yêu cầu: server dev local đang chạy (`127.0.0.1:8123`, hoặc đặt `HM_BASE`) và `tests/e2e_fixture.php` đã chạy. Số liệu thật đã đo để chọn giá trị seed: fixture `e2e2e2e2...` có `uid=987650, ulv=1000, uhp=35, ugj=12, ufy=5, umaxstamina=100, nowmid=225`; `midguaiwu` có 14 cột; `boss` có 20 cột (`bossid, bossname, bossinfo, bosslv, bosshp, bossmaxhp, bossgj, bossfy, bossbj, bossxx, bosszb, dljv, bossdj, djjv, bs, bosstime, sid, bossyp, ypjv, bossexp`) và hiện chỉ có 4 dòng `bossid` 1-4, nên `9001` là vùng an toàn.
 
 ```php
 // ===== E: ROUTE THAT qua HTTP (chi chay khi co --live) =====
 if ($LIVE) {
     $enc = new \encode\encode();
-    $hmGet = function ($plain) use ($enc) {
-        return (string) shell_exec('curl -s ' . escapeshellarg('http://localhost/game.php?cmd=' . $enc->encode($plain)));
+    // Server dev local = 127.0.0.1:8123 (php -S). Qua Apache port 80 thi dat HM_BASE=http://localhost
+    $hmBase = getenv('HM_BASE');
+    if (!is_string($hmBase) || $hmBase === '') { $hmBase = 'http://127.0.0.1:8123'; }
+    $hmGet = function ($plain) use ($enc, $hmBase) {
+        return (string) shell_exec('curl -s ' . escapeshellarg($hmBase . '/game.php?cmd=' . $enc->encode($plain)));
     };
 
     // E.1 — snapshot + seed 8 mach lv48, stage 4 (tran 48) cho fixture
-    $snap = $db->query("SELECT ulv,ugj,ufy,ubj,uxx,uhp,umaxhp,ustamina FROM game1 WHERE sid = '$E2ESID'")->fetch(PDO::FETCH_ASSOC);
+    $snap = $db->query("SELECT ulv,ugj,ufy,ubj,uxx,uhp,umaxhp,ustamina,huyetmach_id,huyetmach_quality,huyetmach_awaken_stage FROM game1 WHERE sid = '$E2ESID'")->fetch(PDO::FETCH_ASSOC);
+    // e2e_fixture.php KHONG seed mach huyet -> luop 8 dong vessel de restore o E.5
+    $vesSnap = $db->query("SELECT vessel_id, level FROM player_huyetmach_vessel WHERE sid = '$E2ESID'")->fetchAll(PDO::FETCH_ASSOC);
     if (!is_array($snap)) {
         $fails++;
         echo "FAIL E: fixture e2e khong co trong game1 — chay tests/e2e_fixture.php truoc\n";
@@ -3499,15 +3504,16 @@ if ($LIVE) {
         $hmGj = intval(round(floatval($pl2->ufy) * 0.75)) + 300;
         // LUON INSERT dong rieng roi XOA o E.5 — KHONG tai su dung dong co cua `mid`
         // (midguaiwu la bang cua chung: doi phuong khac dang dan di qua).
+        // HP seed = 2 ty (duoi INT_MAX). Do thuc te: 7848 sat thuong/don PVE, 3747/don BOSS nen 60+20 don khong diet noi.
         $db->exec("INSERT INTO midguaiwu (gname, ghp, ggj, gfy, glv, mid, gyid, gexp, sid, gmaxhp, gbj, gxx, ms)
-            VALUES ('Tam Unh Mach Huyet', 999999, $hmGj, 200, 48, $mid, 54, 1, '', '999999', 0, 0, 0)");
+            VALUES ('Tam Unh Mach Huyet', 2000000000, $hmGj, 200, 48, $mid, 54, 1, '', '2000000000', 0, 0, 0)");
         $gid = intval($db->lastInsertId());
         tassert('E seed: tao quai lien thanh cong', $gid > 0, true);
         $db->exec("DELETE FROM boss WHERE bossid = 9001");
         $db->exec("INSERT INTO boss (bossid, bossname, bossinfo, bosslv, bosshp, bossmaxhp, bossgj, bossfy,
             bossbj, bossxx, bosszb, dljv, bossdj, djjv, bs, bosstime, sid, bossyp, ypjv, bossexp)
             VALUES (9001, 'Boss Thử Mạch (tạm thời)', 'Dong tam thoi cho tests/test_huyetmach_combat.php --live',
-            30, 999999, 999999, $hmGj, 200, 0, 0, '', 0, '', 0, 0, NOW(), '', '', 0, '0')");
+            30, 2000000000, 2000000000, $hmGj, 200, 0, 0, '', 0, '', 0, 0, NOW(), '', '', 0, '0')");
 ```
 
 **Step 13 (tiếp theo) — nối tiếp khối E, vẫn bên trong `if ($LIVE)`**, chèn ngay sau đoạn code của Step 13:
@@ -3545,8 +3551,10 @@ if ($LIVE) {
     $ghpNow = intval($db->query("SELECT ghp FROM midguaiwu WHERE id = $gid")->fetchColumn());
     $bhpNow = intval($db->query("SELECT bosshp FROM boss WHERE bossid = 9001")->fetchColumn());
     tassert('E pve: HTML du dai 60/60 don', $cShort, 0);
-    tassert('E pve: quai van con song (ghp 999999 khong bi giêt)', $ghpNow > 990000, true);
-    tassert('E boss: boss van con song', $bhpNow > 990000, true);
+    tassert('E pve: quai van con song (ghp 2 ty khong bi diet)', $ghpNow > 1990000000, true);
+    tassert('E pve: don that co giam mau quai (route khong chay vong)', $ghpNow < 2000000000, true);
+    tassert('E boss: boss van con song', $bhpNow > 1995000000, true);
+    tassert('E boss: don that co giam mau boss (route khong chay vong)', $bhpNow < 2000000000, true);
     tassert('E pve: pen hien 100% so don', $cPen, $nPve);
     tassert('E pve: reduce hien 100% so don', $cRed, $nPve);
     tassert('E boss: pen hien 100% so don', $bPen, $nBoss);
@@ -3561,18 +3569,25 @@ if ($LIVE) {
     $db->exec("DELETE FROM midguaiwu WHERE id = $gid");
     tassert('E cleanup: quai lien da sach', intval($db->query("SELECT COUNT(*) FROM midguaiwu WHERE id = $gid")->fetchColumn()), 0);
     $db->exec("DELETE FROM boss WHERE bossid = 9001");
+    // Restore dung trang thai ban dau (khong de lai fixture bong mach = 0)
     $db->exec("DELETE FROM player_huyetmach_vessel WHERE sid = '$E2ESID'");
-    $db->exec("UPDATE game1 SET huyetmach_awaken_stage = 0, ulv = " . intval($snap['ulv'])
-        . ", ugj = " . intval($snap['ugj']) . ", ufy = " . intval($snap['ufy'])
+    $rv = $db->prepare("INSERT INTO player_huyetmach_vessel (sid, vessel_id, level, updated_at) VALUES (?, ?, ?, NOW())");
+    foreach ($vesSnap as $vs) { $rv->execute(array($E2ESID, intval($vs['vessel_id']), intval($vs['level']))); }
+    tassert('E cleanup: vessel fixture du 8 dong nhu ban dau', intval($db->query("SELECT COUNT(*) FROM player_huyetmach_vessel WHERE sid = '$E2ESID'")->fetchColumn()), count($vesSnap));
+    $db->exec("UPDATE game1 SET huyetmach_id = " . intval($snap['huyetmach_id'])
+        . ", huyetmach_quality = " . intval($snap['huyetmach_quality'])
+        . ", huyetmach_awaken_stage = " . intval($snap['huyetmach_awaken_stage'])
+        . ", ulv = " . intval($snap['ulv']) . ", ugj = " . intval($snap['ugj']) . ", ufy = " . intval($snap['ufy'])
         . ", ubj = " . intval($snap['ubj']) . ", uxx = " . intval($snap['uxx'])
         . ", uhp = " . intval($snap['uhp']) . ", umaxhp = " . intval($snap['umaxhp'])
         . ", ustamina = " . intval($snap['ustamina']) . " WHERE sid = '$E2ESID'");
     \player\player_cache_clear($E2ESID);
+    }
 } else {
     echo "SKIP E (them --live de chay route that qua Apache)\n";
 }
 ```
-- [ ] **Step 14: Khối F — harness đo lại ngưỡng 8% của pen** (cũng chèn **trước** hai dòng `echo/exit`, sau khối E). Khối này **không ghi DB**, chỉ đọc số liệu đang có để tái lập bảng 11.0b mỗi lần người khác nghi ngờ quyết định "pen không áp dụng PvP":
+- [x] **Step 14: Khối F — harness đo lại ngưỡng 8% của pen** (cũng chèn **trước** hai dòng `echo/exit`, sau khối E). Khối này **không ghi DB**, chỉ đọc số liệu đang có để tái lập bảng 11.0b mỗi lần người khác nghi ngờ quyết định "pen không áp dụng PvP":
 
 ```php
 // ===== F: do anh huong trung binh cua pen (chi chay khi co --measure) =====
@@ -3650,12 +3665,12 @@ if ($MEASURE) {
 
 Ky vong khi chay `--measure` tren DB local hom nay: `F PVE mean≈7.26%`, `F BOSS mean≈0%`, `F PVP mean≈29.59%`, `GUARD=OK`. Neu `GUARD=VUOT`: dung lai Step 10, bao chu du an quyet dinh (dung 11.0b), **khong tu** ha nguong hay doi cong thuc san 15%.
 
-- [ ] **Step 15: Chay du bo 4 test + 2 mode** (Apache phai dang chay cho `--live`):
+- [x] **Step 15: Chay du bo 4 test + 2 mode** (server dev `127.0.0.1:8123` phai dang chay cho `--live`):
 
 ```bash
 PHP=D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe
-curl -s -o /dev/null -w "%{http_code}\n" "http://localhost/game.php"   # 200 or 302 = Apache song
-$PHP tests/e2e_fixture.php
+curl -s -o /dev/null -w "%{http_code}\n" "http://127.0.0.1:8123/game.php"   # 200 = server dev song (port 80 da chet)
+# (BO QUA) tests/e2e_fixture.php hard-code port 80 nen khong chay duoc tren 8123; fixture e2e da co san trong DB local
 $PHP tests/test_huyetmach_combat.php            # A-D that, E/F in SKIP
 $PHP tests/test_huyetmach_combat.php --measure  # + khoi F
 $PHP tests/test_huyetmach_combat.php --live     # + khoi E (60+20 HTTP request)
@@ -3667,12 +3682,39 @@ $PHP tests/test_huyetmach_upgrade.php
 Ky vong: 4 test cuối đều `ALL PASS`. Rieng `--live` co the mat vai chuc giay (80 request). Neu mot assertion dodge triet de FAIL (`E pve: dodge xuat hien it nhat 1 lan`), chay lai `--live` DUNG MOT LAN — xac suat 0 don ne trong 60 don la 0.4% theo ly thuyet, do la lot may cua harness chu khong phai bug. Neu `--live` fatal giua chung thi chay tay 5 cau don o E.5 (hoac `tests/_huyetmach_live_cleanup` nam trong chinh khoi E) truoc khi ket luan.
 
 **PHẦN CHƯA TEST — phải ghi nguyên vào `docs/UI_HUYETMACH.md` (Task 12):**
-- `game/pvp.php`: mới chứng minh bằng đơn vị (khối A và D). Route PvP thật cần hai nhân vật cùng hội và `cmd=pvp`, harness này **không** quay ⇒ né tranh của người bị đánh trong PvP **chưa có bằng chứng trên đường dẫn thật**.
-- `luck`: mới kiểm bằng công thức ngượng rơi đồ. Chưa đo tỉ lệ rơi thực tế trong trận (cần hàng ngàn lần giết để thống kê).
-- `club_boss.php` (BOSS công hội): **có** hai nhốp né tranh riêng (`:205-285`) nhưng Task này **không** nối mạch âm vào đây — đây là bề mặt thứ tư bị bỏ ngoài, chủ dự án chụt.
-- `$cwxl` (sát thương thú cùng nhận lại) bằng 0 khi nhân vật né được đơn — hành vi có chủ đích, chưa đối chiếu lại với thú cùng đang xuất chiến trong game thật.
+- `game/pvp.php`: mới chứng minh bằng đơn vị (khối A và D). Route PvP thật cần hai nhân vật cùng hội và `cmd=pvp`, harness này **không** quay ⇒ né tránh của người bị đánh trong PvP **chưa có bằng chứng trên đường dẫn thật**.
+- `luck`: mới kiểm bằng công thức ngưỡng rơi đồ. Chưa đo tỉ lệ rơi thực tế trong trận (cần hàng ngàn lần giết để thống kê).
+- `club_boss.php` (BOSS công hội): **có** hai nhịp né tránh riêng (`:205-285`) nhưng Task này **không** nối mạch âm vào đây — đây là bề mặt thứ tư bị bỏ ngoài, chủ dự án chốt.
+- `$cwxl` (sát thương thú cùng nhận lại) bằng 0 khi nhân vật né được đòn — hành vi có chủ đích, chưa đối chiếu lại với thú cùng đang xuất chiến trong game thật.
 
-- [ ] **Step 16: Commit**
+**KẾT QUẢ THỰC TẾ — Task 11** (chạy 2026-10-10, DB local `game`, server `127.0.0.1:8123`):
+
+| Lệnh | Kết quả |
+|---|---|
+| `test_huyetmach_combat.php` (A–D) | 28 PASS / 0 FAIL — **khối B đã PASS ngay từ đầu**, không cần "sửa cho đỏ" như Step 5 dự đoán |
+| `… --measure` (khối F) | PVE mean 2,52%, BOSS 0,1%, PVP 9,32%, `GUARD=OK` ⇒ quyết định "áp pen PVE/BOSS, KHÔNG áp pen PvP" giữ nguyên |
+| `… --live` (khối E) | 50 PASS / 0 FAIL. pve dodge 6/60 (10,0%), boss 4/20 (20,0%) so lý thuyết 12%; pen + reduce hiện trên **100/100** đòn; E.5 restore đúng 8 dòng mạch (6,6,4,2,5,16,3,0) và stage 0 |
+| `test_huyetmach_vessel.php`, `_boss.php`, `_upgrade.php`, `_schema.php` | đều ALL PASS |
+
+**PLAN SAI SỐ VỚI THỰC TẾ** (mọi mục đã sửa lại **trong plan lẫn test**, giữ bất biến plan == code):
+
+1. Step 13 hard-code `http://localhost/game.php` (port 80) trong khi máy dev chạy `php -S 127.0.0.1:8123`, port 80 đã chết. Khối E nay đọc biến môi trường `HM_BASE`, mặc định `http://127.0.0.1:8123`.
+2. Step 13 seed quái/boss `hp = 999999` và đoán người chơi chỉ đánh vài điểm máu. Đo thật (`E:/window/Temp/_hmfx_dmg1.php`): **7848 sát thương/đòn PVE, 3747/đòn BOSS**, vì `$gphurt = cwgj + ugj − def*0.75` cộng luôn sát thương thú cưng và võ công, không chỉ `ugj = 12`. 60 đòn ≈ 470k máu ⇒ assertion "quái còn sống" FAIL **không phải lỗi code**. Seed đổi thành 2.000.000.000 (vẫn dưới INT_MAX), ngưỡng thành ">1,99 tỷ", và thêm 2 assert mới chứng minh đòn thật có giảm máu (route không chạy vòng).
+3. Step 13 **thiếu 1 cặp ngoặc** `}` đóng nhánh `else` của `if (!is_array($snap))` ⇒ `Parse error: unexpected 'else' on line 202`. Đã chèn vào cả plan lẫn test.
+4. Step 15 bắt chạy lại `tests/e2e_fixture.php`, nhưng script đó cũng hard-code port 80 ⇒ không chạy được. Fixture `e2e2e2e2…` đã có sẵn và còn nguyên trạng trong DB local nên bước này **bỏ qua** (đã ghi chú ngay trong khối lệnh Step 15).
+5. Step 8/9 ghi "3 chỗ" nhưng mỗi file thật có **4 chỗ** nối (a)–(d).
+6. Số dòng dẫn chứng lệch: `game/pve.php` "dòng 229" thực tế 231 (hai dòng chỉ chứa tab), `game/pvp.php` `$pvperhurt` ở dòng 117 chứ không 118. Các bước đã chuyển sang **định vị theo nội dung** (needle phải khớp đúng 1 lần).
+
+**NỢ MỚI PHÁT SINH TỪ TASK 11** (Task 12 phải chép vào sổ nợ):
+
+- Mẫu `--measure` trên DB local chỉ 15 nhân vật ⇒ PVE 2,52% (plan dự 7,26%), PVP 9,32% (dự 29,59%). Kết luận không đổi nhưng **phải chạy lại sau khi deploy production**.
+- Route PvP thật (`cmd=pvpgj`) vẫn chưa quay live (mục CHƯA TEST ở trên).
+- Trần **chạm được** của 4 chỉ số âm hiện là **12%**, không phải 15%: mỗi mạch chỉ mang MỘT chỉ số (`per_lv = 0,25`), bậc thức tỉnh 4 chặn mạch ở lv48 ⇒ 0,25 × 48 = 12. Con số 15% trong `stat_cap` chỉ là clamp trên giấy, phải lên bậc thức tỉnh cao hơn (lv60) mới với tới.
+- Pen gần như vô dụng khi cày đúng cấp vì sàn 15% của `$gphurt`; chủ dự án cần quyết có bỏ sàn đó không (nợ cũ 11.0b).
+- `game/club_boss.php` vẫn là bề mặt thứ tư chưa nối mạch âm.
+- Khối E cần `php -S 127.0.0.1:8123` đang chạy; máy khác phải đặt `HM_BASE`.
+
+- [x] **Step 16: Commit**
 
 ```bash
 git add class/function/huyetmach.php class/function/huyetmach_boss.php game/boss.php game/pve.php game/pvp.php class/config/huyetmach_vessel_config.json tests/test_huyetmach_combat.php

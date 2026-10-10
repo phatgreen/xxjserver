@@ -227,6 +227,8 @@ HTML;
     }
 	 
 	 
+    // ===== MACH HUYET (Task 11) =====
+    $hmCs = \player\huyetmach_combat_stats(isset($player->huyetmach_vessel) ? $player->huyetmach_vessel : array());
     // Hiệu ứng võ công: xuyên phòng / phá giáp làm giảm phòng ngự quái khi tính sát thương.
     $guaiwuFyForDamage = $guaiwu->gfy;
     if (($wgEffectType == 'pierce_def' || $wgEffectType == 'break_armor') && $wgEffectValue > 0) {
@@ -234,6 +236,11 @@ HTML;
         $tishihtml .= "<font color='#42a5f5'>Võ công {$wgEffectName} phát huy: xuyên {$wgEffectValue}% phòng ngự</font><br/>";
     }
 
+    $hmPierceFrom = $guaiwuFyForDamage;
+    $guaiwuFyForDamage = \player\huyetmach_combat_pierce_def($hmCs['pen'], $guaiwuFyForDamage);
+    if ($guaiwuFyForDamage < $hmPierceFrom) {
+        $tishihtml .= "<font color='#26c6da'>🏹 Âm Duy Mạch (Xuyên Giảm): phòng ngự {$guaiwu->gname} bị xuyên ".($hmPierceFrom - $guaiwuFyForDamage)." điểm</font><br/>";
+    }
     $gphurt = round($cwgj + $player->ugj - ($guaiwuFyForDamage * 0.75),0);// Tính tổng sát thương người chơi và thú cưng gây lên quái vật
     if ($gphurt < $player->ugj*0.15){
         $gphurt = round( $player->ugj * 0.15);
@@ -293,6 +300,19 @@ HTML;
         $hurt = true;
     }
 
+    $hmIncoming = intval($phurt);
+    if ($hmCs['reduce'] > 0 && $hmIncoming > 0) {
+        $hmBlocked = \player\huyetmach_combat_phys_reduce($hmCs['reduce'], $hmIncoming);
+        if ($hmBlocked < $hmIncoming) {
+            $tishihtml .= "<font color='#66bb6a'>🧱 Dương Duy Mạch (Giảm Vật Lý): chặn ".($hmIncoming - $hmBlocked)." sát thương từ {$guaiwu->gname}</font><br/>";
+            $hmIncoming = $hmBlocked;
+        }
+    }
+    if ($hmCs['dodge'] > 0 && $hmIncoming > 0 && \player\huyetmach_combat_roll_dodge($hmCs['dodge'])) {
+        $hmIncoming = 0;
+        $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tránh): {$guaiwu->gname} vung trúng khoảng không</font><br/>";
+    }
+    $phurt = $hmIncoming;
     if ($phurt < $pvexx){
         $pvexx = $phurt - 7;
 
@@ -389,7 +409,7 @@ HTML;
 		// Kiểm tra và xử lý rơi trang bị
 
         $sjjv = mt_rand(1,120);
-        if (($yguaiwu->dljv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0)) >= $sjjv && $yguaiwu->gzb != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], ($yguaiwu->dljv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0))) >= $sjjv && $yguaiwu->gzb != ''){
             $retzb = \player\zhuangbei_config_rows_by_ids($yguaiwu->gzb);
             if (!empty($retzb)){
                 $sjdl = mt_rand(0,count($retzb)-1);
@@ -409,7 +429,7 @@ HTML;
         }
 		// Kiểm tra và xử lý rơi vật phẩm
         $sjjv = mt_rand(1,180);
-        if (($yguaiwu->djjv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0)) >= $sjjv && $yguaiwu->gdj != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], ($yguaiwu->djjv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0))) >= $sjjv && $yguaiwu->gdj != ''){
             $retdj = \player\daoju_config_rows_by_ids($yguaiwu->gdj);
             if (!empty($retdj)){
                 $sjdj = mt_rand(0,count($retdj)-1);
@@ -438,7 +458,7 @@ HTML;
         }
         yp:
         $sjjv = mt_rand(1,100);
-        if ($yguaiwu->ypjv >= $sjjv && $yguaiwu->gyp != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $yguaiwu->ypjv) >= $sjjv && $yguaiwu->gyp != ''){
             $retyp = \player\yaopin_config_rows_by_ids($yguaiwu->gyp);
             if (!empty($retyp)) {
                 $sjdj = mt_rand(0, count($retyp) - 1);

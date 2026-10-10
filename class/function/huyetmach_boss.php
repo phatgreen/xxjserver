@@ -129,7 +129,9 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_spawn')) {
 
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_calc_damage')) {
     function huyetmach_boss_calc_damage($player, $bossRow){
-        $baseDmg = max(1, intval($player->ugj) - intval(intval($bossRow['def']) * 0.75));
+        $hmCs  = huyetmach_combat_stats(isset($player->huyetmach_vessel) ? $player->huyetmach_vessel : array());
+        $hmDef = huyetmach_combat_pierce_def($hmCs['pen'], intval($bossRow['def']));
+        $baseDmg = max(1, intval($player->ugj) - intval($hmDef * 0.75));
         $lcElement = isset($player->linhcan_element) ? $player->linhcan_element : '';
         $bossElement = isset($bossRow['element']) ? $bossRow['element'] : '';
         $elemMult = 1.0;
@@ -147,20 +149,18 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_calc_damage')) {
 }
 
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_vessel_dodge')) {
-    /** mach Am Kieu (Ne Tranh): % ne = chi so, chan tuyet doi 15. */
+    /** Wrapper giu chu ky Task 8; clamp + roll nam o huyetmach_combat_*. */
     function huyetmach_boss_vessel_dodge($bonuses){
-        $pct = min(15, floatval(isset($bonuses['dodge']) ? $bonuses['dodge'] : 0));
-        if ($pct <= 0) return false;
-        return mt_rand(1, 10000) <= intval($pct * 100);
+        $cs = huyetmach_combat_stats($bonuses);
+        return huyetmach_combat_roll_dodge($cs['dodge']);
     }
 }
 
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_vessel_reduce')) {
-    /** mach Duong Duy (Giam Vat Ly): tru % sat thuong vat ly cua boss. */
+    /** Wrapper Task 8. Khac biet co y nghia: don 0 giu 0 (ham cu ep max(1)). */
     function huyetmach_boss_vessel_reduce($bonuses, $dmg){
-        $pct = min(15, floatval(isset($bonuses['reduce']) ? $bonuses['reduce'] : 0));
-        if ($pct <= 0) return max(1, intval($dmg));
-        return max(1, intval(round($dmg * (1 - $pct / 100))));
+        $cs = huyetmach_combat_stats($bonuses);
+        return huyetmach_combat_phys_reduce($cs['reduce'], $dmg);
     }
 }
 
@@ -180,6 +180,12 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_finish')) {
         if ($firstKill && isset($cfg['boss_config']['first_kill'][strval($stage)])) {
             $ht += intval($cfg['boss_config']['first_kill'][strval($stage)]);
         }
+        // Van may mach Duong Kieu: nhan so Huyet Thach roi (12% -> x1.12)
+        $hmCs = huyetmach_combat_stats(huyetmach_vessel_bonuses($sid, $dblj));
+        if ($hmCs['luck'] > 0) {
+            $ht = max(1, intval(round($ht * (100 + $hmCs['luck']) / 100)));
+        }
+
 
         $dblj->beginTransaction();
         try {
