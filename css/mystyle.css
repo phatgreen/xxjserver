@@ -7569,3 +7569,87 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 /* --- Chua co huyet mach: van cho luyen mach, nhac dan mo bang To The Dan --- */
 .hm-note{font-size:12.5px;color:#f87171;margin-top:4px;text-align:center;line-height:1.45}
 
+
+/* === HUYET MACH - NANG PHAM CHAT (.hmq-*) ===
+   Clone .tcq-* cua game/thechat_upgrade.php:105-179 (khoi da duoc kiem chung bang do dac o
+   docs/UI_THECHAT.md), doi prefix tcq->hmq, .tc-card->.hm-card, tc-badge->hm-badge.
+   KHONG lap <style> duoi trang: toan bo manh Huyet Mach nam trong file nay.
+   BA LE NEN GIU NGUYEN CACH VIET CUA SOURCE:
+   1) Aura dung z-index:-1 nen the BAT BUOC co isolation:isolate (xem .hmq-card), quen la vo hinh.
+   2) Tat dong thi viet animation:none; de --dur:0s thi Chrome van giu khung hinh 0%.
+   3) Clip gradient len chu: `background:` ngan gon DAT TRUOC `-webkit-background-clip`,
+      va emoji phai nam trong <i class="hmq-ico"> vi color:transparent lam emoji bien mat.
+   Chi them box-shadow/text-shadow/pseudo-element/opacity/transform: kich thuoc the giu nguyen
+   (Step 11 do chieu cao .hmq-card giong nhau giua q1 va q10).
+   Chu cai ruoi CHI o hmq-q10 (Dao Pham - chu server chot); hmq-q9 (De Pham) KHONG co.
+   hmq-q1 (Pham Pham) van phai thay aura + glow, khong duoc tran. */
+.hmq-head{font-weight:800;margin-bottom:12px;color:#c0a050}
+.hmq-row{text-align:center;margin-bottom:12px}
+.hmq-badge-to{color:#c0a050}
+.hmq-max{text-align:center;color:#6ee7b7;font-weight:800}
+.hmq-ico{font-style:normal}
+.hmq-card{position:relative;isolation:isolate;overflow:hidden;box-shadow:0 0 var(--glow) rgba(var(--hmq-rgb),.3)}
+.hmq-card::before{content:"";position:absolute;left:-18%;right:-18%;top:-45%;bottom:-45%;z-index:-1;pointer-events:none;
+    background:radial-gradient(58% 42% at 50% 40%,rgba(var(--hmq-rgb),.32),rgba(var(--hmq-rgb),0) 72%);
+    opacity:var(--aura-op);animation:hmqBreath var(--aura-dur) ease-in-out infinite}
+.hmq-card::after{content:"";position:absolute;left:-42%;top:-60%;bottom:-60%;width:34%;z-index:0;pointer-events:none;opacity:0;
+    background:linear-gradient(105deg,rgba(255,255,255,0),rgba(255,255,255,.15),rgba(255,255,255,0));
+    transform:translateX(0) rotate(8deg);animation:hmqSweep var(--sweep-dur) linear infinite}
+.hmq-badge{position:relative;box-shadow:0 0 var(--halo) rgba(var(--hmq-rgb),.5)}
+.hmq-badge-to{box-shadow:0 0 var(--halo) rgba(var(--hmq-to-rgb),.5)}
+.hmq-cost{position:relative;box-shadow:inset 0 0 0 1px rgba(var(--hmq-rgb),.22)}
+.hmq-rate{position:relative;text-shadow:0 0 var(--rate-glow) rgba(var(--hmq-rgb),.55)}
+.hmq-arrow{animation:hmqFade var(--arrow-dur) ease-in-out infinite}
+.hmq-btn{position:relative;overflow:hidden}
+.hmq-btn::after{content:"";position:absolute;left:-50%;top:0;bottom:0;width:40%;pointer-events:none;opacity:0;
+    background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.42),rgba(255,255,255,0));
+    transform:translateX(0);animation:hmqGlint var(--glint-dur) linear infinite}
+
+.hmq-q1{--aura-op:.24;--aura-dur:6s;--glow:8px;--halo:0px;--rate-glow:0px;--sweep-op:0;--sweep-dur:6s;--glint-dur:6s;--arrow-dur:6s}
+.hmq-q2{--aura-op:.30;--aura-dur:10s;--glow:10px;--halo:5px;--rate-glow:5px;--sweep-op:0;--sweep-dur:10s;--glint-dur:10s;--arrow-dur:10s}
+.hmq-q3{--aura-op:.36;--aura-dur:8s;--glow:13px;--halo:7px;--rate-glow:7px;--sweep-op:0;--sweep-dur:8s;--glint-dur:8s;--arrow-dur:8s}
+.hmq-q4{--aura-op:.44;--aura-dur:6.5s;--glow:16px;--halo:9px;--rate-glow:9px;--sweep-op:0;--sweep-dur:6.5s;--glint-dur:4.5s;--arrow-dur:6.5s}
+.hmq-q5{--aura-op:.52;--aura-dur:5s;--glow:19px;--halo:11px;--rate-glow:11px;--sweep-op:.16;--sweep-dur:4.6s;--glint-dur:4s;--arrow-dur:5s}
+.hmq-q6{--aura-op:.60;--aura-dur:4.2s;--glow:22px;--halo:13px;--rate-glow:13px;--sweep-op:.20;--sweep-dur:4s;--glint-dur:3.6s;--arrow-dur:4.2s}
+.hmq-q7{--aura-op:.66;--aura-dur:3.4s;--glow:25px;--halo:15px;--rate-glow:15px;--sweep-op:.24;--sweep-dur:3.4s;--glint-dur:3.2s;--arrow-dur:5s}
+.hmq-q8{--aura-op:.74;--aura-dur:2.8s;--glow:30px;--halo:18px;--rate-glow:17px;--sweep-op:.28;--sweep-dur:3s;--glint-dur:2.8s;--arrow-dur:4.2s}
+.hmq-q9{--aura-op:.82;--aura-dur:2.4s;--glow:34px;--halo:20px;--rate-glow:19px;--sweep-op:.32;--sweep-dur:2.6s;--glint-dur:2.5s;--arrow-dur:3.6s}
+.hmq-q10{--aura-op:.92;--aura-dur:2s;--glow:40px;--halo:24px;--rate-glow:22px;--sweep-op:.38;--sweep-dur:2.2s;--glint-dur:2.1s;--arrow-dur:3s}
+
+   Bac 1: chi con aura tinh + glow tinh (van thay du, vi nguoi choi dang o bac nay).
+   Que ngang: tu Thien Pham (5). Lat nut: tu Dia Pham (4). Mui ten nhap nhanh: tu Tien Pham (7). */
+.hmq-q1.hm-card::before{animation:none}
+.hmq-q1.hm-card::after,.hmq-q2.hm-card::after,.hmq-q3.hm-card::after,.hmq-q4.hm-card::after{animation:none;opacity:0}
+.hmq-q1.hm-card .hmq-btn::after,.hmq-q2.hm-card .hmq-btn::after,.hmq-q3.hm-card .hmq-btn::after{animation:none;opacity:0}
+.hmq-q1.hm-card .hmq-arrow,.hmq-q2.hm-card .hmq-arrow,.hmq-q3.hm-card .hmq-arrow,
+.hmq-q4.hm-card .hmq-arrow,.hmq-q5.hm-card .hmq-arrow,.hmq-q6.hm-card .hmq-arrow{animation:none}
+
+.hmq-q10.hm-card .hmq-max-in,.hmq-q10.hm-card .hmq-head{
+    background:linear-gradient(90deg,#ff6b6b,#ffb347,#fff45c,#6ee7b7,#5cc8ff,#c58cff,#ff6b6b);
+    background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+    color:transparent;-webkit-text-fill-color:transparent;animation:hmqRain 6s linear infinite}
+.hmq-q10.hm-card .hmq-ico{-webkit-text-fill-color:#ffe9a8}
+
+/* Ket qua nang cap: lop sang theo mau thanh bai + hieu ung xuat hien mot lan. */
+.hmq-msg{position:relative;isolation:isolate;overflow:hidden;background:rgba(255,255,255,.06);border-radius:10px;padding:12px;margin-bottom:12px}
+.hmq-msg::before{content:"";position:absolute;left:-20%;right:-20%;top:-70%;bottom:-70%;z-index:-1;pointer-events:none;
+    background:radial-gradient(58% 46% at 50% 50%,rgba(var(--msg-rgb),.3),rgba(var(--msg-rgb),0) 72%);
+    opacity:.85;animation:hmqBreath 3.4s ease-in-out infinite;--aura-op:.85}
+.hmq-msg-in{text-align:center;font-weight:800;animation:hmqPop .45s ease-out 1}
+
+@keyframes hmqBreath{0%,100%{opacity:calc(var(--aura-op) * .42)}50%{opacity:var(--aura-op)}}
+@keyframes hmqSweep{0%{transform:translateX(0) rotate(8deg);opacity:0}12%{opacity:var(--sweep-op)}86%{opacity:var(--sweep-op)}100%{transform:translateX(340%) rotate(8deg);opacity:0}}
+@keyframes hmqGlint{0%{transform:translateX(0);opacity:0}20%{opacity:.6}100%{transform:translateX(360%);opacity:0}}
+@keyframes hmqFade{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes hmqRain{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+@keyframes hmqPop{0%{opacity:0;transform:translateY(-4px)}100%{opacity:1;transform:translateY(0)}}
+
+@media (prefers-reduced-motion:reduce){
+    .hmq-card::before,.hmq-card::after,.hmq-btn::after,.hmq-arrow,.hmq-msg::before,.hmq-msg-in,
+    .hmq-q10.hm-card .hmq-head,.hmq-q10.hm-card .hmq-max-in{animation:none}
+    .hmq-card::after,.hmq-btn::after{opacity:0}
+}
+
+/* Hai class trang game/huyetmach_upgrade.php dung; source go inline style nen clone khong co. */
+.hmq-lt{color:#38bdf8;font-weight:800;margin-bottom:6px}
+.hmq-form{text-align:center;margin-top:12px}

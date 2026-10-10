@@ -2236,7 +2236,7 @@ git commit -m "feat(huyetmach): per-player bloodline bosses with real drops and 
 
 > **KY THUAT — ten pham KHONG nam trong JSON.** `thechat_upgrade_config.json` trung lap `to_name` voi `quality_names` cua no. O day `huyetmach_upgrade_config.json` chi luu `from_quality/to_quality`, ten mau icon lay tu `huyetmach_quality_*()` (da co, `class/function/huyetmach.php:568`). Mot nien duy nhat.
 
-- [ ] **Step 1: Tao `class/config/huyetmach_upgrade_config.json`** (noi dung nguyen chan):
+- [x] **Step 1: Tao `class/config/huyetmach_upgrade_config.json`** (noi dung nguyen chan):
 
 ```json
 {
@@ -2259,7 +2259,7 @@ git commit -m "feat(huyetmach): per-player bloodline bosses with real drops and 
 > **SO CHOT — chan canh gioi lay tu chinh feature, khong phat minh so moi**: 100/150/200/280 la `realm_min_level` cua stage 1..4 trong `huyetmach_awakening_config.json` (Trúc Cơ / Kim Đan / Nguyên Anh / Đại Thừa). Nguoi choi noi dc thuc tinh thi du cho nang pham tuong ung — hai duong khong nat nhau.
 > **TONG CONG HUYET THACH 9 buoc nang pham = 77** (5+10+8+10+8+10+8+10+8). Cong luyen 8 mach day tran 48 = 1344. Day la con so de chu quyet dinh "mooi" o Task 12, khong phai bug.
 
-- [ ] **Step 2: Quet CJK + validate JSON + kiem tinh lien tuc cua chuoi pham**
+- [x] **Step 2: Quet CJK + validate JSON + kiem tinh lien tuc cua chuoi pham**
 
 ```bash
 D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe -r '
@@ -2270,9 +2270,10 @@ if($m[0]){echo "CJK FOUND: ",implode(" ",$m[0]),"\n";exit(1);}
 $d=json_decode($s,true);
 if(!is_array($d)){echo "json FAIL\n";exit(1);}
 $u=$d["upgrades"]; if(count($u)!==9){echo "count=",count($u),"\n";exit(1);}
-$rates=array(); $prev=0;
+$rates=array(); $prev=null;   // chuoi pham BAT DAU tu 1 (Pham Pham), khong phai 0
 foreach($u as $k=>$row){
-  if($row["from_quality"]!=$prev){echo "GAP at ",$k,"\n";exit(1);}
+  if($prev===null){$prev=$row["from_quality"];}
+  elseif($row["from_quality"]!=$prev){echo "GAP at ",$k,"\n";exit(1);}
   $prev=$row["to_quality"]; $rates[]=$row["success_rate"];
 }
 if($rates!==array(95,90,85,75,65,55,45,35,25)){echo "rates ",implode(",",$rates),"\n";exit(1);}
@@ -2281,7 +2282,7 @@ echo "upgrade json ok, 9 buoc, to_quality cuoi=10\n";'
 
 Expected: `upgrade json ok, 9 buoc, to_quality cuoi=10`. Neu in ra `CJK FOUND: ...` thi file da bi chen chu Trung Hoa lac cho (le cua Task 1 Step 2) — viet lai Step 1. Neu in ra `GAP at <k>` thi chuoi `from_quality` bi dut (phai 1→2→...→10 lien tuc).
 
-- [ ] **Step 3: Viet test that bai truoc — `tests/test_huyetmach_upgrade.php`**
+- [x] **Step 3: Viet test that bai truoc — `tests/test_huyetmach_upgrade.php`**
 
 Test khong them tham so "force roll". Theo le cua repo (`tests/test_nguhanh_random.php`: do roll THAT bang chuoi dai): phan ngau nhien kiem bang bien dong (60 luot rate 95 → 50..60 lan thành công); phan tu choi (thieu canh gioi / thieu tai nguyen) kiem bang ket qua tat yeu, vi nhung duong nay return TRUOC khi quay roll.
 
@@ -2372,10 +2373,13 @@ $r = \player\huyetmach_upgrade($TESTSID, $db);
 tassert('thieu Huyet Thạch', $r['ok'], false);
 tassert('ten vat pham co dau', strpos($r['msg'], 'Huyết Thạch') !== false, true);
 
-// B4: thieu da pham (extra_material_id)
+// B4: thieu da pham (extra_material_id) — BUOC 2->3 moi co extra (101 x 3), o pham 1 khong co nen phai reset ve 2
+hm_up_reset($db, $TESTSID, 2, 999999999, 300);
 hm_up_mat($db, $TESTSID, 112, 10); hm_up_mat($db, $TESTSID, 101, 2);
 $r = \player\huyetmach_upgrade($TESTSID, $db);
 tassert('thieu Huyền Thạch', strpos($r['msg'], 'Huyền Thạch') !== false, true);
+tassert('thieu da khong tru 112', intval($db->query("SELECT djsum FROM playerdaoju WHERE sid='$TESTSID' AND djid=112")->fetchColumn()), 10);
+tassert('thieu da khong ghi log', intval($db->query("SELECT COUNT(*) FROM player_huyetmach_upgrade_log WHERE sid='$TESTSID'")->fetchColumn()), 0);
 
 // B5: thieu Linh Thạch
 hm_up_mat($db, $TESTSID, 101, 3);
@@ -2418,12 +2422,12 @@ echo "\n" . ($fails === 0 ? "ALL PASS" : $fails . " FAIL") . "\n";
 exit($fails === 0 ? 0 : 1);
 ```
 
-- [ ] **Step 4: Chay test -> FAIL**
+- [x] **Step 4: Chay test -> FAIL**
 
 Run: `D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe tests/test_huyetmach_upgrade.php`
 Expected: `Call to undefined function player\huyetmach_upgrade_config_all()`.
 
-- [ ] **Step 5: Ham `huyetmach_upgrade_*`** — them vao `class/function/huyetmach.php` (ngay sau khoi `huyetmach_quality_icon`, truoc khoi `huyetmach_awaken_name`):
+- [x] **Step 5: Ham `huyetmach_upgrade_*`** — them vao `class/function/huyetmach.php` (ngay sau khoi `huyetmach_quality_icon`, truoc khoi `huyetmach_awaken_name`):
 
 ```php
 /**
@@ -2568,9 +2572,9 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_upgrade')) {
 }
 ```
 
-- [ ] **Step 6: Chay test -> PASS** (ca A/B/C/D). Neu C fail vi 60 luot roi ngoai dai 50..60, chay lai — day la bien dong cua 95% (Xác suất rơi ngoài dải ≈ 10⁻⁷/lần chạy), khong phai loi.
+- [x] **Step 6: Chay test -> PASS** (ca A/B/C/D). Neu C fail vi 60 luot roi ngoai dai 50..60, chay lai — day la bien dong cua 95% (Xác suất rơi ngoài dải ≈ 10⁻⁷/lần chạy), khong phai loi.
 
-- [ ] **Step 7: Khoi CSS `.hmq-*`** — noi cuoi `css/mystyle.css` (ngay sau khoi `.hm-*` cua Task 7), clone tu khoi `.tcq-*` trong `game/thechat_upgrade.php`:
+- [x] **Step 7: Khoi CSS `.hmq-*`** — noi cuoi `css/mystyle.css` (ngay sau khoi `.hm-*` cua Task 7), clone tu khoi `.tcq-*` trong `game/thechat_upgrade.php`:
 
 ```bash
 { echo ''
@@ -2596,18 +2600,19 @@ Roi tay THEM 5 cho ma sed khong tu sinh duoc (thieu la mat hieu ung hoac mat chu
 4. Chu cai ruoi chi gan cho `hmq-q10` (Đạo Phẩm). `hmq-q9` (Đế Phẩm) phai KHONG co — cung mot le voi Task 7.
 5. `@media (prefers-reduced-motion:reduce)` phai liet ke ca `hmq-q10 .hmq-head`, `hmq-q10 .hmq-max-in`, `hmq-msg::before`, `hmq-msg-in`; tat dong thi viet `animation:none` (khong dung `--dur:0s`).
 
-- [ ] **Step 8: Trang `game/huyetmach_upgrade.php`** (noi dung nguyen chan):
+- [x] **Step 8: Trang `game/huyetmach_upgrade.php`** (noi dung nguyen chan):
 
 ```php
+```php
 <?php
-// Huyết Mạch - Nâng Phẩm Chất
+// HUYET MACH — trang nang pham chat (9 buoc 1->10).
+// Logic: class/function/huyetmach.php (huyetmach_upgrade*), CSS: .hmq-* trong css/mystyle.css
 $player = \player\getplayer($sid, $dblj);
 
 $hmUpBloodId = intval($player->huyetmach_id);
 $hmUpQuality = intval($player->huyetmach_quality);
 $hmUpInfo = \player\huyetmach_get_upgrade_info($hmUpQuality);
 
-$ztcmd = $encode->encode("cmd=zhuangtai&sid=$sid");
 $hmcmd = $encode->encode("cmd=huyetmach&sid=$sid");
 
 $hmUpMsg = '';
@@ -2639,8 +2644,8 @@ if ($hmUpMsg !== '') {
 if ($hmUpBloodId <= 0) {
     // Chua co huyet mach: empty-state nhu man chinh (Task 7), khong cho hoi thieu du lieu
     echo '<div class="hm-wrap"><div class="hm-card hmq-card ' . $hmUpFx . '" style="--hmq:' . $hmUpColor
-        . ';--hmq-rgb:' . $hmUpRgb . '"><div class="hm-empty">Huyết Mạch chưa khởi — uống <b>Tố Thể Đan</b> ở Phương Thị để mở mạch.</div></div>'
-        . '<nav class="hm-tabbar"><a class="on" href="?cmd=' . $ztcmd . '"><i>👤</i><b>Nhân Vật</b></a></nav></div>';
+        . ';--hmq-rgb:' . $hmUpRgb . '"><div class="hm-note">Huyết Mạch chưa khai mở — dùng <b>Tố Thể Đan</b> để nhận huyết mạch.</div></div>'
+        . '<a class="hm-act hm-act-ghost" style="width:100%;margin-top:8px" href="?cmd=' . $hmcmd . '">← Quay lại Mạch Huyết</a></div>';
     return;
 }
 
@@ -2666,9 +2671,14 @@ if ($hmUpInfo) {
     }
 
     $hmUpMatCls = ($hmUpMatHave >= $hmUpMatAmt) ? 'hm-cost-ok' : 'hm-cost-no';
-    $hmUpLtOk = (intval($player->uyxb) >= intval($hmUpInfo['linh_thach_cost']));
     $hmUpGateOk = (intval($player->ulv) >= $hmUpGate);
     $hmUpGateHtml = $hmUpGateOk ? '' : '<div class="hm-req hm-cost-no">🔒 Cần cấp ' . $hmUpGate . ' (hiện ' . intval($player->ulv) . ')</div>';
+
+    $hmUpFromIcon = \player\huyetmach_quality_icon($hmUpQuality);
+    $hmUpFromName = htmlspecialchars(\player\huyetmach_quality_name($hmUpQuality), ENT_QUOTES, 'UTF-8');
+    $hmUpToIcon = \player\huyetmach_quality_icon(intval($hmUpInfo['to_quality']));
+    $hmUpToName = htmlspecialchars($hmUpToName, ENT_QUOTES, 'UTF-8');
+    $hmUpDesc = htmlspecialchars(isset($hmUpInfo['description']) ? $hmUpInfo['description'] : '', ENT_QUOTES, 'UTF-8');
 
     $hmUpHtml = <<<HTML
 <div class="hm-card hmq-card {$hmUpFx}" style="--hmq:{$hmUpColor};--hmq-rgb:{$hmUpRgb};--hmq-to:{$hmUpToColor};--hmq-to-rgb:{$hmUpToRgb}">
@@ -2688,7 +2698,7 @@ if ($hmUpInfo) {
     <div class="hm-node-desc">{$hmUpDesc}</div>
     <form method="post" class="hmq-form">
         <input type="hidden" name="hm_action" value="upgrade">
-        <button type="submit" class="hm-btn hm-btn-refine hmq-btn">Nâng Phẩm</button>
+        <button type="submit" class="hm-act hm-act-refine hmq-btn">Nâng Phẩm</button>
     </form>
 </div>
 HTML;
@@ -2699,44 +2709,62 @@ HTML;
 ?>
 <?= $hmUpMsgHtml ?>
 <?= $hmUpHtml ?>
-<nav class="hm-tabbar">
-    <a href="?cmd=<?= $hmcmd ?>"><i>🩸</i><b>Mạch Huyết</b></a>
-    <a class="on" href="?cmd=<?= $ztcmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-</nav>
+<a class="hm-act hm-act-ghost" style="width:100%;margin-top:8px" href="?cmd=<?= $hmcmd ?>">← Quay lại Mạch Huyết</a>
 ```
 
-> **BA VIEC PHAI LAM TRUOC KIMUOI (heredoc tren chua khai bao)** — day la loi ma `sed`/`copy` khong bat duoc, phai tay:
-> - `$hmUpFromIcon = \player\huyetmach_quality_icon($hmUpQuality); $hmUpFromName = htmlspecialchars(\player\huyetmach_quality_name($hmUpQuality), ENT_QUOTES, 'UTF-8'); $hmUpToIcon = \player\huyetmach_quality_icon(intval($hmUpInfo['to_quality']));` va `$hmUpDesc = htmlspecialchars(isset($hmUpInfo['description']) ? $hmUpInfo['description'] : '', ENT_QUOTES, 'UTF-8');` — them 4 dong nay vao TRUOC heredoc (trong `if ($hmUpInfo) {...}`), neu khong `Undefined variable` ra chu `Notice` giua man.
->> - `.hm-cost-ok/.hm-cost-no/.hm-node-desc/.hm-req` la class Task 7 da clone tu `.nb-*` — dung lai, KHONG khai bao lai trong `.hmq-*`.
+> **BON CHO DA PHAI SUA SO VOI BAN KHOI TREN KHI THUC THI** (khoi tren da la file that, luong lai de `sed`/`copy` khong bat duoc):
+> - 4 bien heredoc (`$hmUpFromIcon/$hmUpFromName/$hmUpToIcon/$hmUpDesc`) da duoc khai bao truc tiep trong `if ($hmUpInfo)`, ke ca `htmlspecialchars` cho `$hmUpToName`. Thieu 1 trong 4 -> `Undefined variable` in giua man.
+> - `hm-empty` -> **`hm-note`**: `.hm-empty` (mystyle.css:6443) la cua `game/hammo.php`, dung de trung la thay mau cua hammo.
+> - `hm-btn hm-btn-refine` -> **`hm-act hm-act-refine`**: Task 7 da doi ten hai class vi `.main button` (gamecss.css:122, 0-1-1) thang mau trang len `.hm-btn`.
+> - `hm-tabbar` (2 tab Mach Huyết / Nhân Vật) -> **1 nut ghost "← Quay lại Mạch Huyết"**, giong het `game/huyetmach_transform.php:74`. Tabbar o day sai vi no danh dau `on` vao tab Nhân Vật trong khi trang nay di tu man Mạch Huyết toi; `$ztcmd` vi the bi bo.
+> - `.hm-cost-ok/.hm-cost-no/.hm-node-desc/.hm-req` la class Task 7 da clone tu `.nb-*` — dung lai, KHONG khai bao lai trong `.hmq-*`.
 
-- [ ] **Step 9: Can tin PHP 5.6 + nguyen ban**
+- [x] **Step 9: Can tin PHP 5.6 + nguyen ban** — ket qua thuc te:
 
 ```bash
 PHP=D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe
-$PHP -l game/huyetmach_upgrade.php
-$PHP -l class/function/huyetmach.php
-grep -n '??\|<=>\|\[\]' game/huyetmach_upgrade.php | head        # 0 ket qua
-grep -nP "[\\\\x{4e00}-\\\\x{9fff}]" game/huyetmach_upgrade.php class/function/huyetmach.php css/mystyle.css
-   # 0 ket qua (tru khi file goc cua repo co san tieng Trung trong comment khac -> ghi ro ten dong)
-grep -n "'huyetmach_upgrade'=>'game/huyetmach_upgrade.php'," game.php   # 1 ket qua (Task 7 Step 6)
+$PHP -l game/huyetmach_upgrade.php     # No syntax errors detected
+$PHP -l class/function/huyetmach.php   # No syntax errors detected
+grep -n '??\|<=>\|\[\]' game/huyetmach_upgrade.php                 # 0 ket qua
+grep -n '= *\[\|=> *\[\|return \[\|(\[' game/huyetmach_upgrade.php class/function/huyetmach.php
+   # 0 ket qua. LUU Y: pattern `\[\]` o dong tren danh duong ca `$rows[] =` (van hop phap 5.6),
+   # nen phai them pattern khai bao mang o tren thi moi that su tra cuoc `array()` vs `[]`.
+grep -n "'huyetmach_upgrade'=>'game/huyetmach_upgrade.php'," game.php   # 1 ket qua (dong 370)
 ```
 
-- [ ] **Step 10: Bump CSS** — `sed -i "s/mystyle.css?v=[0-9]\\+/mystyle.css?v=2026101001/" game.php` (Task 7 dat `2026100930`).
+Quet CJK + curly quote phai bang **script PHP theo pham vi dong** (`grep -P` khong chay duoc tren git-bash Windows):
 
-- [ ] **Step 11: Nghiem thu that tren trang** (playbook `docs/UI_XIULIAN.md` §9.1 — tai khoan E2E `e2e2e2e2...`, `php -S 127.0.0.1:8090`, harness iframe 390px, `zoom=1` truoc khi do):
-  - Seed: `UPDATE game1 SET huyetmach_id=1, huyetmach_quality=1, ulv=300, uyxb=100000000 WHERE sid='e2e...'` + `INSERT ... playerdaoju (sid,uid,djid,djsum)` cho 112×40 va 101..105×10 (uid lay tu `game1.uid` cua E2E).
-  - Do 4 con so, ghi vao `document.title`, screenshot luu `docs/img/huyetmach/upgrade-*.png`:
+| Khoi | non-ASCII | CJK | curly |
+|---|---|---|---|
+| `game/huyetmach_upgrade.php` (ca file) | 14 dong (chuoi UI tieng Viet + emoji, hop le) | 0 | 0 |
+| `css/mystyle.css` dong 7572->het (khoi `.hmq-*`) | **0 dong** | 0 | 0 |
+| `class/function/huyetmach.php` dong 597..797 (khoi upgrade) | 16 dong (chuoi msg + ten pham) | 0 | 0 |
 
-| Phan tu | Ky vong |
-|---|---|
-| nut `.hmq-btn` | `backgroundColor` KHONG phai `rgb(255,255,255)` (= `.main .hm-btn-refine` cua Task 7 thang `.main button`) |
-| `.hmq-card` | width = noi dung 624px desktop; `height` KHONG doi giua q1 va q10 (hieu ung 0px geometry) |
-| `.hmq-badge-to` | mau theo `--hmq-to` = `huyetmach_quality_color(to_quality)` — pham 1→2 badge den `#4caf50` |
-| `.hmq-q10 .hmq-head` | co `background-clip:text` + `animation-name:hmqRain`; o `hmq-q9` KHONG co |
+- [x] **Step 10: Bump CSS** — `2026101003` -> **`2026101004`** (`game.php:502`). Ban plan ghi `2026101001` va "Task 7 dat `2026100930`" da bi Task 8 dat `2026101003` vuot truoc; so phai tang don dieu chu khong duoc quay lai.
 
-  - Bam **Nâng Phẩm** 1 lan that → `battleLog` khong lien quan, nhung khung `.hmq-msg` phai xuat hien, `huyetmach_quality` hoặc 1 hoặc 2, `player_huyetmach_upgrade_log` co 1 dong.
+- [x] **Step 11: Nghiem thu that tren trang** — server local dang chay la **`php -S 127.0.0.1:8123`** (KHONG phai 8090 nhu plan ghi; kiem tra `netstat -ano | grep LISTEN | grep -E "127.0.0.1:8[0-9]{3}"` truoc khi do). Harness: 4 iframe cung URL trong web root (`mob` 390 / `desk` 1200 / `desk` co tiem `<style>` tat hieu ung / man chinh `cmd=huyetmach` 1200), `contentDocument.body.style.zoom=1`, ket qua in ra `<pre id="out">` va doc bang `chrome --headless=new --dump-dom`. Harness da xoa khoi web root ngay sau khi do.
 
-- [ ] **Step 12: Commit**
+  Seed E2E `e2e2e2e2...`: `huyetmach_id=1, ulv=300, uyxb=100000000, uhp=umaxhp` + `playerdaoju` 112x40 va 101..105x10. **Da `restore` ve snapshot truoc test** (chi xoa dung row do test tao; 104 tra ve 6; `player_huyetmach_upgrade_log` con 0 dong cho sid nay).
+
+  11 lan GET (q=1..10) + 2 lan POST that: **warn=0 tren ca 11 response** (khong Warning/Notice/Undefined/Fatal/Deprecated).
+
+| Phan tu | Ky vong | **Do duoc** |
+|---|---|---|
+| nut `.hmq-btn` | `backgroundColor` KHONG phai `rgb(255,255,255)` | `rgba(0,0,0,0)` + `background-image: linear-gradient(135deg, rgb(249,115,22), rgb(234,179,8))`, cao 44px, `font-weight:1000` -> **KHONG bi nut trang he thong** (landmine `.main button` da qua) |
+| `.hmq-card` | width desktop 624px; height khong doi vi hieu ung | width **622px**, lech **0px** so voi `.hm-card` man Mach Huyết cung panel 660px; **hieu ung them 0px chieu cao**: q1 261 vs 261, q9 293 vs 293 (iframe "tat hieu ung" chi `box-shadow:none`, `content:none`, `animation:none`, giu nguyen class layout) |
+| `.hmq-badge-to` | mau theo `--hmq-to` = `huyetmach_quality_color(to_quality)` | q1 `--hmq-to=#4caf50` + `box-shadow: rgba(76,175,80,.5) 0 0 0 0`; q9 `--hmq-to=#e0e0e0` + `rgba(224,224,224,.5) 0 0 20px 0`. Chu badge van vang `rgb(192,160,80)` dung nhu source thechat (chat luong mau nam o halo, khong o chu) |
+| rainbow Dao Pham | `.hmq-q10 .hmq-head` co `background-clip:text` + `animation-name:hmqRain`; q9 KHONG co | **q10 khong con `.hmq-head`** (pham cuoi render the "toi da", chi co `.hmq-max-in`) -> do `.hmq-max-in`: `backgroundClip:text`, `animationName:hmqRain`, `text-fill-color rgba(0,0,0,0)`; q9 `.hmq-head`: `border-box` + `animationName:none` -> **dung**, chi doi ten phan tu do |
+
+  Thang cuong do do duoc theo: `--aura-op`/`--glow` = q1 `.24`/`8px` -> q9 `.82`/`34px` -> q10 `.92`/`40px`; `isolation:isolate` co mat tren card (thieu no la aura `z-index:-1` vo hinh).
+
+  Nang pham THAT (POST `hm_action=upgrade`, q=1, du 5 HT + 1000 LT): msg "Nang pham thanh cong! Huyet Mach da len Linh Pham.", `huyetmach_quality 1 -> 2`, `Huyet Thach 40 -> 35`, `Linh Thach 100000000 -> 99999000`, `player_huyetmach_upgrade_log 0 -> 1` dong `{from:1,to:2,success:1}`, khung `.hmq-msg` xuat hien tren man.
+  Chot chan vat lieu khong du (q=2, chi con 1 HT): msg "Huyet Thach khong du: can 10, co 1" va **HT van 1, q van 2, log van 1 dong** -> khong tru nua cai, khong ghi log gia.
+
+  Anh chung minh (KHONG commit, theo thong le repo): `docs/img/huyetmach/upgrade-q1-mobile.png`, `upgrade-q1-desktop.png`, `upgrade-q5-mobile.png`, `upgrade-q9-mobile.png`, `upgrade-q10-mobile.png`, `upgrade-post.png`.
+
+  **CHUA test trong game that tren may dao deo** — moi chi test qua `php -S` local + Chrome headless; chu server can tu mo `cmd=huyetmach_upgrade` va bam nut that.
+
+- [x] **Step 12: Commit**
 
 ```bash
 git add class/config/huyetmach_upgrade_config.json class/function/huyetmach.php game/huyetmach_upgrade.php css/mystyle.css game.php tests/test_huyetmach_upgrade.php

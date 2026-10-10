@@ -591,6 +591,147 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_quality_icon')) {
     }
 }
 
+/**
+ * Upgrade config — nang pham chat Huyết Mạch (khong lien quan luyen mach).
+ */
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_upgrade_config_path')) {
+    function huyetmach_upgrade_config_path(){
+        $paths = array(
+            __DIR__ . '/../config/huyetmach_upgrade_config.json',
+            __DIR__ . '/huyetmach_upgrade_config.json'
+        );
+        foreach ($paths as $path) {
+            if (is_file($path)) return $path;
+        }
+        return $paths[0];
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_upgrade_config_all')) {
+    function huyetmach_upgrade_config_all(){
+        static $cache = null;
+        if ($cache !== null) return $cache;
+        $file = huyetmach_upgrade_config_path();
+        if (!is_file($file)) { $cache = array(); return $cache; }
+        $data = json_decode(file_get_contents($file), true);
+        $cache = is_array($data) ? $data : array();
+        return $cache;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_get_upgrade_info')) {
+    function huyetmach_get_upgrade_info($currentQuality){
+        $all = huyetmach_upgrade_config_all();
+        $upgrades = isset($all['upgrades']) ? $all['upgrades'] : array();
+        $currentQuality = intval($currentQuality);
+        foreach ($upgrades as $u) {
+            if (intval($u['from_quality']) === $currentQuality) return $u;
+        }
+        return false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_upgrade')) {
+    /**
+     * Nang 1 bac pham chat. That bai mat vat lieu, KHONG giam pham (spec 2.2).
+     * Moi lan tru = 1 dong log, ke ca khi fail.
+     */
+    function huyetmach_upgrade($sid, $dblj){
+        $player = getplayer($sid, $dblj);
+        if (!$player) return array('ok' => false, 'msg' => 'Không tìm thấy nhân vật.', 'new_quality' => 0);
+
+        $quality = intval($player->huyetmach_quality);
+        if (intval($player->huyetmach_id) <= 0) {
+            return array('ok' => false, 'msg' => 'Bạn chưa có Huyết Mạch.', 'new_quality' => $quality);
+        }
+
+        $info = huyetmach_get_upgrade_info($quality);
+        if (!$info) {
+            return array('ok' => false, 'msg' => 'Huyết Mạch đã đạt Đạo Phẩm — phẩm chất tối đa.', 'new_quality' => $quality);
+        }
+
+        $toQuality = intval($info['to_quality']);
+        $gate = intval(isset($info['unlock_realm_min_level']) ? $info['unlock_realm_min_level'] : 0);
+        if (intval($player->ulv) < $gate) {
+            return array('ok' => false,
+                'msg' => 'Cần đạt cấp ' . $gate . ' để nâng lên ' . huyetmach_quality_name($toQuality) . '.',
+                'new_quality' => $quality);
+        }
+
+        $ltCost = intval($info['linh_thach_cost']);
+        $matId = intval($info['material_id']);
+        $matAmt = intval($info['material_amount']);
+        $extraId = isset($info['extra_material_id']) ? intval($info['extra_material_id']) : 0;
+        $extraAmt = isset($info['extra_material_amount']) ? intval($info['extra_material_amount']) : 0;
+        $rate = intval($info['success_rate']);
+
+        if (intval($player->uyxb) < $ltCost) {
+            return array('ok' => false,
+                'msg' => 'Linh Thạch không đủ: cần ' . number_format($ltCost) . ', có ' . number_format(intval($player->uyxb)) . '.',
+                'new_quality' => $quality);
+        }
+        $have = huyetmach_vessel_daoju_have($sid, $dblj, $matId);
+        if ($have < $matAmt) {
+            return array('ok' => false,
+                'msg' => huyetmach_get_material_name($matId) . ' không đủ: cần ' . $matAmt . ', có ' . $have . '.',
+                'new_quality' => $quality);
+        }
+        if ($extraId > 0 && $extraAmt > 0) {
+            $haveExtra = huyetmach_vessel_daoju_have($sid, $dblj, $extraId);
+            if ($haveExtra < $extraAmt) {
+                return array('ok' => false,
+                    'msg' => huyetmach_get_material_name($extraId) . ' không đủ: cần ' . $extraAmt . ', có ' . $haveExtra . '.',
+                    'new_quality' => $quality);
+            }
+        }
+
+        $dblj->beginTransaction();
+        try {
+            // rowCount() === 1 la dieu kien song: thechat_upgrade() bo qua buoc nay va co the
+            // quay roll ma khong tru duoc vat lieu nao.
+            $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb - ? WHERE sid = ? AND uyxb >= ?");
+            $stmt->execute(array($ltCost, $sid, $ltCost));
+            if ($stmt->rowCount() !== 1) throw new Exception('thieu Linh Thạch');
+
+            $stmt = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum - ? WHERE sid = ? AND djid = ? AND djsum >= ?");
+            $stmt->execute(array($matAmt, $sid, $matId, $matAmt));
+            if ($stmt->rowCount() !== 1) throw new Exception('thieu ' . huyetmach_get_material_name($matId));
+
+            if ($extraId > 0 && $extraAmt > 0) {
+                $stmt = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum - ? WHERE sid = ? AND djid = ? AND djsum >= ?");
+                $stmt->execute(array($extraAmt, $sid, $extraId, $extraAmt));
+                if ($stmt->rowCount() !== 1) throw new Exception('thieu ' . huyetmach_get_material_name($extraId));
+            }
+
+            $success = (mt_rand(1, 100) <= $rate) ? 1 : 0;
+            if ($success) {
+                $dblj->prepare("UPDATE game1 SET huyetmach_quality = ? WHERE sid = ?")
+                    ->execute(array($toQuality, $sid));
+            }
+            $dblj->prepare("INSERT INTO player_huyetmach_upgrade_log (sid, from_quality, to_quality, success, created_at)
+                VALUES (?, ?, ?, ?, NOW())")->execute(array($sid, $quality, $toQuality, $success));
+
+            $dblj->commit();
+        } catch (Exception $e) {
+            if ($dblj->inTransaction()) $dblj->rollBack();
+            return array('ok' => false,
+                'msg' => 'Nâng phẩm thất bại (hệ thống bận), chưa trừ vật phẩm.',
+                'new_quality' => $quality);
+        }
+
+        player_cache_clear($sid);
+        $toName = huyetmach_quality_name($toQuality);
+        if ($success) {
+            return array('ok' => true,
+                'msg' => 'Nâng phẩm thành công! Huyết Mạch đã lên ' . $toName . '.',
+                'new_quality' => $toQuality);
+        }
+        return array('ok' => false,
+            'msg' => 'Nâng phẩm thất bại! Vật phẩm đã mất, huyết mạch vẫn ở ' . huyetmach_quality_name($quality) . '.',
+            'new_quality' => $quality);
+    }
+}
+
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_awaken_name')) {
     function huyetmach_awaken_name($stage){
         $tier = huyetmach_vessel_tier(intval($stage));

@@ -1,0 +1,15 @@
+{
+  "schema": "huyetmach_upgrade_v1",
+  "note": "Nâng phẩm chất nhân chỉ số gốc của huyết mạch (Công Kích, Khí Huyết, Bạo Kích, Hút Máu, Nguyên Tố). Mạch huyết tính theo cấp, KHÔNG nhân phẩm.",
+  "upgrades": {
+    "1": {"from_quality": 1, "to_quality": 2, "linh_thach_cost": 1000, "material_id": 112, "material_amount": 5, "success_rate": 95, "unlock_realm_min_level": 0, "description": "Phàm Phẩm lên Linh Phẩm — bước đầu của kẻ mới khai mạch."},
+    "2": {"from_quality": 2, "to_quality": 3, "linh_thach_cost": 5000, "material_id": 112, "material_amount": 10, "extra_material_id": 101, "extra_material_amount": 3, "success_rate": 90, "unlock_realm_min_level": 0, "description": "Linh Phẩm lên Huyền Phẩm, cần Huyền Thạch."},
+    "3": {"from_quality": 3, "to_quality": 4, "linh_thach_cost": 20000, "material_id": 112, "material_amount": 8, "extra_material_id": 102, "extra_material_amount": 5, "success_rate": 85, "unlock_realm_min_level": 100, "description": "Huyền Phẩm lên Địa Phẩm, cần trúc Cơ (cấp 100)."},
+    "4": {"from_quality": 4, "to_quality": 5, "linh_thach_cost": 80000, "material_id": 112, "material_amount": 10, "extra_material_id": 103, "extra_material_amount": 5, "success_rate": 75, "unlock_realm_min_level": 100, "description": "Địa Phẩm lên Thiên Phẩm."},
+    "5": {"from_quality": 5, "to_quality": 6, "linh_thach_cost": 300000, "material_id": 112, "material_amount": 8, "extra_material_id": 104, "extra_material_amount": 3, "success_rate": 65, "unlock_realm_min_level": 150, "description": "Thiên Phẩm lên Thánh Phẩm, cần Kim Đan (cấp 150)."},
+    "6": {"from_quality": 6, "to_quality": 7, "linh_thach_cost": 1000000, "material_id": 112, "material_amount": 10, "extra_material_id": 105, "extra_material_amount": 5, "success_rate": 55, "unlock_realm_min_level": 150, "description": "Thánh Phẩm lên Tiên Phẩm."},
+    "7": {"from_quality": 7, "to_quality": 8, "linh_thach_cost": 5000000, "material_id": 112, "material_amount": 8, "extra_material_id": 106, "extra_material_amount": 3, "success_rate": 45, "unlock_realm_min_level": 200, "description": "Tiên Phẩm lên Thần Phẩm, cần Nguyên Anh (cấp 200)."},
+    "8": {"from_quality": 8, "to_quality": 9, "linh_thach_cost": 20000000, "material_id": 112, "material_amount": 10, "extra_material_id": 107, "extra_material_amount": 5, "success_rate": 35, "unlock_realm_min_level": 280, "description": "Thần Phẩm lên Đế Phẩm, cần Đại Thừa (cấp 280)."},
+    "9": {"from_quality": 9, "to_quality": 10, "linh_thach_cost": 100000000, "material_id": 112, "material_amount": 8, "extra_material_id": 108, "extra_material_amount": 1, "success_rate": 25, "unlock_realm_min_level": 280, "description": "Đế Phẩm lên Đạo Phẩm — phẩm cuối, chữ cầu vồng."}
+  }
+}
