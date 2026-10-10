@@ -1,0 +1,642 @@
+{
+    "1": {
+        "djname": "Cường Hóa Thạch",
+        "djzl": "2",
+        "djinfo": "Cường hóa trang bị đạo cụ",
+        "djid": 1,
+        "djyxb": 10,
+        "djjg": 0
+    },
+    "6": {
+        "djname": "Phù Lục Tàn Hiệt - Sơ Cấp Linh",
+        "djzl": "6",
+        "djinfo": "Đoái hoán phù lục",
+        "djid": 6,
+        "djyxb": 15,
+        "djjg": 0
+    },
+    "7": {
+        "djname": "Phù Lục Tàn Hiệt - Sơ Cấp Ma",
+        "djzl": "7",
+        "djinfo": "Đoái hoán phù lục",
+        "djid": 7,
+        "djyxb": 30,
+        "djjg": 0
+    },
+    "8": {
+        "djname": "Ngạnh Sí Phong Mật",
+        "djzl": "8",
+        "djinfo": "Ngạnh sí phong phong mật",
+        "djid": 8,
+        "djyxb": 10,
+        "djjg": 0
+    },
+    "9": {
+        "djname": "Phù Lục Tàn Hiệt - Sơ Cấp Man",
+        "djzl": "9",
+        "djinfo": "Phù lục tàn hiệt - sơ cấp man",
+        "djid": 9,
+        "djyxb": 40,
+        "djjg": 0
+    },
+    "10": {
+        "djname": "Phù Lục Tàn Hiệt - Trung Cấp Linh",
+        "djzl": "10",
+        "djinfo": "Phù lục tàn hiệt - trung cấp linh",
+        "djid": 10,
+        "djyxb": 80,
+        "djjg": 0
+    },
+    "11": {
+        "djname": "Sơ Cấp Ma Linh",
+        "djzl": "11",
+        "djinfo": "Sơ cấp ma linh",
+        "djid": 11,
+        "djyxb": 90,
+        "djjg": 0
+    },
+    "12": {
+        "djname": "[Thần Khí] Yêu Vương Kiếm Toái Phiến",
+        "djzl": "12",
+        "djinfo": "[Thần Khí] Yêu Vương Kiếm toái phiến",
+        "djid": 12,
+        "djyxb": 100,
+        "djjg": 0
+    },
+    "13": {
+        "djname": "Ti Cân",
+        "djzl": "13",
+        "djinfo": "Thiếp thân trang bị",
+        "djid": 13,
+        "djyxb": 100,
+        "djjg": 0
+    },
+    "14": {
+        "djname": "Tàn Mặc",
+        "djzl": "14",
+        "djinfo": "Có thể đổi họa sách",
+        "djid": 14,
+        "djyxb": 100,
+        "djjg": 0
+    },
+    "15": {
+        "djname": "Thuẫn Thổ Tàn Chương",
+        "djzl": "15",
+        "djinfo": "Có thể đổi thuẫn thổ thuật",
+        "djid": 15,
+        "djyxb": 100,
+        "djjg": 0
+    },
+    "20": {
+        "djname": "Trúc Cơ Đột Phá Đan",
+        "djzl": "20",
+        "djinfo": "Đột phá trúc cơ kỳ sẽ sử dụng nội đan",
+        "djid": 20,
+        "djyxb": 50000,
+        "djjg": 0
+    },
+    "21": {
+        "djname": "Kim Đan Đột Phá Đan",
+        "djzl": "21",
+        "djinfo": "Đột phá kim đan kỳ sẽ sử dụng nội đan",
+        "djid": 21,
+        "djyxb": 150000,
+        "djjg": 0
+    },
+    "22": {
+        "djname": "Nguyên Anh Đột Phá Đan",
+        "djzl": "22",
+        "djinfo": "Đột phá nguyên anh kỳ sẽ sử dụng nội đan",
+        "djid": 22,
+        "djyxb": 200000,
+        "djjg": 0
+    },
+    "23": {
+        "djname": "Hóa Thần Đột Phá Đan",
+        "djzl": "23",
+        "djinfo": "Đột phá hóa thần kỳ sẽ sử dụng nội đan",
+        "djid": 23,
+        "djyxb": 300000,
+        "djjg": 0
+    },
+    "24": {
+        "djname": "Luyện Hư Đột Phá Đan",
+        "djzl": "24",
+        "djinfo": "Đột phá luyện hư kỳ sẽ sử dụng nội đan",
+        "djid": 24,
+        "djyxb": 500000,
+        "djjg": 0
+    },
+    "25": {
+        "djname": "Hợp Thể Đột Phá Đan",
+        "djzl": "25",
+        "djinfo": "Đột phá hợp thể kỳ sẽ sử dụng nội đan",
+        "djid": 25,
+        "djyxb": 800000,
+        "djjg": 0
+    },
+    "26": {
+        "djname": "Đại Thừa Đột Phá Đan",
+        "djzl": "26",
+        "djinfo": "Đột phá đại thừa kỳ sẽ sử dụng nội đan",
+        "djid": 26,
+        "djyxb": 1000000,
+        "djjg": 0
+    },
+    "30": {
+        "djname": "Thảo Dược Phổ Thông",
+        "djzl": "30",
+        "djinfo": "Nguyên liệu luyện đan cơ bản, mua từ shop hoặc Rơi xuống từ quái vật.",
+        "djid": 30,
+        "djyxb": 10,
+        "djjg": 100
+    },
+    "31": {
+        "djname": "Thảo Dược Quý Hiếm",
+        "djzl": "31",
+        "djinfo": "Nguyên liệu luyện đan hiếm,Rơi xuống từ boss hoặc mua shop.",
+        "djid": 31,
+        "djyxb": 50,
+        "djjg": 500
+    },
+    "32": {
+        "djname": "Hỏa Tinh Thạch",
+        "djzl": "32",
+        "djinfo": "Tinh thạch hệ Hỏa, dùng luyện đan và chế tạo.",
+        "djid": 32,
+        "djyxb": 30,
+        "djjg": 300
+    },
+    "33": {
+        "djname": "Thủy Tinh Thạch",
+        "djzl": "33",
+        "djinfo": "Tinh thạch hệ Thủy,Rơi xuống từ quái vật thủy hệ.",
+        "djid": 33,
+        "djyxb": 30,
+        "djjg": 300
+    },
+    "34": {
+        "djname": "Mộc Tinh Thạch",
+        "djzl": "34",
+        "djinfo": "Tinh thạch hệ Mộc,Rơi xuống từ quái vật mộc hệ.",
+        "djid": 34,
+        "djyxb": 30,
+        "djjg": 300
+    },
+    "35": {
+        "djname": "Kim Tinh Thạch",
+        "djzl": "35",
+        "djinfo": "Tinh thạch hệ Kim,Rơi xuống từ quái vật kim hệ.",
+        "djid": 35,
+        "djyxb": 30,
+        "djjg": 300
+    },
+    "36": {
+        "djname": "Thổ Tinh Thạch",
+        "djzl": "36",
+        "djinfo": "Tinh thạch hệ Thổ,Rơi xuống từ quái vật thổ hệ.",
+        "djid": 36,
+        "djyxb": 30,
+        "djjg": 300
+    },
+    "37": {
+        "djname": "Bình Anh Tinh Thạch",
+        "djzl": "37",
+        "djinfo": "Tinh thạch quý hiếm,Rơi xuống từ boss linh căn.",
+        "djid": 37,
+        "djyxb": 100,
+        "djjg": 1000
+    },
+    "38": {
+        "djname": "Thẻ Cường Hóa ATK +5",
+        "djzl": "38",
+        "djinfo": "Sử dụng: Tăng Công Kích +5",
+        "djid": 38,
+        "djyxb": 50,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "ugj",
+            "amount": 5
+        }
+    },
+    "39": {
+        "djname": "Thẻ Cường Hóa ATK +15",
+        "djzl": "39",
+        "djinfo": "Sử dụng: Tăng Công Kích +15",
+        "djid": 39,
+        "djyxb": 150,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "ugj",
+            "amount": 15
+        }
+    },
+    "40": {
+        "djname": "Thẻ Cường Hóa DEF +15",
+        "djzl": "40",
+        "djinfo": "Sử dụng: Tăng Phòng Thủ +15",
+        "djid": 40,
+        "djyxb": 150,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "ufy",
+            "amount": 15
+        }
+    },
+    "41": {
+        "djname": "Thẻ Cường Hóa HP +200",
+        "djzl": "41",
+        "djinfo": "Sử dụng: Tăng Sinh Mệnh +200",
+        "djid": 41,
+        "djyxb": 150,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "umaxhp",
+            "amount": 200
+        }
+    },
+    "42": {
+        "djname": "Thẻ Cường Hóa Crit +2",
+        "djzl": "42",
+        "djinfo": "Sử dụng: Tăng Bạo Kích +2",
+        "djid": 42,
+        "djyxb": 150,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "ubj",
+            "amount": 2
+        }
+    },
+    "43": {
+        "djname": "Thẻ Cường Hóa ATK +30",
+        "djzl": "43",
+        "djinfo": "Sử dụng: Tăng Công Kích +30",
+        "djid": 43,
+        "djyxb": 400,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "ugj",
+            "amount": 30
+        }
+    },
+    "44": {
+        "djname": "Thẻ Cường Hóa DEF +30",
+        "djzl": "44",
+        "djinfo": "Sử dụng: Tăng Phòng Thủ +30",
+        "djid": 44,
+        "djyxb": 400,
+        "djjg": 0,
+        "use_effect": {
+            "stat": "ufy",
+            "amount": 30
+        }
+    },
+    "100": {
+        "djname": "Tinh Thể Đá",
+        "djzl": "100",
+        "djinfo": "Đá tinh thể cơ bản, dùng nâng Thể Chất từ Phàm Phẩm lên các phẩm cao hơn.",
+        "djid": 100,
+        "djyxb": 500,
+        "djjg": 0
+    },
+    "101": {
+        "djname": "Huyền Thạch",
+        "djzl": "101",
+        "djinfo": "Huyền thạch quý, dùng nâng Thể Chất cấp trung (Linh Phẩm → Huyền Phẩm).",
+        "djid": 101,
+        "djyxb": 2500,
+        "djjg": 0
+    },
+    "102": {
+        "djname": "Địa Linh Ngọc",
+        "djzl": "102",
+        "djinfo": "Ngọc linh địa, dùng nâng Thể Chất cấp cao (Huyền Phẩm → Địa Phẩm).",
+        "djid": 102,
+        "djyxb": 10000,
+        "djjg": 0
+    },
+    "103": {
+        "djname": "Thiên Cơ Đá",
+        "djzl": "103",
+        "djinfo": "Đá thiên cơ, dùng nâng Thể Chất cấp rất cao (Địa Phẩm → Thiên Phẩm).",
+        "djid": 103,
+        "djyxb": 50000,
+        "djjg": 0
+    },
+    "104": {
+        "djname": "Thánh Thạch",
+        "djzl": "104",
+        "djinfo": "Thạch thánh, dùng nâng Thể Chất lên cấp thần (Thiên Phẩm → Thánh Phẩm).",
+        "djid": 104,
+        "djyxb": 200000,
+        "djjg": 0
+    },
+    "105": {
+        "djname": "Tiên Lộ",
+        "djzl": "105",
+        "djinfo": "Tiên lộ hiếm có, dùng nâng Thể Chất lên tiên (Thánh Phẩm → Tiên Phẩm).",
+        "djid": 105,
+        "djyxb": 1000000,
+        "djjg": 0
+    },
+    "106": {
+        "djname": "Thần Thạch",
+        "djzl": "106",
+        "djinfo": "Thạch thần, dùng nâng Thể Chất lên thần (Tiên Phẩm → Thần Phẩm).",
+        "djid": 106,
+        "djyxb": 5000000,
+        "djjg": 0
+    },
+    "107": {
+        "djname": "Đế Lệnh",
+        "djzl": "107",
+        "djinfo": "Lệnh đế, dùng nâng Thể Chất lên đế (Thần Phẩm → Đế Phẩm).",
+        "djid": 107,
+        "djyxb": 25000000,
+        "djjg": 0
+    },
+    "108": {
+        "djname": "Đạo Nguyên",
+        "djzl": "108",
+        "djinfo": "Nguyên Đạo, vật phẩm tối thượng, dùng nâng Thể Chất lên Đạo Phẩm.",
+        "djid": 108,
+        "djyxb": 100000000,
+        "djjg": 0
+    },
+    "109": {
+        "djname": "Tẩy Tủy Đan",
+        "djzl": "109",
+        "djinfo": "Tác dụng thanh tẩy tạp chất, thay máu và tái tạo lại căn cốt, thể chất cho người tu luyện. Dùng một lần sẽ random lại thể chất mới.",
+        "djid": 109,
+        "djyxb": 50000,
+        "djjg": 0,
+        "use_effect": {
+            "type": "reroll_thechat"
+        }
+    },
+    "110": {
+        "djname": "Tố Thể Đan",
+        "djzl": "110",
+        "djinfo": "Chuyên dùng để tái tạo thân thể, tẩy kinh phạt tủy và phục hồi hệ thống huyết mạch, kinh mạch từ mức độ nghiêm trọng nhất. Dùng một lần sẽ random lại huyết mạch mới.",
+        "djid": 110,
+        "djyxb": 50000,
+        "djjg": 0,
+        "use_effect": {
+            "type": "reroll_huyetmach"
+        }
+    },
+    "111": {
+        "djname": "Tẩy Linh Đan",
+        "djzl": "111",
+        "djinfo": "Đan dược phổ biến nhất dùng để thanh lọc, loại bỏ tạp chất, nâng cao độ thuần khiết của linh căn hoặc gộp các tạp linh căn thành đơn linh căn. Dùng một lần sẽ random lại linh căn mới.",
+        "djid": 111,
+        "djyxb": 30000,
+        "djjg": 0,
+        "use_effect": {
+            "type": "reroll_linhcan"
+        }
+    },
+
+    "50": {
+        "djname": "Linh Chi Huyết Sắc",
+        "djzl": "50",
+        "djinfo": "Linh chi mọc nơi mạch máu underground, dùng luyện đan cơ bản.",
+        "djid": 50,
+        "djyxb": 10,
+        "djjg": 80
+    },
+    "51": {
+        "djname": "Thanh Quả Thảo",
+        "djzl": "51",
+        "djinfo": "Quả mọng xanh biếc, mọc ở sườn đồi linh khí.",
+        "djid": 51,
+        "djyxb": 10,
+        "djjg": 80
+    },
+    "52": {
+        "djname": "Tiểu Huyễn Đan Thảo",
+        "djzl": "52",
+        "djinfo": "Cỏ nhỏ có mùi thơm nhẹ, thường gặp ở rừng trúc.",
+        "djid": 52,
+        "djyxb": 12,
+        "djjg": 90
+    },
+    "53": {
+        "djname": "Nguyệt Quang Hoa",
+        "djzl": "53",
+        "djinfo": "Hoa nở ban đêm, hút linh khí trăng tròn.",
+        "djid": 53,
+        "djyxb": 12,
+        "djjg": 90
+    },
+    "54": {
+        "djname": "Bích Lục Tiên Thảo",
+        "djzl": "54",
+        "djinfo": "Thảo mọc bên suối linh, có lá xanh ngọc bích.",
+        "djid": 54,
+        "djyxb": 15,
+        "djjg": 100
+    },
+    "55": {
+        "djname": "Hỏa Diệm Hoa",
+        "djzl": "55",
+        "djinfo": "Hoa đỏ rực, mọc gần mạch lửa ngầm.",
+        "djid": 55,
+        "djyxb": 15,
+        "djjg": 100
+    },
+    "56": {
+        "djname": "Thủy Linh Chi",
+        "djzl": "56",
+        "djinfo": "Nấm linh mọc dưới đáy ao sâu, hút thủy linh khí.",
+        "djid": 56,
+        "djyxb": 15,
+        "djjg": 100
+    },
+    "57": {
+        "djname": "Tử Vi Hoa",
+        "djzl": "57",
+        "djinfo": "Hoa tím nhạt, thường mọc trên vách núi hiểm.",
+        "djid": 57,
+        "djyxb": 18,
+        "djjg": 110
+    },
+    "58": {
+        "djname": "Phong Linh Thảo",
+        "djzl": "58",
+        "djinfo": "Cỏ gió, lay động dù không có gió, chứa linh khí nhẹ.",
+        "djid": 58,
+        "djyxb": 18,
+        "djjg": 110
+    },
+    "59": {
+        "djname": "Trúc Diệp Đan",
+        "djzl": "59",
+        "djinfo": "Lá trúc tinh luyện, dùng làm vị thuốc cơ bản.",
+        "djid": 59,
+        "djyxb": 20,
+        "djjg": 120
+    },
+
+    "60": {
+        "djname": "Huyết Sâm Thiên Niên",
+        "djzl": "60",
+        "djinfo": "Sâm đỏ ngàn năm, cực kỳ quý hiếm, luyện đan trung cấp.",
+        "djid": 60,
+        "djyxb": 50,
+        "djjg": 500
+    },
+    "61": {
+        "djname": "Băng Tuyết Liên",
+        "djzl": "61",
+        "djinfo": "Hoa sen tuyết trắng muốt, chỉ nở trên đỉnh núi tuyết.",
+        "djid": 61,
+        "djyxb": 50,
+        "djjg": 500
+    },
+    "62": {
+        "djname": "Tử Huyết Đan Thảo",
+        "djzl": "62",
+        "djinfo": "Cỏ máu tím, sinh trưởng trong hang ma quỷ.",
+        "djid": 62,
+        "djyxb": 55,
+        "djjg": 550
+    },
+    "63": {
+        "djname": "Phục Linh Vạn Niên",
+        "djzl": "63",
+        "djinfo": "Phục linh cổ thụ, hấp thu linh khí vạn năm.",
+        "djid": 63,
+        "djyxb": 55,
+        "djjg": 550
+    },
+    "64": {
+        "djname": "Long Đảm Hoa",
+        "djzl": "64",
+        "djinfo": "Hoa có mùi long xà, cực hiếm, dùng luyện đan cao cấp.",
+        "djid": 64,
+        "djyxb": 60,
+        "djjg": 600
+    },
+    "65": {
+        "djname": "Thiên Niên Quả",
+        "djzl": "65",
+        "djinfo": "Quả cây cổ thụ ngàn năm, chứa linh khí khổng lồ.",
+        "djid": 65,
+        "djyxb": 60,
+        "djjg": 600
+    },
+    "66": {
+        "djname": "Ngọc Lộ Tiên Thảo",
+        "djzl": "66",
+        "djinfo": "Thảo mọc trên ngọc thạch, tinh khiết tuyệt đối.",
+        "djid": 66,
+        "djyxb": 65,
+        "djjg": 650
+    },
+    "67": {
+        "djname": "Huyền Băng Hoa",
+        "djzl": "67",
+        "djinfo": "Hoa đóng băng vĩnh cửu, chỉ gặp ở cõi âm.",
+        "djid": 67,
+        "djyxb": 65,
+        "djjg": 650
+    },
+    "68": {
+        "djname": "Lôi Quang Thảo",
+        "djzl": "68",
+        "djinfo": "Cỏ phát ra tia sét nhỏ, sinh trưởng nơi sấm sét.",
+        "djid": 68,
+        "djyxb": 70,
+        "djjg": 700
+    },
+    "69": {
+        "djname": "Địa Linh Chi Vương",
+        "djzl": "69",
+        "djinfo": "Vua của các loại linh chi, chỉ mọc ở linh mạch.",
+        "djid": 69,
+        "djyxb": 80,
+        "djjg": 800
+    },
+    "70": {
+        "djname": "Bú Thu Phục Tầng 1",
+        "djzl": "70",
+        "djinfo": "Bú phục cơ bản, dùng để thu phục yêu thú ở Rừng Núi Thương",
+        "djid": 70,
+        "djyxb": 500,
+        "djjg": 500
+    },
+    "71": {
+        "djname": "Bú Thu Phục Tầng 2",
+        "djzl": "71",
+        "djinfo": "Bú phục nâng cao, dùng để thu phục yêu thú ở Thung Lũng Âm U",
+        "djid": 71,
+        "djyxb": 700,
+        "djjg": 700
+    },
+    "72": {
+        "djname": "Bú Thu Phục Tầng 3",
+        "djzl": "72",
+        "djinfo": "Bú phục trung cấp, dùng để thu phục yêu thú ở Động Thủy Phục",
+        "djid": 72,
+        "djyxb": 1000,
+        "djjg": 1000
+    },
+    "73": {
+        "djname": "Bú Thu Phục Tầng 4",
+        "djzl": "73",
+        "djinfo": "Bú phục cao cấp, dùng để thu phục yêu thú ở Rừng Lửa Đỏ",
+        "djid": 73,
+        "djyxb": 1500,
+        "djjg": 1500
+    },
+    "74": {
+        "djname": "Bú Thu Phục Tầng 5",
+        "djzl": "74",
+        "djinfo": "Bú phục đặc biệt, dùng để thu phục yêu thú ở Núi Mây Trắng",
+        "djid": 74,
+        "djyxb": 2000,
+        "djjg": 2000
+    },
+    "75": {
+        "djname": "Bú Thu Phục Tầng 6",
+        "djzl": "75",
+        "djinfo": "Bú phục hiệu quả, dùng để thu phục yêu thú ở Hồ Tiên Phục",
+        "djid": 75,
+        "djyxb": 2500,
+        "djjg": 2500
+    },
+    "76": {
+        "djname": "Bú Thu Phục Tầng 7",
+        "djzl": "76",
+        "djinfo": "Bú phục siêu cấp, dùng để thu phục yêu thú ở Thâm Uyen Sâu",
+        "djid": 76,
+        "djyxb": 3500,
+        "djjg": 3500
+    },
+    "77": {
+        "djname": "Bú Thu Phục Tầng 8",
+        "djzl": "77",
+        "djinfo": "Bú phục cực phẩm, dùng để thu phục yêu thú ở Động Rỗng Kin",
+        "djid": 77,
+        "djyxb": 5000,
+        "djjg": 5000
+    },
+    "78": {
+        "djname": "Bú Thu Phục Tầng 9",
+        "djzl": "78",
+        "djinfo": "Bú phục huyền thoại, dùng để thu phục yêu thú ở Cung Đình Yêu Vương",
+        "djid": 78,
+        "djyxb": 7000,
+        "djjg": 7000
+    },
+    "79": {
+        "djname": "Bú Thu Phục Tầng 10",
+        "djzl": "79",
+        "djinfo": "Bú phục tối thượng, dùng để thu phục yêu thú ở Thiên Địa Huyền Nguyên",
+        "djid": 79,
+        "djyxb": 10000,
+        "djjg": 10000
+    }
+
+}

@@ -1,0 +1,137 @@
+{
+  "stages": {
+    "1": {
+      "from_stage": 0,
+      "to_stage": 1,
+      "from_name": "Vĩnh Viễn Trầm Mệnh",
+      "to_name": "Sơ Giác",
+      "realm_require": "Trúc Cơ",
+      "realm_min_level": 100,
+      "stat_bonus_mult": 1.15,
+      "element_dmg_add": 5,
+      "passive_description": "+15% stat, +5% element damage",
+      "description": "Huyết mạch bắt đầu thức tỉnh, dòng máu cổ đại vọng lại."
+    },
+    "2": {
+      "from_stage": 1,
+      "to_stage": 2,
+      "from_name": "Sơ Giác",
+      "to_name": "Thức Tỉnh",
+      "realm_require": "Kim Đan",
+      "realm_min_level": 150,
+      "boss_drop_require": true,
+      "stat_bonus_mult": 1.4,
+      "element_dmg_add": 12,
+      "passive_description": "+40% stat, +12% element damage, mở passive mới",
+      "description": "Huyết mạch thức tỉnh hoàn toàn, sức mạnh cổ đại tràn đầy."
+    },
+    "3": {
+      "from_stage": 2,
+      "to_stage": 3,
+      "from_name": "Thức Tỉnh",
+      "to_name": "Chân Thân",
+      "realm_require": "Nguyên Anh",
+      "realm_min_level": 200,
+      "boss_drop_require": true,
+      "quest_require": true,
+      "stat_bonus_mult": 1.8,
+      "element_dmg_add": 22,
+      "passive_description": "+80% stat, +22% element damage, unlock Biến Thân",
+      "description": "Chân thân hiển lộ, có thể biến thân thành hình dạng huyết mạch."
+    },
+    "4": {
+      "from_stage": 3,
+      "to_stage": 4,
+      "from_name": "Chân Thân",
+      "to_name": "Huyết Thống Viên Mãn",
+      "realm_require": "Đại Thừa",
+      "realm_min_level": 280,
+      "boss_drop_require": true,
+      "quest_require": true,
+      "material_id": 108,
+      "material_amount": 1,
+      "stat_bonus_mult": 2.5,
+      "element_dmg_add": 35,
+      "passive_description": "+150% stat, +35% element damage, Biến Thân mạnh + Thần Thông",
+      "description": "Huyết thống viên mãn, đạt cực hạn của giống loài."
+    }
+  },
+  "stage_names": {
+    "0": "Vĩnh Viễn Trầm Mệnh",
+    "1": "Sơ Giác",
+    "2": "Thức Tỉnh",
+    "3": "Chân Thân",
+    "4": "Huyết Thống Viên Mãn"
+  },
+  "stage_colors": {
+    "0": "#666666",
+    "1": "#4caf50",
+    "2": "#ff9800",
+    "3": "#f44336",
+    "4": "#ffd700"
+  },
+  "stage_icons": {
+    "0": "🔒",
+    "1": "🌟",
+    "2": "⭐",
+    "3": "💫",
+    "4": "👑"
+  },
+  "boss_list": {
+    "chân_long": {
+      "stage_2": {"name": "Rồng Ngàn Tuổi", "level": 150, "element": "thuy"},
+      "stage_3": {"name": "Huyễn Long Vương", "level": 200, "element": "thuy"},
+      "stage_4": {"name": "Long Tổ Cổ Đại", "level": 280, "element": "thuy"}
+    },
+    "chân_phượng": {
+      "stage_2": {"name": "Phượng Hoàng Lông", "level": 150, "element": "hoa"},
+      "stage_3": {"name": "Phượng Hoàng Cổ", "level": 200, "element": "hoa"},
+      "stage_4": {"name": "Phượng Tổ Hỏa Kích", "level": 280, "element": "hoa"}
+    },
+    "kỳ_lân": {
+      "stage_2": {"name": "Kỳ Lân Giác", "level": 150, "element": "tho"},
+      "stage_3": {"name": "Kỳ Lân Vương", "level": 200, "element": "tho"},
+      "stage_4": {"name": "Kỳ Lân Tổ", "level": 280, "element": "tho"}
+    },
+    "kim_ô": {
+      "stage_2": {"name": "Kim Ô Lông", "level": 150, "element": "hoa"},
+      "stage_3": {"name": "Tam Tộc Kim Ô", "level": 200, "element": "hoa"},
+      "stage_4": {"name": "Kim Ô Tổ", "level": 280, "element": "hoa"}
+    },
+    "côn_bằng": {
+      "stage_2": {"name": "Côn Bằng Vảy", "level": 150, "element": "thuy"},
+      "stage_3": {"name": "Côn Bằng Tổ", "level": 200, "element": "thuy"},
+      "stage_4": {"name": "Biển Bắc Cổ Tổ", "level": 280, "element": "thuy"}
+    },
+    "huyền_vũ": {
+      "stage_2": {"name": "Huyền Vũ Giáp", "level": 150, "element": "thuy"},
+      "stage_3": {"name": "Huyền Vũ Cổ", "level": 200, "element": "thuy"},
+      "stage_4": {"name": "Huyền Vũ Tổ", "level": 280, "element": "thuy"}
+    },
+    "bạch_hổ": {
+      "stage_2": {"name": "Bạch Hổ Răng", "level": 150, "element": "kim"},
+      "stage_3": {"name": "Bạch Hổ Vương", "level": 200, "element": "kim"},
+      "stage_4": {"name": "Bạch Hổ Tổ", "level": 280, "element": "kim"}
+    },
+    "chu_tước": {
+      "stage_2": {"name": "Chu Tước Lông", "level": 150, "element": "hoa"},
+      "stage_3": {"name": "Chu Tước Tổ", "level": 200, "element": "hoa"},
+      "stage_4": {"name": "Chu Tước Tổ Linh", "level": 280, "element": "hoa"}
+    },
+    "bàn_cổ": {
+      "stage_2": {"name": "Bàn Cổ Huyết", "level": 150, "element": "all"},
+      "stage_3": {"name": "Bàn Cổ Phân Thân", "level": 200, "element": "all"},
+      "stage_4": {"name": "Bàn Cổ Đế", "level": 280, "element": "all"}
+    },
+    "hỗn_độ": {
+      "stage_2": {"name": "Hỗn Độn Thạch", "level": 150, "element": "all"},
+      "stage_3": {"name": "Hỗn Độn Thú", "level": 200, "element": "all"},
+      "stage_4": {"name": "Hỗn Độn Tổ", "level": 280, "element": "all"}
+    },
+    "hồng_mông": {
+      "stage_2": {"name": "Hồng Mông Khí", "level": 150, "element": "all"},
+      "stage_3": {"name": "Hồng Mông Tổ Long", "level": 200, "element": "all"},
+      "stage_4": {"name": "Hồng Mông Chi Chủ", "level": 280, "element": "all"}
+    }
+  }
+}
