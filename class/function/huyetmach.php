@@ -639,3 +639,119 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_element_name')) {
         return isset($map[$element]) ? $map[$element] : 'Không rõ';
     }
 }
+
+/** ===== MANG MACH HUYET: config + ham thuan tuy ===== */
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_config_path')) {
+    function huyetmach_vessel_config_path(){
+        $paths = array(
+            __DIR__ . '/../config/huyetmach_vessel_config.json',
+            __DIR__ . '/huyetmach_vessel_config.json'
+        );
+        foreach ($paths as $path) {
+            if (is_file($path)) return $path;
+        }
+        return $paths[0];
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_config_all')) {
+    function huyetmach_vessel_config_all(){
+        static $cache = null;
+        if ($cache !== null) return $cache;
+        $file = huyetmach_vessel_config_path();
+        if (!is_file($file)) { $cache = array(); return $cache; }
+        $data = json_decode(file_get_contents($file), true);
+        $cache = is_array($data) ? $data : array();
+        return $cache;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_defs')) {
+    function huyetmach_vessel_defs(){
+        $all = huyetmach_vessel_config_all();
+        return isset($all['vessels']) ? $all['vessels'] : array();
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_tiers')) {
+    function huyetmach_vessel_tiers(){
+        $all = huyetmach_vessel_config_all();
+        return isset($all['tiers']) ? $all['tiers'] : array();
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_def')) {
+    function huyetmach_vessel_def($id){
+        $defs = huyetmach_vessel_defs();
+        $id = intval($id);
+        return isset($defs[$id]) ? $defs[$id] : false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_tier')) {
+    function huyetmach_vessel_tier($stage){
+        $tiers = huyetmach_vessel_tiers();
+        $stage = intval($stage);
+        return isset($tiers[$stage]) ? $tiers[$stage] : false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_cap')) {
+    function huyetmach_vessel_cap($stage){
+        $tier = huyetmach_vessel_tier($stage);
+        return $tier ? intval($tier['lv_cap']) : 0;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_stage_max')) {
+    function huyetmach_vessel_stage_max(){
+        $max = 0;
+        foreach (huyetmach_vessel_tiers() as $tier) {
+            if (intval($tier['stage']) > $max) $max = intval($tier['stage']);
+        }
+        return $max;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_refine_cost')) {
+    function huyetmach_vessel_refine_cost($lv){
+        $all = huyetmach_vessel_config_all();
+        $r = isset($all['refine']) ? $all['refine'] : array();
+        $lv = max(0, intval($lv));
+        $per = max(1, intval(isset($r['material_per_lv']) ? $r['material_per_lv'] : 8));
+        return array(
+            'material_id'     => intval(isset($r['material_id']) ? $r['material_id'] : 112),
+            'material_amount' => intval(isset($r['material_base']) ? $r['material_base'] : 1) + intval($lv / $per),
+            'linh_thach_cost' => intval(isset($r['linh_thach_base']) ? $r['linh_thach_base'] : 200)
+                + $lv * intval(isset($r['linh_thach_per_lv']) ? $r['linh_thach_per_lv'] : 25),
+        );
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_milestone')) {
+    function huyetmach_vessel_milestone($total){
+        $all = huyetmach_vessel_config_all();
+        $ms = isset($all['milestones']) ? $all['milestones'] : array();
+        $total = intval($total);
+        $name = ''; $pct = 0.0; $next = array('name' => '', 'percent' => 0, 'total_lv' => 0);
+        foreach ($ms as $m) {
+            $need = intval($m['total_lv']);
+            if ($total >= $need) {
+                $name = $m['name']; $pct = floatval($m['bonus_percent']);
+            } elseif ($next['total_lv'] === 0 || $need < $next['total_lv']) {
+                $next = array('name' => $m['name'], 'percent' => floatval($m['bonus_percent']), 'total_lv' => $need);
+            }
+        }
+        return array('name' => $name, 'bonus_percent' => $pct,
+            'next_milestone_name' => $next['name'], 'next_milestone_percent' => $next['percent'],
+            'next_milestone_lv' => $next['total_lv']);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_stat_label')) {
+    function huyetmach_vessel_stat_label($stat){
+        $all = huyetmach_vessel_config_all();
+        $labels = isset($all['stat_labels']) ? $all['stat_labels'] : array();
+        return isset($labels[$stat]) ? $labels[$stat] : $stat;
+    }
+}

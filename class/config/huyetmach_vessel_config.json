@@ -1,0 +1,33 @@
+{
+  "schema": "huyetmach_vessel_v1",
+  "vessels": {
+    "1": {"id": 1, "name": "Đốc Mạch", "short": "Đốc", "stat": "atk", "per_lv": 3, "slot": "spine-top", "group": "duong", "desc": "Dương mạch chạy dọc sống lưng, chủ về khí lực. Mỗi cấp tăng Công Kích."},
+    "2": {"id": 2, "name": "Nhâm Mạch", "short": "Nhâm", "stat": "hp", "per_lv": 24, "slot": "spine-bottom", "group": "duong", "desc": "Âm mạch chạy phía trước thân, chủ về huyết. Mỗi cấp tăng Khí Huyết."},
+    "3": {"id": 3, "name": "Xung Mạch", "short": "Xung", "stat": "crit", "per_lv": 0.2, "slot": "chest-right", "group": "duong", "desc": "Xung mạch giữ huyết hải, đòn đánh bùng lên. Mỗi cấp tăng Bạo Kích."},
+    "4": {"id": 4, "name": "Đới Mạch", "short": "Đới", "stat": "lifesteal", "per_lv": 0.4, "slot": "waist", "group": "duong", "desc": "Đới mạch buộc ngang thắt lưng, kéo huyết đối phương. Mỗi cấp tăng Hút Máu."},
+    "5": {"id": 5, "name": "Dương Duy Mạch", "short": "Duy Trái", "stat": "reduce", "per_lv": 0.25, "slot": "arm-left", "group": "am", "desc": "Liên kết dương khí toàn thân, giáp ngoài cứng hơn. Mỗi cấp tăng Giảm Vật Lý."},
+    "6": {"id": 6, "name": "Âm Duy Mạch", "short": "Duy Phải", "stat": "pen", "per_lv": 0.25, "slot": "arm-right", "group": "am", "desc": "Liên kết âm khí, mũi nhọn thấm sâu. Mỗi cấp tăng Xuyên Giảm (xuyên Phong Thu đối phương)."},
+    "7": {"id": 7, "name": "Âm Kiều Mạch", "short": "Kiều Trái", "stat": "dodge", "per_lv": 0.25, "slot": "leg-left", "group": "am", "desc": "Kiều mạch chủ sự nhanh nhẹn, né trong một nhịp. Mỗi cấp tăng Né Tranh."},
+    "8": {"id": 8, "name": "Dương Kiều Mạch", "short": "Kiều Phải", "stat": "luck", "per_lv": 0.25, "slot": "leg-right", "group": "am", "desc": "Dương khí hanh thông, của ngon rơi xuống. Mỗi cấp tăng Vận May."}
+  },
+  "stat_labels": {
+    "atk": "Công Kích", "hp": "Khí Huyết", "crit": "Bạo Kích", "lifesteal": "Hút Máu",
+    "dodge": "Né Tranh", "pen": "Xuyên Giảm", "reduce": "Giảm Vật Lý", "luck": "Vận May"
+  },
+  "stat_cap": {"dodge": 15, "pen": 15, "reduce": 15, "luck": 15},
+  "tiers": {
+    "0": {"stage": 0, "name": "Vĩnh Viễn Trầm Mệnh", "short": "Trầm Mệnh", "lv_cap": 8, "total_lv_require": 0, "realm_min_level": 0, "material_id": 0, "material_amount": 0, "linh_thach_cost": 0, "boss_require": 0, "color": "#6b7280", "icon": "🔒", "desc": "Huyết mạch còn ngủ, khí huyết chưa khai."},
+    "1": {"stage": 1, "name": "Sơ Giác", "short": "Sơ Giác", "lv_cap": 16, "total_lv_require": 32, "realm_min_level": 100, "material_id": 0, "material_amount": 0, "linh_thach_cost": 5000, "boss_require": 0, "color": "#4caf50", "icon": "🌟", "desc": "Giọng huyết dội trong cơ thể."},
+    "2": {"stage": 2, "name": "Thức Tỉnh", "short": "Thức Tỉnh", "lv_cap": 24, "total_lv_require": 64, "realm_min_level": 150, "material_id": 112, "material_amount": 20, "linh_thach_cost": 20000, "boss_require": 1, "color": "#ff9800", "icon": "⭐", "desc": "Huyết mạch thức tỉnh hoàn toàn."},
+    "3": {"stage": 3, "name": "Chân Thân", "short": "Chân Thân", "lv_cap": 36, "total_lv_require": 96, "realm_min_level": 200, "material_id": 112, "material_amount": 40, "linh_thach_cost": 100000, "boss_require": 1, "color": "#f44336", "icon": "💫", "desc": "Chân thân hiển lộ, mở ra Biến Thân."},
+    "4": {"stage": 4, "name": "Huyết Thống Viên Mãn", "short": "Viên Mãn", "lv_cap": 48, "total_lv_require": 144, "realm_min_level": 280, "material_id": 113, "material_amount": 1, "linh_thach_cost": 500000, "boss_require": 1, "color": "#ffd700", "icon": "👑", "desc": "Huyết thống đạt cực hạn của giống loài."}
+  },
+  "refine": {"material_id": 112, "material_base": 1, "material_per_lv": 8, "linh_thach_base": 200, "linh_thach_per_lv": 25},
+  "milestones": {
+    "1": {"total_lv": 32, "bonus_percent": 5, "name": "Khai Mạch"},
+    "2": {"total_lv": 80, "bonus_percent": 12, "name": "Nội Mạch"},
+    "3": {"total_lv": 128, "bonus_percent": 20, "name": "Huyết Hải"},
+    "4": {"total_lv": 176, "bonus_percent": 30, "name": "Đạt Tôn"}
+  },
+  "material_names": {"112": "Huyết Thạch", "113": "Huyết Mạch Đan"}
+}
