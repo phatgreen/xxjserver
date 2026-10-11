@@ -501,6 +501,12 @@ Gán tại `game/huyetmach_upgrade.php:22` (`hmq-q{max(1,min(10,quality))}`). CS
 | 25 | Kiểm chứng | **Harness e2e vẫn trỏ `http://localhost` (port 80)** trong khi server dev local chạy `127.0.0.1:8123` (Apache 80 đã tắt) ⇒ mọi test đi qua `u()` gọi URL chết; test mach huyết phải truyền `HM_BASE` thủ công | `tests/e2e_fixture.php:132` (`return 'http://localhost/game.php?cmd='…`); §9 (khối lệnh 3) | sửa `e2e_fixture.php` lấy port từ `HM_BASE`/env (đụng harness của các tính năng khác) hay giữ và luôn truyền `HM_BASE`? |
 | 26 | Thẩm mỹ | **Hai màn phụ không nối thang hiệu ứng**: chỉ `game/huyetmach.php:114` và `game/huyetmach_boss.php:60` gán `hm-fx<stage>`; màn Nâng Phẩm và màn Biến Thân mở ra trông như chưa có bậc ⇒ người chơi lên bậc nhưng qua 2 màn kia không thấy gì | `game/huyetmach.php:113-114`; `game/huyetmach_boss.php:60`; `grep -rn "hm-fx" game/*.php` chỉ ra đúng 2 file | gán `hm-fx` cho `game/huyetmach_upgrade.php` + `game/huyetmach_transform.php` (3 dòng CSS-compatible) hay khai báo 2 màn đó là màn thao tác, không cần hiệu ứng? |
 | 27 | Spec vs code | **Spec §1.8 (dòng 50) yêu cầu `.hm-wrap` desktop 840px như Nhục Thân — không tồn tại trong CSS**: `.hm-wrap{margin:0}` không đặt `max-width`, trang bám khung chung `.main.tcg-main-panel` = `min(660px, 100vw − 24px)` (rule toàn cục, không nằm trong `@media`) nên mọi viewport từ 684px trở lên đều ra 660px ⇒ đây là quyết định "không tự nới khung chung", không phải sót CSS | spec `docs/superpowers/specs/2026-10-09-huyetmach-mang-mach-huyet-design.md:50`; `css/mystyle.css:7273`; vỏ trang `game.php:585` + `css/mystyle.css:199`; §6 mục 9 | nới khung desktop lên 840px (đụng **mọi** trang vì `.tcg-main-panel` dùng chung) hay sửa spec xuống 660px? |
+| 28 | Kinh tế | **Bế tắc khởi đầu ĐÃ XÁC NHẬN bằng tài khoản trắng (2026-10-11)**: nhân vật mới `huyetmach_id=0`, muốn luyện mạch đầu tiên cần 112 Huyết Thạch, nhưng 112 chỉ rơi từ boss stage 2/3/4, mà boss stage 2 chỉ spawn khi `awaken_stage≥1`, và break 0→1 lại cần `total_lv 32` (tức phải luyện mạch bằng 112). Test phải `adddj 112` thủ công mới đi tiếp được — đúng như dự đoán ở dòng 2 | `game/shangdian.php:343` (loại 112/113/114); `huyetmach_boss.php:99` (`stage=hiện tại+1`) + `huyetmach_boss_status():231` (chặn khi `boss_require≠1`); `huyetmach_boss_config.json` `bosses` chỉ `*_2/*_3/*_4`; nghiệm thu live `E:/window/Temp/qa_hm_*.html` | mở nguồn 112 sớm (boss stage 1, bán trong shop, quà tân thủ, hay craft từ đá thường)? — **dòng 2 giờ là sự thật đã kiểm chứng, không còn là suy đoán** |
+| 29 | Bug | **Trừ Linh Thạch trong `huyetmach_vessel_refine()` không có guard `uyxb >= ?`**: `UPDATE game1 SET uyxb = uyxb - ? WHERE sid = ?` chạy vô điều kiện trong transaction; hai request luyện mạch song song có thể đẩy `uyxb` âm. Bản Nhục Thân (`thechat_body_refine`) đã làm đúng chuẩn để đối chứng | `class/function/huyetmach.php:1005-1006`; đối chứng `class/function/thechat.php` (UPDATE có `AND uyxb >= ?` + `rowCount()===0` → throw) | port guard + `rowCount()` kiểm tra sang mach huyết (1 khối nhỏ, chỉ đụng `huyetmach_vessel_refine`) |
+| 30 | Thuật ngữ | **Ba chuỗi lỗi của `huyetmach_vessel_refine()` là ASCII không dấu**, lạc lõng giữa UI tiếng Việt có dấu: `'Mach huyet khong ton tai.'`, `'Khong tim thay nhan vat.'`, `'Luyen mach that bai, thu lai sau.'`. Nghiệm thu live: POST `hm_node=99` → màn hình hiện đúng "Mach huyet khong ton tai." | `class/function/huyetmach.php:965,971,1015`; ảnh/text `E:/window/Temp/qa_hm_02_node99.html` | viết lại 3 chuỗi này có dấu cho khớp phần còn lại (chỉ sửa chuỗi, không đổi logic) |
+| 31 | Bug tiềm tàng | **`huyetmach_can_transform()` hardcode `hpCostPercent = 20`** trong khi `huyetmach_activate_transform()` đọc `hp_cost_percent` từ config. Hiện mọi biến thân trong `huyetmach_transform_config.json` đều là 20 nên chưa lệch, nhưng chỉ cần đổi % của một biến thân thì màn chặn sẽ báo sai số HP so với HP trừ thật | `class/function/huyetmach.php:509-510` (hardcode) vs `:534` (đọc config); `huyetmach_transform_config.json` (10 dòng `hp_cost_percent: 20`) | cho `can_transform` đọc `huyetmach_get_transform($hmId)['hp_cost_percent']` thay vì hằng số 20 |
+
+**ĐÃ SỬA trong lượt căn chỉnh 2026-10-11**: dòng forge `game/huyetmach.php:241` in `"++54 Công Kích"` (dấu `+` nhân đôi vì `hmAttrRows['text']` đã mang `+` sẵn, template lại thêm `+` nữa) → bỏ `+` thừa, nghiệm thu lại thành `+54`. Nhục Thân (`thechat.php`) không lỗi này. Rail thức tỉnh tràn ngang trên mobile **không phải bug mới**: Nhục Thân đã ghi chủ ý "≤560px chuyển tab cố định + quét ngang" (§ UI_THECHAT dòng 161/608) và Mạch Huyệt dùng cùng khuôn `.hm-rail{overflow-x:auto}`.
 
 ### Cách dùng bảng này
 
@@ -508,11 +514,40 @@ Bảng chia 6 nhóm, mỗi nhóm có một kiểu quyết định khác nhau —
 
 | Nhóm | Dòng | Ai trả lời | Cách trả lời |
 |---|---|---|---|
-| **Kinh tế / cân bằng** | 1, 2, 3, 4, 5, 8, 9, 10, 11 | chủ dự án | chỉ cần sửa JSON (`refine`, `tiers`, `boss_config`, `upgrades`), không đụng code; chạy lại `tests/test_huyetmach_economy.php` để lấy số mới |
+| **Kinh tế / cân bằng** | 1, 2, 3, 4, 5, 8, 9, 10, 11, 28 | chủ dự án | chỉ cần sửa JSON (`refine`, `tiers`, `boss_config`, `upgrades`), không đụng code; chạy lại `tests/test_huyetmach_economy.php` để lấy số mới. **Riêng 28 giờ đã kiểm chứng bằng tài khoản trắng — phải mở nguồn 112 sớm hơn, không chỉ chỉnh số** |
 | **Spec vs code** | 6, 7, 12, 13, 27 | chủ dự án | chốt "giữ code" hay "trả về spec"; nếu giữ code thì sửa spec để lần sau không ai thiết kế lại theo spec cũ |
+| **Bug nội tại mach huyết** | 29, 31 | chủ dự án duyệt, sửa gọn trong `class/function/huyetmach.php` | 29 = port guard `uyxb >= ?` + `rowCount()` từ Nhục Thân; 31 = cho `can_transform` đọc % từ config thay vì hằng 20. Không đụng trang khác |
 | **Bug cũ của tính năng khác** | 15, 16, 17, 18 | chủ dự án (task riêng) | đều nằm ở Linh Căn / Thể Chất / bảng `boss` — mạch huyết chỉ mượn đường, sửa là đụng trang khác |
-| **Phạm vi sửa / thuật ngữ / tài sản** | 14, 20, 21, 22, 23, 26 | chủ dự án | 14 là quyết định commit; 20/21 là nhãn; 22/23/26 là ảnh và hiệu ứng |
+| **Phạm vi sửa / thuật ngữ / tài sản** | 14, 20, 21, 22, 23, 26, 30 | chủ dự án | 14 là quyết định commit; 20/21/30 là nhãn và chuỗi lỗi có dấu; 22/23/26 là ảnh và hiệu ứng |
 | **Deploy** | 19 | chủ dự án chạy, không ai chạy thay | theo `docs/DEPLOY_PRODUCTION_HUYETMACH.md`, và trả nợ sid trước |
 | **Chưa kiểm chứng** | 24, 25 (+ §10.1 bốn mục) | lập lại sau deploy | đây là loại nợ "ghi rõ CHƯA test", không phải bug |
 
 **Không dòng nào trong bảng được tự ý sửa số.** Mọi con số ở cột "Vấn đề" là kết quả đo ngày 2026-10-10 bằng `E:/window/Temp/_eco.php` và `php tests/test_huyetmach_combat.php --measure`; nếu code đổi, ghi thêm dòng mới kèm ngày đo, không ghi đè.
+
+---
+
+## §15. Test chi tiết trên tài khoản trắng — 2026-10-11 (HTTP thật, cổng 8199)
+
+Toàn bộ đi qua `game.php` thật bằng `E:/window/Temp/qa_http.php` (blob `cmd=` tự encode, dùng 1 lần). Tài khoản QA `2b06d0ff…c044` (QATuChan, ID 990125). Ảnh/text: `E:/window/Temp/qa_hm_*.html`, `shot_huyetmach.png`, `shot_hm_forge.png`.
+
+| # | Hành vi | Cách test | Kết quả |
+|---|---|---|---|
+| 1 | Màn trắng (chưa huyết mạch) | GET `huyetmach` | Render sạch (LEN 13.946, 0 lỗi PHP). Nút Luyện `is-off disabled`, chi phí `hm-cost-no` (112=0) + `hm-cost-ok` (LT đủ). Gate `[Thiếu] Tổng cấp 0/32`. Có ghi chú "dùng Tố Thể Đan để nhận huyết mạch" |
+| 2 | Chặn server khi bypass nút | POST `hm_action=refine&hm_node=1` (0 vật liệu) | Từ chối đúng: "Huyết Thạch không đủ: cần 1, có 0." |
+| 3 | Node không hợp lệ | POST `hm_node=99` | "Mach huyet khong ton tai." (→ Sổ nợ dòng 30: chuỗi ASCII) |
+| 4 | Khai mở huyết mạch THẬT | Mua 110 Tố Thể Đan (shop `canshu2=gogoumai2&buy=1&djid=110`, 50.000 LT) → `use_dj&djid=110` | `reroll_huyetmach` gán huyết mạch (ra id=10 Hỗn Độn, q1). Tab "Nâng Phẩm Chất" + "Boss Mạch Huyết" xuất hiện |
+| 5 | Công thức luyện | POST refine node 1 ×9 | LT đúng `200+25·lv` (200,225,…,375); 112 đúng 1/cấp khi lv<8; **chặn trần ở cấp 8, không trừ tài nguyên** |
+| 6 | Break 0→1 (Sơ Giác) | POST `hm_action=break` (total 32, `boss_require=0`) | "Thức tỉnh thành công! …Sơ Giác." — **không cần boss**, cap 8→16 |
+| 7 | Boss spawn theo huyết mạch | GET `huyetmach_boss` (stage 1) | Sinh "Hỗn Độn Thạch (cấp 150)" đúng key `hỗn_độ_2` |
+| 8 | Hạ boss → rơi 112 + ghi checklist | GET `huyetmach_boss&attack=1` đến khi chết | "đã bị tiêu diệt", +112 vào túi, `player_huyetmach_boss` lưu **THEO TÊN** "Hỗn Độn Thạch", gate flip `[Đủ] Boss …(đã giết)` |
+| 9 | Break 1→2 (Thức Tỉnh) | POST break (total 64 + boss đã giết) | Thành công, cap 16→24 — **đúng chuỗi chặn-boss** |
+| 10 | Break 2→3 (Chân Thân) | ulv=200, giết boss stage-3 "Hỗn Độn Thú", POST break | Thành công, cap 24→36 |
+| 11 | Mở Biến Thân ở stage 3 | GET `huyetmach` | Khối transform hiện "Hỗn Độn Hình · 10 phút CD · 20% HP", gate "HP không đủ" |
+| 12 | Chặn server khi biến thân | POST `action=transform` (HP thấp) | Từ chối: "HP không đủ để biến thân (cần … HP)." |
+| 13 | Biến thân thành công | Hồi HP → POST | "Biến thân thành công! Đã biến thành Hỗn Độn Hình." |
+| 14 | Hồi chiêu | POST lần 2 | "Biến thân đang hồi. Còn 9 phút 48 giây." |
+| 15 | Nâng phẩm chất | POST `huyetmach_upgrade` `hm_action=upgrade` ×3 | q1→q3 qua HTTP thật (roll 95%/90%), LT trừ đúng 1.000+5.000 |
+| 16 | Chỉ số âm | luyện node 5-8 (Duy/Kiều) | reduce/pen/dodge/luck = `0,25 × cấp` (8 cấp = +2,0%), chưa chạm sàn 15 (→ dòng 8: trần thật 12%) |
+| 17 | Căn chỉnh hình ảnh | 3 screenshot mobile 500px (Mạch Huyệt / Nhục Thân / Linh Căn) | Linh Căn sạch; Nhục Thân + Mạch Huyệt rail thức tỉnh tràn ngang = **chủ ý** (quét ngang, đã ghi ở UI_THECHAT); **sửa** dòng forge "++54"→"+54" ở `game/huyetmach.php:241` |
+
+**Chưa kiểm chứng / còn nợ:** (a) mọi bước luyện/break từ mục 5 trở đi **phải seed 112 thủ công** vì bế tắc dòng 2 — trong game thật người chơi mới **không tự đi tới đây được**; (b) chưa test trên điện thoại thật (mới render headless 500px); (c) chuỗi 4 màn phụ (Nâng Phẩm/Biến Thân) chưa nối thang `hm-fx` (dòng 26); (d) production **chưa migration** (dòng 19).

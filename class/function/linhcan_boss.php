@@ -337,7 +337,7 @@ if (!function_exists(__NAMESPACE__ . '\\lcboss_drops')) {
         $html = '';
         if ($stoneId > 0 && $amount > 0) {
             linhcan_give_stone($sid, $stoneId, $amount, $dblj);
-            $html .= "<font color='#4CAF50'>🪨 Thu được {$amount} " . $element . " Tinh Thạch</font><br/>";
+            $html .= "<font color='#4CAF50'>🪨 Thu được {$amount} " . linhcan_material_name($stoneId) . "</font><br/>";
         }
         if (function_exists(__NAMESPACE__ . '\\linhcan_quest_update')) {
             linhcan_quest_update($sid, 'kill_boss', 1, $dblj); // hook Task 6

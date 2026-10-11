@@ -590,3 +590,99 @@ Task 12 di trú xong moi chuyen sang `bak/linhcan/`.
 * 6 anh chung minh (`docs/img/linhcan/`, 390px, CSS `v=2026101111`):
   `_lcq_partial.png` (2 bar le) · `_lcq_ready.png` (5/5 + nut) · `_lcq_claim.png` (da nhan, an nut) ·
   `_lcb_world.png` (Moc Linh Vuong) · `_lcb_kim.png` · `_lcb_kim_hit.png` (log chien dau + bar 40%).
+
+---
+
+## 12. TASK 12 — Di trú 22 căn cũ → node Ngũ Hành (2026-10-11)
+
+### 12.1 Step 1 — Backup DB (DA chay)
+
+`mysqldump.exe` cua `MySQL5.5.29` (khong phai 5.7.26 nhu plan doan), dung
+`-u root -p<matkhau> --single-transaction --routines --events game`:
+
+* `sql/backup_game_20261011_030908.sql` — **441,926 bytes**.
+* doi chieu: ban 2026-10-04 dat 419KB → 441KB la hop ly (tang ~5% sau 1 tuan dev).
+* **KHONG commit** — dump nay nam **toan bo** DB `game` (moi bang + du lieu that cua may dev).
+  Do bang `git check-ignore -v sql/backup_game_20261011_030908.sql` → **exit=1**,
+  tuc `sql/` **KHONG** duoc `.gitignore` che; backup chi dang **untracked**.
+  Cach phong chot duy nhat: `git add` **tung file cu the**, tuyet doi khong `git add -A/.`.
+
+### 12.2 Step 2 — Script di trú (DRY-RUN xong, CHUA `--apply`)
+
+Script: `E:/window/Temp/lcmigrate.php` — **dat NGOAI repo** vi no **chua san mat khau DB**.
+Tuyet doi khong dua vao `WWW/` (se bi web doc duoc) va khong commit.
+
+**Cong thuc** (nguyen ven plan Task 12 Step 2):
+
+```
+stage = floor((tier - 1) / 2)                    # 22 can co tier 1..5 -> bac 0..2
+level = min( cap[stage], 3*tier + max(quality, old.quality) )
+cap   = [15, 30, 50, 70, 90]                     # linhcan_stage_def()
+```
+
+**Tran di tru**: `linhcan_config.json` co **22 id**, tier chi chay tu **1 den 5**
+(tier1=id1-5, tier2=id6-10, tier3=id11-15, tier4=id16-20, tier5=id21-22).
+→ cong thuc cho ra **bac toi da = 2 (Địa Căn)**, lv toi da = `min(50, 15+q)` ≈ **15-20**.
+Nhan vat cu du "day 22 can" van **khong** di trú len Thien Thanh (bac 3) hay Thanh (bac 4) —
+2 bac nay **chi** dat duoc bang `linhcan_break()` + boss dot pha (Task 4). Do la **-y-n** cua
+thiet ke (khong tang khong), nhung phai ghi de chu duyet bang khong bat ng.
+
+Quy tac dac biet:
+* `id22` (element `none`) → **tho**, stage 2, level 30.
+* `id21` (element `all`, "Vô Cực") → **ca 5 hanh** — `[CHO OWNER DUYET]`.
+* `sid` da co dong trong `player_linhcan_node` → **skip** (idempotent, chay lai khong nhan doi).
+
+### 12.3 Bang DRY-RUN (xuat that cua `lcmigrate.php`, 2026-10-11)
+
+`SELECT sid, uname, linhcan_id, linhcan_quality FROM game1 WHERE linhcan_id > 0` → **5 dong**
+(plan doan 11; **thuc te 12 nhan vat, chi 5 co `linhcan_id > 0`** → drift du lieu, khong phai thieu).
+
+| Nhan vat | linhcan_id (ten cu) | tier q | element cu | → node mới |
+|---|---|---|---|---|
+| CổĐế | id6 *Chân Kim Mộc Linh Căn* | t2 q2 | kim | `kim` stage **0** lv **8** |
+| TônGiả | id4 *Phàm Hỏa Linh Căn* | t1 q1 | hoa | `hoa` stage **0** lv **4** |
+| PhátĐây | id1 *Phàm Kim Linh Căn* | t1 q1 | kim | `kim` stage **0** lv **4** |
+| 艾尔资源 | id16 *Thiên Kim Mộc Thủy Hỏa Linh Căn* | t4 q4 | kim | `kim` stage **1** lv **16** |
+| E2E Test | id1 *Phàm Kim Linh Căn* | t1 q5(fixture) | kim | `kim` stage **0** lv **8** |
+
+**`plan=5 skip=0`** — khong sid nao da co node, chay lenh `--apply` lan dau la an toan.
+
+Thu nghiem cong thuc tay (doc `class/config/linhcan_config.json`):
+
+* id6: `stage=floor((2-1)/2)=0`; `level=min(15, 3*2 + max(q2, old_q1)=8)` → **8** ✓
+* id16: `stage=floor((4-1)/2)=1`; `level=min(30, 3*4 + max(q4, old_q1)=16)` → **16** ✓
+* E2E: `level=min(15, 3*1 + max(q1, old_q5)=8)` → **8** ✓ (chat luong nhan vat **win** config)
+
+### 12.4 Hai quy tac dac biet: thuc te **khong anh huong** du lieu local
+
+Dem `linhcan_id` trong `game1` (truoc di tru):
+
+| linhcan_id | so nhan vat |
+|---|---|
+| 1 | 2 |
+| 4 | 1 |
+| 6 | 1 |
+| 16 | 1 |
+
+→ **khong nhan vat nao mang id21 (Vô Cực, `element=all`) hay id22 (`element=none`)**.
+Nghia la 2 quy tắc `[CHO OWNER DUYET]` dang **ngoi** train dia local; chung chi tai tac dung
+khi (a) co nhan vat reset/doi can len toi da, hoac (b) **ap len production** — noi du lieu that
+chua duoc do. **Van giu nguyen code** 2 quy tac trong script; khong xoa vi "khong chay".
+
+### 12.5 CAND (gate) — `--apply` **CHUA chay**, doi chu duyet
+
+spec §5 ghi roi **"`duyệt bảng trước khi chạy`"** → Step 2 dung lai o day, **khong** tu `--apply`.
+Cac viec tiep theo cua Task 12 (Step 3 kiem tra sau di tru, `tongquan.php`, `bak/linhcan/`,
+docs chốt, `DEPLOY_PRODUCTION_LINHCAN.md`) deu **phụ thuộc** ket qua `--apply` nen cung chua lam.
+
+**3 cau hoi cho chu dy an:**
+
+| # | Cau hoi | De xuat cua toi | Neu chu khong dong y |
+|---|---|---|---|
+| 1 | **Duyet bang 12.3** — 5 nhan vat → 5 node (kim×4, hoa×1), lv 4..16, bac 0..1? | Toi thay dung cong thuc spec: E2E Test q5 → lv8 (khong bi hap), 艾尔资源 t4 → bac Huyền lv16 (giu duoc 1/2 suc manh cu). | Sdoi cong thuc (vi du `3*tier` → `4*tier`) — **phai ghi de len spec**, so da duyet khong doi mot minh. |
+| 2 | **id21 *Tiên Thiên Ngũ Hành Vô Cực* (`element=all`)** → **ca 5 hanh** hay chi 1 hanh dai dien? | Cho **ca 5 hanh** (ten goi "Ngũ Hành" + `all` ngam hieu vay). | Lam 1 hanh thi `id22` cung phai doi lai cho doi xung. |
+| 3 | **`git add sql/backup_*.sql`?** — `sql/` **khong** bi `.gitignore` che. | Toi **khong** tu doi `.gitignore` (ngoai pham vi plan). Chot: them `sql/backup_*.sql` vao `.gitignore` hay de nguyen + thu cong tranh? | — |
+
+Lenh chay khi duyet:
+`D:/XXJserver/phpstudy_pro/Extensions/php/php5.6.9nts/php.exe E:/window/Temp/lcmigrate.php --apply`
+(script idempotent — `skip` sid da co node; co the chay lai ma khong nhan doi.)

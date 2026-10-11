@@ -1110,3 +1110,34 @@ hiện. Đã nâng thành `.main .tc-btn*` (0-2-0) → đúng thiết kế. **Ba
   không phải thêm hiệu ứng mới.
 - 🟡 **Chưa chụp q2/q3/q4/q6/q7 ở khổ mobile** (mới 3 bậc) — nội suy từ bảng biến.
 - 🟡 **Ba trang anh em vẫn còn lỗi nút trắng** (§13.4) — chờ chủ dự án chốt có sửa hàng loạt không.
+
+---
+
+## 14. Test chi tiết Nhục Thân trên tài khoản trắng — 2026-10-11 (HTTP thật, cổng 8199)
+
+Đi qua `game.php` thật bằng `E:/window/Temp/qa_http.php` + `qa_nbtrain.php` (POST loop). Tài khoản QA `2b06d0ff…c044`. 20 ảnh dump `E:/window/Temp/qa_nb_*.html` — tất cả UTF-8 hợp lệ, **0 warning/notice/fatal/SQLSTATE**.
+
+| # | Hành vi | Cách test | Kết quả |
+|---|---|---|---|
+| 1 | Màn trắng | GET `thechat` (acc `thechat_id=0`, 6 node Lv0) | 2 card + 6 ngọc `khoa`, nút Luyện `is-off disabled`, Đột Phá disabled |
+| 2 | Chặn server bypass nút | POST `nb_action=refine&nb_node=1` (0 vật liệu) | "Tinh Thể Đá không đủ. Cần 1, có 0." |
+| 3 | Node sai | POST `nb_node=99` / `=0` | "Không có bộ phận này." |
+| 4 | Mua vật liệu trong game | shop `djid=100` (500 LT) | Vào túi thật, chứng minh nguồn mở |
+| 5 | Công thức luyện | 15 bước refine | khớp `material_base + floor(lv/per)` và `LT 100·(lv+1)`; chặn trần không trừ tài nguyên |
+| 6 | Chỉ số khi đọc | `qa_nb.php gp` | def 4→42→50, hp 210, atk 32, crit 0.63, lifesteal→XX=2, passive_exp 1.26, mốc Thiết Thân +5% |
+| 7 | Break chặn cảnh giới | POST break ở realm 1 | "[Thiếu] Cảnh giới: cấp 1 / 150" |
+| 8 | Break thành công | `ulv=150` → POST break | stage 0→1, LT −20.000, mat −20, cap 10→20, `nb-fx0`→`nb-fx1`, badge "🌕Kim Cốt · trần 20", `player_thechat_awaken_log` ghi dòng |
+| 9 | Luyện qua trần cũ | refine sau break | vượt trần cũ 10→12, `nb-cost-no`→`nb-cost-ok`, nút bật lại khi nạp LT |
+| 10 | Xem bậc khoá | GET `view=3` / `view=9` | preview Linh Cốt; `view=9` fallback an toàn |
+| 11 | Khai mở thể chất | mua+dùng Tẩy Tủy Đan 109 | gán id18 "Thôn Thiên Ma Thể" q2; bonus hợp nhất hp 60210/atk 12032/def 14450/crit 600.63 **với** body; tab "Nâng Phẩm Chất" hiện; zhuangtai 👁️Thể Chất + 🔵Huyền Phẩm + 🌕Kim Cốt |
+| 12 | Nâng phẩm qua POST THẬT | `qa_http.php thechat_upgrade action=upgrade` | **§13.7 nợ "banner chưa từng do POST thật" nay ĐÃ TRẢ**: 1 lần chặn đúng khi thiếu LT (không tốn), 1 lần roll 95% thành công q2→q3 (`tcq-q3` áp dụng, `player_thechat_log` ghi dòng), các lần sau chặn đúng vì LT 20.000 |
+
+**Phát hiện ghi vào sổ nợ (không tự sửa — "không nới khung chung" + "cẩn thận server-side"):**
+- **Xem bậc khoá → panel mâu thuẫn**: chọn `view=3` thì `nb-viewline` ghi yêu cầu của bậc 3, nhưng gate + các dòng `[Đủ]/[Thiếu]` vẫn mô tả lần Đột Phá kế tiếp THẬT (Ngọc Cốt) → trên màn hình hai khối cãi nhau.
+- **Nút Nâng Phẩm không bao giờ disable** theo túi/vật liệu (chỉ chặn server), khác pattern `[Đủ]/[Thiếu]` của panel Nhục Thân.
+- **Đột Phá Cốt Cách KHÔNG cần boss lẫn nhiệm vụ** (khác Linh Căn) — khớp mục "Awakening system gaps" đã chốt.
+- **`realm_min_level` bậc 1 = 150** ⇒ tài khoản trắng không thể đột phá sớm.
+- **`thechat_awaken()`/`thechat_get_awakening_info()`/`thechat_awakening_config_all()` + `thechat_awakening_config.json` là code chết** (không caller thật; file vẫn khai `boss_require: thechat_boss_lv2/lv3` không ai thực thi).
+- **`game1.thechat_awaken_stage` nay do Cốt Cách ghi (0-5) nhưng vẫn nhân `base_stats` thể chất cũ qua `thechat_awaken_mult = 1 + 0.2·stage`** (docblock giả định 0-3) → tới Tiên Cốt là ×2.0 trên chỉ số thể chất cũ.
+
+**Chưa kiểm chứng:** (a) chưa xem trên điện thoại thật (mới headless 500px); (b) production **chưa migration** cho Nhục Thân.

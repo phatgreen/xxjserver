@@ -119,7 +119,8 @@ if (intval($ndv['level']) >= $capv) {
     $havev = \player\getplayerdaoju($sid, \player\linhcan_da_id($lcview), $dblj);
     $haveSum = $havev ? intval($havev->djsum) : 0;
     $lcbtnTrain = '<a class="lc-btn lc-btn-train" href="' . $lclink($lcview, 'train') . '">LUYỆN '
-        . strtoupper($defv['name']) . ' <small>' . $costv['stone'] . ' đá (có ' . $haveSum
+        . (function_exists('mb_strtoupper') ? mb_strtoupper($defv['name'], 'UTF-8') : $defv['name'])
+        . ' <small>' . $costv['stone'] . ' đá (có ' . $haveSum
         . ') · ' . number_format($costv['linh_thach'], 0, ',', '.') . ' LT</small></a>';
 }
 $lcReqs = \player\linhcan_break_requirements($sid, $dblj, $lcview);
@@ -191,12 +192,14 @@ $html .= '<div class="lc-forge-wrap"><div class="lc-stage">'
     . '<img class="lc-ring-img" src="images/linhcan/vong-ngu-hanh.jpg?v=' . $lcImgVer . '" alt="Vòng Ngũ Hành">'
     . $lcgems . $lccore . '</div>'
     . '<div class="lc-forge">' . $lcbtnTrain . $lcbtnBreak . '</div></div>';
+$html .= '</div>'; // lc-card-ring
+// Tab bar o CAP WRAP (khong nam trong card) -> 4 tab Linh Can cung vi tri,
+// giong khuon .hm-tabbar / .nb-tabbar; vao tab khong bi nhay 13px.
 $html .= '<nav class="lc-tabbar">'
     . '<a class="on" href="' . $lclink($lcview) . '"><i>☯</i><b>Luyện Căn</b></a>'
     . '<a href="?cmd=' . $questcmd . '"><i>📜</i><b>Nhiệm Vụ</b></a>'
     . '<a href="?cmd=' . $bosscmd . '"><i>👹</i><b>Boss Ngũ Hành</b></a>'
     . '<a href="?cmd=' . $ztcmd . '"><i>👤</i><b>Nhân Vật</b></a></nav>';
-$html .= '</div>'; // lc-card-ring
 $html .= '<div class="lc-card lc-cols">'
     . '<div class="lc-col"><div class="lc-col-title">Thuộc Tính Kích Hoạt</div>' . $lcsrowLeft . $lcmsLine . '</div>'
     . '<div class="lc-col"><div class="lc-col-title">Đột Phá ' . $defv['icon'] . ' ' . $defv['name'] . '</div>'

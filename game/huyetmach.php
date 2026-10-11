@@ -238,7 +238,7 @@ if ($hmBloodId > 0 && $hmStage >= 3) {
         <div class="hm-forge-top">
             <span class="hm-forge-name" style="color:<?= $hmTierColor ?>"><?= htmlspecialchars($hmNodeDef['name']) ?></span>
             <span class="hm-forge-lv">Cấp <b><?= $hmNodeLv ?></b> / <?= $hmCap ?></span>
-            <span class="hm-forge-gain">+<?= $hmNodePerLvTxt ?>/cấp · đang +<?= htmlspecialchars($hmAttrRows[array_search($hmNodeStat, $hmStatOrder)]['text']) ?> <?= htmlspecialchars($hmNodeLabel) ?></span>
+            <span class="hm-forge-gain">+<?= $hmNodePerLvTxt ?>/cấp · đang <?= htmlspecialchars($hmAttrRows[array_search($hmNodeStat, $hmStatOrder)]['text']) ?> <?= htmlspecialchars($hmNodeLabel) ?></span>
         </div>
 <?php if ($hmAtCap): ?>
         <div class="hm-capnote">Trần <?= $hmCap ?> cấp — phải Thức Tỉnh mới luyện tiếp được.</div>

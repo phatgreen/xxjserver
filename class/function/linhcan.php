@@ -286,6 +286,18 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_binh_anh_id')) {
         return isset($c['da_map']['binh_anh']) ? intval($c['da_map']['binh_anh']) : 37;
     }
 }
+if (!function_exists(__NAMESPACE__ . '\\linhcan_material_name')) {
+    /** Ten da hien thi — lay tu config (master), khong dung key noi bo 'hoa'. */
+    function linhcan_material_name($djid){
+        $c = linhcan_element_config_all();
+        $djid = intval($djid);
+        if (isset($c['material_names'][$djid])) return $c['material_names'][$djid];
+        foreach ($c['elements'] as $k => $e) {
+            if (intval($c['da_map'][$k]) === $djid) return $e['name'] . ' Tinh Thạch';
+        }
+        return 'Vật phẩm';
+    }
+}
 if (!function_exists(__NAMESPACE__ . '\\linhcan_train_cost')) {
     function linhcan_train_cost($lv){
         $c = linhcan_element_config_all();
@@ -431,7 +443,8 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_train_cost_sum')) {
 }
 if (!function_exists(__NAMESPACE__ . '\\linhcan_train')) {
     function linhcan_train($sid, $dblj, $element){
-        if (!linhcan_element_def($element)) return array('ok'=>false,'msg'=>'Hành không tồn tại.','lv'=>0);
+        $def = linhcan_element_def($element);
+        if (!$def) return array('ok'=>false,'msg'=>'Hành không tồn tại.','lv'=>0);
         $node = linhcan_node_get($sid, $element, $dblj);
         $cap = linhcan_stage_cap($node['stage']);
         if (intval($node['level']) >= $cap) {
@@ -443,7 +456,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_train')) {
         $have = getplayerdaoju($sid, $stoneId, $dblj);
         $haveSum = $have ? intval($have->djsum) : 0;
         if ($haveSum < $cost['stone']) {
-            return array('ok'=>false,'msg'=>'Thiếu ' . $cost['stone'] . ' ' . $element . ' Tinh Thạch (đang có ' . $haveSum . ').','lv'=>intval($node['level']));
+            return array('ok'=>false,'msg'=>'Thiếu ' . $cost['stone'] . ' ' . linhcan_material_name($stoneId) . ' (đang có ' . $haveSum . ').','lv'=>intval($node['level']));
         }
         $player = getplayer($sid, $dblj);
         if (!$player || intval($player->uyxb) < $cost['linh_thach']) {
@@ -461,7 +474,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_train')) {
         if (function_exists(__NAMESPACE__ . '\\linhcan_quest_update')) {
             linhcan_quest_update($sid, 'train_element', 1, $dblj); // hook Task 6; chua upgrade thi false an toan
         }
-        return array('ok'=>true,'msg'=>'Luyện ' . $element . ' lên Lv ' . $newLv . '.','lv'=>$newLv);
+        return array('ok'=>true,'msg'=>'Luyện ' . $def['name'] . ' lên Lv ' . $newLv . '.','lv'=>$newLv);
     }
 }
 
@@ -501,7 +514,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_break_requirements')) {
         $baNeed = isset($bc['binh_anh']) ? intval($bc['binh_anh']) : 0;
         $baRow = $baNeed > 0 ? getplayerdaoju($sid, linhcan_binh_anh_id(), $dblj) : false;
         $baCur = $baRow ? intval($baRow->djsum) : 0;
-        $rows[] = array('key' => 'binh_anh', 'label' => 'Binh Anh Tinh Thạch',
+        $rows[] = array('key' => 'binh_anh', 'label' => linhcan_material_name(linhcan_binh_anh_id()),
                         'cur' => $baCur, 'need' => $baNeed, 'ok' => ($baCur >= $baNeed));
 
         $ltNeed = isset($bc['linh_thach']) ? intval($bc['linh_thach']) : 0;
