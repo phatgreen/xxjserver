@@ -585,12 +585,6 @@ function getplayer($sid,$dblj){
     $player->tuposjs = 0;
     $player->tupoexp = 0;
 
-    // Thiên phú tăng thêm vào thuộc tính tổng.
-    if ((int)$player->tfgj != 0) $player->ugj    += (int)$player->tfgj * 5;
-    if ((int)$player->tfbj != 0) $player->ubj    += (float)$player->tfbj * 1.5;
-    if ((int)$player->tfxx != 0) $player->uxx    += (int)$player->tfxx * 2;
-    if ((int)$player->tfhp != 0) $player->umaxhp += (int)$player->tfhp * 10;
-    if ((int)$player->tffy != 0) $player->ufy    += (int)$player->tffy * 5;
 
     // Gom toàn bộ trang bị đang mặc và lấy bằng 1 truy vấn IN thay vì gọi getzb() 16 lần.
     $toolIds = array();

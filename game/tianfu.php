@@ -211,7 +211,7 @@ foreach ($tpGl as $tpKi => $tpGrp):
 ?>
         <div class="tp-attr">
             <span class="tp-attr-name"><?= htmlspecialchars($tpGd['name']) ?></span>
-            <b class="tp-attr-val<?= $tpVcls ?>"><?= $tpVal ?><?= htmlspecialchars($tpGd['unit']) ?></b>
+            <b class="tp-attr-val<?= $tpVcls ?>"><?= $tpVal ?><?= $tpGd['unit'] === '%' ? '' : ' ' ?><?= htmlspecialchars($tpGd['unit']) ?></b>
             <span class="tp-attr-cap">trần <?= $tpCap ?>%</span>
         </div>
 <?php endforeach; ?>

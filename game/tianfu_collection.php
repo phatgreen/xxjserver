@@ -181,7 +181,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
                     ? ('Đang phát huy — Phú Vi ' . $tpcSlot)
                     : 'Chưa phát huy — phải đặt vào Phú Vi';
             ?></div>
-            <div>Cộng <?= htmlspecialchars($tpcGateName) ?> hiện hưởng: <b><?= $tpcGateNow ?><?= htmlspecialchars($tpcGateUnit) ?></b> (xem trang Thiên Phú)</div>
+            <div>Cộng <?= htmlspecialchars($tpcGateName) ?> hiện hưởng: <b><?= $tpcGateNow ?><?= $tpcGateUnit === '%' ? '' : ' ' ?><?= htmlspecialchars($tpcGateUnit) ?></b> (xem trang Thiên Phú)</div>
 <?php else: ?>
             <div class="no"><i class="tp-emoji">🔒</i> Chưa khai mở — cần <b><?= htmlspecialchars($tpcPill['name']) ?></b>. Trong túi có <b><?= $tpcPillSum ?></b> viên.</div>
 <?php endif; ?>

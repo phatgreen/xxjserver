@@ -390,6 +390,7 @@ rm -f _tqshot.html                            # KHONG de harness trong web root
 - **CSS version giờ là `2026101005`** (`game.php:502`); lần sửa CSS tới phải bump tiếp, không dùng lại số cũ.
 - **Hai commit cuối của Task 12 mới ở local**: `0ed1e40` (tài liệu + `tongquan.php`) và `e9fea2b` (2 nút Nhục Thân). Repo **không có remote** (`git remote -v` trả rỗng) ⇒ "đưa lên production" ở đây là làm theo runbook copy thủ công, không phải `git push`.
 - **Sổ nợ cuối file đã ghi đủ 27 dòng** (Step 7 của Task 12) — không còn mục "chưa viết".
+- **Thiên Phú (đợt 2026-10-14) đã dựng lại theo đúng khuôn file này** → nguồn chính là `docs/UI_THIENPHU.md`. Hai điểm cắt ngang mạch huyết cần biết khi đọc cả hai: (1) cổng `drop` của Thiên Phú được bọc **bên trong** `huyetmach_combat_luck_gate()` nên ngưỡng rơi đồ bị `intval(round())` **hai lớp** — 120 thành 179 (+49,17%), không phải +49,5%; (2) cột `tfsb` cố tình **để chết**, không nối vận khí, vì trùng nhịp **Né Tranh** của Ẩm Kieu Mach — `huyetmach_combat_roll_dodge()` (`class/function/huyetmach.php:1112`, trần né 15%). Dòng "CSS version" ở trên đã cũ: hiện là `2026101401` tại `game.php:506`.
 
 ---
 
