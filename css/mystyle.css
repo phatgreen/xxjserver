@@ -7844,3 +7844,189 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .lcw-back { display:inline-block; margin-top:10px; padding:13px 18px; background:rgba(167,139,250,.15); color:#a78bfa; border-radius:8px; text-decoration:none; font-size:13px; }
 .main a.lcw-back,.main a.lcw-back:link,.main a.lcw-back:visited { color:#a78bfa; margin:10px 0 0; }
 @media (min-width:601px) { .lcw-wrap { max-width:840px; } }
+
+/* ==================== THIEN PHU — PHU CAC SUU TAM (.tp-* / .tpc-* / .tpo-*) ====================
+   Khuon: .hm-* (7501+), .lc-* (7750+), .lcq-/.lcb-/.lcw- (7790+). Ba le phai gi:
+   1) `a:link` trong css/gamecss.css = dac tinh (0,1,1) -> moi dieu khien dang <a>
+      PHAI co them nhom `.main a.tp-*` (0,2,1), neu khong bi do mau + margin he thong.
+   2) `.main button` = (0,1,1) -> moi nut submit PHAI dat `.main .tp-act*` (0,2,0).
+   3) mobile 660px, desktop `@media(min-width:601px)` -> 840px; KHONG dat max-width
+      len .tp-stage / .tp-grid (pham vi sua dung theo le `feedback-khong-mo-rong-pham-vi-sua`).
+
+   Hieu ung phan tang theo 6 bac (le chu du an: bac THAP NHAT van phai thay quang mang tinh):
+     --tp-tier = mau cua PHAM CHAT chu phu (tianfu_quality_color)
+     --tp-glow = do to vong        (4 / 7 / 11 / 15 / 20 / 26 px)
+     --tp-dur  = toc do dong       (0s / 11s / 9s / 6.5s / 4.4s / 3s)
+     --tp-aura = do sang lop phu   (.05 / .07 / .10 / .14 / .18 / .23)
+     --tp-color= mau cua NHOM dang xem (groups[*].color) — do mau rail + stage chip
+   tp-fx0 that dong bang `animation:none`, KHONG dung duration:0s (Chrome giu keyframe 0%). */
+.tp-fx0{--tp-dur:0s;--tp-aura:.05;--tp-glow:4px}
+.tp-fx1{--tp-dur:11s;--tp-aura:.07;--tp-glow:7px}
+.tp-fx2{--tp-dur:9s;--tp-aura:.10;--tp-glow:11px}
+.tp-fx3{--tp-dur:6.5s;--tp-aura:.14;--tp-glow:15px}
+.tp-fx4{--tp-dur:4.4s;--tp-aura:.18;--tp-glow:20px}
+.tp-fx5{--tp-dur:3s;--tp-aura:.23;--tp-glow:26px}
+
+/* --- khung --- */
+.tp-wrap{max-width:660px;margin:0 auto;padding:10px;position:relative;--tp-tier:#9e9e9e;--tp-glow:4px;--tp-dur:0s;--tp-aura:.05;--tp-color:#7dd3fc}
+.tp-card{background:linear-gradient(160deg,#111a35,#0b1024);border:1px solid rgba(148,163,184,.16);border-radius:14px;padding:14px 16px;margin:0 0 10px}
+.tp-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.tp-hrow{display:flex;align-items:baseline;gap:8px;min-width:0}
+.tp-title{font-size:18px;font-weight:1000;color:var(--tp-tier,#9e9e9e);text-shadow:0 0 calc(var(--tp-glow,4px) * .7) rgba(0,0,0,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:1000;color:#fff;background:rgba(255,255,255,.08);border:1px solid var(--tp-tier,#9e9e9e);box-shadow:0 0 var(--tp-glow,4px) var(--tp-tier,#9e9e9e);white-space:nowrap}
+.tp-badge-ico{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+.tp-msg{padding:10px 12px;border-radius:10px;margin:0 0 10px;font-size:13px;text-align:center}
+.tp-msg.ok{background:rgba(76,175,80,.14);border:1px solid rgba(76,175,80,.5);color:#8bc34a}
+.tp-msg.bad{background:rgba(244,67,54,.12);border:1px solid rgba(244,67,54,.45);color:#ef9a9a}
+
+/* --- rail 6 nhom (khuon .hm-rail/.hm-tier/.hm-link, mystyle.css:7284-7304) ---
+   .tp-tier  = <a> chip nhom (bam de xem nhom), .tp-link = <span> noi mong.
+   .tp-link KHONG phai <a> nen vo nhiu le a:link (0,1,1). */
+.tp-rail{display:flex;gap:0;align-items:stretch;overflow-x:auto;padding-bottom:4px;margin:0 0 8px;-webkit-overflow-scrolling:touch}
+.tp-tier{flex:1 1 0;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;margin:0;border-radius:12px;border:1px solid rgba(148,163,184,.16);background:rgba(0,0,0,.22);text-decoration:none;text-align:center;line-height:1.3}
+.tp-tier b{font-size:11px;font-weight:1000;color:#cbd5e1}
+.tp-tier span{font-size:16px;line-height:1.2;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;filter:grayscale(.55)}
+.tp-tier em{display:block;font-style:normal;font-size:10px;color:#64748b}
+.tp-tier.is-done{border-color:rgba(148,163,184,.4);background:rgba(148,163,184,.10)}
+.tp-tier.is-done span{filter:none}
+.tp-tier.is-view{outline:2px solid var(--tp-color,#7dd3fc);outline-offset:1px}
+.tp-tier.is-view b{color:#fff}
+.tp-link{flex:0 0 12px;align-self:center;height:3px;margin:0;border-radius:2px;background:rgba(148,163,184,.2);position:relative}
+.tp-link:after{content:"";position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid rgba(148,163,184,.34);border-top:4px solid transparent;border-bottom:4px solid transparent}
+.tp-link.is-lit{background:linear-gradient(90deg,var(--tp-color,#7dd3fc),var(--tp-tier,#9e9e9e))}
+.tp-link.is-lit:after{border-left-color:var(--tp-tier,#9e9e9e)}
+.tp-viewline{font-size:12px;color:#9fb3c8;text-align:center;margin:6px 0 2px}
+.tp-viewline b{font-weight:1000}
+.tp-note{font-size:11.5px;color:#f87171;text-align:center;line-height:1.45;margin-top:4px}
+.tp-note.dim{color:#9fb3c8}
+
+/* --- san + aura + anh --- */
+.tp-forge-wrap{position:relative;isolation:isolate;margin-top:10px}
+.tp-stage{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--tp-tier,#9e9e9e);box-shadow:0 0 calc(var(--tp-glow,4px) * 1.6) rgba(0,0,0,.55);aspect-ratio:4/5;max-width:420px;margin:0 auto;background:#0b1024}
+.tp-stage-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
+.tp-stage-chip{position:absolute;left:8px;top:8px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 8px;border-radius:10px;font-size:11px;color:#e2e8f0;background:rgba(4,11,30,.72);border:1px solid var(--tp-color,#7dd3fc);text-decoration:none}
+.tp-aura{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 58% 48% at 50% 46%,var(--tp-tier,#9e9e9e) 0%,rgba(0,0,0,0) 64%);box-shadow:inset 0 0 46px 4px var(--tp-tier,#9e9e9e);mix-blend-mode:screen;opacity:var(--tp-aura,.05);animation:tpAuraPulse var(--tp-dur,0s) ease-in-out infinite}
+.tp-sweep{position:absolute;left:0;top:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:0;background:linear-gradient(115deg,rgba(0,0,0,0) 34%,var(--tp-tier,#9e9e9e) 50%,rgba(0,0,0,0) 66%);mix-blend-mode:screen;animation:tpSweepRun var(--tp-dur,0s) ease-in-out infinite}
+.tp-forge{padding:12px 12px 14px;border-radius:0 0 16px 16px;background:linear-gradient(180deg,rgba(4,11,30,.2),rgba(4,11,30,.92));text-align:center}
+.tp-forge-name{font-size:17px;font-weight:1000;color:#fff;text-shadow:0 0 calc(var(--tp-glow,4px) * .8) var(--tp-tier,#9e9e9e)}
+.tp-forge-lv{font-size:13px;color:#ffd77a;font-weight:1000;margin-top:2px}
+.tp-forge-pct{font-size:12.5px;color:#cbd5e1;margin-top:4px;line-height:1.5}
+.tp-forge-cost{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:8px 0 10px;font-size:12px;color:#9fb3c8}
+.tp-forge-cost b{color:#e2e8f0}
+.tp-forge-cost .ok{color:#6ee7b7}
+.tp-forge-cost .no{color:#f87171}
+
+/* --- 2 cot: ky nang + Phu Vi --- */
+.tp-cols{display:block}
+.tp-h3{font-size:14px;font-weight:1000;color:#ffd77a;letter-spacing:.4px;margin:2px 0 8px}
+.tp-attr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px}
+.tp-attr:last-child{border-bottom:0}
+.tp-attr-name{color:#cbd5e1;min-width:0}
+.tp-attr-val{font-weight:1000;color:#6ee7b7;white-space:nowrap}
+.tp-attr-val.is-zero{color:#64748b}
+.tp-attr-val.is-max{color:#fbbf24}
+.tp-attr-cap{font-size:10.5px;color:#64748b;white-space:nowrap}
+.tp-ms{margin-top:10px}
+.tp-ms-label{display:flex;justify-content:space-between;font-size:11.5px;color:#9fb3c8;margin-bottom:4px}
+.tp-ms-bar{position:relative;height:8px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.tp-ms-fill{position:absolute;left:0;top:0;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--tp-tier,#9e9e9e),#ffd77a);transition:width .4s}
+.tp-ms-fill:after{content:"";position:absolute;top:0;left:-40%;width:38%;height:100%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.38),rgba(255,255,255,0));animation:tpMsFlow var(--tp-dur,0s) ease-in-out infinite}
+.tp-ms-done{font-size:11.5px;color:#6ee7b7;text-align:center;margin-top:4px}
+.tp-slot{padding:10px;border-radius:12px;border:1px dashed rgba(148,163,184,.28);background:rgba(0,0,0,.2);margin-bottom:8px}
+.tp-slot.is-on{border-style:solid;border-color:var(--tp-color,#7dd3fc);box-shadow:0 0 12px -2px var(--tp-color,#7dd3fc)}
+.tp-slot.is-locked{opacity:.6}
+.tp-slot-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#9fb3c8}
+.tp-slot-head b{color:#e2e8f0;font-size:12.5px}
+.tp-slot-name{font-size:14px;font-weight:1000;color:#fff;margin-top:4px}
+.tp-slot-name.empty{color:#64748b;font-weight:700}
+.tp-gate{display:inline-block;margin-top:4px;padding:3px 8px;border-radius:8px;font-size:11px;color:#0b1024;background:var(--tp-color,#7dd3fc);font-weight:1000}
+.tp-reqs{margin-top:6px;font-size:11.5px;line-height:1.6;color:#9fb3c8}
+.tp-reqs .ok{color:#6ee7b7}
+.tp-reqs .no{color:#f87171}
+
+/* --- tabbar duoi (4 nut): copy khuon .lc-tabbar vi .main a:link de (0,1,1) --- */
+.tp-tabbar{display:flex;justify-content:center;gap:6px;margin:10px 0 2px;padding:7px 6px;border-radius:18px;border:1px solid rgba(255,215,122,.2);background:linear-gradient(180deg,rgba(20,14,4,.88),rgba(8,6,2,.94))}
+.tp-tabbar a,.tp-tabbar a:link,.tp-tabbar a:visited,.tp-tabbar a:hover,.tp-tabbar a:active,.tp-tabbar a:focus{box-sizing:border-box;flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;min-height:56px;padding:7px 3px 6px;margin:0;border-radius:12px;border:1px solid transparent;background:none;color:#c8b28a;text-decoration:none;font-weight:1000}
+.tp-tabbar a i{display:block;width:100%;height:22px;line-height:22px;overflow:hidden;font-style:normal;font-size:18px;text-align:center;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;filter:grayscale(.4)}
+.tp-tabbar a b{display:block;width:100%;text-align:center;font-size:11px;letter-spacing:.2px}
+.tp-tabbar a.on,.tp-tabbar a.on:link,.tp-tabbar a.on:visited{color:#ffd77a;border-color:rgba(255,205,120,.42);background:radial-gradient(circle at 50% 26%,rgba(120,74,14,.55),rgba(28,16,2,.35));box-shadow:0 0 18px rgba(255,178,66,.18)}
+.tp-tabbar a.on i{filter:none}
+.tp-tabbar a:hover,.tp-tabbar a:active,.tp-tabbar a:focus{background:rgba(255,255,255,.12);color:#e2e8f0}
+@media(max-width:760px){.tp-tabbar a{min-height:52px;padding:6px 2px 5px}.tp-tabbar a b{font-size:10px}}
+
+/* --- nut: .main button (0,1,1) danh thua -> dung nhom 2 lop --- */
+.main .tp-act{padding:11px 18px;border:0;border-radius:12px;font-size:15px;font-weight:1000;color:#fff;box-sizing:border-box}
+.main .tp-act-up{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+.main .tp-act-break{background:linear-gradient(135deg,#7c3aed,#db2777)}
+.main .tp-act-open{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.main .tp-act-slot{background:linear-gradient(135deg,#16a34a,#4ade80);padding:9px 14px;font-size:13px;width:100%;margin-top:6px}
+.main .tp-act[disabled],.main .tp-act.is-off{opacity:.45;box-shadow:none}
+.main .tp-act-ghost,.main a.tp-act-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#cbd5e1}
+.main a.tp-act-ghost,.main a.tp-act-ghost:link,.main a.tp-act-ghost:visited,.main a.tp-act-ghost:hover{background:rgba(255,255,255,.08);color:#cbd5e1;text-decoration:none}
+/* reset <a> he thong: a:link = inline-block + margin 4/3/2/4 (gamecss.css:70) */
+.main a.tp-tier,.main a.tp-act,.main a.tp-stage-chip,.main a.tp-act-ghost,.main a.tpc-cell,.main a.tpc-act,.main a.tpo-act{box-sizing:border-box;margin:0}
+.main a.tp-tier{display:flex}
+/* .tp-slot la DIV (co form ben trong), KHONG phai <a> -> khong can reset a:link */
+.tp-slot form{margin:0}
+/* emoji: moi icon do ra trong HTML deu bọc <i class="tp-emoji"> (le cua docs/UI_XIULIAN.md §9.1:
+   ky tu BMP nhu ⚗ U+2697, ⛰ U+26F0 de Chrome desktop render thanh glyph trai lech o flex) */
+.tp-emoji{font-style:normal;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+
+@keyframes tpAuraPulse{0%,100%{opacity:var(--tp-aura,.05)}50%{opacity:calc(var(--tp-aura,.05) + .07)}}
+@keyframes tpSweepRun{0%,100%{opacity:0;transform:translateX(-24%)}50%{opacity:calc(var(--tp-aura,.05) + .05);transform:translateX(24%)}}
+@keyframes tpMsFlow{0%{left:-40%;opacity:0}12%{opacity:.9}46%{left:104%;opacity:0}100%{left:104%;opacity:0}}
+@keyframes tpCellGlow{0%,100%{box-shadow:0 0 6px var(--tp-cell,#9e9e9e)}50%{box-shadow:0 0 calc(6px + var(--tp-glow,4px)) var(--tp-cell,#9e9e9e)}}
+/* tp-fx0: CHI co quang mang tinh, tuyet doi khong dong nao */
+.tp-fx0 .tp-aura,.tp-fx0 .tp-ms-fill:after{animation:none}
+.tp-fx0 .tp-sweep{display:none}
+@media(prefers-reduced-motion:reduce){
+.tp-aura,.tp-ms-fill:after{animation:none}
+.tp-sweep{display:none}
+.tp-fx5 .tp-badge,.tp-cell.is-active{animation:none}
+}
+@media (min-width:601px){.tp-wrap{max-width:840px}.tp-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tp-stage{max-width:520px}}
+
+/* --- PHU CAC (.tpc-*) --- */
+.tpc-wrap{max-width:660px;margin:0 auto;padding:10px}
+.tpc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:15px;font-weight:1000;color:#ffd77a}
+.tpc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tpc-cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:96px;padding:9px 6px;border-radius:13px;border:1px solid rgba(148,163,184,.2);background:rgba(0,0,0,.24);text-decoration:none;color:#cbd5e1;cursor:pointer;--tp-cell:#9e9e9e}
+.tpc-cell i{font-style:normal;font-size:24px;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+.tpc-cell b{font-size:11px;font-weight:1000;text-align:center;line-height:1.25}
+.tpc-cell span{font-size:10.5px;color:#94b8dd}
+.tpc-cell.is-have{border-color:var(--tp-cell,#9e9e9e);box-shadow:0 0 10px -3px var(--tp-cell,#9e9e9e)}
+.tpc-cell.is-active{border-color:var(--tp-cell,#9e9e9e);animation:tpCellGlow var(--tp-dur,11s) ease-in-out infinite}
+.tpc-cell.is-lock{opacity:.5;border-style:dashed}
+.tpc-cell.is-lock i{filter:grayscale(1)}
+.tpc-cell.is-sel,.tpc-cell:hover{background:rgba(255,255,255,.1)}
+.tpc-slot-tag{position:absolute;right:6px;top:6px;font-size:10px;font-weight:1000;color:#0b1024;background:#ffd77a;border-radius:6px;padding:1px 5px}
+.tpc-detail{margin-top:10px;padding:12px;border-radius:13px;border:1px solid var(--tp-cell,#9e9e9e);background:linear-gradient(160deg,#141d3a,#0b1024)}
+.tpc-detail-name{font-size:16px;font-weight:1000;color:#fff}
+.tpc-detail-q{font-size:12px;color:var(--tp-cell,#9e9e9e);font-weight:1000;margin-left:6px}
+.tpc-detail-desc{font-size:12.5px;color:#9fb3c8;line-height:1.55;margin:6px 0}
+.tpc-detail-rows{margin:6px 0;font-size:12.5px;line-height:1.7;color:#cbd5e1}
+.tpc-detail-rows .ok{color:#6ee7b7}
+.tpc-detail-rows .no{color:#f87171}
+.tpc-acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tpc-acts form{flex:1 1 120px;margin:0}
+.main .tpc-act{width:100%;padding:10px 12px;font-size:13px}
+@media (min-width:601px){.tpc-wrap{max-width:840px}.tpc-grid{grid-template-columns:repeat(6,1fr)}}
+
+/* --- KHAI PHU (.tpo-*) --- */
+.tpo-wrap{max-width:660px;margin:0 auto;padding:10px}
+.tpo-card{background:linear-gradient(160deg,#171029,#0b1024);border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:16px;text-align:center}
+.tpo-title{font-size:18px;font-weight:1000;color:#ffd77a;letter-spacing:1px}
+.tpo-pill{font-size:13px;color:#cbd5e1;margin:8px 0}
+.tpo-pill b{color:#ffd77a}
+.tpo-truth{margin:10px 0;padding:10px;border-radius:10px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);font-size:13px;color:#fde68a;line-height:1.5}
+.tpo-result{margin-top:12px;padding:14px;border-radius:13px;border:1px solid var(--tp-tier,#9e9e9e);background:rgba(0,0,0,.3)}
+.tpo-result-name{font-size:17px;font-weight:1000;color:var(--tp-tier,#9e9e9e);text-shadow:0 0 var(--tp-glow,4px) var(--tp-tier,#9e9e9e)}
+.tpo-result-q{font-size:13px;color:#e2e8f0;margin-top:4px}
+.tpo-result-new{font-size:12px;color:#6ee7b7;margin-top:4px}
+.tpo-table{margin-top:12px;width:100%;border-collapse:collapse;font-size:12.5px}
+.tpo-table th,.tpo-table td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center;color:#cbd5e1}
+.tpo-table th{color:#ffd77a;font-weight:1000}
+.tpo-table td.q b{font-weight:1000}
+.main .tpo-act{width:100%;margin-top:12px;padding:13px;font-size:16px;background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.tpo-foot{margin-top:10px;font-size:11.5px;color:#9fb3c8;text-align:center;line-height:1.5}
+@media (min-width:601px){.tpo-wrap{max-width:840px}}
