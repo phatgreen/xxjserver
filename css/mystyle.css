@@ -7960,12 +7960,13 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .main .tp-act-break{background:linear-gradient(135deg,#7c3aed,#db2777)}
 .main .tp-act-open{background:linear-gradient(135deg,#f59e0b,#ef4444)}
 .main .tp-act-slot{background:linear-gradient(135deg,#16a34a,#4ade80);padding:9px 14px;font-size:13px;width:100%;margin-top:6px}
-.main .tp-act[disabled],.main .tp-act.is-off{opacity:.45;box-shadow:none}
+.main .tp-act[disabled],.main .tp-act.is-off,.main .tpc-act[disabled],.main .tpc-act.is-off{opacity:.45;box-shadow:none}
 .main .tp-act-ghost,.main a.tp-act-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#cbd5e1}
 .main a.tp-act-ghost,.main a.tp-act-ghost:link,.main a.tp-act-ghost:visited,.main a.tp-act-ghost:hover{background:rgba(255,255,255,.08);color:#cbd5e1;text-decoration:none}
 /* reset <a> he thong: a:link = inline-block + margin 4/3/2/4 (gamecss.css:70) */
 .main a.tp-tier,.main a.tp-act,.main a.tp-stage-chip,.main a.tp-act-ghost,.main a.tpc-cell,.main a.tpc-act,.main a.tpo-act{box-sizing:border-box;margin:0}
 .main a.tp-tier{display:flex}
+.main a.tpc-cell{display:flex}
 /* .tp-slot la DIV (co form ben trong), KHONG phai <a> -> khong can reset a:link */
 .tp-slot form{margin:0}
 /* emoji: moi icon do ra trong HTML deu bọc <i class="tp-emoji"> (le cua docs/UI_XIULIAN.md §9.1:
@@ -7977,18 +7978,22 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 @keyframes tpMsFlow{0%{left:-40%;opacity:0}12%{opacity:.9}46%{left:104%;opacity:0}100%{left:104%;opacity:0}}
 @keyframes tpCellGlow{0%,100%{box-shadow:0 0 6px var(--tp-cell,#9e9e9e)}50%{box-shadow:0 0 calc(6px + var(--tp-glow,4px)) var(--tp-cell,#9e9e9e)}}
 /* tp-fx0: CHI co quang mang tinh, tuyet doi khong dong nao */
-.tp-fx0 .tp-aura,.tp-fx0 .tp-ms-fill:after{animation:none}
+.tp-fx0 .tp-aura,.tp-fx0 .tp-ms-fill:after,.tp-fx0 .tpc-cell.is-active{animation:none}
 .tp-fx0 .tp-sweep{display:none}
 @media(prefers-reduced-motion:reduce){
 .tp-aura,.tp-ms-fill:after{animation:none}
 .tp-sweep{display:none}
-.tp-fx5 .tp-badge,.tp-cell.is-active{animation:none}
+.tp-fx5 .tp-badge,.tpc-cell.is-active{animation:none}
 }
 @media (min-width:601px){.tp-wrap{max-width:840px}.tp-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tp-stage{max-width:520px}}
 
 /* --- PHU CAC (.tpc-*) --- */
 .tpc-wrap{max-width:660px;margin:0 auto;padding:10px}
+.tpc-cover{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 10px;padding:14px 10px;border-radius:14px;border:1px solid rgba(255,215,122,.25);background:url(../images/tianfu/phu-cac.jpg) center 35%/cover no-repeat,linear-gradient(160deg,#171029,#0b1024);color:#ffd77a;font-size:17px;font-weight:1000;letter-spacing:1px;text-shadow:0 1px 8px #000}
+.tpc-cover i{font-size:20px}
+.tpc-cover span{font-size:11.5px;font-weight:700;color:#e8d9b5}
 .tpc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:15px;font-weight:1000;color:#ffd77a}
+.tpc-head span:first-child{white-space:nowrap}
 .tpc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tpc-cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:96px;padding:9px 6px;border-radius:13px;border:1px solid rgba(148,163,184,.2);background:rgba(0,0,0,.24);text-decoration:none;color:#cbd5e1;cursor:pointer;--tp-cell:#9e9e9e}
 .tpc-cell i{font-style:normal;font-size:24px;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
@@ -7999,7 +8004,7 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tpc-cell.is-lock{opacity:.5;border-style:dashed}
 .tpc-cell.is-lock i{filter:grayscale(1)}
 .tpc-cell.is-sel,.tpc-cell:hover{background:rgba(255,255,255,.1)}
-.tpc-slot-tag{position:absolute;right:6px;top:6px;font-size:10px;font-weight:1000;color:#0b1024;background:#ffd77a;border-radius:6px;padding:1px 5px}
+.tpc-slot-tag,.tpc-cell .tpc-slot-tag{position:absolute;right:6px;top:6px;font-size:10px;font-weight:1000;color:#0b1024;background:#ffd77a;border-radius:6px;padding:1px 5px}
 .tpc-detail{margin-top:10px;padding:12px;border-radius:13px;border:1px solid var(--tp-cell,#9e9e9e);background:linear-gradient(160deg,#141d3a,#0b1024)}
 .tpc-detail-name{font-size:16px;font-weight:1000;color:#fff}
 .tpc-detail-q{font-size:12px;color:var(--tp-cell,#9e9e9e);font-weight:1000;margin-left:6px}
@@ -8010,6 +8015,7 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tpc-acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .tpc-acts form{flex:1 1 120px;margin:0}
 .main .tpc-act{width:100%;padding:10px 12px;font-size:13px}
+.main a.tpc-act,.main a.tpc-act:link,.main a.tpc-act:visited,.main a.tpc-act:hover{background:#fff;border:1px solid #e3e3e3;border-radius:3px;color:#0093E8;text-decoration:none;text-align:center}
 @media (min-width:601px){.tpc-wrap{max-width:840px}.tpc-grid{grid-template-columns:repeat(6,1fr)}}
 
 /* --- KHAI PHU (.tpo-*) --- */
