@@ -412,6 +412,15 @@
         "djyxb": 50000,
         "djjg": 0
     },
+  "114": {
+    "djname": "Khai Phú Đan",
+    "djzl": "114",
+    "djinfo": "Đan cô đúc từ thiên phú chi khí. Uống một lần là khai mở một thiên phú bẩm sinh; nếu thiên phú ấy đã có trong Phu Cac thì nó tăng thêm một phẩm chất — không lần nào uổng phí.",
+    "djid": 114,
+    "djyxb": 50000,
+    "djjg": 0,
+    "use_effect": { "type": "tianfu_open" }
+  },
 
     "50": {
         "djname": "Linh Chi Huyết Sắc",

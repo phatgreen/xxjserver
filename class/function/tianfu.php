@@ -407,3 +407,124 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_recalc_mirror')) {
                      'tianfu_lv' => $mlv, 'tianfu_power' => $power);
     }
 }
+
+// ======================================================================
+// Task 4 — Khai Phu Dan
+// ======================================================================
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_weighted_pick')) {
+    /**
+     | Chon 1 key theo ti le. $weights: key => so duong (co the le).
+     | Truong hop le: tong = 0 -> false (khong bao gio xay ra vi Task 1
+     | test bat weight 18 o = 72 va 10 pham = 100.00).
+     */
+    function tianfu_weighted_pick($weights){
+        if (!is_array($weights) || count($weights) === 0) return false;
+        $scaled = array(); $sum = 0;
+        foreach ($weights as $k => $w) {
+            $w = floatval($w);
+            if ($w <= 0) continue;
+            $scaled[$k] = $w;
+            $sum += $w;
+        }
+        if ($sum <= 0) return false;
+        // Lam tron ve so nguyen de mt_rand khong bi mat do chinh xac: bac thap nhat
+        // cua 10 pham chat la 0.09 -> nhan 100 = 9 lan trong 10009.
+        $factor = 100;
+        $pick = mt_rand(1, intval(round($sum * $factor)));
+        $acc  = 0;
+        foreach ($scaled as $k => $w) {
+            $acc += intval(round($w * $factor));
+            if ($pick <= $acc) return $k;
+        }
+        $keys = array_keys($scaled);
+        return $keys[count($keys) - 1];
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_open')) {
+    /**
+     | Uong 1 Khai Phu Dan (114) -> mo 1 thien phu.
+     |   - Chon thien phu theo weight cua 18 o (config.talents[*].weight).
+     |   - Chon pham chat theo weight cua 10 bac (config.qualities[*].weight).
+     |   - O CHUA so huu  -> INSERT voi pham chat vua roll (lan dau co the ra
+     |     Phàm Phẩm; do la y nghia cua "khai mo", khong phai trung phat).
+     |   - O DA so huu    -> +1 pham chat, tran 10 (spec §5: trung khong mat).
+     | Tru dan bang UPDATE co dieu kien djsum >= 1 + rowCount() -> chong double-click
+     | (route `?cmd=` da 1 lan, nhung cron/f2 ngam van co the gui POST trung).
+     */
+    function tianfu_open($sid, $dblj){
+        $pill   = tianfu_open_pill();
+        $djid   = $pill['djid'];
+        $bad    = array('ok' => false, 'talent' => false, 'quality' => 0,
+                        'is_new' => false, 'msg' => '');
+
+        // 1) Tru dan truoc khi roll — neu khong co dan thi khong roll, khong ghi gi.
+        $ded = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum - 1
+                               WHERE sid = ? AND djid = ? AND djsum >= 1");
+        $ded->execute(array($sid, $djid));
+        if ($ded->rowCount() !== 1) {
+            $bad['msg'] = 'Không còn ' . $pill['name'] . ' trong túi.';
+            return $bad;
+        }
+
+        // 2) Roll
+        $talentWeights = array();
+        foreach (tianfu_defs() as $id => $d) $talentWeights[$id] = floatval($d['weight']);
+        $picked = tianfu_weighted_pick($talentWeights);
+        if ($picked === false) {
+            // Ly ra khong xay ra; hoan lai dan de nguoi choi khong mat oan.
+            $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + 1 WHERE sid = ? AND djid = ?")
+                 ->execute(array($sid, $djid));
+            $bad['msg'] = 'Khai mở thất bại, đan đã được hoàn lại.';
+            return $bad;
+        }
+        $id  = intval($picked);
+        $def = tianfu_def($id);
+
+        $qWeights = array();
+        foreach (tianfu_cfg_key('qualities') as $q => $qd) $qWeights[$q] = floatval($qd['weight']);
+        $rolledQ = intval(tianfu_weighted_pick($qWeights));
+
+        // 3) Ghi — MOT lenh duoc, khong can transaction, khong the tao dong trung
+        //    (PK (sid, tianfu_id)); `FOR UPDATE` da bi loai vi vo nghia voi dong chua ton tai.
+        $pre = $dblj->prepare("SELECT quality FROM player_tianfu WHERE sid = ? AND tianfu_id = ?");
+        $pre->execute(array($sid, $id));
+        $curQ = $pre->fetch(\PDO::FETCH_ASSOC);
+        $isNew = ($curQ === false);
+
+        $qIns = ($rolledQ >= 1 && $rolledQ <= 10) ? $rolledQ : 1;
+        $dblj->prepare("INSERT INTO player_tianfu (sid, tianfu_id, quality, lv, slot, obtained_at)
+                        VALUES (?, ?, ?, 0, 0, NOW())
+                        ON DUPLICATE KEY UPDATE quality = LEAST(10, quality + 1)")
+             ->execute(array($sid, $id, $qIns));
+
+        // Pham chat THUC TE sau khi ghi (o da co san 10 thi van la 10, khong phai 11).
+        $after = $dblj->prepare("SELECT quality FROM player_tianfu WHERE sid = ? AND tianfu_id = ?");
+        $after->execute(array($sid, $id));
+        $quality = intval($after->fetchColumn());
+        $fromQ   = $isNew ? 0 : intval($curQ['quality']);
+
+        tianfu_recalc_mirror($sid, $dblj);
+        tianfu_log($sid, 'open', $id, $fromQ, $quality,
+                   $isNew ? 'khai mo' : 'luyen pham', $dblj);
+
+        $qdef = tianfu_quality_def($quality);
+        return array(
+            'ok'      => true,
+            'talent'  => $def,
+            'quality' => $quality,
+            'is_new'  => $isNew,
+            'msg'     => ($isNew ? 'Khai mở được ' : 'Luyện thêm phẩm chất cho ')
+                        . $def['name'] . ' — ' . $qdef['name'],
+        );
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_open_count')) {
+    function tianfu_open_count($sid, $dblj){
+        $st = $dblj->prepare("SELECT COUNT(*) FROM player_tianfu_log WHERE sid = ? AND kind = 'open'");
+        $st->execute(array($sid));
+        return intval($st->fetchColumn());
+    }
+}

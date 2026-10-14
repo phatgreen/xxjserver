@@ -87,6 +87,12 @@ if (isset($djid) && intval($djid) > 0) {
                 $washCmd = $encode->encode("cmd=linhcan_wash&sid=$sid");
                 header("Location: game.php?cmd=$washCmd");
                 exit;
+            } elseif ($effectType === 'tianfu_open') {
+                // Khai Phu Dan: KHONG reroll o day — dan mo trang KHAI PHU (Task 10)
+                // de nguoi choi xem bang ty le va nhan ket qua co hieu ung.
+                $openCmd = $encode->encode("cmd=tianfu_open&sid=$sid");
+                header("Location: game.php?cmd=$openCmd");
+                exit;
             } else {
                 // Stat boost items (cũ)
                 $stat = isset($effect['stat']) ? $effect['stat'] : '';
