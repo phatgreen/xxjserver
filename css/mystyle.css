@@ -7960,7 +7960,7 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .main .tp-act-break{background:linear-gradient(135deg,#7c3aed,#db2777)}
 .main .tp-act-open{background:linear-gradient(135deg,#f59e0b,#ef4444)}
 .main .tp-act-slot{background:linear-gradient(135deg,#16a34a,#4ade80);padding:9px 14px;font-size:13px;width:100%;margin-top:6px}
-.main .tp-act[disabled],.main .tp-act.is-off,.main .tpc-act[disabled],.main .tpc-act.is-off{opacity:.45;box-shadow:none}
+.main .tp-act[disabled],.main .tp-act.is-off,.main .tpc-act[disabled],.main .tpc-act.is-off,.main .tpo-act[disabled],.main .tpo-act.is-off{opacity:.45;box-shadow:none}
 .main .tp-act-ghost,.main a.tp-act-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#cbd5e1}
 .main a.tp-act-ghost,.main a.tp-act-ghost:link,.main a.tp-act-ghost:visited,.main a.tp-act-ghost:hover{background:rgba(255,255,255,.08);color:#cbd5e1;text-decoration:none}
 /* reset <a> he thong: a:link = inline-block + margin 4/3/2/4 (gamecss.css:70) */
@@ -8033,6 +8033,6 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tpo-table th,.tpo-table td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center;color:#cbd5e1}
 .tpo-table th{color:#ffd77a;font-weight:1000}
 .tpo-table td.q b{font-weight:1000}
-.main .tpo-act{width:100%;margin-top:12px;padding:13px;font-size:16px;background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.main .tpo-act{width:100%;margin-top:12px;padding:13px;font-size:16px;font-weight:1000;color:#fff;border:0;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444)}
 .tpo-foot{margin-top:10px;font-size:11.5px;color:#9fb3c8;text-align:center;line-height:1.5}
 @media (min-width:601px){.tpo-wrap{max-width:840px}}

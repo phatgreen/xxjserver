@@ -348,6 +348,7 @@ switch ($cmd){
 			'czbgm'=>'npc/muban/czbgm.php',
 			'tianfu'=>'game/tianfu.php',
 			'tianfu_collection'=>'game/tianfu_collection.php',
+			'tianfu_open'=>'game/tianfu_open.php',
 			'taozhuang'=>'game/taozhuang.php',
 			'gocp'=>'game/congphap.php',
 			'linhcan'=>'game/linhcan.php',
