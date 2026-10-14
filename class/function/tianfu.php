@@ -528,3 +528,209 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_open_count')) {
         return intval($st->fetchColumn());
     }
 }
+
+// ======================================================================
+// Task 5 — Luyen Lv va Dot Pham (ca hai 100% thanh cong, spec §5.2/§5.3)
+// ======================================================================
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_player_wallet')) {
+    /** Doc truc tiep game1: khong phu thuoc `$player` (CLI test + nut UI dung duoc). */
+    function tianfu_player_wallet($sid, $dblj){
+        $st = $dblj->prepare("SELECT tf, uyxb, ulv FROM game1 WHERE sid = ? LIMIT 1");
+        $st->execute(array($sid));
+        $r = $st->fetch(\PDO::FETCH_ASSOC);
+        if (!$r) return array('tf' => 0, 'uyxb' => 0, 'ulv' => 0);
+        return array('tf' => intval($r['tf']), 'uyxb' => intval($r['uyxb']),
+                     'ulv' => intval($r['ulv']));
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_row_state')) {
+    /** Dong UI: `ok` quyet nut co bam duoc khong; `text` co dau vi hien cho nguoi choi. */
+    function tianfu_row_state($text, $ok){
+        return array('text' => $text, 'ok' => (bool)$ok);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_lvup')) {
+    function tianfu_lvup($sid, $dblj, $id){
+        $empty = array('ok' => false, 'lv' => 0, 'cap' => 0, 'cost' => array(), 'msg' => '');
+        $def = tianfu_def($id);
+        if (!$def) { $empty['msg'] = 'Thiên phú không tồn tại.'; return $empty; }
+
+        $O = tianfu_owned($sid, $dblj);
+        $id = intval($id);
+        if (intval($O[$id]['have']) !== 1) {
+            $empty['msg'] = 'Chưa khai mở thiên phú này — cần Khai Phú Đan.';
+            return $empty;
+        }
+        $lv  = intval($O[$id]['lv']);
+        $cap = tianfu_lv_cap(intval($O[$id]['quality']));
+        if ($lv >= $cap) {
+            $empty['cap'] = $cap; $empty['lv'] = $lv;
+            $empty['msg'] = $def['name'] . ' đã đạt trần ' . $cap . ' cấp — phải Dot Pham để luyện tiếp.';
+            return $empty;
+        }
+
+        $cost = tianfu_lv_cost($lv);
+        $W = tianfu_player_wallet($sid, $dblj);
+        if ($W['tf'] < intval($cost['tf'])) {
+            $empty['msg'] = 'Điểm Thiên Phú không đủ: cần ' . $cost['tf'] . ', có ' . $W['tf'] . '.';
+            return $empty;
+        }
+        if ($W['uyxb'] < intval($cost['linh_thach'])) {
+            $empty['msg'] = 'Linh Thạch không đủ: cần ' . number_format($cost['linh_thach'], 0, ',', '.')
+                          . ', có ' . number_format($W['uyxb'], 0, ',', '.') . '.';
+            return $empty;
+        }
+
+        $dblj->beginTransaction();
+        try {
+            // Mot lenh UPDATE dua tren chinh dieu kien du tr -> chong hai nut bam cung luc
+            $st = $dblj->prepare("UPDATE game1 SET tf = tf - ?, uyxb = uyxb - ?
+                                  WHERE sid = ? AND tf >= ? AND uyxb >= ?");
+            $st->execute(array(intval($cost['tf']), intval($cost['linh_thach']), $sid,
+                               intval($cost['tf']), intval($cost['linh_thach'])));
+            if ($st->rowCount() !== 1) throw new Exception('thieu tf/linh thach');
+
+            $dblj->prepare("UPDATE player_tianfu SET lv = lv + 1 WHERE sid = ? AND tianfu_id = ?")
+                 ->execute(array($sid, $id));
+            $dblj->commit();
+        } catch (Exception $e) {
+            $dblj->rollBack();
+            $empty['msg'] = 'Luyện cấp thất bại, thử lại sau.';
+            return $empty;
+        }
+
+        tianfu_recalc_mirror($sid, $dblj);
+        tianfu_log($sid, 'lvup', $id, $lv, $lv + 1, 'cost tf=' . $cost['tf']
+                  . ' lt=' . $cost['linh_thach'], $dblj);
+        player_cache_clear($sid);   // ham cua class/player.php, cung namespace player
+
+        return array('ok' => true, 'lv' => $lv + 1, 'cap' => $cap, 'cost' => $cost,
+                     'msg' => 'Luyện ' . $def['name'] . ' thành công — cấp ' . ($lv + 1) . '.');
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_break')) {
+    function tianfu_break($sid, $dblj, $id){
+        $empty = array('ok' => false, 'quality' => 0, 'cost' => array(), 'msg' => '');
+        $def = tianfu_def($id);
+        if (!$def) { $empty['msg'] = 'Thiên phú không tồn tại.'; return $empty; }
+
+        $O  = tianfu_owned($sid, $dblj);
+        $id = intval($id);
+        if (intval($O[$id]['have']) !== 1) {
+            $empty['msg'] = 'Chưa khai mở thiên phú này.';
+            return $empty;
+        }
+        $q   = intval($O[$id]['quality']);
+        $lv  = intval($O[$id]['lv']);
+        $cap = tianfu_lv_cap($q);
+
+        $cost = tianfu_break_cost($q);
+        if ($cost === false) {
+            $empty['quality'] = $q;
+            $empty['msg'] = $def['name'] . ' đã ở phẩm chất cao nhất (Thần/Đế/… Phẩm 10).';
+            return $empty;
+        }
+        if ($lv < $cap) {
+            $empty['quality'] = $q;
+            $empty['msg'] = 'Cần đạt trần cấp ' . $cap . ' trước khi Dot Pham — hiện ' . $lv . '.';
+            return $empty;
+        }
+
+        $W = tianfu_player_wallet($sid, $dblj);
+        if ($W['ulv'] < intval($cost['ulv_require'])) {
+            $empty['quality'] = $q;
+            $empty['msg'] = 'Cảnh giới chưa đủ: cần cấp ' . $cost['ulv_require'] . ', đang cấp ' . $W['ulv'] . '.';
+            return $empty;
+        }
+        if ($W['tf'] < intval($cost['tf'])) {
+            $empty['msg'] = 'Điểm Thiên Phú không đủ: cần ' . $cost['tf'] . ', có ' . $W['tf'] . '.';
+            return $empty;
+        }
+        if ($W['uyxb'] < intval($cost['linh_thach'])) {
+            $empty['msg'] = 'Linh Thạch không đủ: cần ' . number_format($cost['linh_thach'], 0, ',', '.')
+                          . ', có ' . number_format($W['uyxb'], 0, ',', '.') . '.';
+            return $empty;
+        }
+
+        $dblj->beginTransaction();
+        try {
+            $st = $dblj->prepare("UPDATE game1 SET tf = tf - ?, uyxb = uyxb - ?
+                                  WHERE sid = ? AND tf >= ? AND uyxb >= ?");
+            $st->execute(array(intval($cost['tf']), intval($cost['linh_thach']), $sid,
+                               intval($cost['tf']), intval($cost['linh_thach'])));
+            if ($st->rowCount() !== 1) throw new Exception('thieu tf/linh thach');
+
+            $up = $dblj->prepare("UPDATE player_tianfu SET quality = quality + 1
+                                  WHERE sid = ? AND tianfu_id = ? AND quality = ?");
+            $up->execute(array($sid, $id, $q));
+            if ($up->rowCount() !== 1) throw new Exception('quality bi doi');
+            $dblj->commit();
+        } catch (Exception $e) {
+            $dblj->rollBack();
+            $empty['msg'] = 'Đột phá phẩm chất thất bại, thử lại sau.';
+            return $empty;
+        }
+
+        tianfu_recalc_mirror($sid, $dblj);
+        tianfu_log($sid, 'break', $id, $q, $q + 1, 'cost tf=' . $cost['tf']
+                   . ' lt=' . $cost['linh_thach'], $dblj);
+        player_cache_clear($sid);   // ham cua class/player.php, cung namespace player
+
+        return array('ok' => true, 'quality' => $q + 1, 'cost' => $cost,
+                     'msg' => 'Đột phá ' . $def['name'] . ' lên '
+                            . tianfu_quality_name($q + 1) . '.');
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_lvup_rows')) {
+    /** 3 dong cho panel Nang Cap (Task 8/9 dung de in va chan nut). */
+    function tianfu_lvup_rows($sid, $dblj, $id){
+        $O  = tianfu_owned($sid, $dblj);
+        $id = intval($id);
+        if (!isset($O[$id]) || intval($O[$id]['have']) !== 1) return array();
+        $cost = tianfu_lv_cost(intval($O[$id]['lv']));
+        $cap  = tianfu_lv_cap(intval($O[$id]['quality']));
+        $W    = tianfu_player_wallet($sid, $dblj);
+        return array(
+            tianfu_row_state('Điểm Thiên Phú: ' . $W['tf'] . ' / ' . $cost['tf'],
+                             $W['tf'] >= $cost['tf']),
+            tianfu_row_state('Linh Thạch: ' . number_format($W['uyxb'], 0, ',', '.') . ' / '
+                             . number_format($cost['linh_thach'], 0, ',', '.'),
+                             $W['uyxb'] >= $cost['linh_thach']),
+            tianfu_row_state('Cấp: ' . intval($O[$id]['lv']) . ' / ' . $cap . ' (trần '
+                             . tianfu_quality_name(intval($O[$id]['quality'])) . ')',
+                             intval($O[$id]['lv']) < $cap),
+        );
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_break_rows')) {
+    /** 4 dong cho panel Dot Pham. */
+    function tianfu_break_rows($sid, $dblj, $id){
+        $O  = tianfu_owned($sid, $dblj);
+        $id = intval($id);
+        if (!isset($O[$id]) || intval($O[$id]['have']) !== 1) return array();
+        $q    = intval($O[$id]['quality']);
+        $lv   = intval($O[$id]['lv']);
+        $cap  = tianfu_lv_cap($q);
+        $cost = tianfu_break_cost($q);
+        $W    = tianfu_player_wallet($sid, $dblj);
+        if ($cost === false) {
+            return array(tianfu_row_state('Đã ở phẩm chất cao nhất', false));
+        }
+        return array(
+            tianfu_row_state('Cấp trần: ' . $lv . ' / ' . $cap, $lv >= $cap),
+            tianfu_row_state('Điểm Thiên Phú: ' . $W['tf'] . ' / ' . $cost['tf'],
+                             $W['tf'] >= $cost['tf']),
+            tianfu_row_state('Linh Thạch: ' . number_format($W['uyxb'], 0, ',', '.') . ' / '
+                             . number_format($cost['linh_thach'], 0, ',', '.'),
+                             $W['uyxb'] >= $cost['linh_thach']),
+            tianfu_row_state('Cảnh giới: ' . $W['ulv'] . ' / ' . $cost['ulv_require'],
+                             $W['ulv'] >= $cost['ulv_require']),
+        );
+    }
+}
