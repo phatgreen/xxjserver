@@ -734,3 +734,135 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_break_rows')) {
         );
     }
 }
+
+// ======================================================================
+// Task 6 — Phu Vi (slot)
+// ======================================================================
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_conflict')) {
+    /**
+     | Hai thien phu xung dot neu tap cong (gate chinh + gate phu) giao nhau.
+     | $act: mang slot => row (nhu tianfu_activated()), LA BUOI DA QUYET
+     | (goi truoc khi ghi). false = khong xung dot.
+     */
+    function tianfu_slot_conflict($sid, $dblj, $id, $slot, $act){
+        $def = tianfu_def($id);
+        if (!$def) return 'Thiên phú không tồn tại.';
+        $gates = array_keys(tianfu_contributions($def));
+        foreach ($act as $s => $row) {
+            if (intval($s) === intval($slot)) continue;      // chinh cho do se bi ghi de
+            if (intval($row['id']) === intval($id)) continue; // dung mot o nay
+            $d2 = tianfu_def($row['id']);
+            if (!$d2) continue;
+            $share = array_intersect($gates, array_keys(tianfu_contributions($d2)));
+            if (count($share) > 0) {
+                return tianfu_gate_name(reset($share));
+            }
+        }
+        return false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
+    /**
+     | $id = 0, $slot > 0 : xoa o dang dung trong $slot.
+     | $id > 0,  $slot = 0: thao thien phu $id.
+     | $id > 0,  $slot 1..4: bat $id vao $slot; neu $id dang o cho khac thi
+     | hoan vi voi o dang nam trong $slot (neu hoan vi van khong xung dot).
+     */
+    function tianfu_slot_set($sid, $dblj, $id, $slot){
+        $id   = intval($id);
+        $slot = intval($slot);
+        $bad  = array('ok' => false, 'slot' => $slot, 'moved' => array(), 'msg' => '',
+                      'mirror' => array());
+
+        if ($slot < 0 || $slot > 4) { $bad['msg'] = 'Phu Vi không hợp lệ.'; return $bad; }
+        if ($id === 0 && $slot === 0) { $bad['msg'] = 'Không có thay đổi.'; return $bad; }
+
+        $O   = tianfu_owned($sid, $dblj);
+        $W   = tianfu_player_wallet($sid, $dblj);
+        $act = tianfu_activated($sid, $dblj);
+
+        if ($id > 0) {
+            if (intval($O[$id]['have']) !== 1) {
+                $bad['msg'] = 'Chưa khai mở thiên phú này — cần Khai Phú Đan.';
+                return $bad;
+            }
+            if ($slot > 0) {
+                if (!in_array($slot, tianfu_slot_open($W['ulv']), true)) {
+                    $sd = array();
+                    foreach (tianfu_slot_defs() as $s) $sd[intval($s['i'])] = intval($s['ulv']);
+                    $bad['msg'] = 'Phu Vi ' . $slot . ' chưa mở — cần cấp ' . $sd[$slot]
+                                . ', đang cấp ' . $W['ulv'] . '.';
+                    return $bad;
+                }
+                $clash = tianfu_slot_conflict($sid, $dblj, $id, $slot, $act);
+                if ($clash !== false) {
+                    $bad['msg'] = 'Không thể kích hoạt hai thiên phú cùng cổng "'
+                                . $clash . '" — chọn Phu Vi thuộc nhóm khác.';
+                    return $bad;
+                }
+            }
+        }
+
+        // Tinh toan bo mapping slot => id moi (van trong bo nho, chua ghi)
+        $target = intval($O[$id]['slot']);          // $id = 0 -> 0
+        $plan   = array();                          // slot => id|0
+        foreach ($act as $s => $row) $plan[$s] = intval($row['id']);
+
+        if ($slot === 0) {                          // thao do
+            if ($target === 0) { $bad['msg'] = 'Thiên phú này chưa được kích hoạt.'; return $bad; }
+            $plan[$target] = 0;
+        } elseif ($id === 0) {                      // xoa o
+            if (!isset($plan[$slot])) { $bad['msg'] = 'Phu Vi này đang trống.'; return $bad; }
+            $plan[$slot] = 0;
+        } else {
+            $prev = isset($plan[$slot]) ? intval($plan[$slot]) : 0;
+            $plan[$slot] = $id;
+            if ($target > 0) {
+                $plan[$target] = $prev;             // hoan vi
+                if ($prev === 0) unset($plan[$target]);
+            }
+        }
+        // Don cac o = 0
+        $final = array();
+        foreach ($plan as $s => $v) { if ($v > 0) $final[$s] = $v; }
+
+        $dblj->beginTransaction();
+        try {
+            // Xoa toan bo cac o cua nhan vat roi ghi lai theo $final: don gian,
+            // khong lo thu tu UPDATE trung gate (MySQL 5.5 khong co "UPDATE ... SET slot
+            // = CASE WHEN" de doc). Toi da 4 dong -> chi 2 cau lenh.
+            $dblj->prepare("UPDATE player_tianfu SET slot = 0 WHERE sid = ?")
+                 ->execute(array($sid));
+            $ins = $dblj->prepare("UPDATE player_tianfu SET slot = ? WHERE sid = ? AND tianfu_id = ?");
+            foreach ($final as $s => $v) $ins->execute(array($s, $sid, $v));
+            $dblj->commit();
+        } catch (Exception $e) {
+            $dblj->rollBack();
+            $bad['msg'] = 'Thay đổi Phu Vi thất bại, thử lại sau.';
+            return $bad;
+        }
+
+        $moved = array();
+        foreach ($act as $s => $row) {
+            $nowIn = 0;
+            foreach ($final as $fs => $fv) { if ($fv === intval($row['id'])) $nowIn = $fs; }
+            if ($nowIn !== intval($s)) $moved[intval($row['id'])] = $nowIn;
+        }
+        if ($id > 0 && !isset($moved[$id])) {
+            $nowIn = 0;
+            foreach ($final as $fs => $fv) { if ($fv === $id) $nowIn = $fs; }
+            if ($nowIn !== $target) $moved[$id] = $nowIn;
+        }
+
+        $mirror = tianfu_recalc_mirror($sid, $dblj);
+        tianfu_log($sid, 'slot', $id, $target, $slot,
+                   'activated=' . implode(',', $final), $dblj);
+        player_cache_clear($sid);
+
+        return array('ok' => true, 'slot' => $slot, 'moved' => $moved,
+                     'msg' => $slot === 0 ? 'Đã thu hồi thiên phú.' : 'Đã kích hoạt thiên phú.',
+                     'mirror' => $mirror);
+    }
+}
