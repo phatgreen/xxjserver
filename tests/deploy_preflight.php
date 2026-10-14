@@ -39,6 +39,8 @@ $SID_VARCHAR = array(
     'linhcan_boss_personal'         => 'sid',
     'player_linhcan_break_log'      => 'sid',
     'player_linhcan_skill'          => 'sid',
+    'player_tianfu'                 => 'sid',
+    'player_tianfu_log'             => 'sid',
 );
 
 try {

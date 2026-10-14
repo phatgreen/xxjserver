@@ -307,7 +307,8 @@ function player_allowed_columns(){
         'sfxl','sfzx','xiuliantime','yp1','yp2','yp3','cw','jn1','jn2','jn3','ispvp','dhvip','dhvip1','tf','tfgj','tfxy','tfsb','tfxx','tfhp','tffy','tfbj',
         'wugong','congphap','shenfen','linhcan_id','linhcan_quality',
         'thechat_id','thechat_quality','thechat_awaken_stage',
-        'huyetmach_id','huyetmach_quality','huyetmach_awaken_stage','huyetmach_transform_cd'
+        'huyetmach_id','huyetmach_quality','huyetmach_awaken_stage','huyetmach_transform_cd',
+        'tianfu_id','tianfu_quality','tianfu_lv','tianfu_power'
     );
 }
 
