@@ -356,6 +356,14 @@ $vipImg = './images/vip'.$vipLevel.'.png';
 $ztPlayerSafe = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
 $ztAvatar = \player\player_avatar_img($player->usex);
 
+// Thien Phu: thay 2 o tf/tfxy/tfsb cu (3 cot nay chet tu Task 12)
+$tpIcon   = !empty($player->tianfu_icon) ? $player->tianfu_icon : '☯';
+$tpColor  = !empty($player->tianfu_color) ? $player->tianfu_color : '#9e9e9e';
+$tpMaster = ($player->tianfu_name !== '')
+    ? $player->tianfu_name . ' · ' . \player\tianfu_quality_name(intval($player->tianfu_quality))
+    : 'Chưa khai phú';
+$tpSlots  = intval($player->tianfu_bonus['activated_count']) . ' / ' . count(\player\tianfu_slot_defs());
+
 $html = <<<HTML
 
 
@@ -415,8 +423,8 @@ $html = <<<HTML
         <div class="profile-stat"><span>🛡 Phòng ngự</span><strong>$player->ufy</strong></div>
         <div class="profile-stat"><span>💥 Bạo kích</span><strong>$player->ubj</strong></div>
         <div class="profile-stat"><span>🩸 Hút máu</span><strong>$player->uxx</strong></div>
-        <div class="profile-stat"><span>🧬 Thiên phú</span><strong>$player->tf</strong></div>
-        <div class="profile-stat"><span>🍀 Vận may / Né tránh</span><strong>$player->tfxy / $player->tfsb</strong></div>
+        <div class="profile-stat"><span>$tpIcon Chủ phú</span><strong style="color:$tpColor">$tpMaster</strong></div>
+        <div class="profile-stat"><span>🎖 Phú Vị</span><strong>$tpSlots</strong></div>
     </div>
 
 HTML;
