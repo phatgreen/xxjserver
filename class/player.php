@@ -333,6 +333,7 @@ function game1_update_allowed_columns(){
 | Hồi Thể lực theo thời gian thực — NƠI DUY NHẤT chứa công thức.
 |
 | Mỗi 5 phút hồi 1 điểm. `ustamina` là giá trị gốc tại mốc `stamina_time`.
+| Thien Phu cong 6 co the rut chu ky (san 30 giay) — truyen $staminaPct, xem tianfu_stamina_interval().
 | Hàm này tính Thể lực "sống" (live) dựa trên thời gian trôi qua, có thể:
 |   - chỉ đọc (không ghi DB) để hiển thị nhanh mọi nơi,
 |   - hoặc "settle" (nhích mốc stamina_time + tùy chọn ghi DB) để DB luôn tươi.
@@ -344,9 +345,12 @@ function game1_update_allowed_columns(){
 | KHÔNG phụ thuộc cron/task nền -> chạy được trên mọi hệ điều hành,
 | offline vẫn hồi vì thời gian luôn trôi.
 */
-function settle_stamina($ustamina, $umaxstamina, $stamina_time, $nowTs = null, $intervalSec = 300)
+function settle_stamina($ustamina, $umaxstamina, $stamina_time, $nowTs = null, $intervalSec = 300, $staminaPct = 0)
 {
     $nowTs = ($nowTs === null) ? time() : intval($nowTs);
+    if (function_exists(__NAMESPACE__ . '\tianfu_stamina_interval')) {
+        $intervalSec = tianfu_stamina_interval($staminaPct, $intervalSec);
+    }
     $base  = intval($ustamina);
     $max   = intval($umaxstamina);
     if ($max <= 0) {

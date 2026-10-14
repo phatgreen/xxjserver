@@ -866,3 +866,66 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
                      'mirror' => $mirror);
     }
 }
+
+// =====================================================================
+//  4 HELPER CUA 7 CONG (Task 11) — ham THUAN; clamp 30% nam TRONG nay
+//  de khong caller nao quen clamp. Xem [CHOT] o Task 11.
+// =====================================================================
+
+if (!function_exists(__NAMESPACE__ . '\tianfu_luck_gate')) {
+    /**
+     | Cong 3 (drop): nong nguong roi do. Cung hinh dang huyetmach_combat_luck_gate()
+     | (class/function/huyetmach.php:1142) de hai he ghep duoc: gate goc -> Huyet Mach -> Thien Phu.
+     | Cong don toi da 1.15 x 1.30 = +49.5% (spec §5 dong 3); nguong 120 that te thanh 179
+     | vi hai lan intval(round()) — 179/120 = +49.17%. Ghi ca hai con so vao docs.
+     */
+    function tianfu_luck_gate($pct, $gate){
+        $pct  = min(tianfu_cap_percent(), max(0.0, floatval($pct)));
+        $gate = intval($gate);
+        if ($gate <= 0 || $pct <= 0) return $gate;
+        return intval(round($gate * (100 + $pct) / 100));
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\tianfu_forge_cost')) {
+    /**
+     | Cong 5 (forge_cost): GIAM Linh Thach cuong hoa. SAN 1 — gia 0 thi
+     | zbinfo.php:130 changeyxb(2, 0, ...) tru 0 dong (cuong hoa mien phi vo han)
+     | va :289 $can_upgrade luon true. KHONG dung cho Cuong Hoa Thach ($updjsl).
+     */
+    function tianfu_forge_cost($pct, $cost){
+        $pct  = min(tianfu_cap_percent(), max(0.0, floatval($pct)));
+        $cost = intval($cost);
+        if ($cost <= 0 || $pct <= 0) return $cost;
+        $out = intval(round($cost * (100 - $pct) / 100));
+        return ($out < 1) ? 1 : $out;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\tianfu_stamina_interval')) {
+    /**
+     | Cong 6 (stamina): rut chu ky hoi the luc (goc 300s, class/player.php:336).
+     | SAN 30 GIAY: ngan hon thi cron 5 phut (cron/stamina_recovery.php) khong theo kip,
+     | nguoi choi thay the luc nhay lien tuc giua hai lan cron chay.
+     */
+    function tianfu_stamina_interval($pct, $intervalSec = 300){
+        $pct = min(tianfu_cap_percent(), max(0.0, floatval($pct)));
+        $iv  = intval($intervalSec);
+        if ($iv <= 0 || $pct <= 0) return $iv;
+        $out = intval(round($iv * (100 - $pct) / 100));
+        return ($out < 30) ? 30 : $out;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\tianfu_bonus_pct')) {
+    /**
+     | Doc 1 cong (float %) tu tianfu_bonuses(); tra 0.0 neu cong la.
+     | DONG DB (1 query qua tianfu_owned) — chi dung cho cron va cho test.
+     | Trang UI doc thang $player->tianfu_bonus[<gate>] (da hydrate, class/player.php Task 3 Step 5b)
+     | de khong ton them query trong moi request.
+     */
+    function tianfu_bonus_pct($sid, $dblj, $gate){
+        $B = tianfu_bonuses($sid, $dblj);
+        return isset($B[$gate]) ? floatval($B[$gate]) : 0.0;
+    }
+}

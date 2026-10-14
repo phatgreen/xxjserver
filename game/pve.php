@@ -278,6 +278,7 @@ HTML;
 	 
     // ===== MACH HUYET (Task 11) =====
     $hmCs = \player\huyetmach_combat_stats(isset($player->huyetmach_vessel) ? $player->huyetmach_vessel : array());
+    $tpDropPct = isset($player->tianfu_bonus['drop']) ? floatval($player->tianfu_bonus['drop']) : 0;
     // Hiệu ứng võ công: xuyên phòng / phá giáp làm giảm phòng ngự quái khi tính sát thương.
     $guaiwuFyForDamage = $guaiwu->gfy;
     if (($wgEffectType == 'pierce_def' || $wgEffectType == 'break_armor') && $wgEffectValue > 0) {
@@ -466,7 +467,7 @@ HTML;
 		// Kiểm tra và xử lý rơi trang bị
 
         $sjjv = mt_rand(1,120);
-        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], ($yguaiwu->dljv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0))) >= $sjjv && $yguaiwu->gzb != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], \player\tianfu_luck_gate($tpDropPct, ($yguaiwu->dljv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0)))) >= $sjjv && $yguaiwu->gzb != ''){
             $retzb = \player\zhuangbei_config_rows_by_ids($yguaiwu->gzb);
             if (!empty($retzb)){
                 $sjdl = mt_rand(0,count($retzb)-1);
@@ -486,7 +487,7 @@ HTML;
         }
 		// Kiểm tra và xử lý rơi vật phẩm
         $sjjv = mt_rand(1,180);
-        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], ($yguaiwu->djjv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0))) >= $sjjv && $yguaiwu->gdj != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], \player\tianfu_luck_gate($tpDropPct, ($yguaiwu->djjv + (($wgEffectType == 'drop_bonus') ? $wgEffectValue : 0)))) >= $sjjv && $yguaiwu->gdj != ''){
             $retdj = \player\daoju_config_rows_by_ids($yguaiwu->gdj);
             if (!empty($retdj)){
                 $sjdj = mt_rand(0,count($retdj)-1);
@@ -515,7 +516,7 @@ HTML;
         }
         yp:
         $sjjv = mt_rand(1,100);
-        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $yguaiwu->ypjv) >= $sjjv && $yguaiwu->gyp != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], \player\tianfu_luck_gate($tpDropPct, $yguaiwu->ypjv)) >= $sjjv && $yguaiwu->gyp != ''){
             $retyp = \player\yaopin_config_rows_by_ids($yguaiwu->gyp);
             if (!empty($retyp)) {
                 $sjdj = mt_rand(0, count($retyp) - 1);
@@ -703,6 +704,11 @@ if (isset($zdjg)){// Xử lý kết quả sau khi trận chiến kết thúc
             $toxinPenalty = \player\luonden_get_stat_penalty($sid, $dblj);
             if ($toxinPenalty > 0) {
                 $finalExp = max(1, intval($finalExp * (1 - $toxinPenalty / 100)));
+            }
+            // Thien Phu (exp_monster): nhan vao exp that, SAU phat dan doc, TRUOC changeexp.
+            $tpExpPct = isset($player->tianfu_bonus['exp_monster']) ? floatval($player->tianfu_bonus['exp_monster']) : 0;
+            if ($tpExpPct > 0) {
+                $finalExp = max(1, intval(round($finalExp * (100 + $tpExpPct) / 100)));
             }
 
             player\changeexp($sid,$dblj,$finalExp);

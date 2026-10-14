@@ -446,7 +446,7 @@ if (!isset($sid) || $sid==''){
 	$nowdate = date('Y-m-d H:i:s');
 
 	/*
-	| Thể lực tự hồi: mỗi 5 phút hồi 1 điểm, không vượt quá giới hạn.
+	| Thể lực tự hồi: mỗi 5 phút hồi 1 điểm (Thiên Phú công 6 có thể rút còn 210 giây), không vượt quá giới hạn.
 	| Dùng hàm chuẩn settle_stamina để thống nhất công thức với mọi nơi khác
 	| (bao gồm cron tùy chọn). Không ghi nếu không có bước hồi nào.
 	*/
@@ -455,7 +455,9 @@ if (!isset($sid) || $sid==''){
 		isset($player->ustamina)    ? $player->ustamina    : 0,
 		isset($player->umaxstamina) ? $player->umaxstamina : 0,
 		isset($player->stamina_time) ? $player->stamina_time : null,
-		$nowTs
+		$nowTs,
+		300,
+		isset($player->tianfu_bonus['stamina']) ? floatval($player->tianfu_bonus['stamina']) : 0
 	);
 	if ($settle['steps'] > 0) {
 		$stmt = $dblj->prepare("UPDATE game1 SET ustamina = ?, stamina_time = ? WHERE sid = ?");

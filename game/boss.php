@@ -284,6 +284,7 @@ HTML;
 	 
     // ===== MACH HUYET (Task 11): 4 chi so mach am dung luc cham dot =====
     $hmCs = \player\huyetmach_combat_stats(isset($player->huyetmach_vessel) ? $player->huyetmach_vessel : array());
+    $tpDropPct = isset($player->tianfu_bonus['drop']) ? floatval($player->tianfu_bonus['drop']) : 0;
     $hmBossFy = \player\huyetmach_combat_pierce_def($hmCs['pen'], $boss->bossfy);
     if ($hmBossFy < $boss->bossfy) {
         $tishihtml .= "<font color='#26c6da'>🏹 Âm Duy Mạch (Xuyên Giảm): phòng ngự {$boss->bossname} bị xuyên ".($boss->bossfy - $hmBossFy)." điểm</font><br/>";
@@ -451,11 +452,10 @@ $jisha = <<<HTML
 HTML;
 
 		//装备计算
-		$xyz =  $player->tfxy;//天赋幸运加入
 
-        $sjjv = mt_rand(1,120-$xyz);
+        $sjjv = mt_rand(1,120);
 		
-        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->dljv) >=$sjjv && $boss->bosszb != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], \player\tianfu_luck_gate($tpDropPct, $boss->dljv)) >=$sjjv && $boss->bosszb != ''){
             $retzb = \player\zhuangbei_config_rows_by_ids($boss->bosszb);
             if (!empty($retzb)){
                 $sjdl = mt_rand(0,count($retzb)-1);
@@ -482,7 +482,7 @@ HTML;
         }
 		//道具计算
         $sjjv = mt_rand(1,100);
-        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->djjv) >= $sjjv && $boss->bossdj != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], \player\tianfu_luck_gate($tpDropPct, $boss->djjv)) >= $sjjv && $boss->bossdj != ''){
             $retdj = \player\daoju_config_rows_by_ids($boss->bossdj);
             if (!empty($retdj)){
                 $sjdj = mt_rand(0,count($retdj)-1);
@@ -500,7 +500,7 @@ HTML;
         }
         yp:
         $sjjv = mt_rand(1,100);
-        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], $boss->ypjv) >= $sjjv && $boss->bossyp != ''){
+        if (\player\huyetmach_combat_luck_gate($hmCs['luck'], \player\tianfu_luck_gate($tpDropPct, $boss->ypjv)) >= $sjjv && $boss->bossyp != ''){
             $retyp = \player\yaopin_config_rows_by_ids($boss->bossyp);
             if (!empty($retyp)){
                 $sjyp = mt_rand(0, count($retyp) - 1);
@@ -599,6 +599,11 @@ if (isset($zdjg)){//这里是战斗经过，有三个0 1 -1 选择
             $toxinPenalty = \player\luonden_get_stat_penalty($sid, $dblj);
             if ($toxinPenalty > 0) {
                 $finalExp = max(1, intval($finalExp * (1 - $toxinPenalty / 100)));
+            }
+            // Thien Phu (exp_monster): nhan vao exp that, SAU phat dan doc, TRUOC changeexp.
+            $tpExpPct = isset($player->tianfu_bonus['exp_monster']) ? floatval($player->tianfu_bonus['exp_monster']) : 0;
+            if ($tpExpPct > 0) {
+                $finalExp = max(1, intval(round($finalExp * (100 + $tpExpPct) / 100)));
             }
 
             player\changeexp($sid,$dblj,$finalExp);
