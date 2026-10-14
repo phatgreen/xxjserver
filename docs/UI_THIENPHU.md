@@ -84,7 +84,7 @@ chưa phải **combat log trong game thật**.
 | `class/config/tianfu_config.json` | 6 nhóm · 18 thiên phú · 10 phẩm · 7 cổng · 4 Phú Vi · mốc · giá · `cap_percent` · đan 114 | 79 | mới (Task 1) |
 | `class/function/tianfu.php` | **43 hàm** thuần `namespace player` — mọi logic Thiên Phú nằm đây | 931 | mới (Task 1-6) |
 | `sql/sql_tianfu.sql` | `CREATE TABLE IF NOT EXISTS` 2 bảng + 4 cột `game1.tianfu_*` | — | mới (Task 2) |
-| `sql/migrate_tianfu.php` | Hoàn điểm `tf` cũ + tặng 1 Khai Phú Đan, `--dry-run` / `--apply` / `--sid=` | 164 | **CHƯA vào git** (Commit D) |
+| `sql/migrate_tianfu.php` | Hoàn điểm `tf` cũ + tặng 1 Khai Phú Đan, `--dry-run` / `--apply` / `--sid=` | 164 | mới (Commit D `be5f61c`) |
 | `game/tianfu.php` | Màn chính `.tp-*` | 296 | mới (Task 8) |
 | `game/tianfu_collection.php` | Phủ Các `.tpc-*` — lưới 18 ô | 261 | mới (Task 9) |
 | `game/tianfu_open.php` | Khai Phú `.tpo-*` | 115 | mới (Task 10) |
@@ -94,8 +94,8 @@ chưa phải **combat log trong game thật**.
 | `game/xiulian.php` `game/pve.php` `game/boss.php` `game/tupo.php` `game/zbinfo.php` `class/function/luonden.php` `cron/stamina_recovery.php` `game/paihang.php` | 7 cổng + chiến lực + xếp hạng | — | **8 file này lần đầu tiên vào git** (commit `35823e8` / `5930630`, 2026-10-14) — trước đó repo không theo dõi chúng |
 | `css/mystyle.css` | Khối `.tp-*` / `.tpc-*` / `.tpo-*` tại `:7422-7613`; **đã xoá 425 dòng `.talent-*`** (4062-4486) | 7613 | sửa |
 | `images/tianfu/*.jpg` | 6 ảnh nhóm + 1 ảnh Phủ Các | 7 file | mới (Task 7) |
-| `tests/test_tianfu_*.php` | 9 bộ: config · schema · bonuses · open · lvup · slot · gates · pages · migration | 1182 | mới |
-| `docs/img/thienphu/*.png` | 18 ảnh bằng chứng | — | mới/sửa |
+| `tests/test_tianfu_*.php` | 9 bộ: config · schema · bonuses · open · lvup · slot · gates · pages · migration | 1182 | mới (migration vào git ở Commit D `be5f61c`) |
+| `docs/img/thienphu/*.png` | 18 ảnh bằng chứng | — | mới/sửa (Commit D `be5f61c`) |
 | `tongquan.php` | Mục "Thiên Phú (Phủ Các)" `:446-515`, badge 43, 5 bảng lọc/được sắp xếp | 976 | sửa (Commit C `bce3fb5`) |
 
 ---
@@ -309,6 +309,8 @@ bash E:/window/Temp/_tp_shots.sh        # (scratch, khong vao repo)
 **Bẫy đồng hồ**: PHP `date()` = +8, MySQL `NOW()` = +7. Mọi mốc so với đồng hồ PHP
 (`xiuliantime`, `endtime`) phải ghi bằng đồng hồ PHP, nếu không trang sẽ báo "chưa tới giờ".
 **Bẫy token**: `?cmd=` dùng một lần — mỗi request phải encode lại chuỗi mới.
+**Bẫy fixture**: `tests/test_tianfu_pages.php` xóa log migrate + đan 114 của sid
+`e2e2e2…` (nhân vật e2e dùng chung) — chạy test xong thì số liệu migration thay đổi, xem §9.1.
 
 ### 9.1 Số đã đo (2026-10-14, DB local `game`)
 
@@ -317,11 +319,11 @@ bash E:/window/Temp/_tp_shots.sh        # (scratch, khong vao repo)
 | Phiên bản MySQL | 5.5.29 | `SELECT VERSION()` |
 | Nhân vật trong `game1` | **13** (plan ghi 14 — sai, xem §10) | `SELECT COUNT(*) FROM game1` |
 | Dòng `player_tianfu` | **0** — chưa ai khai phú | `SELECT COUNT(*) FROM player_tianfu` |
-| Tổng `tf` sau migration | **1190** (= 780 có trước + 410 hoàn) | `SELECT SUM(tf) FROM game1` |
-| Dòng `player_tianfu_log kind='migrate'` | 13 | `SELECT COUNT(*) … WHERE kind='migrate'` |
-| Người giữ Khai Phú Đan (djid 114) | 13 | `SELECT COUNT(*) FROM playerdaoju WHERE djid=114` |
+| Tổng `tf` sau migration | **1190** (= 780 có trước + 410 hoàn). Lưu ý: 500 trong số đó là `tf` **fixture** của `E2E Test` (`tests/e2e_fixture.php` đặt sẵn 500), không phải điểm hoàn | `SELECT SUM(tf) FROM game1` |
+| Dòng `player_tianfu_log kind='migrate'` | **12 lúc 16:0x** (bằng chứng `--dry-run`: `SKIP=12 SE_MIGRATE=1`) — lúc apply 15:05 là 13, xem cảnh báo fixture bên dưới | `SELECT COUNT(*) … WHERE kind='migrate'` |
+| Người giữ Khai Phú Đan (djid 114) | **12** (đồng bộ với log migrate) | `SELECT COUNT(DISTINCT sid) FROM playerdaoju WHERE djid=114` |
 | dry-run tổng hoàn | 410 = apply tổng hoàn | `php sql/migrate_tianfu.php --dry-run` |
-| Kết quả apply | `OK=13 FAIL=0 SKIP=0 TONG_HOAN=410 TONG_DAN_114=13` | `--apply` |
+| Kết quả apply (15:05) | `OK=13 FAIL=0 SKIP=0 TONG_HOAN=410 TONG_DAN_114=13` | `--apply` |
 | Chạy lại lần 2 | toàn bộ `SKIP`, số liệu không đổi (idempotent) | `--apply` |
 | PhátĐây `tf` | 542 (= 180 gốc + 362 hoàn) | `SELECT tf FROM game1 WHERE nick='PhátĐây'` |
 | PhátĐây Bạo kích sau Phương án A | **37** (trước 91 — bảng plan ghi 61→7 là sai vì bỏ qua trang bị) | hydrate `getplayer()` |
@@ -330,6 +332,53 @@ bash E:/window/Temp/_tp_shots.sh        # (scratch, khong vao repo)
 | Dòng `.talent-*` đã xoá | 425 (0 insertions) | `git diff --numstat css/mystyle.css` |
 | Ảnh `.tpc-head` đo ở 390 px | vế trái 62 px, vế phải 291 px, khung 330 px | harness `_tpmeasure.html` |
 | 9 bộ test Thiên Phú | ALL PASS (2026-10-14 15:2x) | mục 2 ở trên |
+| 25/25 bộ test `tests/test_*.php` | **ALL PASS** khi đủ môi trường (chạy lại xác nhận 2026-10-14 16:1x — `test_linhcan_schema.php` in 12 dòng PASS, 0 dòng FAIL, exit 0) | `for t in tests/test_*.php; do "$P" "$t"; done` |
+| 3 bộ "FAIL" lần chạy đầu | `test_linhcan_pages.php` (thiếu `LC_BASE`), `test_nguhanh_combat.php` + `test_nguhanh_market.php` (cần server port 80) — **không phải regression** | `LC_BASE=http://127.0.0.1:8091 "$P" tests/test_linhcan_pages.php`; `"$P" -S 127.0.0.1:80 -t .` rồi chạy lại → ALL PASS |
+
+**CẢNH BÁO FIXTURE — số migrate tụt từ 13 xuống 12 mà không có lỗi code.** Nhân vật test
+`E2E Test` (sid `e2e…`, uid 987650) dùng chung cho nhiều bộ test. `tests/test_tianfu_pages.php:68` (SETUP) và `:148` (CLEANUP)
+xóa có chủ đích `player_tianfu_log` + `playerdaoju djid=114` của sid này để trang Thiên Phú
+hiện ra ở trạng thái "chưa khai phú". Vì vậy **sau khi chạy bộ test đó**, `--dry-run` thấy
+`E2E Test` chưa migrate (`SE_MIGRATE=1`, hoàn 0 điểm vì 7 cột cũ đều 0). Kiểm chứng:
+`SELECT COUNT(*) FROM player_tianfu_log WHERE sid='e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2'` = **0**,
+12 sid còn lại đều = 1. **Không phải bug migration** — nhưng nếu bấm `--apply` lần nữa trên
+máy này sẽ cấp thêm 1 đan cho `E2E Test`. Production không có fixture này nên không dính.
+
+### 9.2 Bảng chiến lực 13d — 10 nhân vật (đo 2026-10-14 15:5x, `E:/window/Temp/_tp_power13d.php`)
+
+`CU` = công thức CŨ (`_tp_base/paihang.php:10-20` = `tf*50 + tfxy*10 + tfsb*10`) **cộng thêm**
+khối hydrate `tf*` đã bị xoá ở `class/player.php:588-593` (Phương án A) — dựng lại để so đúng.
+`MOI(combat)` = `\player\combat_power()` (`class/player.php:425`).
+`MOI(paihang)` = `tcg_calc_chien_luc_rank()` bản hiện tại (`game/paihang.php:10-21`).
+
+| uname | ulv | tf | CU | MOI(combat) | MOI(paihang) | lệch % (paihang−CU) | lệch % (combat−CU) |
+|---|---|---|---|---|---|---|---|
+| E2E Test | 1000 | 500 | 122.678 | 98.128 | 97.678 | **−20,4%** | −20,0% |
+| 艾尔资源 | 1000 | 0 | 2.098.074.074 | 2.098.076.524 | 2.098.074.074 | 0,0% | 0,0% |
+| QATuChan | 200 | 0 | 541.824 | 545.474 | 541.824 | 0,0% | +0,7% |
+| PhátĐây | 93 | 542 | 175.371 | 148.721 | 148.271 | **−15,5%** | **−15,2%** |
+| LCPASSIVE | 30 | 0 | 43.600 | 44.050 | 43.600 | 0,0% | +1,0% |
+| tttttt | 12 | 77 | 5.315 | 1.915 | 1.465 | **−72,4%** | **−64,0%** |
+| Tiên Nhân | 9 | 64 | 4.782 | 2.032 | 1.582 | **−66,9%** | **−57,5%** |
+| LouLxGM | 2 | 7 | 686 | 786 | 336 | **−51,0%** | +14,6% |
+| 1231231 | 1 | 0 | 195 | 645 | 195 | 0,0% | **+230,8%** |
+| 444444 | 1 | 0 | 195 | 645 | 195 | 0,0% | **+230,8%** |
+
+**Ba kết luận bắt buộc:**
+
+1. `MOI(combat)` **lớn hơn** `CU` ở nhân vật có Nhục Thân/Mạch Huyết (`1231231`, `444444` +230,8%,
+   `LouLxGM` +14,6%, `QATuChan` +0,7%) — vì `combat_power()` cộng 4 chỉ số
+   (`thechat_quality×200`, `thechat_awaken_stage×500`, `huyetmach_quality×250`,
+   `huyetmach_awaken_stage×600`). Đây là **sửa lỗi có sẵn**, không phải buff: hai nhân vật cấp 1
+   chênh 230,8% chỉ vì một bên có Nhục Thân/Mạch Huyết được tính, bên kia (CU) không.
+2. `MOI(paihang)` **nhỏ hơn** `CU` vì `tianfu_power = 0` cho tới khi migration chạy **và** người
+   chơi khai phú. Tức: **giữa lúc migrate và lúc khai phú, chiến lực trên bảng xếp hạng tut**
+   (PhátĐây −15,5%, `tttttt` −72,4%, `Tiên Nhân` −66,9%). → phải báo trước (Sổ nợ dòng 4).
+3. **Lệch lớn nhất = −72,4% (tttttt) và +230,8% (1231231)** — **VƯỢT NGƯỠNG 20%** mà plan §6545
+   đặt ra. Theo đúng plan: **DỪNG bàn giao, hỏi chủ dự án có chấp nhận không — không tự quét
+   xuống dưới thảm.** Nhân vật bị nuốt nhiều nhất là nhân vật **test** (`tttttt`, `Tiên Nhân`,
+   `E2E Test` có `tf` lớn nhưng chỉ số nền bé); ba nhân vật có `tf = 0` (`QATuChan`, `LCPASSIVE`,
+   `艾尔资源`) gần như không đổi. **KHÔNG nhân vật nào trong số này là tài khoản người chơi thật.**
 
 ---
 ## 10. Nợ còn lại — **CHƯA test / CHƯA làm**
@@ -346,6 +395,13 @@ bash E:/window/Temp/_tp_shots.sh        # (scratch, khong vao repo)
 | f | Tương tác Ne Tranh (Ẩm Kieu Mach) với Thiên Phú | **Không làm** — đã chốt để `tfsb` chết (§8.5) |
 | g | 14 màn khác có đọc `$player->tf*` còn sót không | **ĐÃ quét**: `grep tfbj\|tfhp\|tffy\|tfgj\|tfxx` trong `class/player.php` = 0 sau khi xoá; **CHƯA** quét lại toàn repo cho các trang `game/*` |
 
+**Ghi theo lệ Step 11 (plan dòng 6452-6454) — không được im lặng bỏ qua:**
+
+- `test_linhcan_pages.php` FAIL do thiếu fixture `LC_BASE` (mặc định `http://127.0.0.1:8123`, máy này chạy 8091), **không phải lỗi code** — chạy lại với `LC_BASE=http://127.0.0.1:8091` → ALL PASS.
+- `test_nguhanh_combat.php` và `test_nguhanh_market.php` FAIL do thiếu fixture `server port 80` (hai bộ hardcode `http://localhost/...`), **không phải lỗi code** — chạy `php -S 127.0.0.1:80 -t .` rồi chạy lại → ALL PASS. Server tạm này **đã tắt** sau khi đo.
+- Ba bộ trên **không FAIL do hồi quy** của Step 3 (xoá `class/player.php:588-593`) hay Step 6 (migration): toàn bộ 25/25 bộ PASS khi đủ môi trường, `chan_loi=0` (không Fatal/Parse/Uncaught) ở mọi bộ.
+- Nợ còn lại của nhóm test: `test_linhcan_schema.php` in từng dòng PASS mà **không in dòng kết luận** → grep tự động sẽ lọt; đã kiểm tra bằng `grep -c '^FAIL'` = 0 và exit code 0.
+
 ### 10.2 CHƯA làm / chưa chốt (đòi hỏi quyết định của chủ dự án)
 
 1. **§8.4 cổng `alchemy` không có tác dụng trên đường thật** — ưu tiên cao nhất, vì UI đang hứa
@@ -353,7 +409,7 @@ bash E:/window/Temp/_tp_shots.sh        # (scratch, khong vao repo)
 2. Xoá hay giữ 6 cột `tf*` + khối cấp theo `shenfen` trong `upplayerlv()` (§8.1).
 3. `docs/DEPLOY_PRODUCTION_THIENPHU.md` **CHƯA chạy** — production chưa có 2 bảng, 4 cột, đan 114,
    và chưa migration.
-4. Trần hoàn `tf`: local tổng 410 điểm chia 13 nhân vật (bé). Production có thể có nhân vật `tf`
+4. Trần hoàn `tf`: local tổng 410 điểm chia 12 nhân vật được migrate (bé). Production có thể có nhân vật `tf`
    hàng chục nghìn → chưa đặt trần.
 5. Có báo trước cho người chơi về việc bảng xếp hạng đảo thứ tự không (§8.3).
 6. `bak/` (dump DB có dữ liệu người chơi thật) đang nằm ngoài git nhờ `.git/info/exclude` — repo
@@ -403,18 +459,28 @@ Bốn biến (`:7431-7440`): `--tp-tier` = **màu phẩm chất** của chủ ph
 
 ---
 
-## Sổ nợ chờ chủ dự án chốt (tóm tắt, 2026-10-14)
+## Sổ nợ chờ chủ dự án chốt (đo ngày 2026-10-14)
 
-| # | Việc | Mức độ |
-|---|---|---|
-| 1 | §8.4 cổng `alchemy` không chạy trên đường thật — UI hứa, khi quay số không cộng | **Nghiêm trọng** |
-| 2 | Production chưa gì cả (schema + code + migration) — runbook đã viết, chưa chạy | Theo kế hoạch |
-| 3 | §8.1 6 cột `tf*` + `upplayerlv()` còn cấp chỉ số vô nghĩa | Dọn dẹp |
-| 4 | Trần hoàn `tf` khi migration production | Cần số thật |
-| 5 | Báo người chơi về bảng xếp hạng đảo thứ tự | Truyền thông |
-| 6 | Repo không có `.gitignore`; 8 file core lần đầu vào git ở commit `35823e8` | Rủi ro vận hành |
-| 7 | `player_tianfu` local = 0 dòng → chưa có "người chơi thật" đầu tiên để mắt thấy | Cần bấm thử trong game |
-| 8 | 9 bộ test Thiên Phú PASS nhưng **toàn bộ là test hàm/trang**, chưa có test end-to-end có combat log | Nợ kiểm chứng |
+**Cách dùng bảng này:** mỗi dòng là một việc **đang còn mở** — không dòng nào được tự sửa số,
+không dòng nào tự đóng. Cột "Chỗ" là `file:dòng` đo thật trong repo hôm nay (nhiều chỗ lệch với
+plan — xem mục "Sai lệch Plan ↔ Thực tế" bên dưới). Cột "Ai quyết" ghi rõ: nếu là chủ dự án thì
+agent **dừng lại**, không chọn thay. Dòng nào có chữ **KHÔNG LẤY LẠI ĐƯỢC** là quyết định một chiều.
+
+| # | Món nợ | Chỗ (file:dòng) | Ai quyết | Hậu quả nếu quyết sai / nếu không quyết |
+|---|---|---|---|---|
+| 1 | **Phương án A hay C cho khối thiên phú cũ** — plan bắt xoá, đã xoá theo A vì anh nói "acc test thôi không quan trọng" | `class/player.php` — 6 dòng **đã xoá** tại vị trí `:588-593` (trước khi xoá) | **Chủ dự án** (duyệt lại) | **A**: `PhátĐây` Bạo kích **91 → 37** (số đo thật sau hydrate; bảng plan ghi `ubj 61→7` là sai vì bỏ qua trang bị cộng), `tttttt` `uxx` 22→0 — bạo kích/hút máu tut nặng, **KHÔNG LẤY LẠI ĐƯỢC** sau khi người chơi tiêu `tf`. **C**: 6 cột cũ tiếp tục cộng vào thuộc tính, trái spec §6 và trái cả chiến lực mới |
+| 2 | **`paihang.php` A hay B** — giữ hàm riêng (thiếu 4 chỉ số) hay gọi `\player\combat_power()` | `game/paihang.php:10-21` (ghi chú ở `:12-13`), chỗ gọi duy nhất `:67` | **Chủ dự án** | **A** (đang chạy): bảng xếp hạng **vẫn thiếu** `thechat_quality/thechat_awaken_stage/huyetmach_quality/huyetmach_awaken_stage` → top rank sai so với chiến lực thật. **B**: đúng một công thức, nhưng **mở rộng phạm vi** ngoài spec (sửa luôn cách tính hạng toàn game) |
+| 3 | **Cổng `alchemy` hiển thị ≠ roll thật** | `class/function/luonden.php:348` (hiển thị, có cộng) vs `:899` (roll thật trong `luonden_dung_dan()`, **không cộng**) | **Chủ dự án** | Người chơi thấy "đã cộng Thiên Phú" nhưng quay số không được cộng → **cảm giác bị lừa**. Không tự sửa vì phải chọn: sửa roll theo hiển thị (**đổi cân bằng kinh tế luyện đan**) hay sửa hiển thị theo roll (cổng 3 thành chữ trang trí) |
+| 4 | **Bảng xếp hạng xáo trộn ngay ngày migration** — có báo trước trong game không | `game/paihang.php:17-19` | **Chủ dự án** | Chiến lực tính lại theo trọng số mới → thứ tự đảo lộn, người chơi thấy "mất hạng". Deploy im lặng = mất người; báo trước = phải viết thông báo |
+| 5 | **`upplayerlv()` vẫn cấp 6 cột `tf*` cũ** | `class/player.php:1201` (hàm), khối `UPDATE` tại `:1232-1256` | **Chủ dự án** | Sau A: điểm tăng mà **vô tác dụng** → người chơi tưởng được thưởng. Sau C: sống bình thường. Chưa sửa vì nằm ngoài spec |
+| 6 | **`usedaoju()` đang bít đường Khai Phu Đan** | `class/player.php:2059`, chốt 2 lần/người tại `:2083-2089` (cần cột `djuse`; `daoju_config.json:109-113` không có) | **Chủ dự án** | Đã lách bằng `deledjsum(114, 1, …)` trực tiếp trong `tianfu_open()`. Nếu sau này thêm đan khác đi qua `usedaoju()` → **lại bích**. Nợ kỹ thuật, chưa trả |
+| 7 | **Boss thiên phú riêng (phase 2)** | chưa viết | **Chủ dự án** | Thiên Phú **không có đường nào để đánh dấu** như Mạch Huyết có `huyetmach_boss` → nguồn `tianfu_id` phẩm cao chỉ từ `Khai Phú Đan`. Chưa làm vì spec chỉ định 1 phase |
+| 8 | **Production CHƯA migration gì cả** | `docs/DEPLOY_PRODUCTION_THIENPHU.md` (RUNBOOK, chưa chạy bước nào) | **Chủ server** | Production thiếu 2 bảng + 4 cột + đan 114, và **còn nợ schema sid của 15 bảng** (`docs/DEPLOY_PRODUCTION_NGUHANH.md`). Copy code mà bỏ qua → trang Thiên Phú trắng tinh |
+| 9 | **Repo không có `.gitignore`** | gốc repo (`ls .gitignore` → không tồn tại, đo 2026-10-14) | **Chủ dự án** | Dump DB có **dữ liệu người chơi thật** ở `bak/tianfu_pre_*.sql` chỉ được bọc bằng `.git/info/exclude` (**chỉ máy này, không commit**). Mọi `git add -A` sẽ hút theo `.idea/`, `chajian/`, `shot_*.png`, `bak/`. Plan **không tự tạo** `.gitignore` vì ảnh hưởng toàn repo |
+| 10 | **Trần hoàn `tf` khi migration production** | `sql/migrate_tianfu.php` (không có trần) | **Chủ dự án** | Local chỉ 410 điểm chia 12 nhân vật được migrate (bé). Production có thể có nhân vật `tf` hàng chục nghìn → một người burst lên cấp 60 ngay khi khai phú. Chưa đặt trần vì chưa thấy số production |
+| 11 | **Chuỗi end-to-end chưa mắt thấy** | `player_tianfu` local = **0 dòng** (§9.1) | Người thi hành + chủ dự án bấm | Toàn bộ bằng chứng là hàm + test + render trang. Chưa có nhân vật thật nào uống đan → gán Phú Vi → **nhìn thấy** linh khí/giây đổi trên màn Tu Luyện (§10.1a) |
+| 12 | **Nhãn / đơn vị in ra** | `game/tianfu.php:214`, `game/tianfu_collection.php:184` (đã sửa: thêm dấu cách khi đơn vị không phải `%`) | Chủ dự án duyệt chữ | Trang Trạng Thái in chỉ số % không kèm đơn vị ở hệ Mạch Huyết (`game/zhuangtai.php:587-591`, sổ nợ Mạch Huyết dòng 21) — hai hệ đang **không nhất quán**, chưa hợp nhất vì đụng trang của hệ khác |
+| 13 | **[CHOT] Lệch chiến lực vượt ngưỡng 20% mà chính plan đặt ra** — plan dòng 6545 bắt "lệch > 20% → DỪNG, hỏi chủ dự án", nên dòng này **chặn bàn giao** | §9.2 (bảng 10 dòng, đo 2026-10-14) | **Chủ dự án** | Số đo thật: `tttttt` **−72,4%**, `Tiên Nhân` **−66,9%**, `E2E Test` **−20,4%**, `1231231`/`444444` **+230,8%**. Cả 5 đều là **nhân vật test** (`tf` lớn, chỉ số nền bé), không phải acc người chơi thật. Nếu anh quyết **chấp nhận**: deploy được, bảng xếp hạng đổi thứ tự ngay. Nếu **không chấp nhận**: phải hoặc giữ lại khối hydrate cũ (Phương án C, quay lại dòng 1), hoặc cho `paihang.php` gọi `combat_power()` (dòng 2 phương án B), hoặc đặt trần `tf` (dòng 10). **Tôi không tự chốt.** |
 
 ### Sai lệch Plan ↔ Thực tế (ghi để lần sau đừng tin plan mù)
 
@@ -429,3 +495,6 @@ Bốn biến (`:7431-7440`): `--tp-tier` = **màu phẩm chất** của chủ ph
 | `upplayerlv()` khối `tf*` ở `:1199-1215` | `:1232-1256` |
 | `grep -c … # Expected: >= 6` | `grep -c` đếm **dòng**, kết quả 3 — phải dùng `substr_count` |
 | Chụp bằng `--window-size=$W,1400` trực tiếp | Chrome tối thiểu 500 px → phải qua iframe harness |
+| 13e mục 2: "`git status --short` sau Commit D chỉ còn `?? shot_*.png`" | **Repo chỉ track ~98 file** — toàn bộ game cũ (`game/` 40+ file, `images/` 300+ file, `class/config/` 34 file, `sql/`, `cron/`) **chưa từng được track**, nên vẫn còn `??` dài tràng. Đã lọc kỹ: **0 file trong phạm vi Thiên Phú còn sót** (lọc `tianfu|luonden|paihang|tupo|zbinfo|xiulian|shangdian|stamina` → chỉ còn file không liên quan như `game/luonden.php` (mtime 2026-10-04, TÔI KHÔNG SỬA), `sql/stamina_recovery.sql`, ảnh `images/xiulian/`) |
+| 13e mục 4-5: "log migrate = số nhân vật = 14" | **12** — 13 nhân vật trừ sid fixture `e2e2e2…`. `tests/test_tianfu_pages.php:28,68,148` xóa `player_tianfu_log` + đan 114 của sid đó để trang hiện "chưa khai phú". Apply lúc 15:05 in `OK=13`, chạy test lúc 15:2x–16:1x làm số tụt về 12. **Không phải bug migration** (§9.1 có cảnh báo) |
+| 13b rule 3: "lệch > 20% → DỪNG, hỏi chủ dự án" | **ĐÃ DỪNG THẬT**: đo được −72,4% (`tttttt`), −66,9% (`Tiên Nhân`), −20,4% (`E2E Test`), +230,8% (`1231231`/`444444`). Không tự cắt giấu, ghi thành **Sổ nợ dòng 13 [CHOT]** |

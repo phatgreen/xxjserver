@@ -21,12 +21,12 @@ Ngày chuẩn bị: 2026-10-14 · Spec: `docs/superpowers/specs/2026-10-12-thien
 | Đối tượng | Local 2026-10-14 | Nguồn schema | Production |
 |---|---|---|---|
 | `player_tianfu` | tồn tại, `COUNT(*) = 0` (chưa ai khai phú) | `sql/sql_tianfu.sql:7-16` | **CHƯA TỒN TẠI** |
-| `player_tianfu_log` | tồn tại, `COUNT(*) = 13` (`TABLE_ROWS` InnoDB báo 12 là ước lượng — đừng tin) | `sql/sql_tianfu.sql:18-29` | **CHƯA TỒN TẠI** |
+| `player_tianfu_log` | tồn tại, `COUNT(*) = 12` (= 13 nhân vật TRỪ sid fixture `e2e2e2…`; xem §9.1 `docs/UI_THIENPHU.md` — `tests/test_tianfu_pages.php:68,148` xóa log của sid đó) | `sql/sql_tianfu.sql:18-29` | **CHƯA TỒN TẠI** |
 | `game1.tianfu_id` | `tinyint(4) NOT NULL DEFAULT 0` | `sql/tianfu_columns.php:14` | **CHƯA TỒN TẠI** |
 | `game1.tianfu_quality` | `tinyint(4) NOT NULL DEFAULT 0` | `sql/tianfu_columns.php:15` | **CHƯA TỒN TẠI** |
 | `game1.tianfu_lv` | `int(11) NOT NULL DEFAULT 0` | `sql/tianfu_columns.php:16` | **CHƯA TỒN TẠI** |
 | `game1.tianfu_power` | `int(11) NOT NULL DEFAULT 0` | `sql/tianfu_columns.php:17` | **CHƯA TỒN TẠI** |
-| `daoju` **114** Khai Phú Đan | có, 13 nhân vật đang giữ | `class/config/daoju_config.json` | **CHƯA TỒN TẠI** |
+| `daoju` **114** Khai Phú Đan | có, **12** nhân vật đang giữ (sid fixture `e2e2e2…` đã bị test xóa đan) | `class/config/daoju_config.json` | **CHƯA TỒN TẠI** |
 | 8 cột `tf tfgj tfhp tffy tfbj tfxx tfxy tfsb` | vẫn còn, **đã đặt về 0** trừ `tf` | schema gốc 2006-style | đã có, **không drop** |
 
 **Bốn chi tiết dễ nhầm, đọc hết trước khi bấm:**
@@ -53,7 +53,7 @@ Ngày chuẩn bị: 2026-10-14 · Spec: `docs/superpowers/specs/2026-10-12-thien
 |---|---|---|
 | 2.1 | **Phương án A hay C** cho khối cộng thuộc tính cũ ở `class/player.php`? | Local đã chốt **A** (xoá 6 dòng 588-593, chủ dự án 2026-10-14: "acc test thôi không quan trọng"). Hệ quả: nhân vật cũ **mất chỉ số** do thiên phú cũ mang lại. Local đo: PhátĐây Bạo kích **91 → 37**. Production có nhân vật thật → **phải chạy `_tp_legacy.php` trên production trước** để ra con số từng người, rồi hãy quyết. Phương án C = giữ khối đó và nhân đôi giá trị. |
 | 2.2 | Có **báo trước** về bảng xếp hạng đảo thứ tự không? | `game/paihang.php:19` cộng thêm `tianfu_power`. Ngay sau migration, mọi nhân vật có ô đang gán sẽ đổi hạng. |
-| 2.3 | Điểm `tf` hoàn có đặt **trần** không? | Local tổng hoàn 410/13 nhân vật (~32 điểm/người). Production có thể có nhân vật `tf` cũ hàng chục nghìn → mua được hàng trăm lần nâng cấp ngay ngày đầu. |
+| 2.3 | Điểm `tf` hoàn có đặt **trần** không? | Local tổng hoàn 410/12 nhân vật được migrate (~32 điểm/người). Production có thể có nhân vật `tf` cũ hàng chục nghìn → mua được hàng trăm lần nâng cấp ngay ngày đầu. |
 | 2.4 | `tfsb` có được nối vào **vận khí** trong tương lai không? | Hiện **không** — trùng nhịp Né Tranh của Ẩm Kieu Mach (`huyetmach_combat_roll_dodge()`, `class/function/huyetmach.php:1112`). Cột giữ nguyên, không drop. |
 | 2.5 | Có deploy **kèm** bản sửa cổng `alchemy` không? | `docs/UI_THIENPHU.md` §8.4: đường luyện đan thật (`luonden_craft_v2` → `luonden_dung_dan`, `class/function/luonden.php:899`) **không** cộng cổng Thiên Phú, trong khi chữ hiển thị tỉ lệ (`game/luonden.php:223`) thì có. Nếu deploy Thiên Phú mà chưa sửa, người chơi thấy % ảo. |
 
