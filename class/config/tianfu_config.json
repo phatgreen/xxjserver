@@ -1,0 +1,79 @@
+{
+  "schema": "tianfu_v1",
+  "groups": {
+    "1": {"id": 1, "key": "ngo-tinh", "name": "Ngộ Tinh", "icon": "✨", "color": "#7dd3fc", "img": "images/tianfu/nhom-ngo-tinh.jpg", "desc": "Tố chất lãnh ngộ, pháp tắc tự thông — tu luyện nhanh gấp bội."},
+    "2": {"id": 2, "key": "co-duyen", "name": "Cơ Duyên", "icon": "🍀", "color": "#4ade80", "img": "images/tianfu/nhom-co-duyen.jpg", "desc": "Cơ duyên thâm hậu, của ngon vật lạ tự tìm tới tay."},
+    "3": {"id": 3, "key": "dan-dao", "name": "Đan Đạo", "icon": "⚗", "color": "#fb923c", "img": "images/tianfu/nhom-dan-dao.jpg", "desc": "Bên lò lửa, tay khuấy dược — tỉ lệ luyện đan tăng thêm."},
+    "4": {"id": 4, "key": "tai-van", "name": "Tài Vận", "icon": "💰", "color": "#facc15", "img": "images/tianfu/nhom-tai-van.jpg", "desc": "Tiền đi theo người — cường hóa tốn ít Linh Thạch hơn."},
+    "5": {"id": 5, "key": "canh-gioi", "name": "Cảnh Giới", "icon": "⛰", "color": "#c084fc", "img": "images/tianfu/nhom-canh-gioi.jpg", "desc": "Đạo tâm bất khuất, mỗi lần đột phá thêm một phần nắm chắc."},
+    "6": {"id": 6, "key": "than-suat", "name": "Thần Suất", "icon": "⚡", "color": "#22d3ee", "img": "images/tianfu/nhom-than-suat.jpg", "desc": "Thân pháp như gió — thể lực hồi nhanh hơn thường nhân."}
+  },
+  "gates": {
+    "exp_cultivate": {"name": "Tốc độ tu luyện", "unit": "%", "desc": "Nhân vào linh khí mỗi giây khi ngồi tu luyện."},
+    "exp_monster": {"name": "Exp quái + boss", "unit": "%", "desc": "Nhân vào kinh nghiệm nhận được khi diệt quái và boss."},
+    "drop": {"name": "Ngưỡng rơi đồ", "unit": "%", "desc": "Nới ngưỡng ngẫu nhiên rơi trang bị / vật phẩm / dược phẩm."},
+    "alchemy": {"name": "Luyện đan", "unit": "điểm %", "desc": "Cộng thẳng vào tỉ lệ thành công khi luyện đan (trần 95%)."},
+    "forge_cost": {"name": "Linh thạch cường hóa", "unit": "%", "desc": "GIẢM số Linh Thạch phải trả mỗi lần cường hóa trang bị."},
+    "stamina": {"name": "Hồi thể lực", "unit": "%", "desc": "Rút ngắn chu kỳ hồi thể lực (gốc 300 giây)."},
+    "breakthrough": {"name": "Đột phá", "unit": "điểm %", "desc": "Cộng thẳng vào tỉ lệ đột phá cảnh giới (trần mềm 99%)."}
+  },
+  "talents": {
+    "1": {"id": 1, "name": "Ngộ Tính Nghịch Thiên", "short": "Nghịch Thiên", "group": 1, "gate": "exp_cultivate", "per_lv": 0.25, "per_lv_sub": 0.15, "icon": "✨", "color": "#7dd3fc", "weight": 5, "desc": "Pháp tắc tự đến trong một sát na, tu luyện một ngày bằng người một tháng."},
+    "2": {"id": 2, "name": "Luyện Khí Kỳ Tài", "short": "Luyện Khí", "group": 1, "gate": "exp_cultivate", "per_lv": 0.25, "per_lv_sub": 0.15, "icon": "💠", "color": "#7dd3fc", "weight": 4, "desc": "Hít vào là linh khí ùa về kinh mạch, không cần khổ sở cầu đạo."},
+    "3": {"id": 3, "name": "Tâm Thông Ngộ Đạo", "short": "Tâm Thông", "group": 1, "gate": "exp_cultivate", "per_lv": 0.25, "per_lv_sub": 0.15, "icon": "💡", "color": "#7dd3fc", "weight": 3, "desc": "Chữ đạo đọc một lần là hiểu, ngồi một khắc là nhập lưu."},
+    "4": {"id": 4, "name": "Đại Khí Vận", "short": "Đại Vận", "group": 2, "gate": "drop", "per_lv": 0.25, "icon": "🍀", "color": "#4ade80", "weight": 5, "desc": "Trời thương kẻ khờ, của rơi trúng đầu."},
+    "5": {"id": 5, "name": "Thiên Đạo Gia Hộ", "short": "Gia Hộ", "group": 2, "gate": "drop", "per_lv": 0.25, "icon": "🌠", "color": "#4ade80", "weight": 4, "desc": "Có một bàn tay vô hình sửa lại xác suất giúp ngươi."},
+    "6": {"id": 6, "name": "Cơ Duyên Thâm Tự Hải", "short": "Cơ Duyên", "group": 2, "gate": "drop", "per_lv": 0.25, "icon": "🌊", "color": "#4ade80", "weight": 3, "desc": "Cơ duyên sâu như biển, bảo vật dưới vực cũng nổi lên."},
+    "7": {"id": 7, "name": "Đan Đạo Kỳ Tài", "short": "Đan Đạo", "group": 3, "gate": "alchemy", "per_lv": 0.25, "icon": "⚗", "color": "#fb923c", "weight": 5, "desc": "Tay khuấy lò lửa, đan thành tám phần."},
+    "8": {"id": 8, "name": "Lô Hỏa Thuần Thanh", "short": "Lô Hỏa", "group": 3, "gate": "alchemy", "per_lv": 0.25, "icon": "🔥", "color": "#fb923c", "weight": 4, "desc": "Lửa lò trong xanh, không còn cảnh đan hóa thành khói."},
+    "9": {"id": 9, "name": "Bách Thảo Bất Nhiễm", "short": "Bách Thảo", "group": 3, "gate": "alchemy", "per_lv": 0.25, "icon": "🌿", "color": "#fb923c", "weight": 3, "desc": "Độc tính của dược thảo không dính được thân ngươi."},
+    "10": {"id": 10, "name": "Phú Tài Lưu Thông", "short": "Phú Tài", "group": 4, "gate": "forge_cost", "per_lv": 0.25, "icon": "💰", "color": "#facc15", "weight": 5, "desc": "Tiền tự biết đường tới, cường hóa nhẹ ví hơn người thường."},
+    "11": {"id": 11, "name": "Nhất Chỉ Thiên Kim", "short": "Thiên Kim", "group": 4, "gate": "forge_cost", "per_lv": 0.25, "icon": "☝", "color": "#facc15", "weight": 4, "desc": "Một ngón tay đáng giá nghìn vàng, sắt đá cũng hóa mềm."},
+    "12": {"id": 12, "name": "Thâu Thiên Hoạt Thuật", "short": "Hoạt Thuật", "group": 4, "gate": "forge_cost", "per_lv": 0.25, "icon": "🎭", "color": "#facc15", "weight": 3, "desc": "Trò nhỏ thay trời, hóa một nửa Linh Thạch thành không khí."},
+    "13": {"id": 13, "name": "Đột Phách Tâm Kinh", "short": "Tâm Kinh", "group": 5, "gate": "breakthrough", "per_lv": 0.25, "icon": "📜", "color": "#c084fc", "weight": 5, "desc": "Khai mạch đánh tan trùng chướng, đột phá thêm một phần nắm chắc."},
+    "14": {"id": 14, "name": "Bất Khúc Đạo Ý", "short": "Đạo Ý", "group": 5, "gate": "breakthrough", "per_lv": 0.25, "icon": "⛰", "color": "#c084fc", "weight": 4, "desc": "Đạo tâm không cong, thiên địa cũng phải nhường lối."},
+    "15": {"id": 15, "name": "Lăng Không Đích Bích", "short": "Lăng Không", "group": 5, "gate": "breakthrough", "per_lv": 0.25, "icon": "💨", "color": "#c084fc", "weight": 3, "desc": "Giáp cảnh như đi trên không, đâu cũng tới được."},
+    "16": {"id": 16, "name": "Thần Suất Quá Nhân", "short": "Thần Suất", "group": 6, "gate": "stamina", "per_lv": 0.25, "icon": "⚡", "color": "#22d3ee", "weight": 5, "desc": "Tinh thần hơn người, nghỉ một khắc bằng người nửa canh giờ."},
+    "17": {"id": 17, "name": "Khinh Như Yên Vụ", "short": "Yên Vụ", "group": 6, "gate": "stamina", "per_lv": 0.25, "icon": "🌁", "color": "#22d3ee", "weight": 4, "desc": "Thân nhẹ như khói, mệt mỏi tan trước khi kịp đọng."},
+    "18": {"id": 18, "name": "Tịch Dương Bộ Pháp", "short": "Tịch Dương", "group": 6, "gate": "stamina", "per_lv": 0.25, "icon": "🌇", "color": "#22d3ee", "weight": 3, "desc": "Bộ pháp bước theo bóng mặt trời, khí lực luôn đầy."}
+  },
+  "qualities": {
+    "1": {"q": 1, "key": "pham", "name": "Phàm Phẩm", "color": "#9e9e9e", "icon": "⚪", "weight": 40, "lv_cap": 10, "mult": 1.00},
+    "2": {"q": 2, "key": "linh", "name": "Linh Phẩm", "color": "#4caf50", "icon": "🟢", "weight": 25, "lv_cap": 14, "mult": 1.15},
+    "3": {"q": 3, "key": "huyen", "name": "Huyền Phẩm", "color": "#2196f3", "icon": "🔵", "weight": 15, "lv_cap": 18, "mult": 1.30},
+    "4": {"q": 4, "key": "dia", "name": "Địa Phẩm", "color": "#9c27b0", "icon": "🟣", "weight": 10, "lv_cap": 24, "mult": 1.50},
+    "5": {"q": 5, "key": "thien", "name": "Thiên Phẩm", "color": "#ff9800", "icon": "🟡", "weight": 6, "lv_cap": 30, "mult": 1.75},
+    "6": {"q": 6, "key": "thanh", "name": "Thánh Phẩm", "color": "#ff5722", "icon": "🟠", "weight": 2.5, "lv_cap": 36, "mult": 2.00},
+    "7": {"q": 7, "key": "tien", "name": "Tiên Phẩm", "color": "#f44336", "icon": "🔴", "weight": 1, "lv_cap": 42, "mult": 2.30},
+    "8": {"q": 8, "key": "than", "name": "Thần Phẩm", "color": "#ffd700", "icon": "✨", "weight": 0.4, "lv_cap": 48, "mult": 2.60},
+    "9": {"q": 9, "key": "de", "name": "Đế Phẩm", "color": "#7c4dff", "icon": "🌌", "weight": 0.09, "lv_cap": 54, "mult": 3.00},
+    "10": {"q": 10, "key": "dao", "name": "Đạo Phẩm", "color": "#e0e0e0", "icon": "☯", "weight": 0.01, "lv_cap": 60, "mult": 3.50}
+  },
+  "lv_cost": {"tf": 1, "linh_thach_base": 200, "linh_thach_per_lv": 25},
+  "break_quality": {
+    "1": {"tf": 10, "linh_thach": 10000, "ulv_require": 0},
+    "2": {"tf": 15, "linh_thach": 30000, "ulv_require": 0},
+    "3": {"tf": 20, "linh_thach": 80000, "ulv_require": 0},
+    "4": {"tf": 30, "linh_thach": 200000, "ulv_require": 100},
+    "5": {"tf": 40, "linh_thach": 500000, "ulv_require": 150},
+    "6": {"tf": 60, "linh_thach": 1200000, "ulv_require": 200},
+    "7": {"tf": 80, "linh_thach": 3000000, "ulv_require": 280},
+    "8": {"tf": 100, "linh_thach": 8000000, "ulv_require": 400},
+    "9": {"tf": 150, "linh_thach": 20000000, "ulv_require": 500}
+  },
+  "milestones": {
+    "1": {"total_lv": 60, "bonus_percent": 5, "name": "Khai Phú"},
+    "2": {"total_lv": 150, "bonus_percent": 12, "name": "Thông Linh"},
+    "3": {"total_lv": 300, "bonus_percent": 20, "name": "Hòa Đạo"},
+    "4": {"total_lv": 500, "bonus_percent": 30, "name": "Nghịch Thiên"}
+  },
+  "slots": [
+    {"i": 1, "ulv": 0, "name": "Chủ Phú", "hint": "Phú vị chính — tên và phẩm chất của nó hiển thị khắp nơi."},
+    {"i": 2, "ulv": 100, "name": "Phú Vi Hai", "hint": "Mở khi đạt cấp 100."},
+    {"i": 3, "ulv": 200, "name": "Phú Vi Ba", "hint": "Mở khi đạt cấp 200."},
+    {"i": 4, "ulv": 280, "name": "Phú Vi Bốn", "hint": "Mở khi đạt cấp 280."}
+  ],
+  "cap_percent": 30,
+  "open_pill": {"djid": 114, "name": "Khai Phú Đan"},
+  "material_names": {"114": "Khai Phú Đan"}
+}
