@@ -156,6 +156,15 @@ class player
     var $huyetmach_passive_exp;
     var $huyetmach_passive_drop;
     var $huyetmach_can_transform;
+    // Thien Phu: thuoc tinh tam tinh khi getplayer()
+    var $tianfu_id;
+    var $tianfu_quality;
+    var $tianfu_lv;
+    var $tianfu_power;
+    var $tianfu_name;
+    var $tianfu_color;
+    var $tianfu_icon;
+    var $tianfu_bonus;
 }
 
 //$rangeslv = array(0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350); // Lên 260
@@ -857,6 +866,39 @@ function getplayer($sid,$dblj){
             $player->umaxhp += intval($hmB['vessel']['hp']);
             $player->ubj    += intval($hmB['vessel']['crit']);
             $player->uxx    += intval($hmB['vessel']['lifesteal']);
+        }
+    }
+    // Thien Phu: bonus 7 cong + anh xa chu phu. KHONG cong ugj/ufy/umaxhp/ubj/uxx
+    // (ranh gioi cua 3 he truoc; thien phu chi lam viec o ti le, xem spec §1).
+    $player->tianfu_bonus = array();
+    $player->tianfu_name  = '';
+    $player->tianfu_color = '#9e9e9e';
+    $player->tianfu_icon  = '';
+    if (function_exists(__NAMESPACE__ . '\\tianfu_bonuses')) {
+        $tfB = tianfu_bonuses($player->sid, $dblj);
+        $player->tianfu_bonus = $tfB;
+
+        // Tu canh minh TRUOC khi lay ten: ban sao game1 lech so voi player_tianfu
+        // (thua tu he cu, ghi that bai giua chung, hoac lan dau sau migration)
+        // -> viet lai roi moi doc chu phu, neu khong UI se thay ten trong cay.
+        if ($tfB['power'] !== intval($player->tianfu_power)) {
+            $mirror = tianfu_recalc_mirror($player->sid, $dblj);
+            $player->tianfu_id      = $mirror['tianfu_id'];
+            $player->tianfu_quality = $mirror['tianfu_quality'];
+            $player->tianfu_lv      = $mirror['tianfu_lv'];
+            $player->tianfu_power   = $mirror['tianfu_power'];
+        }
+
+        $tfMaster = intval($player->tianfu_id);
+        if ($tfMaster > 0) {
+            $tfDef = tianfu_def($tfMaster);
+            if ($tfDef) {
+                // Ten lay cua thien phu, mau + icon lay theo PHAM CHAT (giong cach
+                // thechat/huyetmach doi mau pham chat), khong lay mau cua nhom.
+                $player->tianfu_name  = $tfDef['name'];
+                $player->tianfu_color = tianfu_quality_color(intval($player->tianfu_quality));
+                $player->tianfu_icon  = tianfu_quality_icon(intval($player->tianfu_quality));
+            }
         }
     }
 
