@@ -443,6 +443,76 @@ if (is_array($hmV)) {
         array('Chưa deploy'), '');
 }
 
+/* ================= THIỆN PHÚ (Phú Các) ================= */
+$tpAll = tq_cfg('tianfu_config');
+if (is_array($tpAll)) {
+    $tpGates  = (array)(isset($tpAll['gates'])  ? $tpAll['gates']  : array());
+    $tpGroups = (array)(isset($tpAll['groups']) ? $tpAll['groups'] : array());
+    $tpBq     = (array)(isset($tpAll['break_quality']) ? $tpAll['break_quality'] : array());
+    $tpLv     = (array)(isset($tpAll['lv_cost'])  ? $tpAll['lv_cost']  : array());
+    $tpPill   = (array)(isset($tpAll['open_pill']) ? $tpAll['open_pill'] : array());
+
+    $rowsT5 = array();
+    foreach ((array)(isset($tpAll['talents']) ? $tpAll['talents'] : array()) as $e) {
+        $g  = isset($tpGates[$e['gate']])   ? $tpGates[$e['gate']]   : array('name' => $e['gate'], 'unit' => '');
+        $gr = isset($tpGroups[$e['group']]) ? $tpGroups[$e['group']] : array('name' => tq_h($e['group']));
+        $sub = isset($e['per_lv_sub']) ? ' (không phải chủ phú: +' . tq_n($e['per_lv_sub']) . ')' : '';
+        $rowsT5[] = array($e['icon'] . ' ' . tq_show($e['name']), tq_show($e['short']),
+            tq_show($gr['name']), tq_show($g['name']) . ' (' . tq_show($g['unit']) . ')',
+            '+' . tq_n($e['per_lv']) . '/cấp' . $sub, tq_n($e['weight']), tq_cut($e['desc'], 90));
+    }
+
+    $rowsQ5 = array();
+    foreach ((array)(isset($tpAll['qualities']) ? $tpAll['qualities'] : array()) as $e) {
+        $q  = intval($e['q']);
+        $bq = isset($tpBq[$q]) ? $tpBq[$q] : null;   // dot pham q -> q+1, nen q10 khong co dong
+        $rowsQ5[] = array(tq_dot($e['color']) . $e['icon'] . ' ' . tq_show($e['name']),
+            tq_show($e['key']), 'cấp ' . tq_n($e['lv_cap']), 'x' . tq_n($e['mult']),
+            tq_n($e['weight']) . '%',
+            $bq ? (tq_n($bq['tf']) . ' điểm Thiên Phú + ' . tq_n($bq['linh_thach']) . ' Linh Thạch') : '— (trần)',
+            $bq ? tq_realm_req($bq['ulv_require']) : '—');
+    }
+
+    $rowsG5 = array();
+    foreach ($tpGates as $k => $e) {
+        $rowsG5[] = array(tq_h($k), tq_show($e['name']), tq_show($e['unit']), tq_cut($e['desc'], 110));
+    }
+
+    $rowsM5 = array();
+    foreach ((array)(isset($tpAll['milestones']) ? $tpAll['milestones'] : array()) as $e) {
+        $rowsM5[] = array(tq_show($e['name']), tq_n($e['total_lv']), '+' . tq_n($e['bonus_percent']) . '%');
+    }
+
+    $rowsS5 = array();
+    foreach ((array)(isset($tpAll['slots']) ? $tpAll['slots'] : array()) as $e) {
+        $rowsS5[] = array(tq_n($e['i']), tq_show($e['name']),
+            intval($e['ulv']) > 0 ? 'cấp ' . tq_n($e['ulv']) : 'mở sẵn',
+            tq_realm_req($e['ulv']), tq_cut($e['hint'], 80));
+    }
+
+    tq_sec('nuoi-duong', 'thien-phu', '☯', 'Thiên Phú (18 phú · 10 phẩm · 7 công)',
+        count($rowsT5) + count($rowsQ5) + count($rowsG5) + count($rowsM5) + count($rowsS5),
+        'Lớp vận khí & tốc độ: khai Phú Đan nhận ngẫu nhiên 1 trong 18 thiên phú, xếp vào 4 Phú Vị. Thiên phú KHÔNG cộng Công/Thủ/Máu/Bạo/Hút — chỉ can thiệp tỉ lệ và giá.',
+        array('UI: game/tianfu.php (cmd=tianfu) · game/tianfu_collection.php (cmd=tianfu_collection) · game/tianfu_open.php (cmd=tianfu_open)',
+            'Số liệu: player_tianfu (sid, tianfu_id, quality, lv, slot) + player_tianfu_log',
+            'Bản sao trong game1: tianfu_id / tianfu_quality / tianfu_lv = Phú Vị 1 (chủ phú); tianfu_power = chiến lực tổng',
+            'Trần mọi công: ' . tq_n($tpAll['cap_percent']) . '% — cộng dồn từng thiên phú xong mới kẹp một lần',
+            'Công "Ngưỡng rơi đồ" NHÂN TIẾP sau Huyết Mạch: 1,15 x 1,30 = +49,5% danh nghĩa; ngưỡng 120 thật tế thành 179 (+49,17%) vì hai lần làm tròn',
+            'Công "Đột phá" có trần mềm 99% — bản cũ KHÔNG có trần, đây là thay đổi hành vi',
+            'Khai Phú: ' . tq_show($tpPill['name']) . ' (djid ' . tq_n($tpPill['djid']) . ') — migration hoàn 7 cột thiên phú cũ thành 1 viên'),
+        tq_searchable('tbl-tp', array('Thiên phú', 'Viết tắt', 'Nhóm', 'Công', 'Mỗi cấp', 'Trọng số khai', 'Mô tả'), $rowsT5,
+            '<b>18 thiên phú:</b> luyện mỗi cấp tốn ' . tq_n($tpLv['tf']) . ' điểm Thiên Phú + ' . tq_n($tpLv['linh_thach_base'])
+            . ' Linh Thạch (cộng ' . tq_n($tpLv['linh_thach_per_lv']) . '/cấp). Luyện luôn thành công — chỉ phẩm chất mới cần đột phá.')
+        . tq_searchable('tbl-tpq', array('Phẩm', 'Khóa', 'Trần cấp', 'Hệ số', 'Tỉ lệ khai', 'Đột phá lên phẩm kế', 'Cần cảnh giới'), $rowsQ5, '<b>10 phẩm chất:</b>')
+        . tq_searchable('tbl-tpg', array('Khóa', 'Công', 'Đơn vị', 'Ý nghĩa'), $rowsG5, '<b>7 công:</b>')
+        . tq_searchable('tbl-tpm', array('Mốc', 'Tổng cấp 4 Phú Vị', 'Nhân chỉ số'), $rowsM5, '<b>Mốc tổng cấp:</b>')
+        . tq_searchable('tbl-tps', array('Phú Vị', 'Tên', 'Mở khi', 'Cảnh giới', 'Ghi chú'), $rowsS5, '<b>4 Phú Vị:</b>'));
+} else {
+    tq_sec('nuoi-duong', 'thien-phu', '☯', 'Thiên Phú (chưa cài đặt)', 0,
+        'class/config/tianfu_config.json chưa tồn tại — Task 1 chưa chạy.',
+        array('Chưa deploy'), '');
+}
+
 $petAllC = tq_cfg('pet_config');
 $rows = array();
 foreach ((array)$petAllC as $e){
@@ -611,7 +681,7 @@ $bossDesc = '<div class="mini-grid">';
 if (is_array($lbCfg) && isset($lbCfg['boss_config'])){
     $b = $lbCfg['boss_config'];
     $bs = (array)$b['base_stats']; $ls = (array)$b['level_scaling']; $dr = (array)$b['drops'];
-    $bossDesc .= '<div class="mini"><b>Boss Linh Căn</b><br>Mốc 120 phút xuất hiện. Máu ' . tq_n($bs['hp']) . ' + ' . tq_n($ls['hp_per_level']) . '/cấp; Công ' . tq_n($bs['atk']) . ' + ' . tq_n($ls['atk_per_level']) . '/cấp; Thủ ' . tq_n($bs['def']) . ' + ' . tq_n($ls['def_per_level']) . '/cấp. Drop: ' . tq_n($dr['linh_thach_min']) . '-' . tq_n($dr['linh_thach_max']) . ' Linh Thạch + ' . tq_n($dr['da_ngu_hanh_count']) . ' Đá Ngũ Hành. <code>game/linhcan_boss.php</code></div>';
+    $bossDesc .= '<div class="mini"><b>Boss Linh Căn</b><br>Mốc 120 phút xuất hiện, hành chọn ngẫu nhiên 1 trong 5. Máu ' . tq_n($bs['hp']) . ' + ' . tq_n($ls['hp_per_level']) . '/cấp; Công ' . tq_n($bs['atk']) . ' + ' . tq_n($ls['atk_per_level']) . '/cấp; Thủ ' . tq_n($bs['def']) . ' + ' . tq_n($ls['def_per_level']) . '/cấp. Drop: ' . tq_n($dr['linh_thach_min']) . '-' . tq_n($dr['linh_thach_max']) . ' Linh Thạch + ' . tq_n($dr['tinh_thach_min']) . '-' . tq_n($dr['tinh_thach_max']) . ' đá đúng hành boss + ' . tq_n($dr['binh_anh_min']) . '-' . tq_n($dr['binh_anh_max']) . ' Bình Anh Tinh Thạch. <code>game/linhcan_boss.php</code></div>';
 }
 $bossDesc .= '<div class="mini"><b>Boss Tông Môn</b><br>Boss riêng của từng tông môn, cộng damage thành viên, thưởng theo đóng góp. <code>game/club_boss.php</code> + bảng <code>club_boss</code></div>'
   . '<div class="mini"><b>Thập Yêu Tháp</b><br>Leo tháp 10 tầng yêu thú, thưởng theo tầng. <code>game/toayeuthap.php</code> + bảng <code>player_toayeuthap</code></div>'
@@ -680,14 +750,14 @@ foreach ((array)(isset($achAll['achievements']) ? $achAll['achievements'] : arra
 $lqAll = tq_cfg('linhcan_quest_config');
 $rows3 = array();
 foreach ((array)(isset($lqAll['weekly_quests']) ? $lqAll['weekly_quests'] : array()) as $q){
-    $rows3[] = array(tq_show($q['icon']) . ' ' . tq_show($q['name']), tq_cut($q['description'], 60), tq_h($q['type']), tq_n($q['target']), tq_n($q['reward_linhthach']), tq_n($q['reward_da_ngu_hanh']));
+    $rows3[] = array(tq_show($q['icon']) . ' ' . tq_show($q['name']), tq_cut($q['description'], 60), tq_h($q['type']), tq_n($q['target']));
 }
 tq_sec('nhiemvu', 'nv-khac', '🎯', 'Tông môn / Thành tựu / Linh căn tuần', count($rows) + count($rows2) + count($rows3),
     'Nhiệm vụ tông môn theo 3 độ khó, thành tựu 10 mảng nhiều bậc, nhiệm vụ tuần riêng cho linh căn.',
-    array('Tông môn → quyên Linh Thạch, đánh boss', 'Thành tựu → EXP + LT vĩnh viễn', 'Linh căn tuần → Đá Ngũ Hành'),
+    array('Tông môn → quyên Linh Thạch, đánh boss', 'Thành tựu → EXP + LT vĩnh viễn', 'Linh căn tuần → LT + Bình Anh Tinh Thạch'),
     tq_searchable('tbl-cq', array('Nhiệm vụ tông môn', 'Độ khó', 'Mục tiêu', 'Thưởng', 'Theo dõi'), $rows, '<b>Tông môn (' . tq_n($cqAll['daily_min']) . '-' . tq_n($cqAll['daily_max']) . ' cái/ngày, thưởng hoàn ' . tq_n($cqAll['completion_bonus_exp']) . ' EXP):</b>')
     . tq_searchable('tbl-ach', array('Thành tựu', 'Bậc', 'Mục tiêu', 'EXP', 'LT', 'MT'), $rows2, '<b>Thành tựu:</b>')
-    . tq_searchable('tbl-lcq', array('Nhiệm vụ', 'Mô tả', 'Loại', 'Mục tiêu', 'Linh thạch', 'Đá ngũ hành'), $rows3, '<b>Tuần linh căn:</b>'));
+    . tq_searchable('tbl-lcq', array('Nhiệm vụ', 'Mô tả', 'Hook', 'Mục tiêu'), $rows3, '<b>Tuần linh căn (' . count($rows3) . '/5 hook, thưởng hoàn ' . tq_n($lqAll['total_reward_linhthach']) . ' LT + ' . tq_n($lqAll['total_reward_binh_anh_min']) . '-' . tq_n($lqAll['total_reward_binh_anh_max']) . ' Bình Anh Tinh Thạch):</b>'));
 
 /* ================= THẾ GIỚI & XÃ HỘI ================= */
 $npcAll = tq_cfg('npc_config');
