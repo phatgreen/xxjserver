@@ -9,7 +9,7 @@ namespace player;
 function yaodan_config_path(){
     $paths = array(
 		//D:\XXJserver\phpstudy_pro\WWW\class\config
-        __DIR__ . '../../config/yaodan_config.json'
+        __DIR__ . '/../config/yaodan_config.json'
     );
 
     foreach ($paths as $path) {

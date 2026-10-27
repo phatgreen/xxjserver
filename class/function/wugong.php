@@ -15,7 +15,7 @@ if (!function_exists(__NAMESPACE__ . '\\wugong_config_path')) {
     function wugong_config_path(){
 		//D:\XXJserver\phpstudy_pro\WWW\class\config
         $paths = array(
-            __DIR__ . '../../config/wugong_config.json',      // class/function -> class/config
+            __DIR__ . '/../config/wugong_config.json',      // class/function -> class/config
         );
 
         foreach ($paths as $path) {

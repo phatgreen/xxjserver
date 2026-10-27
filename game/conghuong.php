@@ -11,6 +11,15 @@ $chWgCmd = $encode->encode("cmd=wgxl&sid=" . $sid);
 $chCpCmd = $encode->encode("cmd=gocp&sid=" . $sid);
 
 $chRes = \player\conghuong_progress($sid, $dblj);
+// Chính tuyến: số bậc Cộng Hưởng đã kích hoạt
+$chTiers = 0;
+foreach ($chRes['groups'] as $chG) {
+    foreach ($chG['tiers'] as $chT) {
+        if ($chT['reached']) $chTiers++;
+    }
+}
+$chNvRv = function_exists('player\\nhiemvu_main_update') ? \player\nhiemvu_main_update($sid, 'conghuong', $dblj, array('tiers' => $chTiers)) : array();
+$chNvNotice = !empty($chNvRv['ok']) ? '<div class="tcg-nv-notice">📜 ' . htmlspecialchars($chNvRv['msg'], ENT_QUOTES, 'UTF-8') . '</div>' : '';
 $chCfg = \player\conghuong_cfg();
 $chWgNeed = isset($chCfg['vien_man']['wugong_lv']) ? intval($chCfg['vien_man']['wugong_lv']) : 10;
 
@@ -70,6 +79,7 @@ echo <<<HTML
         <a href="?cmd={$chCpCmd}">Công Pháp</a>
         <a class="active" href="javascript:void(0)">Cộng Hưởng</a>
     </div>
+    {$chNvNotice}
     <div class="ch-sum">{$chSum}</div>
     <div class="ch-grid">{$chTiles}</div>
     {$chPopups}

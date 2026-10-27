@@ -10,7 +10,7 @@ if (!function_exists(__NAMESPACE__ . '\\renwu_config_path')) {
     function renwu_config_path(){
 		//D:\XXJserver\phpstudy_pro\WWW\class\config
         $paths = array(
-            __DIR__ . '../../config/renwu_config.json'
+            __DIR__ . '/../config/renwu_config.json'
         );
 
         foreach ($paths as $path) {

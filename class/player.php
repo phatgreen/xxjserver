@@ -28,6 +28,7 @@ require_once __DIR__ . '/function/chatmsg.php';
 require_once __DIR__ . '/function/tianfu.php';
 require_once __DIR__ . '/function/combat.php';
 require_once __DIR__ . '/function/conghuong.php';
+require_once __DIR__ . '/function/online_reward.php';
 
 
 class player

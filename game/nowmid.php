@@ -44,6 +44,11 @@ if (isset($newmid)){
         // }
         \player\changeplayersx('nowmid',$newmid,$sid,$dblj);
         $player = player\getplayer($sid,$dblj);//获取玩家信息
+        // Chính tuyến: đến khu vực mới
+        if (function_exists('player\\nhiemvu_main_update')) {
+            $nvRv = \player\nhiemvu_main_update($sid, 'reach_region', $dblj, array('region' => intval($clmid->mqy)));
+            if (!empty($nvRv['ok'])) $nvMapNotice = $nvRv['msg'];
+        }
     }
 
 }
@@ -55,6 +60,19 @@ if ($player->nowmid=='' || $player->nowmid==0){//判断角色是否出现在非�
     $player->nowmid=$gameconfig->firstmid;
 }
 $clmid = player\getmid($player->nowmid,$dblj); //获取地图信息
+// Chính tuyến: nhiệm vụ đột phá tính theo cấp hiện tại (kể cả khi lên cấp không qua trang Đột Phá)
+if (!isset($nvMapNotice) && function_exists('player\\nhiemvu_main_update')) {
+    $nvRv = \player\nhiemvu_main_update($sid, 'breakthrough', $dblj, array('level' => intval($player->ulv)));
+    if (!empty($nvRv['ok'])) $nvMapNotice = $nvRv['msg'];
+}
+$nvMapNoticeHtml = isset($nvMapNotice) ? '<div class="tcg-nv-notice">📜 ' . htmlspecialchars($nvMapNotice, ENT_QUOTES, 'UTF-8') . '</div>' : '';
+// Bế Quan: có tu vi ngoại tuyến chưa nhận thì nhắc
+$nvOff = \player\offline_reward_pending($sid, $dblj);
+if ($nvOff['exp'] > 0) {
+    $nvOffCmd = $encode->encode("cmd=nhiemvu&tab=online&sid=$sid");
+    $nvMapNoticeHtml .= '<a class="tcg-nv-notice" style="display:block;text-decoration:none" href="?cmd=' . $nvOffCmd . '">🧘 Bế quan '
+        . $nvOff['hours'] . ' giờ — nhận ' . number_format($nvOff['exp']) . ' tu vi ›</a>';
+}
 if ($clmid->playerinfo != ''){
     $clmid->playerinfo .='<br/>';
 }
@@ -519,6 +537,7 @@ $nowhtml = <<<HTML
     <!-- <span class="tcg-badge server">【 $clmid->mname 】</span> !-->
     $pvphtml
 </div>
+$nvMapNoticeHtml
 
 <div class="tcg-marquee">
     <marquee behavior="scroll"

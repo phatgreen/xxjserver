@@ -10,7 +10,7 @@ if (!function_exists(__NAMESPACE__ . '\\daoju_config_path')) {
     function daoju_config_path(){
 		//D:\XXJserver\phpstudy_pro\WWW\class\config
         $paths = array(
-            __DIR__ . '../../config/daoju_config.json'
+            __DIR__ . '/../config/daoju_config.json'
         );
 
         foreach ($paths as $path) {

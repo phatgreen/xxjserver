@@ -136,6 +136,9 @@ switch ($cmd){
 
 		$nowdate = date('Y-m-d H:i:s');
 
+		// Bế Quan: tích tu vi theo giờ offline (phải tính TRƯỚC khi làm mới endtime)
+		\player\offline_reward_on_login($player, $dblj);
+
 		// update trạng thái online
 		$stmt = $dblj->prepare("UPDATE game1 SET endtime=?,sfzx=1 WHERE sid=?");
 		$stmt->execute([$nowdate,$sid]);
@@ -490,6 +493,8 @@ if (!isset($sid) || $sid==''){
 	// Làm mới endtime trên MỌI request hợp lệ (không bị kick) -> không bao giờ hết hạn khi đang chơi.
 	$stmt = $dblj->prepare("UPDATE game1 SET endtime = ?, sfzx = 1 WHERE sid = ?");
 	$stmt->execute(array($nowdate, $sid));
+	// Thưởng trực tuyến: cộng thời gian hoạt động trong ngày
+	\player\online_reward_tick($sid, $dblj);
 }
 
 ?>
@@ -504,7 +509,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102801">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102802">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>

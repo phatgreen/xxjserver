@@ -1,0 +1,20 @@
+{
+    "_note": "Thưởng nhiệm vụ theo cấp (đợt C). exp_pct = % thanh kinh nghiệm của cấp đang luyện ((cấp+1)^2 x 110). Thưởng cũ trong từng file nhiệm vụ giữ làm mức sàn. lt_level_div: linh thạch = thưởng cũ x (1 + cấp / lt_level_div).",
+    "daily":   {"exp_pct": 3,  "bonus_pct": 5},
+    "weekly":  {"exp_pct": 10, "all_pct": 50},
+    "monthly": {"exp_pct": 50, "all_pct": 150},
+    "main":    {"exp_pct": 15},
+    "lt_level_div": 100,
+    "kill_level_gap": 15,
+    "offline": {"min_level": 10, "min_hours": 1, "max_hours": 8, "exp_pct_per_hour": 2},
+    "online": {
+        "max_gap_seconds": 300,
+        "milestones": [
+            {"minutes": 10,  "lt_mult": 2,  "items": [{"type": "yaopin", "id": 9, "count": 2}]},
+            {"minutes": 30,  "lt_mult": 4,  "items": [{"type": "daoju",  "id": 1, "count": 1}]},
+            {"minutes": 60,  "lt_mult": 6,  "stamina": 20},
+            {"minutes": 120, "lt_mult": 8,  "items": [{"type": "daoju",  "id": 1, "count": 2}]},
+            {"minutes": 240, "lt_mult": 10, "mt": 3}
+        ]
+    }
+}

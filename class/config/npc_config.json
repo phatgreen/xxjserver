@@ -258,5 +258,95 @@
     "taskid": "31",
     "mz": "",
     "rwqy": ""
+  },
+  "40": {
+    "id": 40,
+    "nname": "Sa Mạc Lão Đạo",
+    "nsex": "Nam",
+    "ninfo": "Lão đạo sĩ ẩn cư giữa cát vàng Tây Lương, nhiều năm canh giữ con đường tơ lụa trước yêu thú sa mạc.",
+    "muban": "",
+    "taskid": "70,71,72",
+    "mz": "",
+    "rwqy": ""
+  },
+  "41": {
+    "id": 41,
+    "nname": "Hoang Thành Tuần Thủ",
+    "nsex": "Nam",
+    "ninfo": "Lính tuần thủ thành cổ Hoang Thiên Lý, đêm nào cũng nghe tiếng quỷ vệ gõ cửa vương lăng.",
+    "muban": "",
+    "taskid": "73,74,75",
+    "mz": "",
+    "rwqy": ""
+  },
+  "42": {
+    "id": 42,
+    "nname": "Bỉ Ngạn Độ Nhân",
+    "nsex": "Nữ",
+    "ninfo": "Người chèo đò bên bờ Hồi Đầu Ngạn, đưa hồn lạc về bờ bên kia, biết rõ mọi yêu vật trong sương.",
+    "muban": "",
+    "taskid": "76,77,78",
+    "mz": "",
+    "rwqy": ""
+  },
+  "43": {
+    "id": 43,
+    "nname": "Thần Nông Thủ Mộ Nhân",
+    "nsex": "Nam",
+    "ninfo": "Hậu duệ canh giữ mộ phần Viêm Đế, tay cầm cuốc thuốc, mắt nhìn thấu khí độc Hồng Hoang.",
+    "muban": "",
+    "taskid": "79,80,81",
+    "mz": "",
+    "rwqy": ""
+  },
+  "44": {
+    "id": 44,
+    "nname": "Bắc Minh Ngư Ông",
+    "nsex": "Nam",
+    "ninfo": "Ông lão câu cá bên cửa biển Bắc Minh, tương truyền từng câu được vảy Côn khi còn trẻ.",
+    "muban": "",
+    "taskid": "82,83,84",
+    "mz": "",
+    "rwqy": ""
+  },
+  "45": {
+    "id": 45,
+    "nname": "Côn Lôn Thủ Sơn Đệ Tử",
+    "nsex": "Nam",
+    "ninfo": "Đệ tử trực sơn môn Côn Lôn, phụng mệnh tông chủ thử thách người muốn lên tiên sơn.",
+    "muban": "",
+    "taskid": "85,86,87",
+    "mz": "",
+    "rwqy": ""
+  },
+  "46": {
+    "id": 46,
+    "nname": "Hàng Yêu Đạo Nhân",
+    "nsex": "Nam",
+    "ninfo": "Đạo nhân mang hồ lô thu yêu, lang bạt Vạn Yêu Lâm đã trăm năm mà chưa thu đủ yêu vương.",
+    "muban": "",
+    "taskid": "88,89,90",
+    "mz": "",
+    "rwqy": ""
+  },
+  "47": {
+    "id": 47,
+    "nname": "Trấn Ma Tướng Quân",
+    "nsex": "Nam",
+    "ninfo": "Tướng quân trấn giữ cửa Cửu U, giáp trụ đã đen kịt vì ma khí nhưng chưa từng lùi một bước.",
+    "muban": "",
+    "taskid": "91,92,93",
+    "mz": "",
+    "rwqy": ""
+  },
+  "48": {
+    "id": 48,
+    "nname": "Thiên Môn Tiếp Dẫn Sứ",
+    "nsex": "Nữ",
+    "ninfo": "Sứ giả tiếp dẫn trước Thiên Môn, chỉ người đủ đạo hạnh mới được nàng mở đường lên Thiên Ngoại Thiên.",
+    "muban": "",
+    "taskid": "94,95,96",
+    "mz": "",
+    "rwqy": ""
   }
 }

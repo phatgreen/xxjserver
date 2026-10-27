@@ -1,4 +1,4 @@
-# ĐỢT C — Nhiệm vụ theo dải cấp 1–500 (THIẾT KẾ — chờ duyệt)
+# ĐỢT C — Nhiệm vụ theo dải cấp 1–500 (ĐÃ LÀM 2026-10-28)
 
 > Lập 2026-10-28. Thuộc kế hoạch tổng `PLAN_MO_RONG_NOI_DUNG.md` (mục 7). Sau đợt A (võ công/công pháp) và B (quái tới cấp 500).
 
@@ -31,12 +31,14 @@ Công thức: `tu vi = max(số cũ, tỉ lệ × cấp² × 110)`; linh thạch
 
 | Loại | Mỗi nhiệm vụ | Hoàn thành tất cả | Tổng tối đa |
 |---|---|---|---|
-| Ngày (5 NV) | 6% cấp | +10% cấp | **40% cấp / ngày** |
-| Tuần (9 NV + tổng hợp) | 20% cấp | +100% cấp | ~2,8 cấp / tuần |
-| Tháng (4 NV + tổng hợp) | 1 cấp | +3 cấp | 7 cấp / tháng |
-| Chính tuyến | 30–100% cấp của chương | — | ~1 lần duy nhất |
+| Ngày (5 NV) | 3% cấp | +5% cấp | **20% cấp / ngày** |
+| Tuần (9 NV + tổng hợp) | 10% cấp | +50% cấp | ~1,4 cấp / tuần |
+| Tháng (4 NV + tổng hợp) | 0,5 cấp | +1,5 cấp | 3,5 cấp / tháng |
+| Chính tuyến | 5–25% cấp (đến khu 5%, diệt quái 12%, hạ boss / đột phá 25%) | — | 1 lần duy nhất |
 
-So sánh: 40% cấp/ngày ≈ hạ thêm 0,4 × cấp con quái cùng cấp (cấp 300 ≈ 124 con) ⇒ đủ hấp dẫn mà không thay thế việc luyện quái.
+So sánh: 20% cấp/ngày ≈ hạ thêm 0,2 × cấp con quái cùng cấp (cấp 300 ≈ 62 con) ⇒ có ích nhưng không thay thế luyện quái.
+Chính tuyến tính theo cấp người chơi nhưng **không vượt trần cấp của chương** (cấp cao làm lại chương đầu không nhận thưởng lớn).
+Mọi con số nằm trong `class/config/nhiemvu_reward_rules.json` — chỉnh không cần sửa code.
 
 Chống lạm dụng: nhiệm vụ "diệt quái" ngày/tuần chỉ tính **quái cấp ≥ cấp mình − 15** (quái thấp hơn không tính).
 
@@ -79,24 +81,25 @@ Mỗi khu 27, 28, 30–36 thêm **1 NPC** ở map cửa vào khu, mỗi NPC 3 nh
 | Nhiệm vụ | Kiểu `renwu` | Nội dung |
 |---|---|---|
 | Chuỗi 1 | chính (rwlx 3) | Diệt 30 quái chủ lực của khu |
-| Chuỗi 2 | chính, nối sau chuỗi 1 | Thu 10 vật phẩm rơi trong khu |
-| Ngày | ngày (rwlx 2) | Diệt 40 Tinh Anh / quái cuối khu — làm lại mỗi ngày |
+| Chuỗi 2 | chính, nối sau chuỗi 1 | Diệt 40 quái map giữa khu (không bắt nộp vật phẩm để khỏi mất đồ) |
+| Ngày | ngày (rwlx 2) | Diệt 20 Tinh Anh map cuối khu — làm lại mỗi ngày |
 
 ⇒ **9 NPC, 27 nhiệm vụ**, có lời thoại/giới thiệu khu theo lore. Thưởng theo cấp khu (C1). Ghi qua `sql/migrate_dot_c.php` (`mid.mnpc`) + `npc_config.json` + `renwu_config.json`.
 
 ### C4. Thưởng trực tuyến (mới)
 
 - Tính thời gian **đang hoạt động** trong ngày: mỗi request cộng thêm khoảng cách tới request trước nếu ≤ 5 phút (treo máy không bấm gì không được tính).
-- Mốc trong ngày: **10 · 30 · 60 · 120 · 240 phút**, bấm nhận ở tab mới "Trực tuyến" trong trang Nhiệm Vụ.
-- Thưởng: linh thạch + Phục Thương Đan / Cường Hóa Thạch / Thể lực; mốc 240' thêm ít ma thạch. Linh thạch và tu vi theo cấp (C1).
+- Mốc trong ngày: **10 · 30 · 60 · 120 · 240 phút**, bấm nhận ở tab mới "Trực Tuyến" trong trang Nhiệm Vụ.
+- Thưởng: linh thạch (2/4/6/8/10 × cấp) + Phục Thương Đan ×2 / Cường Hóa Thạch ×1 / 20 thể lực / Cường Hóa Thạch ×2 / **3 ma thạch**.
 - Bảng mới `player_online_reward(sid, day, seconds, last_ts, claimed)`.
 
 ### C5. Thưởng ngoại tuyến — Bế Quan (mới)
 
 - Lần đầu vào game sau khi offline **≥ 1 giờ**: hiện popup "Bế quan X giờ — nhận Y tu vi".
-- Tu vi = **3% cấp mỗi giờ, tối đa 8 giờ** (= 24% cấp). Không tính nếu đang Tu Luyện (tránh nhận đôi). Cần cấp ≥ 10.
+- Tu vi = **2% cấp mỗi giờ, tối đa 8 giờ mỗi ngày** (= 16% cấp). Không tính nếu đang Tu Luyện (tránh nhận đôi). Cần cấp ≥ 10.
+- Tu vi đầy (chờ Đột Phá) thì chưa cho nhận, tránh mất thưởng.
 - Không có nút "nhân đôi bằng tiền nạp" (tránh P2W).
-- Bảng mới `player_offline_reward(sid, pending_exp, seconds, created)`; giờ offline lấy từ `game1.endtime` (đã làm mới mỗi request).
+- Bảng mới `player_offline_reward(sid, pending_exp, pending_hours, day, hours_today)`; giờ offline lấy từ `game1.endtime` (đã làm mới mỗi request).
 
 ## 4. Triển khai & kiểm thử
 
@@ -110,11 +113,32 @@ Mỗi khu 27, 28, 30–36 thêm **1 NPC** ở map cửa vào khu, mỗi NPC 3 nh
 | 6 | `tests/test_dot_c_*.php` + chạy thật trên DB thật (cloud) | |
 | 7 | Sinh dữ liệu bằng `tools/gen/dot_c_build.py` (chạy lại cho cùng kết quả) | như đợt A/B |
 
-## 5. Cần chủ dự án quyết
+## 5. Quyết định (2026-10-28)
 
-| # | Câu hỏi | Đề xuất |
-|---|---|---|
-| Q1 | Mức thưởng C1 (ngày 40% cấp, tuần ~2,8 cấp, tháng 7 cấp) | Đồng ý như bảng; chỉnh sau khi chạy thật |
-| Q2 | Bế quan: 3%/giờ, tối đa 8 giờ | Đồng ý |
-| Q3 | Thưởng trực tuyến mốc 240' có ma thạch không (bao nhiêu) | 5 ma thạch / ngày |
-| Q4 | Chính tuyến 10 chương ~70 NV như bảng C2 | Đồng ý |
+Chủ dự án đồng ý cả 4 điểm, yêu cầu **không để thưởng nhiều quá** ⇒ mọi mức đã giảm ~một nửa so với đề xuất ban đầu (bảng C1, bế quan 2%/giờ, mốc 240' = 3 ma thạch).
+
+## 6. Đã triển khai
+
+| Hạng mục | File |
+|---|---|
+| Luật thưởng (mọi con số) | `class/config/nhiemvu_reward_rules.json` |
+| Thưởng theo cấp, lọc cấp quái, 6 loại NV mới, chống nhận đúp | `class/function/nhiemvu.php` |
+| Chính tuyến chương 4–13 (67 NV) | `class/config/nhiemvu_main_config.json` (sinh bởi `tools/gen/dot_c_build.py`) |
+| 9 NPC (mã 40–48) × 3 NV (mã 70–96) | `npc_config.json`, `renwu_config.json`, `sql/dot_c_data.json`, `sql/migrate_dot_c.php` |
+| Trực tuyến + Bế Quan | `class/function/online_reward.php`, `game.php` (đếm giờ, tính bế quan lúc đăng nhập), tab Trực Tuyến ở `game/nhiemvu.php`, nhắc ở Đại Sảnh |
+| Móc sự kiện | `nowmid.php` (đến khu + đột phá bù), `pve.php` (mã quái, Tuyệt Kỹ), `boss.php` (tên boss, Tuyệt Kỹ), `thiencoccac.php` (mua bí tịch), `conghuong.php` (bậc Cộng Hưởng) |
+| Sửa kèm | đường dẫn config `__DIR__ . '../../config'` thiếu `/` ở `renwu.php`, `daoju.php`, `yaodan.php`, `wugong.php` (Windows vẫn chạy, Linux/VPS thì hỏng) |
+| Kiểm thử | `tests/test_dot_c.php` (cần DB) — ALL PASS; chụp màn hình thật: tab Chính Tuyến / Trực Tuyến, Bảng Nhiệm Vụ, trang NPC |
+
+Ghi chú: Đại Sảnh hiện không liệt kê NPC trên bản đồ (từ bản gốc) — người chơi gặp NPC qua **Tin Tức → Bảng Nhiệm Vụ → Gặp NPC**.
+
+## 7. Cách chạy trên máy bạn / server
+
+```
+php5.6 sql\migrate_dot_b.php --dry-run   (nếu chưa chạy đợt B)
+php5.6 sql\migrate_dot_b.php --apply
+php5.6 sql\migrate_dot_c.php --dry-run
+php5.6 sql\migrate_dot_c.php --apply
+php5.6 tests\test_dot_c.php
+```
+Bảng `player_online_reward`, `player_offline_reward` tự tạo khi game chạy lần đầu.

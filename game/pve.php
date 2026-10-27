@@ -231,6 +231,10 @@ HTML;
             }
             \player\combat_state_save($sid, $cbState, $dblj);
         }
+        // Chính tuyến: thi triển Tuyệt Kỹ / Tuyệt Chiêu
+        if ($cbMove && $cbMove['tier'] > 1 && function_exists('player\\nhiemvu_main_update')) {
+            \player\nhiemvu_main_update($sid, 'use_move', $dblj, array('tier' => intval($cbMove['tier'])));
+        }
 
         $player->ugj += $jineng->jngj;
         $player->ufy += $jineng->jnfy;
@@ -542,9 +546,11 @@ HTML;
 
         // Nhiệm vụ: diệt quái
         if (function_exists('player\\nhiemvu_update_all')) {
-            \player\nhiemvu_update_all($player->sid, 'kill', 1, $dblj, array(
+            $nvRv = \player\nhiemvu_update_all($player->sid, 'kill', 1, $dblj, array(
                 'monster_level' => intval($guaiwu->glv),
+                'monster_id' => intval($guaiwu->gyid),
             ));
+            if (!empty($nvRv['ok'])) $tishihtml .= "<font color='#facc15'><b>📜 " . $nvRv['msg'] . "</b></font><br/>";
         }
 
 		$sjyxb = mt_rand(1,200);

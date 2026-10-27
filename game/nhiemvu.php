@@ -19,6 +19,14 @@ if ($action === 'claim_daily') {
             ? '<div class="nv-success">'.$r['msg'].'</div>'
             : '<div class="nv-error">'.$r['msg'].'</div>';
     }
+} elseif ($action === 'claim_online') {
+    $oidx = isset($oidx) ? intval($oidx) : (isset($_GET['oidx']) ? intval($_GET['oidx']) : -1);
+    $r = \player\online_reward_claim($sid, $oidx, $player->ulv, $dblj);
+    $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . $r['msg'] . '</div>';
+} elseif ($action === 'claim_offline') {
+    $r = \player\offline_reward_claim($sid, $dblj);
+    $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . $r['msg'] . '</div>';
+    $player = \player\getplayer($sid, $dblj);
 } elseif ($action === 'claim_achievement') {
     $aid = isset($aid) && $aid !== '' ? $aid : (isset($_GET['aid']) ? $_GET['aid'] : '');
     if ($aid) {
@@ -39,6 +47,7 @@ $tabDefs = array(
     'achievements' => 'Thành Tựu',
     'hidden'       => 'Ẩn',
     'main'         => 'Chính Tuyến',
+    'online'       => 'Trực Tuyến',
 );
 $nvUnitVi = array(
     'minutes'   => 'phút tu luyện',
@@ -134,7 +143,7 @@ HTML;
 
 // ─── Daily ─────────────────────────────────────────────────────
 if ($tab === 'daily') {
-    $daily = \player\nhiemvu_daily_get($sid, $dblj);
+    $daily = \player\nhiemvu_apply_reward_list(\player\nhiemvu_daily_get($sid, $dblj), 'daily', $player->ulv);
     $allDone = true;
     $html .= '<div class="nv-card"><div class="nv-title">📋 Nhiệm Vụ Hằng Ngày</div>';
     if (empty($daily)) {
@@ -164,13 +173,16 @@ if ($tab === 'daily') {
             $claimCmd = $encode->encode("cmd=nhiemvu&action=claim_daily&tab=daily&sid=$sid");
             $html .= '<div class="nv-claim-all-wrap"><a class="nv-btn nv-btn-claim" href="?cmd='.$claimCmd.'">NHẬN THƯỞNG NGÀY</a></div>';
         }
+        $dCfg = \player\nhiemvu_daily_config();
+        $dBonus = \player\nhiemvu_reward(isset($dCfg['daily_bonus']) ? $dCfg['daily_bonus'] : array(), 'daily', $player->ulv, 'bonus_pct');
+        $html .= '<div class="nv-desc" style="text-align:center">Hoàn thành tất cả: thưởng thêm '.$nvRewardLine($dBonus).'</div>';
     }
     $html .= '</div>';
 }
 
 // ─── Weekly ────────────────────────────────────────────────────
 elseif ($tab === 'weekly') {
-    $weekly = \player\nhiemvu_weekly_get($sid, $dblj);
+    $weekly = \player\nhiemvu_apply_reward_list(\player\nhiemvu_weekly_get($sid, $dblj), 'weekly', $player->ulv);
     $html .= '<div class="nv-card"><div class="nv-title">📅 Nhiệm Vụ Hằng Tuần</div>';
     if (empty($weekly)) {
         $html .= '<div class="nv-empty">Không có nhiệm vụ tuần này.</div>';
@@ -182,8 +194,8 @@ elseif ($tab === 'weekly') {
             $btnHtml = $nvClaimBtn($q, 'player_nhiemvu_weekly', 'weekly');
             $goal = $nvGoal($q);
             $rewards = array();
-            if ($q['exp'] > 0) $rewards[] = $q['exp'].' EXP';
-            if ($q['lt'] > 0) $rewards[] = $q['lt'].' LT';
+            if ($q['exp'] > 0) $rewards[] = number_format($q['exp']).' EXP';
+            if ($q['lt'] > 0) $rewards[] = number_format($q['lt']).' LT';
             if ($q['mt'] > 0) $rewards[] = $q['mt'].' MT';
             $rewardStr = !empty($rewards) ? '<div class="nv-desc">'.implode(' | ', $rewards).'</div>' : '';
             $html .= '<div class="nv-item">
@@ -205,7 +217,7 @@ elseif ($tab === 'weekly') {
 
 // ─── Monthly ───────────────────────────────────────────────────
 elseif ($tab === 'monthly') {
-    $monthly = \player\nhiemvu_monthly_get($sid, $dblj);
+    $monthly = \player\nhiemvu_apply_reward_list(\player\nhiemvu_monthly_get($sid, $dblj), 'monthly', $player->ulv);
     $html .= '<div class="nv-card"><div class="nv-title">📆 Nhiệm Vụ Hằng Tháng</div>';
     if (empty($monthly)) {
         $html .= '<div class="nv-empty">Không có nhiệm vụ tháng này.</div>';
@@ -339,6 +351,7 @@ elseif ($tab === 'main') {
         $html .= '<div class="nv-empty">Chưa có nhiệm vụ chính tuyến.</div>';
     } else {
         foreach ($mainQuests as $ch) {
+            $ch['quests'] = \player\nhiemvu_apply_reward_list($ch['quests'], 'main', \player\nhiemvu_main_ref_level($ch, $player->ulv));
             $html .= '<div class="nv-achieve-group">
                 <div class="nv-achieve-cat" style="color:#facc15">CH'.$ch['id'].': '.$ch['name'].' <small>Cấp '.$ch['level_range'][0].'-'.$ch['level_range'][1].'</small></div>';
             foreach ($ch['quests'] as $q) {
@@ -357,8 +370,8 @@ elseif ($tab === 'main') {
                     $label = 'Khoá';
                 }
                 $rewards = array();
-                if (intval($q['exp']) > 0) $rewards[] = $q['exp'].' EXP';
-                if (intval($q['lt']) > 0) $rewards[] = $q['lt'].' LT';
+                if (intval($q['exp']) > 0) $rewards[] = number_format($q['exp']).' EXP';
+                if (intval($q['lt']) > 0) $rewards[] = number_format($q['lt']).' LT';
                 if (intval($q['mt']) > 0) $rewards[] = $q['mt'].' MT';
                 $rewardStr = !empty($rewards) ? ' <span style="font-size:11px;color:#888">['.implode(', ', $rewards).']</span>' : '';
                 $goalTxt = \player\nhiemvu_main_goal_text($q);
@@ -379,6 +392,50 @@ elseif ($tab === 'main') {
             }
             $html .= '</div>';
         }
+    }
+    $html .= '</div>';
+}
+
+// ─── Trực tuyến + Bế Quan ──────────────────────────────────────
+if ($tab === 'online') {
+    $off = \player\offline_reward_pending($sid, $dblj);
+    $nvRules = \player\nhiemvu_rules();
+    $offCfg = isset($nvRules['offline']) ? $nvRules['offline'] : array();
+    $html .= '<div class="nv-card"><div class="nv-title">🧘 Bế Quan (ngoại tuyến)</div>';
+    $html .= '<div class="nv-desc" style="text-align:center;margin-bottom:8px">Offline từ ' . intval($offCfg['min_hours']) . ' giờ: mỗi giờ nhận '
+        . floatval($offCfg['exp_pct_per_hour']) . '% tu vi cấp hiện tại, tối đa ' . intval($offCfg['max_hours']) . ' giờ/ngày (cấp ≥ '
+        . intval($offCfg['min_level']) . ', không tính khi đang Tu Luyện).</div>';
+    if ($off['exp'] > 0) {
+        $offCmd = $encode->encode("cmd=nhiemvu&action=claim_offline&tab=online&sid=$sid");
+        $html .= '<div class="nv-item"><div class="nv-info"><div class="nv-name">Đã bế quan ' . $off['hours'] . ' giờ</div><div class="nv-desc">'
+            . number_format($off['exp']) . ' tu vi</div></div><div><a class="nv-btn nv-btn-claim" href="?cmd=' . $offCmd . '">Nhận</a></div></div>';
+    } else {
+        $html .= '<div class="nv-empty">Chưa có tu vi bế quan.</div>';
+    }
+    $html .= '</div>';
+
+    $on = \player\online_reward_status($sid, $player->ulv, $dblj);
+    $html .= '<div class="nv-card"><div class="nv-title">⏱ Thưởng Trực Tuyến Hôm Nay</div>';
+    $html .= '<div class="nv-desc" style="text-align:center;margin-bottom:8px">Đã hoạt động <b style="color:#fde68a">' . $on['minutes']
+        . ' phút</b> (treo máy không thao tác quá 5 phút không được tính).</div>';
+    foreach ($on['list'] as $m) {
+        $rw = array();
+        if ($m['lt'] > 0) $rw[] = number_format($m['lt']) . ' LT';
+        if ($m['mt'] > 0) $rw[] = $m['mt'] . ' MT';
+        if ($m['stamina'] > 0) $rw[] = $m['stamina'] . ' thể lực';
+        foreach ($m['items'] as $it) $rw[] = \player\online_reward_item_name($it) . ' x' . intval($it['count']);
+        if ($m['claimed']) {
+            $btn = '<span class="nv-btn nv-btn-done">✅</span>';
+        } elseif ($m['reached']) {
+            $oc = $encode->encode("cmd=nhiemvu&action=claim_online&oidx={$m['idx']}&tab=online&sid=$sid");
+            $btn = '<a class="nv-btn nv-btn-claim" href="?cmd=' . $oc . '">Nhận</a>';
+        } else {
+            $btn = '<span class="nv-btn nv-btn-lock">⏳</span>';
+        }
+        $pct = min(100, intval($on['minutes'] * 100 / max(1, $m['minutes'])));
+        $html .= '<div class="nv-item"><div class="nv-info"><div class="nv-name">Trực tuyến ' . $m['minutes'] . ' phút</div><div class="nv-desc">'
+            . implode(' | ', $rw) . '</div></div><div class="nv-bar-wrap"><span class="nv-num">' . min($on['minutes'], $m['minutes']) . '/' . $m['minutes']
+            . '</span><div class="nv-bar ' . ($m['reached'] ? 'nv-bar-done' : 'nv-bar-progress') . '"><div class="nv-bar-fill" style="width:' . $pct . '%"></div></div></div><div>' . $btn . '</div></div>';
     }
     $html .= '</div>';
 }

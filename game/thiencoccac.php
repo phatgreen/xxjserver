@@ -182,6 +182,9 @@ if ($canshu != '') {
             \player\cqwg(intval($buy_id), $sid, $dblj);
             $wgName = isset($wgCfg['wgname']) ? $wgCfg['wgname'] : 'Võ công';
             $tscg = wg_popup_html('success', 'Mua thành công: ' . $wgName);
+            if (function_exists('player\\nhiemvu_main_update')) {
+                \player\nhiemvu_main_update($sid, 'learn_book', $dblj); // Chính tuyến: mua bí tịch
+            }
             $player = \player\getplayer($sid, $dblj);
             break;
 
@@ -223,6 +226,9 @@ if ($canshu != '') {
             \player\cqcp(intval($buy_id), $sid, $dblj);
             $cpName = isset($cpCfg['cpname']) ? $cpCfg['cpname'] : 'Công pháp';
             $tscg = wg_popup_html('success', 'Mua thành công: ' . $cpName);
+            if (function_exists('player\\nhiemvu_main_update')) {
+                \player\nhiemvu_main_update($sid, 'learn_book', $dblj); // Chính tuyến: mua bí tịch
+            }
             $player = \player\getplayer($sid, $dblj);
             break;
     }

@@ -123,6 +123,75 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_grant_reward')) {
     }
 }
 
+// ─── Thưởng theo cấp (đợt C) ───────────────────────────────────
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_rules')) {
+    function nhiemvu_rules(){
+        static $cache = null;
+        if ($cache !== null) return $cache;
+        $json = @file_get_contents(__DIR__ . '/../config/nhiemvu_reward_rules.json');
+        $cache = $json ? json_decode($json, true) : array();
+        if (!is_array($cache)) $cache = array();
+        return $cache;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_level_need')) {
+    // Kinh nghiệm cần để lên cấp kế tiếp — cùng công thức getplayer(): (cấp+1)^2 x 110
+    function nhiemvu_level_need($lv){
+        $n = max(1, intval($lv)) + 1;
+        return max(50, $n * $n * 110);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_player_level')) {
+    function nhiemvu_player_level($sid, $dblj){
+        $stmt = $dblj->prepare("SELECT ulv FROM game1 WHERE sid = ? LIMIT 1");
+        $stmt->execute(array($sid));
+        return max(1, intval($stmt->fetchColumn()));
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_reward')) {
+    // Thưởng thực nhận của 1 nhiệm vụ ở cấp $lv: tu vi theo % thanh cấp, linh thạch tăng theo cấp;
+    // số ghi trong config giữ làm mức sàn. $pctKey: exp_pct (thường) / all_pct (tổng hợp) / bonus_pct (thưởng ngày).
+    function nhiemvu_reward($q, $scope, $lv, $pctKey = 'exp_pct'){
+        $rules = nhiemvu_rules();
+        $exp = intval(isset($q['exp']) ? $q['exp'] : 0);
+        $lt  = intval(isset($q['lt']) ? $q['lt'] : 0);
+        $mt  = intval(isset($q['mt']) ? $q['mt'] : 0);
+        if (isset($q['type']) && $q['type'] === 'complete_all' && $pctKey === 'exp_pct') $pctKey = 'all_pct';
+        $pct = isset($q['exp_pct']) ? floatval($q['exp_pct'])
+             : (isset($rules[$scope][$pctKey]) ? floatval($rules[$scope][$pctKey]) : 0);
+        if ($pct > 0) $exp = max($exp, intval(floor(nhiemvu_level_need($lv) * $pct / 100)));
+        $div = isset($rules['lt_level_div']) ? max(1, intval($rules['lt_level_div'])) : 100;
+        if ($lt > 0) $lt = intval(round($lt * (1 + max(1, intval($lv)) / $div)));
+        return array('exp' => $exp, 'lt' => $lt, 'mt' => $mt);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_apply_reward_list')) {
+    // Ghi đè exp/lt/mt trong danh sách nhiệm vụ bằng thưởng thực nhận (để hiển thị).
+    function nhiemvu_apply_reward_list($list, $scope, $lv){
+        foreach ($list as $i => $q) {
+            $r = nhiemvu_reward($q, $scope, $lv);
+            $list[$i]['exp'] = $r['exp'];
+            $list[$i]['lt']  = $r['lt'];
+            $list[$i]['mt']  = $r['mt'];
+        }
+        return $list;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_ref_level')) {
+    // Chính tuyến tính thưởng theo cấp người chơi nhưng không vượt trần cấp của chương
+    // (người cấp cao làm lại chương đầu không nhận thưởng khổng lồ).
+    function nhiemvu_main_ref_level($chapter, $lv){
+        $cap = isset($chapter['level_range'][1]) ? intval($chapter['level_range'][1]) : intval($lv);
+        return max(1, min(intval($lv), $cap));
+    }
+}
+
 // ─── Daily Quests ──────────────────────────────────────────────
 
 if (!function_exists(__NAMESPACE__ . '\\nhiemvu_daily_get')) {
@@ -627,6 +696,24 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_goal_text')) {
                 return 'Cường hóa ' . $slotName . ' tới +' . intval($q['target_plus']);
             case 'breakthrough':
                 return 'Đột phá đạt cấp ' . intval($q['target_level']);
+            case 'reach_region':
+                $qy = isset($GLOBALS['dblj']) ? getqy(intval($q['region']), $GLOBALS['dblj']) : null;
+                return 'Đến khu vực ' . ($qy ? trim(strip_tags($qy->qyname)) : ('#' . intval($q['region'])));
+            case 'kill_monster':
+                $names = array();
+                foreach ($q['monster_ids'] as $gid) {
+                    $g = guaiwu_config_get(intval($gid));
+                    $names[] = isset($g['gname']) ? $g['gname'] : ('quái #' . intval($gid));
+                }
+                return 'Diệt ' . intval($q['target_count']) . ' ' . implode(' / ', $names);
+            case 'kill_boss_name':
+                return 'Hạ ' . implode(' / ', $q['boss_names']);
+            case 'use_move':
+                return 'Thi triển ' . (intval($q['tier']) >= 3 ? 'Tuyệt Chiêu' : 'Tuyệt Kỹ trở lên') . ' ' . intval($q['count']) . ' lần';
+            case 'learn_book':
+                return 'Mua ' . intval($q['count']) . ' bí tịch ở Thiên Cơ Các';
+            case 'conghuong':
+                return 'Kích hoạt ' . intval($q['tiers']) . ' bậc Cộng Hưởng (xem ở trang Cộng Hưởng)';
         }
         return '';
     }
@@ -665,6 +752,8 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_update')) {
                     $lv = isset($context['level']) ? intval($context['level']) : 0;
                     if (!isset($q['target_level']) || $lv < intval($q['target_level'])) continue;
                     $have = $target;
+                } elseif ($type === 'reach_region' || $type === 'conghuong') {
+                    $have = $target;
                 } elseif ($type === 'upgrade_slot') {
                     $plus = isset($context['qianghua']) ? intval($context['qianghua']) : 0;
                     if ($plus < $target) continue;
@@ -680,9 +769,10 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_update')) {
                     $up->execute(array($sid, $qid, $target, $target));
                     $statusMap[$qid] = 2;
 
-                    $exp = intval(isset($q['exp']) ? $q['exp'] : 0);
-                    $lt  = intval(isset($q['lt']) ? $q['lt'] : 0);
-                    $mt  = intval(isset($q['mt']) ? $q['mt'] : 0);
+                    $rw  = nhiemvu_reward($q, 'main', nhiemvu_main_ref_level($ch, nhiemvu_player_level($sid, $dblj)));
+                    $exp = $rw['exp'];
+                    $lt  = $rw['lt'];
+                    $mt  = $rw['mt'];
                     nhiemvu_grant_reward($sid, $exp, $lt, $mt, $dblj);
 
                     $parts = array();
@@ -779,9 +869,20 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_match_type')) {
                 if ($want <= 0) return true; // 'any' or unnamed slot
                 $got = isset($context['slot']) ? nhiemvu_slot_id($context['slot']) : -1;
                 return $got === $want;
+            case 'reach_region':
+                return isset($context['region']) && intval($context['region']) === intval($quest['region']);
+            case 'kill_monster':
+                return isset($context['monster_id']) && in_array(intval($context['monster_id']), array_map('intval', $quest['monster_ids']), true);
+            case 'kill_boss_name':
+                return isset($context['boss_name']) && in_array(trim(strip_tags($context['boss_name'])), $quest['boss_names'], true);
+            case 'use_move':
+                return isset($context['tier']) && intval($context['tier']) >= intval($quest['tier']);
+            case 'conghuong':
+                return isset($context['tiers']) && intval($context['tiers']) >= intval($quest['tiers']);
             case 'alchemy_count':
             case 'craft_count':
             case 'kill_boss':
+            case 'learn_book':
                 return true; // Count-based
             case 'dialogue':
                 return true;
@@ -842,9 +943,16 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_complete_all_sync')) {
 
 if (!function_exists(__NAMESPACE__ . '\\nhiemvu_update_all')) {
     function nhiemvu_update_all($sid, $type, $amount, $dblj, $context = array()){
-        $weeklyTouched   = nhiemvu_weekly_update($sid, $type, $amount, $dblj);
-        nhiemvu_daily_update($sid, $type, $amount, $dblj);
-        $monthlyTouched  = nhiemvu_monthly_update($sid, $type, $amount, $dblj);
+        // Diệt quái thấp hơn cấp mình quá kill_level_gap thì không tính cho NV ngày/tuần/tháng
+        $periodic = true;
+        if ($type === 'kill' && isset($context['monster_level'])) {
+            $rules = nhiemvu_rules();
+            $gap = isset($rules['kill_level_gap']) ? intval($rules['kill_level_gap']) : 15;
+            if (intval($context['monster_level']) < nhiemvu_player_level($sid, $dblj) - $gap) $periodic = false;
+        }
+        $weeklyTouched   = $periodic ? nhiemvu_weekly_update($sid, $type, $amount, $dblj) : false;
+        if ($periodic) nhiemvu_daily_update($sid, $type, $amount, $dblj);
+        $monthlyTouched  = $periodic ? nhiemvu_monthly_update($sid, $type, $amount, $dblj) : false;
         if ($weeklyTouched)  nhiemvu_complete_all_sync($sid, 'weekly', $dblj);
         if ($monthlyTouched) nhiemvu_complete_all_sync($sid, 'monthly', $dblj);
 
@@ -887,7 +995,8 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_update_all')) {
         $mainAlias = array(
             'alchemy' => array('alchemy_count'),
             'craft'    => array('craft_count', 'craft_rarity'),
-            'boss'     => array('kill_boss'),
+            'boss'     => array('kill_boss', 'kill_boss_name'),
+            'kill'     => array('kill', 'kill_monster'),
             'upgrade'  => array('upgrade_slot'),
             'collect'  => array('collect_item', 'collect_multiple'),
         );
@@ -918,9 +1027,10 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_claim_daily_bonus')) {
         if ($stmt->fetch()) return array('ok' => false, 'msg' => 'Đã nhận thưởng ngày rồi.');
 
         $bonus = isset($config['daily_bonus']) ? $config['daily_bonus'] : array('exp' => 1000, 'lt' => 500, 'mt' => 5);
-        $exp = intval($bonus['exp']);
-        $lt = intval($bonus['lt']);
-        $mt = intval($bonus['mt']);
+        $rw = nhiemvu_reward($bonus, 'daily', nhiemvu_player_level($sid, $dblj), 'bonus_pct');
+        $exp = $rw['exp'];
+        $lt = $rw['lt'];
+        $mt = $rw['mt'];
 
         nhiemvu_grant_reward($sid, $exp, $lt, $mt, $dblj);
 
@@ -977,9 +1087,16 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_claim_quest')) {
 
         if (!intval($row['completed']) && intval($row['progress']) < intval($qData['target'])) return array('ok' => false, 'msg' => 'Chưa hoàn thành nhiệm vụ.');
 
-        $exp = intval(isset($qData['exp']) ? $qData['exp'] : 0);
-        $lt = intval(isset($qData['lt']) ? $qData['lt'] : 0);
-        $mt = intval(isset($qData['mt']) ? $qData['mt'] : 0);
+        $scope = ($table === 'player_nhiemvu_daily') ? 'daily' : (($table === 'player_nhiemvu_weekly') ? 'weekly' : 'monthly');
+        $rw = nhiemvu_reward($qData, $scope, nhiemvu_player_level($sid, $dblj));
+        $exp = $rw['exp'];
+        $lt = $rw['lt'];
+        $mt = $rw['mt'];
+
+        // Khóa nhận trước khi phát thưởng (chống bấm đúp nhận 2 lần)
+        $lock = $dblj->prepare("UPDATE $table SET claimed = 1 WHERE sid = ? AND quest_id = ? AND $identifier = ? AND claimed = 0");
+        $lock->execute(array($sid, $questId, $idVal));
+        if ($lock->rowCount() < 1) return array('ok' => false, 'msg' => 'Đã nhận thưởng rồi.');
 
         nhiemvu_grant_reward($sid, $exp, $lt, $mt, $dblj);
 

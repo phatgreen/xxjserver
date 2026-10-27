@@ -327,6 +327,11 @@ HTML;
     }
     \player\combat_state_save($sid, $cbState, $dblj);
 
+    // Chính tuyến: thi triển Tuyệt Kỹ / Tuyệt Chiêu
+    if ($cbMove && $cbMove['tier'] > 1 && function_exists('player\\nhiemvu_main_update')) {
+        \player\nhiemvu_main_update($sid, 'use_move', $dblj, array('tier' => intval($cbMove['tier'])));
+    }
+
     $ran = mt_rand(1,200);//控制暴击概率
     if ($player->ubj >= $ran){
         $cbCritMult = floatval(\player\combat_rule('crit_mult', null, 1.72));
@@ -517,10 +522,12 @@ HTML;
         // Nhiệm vụ: hạ BOSS
         if (function_exists('player\\nhiemvu_update_all')) {
             $nvHpPct = intval($player->umaxhp) > 0 ? round($player->uhp / $player->umaxhp * 100, 1) : 0;
-            \player\nhiemvu_update_all($player->sid, 'boss', 1, $dblj, array(
+            $nvRv = \player\nhiemvu_update_all($player->sid, 'boss', 1, $dblj, array(
                 'boss_level' => intval($boss->bosslv),
+                'boss_name' => $boss->bossname,
                 'player_hp_percent' => $nvHpPct,
             ));
+            if (!empty($nvRv['ok'])) $tishihtml .= "<font color='#facc15'><b>📜 " . $nvRv['msg'] . "</b></font><br/>";
         }
 
 		$stmt = $dblj->prepare("UPDATE mid SET mgtime = :mgtime WHERE mid = :mid");
