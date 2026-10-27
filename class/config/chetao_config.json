@@ -9,7 +9,7 @@
         {"id": 32, "amount": 3}
       ],
       "base_success_rate": 85,
-      "level_required": 300
+      "level_required": 400
     },
     "2": {
       "id": 2,
@@ -20,7 +20,7 @@
         {"id": 36, "amount": 2}
       ],
       "base_success_rate": 85,
-      "level_required": 300
+      "level_required": 600
     },
     "3": {
       "id": 3,
@@ -31,7 +31,7 @@
         {"id": 36, "amount": 3}
       ],
       "base_success_rate": 80,
-      "level_required": 300
+      "level_required": 800
     },
     "4": {
       "id": 4,
@@ -42,7 +42,7 @@
         {"id": 34, "amount": 2}
       ],
       "base_success_rate": 85,
-      "level_required": 300
+      "level_required": 200
     },
     "5": {
       "id": 5,
@@ -64,7 +64,7 @@
         {"id": 33, "amount": 3}
       ],
       "base_success_rate": 80,
-      "level_required": 300
+      "level_required": 400
     },
     "7": {
       "id": 7,
@@ -76,7 +76,7 @@
         {"id": 37, "amount": 1}
       ],
       "base_success_rate": 75,
-      "level_required": 350
+      "level_required": 600
     },
     "8": {
       "id": 8,

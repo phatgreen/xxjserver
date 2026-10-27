@@ -1,4 +1,4 @@
-# ĐỢT F — Trang bị theo dải cấp 1–500 (THIẾT KẾ — chờ duyệt)
+# ĐỢT F — Trang bị theo dải cấp 1–500 (ĐÃ LÀM 2026-10-28)
 
 > Lập 2026-10-28. Thuộc kế hoạch tổng `PLAN_MO_RONG_NOI_DUNG.md`. Số liệu đo bằng mô phỏng
 > (`tools/gen/`-style, script tạm) trên đúng công thức trong code: lên cấp (`upplayerlv`), đột phá (`game/tupo.php`),
@@ -69,11 +69,37 @@ Mô phỏng phương án B (cường hóa +10, trang bị hiện tại):
 
 Triển khai: sinh dữ liệu bằng `tools/gen/dot_f_build.py` (chạy lại cho cùng kết quả), test `tests/test_dot_f.php`, mô phỏng lưu `docs/` để kiểm chứng.
 
-## 5. Cần chủ dự án quyết
+## 5. Quyết định (2026-10-28)
 
-| # | Câu hỏi | Đề xuất |
+Chủ dự án duyệt phương án B: Q1 sửa đột phá · Q2 cường hóa theo gốc · **Q3 phẩm chất theo bậc** · Q4 ô Bảo Vật để sau.
+
+## 6. Đã triển khai
+
+| # | Hạng mục | File |
 |---|---|---|
-| Q1 | Sửa đột phá thành cộng số cố định (F1)? Đây là thay đổi cốt lõi | Đồng ý — không sửa thì mọi cân bằng sau cấp 150 đều vô nghĩa |
-| Q2 | Cường hóa đổi sang +8% chỉ số gốc, không lũy tiến (F6)? | Đồng ý |
-| Q3 | Phẩm chất theo bậc (F5)? Hay muốn phẩm chất là **chỉ số ngẫu nhiên khi rơi** (cùng món, phẩm cao mạnh hơn)? | Theo bậc — đơn giản, dễ cân; phẩm ngẫu nhiên để đợt sau nếu cần |
-| Q4 | Ô 16 Bảo Vật: làm ngay hay để sau? | Để sau (cần thiết kế hiệu ứng riêng) |
+| F1 | Đột phá mọi giai cộng số cố định (`2+cấp/2,5` công, `3+cấp/2` phòng, `4+cấp/1,2` máu). Chỉ số đã có giữ nguyên | `game/tupo.php` |
+| F2–F5 | 215 món (thêm 35): đủ 15 ô ở cả 11 bậc, bậc 500 "Hồng Mông" (Thần Trang chung bộ 9 với bậc 600), phẩm chất = bậc, chỉ số đủ bộ ≈ 50% chỉ số gốc nhân vật (bậc 1/10/30 giữ nguyên) | `class/config/zhuangbei_config.json` (sinh bởi `tools/gen/dot_f_build.py` từ bản gốc `tools/gen/data/zhuangbei_dot_f_src.json`) |
+| F6 | Cường hóa +8% chỉ số gốc/cấp; đồ DB còn theo gốc cũ được đưa về gốc mới ở lần cường hóa kế | `class/player.php` (`upzbsx`) |
+| F7 | Thần Trang "Hoàn chỉnh" khi đủ 15 món, giao diện hiện /15 | `class/function/taozhuang.php`, `game/taozhuang.php` |
+| F8 | 6 công thức chế tạo: cấp yêu cầu = bậc đồ | `class/config/chetao_config.json` |
+| F9 | Quái đợt B (200–283): máu ×1,4, công ×1,5–2,1 theo cấp; 9 boss cập nhật qua migrate. Quái cấp ≥ 450 rơi thêm đồ bậc 500 | `guaiwu_config.json`, `sql/dot_f_data.json`, `sql/migrate_dot_f.php` |
+| Test | `tests/test_dot_f.php` (cần DB) — ALL PASS; test đợt B cập nhật quy tắc rơi bậc 500 |
+
+Mô phỏng sau đợt F (nhân vật đủ bộ, cường hóa +10, quái Thường cùng cấp):
+
+| Cấp | 80 | 120 | 200 | 300 | 400 | 500 |
+|---|---|---|---|---|---|---|
+| Đòn hạ quái | 7,2 | 4,9 | 4,7 | 5,2 | 3,9 | 7,0 |
+| Quái cần … đòn hạ người | 35 | 36 | 64 | 53 | 45 | 46 |
+
+Quái cũ (cấp ≤ 105) giữ nguyên: 3–7 đòn hạ quái, quái cần 50–180 đòn — giai đoạn tân thủ dễ thở.
+Quái đang có trên bản đồ giữ chỉ số cũ tới lần sinh lại kế tiếp.
+
+## 7. Cách chạy trên máy bạn / server
+
+```
+php5.6 sql\migrate_dot_f.php --dry-run
+php5.6 sql\migrate_dot_f.php --apply
+php5.6 tests\test_dot_f.php
+```
+(Chạy sau `migrate_dot_b.php`.)

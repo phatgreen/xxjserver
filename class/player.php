@@ -1513,7 +1513,7 @@ function upzbsx($zbnowid,$upsx,$sid,$dblj){
     }
 
     $zbnowid = intval($zbnowid);
-    $stmt = $dblj->prepare("select pz.$upsx as zbsx, pz.qianghua, g.ulv from playerzhuangbei pz inner join game1 g on pz.sid = g.sid WHERE pz.zbnowid=? AND pz.sid=?");
+    $stmt = $dblj->prepare("select pz.$upsx as zbsx, pz.qianghua, pz.zbid, g.ulv from playerzhuangbei pz inner join game1 g on pz.sid = g.sid WHERE pz.zbnowid=? AND pz.sid=?");
     $stmt->execute(array($zbnowid, $sid));
     $row = $stmt->fetch(\PDO::FETCH_ASSOC);
     if (!$row) {
@@ -1530,9 +1530,16 @@ function upzbsx($zbnowid,$upsx,$sid,$dblj){
     $djsum = $zbqh *3+1;
     $ret = \player\deledjsum(1,$djsum,$sid,$dblj);
     if ($ret){
-        $upint = round($zbsx*0.08);//强化成长，强化加成
+        // Đợt F: mỗi cấp cường hóa +8% chỉ số GỐC (config), không lũy tiến trên chỉ số đã cường hóa.
+        $zbCfgRow = zhuangbei_config_get(intval(isset($row['zbid']) ? $row['zbid'] : 0));
+        $zbBase = ($zbCfgRow && isset($zbCfgRow[$upsx])) ? intval($zbCfgRow[$upsx]) : $zbsx;
+        $upint = round($zbBase*0.08);
         if ($upint<1){
             $upint = 1;
+        }
+        // DB lưu chỉ số tuyệt đối; nếu thấp hơn gốc mới (config vừa nâng) thì đưa về gốc trước khi cộng.
+        if ($zbsx < $zbBase) {
+            $upint += $zbBase - $zbsx;
         }
         $sjs = mt_rand(1,35);
         if ($sjs <= $zbqh){

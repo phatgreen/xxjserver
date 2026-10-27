@@ -67,7 +67,7 @@ if (!function_exists('tz_ui_progress')) {
     function tz_ui_progress($count)
     {
         $count = intval($count);
-        $percent = min(100, intval($count / 16 * 100));
+        $percent = min(100, intval($count / 15 * 100)); // Hoàn chỉnh = 15 món (ô Bảo Vật chưa có đồ)
         return '<div class="tz-progress"><div class="tz-progress-in" style="width:'.$percent.'%"></div></div>';
     }
 }
@@ -119,6 +119,7 @@ $total = isset($summary['total_percent']) ? $summary['total_percent'] : array();
 $activeCount = isset($summary['active_count']) ? intval($summary['active_count']) : 0;
 $bestTier = isset($summary['best_tier']) ? intval($summary['best_tier']) : 0;
 $bestStage = isset($summary['best_stage']) ? intval($summary['best_stage']) : 0;
+$bestStageView = min($bestStage, 15);
 
 // Danh sách trang bị đang mặc.
 $equipHtml = '';
@@ -167,8 +168,8 @@ if (isset($summary['groups']) && is_array($summary['groups'])) {
         if (!empty($group['active'])) {
             $activeHtml .= '<div class="tz-active-card">';
             $activeHtml .= '<div class="tz-active-head">';
-            $activeHtml .= '<div><div class="tz-active-name">'.tz_ui_star_html($tier, true).'</div><div class="tz-active-sub">'.$title.' · Mốc '.$stage.'/16</div></div>';
-            $activeHtml .= '<div class="tz-count-badge">'.$count.'/16</div>';
+            $activeHtml .= '<div><div class="tz-active-name">'.tz_ui_star_html($tier, true).'</div><div class="tz-active-sub">'.$title.' · Mốc '.min($stage, 15).'/15</div></div>';
+            $activeHtml .= '<div class="tz-count-badge">'.$count.'/15</div>';
             $activeHtml .= '</div>';
             $activeHtml .= tz_ui_progress($count);
             $activeHtml .= '<div class="tz-attr-grid">';
@@ -227,7 +228,7 @@ $tzhtml = <<<HTML
             <div class="tz-total-card"><span>⚔ Tổng Công</span><b>+$totalGj%</b></div>
             <div class="tz-rank-card">
                 {$bestTier}★
-                <small>{$bestStage}/16</small>
+                <small>{$bestStageView}/15</small>
             </div>
         </div>
     </div>

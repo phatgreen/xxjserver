@@ -32,7 +32,8 @@ foreach ($gw as $g) {
     foreach (explode(',', $g['gzb']) as $zid) {
         $zid = intval($zid);
         if (!isset($zbLv[$zid])) $over[] = "{$g['id']}: zb $zid khong ton tai";
-        elseif ($zbLv[$zid] > intval($g['glv'])) $over[] = "{$g['id']} lv{$g['glv']}: zb $zid lv{$zbLv[$zid]}";
+        // Đợt F: quái cấp ≥ 450 được rơi đồ bậc 500 (bậc cuối dải 1–500)
+        elseif ($zbLv[$zid] > intval($g['glv']) && !($zbLv[$zid] === 500 && intval($g['glv']) >= 450)) $over[] = "{$g['id']} lv{$g['glv']}: zb $zid lv{$zbLv[$zid]}";
     }
 }
 tassert('Q2 trang bi roi khong vuot cap quai', $over, array());

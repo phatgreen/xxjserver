@@ -197,15 +197,11 @@ if ($tupo != 8) {
                     $failStats = '<div><span>Kết quả</span><b>thất bại</b></div><div><span>Linh thạch</span><b>đã hao</b></div><div><span>Linh khí</span><b>chưa ổn</b></div><div><span>Cảnh giới</span><b>giữ nguyên</b></div>';
                     $ts .= makeBreakFailEffect('Đột phá thất bại', 'Linh khí chưa đủ ổn định để vượt qua lần khảo nghiệm này. Hãy tích lũy thêm trước khi thử lại.', $failStats);
                 } else {
-                    if ($tupo == 1) {
-                        $uphp = 4 + round($player->ulv / 1.2);
-                        $upgj = 2 + round($player->ulv / 2.5);
-                        $upfy = 3 + round($player->ulv / 2);
-                    } else {
-                        $uphp = 2 + round($player->uhp / 20);
-                        $upgj = 1 + round($player->ugj / 100);
-                        $upfy = 1 + round($player->ufy / 100);
-                    }
+                    // Đợt F: mọi lần đột phá cộng số cố định theo cấp. Bản cũ (giai thường) cộng
+                    // 1% tổng công/phòng + 5% máu hiện tại => lũy tiến theo cấp số nhân (máu vô hạn từ ~cấp 150).
+                    $uphp = 4 + round($player->ulv / 1.2);
+                    $upgj = 2 + round($player->ulv / 2.5);
+                    $upfy = 3 + round($player->ulv / 2);
 
                     \player\upplayerlv($sid, $dblj);
                     \player\addplayersx("umaxhp", $uphp, $sid, $dblj);

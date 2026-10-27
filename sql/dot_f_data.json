@@ -1,0 +1,59 @@
+{
+ "_note": "Sinh bởi tools/gen/dot_f_build.py — dùng cho sql/migrate_dot_f.php",
+ "bosses": [
+  {
+   "bossname": "Boss·Tây Lương Sa Vương",
+   "bosslv": 92,
+   "bosshp": 272700,
+   "bossgj": 2706
+  },
+  {
+   "bossname": "Boss·Hoài Nam Vương",
+   "bosslv": 150,
+   "bosshp": 611400,
+   "bossgj": 6651
+  },
+  {
+   "bossname": "Boss·Bỉ Ngạn Minh Vương",
+   "bosslv": 200,
+   "bosshp": 983500,
+   "bossgj": 13233
+  },
+  {
+   "bossname": "Boss·Cộng Công Tàn Hồn",
+   "bosslv": 250,
+   "bosshp": 1421800,
+   "bossgj": 16803
+  },
+  {
+   "bossname": "Boss·Bắc Minh Côn Vương",
+   "bosslv": 300,
+   "bosshp": 1921500,
+   "bossgj": 28181
+  },
+  {
+   "bossname": "Boss·Côn Lôn Kiếm Tôn",
+   "bosslv": 350,
+   "bosshp": 2478800,
+   "bossgj": 33449
+  },
+  {
+   "bossname": "Boss·Vạn Yêu Hoàng",
+   "bosslv": 400,
+   "bosshp": 3090600,
+   "bossgj": 50035
+  },
+  {
+   "bossname": "Boss·Cửu U Ma Tôn",
+   "bosslv": 450,
+   "bosshp": 3754500,
+   "bossgj": 57238
+  },
+  {
+   "bossname": "Boss·Thiên Ngoại Thiên Chủ",
+   "bosslv": 500,
+   "bosshp": 4468400,
+   "bossgj": 79472
+  }
+ ]
+}

@@ -177,7 +177,8 @@ function taozhuang_stage_by_count($count)
 {
     $count = intval($count);
 
-    if ($count >= 16) return 16;
+    // Mốc "Hoàn chỉnh" (khóa 16 trong config) đạt khi đủ 15 món: ô 16 Bảo Vật chưa có trang bị (đợt F).
+    if ($count >= 15) return 16;
     if ($count >= 12) return 12;
     if ($count >= 8)  return 8;
     if ($count >= 4)  return 4;
