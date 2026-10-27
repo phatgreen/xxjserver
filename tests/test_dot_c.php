@@ -125,7 +125,8 @@ tassert('D6 khong nhan 2 lan', $r['ok'], false);
 tassert('D6 linh thach = 2 x cap', intval(\player\getplayer($SID, $db)->uyxb), 200);
 
 // ── D7. Bế Quan ───────────────────────────────────────────────
-seed(55, ", endtime = DATE_SUB(NOW(), INTERVAL 5 HOUR)");
+$off5h = date('Y-m-d H:i:s', time() - 5 * 3600); // giờ PHP như game.php (MySQL có thể lệch múi giờ)
+seed(55, ", endtime = '$off5h'");
 $p = \player\getplayer($SID, $db);
 $e1 = \player\offline_reward_on_login($p, $db);
 tassert('D7 offline 5 gio = 10% thanh cap', $e1, intval(floor(56 * 56 * 110 * 2 * 5 / 100)));
@@ -136,7 +137,7 @@ $r = \player\offline_reward_claim($SID, $db);
 \player\player_cache_clear($SID);
 tassert('D7 nhan tu vi be quan', $r['ok'] && intval(\player\getplayer($SID, $db)->uexp) === $e1 + $e2, true);
 tassert('D7 khong nhan 2 lan', \player\offline_reward_claim($SID, $db)['ok'], false);
-seed(55, ", endtime = DATE_SUB(NOW(), INTERVAL 5 HOUR), sfxl = 1");
+seed(55, ", endtime = '$off5h', sfxl = 1");
 tassert('D7 dang Tu Luyen khong tinh', \player\offline_reward_on_login(\player\getplayer($SID, $db), $db), 0);
 
 cleanup();
