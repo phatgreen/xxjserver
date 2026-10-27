@@ -59,7 +59,7 @@ $tpLv        = $tpMaster ? intval($tpMaster['lv']) : 0;
 $tpLvCap     = \player\tianfu_lv_cap($tpQ);
 $tpFx        = \player\tianfu_fx_class($tpQ);
 $tpTierColor = $tpQ > 0 ? \player\tianfu_quality_color($tpQ) : '#9e9e9e';
-$tpQName     = $tpQ > 0 ? \player\tianfu_quality_name($tpQ) : 'Chưa khai phú';
+$tpQName     = $tpQ > 0 ? \player\tianfu_quality_name($tpQ) : 'Chưa mở thiên phú';
 $tpQIcon     = $tpQ > 0 ? \player\tianfu_quality_icon($tpQ) : '⚪';
 
 // Dem so mon da so huu trong tung nhom — dung cho rail (is-done) + do sang cua noi (is-lit)
@@ -159,7 +159,7 @@ foreach ($tpGl as $tpKi => $tpGrp):
         }
     ?></div>
 <?php if (!$tpMaster): ?>
-    <div class="tp-note">Chưa có Chủ Phú — vào <b>Phú Các</b> để lập, hoặc <b>Khai Phú</b> để uống <?= htmlspecialchars($tpPill['name']) ?>.</div>
+    <div class="tp-note">Chưa có Chủ Phú — vào <b>Phú Các</b> để lập, hoặc <b>Mở Thiên Phú</b> bằng <?= htmlspecialchars($tpPill['name']) ?>.</div>
 <?php elseif (count($tpOpened) < 4): ?>
     <div class="tp-note dim">Còn <?= 4 - count($tpOpened) ?> Ô Kích Hoạt chưa mở — cần cấp <?= intval($tpSlots[count($tpOpened)]['ulv']) ?>.</div>
 <?php endif; ?>
@@ -224,8 +224,8 @@ foreach ($tpSlots as $tpSd):
                 <div class="tp-forge-pct">Trong túi: <b><?= $tpPillSum ?></b> <?= htmlspecialchars($tpPill['name']) ?></div>
             </div>
             <div class="tp-forge-row">
-                <div class="tp-forge-cost">Mỗi lần khai mở là một thiên phú; trùng sẽ tăng thêm một phẩm chất.</div>
-                <a class="tp-act tp-act-open" href="?cmd=<?= $tpOpenCmd ?>">Khai Phú</a>
+                <div class="tp-forge-cost">Mỗi lần mở là một thiên phú; trùng sẽ tăng thêm một phẩm chất.</div>
+                <a class="tp-act tp-act-open" href="?cmd=<?= $tpOpenCmd ?>">Mở Thiên Phú</a>
             </div>
 <?php endif; ?>
         </div>
@@ -293,7 +293,7 @@ foreach ($tpSlots as $tpSd):
 <nav class="tp-tabbar">
     <a class="on" href="?cmd=<?= $tpSelfCmd ?>"><i>🌟</i><b>Thiên Phú</b></a>
     <a href="?cmd=<?= $tpCollCmd ?>"><i>🗄</i><b>Phú Các</b></a>
-    <a href="?cmd=<?= $tpOpenCmd ?>"><i>⚗</i><b>Khai Phú</b></a>
+    <a href="?cmd=<?= $tpOpenCmd ?>"><i>⚗</i><b>Mở Thiên Phú</b></a>
     <a href="?cmd=<?= $tpZtCmd ?>"><i>👤</i><b>Nhân Vật</b></a>
 </nav>
 </div>

@@ -86,7 +86,7 @@ tassert('P2 luoi dung 18 o', substr_count($g2, 'class="tpc-cell') , 18);
 tassert('P2 panel chi tiet co mat (khong can hover)', strpos($g2, 'tpc-detail') !== false, true);
 tassert('P2 o id1 dang is-lock', strpos($g2, 'tpc-cell is-lock is-sel') !== false, true);
 tassert('P2 GET thuan khong co nut ghi nao', strpos($g2, 'name="tp_action"') === false, true);
-tassert('P2 co loi dan ve Khai Phu', strpos($g2, 'Khai Phú') !== false, true);
+tassert('P2 co loi dan ve Mo Thien Phu', strpos($g2, 'Mở Thiên Phú') !== false, true);
 
 // ===== P3: Khai Phu (Task 10) — GET thuan, chua co dan =====
 $g3 = getpage("cmd=tianfu_open&sid=$E2ESID");
@@ -109,7 +109,7 @@ tok('P4 GET lan 1', $g4a); tok('P4 GET lan 2', $g4b);
 tassert('P4 2 lan GET khong lam mat dan', pillCount($db, $E2ESID), 3);
 tassert('P4 GET khong sinh ket qua', strpos($g4a, 'tpo-result') === false && strpos($g4b, 'tpo-result') === false, true);
 tassert('P4 nut mo khoa khi co dan', strpos($g4b, 'class="tpo-act is-off"') === false, true);
-tassert('P4 so lan khai mo van 0', strpos($g4b, 'đã khai mở <b>0</b>') !== false, true);
+tassert('P4 so lan khai mo van 0', strpos($g4b, 'đã mở <b>0</b>') !== false, true);
 
 // ===== P5: POST tp_action=open — roll that, tru dung 1 dan =====
 $p5 = postpage("cmd=tianfu_open&sid=$E2ESID", array('tp_action' => 'open'));
@@ -123,7 +123,7 @@ $slotRow = $slotSt->fetch(PDO::FETCH_ASSOC);
 tassert('P5 khong tu dat lam chu phu (slot = 0)', intval($slotRow['slot']), 0);
 tassert('P5 pham trong khoang 1..10', intval($slotRow['quality']) >= 1 && intval($slotRow['quality']) <= 10, true);
 tassert('P5 log kind=open duoc ghi', intval($db->query("SELECT COUNT(*) FROM player_tianfu_log WHERE sid = " . $db->quote($E2ESID) . " AND kind = 'open'")->fetchColumn()), 1);
-tassert('P5 dem so lan khai mo tang len 1', strpos($p5, 'đã khai mở <b>1</b>') !== false, true);
+tassert('P5 dem so lan khai mo tang len 1', strpos($p5, 'đã mở <b>1</b>') !== false, true);
 
 // ===== P6: POST khi het dan — msg bad, khong ghi gi =====
 $db->exec("UPDATE playerdaoju SET djsum = 0 WHERE sid = '$E2ESID' AND djid = 114");

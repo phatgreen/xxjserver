@@ -361,7 +361,7 @@ $tpIcon   = !empty($player->tianfu_icon) ? $player->tianfu_icon : '☯';
 $tpColor  = !empty($player->tianfu_color) ? $player->tianfu_color : '#9e9e9e';
 $tpMaster = ($player->tianfu_name !== '')
     ? $player->tianfu_name . ' · ' . \player\tianfu_quality_name(intval($player->tianfu_quality))
-    : 'Chưa khai phú';
+    : 'Chưa mở thiên phú';
 $tpSlots  = intval($player->tianfu_bonus['activated_count']) . ' / ' . count(\player\tianfu_slot_defs());
 
 $html = <<<HTML

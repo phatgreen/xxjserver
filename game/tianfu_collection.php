@@ -155,7 +155,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
             <span><?php
                 echo $tpcHas
                     ? ('Lv ' . intval($tpcR2['lv']) . ' · ' . \player\tianfu_quality_name($tpcRq))
-                    : 'Chưa khai mở';
+                    : 'Chưa mở';
             ?></span>
         </a>
 <?php endfor; ?>
@@ -168,7 +168,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
             <span class="tpc-detail-q"><?php
                 echo $tpcHave
                     ? (htmlspecialchars(\player\tianfu_quality_name($tpcQ)) . ' · cấp tối đa ' . $tpcCapLv)
-                    : 'Chưa khai mở';
+                    : 'Chưa mở';
             ?></span>
         </div>
         <div class="tpc-detail-desc"><?= htmlspecialchars($tpcDef ? $tpcDef['desc'] : '') ?></div>
@@ -183,7 +183,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
             ?></div>
             <div>Cộng <?= htmlspecialchars($tpcGateName) ?> hiện hưởng: <b><?= $tpcGateNow ?><?= $tpcGateUnit === '%' ? '' : ' ' ?><?= htmlspecialchars($tpcGateUnit) ?></b> (xem trang Thiên Phú)</div>
 <?php else: ?>
-            <div class="no"><i class="tp-emoji">🔒</i> Chưa khai mở — cần <b><?= htmlspecialchars($tpcPill['name']) ?></b>. Trong túi có <b><?= $tpcPillSum ?></b> viên.</div>
+            <div class="no"><i class="tp-emoji">🔒</i> Chưa mở — cần <b><?= htmlspecialchars($tpcPill['name']) ?></b>. Trong túi có <b><?= $tpcPillSum ?></b> viên.</div>
 <?php endif; ?>
         </div>
 <?php if ($tpcHave && count($tpcLvRows) > 0): ?>
@@ -246,7 +246,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
         </div>
 <?php else: ?>
         <div class="tpc-acts">
-            <a class="tpc-act" href="?cmd=<?= $tpcOpenPageCmd ?>">Khai Phú</a>
+            <a class="tpc-act" href="?cmd=<?= $tpcOpenPageCmd ?>">Mở Thiên Phú</a>
         </div>
 <?php endif; ?>
     </div>
@@ -255,7 +255,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
 <nav class="tp-tabbar">
     <a href="?cmd=<?= $tpcMainCmd ?>"><i class="tp-emoji">🌟</i><b>Thiên Phú</b></a>
     <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_collection&id=$tpcSel&sid=$sid") ?>"><i class="tp-emoji">🗄</i><b>Phú Các</b></a>
-    <a href="?cmd=<?= $tpcOpenPageCmd ?>"><i class="tp-emoji">⚗</i><b>Khai Phú</b></a>
+    <a href="?cmd=<?= $tpcOpenPageCmd ?>"><i class="tp-emoji">⚗</i><b>Mở Thiên Phú</b></a>
     <a href="?cmd=<?= $tpcZtCmd ?>"><i class="tp-emoji">👤</i><b>Nhân Vật</b></a>
 </nav>
 </div>

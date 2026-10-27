@@ -476,7 +476,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_open')) {
             // Ly ra khong xay ra; hoan lai dan de nguoi choi khong mat oan.
             $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + 1 WHERE sid = ? AND djid = ?")
                  ->execute(array($sid, $djid));
-            $bad['msg'] = 'Khai mở thất bại, đan đã được hoàn lại.';
+            $bad['msg'] = 'Mở thất bại, đan đã được hoàn lại.';
             return $bad;
         }
         $id  = intval($picked);
@@ -515,7 +515,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_open')) {
             'talent'  => $def,
             'quality' => $quality,
             'is_new'  => $isNew,
-            'msg'     => ($isNew ? 'Khai mở được ' : 'Luyện thêm phẩm chất cho ')
+            'msg'     => ($isNew ? 'Mở được ' : 'Luyện thêm phẩm chất cho ')
                         . $def['name'] . ' — ' . $qdef['name'],
         );
     }
@@ -561,7 +561,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_lvup')) {
         $O = tianfu_owned($sid, $dblj);
         $id = intval($id);
         if (intval($O[$id]['have']) !== 1) {
-            $empty['msg'] = 'Chưa khai mở thiên phú này — cần Khai Phú Đan.';
+            $empty['msg'] = 'Chưa mở thiên phú này — cần Khai Phú Đan.';
             return $empty;
         }
         $lv  = intval($O[$id]['lv']);
@@ -621,7 +621,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_break')) {
         $O  = tianfu_owned($sid, $dblj);
         $id = intval($id);
         if (intval($O[$id]['have']) !== 1) {
-            $empty['msg'] = 'Chưa khai mở thiên phú này.';
+            $empty['msg'] = 'Chưa mở thiên phú này.';
             return $empty;
         }
         $q   = intval($O[$id]['quality']);
@@ -785,7 +785,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
 
         if ($id > 0) {
             if (intval($O[$id]['have']) !== 1) {
-                $bad['msg'] = 'Chưa khai mở thiên phú này — cần Khai Phú Đan.';
+                $bad['msg'] = 'Chưa mở thiên phú này — cần Khai Phú Đan.';
                 return $bad;
             }
             if ($slot > 0) {

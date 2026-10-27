@@ -61,10 +61,10 @@ $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
 <?php endif; ?>
 
     <div class="tpo-card">
-        <div class="tpo-title"><i class="tp-emoji">⚗</i> KHAI PHÚ</div>
+        <div class="tpo-title"><i class="tp-emoji">⚗</i> MỞ THIÊN PHÚ</div>
         <div class="tpo-pill">
             <?= htmlspecialchars($tpoPill['name']) ?> trong túi: <b><?= $tpoHave ?></b>
-            · đã khai mở <b><?= $tpoCount ?></b> lần
+            · đã mở <b><?= $tpoCount ?></b> lần
             · Linh Thạch <b><?= number_format($tpoW['uyxb'], 0, ',', '.') ?></b>
         </div>
 
@@ -80,7 +80,7 @@ $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
 
         <form method="post" action="?cmd=<?= $tpoPostCmd ?>">
             <input type="hidden" name="tp_action" value="open">
-            <button type="submit" class="tpo-act<?= $tpoHave > 0 ? '' : ' is-off' ?>" <?= $tpoHave > 0 ? '' : 'disabled' ?>>Khai Mở</button>
+            <button type="submit" class="tpo-act<?= $tpoHave > 0 ? '' : ' is-off' ?>" <?= $tpoHave > 0 ? '' : 'disabled' ?>>Mở Thiên Phú</button>
         </form>
 
         <table class="tpo-table">
@@ -109,7 +109,7 @@ $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
 <nav class="tp-tabbar">
     <a href="?cmd=<?= $tpoMainCmd ?>"><i class="tp-emoji">🌟</i><b>Thiên Phú</b></a>
     <a href="?cmd=<?= $tpoColCmd ?>"><i class="tp-emoji">🗄</i><b>Phú Các</b></a>
-    <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_open&sid=$sid") ?>"><i class="tp-emoji">⚗</i><b>Khai Phú</b></a>
+    <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_open&sid=$sid") ?>"><i class="tp-emoji">⚗</i><b>Mở Thiên Phú</b></a>
     <a href="?cmd=<?= $tpoZtCmd ?>"><i class="tp-emoji">👤</i><b>Nhân Vật</b></a>
 </nav>
 </div>
