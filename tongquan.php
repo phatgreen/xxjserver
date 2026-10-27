@@ -170,7 +170,7 @@ $GLOBALS['TQ_SLOTS'] = array(0=>'—',1=>'Vũ Khí',2=>'Thiên Thuẫn',3=>'Thi�
     6=>'Giới Chỉ',7=>'Yêu Đai',8=>'Phi Phong',9=>'Linh Phù',10=>'Ngọc Nhãn',11=>'Cổ Ngọc',
     12=>'Vai Khôi',13=>'Linh Đai',14=>'Linh Bội',15=>'Tọa Kỵ',16=>'Bảo Vật');
 $GLOBALS['TQ_WGCAT'] = array('khinh_cong'=>'Khinh Công','ngoai_cong'=>'Ngoại Công','noi_cong'=>'Nội Công','tap_ky'=>'Tạp Kỹ');
-$GLOBALS['TQ_WGRAR'] = array('nhap_mon'=>'Nhập Môn','trung_cap'=>'Trung Cấp','thuong_thua'=>'Thường Thừa','than_cong'=>'Thần Công');
+$GLOBALS['TQ_WGRAR'] = array('nhap_mon'=>'Cơ Bản','ha_thua'=>'Hạ Thừa','trung_cap'=>'Trung Cấp','thuong_thua'=>'Thượng Thừa','than_cong'=>'Tuyệt Thế','tien_dao'=>'Tiên Đạo');
 $GLOBALS['TQ_CPEFF'] = array('absorb_speed'=>'Hút linh khí','exp_bonus'=>'EXP tu luyện','hp_regen'=>'Hồi máu',
     'drop_rate'=>'Tỉ lệ rơi','dmg_reduce'=>'Giảm sát thương','heal_bonus'=>'Tăng trị liệu','def_bonus'=>'Tăng phòng',
     'mining_bonus'=>'Khai khoáng','atk_bonus'=>'Tăng công','crit_dmg'=>'Bạo thương','stone_bonus'=>'Đá quý');

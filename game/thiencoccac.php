@@ -20,8 +20,10 @@ $rangesjjClean = array();
 require __DIR__ . '/../class/rangesjj.php';
 foreach ($rangesjj as $idx => $fontHtml) {
     $clean = preg_replace('#<[^>]+>#', '', $fontHtml);
-    $rangesjjClean[$idx] = trim($clean);
+    // realm_require / jingjieValue tính từ 1 (= chỉ số cảnh giới + 1) => lưu tên theo chỉ số + 1.
+    $rangesjjClean[$idx + 1] = trim($clean);
 }
+$rangesjjClean[0] = isset($rangesjjClean[1]) ? $rangesjjClean[1] : 'Nhập Môn';
 $playerRealmName = isset($rangesjjClean[$jj]) ? $rangesjjClean[$jj] : 'Nhập Môn';
 
 $giaiNames = array(
@@ -86,16 +88,20 @@ $wgCatCss = array(
     'tap_ky'      => 'wcat-tap',
 );
 $wgRarityNames = array(
-    'nhap_mon'   => 'Nhập Môn',
+    'nhap_mon'   => 'Cơ Bản',
+    'ha_thua'    => 'Hạ Thừa',
     'trung_cap'  => 'Trung Cấp',
     'thuong_thua'=> 'Thượng Thừa',
-    'than_cong'  => 'Thần Công',
+    'than_cong'  => 'Tuyệt Thế',
+    'tien_dao'   => 'Tiên Đạo',
 );
 $wgRarityCss = array(
     'nhap_mon'   => 'wrar-nhap',
+    'ha_thua'    => 'wrar-ha',
     'trung_cap'  => 'wrar-trung',
     'thuong_thua'=> 'wrar-thuong',
     'than_cong'  => 'wrar-than',
+    'tien_dao'   => 'wrar-tien',
 );
 $elementNames = array(
     'kim'  => 'Kim',
@@ -261,7 +267,7 @@ if ($currentTab === 'wg') {
     foreach ($wgCatOrder as $cat) {
         if (!isset($grouped[$cat]) || count($grouped[$cat]) == 0) continue;
         $items = $grouped[$cat];
-        $rarityOrder = array('nhap_mon', 'trung_cap', 'thuong_thua', 'than_cong');
+        $rarityOrder = array('nhap_mon', 'ha_thua', 'trung_cap', 'thuong_thua', 'than_cong', 'tien_dao');
         usort($items, function($a, $b) use ($rarityOrder) {
             $ai = array_search($a['rarity'], $rarityOrder);
             $bi = array_search($b['rarity'], $rarityOrder);
@@ -629,6 +635,17 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     background: rgba(148,163,184,.20);
     color: #94a3b8;
     border: 1px solid rgba(148,163,184,.30);
+}
+.wrar-ha {
+    background: rgba(56,189,248,.16);
+    color: #7dd3fc;
+    border: 1px solid rgba(56,189,248,.30);
+}
+.wrar-tien {
+    background: rgba(255,49,0,.18);
+    color: #ff7a59;
+    border: 1px solid rgba(255,49,0,.40);
+    text-shadow: 0 0 8px rgba(255,49,0,.35);
 }
 .wrar-trung {
     background: rgba(16,191,97,.18);

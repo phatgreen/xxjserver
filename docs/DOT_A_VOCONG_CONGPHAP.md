@@ -1,4 +1,4 @@
-# ĐỢT A — Mở rộng Võ Công & Công Pháp (bản thiết kế chờ duyệt)
+# ĐỢT A — Mở rộng Võ Công & Công Pháp (ĐÃ LÀM 2026-10-27)
 
 > Lập 2026-10-27. Bảng số sinh bằng `tools/gen/dot_a_design.py` (công thức hiệu chỉnh theo bộ cũ) — sửa công thức ở đó rồi chạy lại, không gõ tay.
 > Thuộc kế hoạch tổng `PLAN_MO_RONG_NOI_DUNG.md`.
@@ -98,9 +98,25 @@
 | Lỗi | Trạng thái |
 |---|---|
 | Thiên Cơ Các tra võ công theo key JSON thay vì `wgid`: **không mua được 4 bộ Thần Công** (id 30/32/34/36), mua Thập Tự Phong Đao bị tính giá/tên Nguyệt Nha Hoàn | **Đã sửa** (commit `81f51f4`), kiểm chứng trên DB thật |
-| Thiên Cơ Các hiển thị tên cảnh giới yêu cầu lệch 1 bậc (`$rangesjjClean[$realmReq]` dùng chỉ số 0 trong khi `realm_require` là 1-based) | Sửa cùng đợt A |
+| Thiên Cơ Các hiển thị tên cảnh giới yêu cầu lệch 1 bậc (`$rangesjjClean[$realmReq]` dùng chỉ số 0 trong khi `realm_require` là 1-based) | **Đã sửa** |
 
 ## 5. Kiểm thử dự kiến
 
 - Test thuần: mọi bộ mới có đủ trường, đủ 3 thế, wgid/cpid không trùng, key JSON = id, ngân sách nằm giữa phẩm liền kề.
 - Trên DB thật (cloud): Thiên Cơ Các hiện đủ, mua được đúng bộ/giá, học → trang Võ Công / Công Pháp / Cộng Hưởng hiển thị đúng, đánh quái dùng thế võ mới.
+
+## 6. Đã triển khai
+
+| Hạng mục | File |
+|---|---|
+| Dữ liệu 30 võ công (40–69) + 28 công pháp (29–56); bộ cũ giữ nguyên 100% | `class/config/wugong_config.json`, `congphap_config.json` |
+| 90 thế võ mới + `rarity_bonus` ha_thua/tien_dao | `class/config/wugong_skill_config.json` |
+| Nội dung chữ / công thức / script ghi dữ liệu (chạy lại được) | `tools/gen/dot_a_content.py`, `dot_a_design.py`, `dot_a_build.py` |
+| Nhãn 6 phẩm + màu Hạ Thừa / Tiên Đạo, sắp xếp theo phẩm | `game/thiencoccac.php`, `tongquan.php` |
+| Cộng Hưởng mốc 2/5/9/toàn bộ (tối đa 4%/chỉ số) | `class/config/conghuong_config.json` |
+| Test | `tests/test_dot_a_data.php`, `test_conghuong.php`, `test_combat_moves.php` |
+
+Kiểm chứng trên DB thật (cloud): mua Hạ Thừa (3.000 LT) / Trung Cấp (700 MT) / công pháp Hoàng Giai đúng giá; Tiên Đạo không bán;
+công pháp Thánh Giai chặn đúng cảnh giới; trang Võ Công hiện 3 thế bộ mới.
+
+**Còn lại:** nguồn rơi Tiên Đạo từ Boss → đợt D.

@@ -31,15 +31,15 @@ $r = \player\conghuong_eval(array(2 => 10, 3 => 12, 8 => 9), array());
 tassert('H3 kim 2 bo vien man = +0.3 cong', $r['bonus']['atk'], 0.3);
 tassert('H3 dem dung so bo vien man', $r['groups'][0]['done'], 2);
 
-// Kim: 4 bộ (2 võ công + 2 công pháp cấp tối đa 10) => 0.3 + 0.5
-$r = \player\conghuong_eval(array(2 => 10, 3 => 10), array(2 => 10, 10 => 10));
-tassert('H4 kim 4 bo = +0.8 cong', $r['bonus']['atk'], 0.8);
+// Kim: 5 bộ (3 võ công + 2 công pháp đạt cấp tối đa) => mốc 2 + mốc 5 = 0.3 + 0.4
+$r = \player\conghuong_eval(array(2 => 10, 3 => 10, 8 => 11), array(2 => 10, 10 => 10));
+tassert('H4 kim 5 bo = +0.7 cong', $r['bonus']['atk'], 0.7);
 
 // Toàn bộ mọi nhóm Viên Mãn => mỗi chỉ số 3%
 $wgAll = array(); foreach (\player\wugong_config_all() as $w) if (intval($w['wgid']) > 0) $wgAll[intval($w['wgid'])] = 99;
 $cpAll = array(); foreach (\player\congphap_config_all() as $c) $cpAll[intval($c['cpid'])] = 10;
 $r = \player\conghuong_eval($wgAll, $cpAll);
-tassert('H5 full = 3% moi chi so (<= 5%)', $r['bonus'], array('atk' => 3.0, 'def' => 3.0, 'hp' => 3.0));
+tassert('H5 full = 4% moi chi so (<= 5%)', $r['bonus'], array('atk' => 4.0, 'def' => 4.0, 'hp' => 4.0));
 
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

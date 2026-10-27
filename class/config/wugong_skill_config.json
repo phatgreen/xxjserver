@@ -1,831 +1,1613 @@
 {
- "_note": "Thế võ khi chiến đấu. Số liệu cân bằng nằm ở 'rules'. text dùng {mob} = tên quái. congphap_ratio/congphap_cap: hệ số và trần (%) khi áp hiệu ứng công pháp đang trang bị.",
- "rules": {
-  "tier_label": {
-   "1": "Võ Kỹ",
-   "2": "Tuyệt Kỹ",
-   "3": "Tuyệt Chiêu"
+  "_note": "Thế võ khi chiến đấu. Số liệu cân bằng nằm ở 'rules'. text dùng {mob} = tên quái. congphap_ratio/congphap_cap: hệ số và trần (%) khi áp hiệu ứng công pháp đang trang bị.",
+  "rules": {
+    "tier_label": {
+      "1": "Võ Kỹ",
+      "2": "Tuyệt Kỹ",
+      "3": "Tuyệt Chiêu"
+    },
+    "unlock_lv": {
+      "1": 0,
+      "2": 5,
+      "3": 10
+    },
+    "cooldown": {
+      "1": 0,
+      "2": 2,
+      "3": 4
+    },
+    "stamina_mult": {
+      "1": 1.0,
+      "2": 1.5,
+      "3": 2.0
+    },
+    "mult": {
+      "1": {
+        "base": 1.0,
+        "per_lv": 0,
+        "max": 1.0
+      },
+      "2": {
+        "base": 1.25,
+        "per_lv": 0.035,
+        "max": 1.6
+      },
+      "3": {
+        "base": 1.8,
+        "per_lv": 0.05,
+        "max": 2.6
+      }
+    },
+    "rarity_bonus": {
+      "nhap_mon": 0,
+      "trung_cap": 0.05,
+      "thuong_thua": 0.1,
+      "than_cong": 0.15,
+      "ha_thua": 0.02,
+      "tien_dao": 0.2
+    },
+    "crit_mult": 1.72,
+    "passive_scale": {
+      "min": 0.3,
+      "per_lv": 0.07
+    },
+    "hp_regen_ratio": 0.25,
+    "escape_ratio": 0.1,
+    "congphap_ratio": {
+      "atk_bonus": 0.4,
+      "def_bonus": 0.4,
+      "dmg_reduce": 0.4,
+      "crit_dmg": 0.5,
+      "hp_regen": 0.1,
+      "heal_bonus": 1.0,
+      "drop_rate": 0.3,
+      "stone_bonus": 0.3
+    },
+    "congphap_cap": {
+      "atk_bonus": 25,
+      "def_bonus": 25,
+      "dmg_reduce": 20,
+      "crit_dmg": 30,
+      "hp_regen": 5,
+      "heal_bonus": 40,
+      "drop_rate": 20,
+      "stone_bonus": 15
+    }
   },
-  "unlock_lv": {
-   "1": 0,
-   "2": 5,
-   "3": 10
-  },
-  "cooldown": {
-   "1": 0,
-   "2": 2,
-   "3": 4
-  },
-  "stamina_mult": {
-   "1": 1.0,
-   "2": 1.5,
-   "3": 2.0
-  },
-  "mult": {
-   "1": {
-    "base": 1.0,
-    "per_lv": 0,
-    "max": 1.0
-   },
-   "2": {
-    "base": 1.25,
-    "per_lv": 0.035,
-    "max": 1.6
-   },
-   "3": {
-    "base": 1.8,
-    "per_lv": 0.05,
-    "max": 2.6
-   }
-  },
-  "rarity_bonus": {
-   "nhap_mon": 0,
-   "trung_cap": 0.05,
-   "thuong_thua": 0.1,
-   "than_cong": 0.15
-  },
-  "crit_mult": 1.72,
-  "passive_scale": {
-   "min": 0.3,
-   "per_lv": 0.07
-  },
-  "hp_regen_ratio": 0.25,
-  "escape_ratio": 0.1,
-  "congphap_ratio": {
-   "atk_bonus": 0.4,
-   "def_bonus": 0.4,
-   "dmg_reduce": 0.4,
-   "crit_dmg": 0.5,
-   "hp_regen": 0.1,
-   "heal_bonus": 1.0,
-   "drop_rate": 0.3,
-   "stone_bonus": 0.3
-  },
-  "congphap_cap": {
-   "atk_bonus": 25,
-   "def_bonus": 25,
-   "dmg_reduce": 20,
-   "crit_dmg": 30,
-   "hp_regen": 5,
-   "heal_bonus": 40,
-   "drop_rate": 20,
-   "stone_bonus": 15
+  "moves": {
+    "2": [
+      {
+        "tier": 1,
+        "name": "Phong Đao Khởi Thức",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Lưỡi đao mỏng rít lên một tiếng, vạch một đường chém ngang người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Song Phong Giao Trảm",
+        "effect": "pierce",
+        "value": 25,
+        "hits": 2,
+        "text": "Hai đường đao chữ thập giao nhau giữa không trung, xé toạc lớp giáp hộ thân của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thập Tự Diệt Không",
+        "effect": "pierce",
+        "value": 50,
+        "hits": 3,
+        "text": "Đao quang hóa thành lưới chữ thập phủ kín trời, từng nhát chém đều nhắm thẳng chỗ hở của {mob}!"
+      }
+    ],
+    "3": [
+      {
+        "tier": 1,
+        "name": "Nguyệt Nha Phi Hoàn",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Đao vòng như vầng trăng khuyết lượn một vòng, cắt sượt qua người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hoàn Đao Liên Trảm",
+        "effect": "crit",
+        "value": 25,
+        "hits": 2,
+        "text": "Đao quấn lấy thân {mob}, nhát này nối nhát kia không cho đối phương kịp thở!"
+      },
+      {
+        "tier": 3,
+        "name": "Mãn Nguyệt Luân Hồi",
+        "effect": "crit",
+        "value": 50,
+        "hits": 4,
+        "text": "Bốn vầng trăng bạc xoay tròn quanh {mob}, đao khí cuồn cuộn như thủy triều đêm rằm!"
+      }
+    ],
+    "4": [
+      {
+        "tier": 1,
+        "name": "Xà Hình Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Cánh tay uốn lượn như rắn nước, bất ngờ mổ trúng sườn {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Linh Xà Thổ Tín",
+        "effect": "stun",
+        "value": 30,
+        "hits": 1,
+        "text": "Ngón tay như lưỡi rắn điểm trúng huyệt đạo, {mob} khựng người tê dại!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiên Xà Triền Thân",
+        "effect": "stun",
+        "value": 55,
+        "hits": 3,
+        "text": "Thân pháp quấn quanh {mob} như mãng xà siết mồi, ba đòn liền giáng xuống chỗ hiểm!"
+      }
+    ],
+    "5": [
+      {
+        "tier": 1,
+        "name": "Vụ Ảnh Bộ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân ảnh mờ như sương sớm, lướt qua và để lại một chưởng trên vai {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phù Quang Phân Ảnh",
+        "effect": "guard",
+        "value": 40,
+        "hits": 1,
+        "text": "Ba bóng nước cùng lúc hiện ra, {mob} hoa mắt chẳng biết đâu là thật thân!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Ảnh Quy Tông",
+        "effect": "guard",
+        "value": 70,
+        "hits": 3,
+        "text": "Vạn ảnh phân thân đồng loạt thu về một điểm, đánh thẳng vào {mob} rồi tan vào sương mù!"
+      }
+    ],
+    "6": [
+      {
+        "tier": 1,
+        "name": "Hỏa Bộ Xung Kích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Bước chân bốc lửa, ngươi lao tới như mũi tên đỏ rực đâm vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Liệt Diệm Đạp Không",
+        "effect": "burn",
+        "value": 15,
+        "hits": 2,
+        "text": "Hai chân đạp lửa vọt lên không, giẫm mạnh xuống đầu {mob}, lửa bén khắp người!"
+      },
+      {
+        "tier": 3,
+        "name": "Hỏa Long Bôn Lôi",
+        "effect": "crit",
+        "value": 60,
+        "hits": 1,
+        "text": "Toàn thân hóa thành một luồng hỏa long, xuyên qua {mob} nhanh hơn cả sấm sét!"
+      }
+    ],
+    "7": [
+      {
+        "tier": 1,
+        "name": "Kim Cang Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một chưởng trầm hùng đánh ra, đẩy {mob} lùi lại mấy bước."
+      },
+      {
+        "tier": 2,
+        "name": "Phá Sơn Chưởng",
+        "effect": "stun",
+        "value": 30,
+        "hits": 1,
+        "text": "Chưởng lực nặng như núi đổ ập xuống, {mob} chấn động đứng không vững!"
+      },
+      {
+        "tier": 3,
+        "name": "Kim Cang Hàng Ma",
+        "effect": "guard",
+        "value": 50,
+        "hits": 2,
+        "text": "Kim quang bao phủ toàn thân, song chưởng giáng xuống như Kim Cang hàng ma, {mob} không sao phản kích nổi!"
+      }
+    ],
+    "8": [
+      {
+        "tier": 1,
+        "name": "Liên Hoa Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Đầu ngón tay nở ra một đóa sen vàng, điểm trúng ngực {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Bảo Liên Khai Diệp",
+        "effect": "crit",
+        "value": 40,
+        "hits": 1,
+        "text": "Từng cánh sen kim sắc tách ra, mỗi cánh là một đạo chỉ lực nhắm vào tử huyệt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiên Liên Kim Quang",
+        "effect": "crit",
+        "value": 80,
+        "hits": 3,
+        "text": "Ngàn đóa sen vàng nở rộ giữa trời, kim quang chiếu xuyên thân thể {mob}!"
+      }
+    ],
+    "9": [
+      {
+        "tier": 1,
+        "name": "Huyền Mộc Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng phong mang theo mùi cỏ cây, nhẹ nhàng mà thấm sâu vào người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Mộc Khí Hồi Xuân",
+        "effect": "heal",
+        "value": 6,
+        "hits": 1,
+        "text": "Mộc khí lưu chuyển khắp kinh mạch, vừa xuất chưởng đánh {mob} vừa hồi lại nguyên khí!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Mộc Sinh Sôi",
+        "effect": "heal",
+        "value": 12,
+        "hits": 2,
+        "text": "Dây leo mọc lên quấn chặt {mob}, sinh khí của rừng già tràn vào cơ thể ngươi!"
+      }
+    ],
+    "10": [
+      {
+        "tier": 1,
+        "name": "Hàn Băng Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Bàn tay phủ sương lạnh chạm vào {mob}, để lại một vết băng giá."
+      },
+      {
+        "tier": 2,
+        "name": "Băng Phong Thiên Lý",
+        "effect": "stun",
+        "value": 35,
+        "hits": 1,
+        "text": "Hàn khí phun trào, chân {mob} bị đóng băng dính chặt xuống đất!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Lý Băng Phong",
+        "effect": "stun",
+        "value": 60,
+        "hits": 2,
+        "text": "Trời đất bỗng chốc phủ trắng, {mob} bị phong kín trong một khối băng khổng lồ!"
+      }
+    ],
+    "11": [
+      {
+        "tier": 1,
+        "name": "Liệt Diệm Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Nắm đấm bốc lửa giáng thẳng vào mặt {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Diệm Quyền Bạo Liệt",
+        "effect": "burn",
+        "value": 20,
+        "hits": 2,
+        "text": "Hai quyền liên tiếp nổ tung như pháo, lửa bén lên người {mob} cháy xèo xèo!"
+      },
+      {
+        "tier": 3,
+        "name": "Phần Thiên Liệt Diệm",
+        "effect": "burn",
+        "value": 35,
+        "hits": 3,
+        "text": "Quyền phong hóa biển lửa thiêu trời, {mob} bị nhấn chìm giữa liệt diệm!"
+      }
+    ],
+    "13": [
+      {
+        "tier": 1,
+        "name": "Thổ Giáp Xung Chàng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Khoác lớp giáp đất, ngươi húc thẳng vào {mob} như tảng đá lăn."
+      },
+      {
+        "tier": 2,
+        "name": "Hậu Thổ Hộ Giáp",
+        "effect": "guard",
+        "value": 45,
+        "hits": 1,
+        "text": "Đất đá dâng lên kết thành giáp dày, vừa đỡ đòn vừa giáng trả {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Sơn Nhạc Bất Động",
+        "effect": "guard",
+        "value": 75,
+        "hits": 1,
+        "text": "Thân thể vững như núi Thái, mọi đòn của {mob} đều như đánh vào vách đá!"
+      }
+    ],
+    "14": [
+      {
+        "tier": 1,
+        "name": "Như Ý Phiêu Thân",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân pháp mềm như nước chảy, lách qua đòn của {mob} rồi phản thủ một chưởng."
+      },
+      {
+        "tier": 2,
+        "name": "Lưu Thủy Tùy Hình",
+        "effect": "guard",
+        "value": 40,
+        "hits": 2,
+        "text": "Theo thế của {mob} mà xoay chuyển, đòn đánh trượt đi như nước trôi qua đá!"
+      },
+      {
+        "tier": 3,
+        "name": "Thủy Ảnh Vô Tung",
+        "effect": "stun",
+        "value": 50,
+        "hits": 3,
+        "text": "Bóng người tan vào làn nước, {mob} mất dấu, ba đòn bất ngờ đánh tới từ ba phía!"
+      }
+    ],
+    "15": [
+      {
+        "tier": 1,
+        "name": "Phượng Dực Phi Kích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Hai tay dang như cánh phượng, lướt qua chém một đường lửa lên {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Cuồng Vũ Liên Hoàn",
+        "effect": "burn",
+        "value": 15,
+        "hits": 3,
+        "text": "Ngươi xoay tròn giữa không trung, ba vòng lửa liên hoàn quét qua {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Phượng Hoàng Liệt Không",
+        "effect": "burn",
+        "value": 30,
+        "hits": 5,
+        "text": "Hỏa phượng giương cánh lao xuống, năm luồng lửa xé không trung đốt cháy {mob}!"
+      }
+    ],
+    "16": [
+      {
+        "tier": 1,
+        "name": "Độc Long Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Bàn tay ánh lên sắc xanh độc, cào một đường lên người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Bách Độc Hóa Huyết",
+        "effect": "lifesteal",
+        "value": 15,
+        "hits": 1,
+        "text": "Độc khí thấm vào máu {mob}, rồi hóa thành sinh lực chảy ngược về ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Độc Quy Tông",
+        "effect": "lifesteal",
+        "value": 30,
+        "hits": 2,
+        "text": "Trăm loại kỳ độc hội tụ nơi lòng bàn tay, {mob} trúng chưởng mặt mày tái xanh!"
+      }
+    ],
+    "17": [
+      {
+        "tier": 1,
+        "name": "Kim Phong Trảm",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kim phong sắc lẹm quét ngang qua {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Kim Phong Đoạt Nhận",
+        "effect": "pierce",
+        "value": 25,
+        "hits": 1,
+        "text": "Ra tay nhanh như chớp, kim phong lách qua khe giáp đâm sâu vào {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Kim Phong Quyết Đoán",
+        "effect": "crit",
+        "value": 70,
+        "hits": 1,
+        "text": "Một nhát dứt khoát không chút do dự, kim phong chém thẳng yếu huyệt {mob}!"
+      }
+    ],
+    "18": [
+      {
+        "tier": 1,
+        "name": "Vô Gian Thích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Ngươi biến mất khỏi chỗ đứng, rồi hiện ra sau lưng {mob} đâm một nhát."
+      },
+      {
+        "tier": 2,
+        "name": "Ẩn Hình Tập Sát",
+        "effect": "crit",
+        "value": 50,
+        "hits": 2,
+        "text": "Thân ảnh hòa vào bóng tối, hai nhát tập kích đều trúng chỗ hiểm của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Vô Gian Địa Ngục",
+        "effect": "stun",
+        "value": 55,
+        "hits": 4,
+        "text": "Bốn phương tám hướng đều là bóng ngươi, {mob} rơi vào vòng vây vô gian không lối thoát!"
+      }
+    ],
+    "19": [
+      {
+        "tier": 1,
+        "name": "Huyền Thiên Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực trầm ổn như đất, đánh trúng ngực {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Huyền Thiên Hộ Thể",
+        "effect": "guard",
+        "value": 50,
+        "hits": 1,
+        "text": "Huyền khí hộ thể dày đặc bao lấy toàn thân, ngươi bình thản phản chưởng vào {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiên Địa Huyền Hoàng",
+        "effect": "heal",
+        "value": 10,
+        "hits": 2,
+        "text": "Khí trời đất cuồn cuộn đổ về, ngươi vừa hồi phục vừa đè bẹp {mob} dưới chưởng thế!"
+      }
+    ],
+    "20": [
+      {
+        "tier": 1,
+        "name": "Bát Quái Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Bộ pháp xoay theo bát quái, một quyền đánh ra từ góc chết của {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Bát Phương Liệt Hỏa",
+        "effect": "burn",
+        "value": 20,
+        "hits": 2,
+        "text": "Tám hướng bùng lên tám cột lửa, hai quyền nối nhau giáng vào {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Bát Quái Phần Thiên",
+        "effect": "crit",
+        "value": 70,
+        "hits": 3,
+        "text": "Trận đồ bát quái rực lửa hiện dưới chân, {mob} bị quyền phong khóa chặt trong đó!"
+      }
+    ],
+    "21": [
+      {
+        "tier": 1,
+        "name": "Mộc Linh Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo chỉ lực xanh biếc điểm vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Linh Mộc Tục Mệnh",
+        "effect": "heal",
+        "value": 8,
+        "hits": 1,
+        "text": "Linh khí cây cỏ nối liền kinh mạch, vừa đánh {mob} vết thương trên người ngươi vừa khép lại!"
+      },
+      {
+        "tier": 3,
+        "name": "Trường Sinh Mộc Linh",
+        "effect": "heal",
+        "value": 15,
+        "hits": 2,
+        "text": "Cây cổ thụ hư ảnh hiện sau lưng, sinh cơ vô tận tràn đầy, rễ cây quật mạnh vào {mob}!"
+      }
+    ],
+    "22": [
+      {
+        "tier": 1,
+        "name": "Xà Nha Kình",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Kình lực như nanh rắn cắm vào thân {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phệ Giáp Xà Độc",
+        "effect": "pierce",
+        "value": 35,
+        "hits": 1,
+        "text": "Kim khí xâm thực ăn mòn giáp trụ, lớp phòng ngự của {mob} mỏng dần!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiên Xà Thôn Nhật",
+        "effect": "pierce",
+        "value": 60,
+        "hits": 3,
+        "text": "Cự xà vàng kim há miệng nuốt trời, nanh độc cắn xuyên mọi lớp phòng hộ của {mob}!"
+      }
+    ],
+    "23": [
+      {
+        "tier": 1,
+        "name": "Hỏa Long Xuất Động",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Quyền phong như rồng lửa rời hang, đấm thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Long Viêm Bá Quyền",
+        "effect": "burn",
+        "value": 25,
+        "hits": 2,
+        "text": "Long viêm cuộn quanh nắm đấm, hai quyền bá đạo khiến {mob} bốc cháy!"
+      },
+      {
+        "tier": 3,
+        "name": "Hỏa Long Hàng Thế",
+        "effect": "crit",
+        "value": 80,
+        "hits": 1,
+        "text": "Một con hỏa long khổng lồ gầm vang trời đất, một quyền định thắng bại với {mob}!"
+      }
+    ],
+    "24": [
+      {
+        "tier": 1,
+        "name": "Kim Cang Ấn",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một ấn Kim Cang vàng óng in thẳng lên ngực {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phật Đỉnh Hộ Pháp",
+        "effect": "guard",
+        "value": 55,
+        "hits": 1,
+        "text": "Phật quang trên đỉnh đầu bừng sáng, kim thân hộ pháp đỡ trọn đòn của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Kim Thân Bất Hoại",
+        "effect": "guard",
+        "value": 80,
+        "hits": 2,
+        "text": "Toàn thân hóa kim cương bất hoại, ngươi bước thẳng tới giáng hai ấn vào {mob}!"
+      }
+    ],
+    "26": [
+      {
+        "tier": 1,
+        "name": "Triêm Y Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Tay vừa chạm áo {mob} đã mượn lực kéo mạnh, quật đối phương lảo đảo."
+      },
+      {
+        "tier": 2,
+        "name": "Mượn Lực Quật Ngã",
+        "effect": "stun",
+        "value": 40,
+        "hits": 1,
+        "text": "Lấy nhu chế cương, mượn chính lực của {mob} quật ngã xuống đất!"
+      },
+      {
+        "tier": 3,
+        "name": "Thập Bát Liên Điệt",
+        "effect": "stun",
+        "value": 65,
+        "hits": 3,
+        "text": "Mười tám thế cầm nã nối liền, {mob} bị quật lên quật xuống không gượng dậy nổi!"
+      }
+    ],
+    "27": [
+      {
+        "tier": 1,
+        "name": "Phật Quang Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kim quang từ đầu ngón tay bắn thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Kim Quang Phá Ma",
+        "effect": "pierce",
+        "value": 40,
+        "hits": 2,
+        "text": "Kim quang Phật môn chiếu tới đâu, ma khí và giáp trụ của {mob} tan tới đó!"
+      },
+      {
+        "tier": 3,
+        "name": "Phật Quang Phổ Chiếu",
+        "effect": "pierce",
+        "value": 70,
+        "hits": 3,
+        "text": "Phật quang phổ chiếu khắp thiên địa, {mob} không còn chỗ nào để che chắn!"
+      }
+    ],
+    "28": [
+      {
+        "tier": 1,
+        "name": "Thiên Mộc Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang sinh khí cổ mộc ập vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thanh Mộc Hóa Sinh",
+        "effect": "heal",
+        "value": 10,
+        "hits": 1,
+        "text": "Thanh mộc hóa sinh, chưởng vừa chạm vào {mob} thì thương tích trên người ngươi đã lành lại!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Vật Bất Diệt",
+        "effect": "heal",
+        "value": 20,
+        "hits": 2,
+        "text": "Vạn vật hồi sinh theo từng hơi thở, rễ thần mộc trói chặt và nghiền ép {mob}!"
+      }
+    ],
+    "30": [
+      {
+        "tier": 1,
+        "name": "Vô Ảnh Thích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chẳng ai thấy ngươi ra tay, chỉ thấy {mob} bỗng rỉ máu."
+      },
+      {
+        "tier": 2,
+        "name": "Tàn Ảnh Sát",
+        "effect": "crit",
+        "value": 60,
+        "hits": 2,
+        "text": "Tàn ảnh còn đứng nguyên chỗ cũ, chân thân đã đâm hai nhát vào yếu huyệt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Vô Tung Tuyệt Sát",
+        "effect": "stun",
+        "value": 70,
+        "hits": 4,
+        "text": "Vô ảnh vô tung, bốn đòn tuyệt sát giáng xuống mà {mob} vẫn không tìm thấy ngươi!"
+      }
+    ],
+    "32": [
+      {
+        "tier": 1,
+        "name": "Phượng Hỏa Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang lửa phượng hoàng thiêu vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Niết Bàn Liệt Diệm",
+        "effect": "burn",
+        "value": 30,
+        "hits": 2,
+        "text": "Lửa niết bàn bùng lên từ trong tim, thiêu đốt {mob} từ trong ra ngoài!"
+      },
+      {
+        "tier": 3,
+        "name": "Phượng Hoàng Thiêu Thiên",
+        "effect": "burn",
+        "value": 50,
+        "hits": 3,
+        "text": "Phượng hoàng tái sinh giữa biển lửa, cánh lửa quét qua thiêu rụi {mob}!"
+      }
+    ],
+    "34": [
+      {
+        "tier": 1,
+        "name": "Huyền Vũ Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng thế dày nặng như mai rùa, đè xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Huyền Vũ Hộ Giáp",
+        "effect": "guard",
+        "value": 60,
+        "hits": 1,
+        "text": "Mai Huyền Vũ hư ảnh che chắn toàn thân, đòn của {mob} bị đẩy bật ra!"
+      },
+      {
+        "tier": 3,
+        "name": "Huyền Vũ Trấn Hải",
+        "effect": "stun",
+        "value": 60,
+        "hits": 2,
+        "text": "Quy xà hợp kích, sóng biển dâng trào trấn áp {mob} không thể cựa quậy!"
+      }
+    ],
+    "36": [
+      {
+        "tier": 1,
+        "name": "Thặng Kỹ Tạp Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chiêu thức tạp nham khó đoán, một cú đánh lén trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Xảo Thủ Đoạt Bảo",
+        "effect": "crit",
+        "value": 40,
+        "hits": 1,
+        "text": "Tay nhanh hơn mắt, vừa đánh trúng chỗ hiểm của {mob} vừa nhìn thấu sơ hở!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Pháp Quy Nhất",
+        "effect": "pierce",
+        "value": 50,
+        "hits": 2,
+        "text": "Trăm thứ tạp kỹ hợp làm một, đánh xuyên mọi phòng bị của {mob}!"
+      }
+    ],
+    "40": [
+      {
+        "tier": 1,
+        "name": "Kim Cương Trảm",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Đao nặng giáng thẳng từ trên xuống, kim khí nổ vang khi chạm vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phá Giáp Liên Đao",
+        "effect": "pierce",
+        "value": 25,
+        "hits": 2,
+        "text": "Hai nhát đao liên tiếp chém đúng một vết, lớp giáp của {mob} nứt toác!"
+      },
+      {
+        "tier": 3,
+        "name": "Kim Cương Toái Nhạc",
+        "effect": "pierce",
+        "value": 45,
+        "hits": 1,
+        "text": "Dồn toàn bộ kim khí vào một đao, đao quang như núi đổ, chém xuyên mọi lớp phòng hộ của {mob}!"
+      }
+    ],
+    "41": [
+      {
+        "tier": 1,
+        "name": "Thanh Đằng Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng phong mềm như dây leo quấn lấy {mob}, siết nhẹ rồi bật mạnh."
+      },
+      {
+        "tier": 2,
+        "name": "Đằng La Dưỡng Khí",
+        "effect": "heal",
+        "value": 5,
+        "hits": 1,
+        "text": "Dây leo xanh mọc quanh người, vừa quấn chặt {mob} vừa truyền sinh khí cho ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Đằng Hồi Sinh",
+        "effect": "heal",
+        "value": 10,
+        "hits": 2,
+        "text": "Muôn sợi dây leo đâm chồi giữa trận, trói {mob} và rót sinh lực trở lại thân ngươi!"
+      }
+    ],
+    "42": [
+      {
+        "tier": 1,
+        "name": "Phiêu Vân Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân ảnh lướt qua như áng mây, tiện tay đánh một chưởng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Lưu Vân Tán Ảnh",
+        "effect": "guard",
+        "value": 35,
+        "hits": 2,
+        "text": "Bóng người tan thành mấy áng mây, {mob} đánh vào khoảng không còn ngươi đã ra hai đòn!"
+      },
+      {
+        "tier": 3,
+        "name": "Vân Hải Mê Tung",
+        "effect": "stun",
+        "value": 45,
+        "hits": 3,
+        "text": "Mây mù dâng kín chiến trường, {mob} lạc giữa biển mây, ba đòn đánh tới mà không thấy người!"
+      }
+    ],
+    "43": [
+      {
+        "tier": 1,
+        "name": "Xích Diễm Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Nắm đấm đỏ rực như than hồng đấm thẳng vào ngực {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Liên Hoàn Hỏa Quyền",
+        "effect": "burn",
+        "value": 12,
+        "hits": 3,
+        "text": "Ba quyền nối nhau như pháo nổ, lửa bén lên thân {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Xích Diễm Bạo Phá",
+        "effect": "crit",
+        "value": 50,
+        "hits": 1,
+        "text": "Lửa dồn về một quyền rồi bùng nổ, quyền phong đỏ rực xuyên thẳng tâm mạch {mob}!"
+      }
+    ],
+    "44": [
+      {
+        "tier": 1,
+        "name": "Thiết Bố Xung Chàng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân thể cứng như sắt húc thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hậu Thổ Hộ Thân",
+        "effect": "guard",
+        "value": 40,
+        "hits": 1,
+        "text": "Thổ khí phủ kín da thịt, đòn của {mob} như đánh vào tấm sắt dày!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiết Bố Bất Hoại",
+        "effect": "guard",
+        "value": 65,
+        "hits": 2,
+        "text": "Toàn thân hóa sắt nguội, ngươi bước thẳng tới nện hai chưởng vào {mob} mặc cho đối phương công kích!"
+      }
+    ],
+    "45": [
+      {
+        "tier": 1,
+        "name": "Tạp Thủ Đả",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một chiêu lượm lặt từ nghề săn, đánh trúng chỗ sơ hở của {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Xảo Kế Phục Kích",
+        "effect": "crit",
+        "value": 30,
+        "hits": 1,
+        "text": "Giả vờ lùi bước rồi bất ngờ quay lại, đánh trúng điểm yếu của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Bách Nghệ Hợp Kích",
+        "effect": "pierce",
+        "value": 35,
+        "hits": 3,
+        "text": "Ba thứ tạp kỹ nối nhau tung ra, {mob} không biết phòng chiêu nào!"
+      }
+    ],
+    "46": [
+      {
+        "tier": 1,
+        "name": "Truy Phong Thích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Kiếm quang lóe lên như gió thoảng, mũi kiếm điểm trúng vai {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phong Ảnh Liên Kiếm",
+        "effect": "pierce",
+        "value": 30,
+        "hits": 2,
+        "text": "Hai đạo kiếm khí bám sát nhau như gió cuốn, lách qua khe giáp đâm vào {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Truy Phong Trục Điện",
+        "effect": "crit",
+        "value": 60,
+        "hits": 3,
+        "text": "Ba kiếm nhanh như chớp giật, kiếm sau đuổi kịp kiếm trước, cắm thẳng vào yếu huyệt {mob}!"
+      }
+    ],
+    "47": [
+      {
+        "tier": 1,
+        "name": "Xuân Phong Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực ấm áp như gió xuân, nhẹ mà thấm sâu vào người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hóa Vũ Dưỡng Nguyên",
+        "effect": "heal",
+        "value": 7,
+        "hits": 1,
+        "text": "Mưa xuân lất phất rơi quanh người, vừa đánh {mob} vừa làm vết thương ngươi khép lại!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Vật Hồi Xuân",
+        "effect": "heal",
+        "value": 14,
+        "hits": 2,
+        "text": "Cả chiến trường xanh lại như mùa xuân, sinh khí cuồn cuộn đổ về ngươi, rễ cây quật mạnh vào {mob}!"
+      }
+    ],
+    "48": [
+      {
+        "tier": 1,
+        "name": "Yến Tử Xuyên Lâm",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân ảnh như chim én lướt qua, để lại một chưởng trên lưng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đạp Thủy Vô Ngân",
+        "effect": "guard",
+        "value": 45,
+        "hits": 2,
+        "text": "Bước chân đạp nước không gợn sóng, ngươi né khỏi đòn của {mob} rồi phản thủ hai lần!"
+      },
+      {
+        "tier": 3,
+        "name": "Phi Yến Hồi Toàn",
+        "effect": "stun",
+        "value": 50,
+        "hits": 3,
+        "text": "Ngươi xoay vòng giữa không như én liệng, ba đòn từ ba hướng khiến {mob} choáng váng!"
+      }
+    ],
+    "49": [
+      {
+        "tier": 1,
+        "name": "Viêm Long Xuất Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Nắm đấm mang hình rồng lửa đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Long Viêm Thiêu Thân",
+        "effect": "burn",
+        "value": 22,
+        "hits": 2,
+        "text": "Rồng lửa quấn quanh hai quyền, đánh tới đâu {mob} cháy tới đó!"
+      },
+      {
+        "tier": 3,
+        "name": "Viêm Long Phá Thiên",
+        "effect": "crit",
+        "value": 70,
+        "hits": 1,
+        "text": "Một con hỏa long gầm thét xông lên trời, cú đấm định đoạt thắng bại giáng thẳng xuống {mob}!"
+      }
+    ],
+    "50": [
+      {
+        "tier": 1,
+        "name": "Bàn Thạch Chàng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân hình nặng như tảng đá lao tới húc văng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thạch Giáp Hộ Thể",
+        "effect": "guard",
+        "value": 50,
+        "hits": 1,
+        "text": "Đá tảng hư ảnh bao phủ thân thể, đòn của {mob} dội ngược trở lại!"
+      },
+      {
+        "tier": 3,
+        "name": "Bàn Thạch Trấn Áp",
+        "effect": "stun",
+        "value": 50,
+        "hits": 2,
+        "text": "Hai chưởng nặng như núi đè xuống, {mob} bị ép chặt không ngóc đầu nổi!"
+      }
+    ],
+    "51": [
+      {
+        "tier": 1,
+        "name": "Luân Chuyển Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Bàn tay xoay theo vòng ngũ hành, đánh vào điểm yếu theo hệ của {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Ngũ Hành Tương Khắc",
+        "effect": "pierce",
+        "value": 30,
+        "hits": 2,
+        "text": "Lấy hệ khắc hệ, hai đòn đánh trúng chỗ phòng thủ mỏng nhất của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Ngũ Hành Hợp Nhất",
+        "effect": "crit",
+        "value": 55,
+        "hits": 5,
+        "text": "Năm luồng khí kim mộc thủy hỏa thổ hợp làm một, năm đòn liền giáng xuống {mob}!"
+      }
+    ],
+    "52": [
+      {
+        "tier": 1,
+        "name": "Thái Bạch Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kiếm khí bạc lạnh lẽo xé gió lao tới {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Kinh Thiên Phá Giáp",
+        "effect": "pierce",
+        "value": 40,
+        "hits": 2,
+        "text": "Kiếm khí bạc chém hai lần vào một điểm, giáp trụ của {mob} vỡ vụn!"
+      },
+      {
+        "tier": 3,
+        "name": "Thái Bạch Lạc Tinh",
+        "effect": "pierce",
+        "value": 65,
+        "hits": 3,
+        "text": "Ánh sao Thái Bạch rơi xuống thành ba đạo kiếm quang, xuyên thủng mọi phòng hộ của {mob}!"
+      }
+    ],
+    "53": [
+      {
+        "tier": 1,
+        "name": "Cửu Mộc Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang sinh cơ cổ mộc ập vào người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Trường Sinh Tục Mạch",
+        "effect": "heal",
+        "value": 9,
+        "hits": 1,
+        "text": "Sinh khí chín cây cổ thụ nối liền kinh mạch, thương tích của ngươi khép lại ngay khi đánh trúng {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Cửu Mộc Hồi Thiên",
+        "effect": "heal",
+        "value": 18,
+        "hits": 2,
+        "text": "Chín cây cổ thụ hư ảnh mọc quanh chiến trường, rễ cây trói {mob}, sinh lực đổ ào về ngươi!"
+      }
+    ],
+    "54": [
+      {
+        "tier": 1,
+        "name": "Hàn Ảnh Thích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Ảnh băng lướt qua, một luồng hàn khí đâm vào người {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Băng Ảnh Phân Thân",
+        "effect": "guard",
+        "value": 55,
+        "hits": 2,
+        "text": "Ba ảnh băng cùng hiện ra, {mob} đánh trúng ảnh băng mà tay đông cứng!"
+      },
+      {
+        "tier": 3,
+        "name": "Huyền Băng Phong Ấn",
+        "effect": "stun",
+        "value": 60,
+        "hits": 3,
+        "text": "Hàn khí phủ kín bốn phía, {mob} bị phong ấn trong một khối băng huyền!"
+      }
+    ],
+    "55": [
+      {
+        "tier": 1,
+        "name": "Chu Tước Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lửa mang hình cánh chim đỏ quét qua {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phần Thiên Liệt Diệm",
+        "effect": "burn",
+        "value": 28,
+        "hits": 2,
+        "text": "Hai cánh Chu Tước vỗ mạnh, biển lửa đổ ập lên người {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Chu Tước Niết Bàn",
+        "effect": "crit",
+        "value": 75,
+        "hits": 3,
+        "text": "Chu Tước hư ảnh lao xuống từ trời cao, ba chưởng chân hỏa thiêu cháy {mob}!"
+      }
+    ],
+    "56": [
+      {
+        "tier": 1,
+        "name": "Trấn Nhạc Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền nặng như núi nện xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Kim Thân Hộ Pháp",
+        "effect": "guard",
+        "value": 60,
+        "hits": 1,
+        "text": "Kim thân bừng sáng như núi vàng, đòn của {mob} bị chặn gần hết!"
+      },
+      {
+        "tier": 3,
+        "name": "Trấn Nhạc Phong Sơn",
+        "effect": "stun",
+        "value": 55,
+        "hits": 2,
+        "text": "Núi cao hư ảnh đè xuống, {mob} bị trấn áp không thể nhúc nhích!"
+      }
+    ],
+    "57": [
+      {
+        "tier": 1,
+        "name": "Âm Dương Thủ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Tay âm đỡ, tay dương đánh, một chưởng trúng ngực {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Lưỡng Nghi Liên Kích",
+        "effect": "crit",
+        "value": 40,
+        "hits": 2,
+        "text": "Âm dương luân chuyển, hai đòn cương nhu nối liền đánh trúng sơ hở của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thái Cực Liên Hoàn",
+        "effect": "stun",
+        "value": 55,
+        "hits": 4,
+        "text": "Bốn đòn âm dương liên hoàn như vòng thái cực, {mob} xoay tròn trong đó không thoát ra được!"
+      }
+    ],
+    "58": [
+      {
+        "tier": 1,
+        "name": "Tru Tiên Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kiếm khí sát phạt xé không lao vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Tứ Tượng Kiếm Trận",
+        "effect": "pierce",
+        "value": 45,
+        "hits": 4,
+        "text": "Bốn thanh kiếm hư ảnh chiếm bốn phương, cùng chém vào {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Kiếm Tru Tiên",
+        "effect": "pierce",
+        "value": 75,
+        "hits": 5,
+        "text": "Vạn thanh kiếm đổ xuống như mưa, kiếm trận siết lại, {mob} không còn đường thoát!"
+      }
+    ],
+    "59": [
+      {
+        "tier": 1,
+        "name": "Thanh Đế Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực xanh biếc mang sinh cơ mùa xuân đánh vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Trường Xuân Bất Lão",
+        "effect": "heal",
+        "value": 12,
+        "hits": 1,
+        "text": "Sinh cơ trường xuân tràn ngập kinh mạch, ngươi hồi phục ngay giữa lúc đánh {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thanh Đế Hồi Thiên",
+        "effect": "heal",
+        "value": 22,
+        "hits": 2,
+        "text": "Thanh Đế hư ảnh giáng lâm, vạn vật hồi sinh, cây cỏ quấn chặt và nghiền ép {mob}!"
+      }
+    ],
+    "60": [
+      {
+        "tier": 1,
+        "name": "Huyền Minh Ảnh",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Ảnh đen như sương đêm lướt qua, một đòn lạnh buốt đánh trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Vô Lượng Hư Ảnh",
+        "effect": "guard",
+        "value": 65,
+        "hits": 3,
+        "text": "Vô số hư ảnh cùng xuất hiện, {mob} đánh trượt hết, ba đòn phản kích trúng đích!"
+      },
+      {
+        "tier": 3,
+        "name": "Huyền Minh Đóng Băng",
+        "effect": "stun",
+        "value": 70,
+        "hits": 4,
+        "text": "Hàn khí Huyền Minh phủ kín trời đất, {mob} đông cứng giữa bốn đòn liên tiếp!"
+      }
+    ],
+    "61": [
+      {
+        "tier": 1,
+        "name": "Kim Ô Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Nắm đấm sáng chói như mặt trời giáng xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đại Nhật Thiêu Thân",
+        "effect": "burn",
+        "value": 35,
+        "hits": 2,
+        "text": "Hai quyền như hai vầng mặt trời, lửa đại nhật thiêu rực người {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Kim Ô Lạc Nhật",
+        "effect": "crit",
+        "value": 85,
+        "hits": 1,
+        "text": "Kim Ô ba chân lao xuống từ vầng thái dương, một quyền chói lòa nghiền nát {mob}!"
+      }
+    ],
+    "62": [
+      {
+        "tier": 1,
+        "name": "Hỗn Độn Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Quyền phong mờ mịt khí hỗn độn đánh vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hỗn Độn Hộ Thể",
+        "effect": "guard",
+        "value": 70,
+        "hits": 1,
+        "text": "Khí hỗn độn bao bọc toàn thân, đòn của {mob} tan biến vào hư không!"
+      },
+      {
+        "tier": 3,
+        "name": "Khai Thiên Bất Hoại",
+        "effect": "stun",
+        "value": 60,
+        "hits": 2,
+        "text": "Kim thân hỗn độn bừng sáng, hai quyền chấn động khiến {mob} choáng váng không thể phản kích!"
+      }
+    ],
+    "63": [
+      {
+        "tier": 1,
+        "name": "Thiên Thủ Kích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Mấy cánh tay hư ảnh cùng đánh ra, một chưởng trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Vạn Tượng Đoạt Bảo",
+        "effect": "crit",
+        "value": 50,
+        "hits": 3,
+        "text": "Ngàn tay hư ảnh vừa đánh vừa móc, ba đòn trúng tử huyệt của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiên Thủ Như Lai",
+        "effect": "pierce",
+        "value": 70,
+        "hits": 5,
+        "text": "Ngàn tay hợp lại như Phật thủ, năm chưởng liền xuyên thủng mọi phòng bị của {mob}!"
+      }
+    ],
+    "64": [
+      {
+        "tier": 1,
+        "name": "Trảm Đạo Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kiếm khí vô tình xé rách không gian lao vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thái Thượng Vô Tình",
+        "effect": "pierce",
+        "value": 55,
+        "hits": 3,
+        "text": "Ba kiếm vô tình không chút do dự, chém xuyên phòng hộ của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Nhất Kiếm Trảm Đạo",
+        "effect": "pierce",
+        "value": 90,
+        "hits": 1,
+        "text": "Một kiếm duy nhất, trời đất lặng im — đạo cơ của {mob} bị chém làm đôi!"
+      }
+    ],
+    "65": [
+      {
+        "tier": 1,
+        "name": "Kiến Mộc Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực của cây thần thông thiên ập xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thông Thiên Tục Mệnh",
+        "effect": "heal",
+        "value": 15,
+        "hits": 1,
+        "text": "Rễ Kiến Mộc cắm sâu vào đất, sinh mệnh của ngươi được nối dài giữa trận chiến với {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Kiến Mộc Hồi Nguyên",
+        "effect": "heal",
+        "value": 28,
+        "hits": 3,
+        "text": "Cây thần thông thiên hiện ra sau lưng, ba nhánh cây quất vào {mob}, sinh cơ tràn ngập thân ngươi!"
+      }
+    ],
+    "66": [
+      {
+        "tier": 1,
+        "name": "Thiên Hà Thích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một bước xuyên không, ngươi hiện ra sau lưng {mob} đánh một chưởng."
+      },
+      {
+        "tier": 2,
+        "name": "Đảo Quyển Thiên Hà",
+        "effect": "guard",
+        "value": 75,
+        "hits": 3,
+        "text": "Dòng thiên hà cuộn ngược, đòn của {mob} bị cuốn trôi, ba đòn phản kích trúng đích!"
+      },
+      {
+        "tier": 3,
+        "name": "Ngân Hà Phong Tỏa",
+        "effect": "stun",
+        "value": 75,
+        "hits": 4,
+        "text": "Sông trời đổ xuống bao vây bốn phía, {mob} bị phong tỏa giữa ngân hà!"
+      }
+    ],
+    "67": [
+      {
+        "tier": 1,
+        "name": "Huyền Hỏa Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Quyền phong mang huyền hỏa chín tầng trời đánh vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Cửu Thiên Phần Thần",
+        "effect": "burn",
+        "value": 45,
+        "hits": 3,
+        "text": "Ba quyền huyền hỏa thiêu đốt cả nguyên thần của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Huyền Hỏa Diệt Thế",
+        "effect": "crit",
+        "value": 95,
+        "hits": 1,
+        "text": "Chín tầng trời cùng bốc cháy, một quyền diệt thế giáng xuống {mob}!"
+      }
+    ],
+    "68": [
+      {
+        "tier": 1,
+        "name": "Khai Thiên Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền mang uy lực khai thiên đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Bàn Cổ Hộ Thân",
+        "effect": "guard",
+        "value": 80,
+        "hits": 1,
+        "text": "Hư ảnh Bàn Cổ chống trời, đòn của {mob} như muỗi đốt cột đá!"
+      },
+      {
+        "tier": 3,
+        "name": "Khai Thiên Lập Địa",
+        "effect": "stun",
+        "value": 70,
+        "hits": 2,
+        "text": "Hai quyền tách đôi trời đất, {mob} bị chấn động tới mức không thể phản kích!"
+      }
+    ],
+    "69": [
+      {
+        "tier": 1,
+        "name": "Hồng Mông Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mờ mịt khí hồng mông đánh vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Tạo Hóa Hấp Nguyên",
+        "effect": "lifesteal",
+        "value": 30,
+        "hits": 3,
+        "text": "Ba chưởng hồng mông rút lấy sinh khí của {mob} bồi đắp cho ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Pháp Quy Nguyên",
+        "effect": "pierce",
+        "value": 80,
+        "hits": 5,
+        "text": "Năm đòn dung hợp vạn pháp, mọi phòng hộ của {mob} tan rã về hư vô!"
+      }
+    ]
   }
- },
- "moves": {
-  "2": [
-   {
-    "tier": 1,
-    "name": "Phong Đao Khởi Thức",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Lưỡi đao mỏng rít lên một tiếng, vạch một đường chém ngang người {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Song Phong Giao Trảm",
-    "effect": "pierce",
-    "value": 25,
-    "hits": 2,
-    "text": "Hai đường đao chữ thập giao nhau giữa không trung, xé toạc lớp giáp hộ thân của {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Thập Tự Diệt Không",
-    "effect": "pierce",
-    "value": 50,
-    "hits": 3,
-    "text": "Đao quang hóa thành lưới chữ thập phủ kín trời, từng nhát chém đều nhắm thẳng chỗ hở của {mob}!"
-   }
-  ],
-  "3": [
-   {
-    "tier": 1,
-    "name": "Nguyệt Nha Phi Hoàn",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Đao vòng như vầng trăng khuyết lượn một vòng, cắt sượt qua người {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Hoàn Đao Liên Trảm",
-    "effect": "crit",
-    "value": 25,
-    "hits": 2,
-    "text": "Đao quấn lấy thân {mob}, nhát này nối nhát kia không cho đối phương kịp thở!"
-   },
-   {
-    "tier": 3,
-    "name": "Mãn Nguyệt Luân Hồi",
-    "effect": "crit",
-    "value": 50,
-    "hits": 4,
-    "text": "Bốn vầng trăng bạc xoay tròn quanh {mob}, đao khí cuồn cuộn như thủy triều đêm rằm!"
-   }
-  ],
-  "4": [
-   {
-    "tier": 1,
-    "name": "Xà Hình Thủ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Cánh tay uốn lượn như rắn nước, bất ngờ mổ trúng sườn {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Linh Xà Thổ Tín",
-    "effect": "stun",
-    "value": 30,
-    "hits": 1,
-    "text": "Ngón tay như lưỡi rắn điểm trúng huyệt đạo, {mob} khựng người tê dại!"
-   },
-   {
-    "tier": 3,
-    "name": "Thiên Xà Triền Thân",
-    "effect": "stun",
-    "value": 55,
-    "hits": 3,
-    "text": "Thân pháp quấn quanh {mob} như mãng xà siết mồi, ba đòn liền giáng xuống chỗ hiểm!"
-   }
-  ],
-  "5": [
-   {
-    "tier": 1,
-    "name": "Vụ Ảnh Bộ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Thân ảnh mờ như sương sớm, lướt qua và để lại một chưởng trên vai {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Phù Quang Phân Ảnh",
-    "effect": "guard",
-    "value": 40,
-    "hits": 1,
-    "text": "Ba bóng nước cùng lúc hiện ra, {mob} hoa mắt chẳng biết đâu là thật thân!"
-   },
-   {
-    "tier": 3,
-    "name": "Vạn Ảnh Quy Tông",
-    "effect": "guard",
-    "value": 70,
-    "hits": 3,
-    "text": "Vạn ảnh phân thân đồng loạt thu về một điểm, đánh thẳng vào {mob} rồi tan vào sương mù!"
-   }
-  ],
-  "6": [
-   {
-    "tier": 1,
-    "name": "Hỏa Bộ Xung Kích",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Bước chân bốc lửa, ngươi lao tới như mũi tên đỏ rực đâm vào {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Liệt Diệm Đạp Không",
-    "effect": "burn",
-    "value": 15,
-    "hits": 2,
-    "text": "Hai chân đạp lửa vọt lên không, giẫm mạnh xuống đầu {mob}, lửa bén khắp người!"
-   },
-   {
-    "tier": 3,
-    "name": "Hỏa Long Bôn Lôi",
-    "effect": "crit",
-    "value": 60,
-    "hits": 1,
-    "text": "Toàn thân hóa thành một luồng hỏa long, xuyên qua {mob} nhanh hơn cả sấm sét!"
-   }
-  ],
-  "7": [
-   {
-    "tier": 1,
-    "name": "Kim Cang Chưởng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Một chưởng trầm hùng đánh ra, đẩy {mob} lùi lại mấy bước."
-   },
-   {
-    "tier": 2,
-    "name": "Phá Sơn Chưởng",
-    "effect": "stun",
-    "value": 30,
-    "hits": 1,
-    "text": "Chưởng lực nặng như núi đổ ập xuống, {mob} chấn động đứng không vững!"
-   },
-   {
-    "tier": 3,
-    "name": "Kim Cang Hàng Ma",
-    "effect": "guard",
-    "value": 50,
-    "hits": 2,
-    "text": "Kim quang bao phủ toàn thân, song chưởng giáng xuống như Kim Cang hàng ma, {mob} không sao phản kích nổi!"
-   }
-  ],
-  "8": [
-   {
-    "tier": 1,
-    "name": "Liên Hoa Chỉ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Đầu ngón tay nở ra một đóa sen vàng, điểm trúng ngực {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Bảo Liên Khai Diệp",
-    "effect": "crit",
-    "value": 40,
-    "hits": 1,
-    "text": "Từng cánh sen kim sắc tách ra, mỗi cánh là một đạo chỉ lực nhắm vào tử huyệt {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Thiên Liên Kim Quang",
-    "effect": "crit",
-    "value": 80,
-    "hits": 3,
-    "text": "Ngàn đóa sen vàng nở rộ giữa trời, kim quang chiếu xuyên thân thể {mob}!"
-   }
-  ],
-  "9": [
-   {
-    "tier": 1,
-    "name": "Huyền Mộc Chưởng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chưởng phong mang theo mùi cỏ cây, nhẹ nhàng mà thấm sâu vào người {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Mộc Khí Hồi Xuân",
-    "effect": "heal",
-    "value": 6,
-    "hits": 1,
-    "text": "Mộc khí lưu chuyển khắp kinh mạch, vừa xuất chưởng đánh {mob} vừa hồi lại nguyên khí!"
-   },
-   {
-    "tier": 3,
-    "name": "Vạn Mộc Sinh Sôi",
-    "effect": "heal",
-    "value": 12,
-    "hits": 2,
-    "text": "Dây leo mọc lên quấn chặt {mob}, sinh khí của rừng già tràn vào cơ thể ngươi!"
-   }
-  ],
-  "10": [
-   {
-    "tier": 1,
-    "name": "Hàn Băng Thủ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Bàn tay phủ sương lạnh chạm vào {mob}, để lại một vết băng giá."
-   },
-   {
-    "tier": 2,
-    "name": "Băng Phong Thiên Lý",
-    "effect": "stun",
-    "value": 35,
-    "hits": 1,
-    "text": "Hàn khí phun trào, chân {mob} bị đóng băng dính chặt xuống đất!"
-   },
-   {
-    "tier": 3,
-    "name": "Vạn Lý Băng Phong",
-    "effect": "stun",
-    "value": 60,
-    "hits": 2,
-    "text": "Trời đất bỗng chốc phủ trắng, {mob} bị phong kín trong một khối băng khổng lồ!"
-   }
-  ],
-  "11": [
-   {
-    "tier": 1,
-    "name": "Liệt Diệm Quyền",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Nắm đấm bốc lửa giáng thẳng vào mặt {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Diệm Quyền Bạo Liệt",
-    "effect": "burn",
-    "value": 20,
-    "hits": 2,
-    "text": "Hai quyền liên tiếp nổ tung như pháo, lửa bén lên người {mob} cháy xèo xèo!"
-   },
-   {
-    "tier": 3,
-    "name": "Phần Thiên Liệt Diệm",
-    "effect": "burn",
-    "value": 35,
-    "hits": 3,
-    "text": "Quyền phong hóa biển lửa thiêu trời, {mob} bị nhấn chìm giữa liệt diệm!"
-   }
-  ],
-  "13": [
-   {
-    "tier": 1,
-    "name": "Thổ Giáp Xung Chàng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Khoác lớp giáp đất, ngươi húc thẳng vào {mob} như tảng đá lăn."
-   },
-   {
-    "tier": 2,
-    "name": "Hậu Thổ Hộ Giáp",
-    "effect": "guard",
-    "value": 45,
-    "hits": 1,
-    "text": "Đất đá dâng lên kết thành giáp dày, vừa đỡ đòn vừa giáng trả {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Sơn Nhạc Bất Động",
-    "effect": "guard",
-    "value": 75,
-    "hits": 1,
-    "text": "Thân thể vững như núi Thái, mọi đòn của {mob} đều như đánh vào vách đá!"
-   }
-  ],
-  "14": [
-   {
-    "tier": 1,
-    "name": "Như Ý Phiêu Thân",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Thân pháp mềm như nước chảy, lách qua đòn của {mob} rồi phản thủ một chưởng."
-   },
-   {
-    "tier": 2,
-    "name": "Lưu Thủy Tùy Hình",
-    "effect": "guard",
-    "value": 40,
-    "hits": 2,
-    "text": "Theo thế của {mob} mà xoay chuyển, đòn đánh trượt đi như nước trôi qua đá!"
-   },
-   {
-    "tier": 3,
-    "name": "Thủy Ảnh Vô Tung",
-    "effect": "stun",
-    "value": 50,
-    "hits": 3,
-    "text": "Bóng người tan vào làn nước, {mob} mất dấu, ba đòn bất ngờ đánh tới từ ba phía!"
-   }
-  ],
-  "15": [
-   {
-    "tier": 1,
-    "name": "Phượng Dực Phi Kích",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Hai tay dang như cánh phượng, lướt qua chém một đường lửa lên {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Cuồng Vũ Liên Hoàn",
-    "effect": "burn",
-    "value": 15,
-    "hits": 3,
-    "text": "Ngươi xoay tròn giữa không trung, ba vòng lửa liên hoàn quét qua {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Phượng Hoàng Liệt Không",
-    "effect": "burn",
-    "value": 30,
-    "hits": 5,
-    "text": "Hỏa phượng giương cánh lao xuống, năm luồng lửa xé không trung đốt cháy {mob}!"
-   }
-  ],
-  "16": [
-   {
-    "tier": 1,
-    "name": "Độc Long Thủ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Bàn tay ánh lên sắc xanh độc, cào một đường lên người {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Bách Độc Hóa Huyết",
-    "effect": "lifesteal",
-    "value": 15,
-    "hits": 1,
-    "text": "Độc khí thấm vào máu {mob}, rồi hóa thành sinh lực chảy ngược về ngươi!"
-   },
-   {
-    "tier": 3,
-    "name": "Vạn Độc Quy Tông",
-    "effect": "lifesteal",
-    "value": 30,
-    "hits": 2,
-    "text": "Trăm loại kỳ độc hội tụ nơi lòng bàn tay, {mob} trúng chưởng mặt mày tái xanh!"
-   }
-  ],
-  "17": [
-   {
-    "tier": 1,
-    "name": "Kim Phong Trảm",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Một đạo kim phong sắc lẹm quét ngang qua {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Kim Phong Đoạt Nhận",
-    "effect": "pierce",
-    "value": 25,
-    "hits": 1,
-    "text": "Ra tay nhanh như chớp, kim phong lách qua khe giáp đâm sâu vào {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Kim Phong Quyết Đoán",
-    "effect": "crit",
-    "value": 70,
-    "hits": 1,
-    "text": "Một nhát dứt khoát không chút do dự, kim phong chém thẳng yếu huyệt {mob}!"
-   }
-  ],
-  "18": [
-   {
-    "tier": 1,
-    "name": "Vô Gian Thích",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Ngươi biến mất khỏi chỗ đứng, rồi hiện ra sau lưng {mob} đâm một nhát."
-   },
-   {
-    "tier": 2,
-    "name": "Ẩn Hình Tập Sát",
-    "effect": "crit",
-    "value": 50,
-    "hits": 2,
-    "text": "Thân ảnh hòa vào bóng tối, hai nhát tập kích đều trúng chỗ hiểm của {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Vô Gian Địa Ngục",
-    "effect": "stun",
-    "value": 55,
-    "hits": 4,
-    "text": "Bốn phương tám hướng đều là bóng ngươi, {mob} rơi vào vòng vây vô gian không lối thoát!"
-   }
-  ],
-  "19": [
-   {
-    "tier": 1,
-    "name": "Huyền Thiên Chưởng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chưởng lực trầm ổn như đất, đánh trúng ngực {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Huyền Thiên Hộ Thể",
-    "effect": "guard",
-    "value": 50,
-    "hits": 1,
-    "text": "Huyền khí hộ thể dày đặc bao lấy toàn thân, ngươi bình thản phản chưởng vào {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Thiên Địa Huyền Hoàng",
-    "effect": "heal",
-    "value": 10,
-    "hits": 2,
-    "text": "Khí trời đất cuồn cuộn đổ về, ngươi vừa hồi phục vừa đè bẹp {mob} dưới chưởng thế!"
-   }
-  ],
-  "20": [
-   {
-    "tier": 1,
-    "name": "Bát Quái Thủ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Bộ pháp xoay theo bát quái, một quyền đánh ra từ góc chết của {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Bát Phương Liệt Hỏa",
-    "effect": "burn",
-    "value": 20,
-    "hits": 2,
-    "text": "Tám hướng bùng lên tám cột lửa, hai quyền nối nhau giáng vào {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Bát Quái Phần Thiên",
-    "effect": "crit",
-    "value": 70,
-    "hits": 3,
-    "text": "Trận đồ bát quái rực lửa hiện dưới chân, {mob} bị quyền phong khóa chặt trong đó!"
-   }
-  ],
-  "21": [
-   {
-    "tier": 1,
-    "name": "Mộc Linh Chỉ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Một đạo chỉ lực xanh biếc điểm vào {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Linh Mộc Tục Mệnh",
-    "effect": "heal",
-    "value": 8,
-    "hits": 1,
-    "text": "Linh khí cây cỏ nối liền kinh mạch, vừa đánh {mob} vết thương trên người ngươi vừa khép lại!"
-   },
-   {
-    "tier": 3,
-    "name": "Trường Sinh Mộc Linh",
-    "effect": "heal",
-    "value": 15,
-    "hits": 2,
-    "text": "Cây cổ thụ hư ảnh hiện sau lưng, sinh cơ vô tận tràn đầy, rễ cây quật mạnh vào {mob}!"
-   }
-  ],
-  "22": [
-   {
-    "tier": 1,
-    "name": "Xà Nha Kình",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Kình lực như nanh rắn cắm vào thân {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Phệ Giáp Xà Độc",
-    "effect": "pierce",
-    "value": 35,
-    "hits": 1,
-    "text": "Kim khí xâm thực ăn mòn giáp trụ, lớp phòng ngự của {mob} mỏng dần!"
-   },
-   {
-    "tier": 3,
-    "name": "Thiên Xà Thôn Nhật",
-    "effect": "pierce",
-    "value": 60,
-    "hits": 3,
-    "text": "Cự xà vàng kim há miệng nuốt trời, nanh độc cắn xuyên mọi lớp phòng hộ của {mob}!"
-   }
-  ],
-  "23": [
-   {
-    "tier": 1,
-    "name": "Hỏa Long Xuất Động",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Quyền phong như rồng lửa rời hang, đấm thẳng vào {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Long Viêm Bá Quyền",
-    "effect": "burn",
-    "value": 25,
-    "hits": 2,
-    "text": "Long viêm cuộn quanh nắm đấm, hai quyền bá đạo khiến {mob} bốc cháy!"
-   },
-   {
-    "tier": 3,
-    "name": "Hỏa Long Hàng Thế",
-    "effect": "crit",
-    "value": 80,
-    "hits": 1,
-    "text": "Một con hỏa long khổng lồ gầm vang trời đất, một quyền định thắng bại với {mob}!"
-   }
-  ],
-  "24": [
-   {
-    "tier": 1,
-    "name": "Kim Cang Ấn",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Một ấn Kim Cang vàng óng in thẳng lên ngực {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Phật Đỉnh Hộ Pháp",
-    "effect": "guard",
-    "value": 55,
-    "hits": 1,
-    "text": "Phật quang trên đỉnh đầu bừng sáng, kim thân hộ pháp đỡ trọn đòn của {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Kim Thân Bất Hoại",
-    "effect": "guard",
-    "value": 80,
-    "hits": 2,
-    "text": "Toàn thân hóa kim cương bất hoại, ngươi bước thẳng tới giáng hai ấn vào {mob}!"
-   }
-  ],
-  "26": [
-   {
-    "tier": 1,
-    "name": "Triêm Y Thủ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Tay vừa chạm áo {mob} đã mượn lực kéo mạnh, quật đối phương lảo đảo."
-   },
-   {
-    "tier": 2,
-    "name": "Mượn Lực Quật Ngã",
-    "effect": "stun",
-    "value": 40,
-    "hits": 1,
-    "text": "Lấy nhu chế cương, mượn chính lực của {mob} quật ngã xuống đất!"
-   },
-   {
-    "tier": 3,
-    "name": "Thập Bát Liên Điệt",
-    "effect": "stun",
-    "value": 65,
-    "hits": 3,
-    "text": "Mười tám thế cầm nã nối liền, {mob} bị quật lên quật xuống không gượng dậy nổi!"
-   }
-  ],
-  "27": [
-   {
-    "tier": 1,
-    "name": "Phật Quang Chỉ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Một đạo kim quang từ đầu ngón tay bắn thẳng vào {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Kim Quang Phá Ma",
-    "effect": "pierce",
-    "value": 40,
-    "hits": 2,
-    "text": "Kim quang Phật môn chiếu tới đâu, ma khí và giáp trụ của {mob} tan tới đó!"
-   },
-   {
-    "tier": 3,
-    "name": "Phật Quang Phổ Chiếu",
-    "effect": "pierce",
-    "value": 70,
-    "hits": 3,
-    "text": "Phật quang phổ chiếu khắp thiên địa, {mob} không còn chỗ nào để che chắn!"
-   }
-  ],
-  "28": [
-   {
-    "tier": 1,
-    "name": "Thiên Mộc Chưởng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chưởng lực mang sinh khí cổ mộc ập vào {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Thanh Mộc Hóa Sinh",
-    "effect": "heal",
-    "value": 10,
-    "hits": 1,
-    "text": "Thanh mộc hóa sinh, chưởng vừa chạm vào {mob} thì thương tích trên người ngươi đã lành lại!"
-   },
-   {
-    "tier": 3,
-    "name": "Vạn Vật Bất Diệt",
-    "effect": "heal",
-    "value": 20,
-    "hits": 2,
-    "text": "Vạn vật hồi sinh theo từng hơi thở, rễ thần mộc trói chặt và nghiền ép {mob}!"
-   }
-  ],
-  "30": [
-   {
-    "tier": 1,
-    "name": "Vô Ảnh Thích",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chẳng ai thấy ngươi ra tay, chỉ thấy {mob} bỗng rỉ máu."
-   },
-   {
-    "tier": 2,
-    "name": "Tàn Ảnh Sát",
-    "effect": "crit",
-    "value": 60,
-    "hits": 2,
-    "text": "Tàn ảnh còn đứng nguyên chỗ cũ, chân thân đã đâm hai nhát vào yếu huyệt {mob}!"
-   },
-   {
-    "tier": 3,
-    "name": "Vô Tung Tuyệt Sát",
-    "effect": "stun",
-    "value": 70,
-    "hits": 4,
-    "text": "Vô ảnh vô tung, bốn đòn tuyệt sát giáng xuống mà {mob} vẫn không tìm thấy ngươi!"
-   }
-  ],
-  "32": [
-   {
-    "tier": 1,
-    "name": "Phượng Hỏa Chưởng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chưởng lực mang lửa phượng hoàng thiêu vào {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Niết Bàn Liệt Diệm",
-    "effect": "burn",
-    "value": 30,
-    "hits": 2,
-    "text": "Lửa niết bàn bùng lên từ trong tim, thiêu đốt {mob} từ trong ra ngoài!"
-   },
-   {
-    "tier": 3,
-    "name": "Phượng Hoàng Thiêu Thiên",
-    "effect": "burn",
-    "value": 50,
-    "hits": 3,
-    "text": "Phượng hoàng tái sinh giữa biển lửa, cánh lửa quét qua thiêu rụi {mob}!"
-   }
-  ],
-  "34": [
-   {
-    "tier": 1,
-    "name": "Huyền Vũ Chưởng",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chưởng thế dày nặng như mai rùa, đè xuống {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Huyền Vũ Hộ Giáp",
-    "effect": "guard",
-    "value": 60,
-    "hits": 1,
-    "text": "Mai Huyền Vũ hư ảnh che chắn toàn thân, đòn của {mob} bị đẩy bật ra!"
-   },
-   {
-    "tier": 3,
-    "name": "Huyền Vũ Trấn Hải",
-    "effect": "stun",
-    "value": 60,
-    "hits": 2,
-    "text": "Quy xà hợp kích, sóng biển dâng trào trấn áp {mob} không thể cựa quậy!"
-   }
-  ],
-  "36": [
-   {
-    "tier": 1,
-    "name": "Thặng Kỹ Tạp Thủ",
-    "effect": "",
-    "value": 0,
-    "hits": 1,
-    "text": "Chiêu thức tạp nham khó đoán, một cú đánh lén trúng {mob}."
-   },
-   {
-    "tier": 2,
-    "name": "Xảo Thủ Đoạt Bảo",
-    "effect": "crit",
-    "value": 40,
-    "hits": 1,
-    "text": "Tay nhanh hơn mắt, vừa đánh trúng chỗ hiểm của {mob} vừa nhìn thấu sơ hở!"
-   },
-   {
-    "tier": 3,
-    "name": "Vạn Pháp Quy Nhất",
-    "effect": "pierce",
-    "value": 50,
-    "hits": 2,
-    "text": "Trăm thứ tạp kỹ hợp làm một, đánh xuyên mọi phòng bị của {mob}!"
-   }
-  ]
- }
 }

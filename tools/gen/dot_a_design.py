@@ -9,11 +9,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 # ---- Võ công: phẩm ----
 PHAM = [  # key, nhãn, realm (jingjieValue), ngân sách chỉ số/cấp, hệ số thời gian luyện, giá LT, giá MT, màu
     # Ngân sách = gj + fy + hp/10 + bj + xx, hiệu chỉnh theo bộ cũ: Nhập Môn ~15, Trung Cấp ~26, Thượng Thừa ~38, Thần Công ~55
-    ('ha_thua',     'Hạ Thừa',     3,  20, 1.2,  3000, 0,     '#6aa84f'),
+    ('ha_thua',     'Hạ Thừa',     3,  20, 1.2,  3000, 0,     '#10bf61'),
     ('trung_cap',   'Trung Cấp',   9,  30, 1.8,  0,    700,   '#288dc7'),
     ('thuong_thua', 'Thượng Thừa', 15, 45, 3.0,  0,    2800,  '#39b512'),
     ('than_cong',   'Tuyệt Thế',   23, 62, 14.0, 0,    45000, '#f9c508'),
-    ('tien_dao',    'Tiên Đạo',    30, 80, 25.0, 0,    0,     '#e040fb'),  # không bán: rơi từ Boss
+    ('tien_dao',    'Tiên Đạo',    30, 80, 25.0, 0,    0,     '#ff3100'),  # không bán: rơi từ Boss
 ]
 # Hồ sơ chỉ số theo hệ: tỉ lệ ngân sách cho (gj, fy, hp/10, bj, xx) — lấy trung bình bộ cũ cùng hệ
 PROFILE = {
