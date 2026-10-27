@@ -703,6 +703,7 @@ HTML;
     }// Clip HP at 0: umaxhp in DB is the base max, the real max is buffed at runtime
 
     $dblj->exec($sql);                                                     // Thực thi câu lệnh cập nhật cơ sở dữ liệu
+    \player\player_cache_clear($sid); // UPDATE uhp bằng SQL thô không xóa cache => đọc lại sẽ ra HP cũ, không nhận ra đã tử vong
     $player =  player\getplayer($sid,$dblj);// Tải lại thông tin người chơi sau khi cập nhật HP
 	$cwxl = round($phurt*2.2);// Tính lượng sát thương thú cưng phải nhận
     if (intval($player->cw) > 0) {
@@ -830,6 +831,7 @@ if (!function_exists('pve_tip_steps')) {
 }
 
 
+$pveResultHtml = '';
 if (isset($zdjg)){// Xử lý kết quả sau khi trận chiến kết thúc
     switch ($zdjg){
         case 1:
@@ -934,7 +936,7 @@ if (isset($zdjg)){// Xử lý kết quả sau khi trận chiến kết thúc
             /* Hook quest: pve_win */
             \player\club_quest_update($sid, 'pve_win', 1, $dblj);
 
-            $html = pve_result_html(
+            $pveResultHtml = pve_result_html(
                 'win',
                 'Chiến đấu thắng lợi',
                 $enemyHtml,
@@ -948,7 +950,7 @@ if (isset($zdjg)){// Xử lý kết quả sau khi trận chiến kết thúc
 
             $rewardHtml = 'Chiến đấu thất bại!<br/>Mời thiếu hiệp hồi phục rồi thử lại.';
 
-            $html = pve_result_html(
+            $pveResultHtml = pve_result_html(
                 'lose',
                 'Chiến đấu thất bại',
                 $enemyHtml,
@@ -961,7 +963,7 @@ if (isset($zdjg)){// Xử lý kết quả sau khi trận chiến kết thúc
 
             $rewardHtml = 'Ngươi đã trọng thương, không thể tiếp tục chiến đấu!<br/>Mời thiếu hiệp khôi phục sau đó thử lại.';
 
-            $html = pve_result_html(
+            $pveResultHtml = pve_result_html(
                 'injured',
                 'Không thể tiếp tục chiến đấu',
                 $enemyHtml,
@@ -972,8 +974,8 @@ if (isset($zdjg)){// Xử lý kết quả sau khi trận chiến kết thúc
     }
 }
 
-// Nếu trận chiến chưa kết thúc thì tiếp tục hiển thị giao diện chiến đấu
-else{
+// Luôn hiển thị giao diện chiến đấu (quái, nhân vật, nhật ký); trận kết thúc thì kết quả hiện dạng popup phía trên.
+{
     if (isset($gphurt) && $gphurt>0){
         $ghurt='-'.$gphurt;
     }else{
@@ -1054,6 +1056,10 @@ HTML;
 	
 	
 	
+// Quái đã chết: máu hiển thị không âm.
+if (intval($guaiwu->ghp) < 0) {
+    $guaiwu->ghp = 0;
+}
 $gwxl = 0;
 if (intval($guaiwu->gmaxhp) > 0) {
     $gwxl = max(0, min(100, intval($guaiwu->ghp / $guaiwu->gmaxhp * 100)));
@@ -1182,8 +1188,10 @@ HTML;
 
 
 }
-if ($tishihtml != '' && strpos($html, 'pve-result-wrap') !== false) {
-    $html = pve_tip_steps($tishihtml) . $html;
+if ($pveResultHtml !== '') {
+    $html .= '<div class="pve-pop show" id="pve-pop" onclick="if(event.target===this)this.className=\'pve-pop\'">'
+        . '<div class="pve-pop-box"><a class="pve-pop-x" href="javascript:void(0)" title="Xem lại trận đấu"'
+        . ' onclick="document.getElementById(\'pve-pop\').className=\'pve-pop\'">✕</a>' . $pveResultHtml . '</div></div>';
 }
 echo '<style>.pve-step{display:block;margin:3px 0;padding:1px 0 .5px;color:#f5f5f5;font-size:14px;line-height:1.5;animation:pveStepIn .45s ease-out both}.pve-step:nth-child(1){animation-delay:.05s}.pve-step:nth-child(2){animation-delay:.11s}.pve-step:nth-child(3){animation-delay:.17s}.pve-step:nth-child(4){animation-delay:.23s}.pve-step:nth-child(5){animation-delay:.29s}.pve-step:nth-child(6){animation-delay:.35s}@keyframes pveStepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.pve-result-wrap{margin-top:14px}.pve-alert{margin:10px 0}</style>';
 echo $html;
