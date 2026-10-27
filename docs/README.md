@@ -38,6 +38,7 @@ Tổng hợp tài liệu kỹ thuật và thông tin hệ thống game.
 | [TEST_REPORT.md](TEST_REPORT.md) | 🔴 Báo cáo kiểm thử toàn diện game (bugs, SQL injection, balance) |
 | [TONGHOP-TINHNANG.md](TONGHOP-TINHNANG.md) | Bản đồ 30 hệ thống in-game (mục 6 = Trang bị + Thuộc tính Ngũ Hành) |
 | [CHANGELOG.md](CHANGELOG.md) | Nhật ký thay đổi code (từ `game/NOTE.md`) |
+| [TONG_QUAN_DU_AN.md](TONG_QUAN_DU_AN.md) | **Đọc đầu tiên** — tổng quan kiến trúc, cấu trúc thư mục, trạng thái hiện tại |
 | [DEPLOY_PRODUCTION_NGUHANH.md](DEPLOY_PRODUCTION_NGUHANH.md) | Runbook deploy 18 ALTER (ngũ hành + nợ sid) — **CHƯA chạy**, kèm preflight & nghiệm thu |
 | `tests/` (ngoài thư mục gốc) | `e2e_fixture.php` dựng nhân vật test + URL route thật (`--clean` để dọn) · `test_nguhanh*.php` 4 suite · `deploy_preflight.php` (chỉ đọc) · `capture_tip_390.php` (ảnh tooltip 390px) |
 | [SOURCE_SUMMARY.txt](SOURCE_SUMMARY.txt) | Tóm tắt cập nhật source tu chân giới |
