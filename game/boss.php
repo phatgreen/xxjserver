@@ -186,6 +186,9 @@ HTML;
     //普通攻击
     $hurt = false;
     $ghurt = 0;
+    // Lưu máu trước lượt để client mô phỏng thanh máu tụt dần
+    $bossFromHp = intval($boss->bosshp);
+    $playerFromHp = intval($player->uhp);
 
     // === KY NANG LINH CAN (Task 8) — switch canshu o day dang bi chu thich hoa nen dung if doc lap ===
     $lcMods = array();
@@ -656,6 +659,7 @@ HTML;
     $stmt = $dblj->prepare("UPDATE game1 SET uhp = GREATEST(0, uhp - :dmg) + :heal WHERE sid = :sid");
     $stmt->execute(array(':dmg' => $pzssh, ':heal' => $cbHealSql, ':sid' => $sid));
 	
+    \player\player_cache_clear($sid); // Bỏ cache để nhận ra tử vong ngay lượt bị hạ
     $player =  player\getplayer($sid,$dblj);
 	$cwxl = round($phurt*2.2);// Sát thương sủng vật phải nhận
     if (intval($player->cw) > 0) {
@@ -710,6 +714,7 @@ if ($player->yp3!=0){
     // }
 // }
 
+$bossResultHtml = '';
 if (isset($zdjg)){//这里是战斗经过，有三个0 1 -1 选择
     $playerSafe = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
     $bossSafe = htmlspecialchars($boss->bossname, ENT_QUOTES, 'UTF-8');
@@ -798,7 +803,7 @@ if (isset($zdjg)){//这里是战斗经过，有三个0 1 -1 选择
 		$stmt = $dblj->prepare("UPDATE boss SET bossgj = bossgj + 5 WHERE bossid = :bossid");
 		$stmt->execute(array(':bossid' => $bossid));
 
-            $html = <<<HTML
+            $bossResultHtml = <<<HTML
 <div class="boss-result-page boss-result-win boss-victory-page">
     <div class="boss-victory-card">
         <div class="boss-victory-aura"></div>
@@ -834,7 +839,7 @@ HTML;
             $stmt = $dblj->prepare($sql);
             $stmt->execute(array('【Hệ Thống】',"[{$bossSafe}] chọc ghẹo [{$playerSafe}]...",'0'));
 			}
-            $html = <<<HTML
+            $bossResultHtml = <<<HTML
 <div class="boss-result-page boss-result-lose">
     <div class="boss-result-card">
         <div class="boss-result-mark">✖ THẤT BẠI ✖</div>
@@ -846,7 +851,7 @@ HTML;
 HTML;
             break;
         case -1:
-            $html = <<<HTML
+            $bossResultHtml = <<<HTML
 <div class="boss-result-page boss-result-lose">
     <div class="boss-result-card">
         <div class="boss-result-mark">⚠ TRỌNG THƯƠNG ⚠</div>
@@ -860,8 +865,8 @@ HTML;
     }
 }
 
-//判断，执行无生命值大于零，可进行战斗
-else{
+// Giao diện trận luôn hiển thị; kết quả (nếu có) hiện dạng popup phía trên
+{
     if (isset($gphurt) && $gphurt>0){
         $ghurt='-'.$gphurt;
     }else{
@@ -937,6 +942,7 @@ $yaopin = \player\getplayeryaopin($player->yp2,$sid,$dblj);
 $ypname2 = $yaopin->ypname.'('.$yaopin->ypsum.')';
 $yaopin = \player\getplayeryaopin($player->yp3,$sid,$dblj);
 $ypname3 = $yaopin->ypname.'('.$yaopin->ypsum.')';
+if (intval($boss->bosshp) < 0) $boss->bosshp = 0;
 $bossHpPercent = 0;
 if (intval($boss->bossmaxhp) > 0) {
     $bossHpPercent = round(($boss->bosshp / $boss->bossmaxhp) * 100, 1);
@@ -950,6 +956,17 @@ if (intval($player->umaxhp) > 0) {
 }
 if ($playerHpPercent < 0) $playerHpPercent = 0;
 if ($playerHpPercent > 100) $playerHpPercent = 100;
+
+// Giá trị máu đầu lượt — client (js/battle_sim.js) chạy từ đây về giá trị hiện tại
+$bossIsFight = ($cmd == 'pvbgj' && isset($bossFromHp));
+$bossHpFrom = $boss->bosshp; $bossPctFrom = $bossHpPercent;
+$playerHpFromV = $player->uhp; $playerPctFrom = $playerHpPercent;
+if ($bossIsFight) {
+    $bossHpFrom = max(0, $bossFromHp);
+    $playerHpFromV = max(0, $playerFromHp);
+    if (intval($boss->bossmaxhp) > 0) $bossPctFrom = max(0, min(100, round($bossHpFrom / $boss->bossmaxhp * 100, 1)));
+    if (intval($player->umaxhp) > 0) $playerPctFrom = max(0, min(100, round($playerHpFromV / $player->umaxhp * 100, 1)));
+}
 
 $bossStatus = '';
 if ($pvbsb != '') $bossStatus .= '<span class="battle-tag dodge">'.$pvbsb.'</span>';
@@ -973,7 +990,13 @@ if ($tishi != '') {
 
 $noticeBlock = '';
 if ($tishihtml != '' || $cwresthtml != '' || $tx != '') {
-    $noticeBlock = '<div class="battle-notice">'.$tishihtml.$cwresthtml.$tx.'</div>';
+    // Tách từng dòng diễn biến để mô phỏng hiện lần lượt
+    $noticeSteps = '';
+    foreach (preg_split('/<br\s*\/?\s*>/i', $tishihtml . $cwresthtml . $tx) as $part) {
+        $part = trim($part);
+        if ($part !== '') $noticeSteps .= '<div class="pve-step">' . $part . '</div>';
+    }
+    $noticeBlock = '<div class="battle-notice">'.$noticeSteps.'</div>';
 }
 
 $playerNameSafe = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
@@ -1008,7 +1031,7 @@ if (!empty($cbMovesV) && $boss->bosshp > 0) {
 $bossNameSafe = htmlspecialchars($boss->bossname, ENT_QUOTES, 'UTF-8');
 
 $html=<<<HTML
-<div class="boss-battle-page boss-battle-horizontal">
+<div class="boss-battle-page boss-battle-horizontal" data-sim-root="1">
     <div class="boss-battle-shell">
         <div class="boss-battle-header">
             <div>
@@ -1021,12 +1044,12 @@ $html=<<<HTML
         <div class="boss-battle-arena">
             <div class="arena-row arena-boss-row">
                 <div class="arena-side-label">MA THÚ TRẤN ẢI</div>
-                <div class="arena-fighter boss-line">
+                <div class="arena-fighter boss-line" data-side="1">
                     <div class="arena-avatar boss"><img src="./images/cqgs.png" alt="Boss"></div>
                     <div class="arena-main">
                         <div class="arena-name danger">$bossNameSafe <em>Lv.$boss->bosslv</em></div>
-                        <div class="arena-hp-head"><span>Sinh lực BOSS</span><b>$boss->bosshp / $boss->bossmaxhp</b></div>
-                        <div class="arena-hp danger"><i style="width:{$bossHpPercent}%"></i><span>{$bossHpPercent}%</span></div>
+                        <div class="arena-hp-head"><span>Sinh lực BOSS</span><b data-sim="1" data-to="$boss->bosshp / $boss->bossmaxhp">$bossHpFrom / $boss->bossmaxhp</b></div>
+                        <div class="arena-hp danger"><i data-sim="1" data-to="{$bossHpPercent}" style="width:{$bossPctFrom}%"></i><span data-sim="1" data-to="{$bossHpPercent}%">{$bossPctFrom}%</span></div>
                         <div class="arena-stats">
                             <div><span>Công kích</span><b>$boss->bossgj</b></div>
                             <div><span>Phòng ngự</span><b>$boss->bossfy</b></div>
@@ -1043,12 +1066,12 @@ $html=<<<HTML
 
             <div class="arena-row arena-player-row">
                 <div class="arena-side-label player-label">NGƯỜI KHIÊU CHIẾN</div>
-                <div class="arena-fighter player-line">
+                <div class="arena-fighter player-line" data-side="2">
                     <div class="arena-avatar player">🧑</div>
                     <div class="arena-main">
                         <div class="arena-name player">$playerNameSafe <em>Lv.$player->ulv</em></div>
-                        <div class="arena-hp-head"><span>Sinh lực</span><b>$player->uhp / $player->umaxhp</b></div>
-                        <div class="arena-hp player"><i style="width:{$playerHpPercent}%"></i><span>{$playerHpPercent}%</span></div>
+                        <div class="arena-hp-head"><span>Sinh lực</span><b data-sim="2" data-to="$player->uhp / $player->umaxhp">$playerHpFromV / $player->umaxhp</b></div>
+                        <div class="arena-hp player"><i data-sim="2" data-to="{$playerHpPercent}" style="width:{$playerPctFrom}%"></i><span data-sim="2" data-to="{$playerHpPercent}%">{$playerPctFrom}%</span></div>
                         <div class="arena-stats">
                             <div><span>Công kích</span><b>$player->ugj</b></div>
                             <div><span>Phòng ngự</span><b>$player->ufy</b></div>
@@ -1060,6 +1083,7 @@ $html=<<<HTML
             </div>
         </div>
 
+        <div class="pva-banner" data-sim-banner="1"></div>
         $noticeBlock
 
         <div class="battle-log-card">
@@ -1093,6 +1117,16 @@ $html=<<<HTML
     </div>
 </div>
 HTML;
+}
+if ($bossResultHtml !== '') {
+    $html .= '<div class="pve-pop show boss-pop" id="pve-pop" onclick="if(event.target===this)this.className=\'pve-pop\'">'
+        . '<div class="pve-pop-box"><a class="pve-pop-x" href="javascript:void(0)" title="Xem lại trận đấu"'
+        . ' onclick="document.getElementById(\'pve-pop\').className=\'pve-pop\'">✕</a>' . $bossResultHtml . '</div></div>'
+        // Đưa popup ra <body>: khung game có backdrop-filter làm position:fixed bị tính theo khung thay vì màn hình
+        . '<script>(function(){var p=document.getElementById(\'pve-pop\');if(p&&p.parentNode!==document.body)document.body.appendChild(p);})();</script>';
+}
+if (isset($bossIsFight) && $bossIsFight) {
+    $html .= '<script src="js/battle_sim.js?v=2026102801"></script>';
 }
 echo $html
 

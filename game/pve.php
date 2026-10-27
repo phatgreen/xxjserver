@@ -1181,24 +1181,25 @@ if ($pveIsFight) {
     $pvaMobIcon = isset($pvaIcons[$pvaElem]) ? $pvaIcons[$pvaElem] : '👹';
     $pvaAvatar = \player\player_avatar_img(isset($player->usex) ? $player->usex : 1);
     $pvaMobName = htmlspecialchars($guaiwu->gname, ENT_QUOTES, 'UTF-8');
+    $pvaFast = ($autoRefresh !== '') ? '1' : '0';
     $pveTopHtml = <<<HTML
-    <div class="pva" id="pva">
+    <div class="pva" id="pva" data-sim-root="1" data-fast="{$pvaFast}">
         <div class="pva-field">
-            <div class="pva-side me" id="pva-me">
+            <div class="pva-side me" id="pva-me" data-side="2">
                 <div class="pva-ava"><img src="$pvaAvatar" alt=""></div>
                 <b>$pvePlayerSafe</b><em>Lv $player->ulv</em>
                 <div class="pva-hp player"><i data-sim="2" data-to="{$playerHpPercent}" style="width:{$playerHpFrom}%"></i></div>
                 <small data-sim="2" data-to="$player->uhp/$player->umaxhp">$pHpFromText/$player->umaxhp</small>
             </div>
             <div class="pva-vs">VS</div>
-            <div class="pva-side mob el-$pvaElem" id="pva-mob">
+            <div class="pva-side mob el-$pvaElem" id="pva-mob" data-side="1">
                 <div class="pva-ava">$pvaMobIcon</div>
                 <b>$pvaMobName</b><em>Lv $guaiwu->glv</em>
                 <div class="pva-hp"><i data-sim="1" data-to="{$gwxl}" style="width:{$gwxlFrom}%"></i></div>
                 <small data-sim="1" data-to="$guaiwu->ghp/$guaiwu->gmaxhp">$gHpFromText/$guaiwu->gmaxhp</small>
             </div>
         </div>
-        <div class="pva-banner" id="pva-banner"></div>
+        <div class="pva-banner" id="pva-banner" data-sim-banner="1"></div>
         <div class="pva-log-title">Diễn biến</div>
         $battleTips
     </div>
@@ -1249,39 +1250,10 @@ if ($pveResultHtml !== '') {
         // Đưa popup ra <body>: khung game có backdrop-filter làm position:fixed bị tính theo khung thay vì màn hình
         . '<script>(function(){var p=document.getElementById(\'pve-pop\');if(p&&p.parentNode!==document.body)document.body.appendChild(p);})();</script>';
 }
-// Mô phỏng lượt đánh trên màn Chiến Trường: từng dòng diễn biến hiện lần lượt; dòng nào gây/nhận sát thương
-// thì bên trúng đòn rung + số sát thương bay lên + thanh máu tụt; xong lượt mới bật popup kết quả.
-// Trận còn tiếp (tự làm mới sau 2s) thì rút gọn ≤ ~1.6s.
+// Mô phỏng lượt đánh trên màn Chiến Trường (js/battle_sim.js): diễn biến hiện lần lượt, số sát thương bay,
+// thanh máu tụt; xong lượt mới bật popup kết quả.
 if ($pveIsFight) {
-$html .= <<<'HTML'
-<script>(function(){
-var arena=document.getElementById('pva');if(!arena)return;
-var steps=arena.querySelectorAll('.pve-step'),pop=document.getElementById('pve-pop'),banner=document.getElementById('pva-banner');
-var sides={1:document.getElementById('pva-mob'),2:document.getElementById('pva-me')};
-function hp(g){var els=arena.querySelectorAll('[data-sim="'+g+'"]');for(var i=0;i<els.length;i++){var e=els[i];
- if(e.tagName==='I')e.style.width=e.getAttribute('data-to')+'%';else e.textContent=e.getAttribute('data-to');}}
-function fx(g,txt,cls){var sd=sides[g];if(!sd)return;var f=document.createElement('span');f.className='pva-float '+cls;f.textContent=txt;sd.appendChild(f);
- setTimeout(function(){if(f.parentNode)f.parentNode.removeChild(f);},1400);
- if(cls!=='heal'){sd.className=sd.className.replace(/ hit/g,'');void sd.offsetWidth;sd.className+=' hit';}}
-function say(t){if(!banner)return;banner.textContent=t;banner.className='pva-banner';void banner.offsetWidth;banner.className='pva-banner on';}
-var n=steps.length,crit=false,doneMob=false,doneMe=false;
-if(pop)pop.className='pve-pop';
-var gap=pop?520:Math.min(320,Math.floor(1300/Math.max(n,1)));
-for(var i=0;i<n;i++){steps[i].style.animation='none';steps[i].style.opacity=0;}
-function run(k){var t=steps[k].textContent,m;
- steps[k].style.animation='pveStepIn .35s ease-out both';steps[k].style.opacity='';
- if(/Bạo kích/.test(t))crit=true;
- if((m=t.match(/«([^»]+)»/)))say(m[1]);else if(/Tung chiêu|Thi triển/.test(t))say(t.replace(/^[^:]*:\s*/,'').replace(/!.*$/,''));
- if((m=t.match(/Gây\s*([\d.,]+)\s*sát thương/))){fx(1,'-'+m[1],crit?'crit':'dmg');hp(1);doneMob=true;crit=false;}
- else if((m=t.match(/Nhận\s*([\d.,]+)\s*sát thương/))){fx(2,'-'+m[1],/bạo kích/.test(t)?'crit':'dmg');hp(2);doneMe=true;if((m=t.match(/phản công\s*([^:(]+)/)))say(m[1].trim());}
- else if((m=t.match(/(?:Hồi phục|hồi|hút máu thêm \+)\s*([\d.,]+)/)))fx(2,'+'+m[1],'heal');
- else if(/vung trúng khoảng không|né khỏi/.test(t))fx(2,'Né','miss');
- if(/giết chết/.test(t)&&sides[1])sides[1].className+=' dead';
- if(k===n-1){if(!doneMob)hp(1);if(!doneMe)hp(2);if(pop)setTimeout(function(){pop.className='pve-pop show';},900);}}
-if(!n){hp(1);hp(2);if(pop)setTimeout(function(){pop.className='pve-pop show';},500);return;}
-for(var j=0;j<n;j++)(function(k){setTimeout(function(){run(k);},250+k*gap);})(j);
-})();</script>
-HTML;
+    $html .= '<script src="js/battle_sim.js?v=2026102801"></script>';
 }
 echo '<style>.pve-step{display:block;margin:3px 0;padding:1px 0 .5px;color:#f5f5f5;font-size:14px;line-height:1.5;animation:pveStepIn .45s ease-out both}.pve-step:nth-child(1){animation-delay:.05s}.pve-step:nth-child(2){animation-delay:.11s}.pve-step:nth-child(3){animation-delay:.17s}.pve-step:nth-child(4){animation-delay:.23s}.pve-step:nth-child(5){animation-delay:.29s}.pve-step:nth-child(6){animation-delay:.35s}@keyframes pveStepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.pve-result-wrap{margin-top:14px}.pve-alert{margin:10px 0}</style>';
 echo $html;
