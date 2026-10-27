@@ -351,7 +351,11 @@
             lines += '<div class="cb-line cb-line-player"><span class="cb-line-icon">⚔</span> <b>' + pName + '</b> tấn công <b>' + bName + '</b> — <em>Né Tránh!</em></div>';
         } else {
             var critBadge = res.is_crit ? ' <span class="cb-crit-badge">Bạo Kích!</span>' : '';
-            lines += '<div class="cb-line cb-line-player"><span class="cb-line-icon">⚔</span> <b>' + pName + '</b> tấn công <b>' + bName + '</b> gây <b class="cb-dmg-red">' + formatNumber(res.damage) + '</b> sát thương' + critBadge + '</div>';
+            var moveTxt = res.move_name ? ' thi triển <b>' + res.move_name + '</b>' : ' tấn công <b>' + bName + '</b>';
+            lines += '<div class="cb-line cb-line-player"><span class="cb-line-icon">⚔</span> <b>' + pName + '</b>' + moveTxt + ' gây <b class="cb-dmg-red">' + formatNumber(res.damage) + '</b> sát thương' + critBadge + '</div>';
+            if (res.move_text) {
+                lines += '<div class="cb-line cb-line-detail"><span class="cb-line-arrow">↳</span> <i>' + res.move_text + '</i></div>';
+            }
             lines += '<div class="cb-line cb-line-detail"><span class="cb-line-arrow">↳</span> <b>' + bName + '</b> mất ' + formatNumber(res.damage) + ' HP → còn <b>' + formatNumber(newHp) + '</b>/' + formatNumber(maxHp) + ' (' + hpPct + '%)</div>';
         }
 

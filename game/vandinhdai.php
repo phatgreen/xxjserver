@@ -248,9 +248,16 @@ if (isset($canshu) && $canshu == 'fight' && isset($target) && $target != '') {
 
             $vddSkillNames = array('Vô Ảnh Thần Quyền', 'Truy Phong Kiếm Quyết', 'Huyền Thiên Chưởng', 'Băng Phách Hàn Quang', 'Lôi Đình Phá', 'Cửu Chuyển Phá Quân');
             $vddDefSkillNames = array('Kim Cương Bất Hoại', 'Thiên La Địa Võng', 'Thái Ất Hộ Thể', 'Huyền Quy Giáp', 'Vô Cực Phong Bế');
+            // Có võ công: dùng tên thế võ thật của 2 bên (chỉ hiển thị, sát thương giữ nguyên công thức đài).
+            $vddLastRound = 0;
+            foreach ($result['rounds'] as $line) { $vddLastRound = max($vddLastRound, intval($line['round'])); }
+            $vddAMoves = \player\combat_wugong_moves((isset($player->wugong) && intval($player->wugong) > 0) ? \player\wgcx(intval($player->wugong), $sid, $dblj) : false);
+            $vddDMoves = \player\combat_wugong_moves((isset($defender->wugong) && intval($defender->wugong) > 0) ? \player\wgcx(intval($defender->wugong), $target, $dblj) : false);
+            $vddASeq = !empty($vddAMoves) ? \player\combat_auto_sequence($vddAMoves, $vddLastRound) : array();
+            $vddDSeq = !empty($vddDMoves) ? \player\combat_auto_sequence($vddDMoves, $vddLastRound) : array();
             foreach ($result['rounds'] as $line) {
-                $atkSkill = $vddSkillNames[mt_rand(0, count($vddSkillNames) - 1)];
-                $defSkill = $vddDefSkillNames[mt_rand(0, count($vddDefSkillNames) - 1)];
+                $atkSkill = isset($vddASeq[$line['round']]) ? $vddAMoves[$vddASeq[$line['round']]]['name'] : $vddSkillNames[mt_rand(0, count($vddSkillNames) - 1)];
+                $defSkill = isset($vddDSeq[$line['round']]) ? $vddDMoves[$vddDSeq[$line['round']]]['name'] : $vddDefSkillNames[mt_rand(0, count($vddDefSkillNames) - 1)];
                 $battleHtml .= '<div class="vdd-round"><b>Hiệp '.$line['round'].'</b><span>⚡ Bạn tung chiêu <font color="#4CAF50"><b>'.$atkSkill.'</b></font> gây '.$line['a_damage'].' / đối thủ dùng <font color="#f87171"><b>'.$defSkill.'</b></font> gây '.$line['d_damage'].'</span><em>HP bạn: '.number_format($line['a_hp'], 0, ',', '.').' - HP đối thủ: '.number_format($line['d_hp'], 0, ',', '.').'</em></div>';
             }
 

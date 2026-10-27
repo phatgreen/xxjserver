@@ -202,7 +202,30 @@ Nguyên tắc cân bằng: **sát thương / 1 điểm thể lực** của thế
 Hiệu ứng thế: `pierce` (xuyên % phòng), `crit` (% chắc chắn bạo kích), `stun` (% quái mất lượt), `guard` (giảm % sát thương lượt này),
 `heal` (% khí huyết tối đa), `lifesteal` (% sát thương), `burn` (thêm % sát thương). `hits` chỉ để hiển thị.
 
-**Chưa làm:** công pháp trong trận (GĐ 0b), Boss/Tháp/Bang (GĐ 3), Cộng Hưởng (mục 9).
+### Đợt 2 (2026-10-27)
+
+| Hạng mục | Chi tiết | File |
+|---|---|---|
+| **Công pháp có tác dụng thật** | `atk_bonus`/`def_bonus` vào chỉ số (getplayer); `crit_dmg`, `dmg_reduce`, `hp_regen`, `drop_rate` (chung trần may mắn với Thiên Phú), `stone_bonus` trong PVE + Boss; `heal_bonus` vào dược. Hệ số + trần ở `rules.congphap_ratio/congphap_cap`. Trang Công Pháp hiện **giá trị thực áp dụng** | `class/player.php`, `game/pve.php`, `game/boss.php`, `game/congphap.php` |
+| **Boss** | Thế võ dùng được (đòn thường vẫn miễn phí; Tuyệt Kỹ/Tuyệt Chiêu tốn thể lực). Cứ 4 lượt boss **tụ lực** (báo trước) → lượt sau x1.8; **Tuyệt Chiêu phá thế**; thế `guard`/`stun` chống đỡ. Máu ≤ 50% **cuồng nộ** x1.2. Khống chế lên boss còn 50%. Tuyệt Kỹ/Tuyệt Chiêu không bị boss né | `game/boss.php`, `guaiwu_skill_config.json > boss` |
+| **Tháp Yêu / Vấn Đỉnh Đài / Boss bang** | Nhật ký dùng **tên + văn thế võ thật**, luân phiên theo hồi chiêu. **Chỉ hiển thị** — sát thương giữ nguyên công thức cũ để không lệch độ khó tháp, điểm đài và xếp hạng tông môn | `game/toayeuthap.php`, `game/vandinhdai.php`, `game/club_boss.php`, `js/club_boss.js` |
+
+Bảng hệ số công pháp (giá trị config × hệ số, chặn trần tổng):
+
+| Loại | Hệ số | Trần | Ví dụ max |
+|---|---|---|---|
+| atk_bonus / def_bonus | 0.4 | 25% | Như Lai Thần Chưởng 50% → 20% |
+| dmg_reduce | 0.4 | 20% | Ngũ Hành Đại Đạo 45% → 18% |
+| crit_dmg | 0.5 | +30% | Vạn Kiếm Quy Tông 50% → +25% hệ số bạo kích |
+| hp_regen | 0.1 | 5%/lượt | Hỏa Phượng Quyết 50 → 5% khí huyết/lượt |
+| heal_bonus | 1.0 | 40% | Hồi Sinh Quyết 25% |
+| drop_rate | 0.3 | 20% | Vô Tự Thiên Thư 55% → 16.5% |
+| stone_bonus | 0.3 | 15% | Tụ Bảo Huyền Công 45% → 13.5% |
+
+**Còn mở:**
+- `mining_bonus` (Phá Đá Khai Sơn): game **chưa có hệ đào mỏ** → công pháp này vô dụng. Đề xuất đổi sang `stone_bonus` (cần chủ dự án duyệt).
+- Thế võ ở Tháp/Đài/Boss bang mới là hiển thị; muốn tính sát thương thật cần cân lại độ khó tháp trước.
+- Cộng Hưởng (mục 9).
 
 ## 9. Đề xuất tiếp: Tàng Kinh Các — Cộng Hưởng (tham khảo ý tưởng, không sao chép)
 

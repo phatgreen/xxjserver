@@ -118,5 +118,13 @@ tassert('C7 chua co bang -> ve Vo Ky', $pk['move']['tier'], 1);
 tassert('C7 luat boss doc tu config', \player\combat_boss_rule('charge_every', 0), 4);
 tassert('C7 ten chieu tu luc theo he', \player\combat_boss_skill_name('hoa'), 'Liệt Hỏa Phệ Tâm');
 
+// ===== C8: trận tự động =====
+$wg->wgdj = 12; $mvs = \player\combat_wugong_moves($wg);
+$seq = \player\combat_auto_sequence($mvs, 8);
+// TC (cd4) hiệp 1 & 6; TK (cd2) hiệp 2 & 5 & 8; còn lại Võ Kỹ.
+tassert('C8 thu tu the tu dong', array_values($seq), array(3, 2, 1, 1, 2, 3, 1, 2));
+$wg->wgdj = 0; $mvs = \player\combat_wugong_moves($wg);
+tassert('C8 cap 0 chi Vo Ky', array_unique(array_values(\player\combat_auto_sequence($mvs, 5))), array(1));
+
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

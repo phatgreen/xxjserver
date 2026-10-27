@@ -280,6 +280,7 @@ if (isset($canshu) && $canshu == 'autoskip' && $boss) {
 
 if (isset($canshu) && $canshu == 'fight' && $boss) {
     $result = tyt_simulate($player, $boss);
+    $tytFoughtName = $boss['name']; // giữ tên boss vừa đánh (thắng thì $boss chuyển sang tầng sau)
     $newHp = $result['win'] ? max(0, intval($result['player_hp'])) : 0;
     $stmt = $dblj->prepare("UPDATE game1 SET uhp = ? WHERE sid = ?");
     $stmt->execute(array($newHp, $sid));
@@ -337,6 +338,9 @@ if (isset($canshu) && $canshu == 'fight' && $boss) {
     }
 
     $tytSkillNames = array('Kiếm Khí Ngút Trời', 'Chưởng Phong Sát', 'Thiên Lôi Chấn', 'Huyền Ảnh Bộ', 'Liệt Hỏa Quyền', 'Cửu Dương Chưởng', 'Hàn Băng Chưởng');
+    // Có võ công: hiệp đánh dùng tên + văn thế võ thật (chỉ hiển thị, sát thương giữ nguyên công thức Tháp).
+    $tytMoves = \player\combat_wugong_moves((isset($player->wugong) && intval($player->wugong) > 0) ? \player\wgcx(intval($player->wugong), $sid, $dblj) : false);
+    $tytSeq = !empty($tytMoves) ? \player\combat_auto_sequence($tytMoves, intval($result['round'])) : array();
     foreach ($result['rounds'] as $line) {
         $skillName = $tytSkillNames[mt_rand(0, count($tytSkillNames) - 1)];
         $tytHitDesc = array(
@@ -344,7 +348,13 @@ if (isset($canshu) && $canshu == 'fight' && $boss) {
             "chân khí bùng nổ như cuồng phong, xoay tít như bánh xe, mang theo tiếng vù rít chói tai quét tới yếu huyệt kẻ địch",
             "ánh binh khí lóe lên như tia chớp, đâm thẳng vào tử huyệt, kết quả 'xoẹt' một tiếng rạch ra một vết thương đầm đìa máu"
         );
-        $battleHtml .= '<div class="tyt-round"><b>Hiệp '.$line['round'].'</b><span>⚡ Tung chiêu <font color="#4CAF50"><b>'.$skillName.'</b></font>! '.$tytHitDesc[mt_rand(0, count($tytHitDesc) - 1)].', gây '.$line['damage'].' sát thương';
+        $tytDesc = $tytHitDesc[mt_rand(0, count($tytHitDesc) - 1)];
+        if (isset($tytSeq[$line['round']])) {
+            $tytMv = $tytMoves[$tytSeq[$line['round']]];
+            $skillName = $tytMv['label'] . ' · ' . $tytMv['name'];
+            $tytDesc = rtrim(\player\combat_text($tytMv['text'], tyt_h($tytFoughtName)), '!.');
+        }
+        $battleHtml .= '<div class="tyt-round"><b>Hiệp '.$line['round'].'</b><span>⚡ Tung chiêu <font color="#4CAF50"><b>'.$skillName.'</b></font>! '.$tytDesc.', gây '.$line['damage'].' sát thương';
         if ($line['heal'] > 0) {
             $battleHtml .= ', hồi '.$line['heal'].' HP';
         }

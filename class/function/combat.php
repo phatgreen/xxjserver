@@ -295,3 +295,23 @@ if (!function_exists(__NAMESPACE__ . '\\combat_boss_skill_name')) {
         return isset($cfg['element']['none']['special']['name']) ? $cfg['element']['none']['special']['name'] : 'Tuyệt Kỹ';
     }
 }
+
+if (!function_exists(__NAMESPACE__ . '\\combat_auto_sequence')) {
+    /**
+     * Trận tự động (Tháp, Vấn Đỉnh Đài): thế dùng ở từng hiệp 1..$n theo thứ tự ưu tiên
+     * Tuyệt Chiêu > Tuyệt Kỹ > Võ Kỹ, tôn trọng hồi chiêu. Trả array(hiệp => tier).
+     */
+    function combat_auto_sequence($moves, $n){
+        $seq = array();
+        $next = array(2 => 1, 3 => 1);
+        for ($r = 1; $r <= intval($n); $r++) {
+            $tier = 1;
+            foreach (array(3, 2) as $t) {
+                if (!empty($moves[$t]['unlocked']) && $r >= $next[$t]) { $tier = $t; break; }
+            }
+            if ($tier > 1) $next[$tier] = $r + $moves[$tier]['cooldown'] + 1;
+            $seq[$r] = $tier;
+        }
+        return $seq;
+    }
+}

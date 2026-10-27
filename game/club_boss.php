@@ -433,6 +433,17 @@ if ($isAjax && isset($_POST['attack']) && $_POST['attack'] == '1') {
         'boss_name' => 'Boss Tông Môn',
     ];
 
+    // Thế võ (chỉ hiển thị, sát thương giữ nguyên để công bằng xếp hạng tông môn): luân phiên theo số đòn trong phiên.
+    $cbMovesC = ($wugongId > 0) ? \player\combat_wugong_moves(\player\wgcx($wugongId, $sid, $dblj)) : array();
+    if (!empty($cbMovesC)) {
+        $cbTurnKey = 'club_boss_turn_' . $bossId;
+        $_SESSION[$cbTurnKey] = isset($_SESSION[$cbTurnKey]) ? intval($_SESSION[$cbTurnKey]) + 1 : 1;
+        $cbSeqC = \player\combat_auto_sequence($cbMovesC, $_SESSION[$cbTurnKey]);
+        $cbMvC = $cbMovesC[$cbSeqC[$_SESSION[$cbTurnKey]]];
+        $result['move_name'] = $cbMvC['label'] . ' «' . $cbMvC['name'] . '»';
+        $result['move_text'] = \player\combat_text($cbMvC['text'], 'Boss Tông Môn');
+    }
+
     if ($bossKilled) {
         $result['rewards'] = $rewards;
     }
@@ -749,5 +760,5 @@ var CB_CONFIG = {
     cooldown: {$bossCfg['cooldown_sec']}
 };
 </script>
-<script src="js/club_boss.js"></script>
+<script src="js/club_boss.js?v=2026102701"></script>
 HTML;
