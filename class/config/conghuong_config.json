@@ -1,0 +1,147 @@
+{
+ "_note": "Cộng Hưởng: võ công + công pháp chia nhóm theo hệ. Viên Mãn = võ công đạt vien_man.wugong_lv, công pháp đạt cấp tối đa (max_level). Thưởng % cộng dồn theo mốc. stat: atk=Công, def=Phòng, hp=Khí huyết.",
+ "vien_man": {
+  "wugong_lv": 10
+ },
+ "groups": [
+  {
+   "key": "kim",
+   "name": "Canh Kim Bảo Lục",
+   "icon": "⚔",
+   "elements": [
+    "kim"
+   ],
+   "stat": "atk",
+   "tiers": [
+    {
+     "need": 2,
+     "pct": 0.3
+    },
+    {
+     "need": 4,
+     "pct": 0.5
+    },
+    {
+     "need": "all",
+     "pct": 0.7
+    }
+   ]
+  },
+  {
+   "key": "hoa",
+   "name": "Liệt Hỏa Chân Kinh",
+   "icon": "🔥",
+   "elements": [
+    "hoa"
+   ],
+   "stat": "atk",
+   "tiers": [
+    {
+     "need": 2,
+     "pct": 0.3
+    },
+    {
+     "need": 4,
+     "pct": 0.5
+    },
+    {
+     "need": "all",
+     "pct": 0.7
+    }
+   ]
+  },
+  {
+   "key": "tho",
+   "name": "Hậu Thổ Kim Thân Lục",
+   "icon": "⛰",
+   "elements": [
+    "tho"
+   ],
+   "stat": "def",
+   "tiers": [
+    {
+     "need": 2,
+     "pct": 0.3
+    },
+    {
+     "need": 4,
+     "pct": 0.5
+    },
+    {
+     "need": "all",
+     "pct": 0.7
+    }
+   ]
+  },
+  {
+   "key": "thuy",
+   "name": "Huyền Thủy Bí Lục",
+   "icon": "💧",
+   "elements": [
+    "thuy"
+   ],
+   "stat": "def",
+   "tiers": [
+    {
+     "need": 2,
+     "pct": 0.3
+    },
+    {
+     "need": 4,
+     "pct": 0.5
+    },
+    {
+     "need": "all",
+     "pct": 0.7
+    }
+   ]
+  },
+  {
+   "key": "moc",
+   "name": "Thanh Mộc Trường Sinh Lục",
+   "icon": "🌿",
+   "elements": [
+    "moc"
+   ],
+   "stat": "hp",
+   "tiers": [
+    {
+     "need": 2,
+     "pct": 0.3
+    },
+    {
+     "need": 4,
+     "pct": 0.5
+    },
+    {
+     "need": "all",
+     "pct": 0.7
+    }
+   ]
+  },
+  {
+   "key": "hon_nguyen",
+   "name": "Hỗn Nguyên Vạn Pháp Lục",
+   "icon": "☯",
+   "elements": [
+    "all",
+    "none"
+   ],
+   "stat": "hp",
+   "tiers": [
+    {
+     "need": 2,
+     "pct": 0.3
+    },
+    {
+     "need": 4,
+     "pct": 0.5
+    },
+    {
+     "need": "all",
+     "pct": 0.7
+    }
+   ]
+  }
+ ]
+}

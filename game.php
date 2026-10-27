@@ -351,6 +351,7 @@ switch ($cmd){
 			'tianfu_open'=>'game/tianfu_open.php',
 			'taozhuang'=>'game/taozhuang.php',
 			'gocp'=>'game/congphap.php',
+			'conghuong'=>'game/conghuong.php', // Cộng Hưởng (Tàng Kinh Các)
 			'linhcan'=>'game/linhcan.php',
 			'linhcan_wash'=>'game/linhcan_wash.php',
 			'linhcan_quest'=>'game/linhcan_quest.php',
@@ -503,7 +504,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102705">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102707">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>

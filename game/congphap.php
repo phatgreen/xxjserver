@@ -11,6 +11,7 @@ $player = \player\getplayer($sid, $dblj);
 $gonowmid   = $encode->encode("cmd=gomid&newmid=".$player->nowmid."&sid=".$sid);
 $xiuliancmd = $encode->encode("cmd=goxiulian&sid=".$sid);
 $gocp       = $encode->encode("cmd=gocp&sid=".$sid);
+$chcmd      = $encode->encode("cmd=conghuong&sid=".$sid);
 
 $tscg = '';
 $tssb = '';
@@ -251,6 +252,7 @@ $cwhtml = <<<HTML
     <div class="cp-tabs">
         <a href="?cmd=$xiuliancmd">Ngồi Thiền</a>
         <a class="active" href="?cmd=$gocp">Công Pháp</a>
+        <a href="?cmd=$chcmd">Cộng Hưởng</a>
     </div>
 
     $penaltyHtml

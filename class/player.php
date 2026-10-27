@@ -27,6 +27,7 @@ require_once __DIR__ . '/function/nhiemvu.php';
 require_once __DIR__ . '/function/chatmsg.php';
 require_once __DIR__ . '/function/tianfu.php';
 require_once __DIR__ . '/function/combat.php';
+require_once __DIR__ . '/function/conghuong.php';
 
 
 class player
@@ -714,6 +715,15 @@ function getplayer($sid,$dblj){
         $cpDefPct = combat_cp_value($player, 'def_bonus');
         if ($cpAtkPct > 0) $player->ugj = intval($player->ugj * (100 + $cpAtkPct) / 100);
         if ($cpDefPct > 0) $player->ufy = intval($player->ufy * (100 + $cpDefPct) / 100);
+    }
+    // Cộng Hưởng (Tàng Kinh Các): % Công / Phòng / Khí huyết theo số bộ Viên Mãn.
+    $player->conghuong_bonus = array('atk' => 0, 'def' => 0, 'hp' => 0);
+    if (function_exists(__NAMESPACE__ . '\\conghuong_progress')) {
+        $chRes = conghuong_progress($player->sid, $dblj);
+        $player->conghuong_bonus = $chRes['bonus'];
+        if ($chRes['bonus']['atk'] > 0) $player->ugj = intval($player->ugj * (100 + $chRes['bonus']['atk']) / 100);
+        if ($chRes['bonus']['def'] > 0) $player->ufy = intval($player->ufy * (100 + $chRes['bonus']['def']) / 100);
+        if ($chRes['bonus']['hp'] > 0) $player->umaxhp = intval($player->umaxhp * (100 + $chRes['bonus']['hp']) / 100);
     }
 
     // ===== BUFF LINH CĂN (Passive) =====

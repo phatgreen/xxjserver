@@ -13,6 +13,7 @@ $gonowmid = $encode->encode("cmd=gomid&newmid=$player->nowmid&sid=$sid");
 $strxl = $encode->encode("cmd=wgxiulian&canshu=1&wgid=$wgid&sid=$sid");
 $wgxl = $encode->encode("cmd=wgxl&sid=$sid");
 $wgxx = $encode->encode("cmd=xxwg&sid=$sid");
+$chcmd = $encode->encode("cmd=conghuong&sid=$sid");
 
 $buyBookPrice = 400;
 $strbuybook = $encode->encode("cmd=wgxl&canshu=buybook&wgid=$wgid&sid=$sid");
@@ -280,6 +281,7 @@ $xlhtml = <<<HTML
     <div class="tcg-wg-tabs">
         <a class="tcg-wg-tab active" href="?cmd=$wgxl">Tu luyện võ công</a>
         <a class="tcg-wg-tab" href="?cmd=$wgxx">Bí tịch</a>
+        <a class="tcg-wg-tab" href="?cmd=$chcmd">Cộng Hưởng</a>
     </div>
 
     <div class="tcg-wg-current">

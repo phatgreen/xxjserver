@@ -7686,3 +7686,44 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tcg-wg-move-text{font-size:12px;color:#cbd5e1;margin-top:5px;line-height:1.45}
 .boss-charge-warn{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(127,29,29,.55);border:1px solid rgba(252,165,165,.6);color:#fde68a;font-weight:900;text-align:center;animation:bossChargePulse 1.2s ease-in-out infinite}
 @keyframes bossChargePulse{0%,100%{opacity:1}50%{opacity:.7}}
+
+/* 2026-10-27 — Cộng Hưởng (game/conghuong.php) */
+.ch-page{max-width:840px;margin:0 auto;padding:10px 12px 20px;color:#e2e8f0}
+.ch-hero{padding:16px;border-radius:16px;background:linear-gradient(135deg,rgba(88,28,135,.55),rgba(14,116,144,.35));border:1px solid rgba(192,132,252,.35)}
+.ch-kicker{font-size:12px;letter-spacing:1px;color:#fde68a;font-weight:900}
+.ch-hero h1{margin:4px 0;font-size:24px;color:#fff}
+.ch-hero p{margin:0;font-size:13px;line-height:1.5;color:#cbd5e1}
+.ch-tabs{display:flex;gap:8px;margin:12px 0}
+.main .ch-tabs a,.ch-tabs a{flex:1;text-align:center;padding:9px 6px;border-radius:10px;background:rgba(30,41,59,.8);border:1px solid rgba(148,163,184,.3);color:#cbd5e1!important;font-weight:900;text-decoration:none}
+.main .ch-tabs a.active,.ch-tabs a.active{background:linear-gradient(135deg,#7c3aed,#0e7490);color:#fff!important;border-color:rgba(253,224,71,.5)}
+.ch-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.ch-sum-item{padding:10px;border-radius:12px;text-align:center;background:rgba(15,23,42,.7);border:1px solid rgba(253,224,71,.3)}
+.ch-sum-item span{display:block;font-size:12px;color:#94a3b8}
+.ch-sum-item b{font-size:18px;color:#fde68a}
+.ch-group{margin-bottom:12px;padding:12px;border-radius:14px;background:rgba(15,23,42,.7);border:1px solid rgba(148,163,184,.25)}
+.ch-group-head{display:flex;align-items:center;gap:10px}
+.ch-group-icon{font-size:26px}
+.ch-group-title b{display:block;font-size:16px;color:#fff}
+.ch-group-title small{font-size:12px;color:#94a3b8}
+.ch-bar{height:6px;border-radius:6px;background:rgba(51,65,85,.9);margin:8px 0;overflow:hidden}
+.ch-bar i{display:block;height:100%;background:linear-gradient(90deg,#f59e0b,#fde68a)}
+.ch-tiers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ch-tier{font-size:12px;padding:4px 8px;border-radius:999px;background:rgba(51,65,85,.8);color:#94a3b8}
+.ch-tier.on{background:rgba(22,101,52,.75);color:#bbf7d0;border:1px solid rgba(134,239,172,.5)}
+.ch-items{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+@media (min-width:601px){.ch-items{grid-template-columns:repeat(4,1fr)}}
+.ch-item{padding:7px 8px;border-radius:10px;background:rgba(30,41,59,.6);border:1px solid rgba(71,85,105,.6);opacity:.55}
+.ch-item.owned{opacity:1}
+.ch-item.done{opacity:1;border-color:rgba(253,224,71,.7);box-shadow:0 0 10px rgba(253,224,71,.18) inset}
+.ch-item em{display:block;font-style:normal;font-size:10px;color:#94a3b8}
+.ch-item b{display:block;font-size:13px;line-height:1.3}
+.ch-item small{font-size:11px;color:#cbd5e1}
+.ch-item.done small{color:#fde68a;font-weight:900}
+.ch-bottom{text-align:center;margin-top:10px}
+.main .ch-bottom a,.ch-bottom a{color:#93c5fd!important}
+.ch-group summary{list-style:none;cursor:pointer}
+.ch-group summary::-webkit-details-marker{display:none}
+.ch-group-title{flex:1}
+.ch-toggle{color:#94a3b8;font-size:18px;transition:transform .2s}
+.ch-group[open] .ch-toggle{transform:rotate(180deg)}
+.ch-group[open] .ch-tiers{margin-bottom:10px}

@@ -227,9 +227,14 @@ Bảng hệ số công pháp (giá trị config × hệ số, chặn trần tổ
 - Thế võ ở Tháp/Đài/Boss bang mới là hiển thị; muốn tính sát thương thật cần cân lại độ khó tháp trước.
 - Cộng Hưởng (mục 9).
 
-## 9. Đề xuất tiếp: Tàng Kinh Các — Cộng Hưởng (tham khảo ý tưởng, không sao chép)
+## 9. Cộng Hưởng — Tàng Kinh Các (ĐÃ LÀM 2026-10-27)
 
-- Mọi võ công/công pháp **đã học** (không chỉ cái đang trang bị) được tính vào bộ sưu tập.
-- Chia **nhóm 3–5 bộ** theo chủ đề (cùng hệ ngũ hành / cùng loại). Đạt mốc số bộ "Viên Mãn" (đạt cấp mốc) trong nhóm ⇒ thưởng chỉ số vĩnh viễn nhỏ.
-- Tạo mục tiêu dài hạn cho bí tịch cũ (hiện học xong bộ mạnh hơn là bỏ bộ cũ).
-- Cần chốt trước: số nhóm, cấp "Viên Mãn", độ lớn thưởng (đề xuất tổng thưởng cả hệ ≤ 5% chỉ số).
+- Route `conghuong` → `game/conghuong.php`; logic `class/function/conghuong.php`; config `class/config/conghuong_config.json`.
+- **Không bảng mới**: đọc `playerwugong.wgdj` + `playercongphap.cpdj` (2 query trong `getplayer()`).
+- 6 nhóm theo hệ: Canh Kim Bảo Lục (Kim → Công), Liệt Hỏa Chân Kinh (Hỏa → Công), Hậu Thổ Kim Thân Lục (Thổ → Phòng),
+  Huyền Thủy Bí Lục (Thủy → Phòng), Thanh Mộc Trường Sinh Lục (Mộc → Khí huyết), Hỗn Nguyên Vạn Pháp Lục (all/none → Khí huyết).
+- **Viên Mãn**: võ công cấp ≥ 10; công pháp đạt `max_level`. Bộ không trang bị vẫn tính.
+- Mốc mỗi nhóm: 2 bộ +0.3% · 4 bộ +0.5% · toàn bộ +0.7% (cộng dồn 1.5%/nhóm) ⇒ tối đa **3% mỗi chỉ số**.
+- Tab "Cộng Hưởng" có ở trang Võ Công và Công Pháp. Nhóm thu gọn, bấm mới xổ danh sách bộ.
+- Test: `tests/test_conghuong.php`. Ảnh: `docs/img/vocong/conghuong-390.png`.
+- `mining_bonus` (Phá Đá Khai Sơn): giữ nguyên, làm khi có hệ đào mỏ.
