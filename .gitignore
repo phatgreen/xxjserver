@@ -7,3 +7,6 @@ runtime/
 cache/
 logs/
 cron/capnhat_code.log
+
+# Cache Python của công cụ sinh dữ liệu
+__pycache__/
