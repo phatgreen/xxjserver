@@ -1,0 +1,240 @@
+{
+  "maps": {
+    "1": {
+      "name": "Rừng Núi Thương",
+      "level_range": [1, 30],
+      "quality_tier": 0,
+      "bua_id": 70,
+      "mt_cost": 10,
+      "monsters": [
+        {"pet_config_id": 1, "weight": 30},
+        {"pet_config_id": 2, "weight": 25},
+        {"pet_config_id": 3, "weight": 20},
+        {"pet_config_id": 4, "weight": 15},
+        {"pet_config_id": 5, "weight": 10}
+      ],
+      "monster_count": [3, 5],
+      "exp_reward": 500,
+      "lt_reward": 100,
+      "drops": [
+        {"djid": 70, "rate": 25, "amount": 1}
+      ],
+      "desc": "Vùng núi thượng, nơi các yêu thú bình thường an ngủ"
+    },
+    "2": {
+      "name": "Thung Lũng Âm U",
+      "level_range": [10, 40],
+      "quality_tier": 0,
+      "bua_id": 71,
+      "mt_cost": 15,
+      "monsters": [
+        {"pet_config_id": 1, "weight": 25},
+        {"pet_config_id": 2, "weight": 25},
+        {"pet_config_id": 3, "weight": 20},
+        {"pet_config_id": 4, "weight": 15},
+        {"pet_config_id": 5, "weight": 15}
+      ],
+      "monster_count": [4, 6],
+      "exp_reward": 700,
+      "lt_reward": 150,
+      "drops": [
+        {"djid": 71, "rate": 25, "amount": 1}
+      ],
+      "desc": "Thung lũng âm u, nhiều âm thanh kỳ lạ"
+    },
+    "3": {
+      "name": "Động Thủy Phục",
+      "level_range": [20, 50],
+      "quality_tier": 0,
+      "bua_id": 72,
+      "mt_cost": 20,
+      "monsters": [
+        {"pet_config_id": 1, "weight": 20},
+        {"pet_config_id": 2, "weight": 20},
+        {"pet_config_id": 3, "weight": 20},
+        {"pet_config_id": 4, "weight": 20},
+        {"pet_config_id": 5, "weight": 20}
+      ],
+      "monster_count": [4, 7],
+      "exp_reward": 1000,
+      "lt_reward": 200,
+      "drops": [
+        {"djid": 72, "rate": 25, "amount": 1}
+      ],
+      "desc": "Động thủy phục, nước chảy quanh năm"
+    },
+    "4": {
+      "name": "Rừng Lửa Đỏ",
+      "level_range": [30, 60],
+      "quality_tier": 1,
+      "bua_id": 73,
+      "mt_cost": 30,
+      "monsters": [
+        {"pet_config_id": 6, "weight": 30},
+        {"pet_config_id": 7, "weight": 25},
+        {"pet_config_id": 8, "weight": 20},
+        {"pet_config_id": 9, "weight": 15},
+        {"pet_config_id": 10, "weight": 10}
+      ],
+      "monster_count": [4, 7],
+      "exp_reward": 1500,
+      "lt_reward": 300,
+      "drops": [
+        {"djid": 73, "rate": 25, "amount": 1}
+      ],
+      "desc": "Rừng lửa đỏ, nhiệt độ cực cao"
+    },
+    "5": {
+      "name": "Núi Mây Trắng",
+      "level_range": [40, 70],
+      "quality_tier": 1,
+      "bua_id": 74,
+      "mt_cost": 40,
+      "monsters": [
+        {"pet_config_id": 6, "weight": 25},
+        {"pet_config_id": 7, "weight": 25},
+        {"pet_config_id": 8, "weight": 20},
+        {"pet_config_id": 9, "weight": 15},
+        {"pet_config_id": 10, "weight": 15}
+      ],
+      "monster_count": [5, 8],
+      "exp_reward": 2000,
+      "lt_reward": 400,
+      "drops": [
+        {"djid": 74, "rate": 25, "amount": 1}
+      ],
+      "desc": "Núi mây trắng, dưới mây trắng phủ"
+    },
+    "6": {
+      "name": "Hồ Tiên Phục",
+      "level_range": [50, 80],
+      "quality_tier": 1,
+      "bua_id": 75,
+      "mt_cost": 50,
+      "monsters": [
+        {"pet_config_id": 6, "weight": 20},
+        {"pet_config_id": 7, "weight": 20},
+        {"pet_config_id": 8, "weight": 20},
+        {"pet_config_id": 9, "weight": 20},
+        {"pet_config_id": 10, "weight": 20}
+      ],
+      "monster_count": [5, 8],
+      "exp_reward": 2500,
+      "lt_reward": 500,
+      "drops": [
+        {"djid": 75, "rate": 25, "amount": 1}
+      ],
+      "desc": "Hồ tiên phục, nước trong như gương"
+    },
+    "7": {
+      "name": "Thâm Uyen Sâu",
+      "level_range": [60, 90],
+      "quality_tier": 2,
+      "bua_id": 76,
+      "mt_cost": 60,
+      "monsters": [
+        {"pet_config_id": 11, "weight": 25},
+        {"pet_config_id": 12, "weight": 25},
+        {"pet_config_id": 13, "weight": 20},
+        {"pet_config_id": 14, "weight": 15},
+        {"pet_config_id": 15, "weight": 15}
+      ],
+      "monster_count": [5, 8],
+      "exp_reward": 3500,
+      "lt_reward": 700,
+      "drops": [
+        {"djid": 76, "rate": 25, "amount": 1}
+      ],
+      "desc": "Thâm uyen sâu, không có ánh sáng"
+    },
+    "8": {
+      "name": "Động Rỗng Kin",
+      "level_range": [70, 100],
+      "quality_tier": 2,
+      "bua_id": 77,
+      "mt_cost": 80,
+      "monsters": [
+        {"pet_config_id": 11, "weight": 20},
+        {"pet_config_id": 12, "weight": 20},
+        {"pet_config_id": 13, "weight": 20},
+        {"pet_config_id": 14, "weight": 20},
+        {"pet_config_id": 15, "weight": 20}
+      ],
+      "monster_count": [6, 9],
+      "exp_reward": 4500,
+      "lt_reward": 900,
+      "drops": [
+        {"djid": 77, "rate": 25, "amount": 1}
+      ],
+      "desc": "Động rỗng kin, bị kết băng đá"
+    },
+    "9": {
+      "name": "Cung Đình Yêu Vương",
+      "level_range": [90, 130],
+      "quality_tier": 3,
+      "bua_id": 78,
+      "mt_cost": 100,
+      "monsters": [
+        {"pet_config_id": 16, "weight": 20},
+        {"pet_config_id": 17, "weight": 20},
+        {"pet_config_id": 18, "weight": 20},
+        {"pet_config_id": 19, "weight": 20},
+        {"pet_config_id": 20, "weight": 15},
+        {"pet_config_id": 26, "weight": 2},
+        {"pet_config_id": 27, "weight": 1},
+        {"pet_config_id": 28, "weight": 1},
+        {"pet_config_id": 29, "weight": 0.5},
+        {"pet_config_id": 30, "weight": 0.5}
+      ],
+      "monster_count": [6, 10],
+      "exp_reward": 6000,
+      "lt_reward": 1200,
+      "drops": [
+        {"djid": 78, "rate": 25, "amount": 1}
+      ],
+      "desc": "Cung điện yêu vương, nơi an ngụ của các vị vua"
+    },
+    "10": {
+      "name": "Thiên Địa Huyền Nguyên",
+      "level_range": [120, 150],
+      "quality_tier": 4,
+      "bua_id": 79,
+      "mt_cost": 150,
+      "monsters": [
+        {"pet_config_id": 21, "weight": 20},
+        {"pet_config_id": 22, "weight": 20},
+        {"pet_config_id": 23, "weight": 20},
+        {"pet_config_id": 24, "weight": 20},
+        {"pet_config_id": 25, "weight": 15},
+        {"pet_config_id": 26, "weight": 2},
+        {"pet_config_id": 27, "weight": 1},
+        {"pet_config_id": 28, "weight": 1},
+        {"pet_config_id": 29, "weight": 0.5},
+        {"pet_config_id": 30, "weight": 0.5}
+      ],
+      "monster_count": [7, 10],
+      "exp_reward": 8000,
+      "lt_reward": 1500,
+      "drops": [
+        {"djid": 79, "rate": 25, "amount": 1}
+      ],
+      "desc": "Thiên địa huyền nguyên, nơi cuối cùng của hành trình"
+    }
+  },
+  "capture_rates": {
+    "0": 80,
+    "1": 65,
+    "2": 50,
+    "3": 35,
+    "4": 20,
+    "5": 5
+  },
+  "quality_names": {
+    "0": "Bình Thường",
+    "1": "Ưu Tuấn",
+    "2": "Trác Việt",
+    "3": "Phi Phàm",
+    "4": "Hoàn Mỹ",
+    "5": "Nghịch Thiên"
+  }
+}

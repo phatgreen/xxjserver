@@ -1,0 +1,64 @@
+{
+  "stages": {
+    "1": {
+      "from_stage": 0,
+      "to_stage": 1,
+      "from_name": "Chưa Thức Tỉnh",
+      "to_name": "Sơ Thức Tỉnh",
+      "realm_require": "Kim Đan",
+      "realm_min_level": 150,
+      "material_id": 100,
+      "material_amount": 10,
+      "stat_bonus_mult": 1.2,
+      "passive_description": "+5% HP max hồi phục mỗi lượt",
+      "description": "Thể chất bắt đầu thức tỉnh, thân thể mạnh mẽ hơn."
+    },
+    "2": {
+      "from_stage": 1,
+      "to_stage": 2,
+      "from_name": "Sơ Thức Tỉnh",
+      "to_name": "Trung Thức Tỉnh",
+      "realm_require": "Nguyên Anh",
+      "realm_min_level": 200,
+      "material_id": 104,
+      "material_amount": 5,
+      "boss_require": "thechat_boss_lv2",
+      "stat_bonus_mult": 1.5,
+      "passive_description": "+10% miễn nhiễm debuff",
+      "description": "Thức tỉnh sâu hơn, mở khóa tiềm năng ẩn giấu."
+    },
+    "3": {
+      "from_stage": 2,
+      "to_stage": 3,
+      "from_name": "Trung Thức Tỉnh",
+      "to_name": "Thượng Thức Tỉnh",
+      "realm_require": "Đại Thừa",
+      "realm_min_level": 280,
+      "material_id": 105,
+      "material_amount": 5,
+      "quest_require": "thechat_awaken_quest_3",
+      "boss_require": "thechat_boss_lv3",
+      "stat_bonus_mult": 2.0,
+      "passive_description": "+15% giảm sát thương khi HP < 30%",
+      "description": "Thức tỉnh viên mãn, thể chất đạt cực hạn."
+    }
+  },
+  "stage_names": {
+    "0": "Chưa Thức Tỉnh",
+    "1": "Sơ Thức Tỉnh",
+    "2": "Trung Thức Tỉnh",
+    "3": "Thượng Thức Tỉnh"
+  },
+  "stage_colors": {
+    "0": "#666666",
+    "1": "#4caf50",
+    "2": "#ff9800",
+    "3": "#f44336"
+  },
+  "stage_icons": {
+    "0": "🔒",
+    "1": "🌟",
+    "2": "⭐",
+    "3": "💫"
+  }
+}

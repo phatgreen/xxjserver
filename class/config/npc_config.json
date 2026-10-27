@@ -1,0 +1,262 @@
+{
+  "5": {
+    "id": 5,
+    "nname": "Thần Bí Nhân",
+    "nsex": "Không rõ",
+    "ninfo": "Một thương nhân bí ẩn lang thang khắp nơi. Không ai biết thân phận thật… cũng có thể là Ma Vương cải trang.",
+    "muban": "gaiming.php",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "6": {
+    "id": 6,
+    "nname": "Thâm Cốc Thổ Địa",
+    "nsex": "Nam",
+    "ninfo": "Thổ Địa cai quản Thâm Cốc, am hiểu mọi biến động trong vùng. Hỏi gì cũng biết, miễn là đủ thành ý.",
+    "muban": "zl3.php",
+    "taskid": "39,40",
+    "mz": "",
+    "rwqy": ""
+  },
+  "7": {
+    "id": 7,
+    "nname": "Thôn Trường Lão Bà",
+    "nsex": "Nữ",
+    "ninfo": "Haizz… chán quá. Có ai tới trò chuyện không?",
+    "muban": "tanchu.php",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "8": {
+    "id": 8,
+    "nname": "Mâu Thập Bát",
+    "nsex": "Nam",
+    "ninfo": "Võ công tầm thường nhưng trung thành. Có lòng nghĩa khí, chỉ tiếc mưu trí chưa đủ sâu.",
+    "muban": "zhuanpan.php",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "9": {
+    "id": 9,
+    "nname": "Hà Quan",
+    "nsex": "Nữ",
+    "ninfo": "Mỹ nhân nổi danh khắp thành, giao thiệp rộng, tin tức linh thông.",
+    "muban": "aomen.php",
+    "taskid": "34,35,36",
+    "mz": "",
+    "rwqy": ""
+  },
+  "10": {
+    "id": 10,
+    "nname": "Nãi Mụ",
+    "nsex": "Nữ",
+    "ninfo": "Vú em với “bàn tay vàng”, chuyên chăm sóc và hỗ trợ. Nhìn vậy thôi chứ không hề đơn giản.",
+    "muban": "cs.php<br>cs.php暂停",
+    "taskid": "35",
+    "mz": "奶妈.png",
+    "rwqy": ""
+  },
+  "11": {
+    "id": 11,
+    "nname": "Thôn Trường",
+    "nsex": "Nam",
+    "ninfo": "Người đứng đầu thôn, quản lý mọi việc lớn nhỏ, được dân làng kính trọng.",
+    "muban": "",
+    "taskid": "13,23,24,28,33,41,42,43,44",
+    "mz": "奶妈.png",
+    "rwqy": ""
+  },
+  "13": {
+    "id": 13,
+    "nname": "Vương Lão Ngũ",
+    "nsex": "Nam",
+    "ninfo": "Một mình lâu rồi… đúng là có chút cô đơn.",
+    "muban": "",
+    "taskid": "24,37,38,46,61,62",
+    "mz": "",
+    "rwqy": ""
+  },
+  "14": {
+    "id": 14,
+    "nname": "Hách Bỉnh",
+    "nsex": "Nam",
+    "ninfo": "Ngày nào cũng đứng đây… thật là buồn chán.",
+    "muban": "",
+    "taskid": "28",
+    "mz": "",
+    "rwqy": ""
+  },
+  "15": {
+    "id": 15,
+    "nname": "Chu Phú Quý [Thương Nhân]",
+    "nsex": "Nam",
+    "ninfo": "Lại đây lại đây! Hàng tốt giá rẻ, không mua là tiếc!",
+    "muban": "sd.php",
+    "taskid": "36,37",
+    "mz": "",
+    "rwqy": ""
+  },
+  "16": {
+    "id": 16,
+    "nname": "Tụ Tiên Thành Chủ [Phù Lục]",
+    "nsex": "Nam",
+    "ninfo": "Thành chủ Tụ Tiên Thành, tinh thông phù lục và các bí thuật gia trì.",
+    "muban": "jndh.php",
+    "taskid": "40",
+    "mz": "",
+    "rwqy": ""
+  },
+  "17": {
+    "id": 17,
+    "nname": "Vân Du Tiên Y [Trị Liệu]",
+    "nsex": "Nam",
+    "ninfo": "Danh y phiêu bạt giang hồ. Đi đến đâu cũng có thể gặp, cứu người không hỏi danh.",
+    "muban": "zl.php",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "18": {
+    "id": 18,
+    "nname": "Vương Đại Mụ",
+    "nsex": "Nữ",
+    "ninfo": "Bác gái thân thiện trong thôn, chuyện gì cũng biết một chút.",
+    "muban": "",
+    "taskid": "24,29,34",
+    "mz": "",
+    "rwqy": ""
+  },
+  "19": {
+    "id": 19,
+    "nname": "Phù Lục Đại Sư",
+    "nsex": "Nam",
+    "ninfo": "Bậc thầy phù lục, chuyên phụ trách đổi và nâng cấp kỹ năng.",
+    "muban": "jndh.php",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "20": {
+    "id": 20,
+    "nname": "Tiểu Man",
+    "nsex": "Nữ",
+    "ninfo": "Ta… ta hơi sợ… đừng bỏ ta lại một mình…",
+    "muban": "",
+    "taskid": "20",
+    "mz": "",
+    "rwqy": ""
+  },
+  "21": {
+    "id": 21,
+    "nname": "Man Tộc Trường Lão",
+    "nsex": "Nam",
+    "ninfo": "Trưởng lão Man tộc, kinh nghiệm dày dặn, uy tín cao trong tộc.",
+    "muban": "",
+    "taskid": "19",
+    "mz": "",
+    "rwqy": ""
+  },
+  "22": {
+    "id": 22,
+    "nname": "Man Tộc Liệp Thủ",
+    "nsex": "Nam",
+    "ninfo": "Già rồi… săn bắn không còn nhanh nhẹn như trước nữa.",
+    "muban": "",
+    "taskid": "21",
+    "mz": "",
+    "rwqy": ""
+  },
+  "23": {
+    "id": 23,
+    "nname": "Đoái Hoán Đại Sử",
+    "nsex": "Nam",
+    "ninfo": "Phụ trách trao đổi vật phẩm, ai có đồ quý cứ tìm đến",
+    "muban": "",
+    "taskid": "27",
+    "mz": "",
+    "rwqy": ""
+  },
+  "24": {
+    "id": 24,
+    "nname": "Chính Quy Tiên Y",
+    "nsex": "Nam",
+    "ninfo": "Danh y chính thống, y thuật cao minh, chuyên trị thương và hồi phục.",
+    "muban": "zl1.php",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "25": {
+    "id": 25,
+    "nname": "Thành Chủ Tuyết Cầm",
+    "nsex": "Nữ",
+    "ninfo": "Nữ thành chủ tài sắc vẹn toàn, năng lực vượt trội, danh tiếng vang xa.",
+    "muban": "",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "26": {
+    "id": 26,
+    "nname": "Môn Phái Quản Lý Viên",
+    "nsex": "Nam",
+    "ninfo": "Phụ trách quản lý và điều hành các môn phái trong thành.",
+    "muban": "mpgly.php",
+    "taskid": "38,39",
+    "mz": "",
+    "rwqy": ""
+  },
+  "27": {
+    "id": 27,
+    "nname": "Trương Tam",
+    "nsex": "Nam",
+    "ninfo": "Người phụ trách môn phái, xử lý các công việc nội bộ.",
+    "muban": "",
+    "taskid": "30,51",
+    "mz": "",
+    "rwqy": ""
+  },
+  "28": {
+    "id": 28,
+    "nname": "Trương Đại Mụ",
+    "nsex": "Nữ",
+    "ninfo": "Tính cách mạnh mẽ, lời nói thẳng thắn, không ngại va chạm.",
+    "muban": "",
+    "taskid": "33",
+    "mz": "",
+    "rwqy": ""
+  },
+  "29": {
+    "id": 29,
+    "nname": "Tiểu Phan",
+    "nsex": "Nữ",
+    "ninfo": "Cố vấn thông minh, luôn đưa ra những lời khuyên hữu ích.",
+    "muban": "",
+    "taskid": "32",
+    "mz": "",
+    "rwqy": ""
+  },
+  "30": {
+    "id": 30,
+    "nname": "Tây Công Tử",
+    "nsex": "Nam",
+    "ninfo": "Công tử phong lưu, chuyên phụ trách các hoạt động và sự kiện.",
+    "muban": "",
+    "taskid": "",
+    "mz": "",
+    "rwqy": ""
+  },
+  "31": {
+    "id": 31,
+    "nname": "Đường Dần",
+    "nsex": "Nam",
+    "ninfo": "Ta là người đứng đắn… đừng nhìn ta bằng ánh mắt nghi ngờ!",
+    "muban": "zhuanpan.php",
+    "taskid": "31",
+    "mz": "",
+    "rwqy": ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "monthly_quests": [
+        {"id": "M1", "name": "Luyện Đan Trong Tháng", "type": "alchemy", "target": 100, "min_level": 5, "exp": 50000, "lt": 20000, "mt": 50},
+        {"id": "M2", "name": "Chế Tạo Trong Tháng", "type": "craft", "target": 10, "min_rarity": "yellow", "exp": 60000, "lt": 25000, "mt": 50},
+        {"id": "M3", "name": "Sát Thủ Trong Tháng", "type": "boss", "target": 50, "exp": 80000, "lt": 30000, "mt": 50},
+        {"id": "M4", "name": "Nâng Cấp Trong Tháng", "type": "upgrade_total", "target": 50, "exp": 70000, "lt": 25000, "mt": 50},
+        {"id": "M5", "name": "Tổng Hợp Trong Tháng", "type": "complete_all", "target": 4, "exp": 200000, "lt": 100000, "mt": 200}
+    ]
+}

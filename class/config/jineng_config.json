@@ -1,0 +1,68 @@
+{
+    "4": {
+        "jnname": "Tụ Linh Trảm",
+        "jnid": 4,
+        "jngj": 10,
+        "jnfy": 0,
+        "jnbj": 0,
+        "jnxx": 2,
+        "jndj": 6,
+        "djcount": 5,
+        "xiaohao": 0
+    },
+    "5": {
+        "jnname": "Ma Tâm Bạo Phát",
+        "jnid": 5,
+        "jngj": 5,
+        "jnfy": 0,
+        "jnbj": 10,
+        "jnxx": 10,
+        "jndj": 7,
+        "djcount": 8,
+        "xiaohao": 0
+    },
+    "6": {
+        "jnname": "Man Lực Phụ Thể",
+        "jnid": 6,
+        "jngj": 7,
+        "jnfy": 7,
+        "jnbj": 7,
+        "jnxx": 7,
+        "jndj": 9,
+        "djcount": 8,
+        "xiaohao": 0
+    },
+    "7": {
+        "jnname": "Nộ Huyết Bạo",
+        "jnid": 7,
+        "jngj": 12,
+        "jnfy": 2,
+        "jnbj": 20,
+        "jnxx": 8,
+        "jndj": 10,
+        "djcount": 10,
+        "xiaohao": 0
+    },
+    "8": {
+        "jnname": "Sơ Cấp Thị Huyết Thuật",
+        "jnid": 8,
+        "jngj": 1,
+        "jnfy": 0,
+        "jnbj": 0,
+        "jnxx": 20,
+        "jndj": 11,
+        "djcount": 15,
+        "xiaohao": 0
+    },
+    "9": {
+        "jnname": "Độn Địa Thuật",
+        "jnid": 9,
+        "jngj": 0,
+        "jnfy": 12,
+        "jnbj": 0,
+        "jnxx": 30,
+        "jndj": 10,
+        "djcount": 10,
+        "xiaohao": 0
+    }
+}

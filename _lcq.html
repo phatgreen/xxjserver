@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>lcq</title>
+<style>html,body{margin:0;padding:0;background:#000;color:#8f8;font:12px monospace}</style></head>
+<body><iframe id="f" src="" frameborder="0" style="border:0;display:block"></iframe>
+<script>
+// Tam (xoa cung _lcshot/_lcm o Task 12): do computed style cac class Task 11 trong iframe 390px.
+// dung: /_lcq.html?w=390&s=.lcq-card,.lcq-btn&u=<url game.php>
+var q = new URLSearchParams(location.search);
+var W = parseInt(q.get('w') || '390', 10);
+var H = parseInt(q.get('h') || '2200', 10);
+var sels = (q.get('s') || '').split(',');
+var f = document.getElementById('f');
+f.style.width = W + 'px'; f.style.height = H + 'px';
+f.src = q.get('u') || '';
+f.onload = function () {
+  setTimeout(function () {
+    try {
+      var d = f.contentDocument, out = [];
+      d.body.style.zoom = 1; d.documentElement.style.zoom = 1;
+      out.push('docH=' + d.body.scrollHeight + ' scrollW=' + d.documentElement.scrollWidth);
+      for (var i = 0; i < sels.length; i++) {
+        var sel = sels[i]; if (!sel) continue;
+        var n = d.querySelectorAll(sel);
+        if (!n.length) { out.push(sel + ' MISSING'); continue; }
+        var idx = Math.min(0, n.length - 1);
+        for (var k = 0; k < Math.min(n.length, 3); k++) {
+          var e = n[k], r = e.getBoundingClientRect(), cs = d.defaultView.getComputedStyle(e);
+          out.push(sel + '[' + k + ']=' + Math.round(r.width) + 'x' + Math.round(r.height) +
+            '@' + Math.round(r.left) + ',' + Math.round(r.top) +
+            ' disp=' + cs.display + ' color=' + cs.color + ' bg=' + cs.backgroundColor +
+            ' mar=' + cs.marginTop + '/' + cs.marginRight + '/' + cs.marginBottom + '/' + cs.marginLeft +
+            ' pad=' + cs.paddingTop + '/' + cs.paddingRight + '/' + cs.paddingBottom + '/' + cs.paddingLeft +
+            ' fs=' + cs.fontSize + ' td=' + cs.textDecorationLine);
+        }
+      }
+      document.title = out.join(' | ');
+    } catch (e) { document.title = 'ERR ' + e.message; }
+  }, 900);
+};
+</script></body></html>

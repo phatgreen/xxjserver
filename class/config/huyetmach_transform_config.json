@@ -1,0 +1,202 @@
+{
+  "transforms": {
+    "1": {
+      "bloodline_id": 1,
+      "name": "Long Hình",
+      "description": "Biến thành Rồng Thủy, tăng ATK/HP, miễn dịch vật lý 30%",
+      "icon": "🐉",
+      "hp_cost_percent": 20,
+      "duration_turns": 5,
+      "cooldown_minutes": 10,
+      "effects": {
+        "atk_mult": 1.5,
+        "hp_mult": 1.5,
+        "element_dmg_add": 20,
+        "phys_reduce": 30,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "2": {
+      "bloodline_id": 2,
+      "name": "Phượng Hình",
+      "description": "Biến thành Phượng Hoàng Hỏa, hồi 10% HP/lượt, Hỏa hệ +30%",
+      "icon": "🔥",
+      "hp_cost_percent": 20,
+      "duration_turns": 5,
+      "cooldown_minutes": 10,
+      "effects": {
+        "atk_mult": 1.4,
+        "hp_regen_percent": 10,
+        "element_dmg_add": 30,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "3": {
+      "bloodline_id": 3,
+      "name": "Kỳ Lân Hình",
+      "description": "Biến thành Kỳ Lân Thổ, DEF +60%, Thổ hệ +25%, Crit +15",
+      "icon": "🦌",
+      "hp_cost_percent": 20,
+      "duration_turns": 4,
+      "cooldown_minutes": 12,
+      "effects": {
+        "def_mult": 1.6,
+        "hp_mult": 1.4,
+        "element_dmg_add": 25,
+        "crit_add": 15,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "4": {
+      "bloodline_id": 4,
+      "name": "Kim Ô Hình",
+      "description": "Biến thành Kim Ô, ATK +55%, Hỏa hệ +35%, bỏ qua 20% DEF",
+      "icon": "☀",
+      "hp_cost_percent": 20,
+      "duration_turns": 4,
+      "cooldown_minutes": 12,
+      "effects": {
+        "atk_mult": 1.55,
+        "element_dmg_add": 35,
+        "ignore_def_percent": 20,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "5": {
+      "bloodline_id": 5,
+      "name": "Côn Bằng Hình",
+      "description": "Biến thành Côn Bằng, ATK +45%, Thủy hệ +30%, né tránh +20",
+      "icon": "🌊",
+      "hp_cost_percent": 20,
+      "duration_turns": 5,
+      "cooldown_minutes": 10,
+      "effects": {
+        "atk_mult": 1.45,
+        "element_dmg_add": 30,
+        "dodge_add": 20,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "6": {
+      "bloodline_id": 6,
+      "name": "Huyền Vũ Hình",
+      "description": "Biến thành Huyền Vũ, DEF +80%, HP +50%, shield 20% HP",
+      "icon": "🐢",
+      "hp_cost_percent": 20,
+      "duration_turns": 6,
+      "cooldown_minutes": 8,
+      "effects": {
+        "def_mult": 1.8,
+        "hp_mult": 1.5,
+        "element_dmg_add": 25,
+        "shield_percent": 20,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "7": {
+      "bloodline_id": 7,
+      "name": "Bạch Hổ Hình",
+      "description": "Biến thành Bạch Hổ, ATK +60%, Kim hệ +30%, crit dmg +25",
+      "icon": "🐯",
+      "hp_cost_percent": 20,
+      "duration_turns": 4,
+      "cooldown_minutes": 12,
+      "effects": {
+        "atk_mult": 1.6,
+        "element_dmg_add": 30,
+        "crit_dmg_add": 25,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "8": {
+      "bloodline_id": 8,
+      "name": "Chu Tước Hình",
+      "description": "Biến thành Chu Tước, ATK +50%, Hỏa hệ +35%, hồi 8% HP/lượt",
+      "icon": "🐦",
+      "hp_cost_percent": 20,
+      "duration_turns": 5,
+      "cooldown_minutes": 10,
+      "effects": {
+        "atk_mult": 1.5,
+        "element_dmg_add": 35,
+        "hp_regen_percent": 8,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "9": {
+      "bloodline_id": 9,
+      "name": "Bàn Cổ Hình",
+      "description": "Biến thành Bàn Cổ, +40% tất cả stats, element +20%",
+      "icon": "💎",
+      "hp_cost_percent": 20,
+      "duration_turns": 6,
+      "cooldown_minutes": 8,
+      "effects": {
+        "atk_mult": 1.4,
+        "def_mult": 1.4,
+        "hp_mult": 1.4,
+        "element_dmg_add": 20,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "10": {
+      "bloodline_id": 10,
+      "name": "Hỗn Độn Hình",
+      "description": "Biến thành Hỗn Độn, random buff mạnh trong 5 lượt",
+      "icon": "🌌",
+      "hp_cost_percent": 20,
+      "duration_turns": 5,
+      "cooldown_minutes": 10,
+      "effects": {
+        "random_buff": true,
+        "element_dmg_add": 30,
+        "phys_reduce": 0,
+        "immune_debuff": 0
+      },
+      "unlock_stage": 3
+    },
+    "11": {
+      "bloodline_id": 11,
+      "name": "Hồng Mông Hình",
+      "description": "Biến thành Hồng Mông, +70% ATK/DEF/HP, element +40%, miễn nhiễm 1 debuff",
+      "icon": "✨",
+      "hp_cost_percent": 20,
+      "duration_turns": 7,
+      "cooldown_minutes": 6,
+      "effects": {
+        "atk_mult": 1.7,
+        "def_mult": 1.7,
+        "hp_mult": 1.7,
+        "element_dmg_add": 40,
+        "phys_reduce": 0,
+        "immune_debuff": 1
+      },
+      "unlock_stage": 4
+    }
+  },
+  "random_buff_pool": [
+    {"name": "Sức Mạnh Vô Song", "atk_mult": 2.0, "duration": 3},
+    {"name": "Phòng Ngự Bất Hoại", "def_mult": 2.0, "duration": 3},
+    {"name": "Hồi Phục Thánh", "hp_regen_percent": 20, "duration": 3},
+    {"name": "Bạo Kích Tuyệt Đối", "crit_add": 100, "duration": 3},
+    {"name": "Hút Máu Đại Thành", "lifesteal_add": 30, "duration": 3},
+    {"name": "Tốc Độ Thần Thánh", "dodge_add": 40, "duration": 3}
+  ]
+}

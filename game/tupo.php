@@ -153,9 +153,13 @@ if ($tupo != 8) {
         if (isset($canshu) && $canshu == 'tupo') {
             $ret = \player\changeyxb(2, $tpls, $sid, $dblj);
             if ($ret) {
+                // Two independent rolls. $btRoll decides success against the displayed
+                // rate; $rand only grades how hard a failure lands. Sharing one roll
+                // made the real success rate = displayed rate - 6 (branch 1..6 pre-empted).
                 $rand = mt_rand(1, 100);
+                $btRoll = mt_rand(1, 100);
 
-                if ($rand <= 1) {
+                if ($rand <= 1 && $btRoll > $rate) {
                     $resultHtml = tupo_result('bad', 'Dục tốc bất đạt', $player->uname.' nền tảng không vững, tâm ma quấy nhiễu, cấp độ -1 và tu vi trở về 0.');
                     $failStats = '<div><span>Cấp độ</span><b>-1</b></div><div><span>Tu vi</span><b>về 0</b></div><div><span>Tâm ma</span><b>bạo phát</b></div><div><span>Căn cơ</span><b>chấn động</b></div>';
                     $ts .= makeBreakFailEffect('Dục tốc bất đạt', 'Nền tảng chưa vững, tâm ma thừa cơ phản phệ. Hãy ổn định căn cơ trước khi thử lại.', $failStats);
@@ -165,30 +169,30 @@ if ($tupo != 8) {
                         $player->ulv = $player->ulv - 1;
                         \player\updateAttr($sid, $dblj, 'ulv', $player->ulv);
                     }
-                } elseif ($rand <= 2) {
+                } elseif ($rand <= 2 && $btRoll > $rate) {
                     $resultHtml = tupo_result('bad', 'Thiên lôi giáng xuống', 'Kinh mạch chấn động, tu vi trở về 0 nhưng giữ lại căn nguyên để tu luyện tiếp.');
                     $failStats = '<div><span>Tu vi</span><b>về 0</b></div><div><span>Kinh mạch</span><b>chấn động</b></div><div><span>Căn nguyên</span><b>giữ lại</b></div><div><span>Lôi kiếp</span><b>chưa qua</b></div>';
                     $ts .= makeBreakFailEffect('Thiên lôi giáng xuống', 'Lôi kiếp đánh tan linh khí đang tụ, nhưng căn nguyên vẫn còn để tu luyện lại.', $failStats);
                     $player->uexp = 0;
                     \player\updateAttr($sid, $dblj, 'uexp', $player->uexp);
-                } elseif ($rand <= 3) {
+                } elseif ($rand <= 3 && $btRoll > $rate) {
                     $resultHtml = tupo_result('bad', 'Đạo tâm không vững', 'Linh khí tiêu tán 75%, cần tu luyện lại để ổn định căn cơ.');
                     $failStats = '<div><span>Tu vi</span><b>-75%</b></div><div><span>Đạo tâm</span><b>không vững</b></div><div><span>Linh khí</span><b>tan mạnh</b></div><div><span>Căn cơ</span><b>cần dưỡng</b></div>';
                     $ts .= makeBreakFailEffect('Đạo tâm không vững', 'Linh khí tán loạn trong kinh mạch, cần tích tụ lại trước khi tiếp tục xung cảnh.', $failStats);
                     $player->uexp = $player->uexp / 4;
                     \player\updateAttr($sid, $dblj, 'uexp', $player->uexp);
-                } elseif ($rand <= 4) {
+                } elseif ($rand <= 4 && $btRoll > $rate) {
                     $resultHtml = tupo_result('bad', 'Đạo tâm dao động', 'Linh khí tiêu tán 50%, cảnh giới chưa thể khai mở.');
                     $failStats = '<div><span>Tu vi</span><b>-50%</b></div><div><span>Đạo tâm</span><b>dao động</b></div><div><span>Linh khí</span><b>đứt mạch</b></div><div><span>Cảnh giới</span><b>khép lại</b></div>';
                     $ts .= makeBreakFailEffect('Đạo tâm dao động', 'Một niệm bất ổn khiến linh khí đứt mạch, cảnh giới mới tạm thời khép lại.', $failStats);
                     $player->uexp = $player->uexp / 2;
                     \player\updateAttr($sid, $dblj, 'uexp', $player->uexp);
-                } elseif ($rand <= 6) {
+                } elseif ($rand <= 6 && $btRoll > $rate) {
                     $miracleAtk = 999;
                     $miracleDef = 999;
                     $miracleHp = 999;
                     $resultHtml = tupo_result('good', 'Kỳ tích xuất hiện', 'Thiên đạo chiếu cố, linh quang đột khởi. Nhận khí vận đặc biệt: Công +'.$miracleAtk.', Phòng +'.$miracleDef.', Huyết +'.$miracleHp.'. Thôi đừng mơ nữa tỉnh lại đi :))))');
-                } elseif ($rand > $rate) {
+                } elseif ($btRoll > $rate) {
                     $resultHtml = tupo_result('bad', 'Đột phá thất bại', 'Chia buồn '.$player->uname.', linh khí chưa đủ ổn định để vượt qua lần khảo nghiệm này.');
                     $failStats = '<div><span>Kết quả</span><b>thất bại</b></div><div><span>Linh thạch</span><b>đã hao</b></div><div><span>Linh khí</span><b>chưa ổn</b></div><div><span>Cảnh giới</span><b>giữ nguyên</b></div>';
                     $ts .= makeBreakFailEffect('Đột phá thất bại', 'Linh khí chưa đủ ổn định để vượt qua lần khảo nghiệm này. Hãy tích lũy thêm trước khi thử lại.', $failStats);

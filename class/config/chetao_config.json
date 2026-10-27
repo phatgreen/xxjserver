@@ -1,0 +1,97 @@
+{
+  "recipes": {
+    "1": {
+      "id": 1,
+      "type": "equipment",
+      "result_zbid": 88,
+      "materials": [
+        {"id": 1, "amount": 5},
+        {"id": 32, "amount": 3}
+      ],
+      "base_success_rate": 85,
+      "level_required": 300
+    },
+    "2": {
+      "id": 2,
+      "type": "equipment",
+      "result_zbid": 89,
+      "materials": [
+        {"id": 1, "amount": 4},
+        {"id": 36, "amount": 2}
+      ],
+      "base_success_rate": 85,
+      "level_required": 300
+    },
+    "3": {
+      "id": 3,
+      "type": "equipment",
+      "result_zbid": 90,
+      "materials": [
+        {"id": 1, "amount": 5},
+        {"id": 36, "amount": 3}
+      ],
+      "base_success_rate": 80,
+      "level_required": 300
+    },
+    "4": {
+      "id": 4,
+      "type": "equipment",
+      "result_zbid": 91,
+      "materials": [
+        {"id": 1, "amount": 3},
+        {"id": 34, "amount": 2}
+      ],
+      "base_success_rate": 85,
+      "level_required": 300
+    },
+    "5": {
+      "id": 5,
+      "type": "equipment",
+      "result_zbid": 92,
+      "materials": [
+        {"id": 1, "amount": 4},
+        {"id": 32, "amount": 2}
+      ],
+      "base_success_rate": 85,
+      "level_required": 300
+    },
+    "6": {
+      "id": 6,
+      "type": "equipment",
+      "result_zbid": 93,
+      "materials": [
+        {"id": 1, "amount": 3},
+        {"id": 33, "amount": 3}
+      ],
+      "base_success_rate": 80,
+      "level_required": 300
+    },
+    "7": {
+      "id": 7,
+      "type": "equipment",
+      "result_zbid": 94,
+      "materials": [
+        {"id": 1, "amount": 4},
+        {"id": 32, "amount": 3},
+        {"id": 37, "amount": 1}
+      ],
+      "base_success_rate": 75,
+      "level_required": 350
+    },
+    "8": {
+      "id": 8,
+      "type": "special",
+      "materials": [
+        {"id": 32, "amount": 3},
+        {"id": 33, "amount": 3},
+        {"id": 34, "amount": 3},
+        {"id": 35, "amount": 3},
+        {"id": 36, "amount": 3}
+      ],
+      "result_daoju_id": 37,
+      "result_amount": 1,
+      "base_success_rate": 40,
+      "level_required": 25
+    }
+  }
+}

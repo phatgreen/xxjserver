@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#288dc7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.9"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="url(#bg)"/>
+  <circle cx="70" cy="80" r="20" fill="none" stroke="#288dc7" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="130" cy="80" r="20" fill="none" stroke="#288dc7" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="100" cy="110" r="20" fill="none" stroke="#288dc7" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="100" cy="90" r="5" fill="#288dc7" opacity="0.6" filter="url(#glow)"/>
+  <text x="100" y="98" text-anchor="middle" font-size="20" fill="#fff" font-family="serif" filter="url(#glow)">物</text>
+  <text x="100" y="165" text-anchor="middle" font-size="14" fill="#288dc7" font-family="sans-serif" font-weight="bold" opacity="0.8">Vạn Vật</text>
+</svg>

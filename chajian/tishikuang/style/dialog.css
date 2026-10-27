@@ -1,0 +1,242 @@
+/* =========================================================
+   dialog.css — Tu Chân theme (dựa chuẩn mystyle)
+   LƯU Ý: width/height/margin/position do dialog.min.js
+   set inline từ config. CSS ở đây KHÔNG đụng các thuộc tính
+   đó, chỉ style nền / viền / chữ / icon.
+   ========================================================= */
+@charset "utf-8";
+
+* { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { border: none; }
+input, select, textarea { outline: none; border: none; background: none; }
+textarea { resize: none; }
+a { text-decoration: none; }
+
+/* Nền mờ */
+.mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(2,6,23,.55);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Hộp popup (kích thước do JS inline quyết định) */
+#animationTipBox {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 2000;
+    background: linear-gradient(160deg, rgba(30,41,99,.96), rgba(15,23,42,.98));
+    border: 1px solid rgba(125,211,252,.35);
+    border-radius: 16px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 36px rgba(56,189,248,.12);
+    color: #e2e8f0;
+    text-align: center;
+    overflow: hidden;
+    -webkit-animation: tcgPopIn .3s cubic-bezier(.2,.8,.3,1.15) 0s 1 both;
+    animation: tcgPopIn .3s cubic-bezier(.2,.8,.3,1.15) 0s 1 both;
+}
+#animationTipBox::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 120%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(56,189,248,.16), transparent 70%);
+    pointer-events: none;
+}
+#animationTipBox * { box-sizing: border-box; -webkit-box-sizing: border-box; }
+
+/* Icon tròn */
+#animationTipBox .icon {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid #38bdf8;
+    background: rgba(56,189,248,.10);
+    box-shadow: 0 0 18px rgba(56,189,248,.3), 0 0 0 5px rgba(56,189,248,.06);
+    margin: 16px auto 4px auto;
+}
+#animationTipBox .icon_box { margin: 16px auto 4px auto; }
+
+/* Thành công */
+#animationTipBox .success .icon,
+#animationTipBox .tip .icon {
+    border-color: #22c55e;
+    background: rgba(34,197,94,.10);
+    box-shadow: 0 0 18px rgba(34,197,94,.3), 0 0 0 5px rgba(34,197,94,.06);
+}
+/* Lỗi / cảnh báo */
+#animationTipBox .lose .icon,
+#animationTipBox .error .icon {
+    border-color: #f87171;
+    background: rgba(248,113,113,.12);
+    box-shadow: 0 0 18px rgba(248,113,113,.35), 0 0 0 5px rgba(248,113,113,.07);
+}
+
+/* Dấu tích (success) */
+.success .line_short {
+    width: 20px; height: 4px;
+    position: absolute; left: 14px; top: 37px;
+    border-radius: 4px; background-color: #22c55e;
+    transform: rotate(45deg);
+    -webkit-animation: tcgLineShort .5s ease .15s 1 both;
+    animation: tcgLineShort .5s ease .15s 1 both;
+}
+.success .line_long {
+    width: 38px; height: 4px;
+    position: absolute; right: 10px; top: 31px;
+    border-radius: 4px; background-color: #22c55e;
+    transform: rotate(-45deg);
+    -webkit-animation: tcgLineLong .5s ease .15s 1 both;
+    animation: tcgLineLong .5s ease .15s 1 both;
+}
+/* Dấu nhân (lose / error) */
+.lose .line_left, .lose .line_right,
+.error .line_left, .error .line_right {
+    width: 38px; height: 4px;
+    position: absolute; left: 14px; top: 30px;
+    border-radius: 4px; background-color: #f87171;
+    transform: rotate(45deg);
+    -webkit-animation: tcgLineLong .45s ease .12s 1 both;
+    animation: tcgLineLong .45s ease .12s 1 both;
+}
+.lose .line_right, .error .line_right {
+    right: 12px; left: auto; transform: rotate(-45deg);
+}
+
+/* Chữ thông báo */
+#animationTipBox .dec_txt {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #f1f5f9;
+    padding: 8px 16px 14px 16px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    text-shadow: 0 1px 6px rgba(0,0,0,.5);
+}
+#animationTipBox .lose .dec_txt,
+#animationTipBox .error .dec_txt { color: #fecaca; }
+#animationTipBox .success .dec_txt,
+#animationTipBox .tip .dec_txt { color: #bbf7d0; }
+
+/* Nút xác nhận trong popup */
+.tcg-popup-ok {
+    display: inline-block;
+    padding: 8px 26px;
+    border-radius: 10px;
+    border: 1px solid rgba(125,211,252,.5);
+    background: linear-gradient(180deg,#38bdf8,#2563eb);
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(37,99,235,.35);
+}
+.tcg-popup-ok:hover { filter: brightness(1.1); }
+
+/* Icon hỏi cho popup xác nhận */
+.tcg-confirm-icon {
+    width: 56px;
+    height: 56px;
+    margin: 18px auto 4px auto;
+    border-radius: 50%;
+    border: 3px solid #fbbf24;
+    background: rgba(251,191,36,.12);
+    box-shadow: 0 0 18px rgba(251,191,36,.35), 0 0 0 5px rgba(251,191,36,.07);
+    color: #fbbf24;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 52px;
+    text-align: center;
+}
+.tcg-success-icon {
+    width: 56px;
+    height: 56px;
+    margin: 18px auto 4px auto;
+    border-radius: 50%;
+    border: 3px solid #4ade80;
+    background: rgba(74,222,128,.12);
+    box-shadow: 0 0 18px rgba(74,222,128,.35), 0 0 0 5px rgba(74,222,128,.07);
+    color: #4ade80;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 52px;
+    text-align: center;
+}
+.tcg-alert-icon {
+    width: 56px;
+    height: 56px;
+    margin: 18px auto 4px auto;
+    border-radius: 50%;
+    border: 3px solid #f87171;
+    background: rgba(248,113,113,.12);
+    box-shadow: 0 0 18px rgba(248,113,113,.35), 0 0 0 5px rgba(248,113,113,.07);
+    color: #fecaca;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 52px;
+    text-align: center;
+}
+
+/* Hàng nút (xác nhận + hủy) */
+.tcg-popup-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px auto 2px auto;
+}
+.tcg-popup-cancel {
+    display: inline-block;
+    padding: 8px 22px;
+    border-radius: 10px;
+    border: 1px solid rgba(248,113,113,.5);
+    background: linear-gradient(180deg,#64748b,#334155);
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,.3);
+}
+.tcg-popup-cancel:hover { filter: brightness(1.1); }
+
+/* Loading (giữ nguyên) */
+.load {
+    position: relative;
+    width: 60px; height: 80px;
+    border-radius: 50px; border: 4px solid #fff;
+    margin: 15px auto 5px auto; top: 10px;
+}
+.load .icon_box { margin: 10px auto; width: 60px; height: 60px; }
+.load .cirBox1, .load .cirBox2, .load .cirBox3 { width: 60px; height: 60px; position: absolute; left: 0; top: 0; }
+.load .cirBox1 > div, .load .cirBox2 > div, .load .cirBox3 > div {
+    width: 10px; height: 10px; border-radius: 100%; background-color: #93c5fd; position: absolute;
+}
+.load .cirBox1 { transform: rotate(30deg); }
+.load .cirBox2 { transform: rotate(60deg); }
+.load .cirBox3 { transform: rotate(90deg); }
+.load .cir1 { left: 0; top: 0; } .load .cir2 { right: 0; top: 0; }
+.load .cir3 { right: 0; bottom: 0; } .load .cir4 { left: 0; bottom: 0; }
+.load .cir1, .load .cir2, .load .cir3, .load .cir4 {
+    -webkit-animation: cir_Animation 1.2s ease 0s infinite;
+    animation: cir_Animation 1.2s ease 0s infinite;
+}
+.cirBox1 .cir2 { animation-delay: -1.1s; } .cirBox1 .cir3 { animation-delay: -0.8s; } .cirBox1 .cir4 { animation-delay: -0.5s; }
+.cirBox2 .cir2 { animation-delay: -1s; } .cirBox2 .cir3 { animation-delay: -0.7s; } .cirBox2 .cir4 { animation-delay: -0.4s; }
+.cirBox3 .cir2 { animation-delay: -0.9s; } .cirBox3 .cir3 { animation-delay: -0.6s; } .cirBox3 .cir4 { animation-delay: -0.3s; }
+@keyframes cir_Animation { 0%,80%,100% { transform: scale(0.4); } 40% { transform: scale(1); } }
+@-webkit-keyframes cir_Animation { 0%,80%,100% { transform: scale(0.4); } 40% { transform: scale(1); } }
+
+/* ===== Keyframes ===== */
+@keyframes tcgPopIn { 0% { transform: scale(.6); opacity: 0; } 55% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); } }
+@-webkit-keyframes tcgPopIn { 0% { -webkit-transform: scale(.6); opacity: 0; } 55% { -webkit-transform: scale(1.05); opacity: 1; } 100% { -webkit-transform: scale(1); } }
+@keyframes tcgLineShort { 0% { width: 0; left: 16px; top: 18px; } 100% { width: 20px; left: 14px; top: 37px; } }
+@keyframes tcgLineLong { 0% { width: 0; right: 36px; top: 44px; } 100% { width: 38px; right: 10px; top: 31px; } }
+@-webkit-keyframes tcgLineShort { 0% { width:0; left:16px; top:18px; } 100% { width:20px; left:14px; top:37px; } }
+@-webkit-keyframes tcgLineLong { 0% { width:0; right:36px; top:44px; } 100% { width:38px; right:10px; top:31px; } }

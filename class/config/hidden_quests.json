@@ -1,0 +1,12 @@
+{
+    "hidden_quests": [
+        {"id": "H1", "name": "Đan Liên Tục", "trigger": "alchemy_batch", "target": 2, "exp": 5000, "lt": 2000, "mt": 0, "hint": "Luyện được 2 đan trở lên trong 1 lần"},
+        {"id": "H2", "name": "Thợ Rèn Khổng Lồ", "trigger": "craft_streak", "target": 5, "exp": 8000, "lt": 3000, "mt": 0, "hint": "Chế tạo 5 món liên tiếp"},
+        {"id": "H3", "name": "Sống Sót Kỳ Diệu", "trigger": "boss_low_hp", "target": 10, "exp": 10000, "lt": 5000, "mt": 0, "hint": "Đánh bại Boss khi máu dưới 10%"},
+        {"id": "H4", "name": "Ngũ Hành Đầy Đủ", "trigger": "collect_all_elements", "target": 5, "exp": 15000, "lt": 8000, "mt": 0, "hint": "Thu thập đủ 5 loại đá nguyên tố"},
+        {"id": "H5", "name": "Cao Thủ Nâng Cấp", "trigger": "upgrade_success_15", "target": 1, "need_qianghua": 15, "exp": 20000, "lt": 10000, "mt": 0, "hint": "Nâng cấp trang bị lên +15"},
+        {"id": "H6", "name": "Bão Tố Sát Thủ", "trigger": "kill_speed", "target": 100, "window_minutes": 10, "exp": 12000, "lt": 5000, "mt": 0, "hint": "Tiêu diệt 100 quái trong 10 phút"},
+        {"id": "H7", "name": "Đại Luyện Đan", "trigger": "alchemy_low_rate", "target": 1, "rate_max": 50, "exp": 15000, "lt": 8000, "mt": 0, "hint": "Luyện thành công đan tỷ lệ thấp"},
+        {"id": "H8", "name": "Liên Thắng", "trigger": "pvp_win_streak", "target": 5, "exp": 10000, "lt": 5000, "mt": 0, "hint": "Thắng 5 trận PVP liên tiếp"}
+    ]
+}

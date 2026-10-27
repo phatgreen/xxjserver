@@ -1,0 +1,1017 @@
+@charset "UTF-8";
+
+/* 页面整体布局 */
+html.gamePlay, .gamePlay  body  {
+    height:100%;
+    margin: 0;
+      -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.gamePlay .container
+{height:100%;  
+}
+
+.gamePlay .playContainer
+{height:100%; display:table-row;}
+
+.gamePlay #nbar
+{ display:table-row; }
+
+.playContainer #playSceneContainer{
+    height:100%;width:100%; position:relative
+}
+
+.playContainer #playSceneContainer #playScene{
+    height:100%; display: block; width:100%; overflow:auto;   cursor: default; padding:10px;
+}
+
+#playScene .panel{
+    margin: 10px;
+
+}
+
+.container {
+    // margin-right: auto;
+    // margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+@media (min-width: 768px) {
+    .container {
+        //width: 370px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        //width: 370px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        //width: 370px;
+    }
+}
+
+/* 大屏 */
+@media (min-width: 768px){
+    body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    #playScene{
+        font-size: 15px;
+    }
+}
+
+/* 小屏  */
+@media (max-width: 768px){
+    #playScene{
+        font-size: 15px;
+    }
+    .gamePlay .container
+    {
+        width:100%;
+    }
+    .gamePlay #gnavbar{
+        margin-bottom: 0px;
+    }
+    .gamePlay footer {
+        display: none;
+    }
+    body {
+        padding-top: 2px;
+    }
+    .container{
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .row {
+        margin-right: -2px;
+        margin-left: -2px;
+    }
+}
+
+
+
+#floatBottom{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    p{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+#btnBox .btn{
+    white-space: normal;
+}
+.menudlg {
+    outline: none;
+
+}
+#fixTip{
+    position:absolute;
+    z-index:100;
+    left:0;
+    width:100%;
+    bottom:50%;
+    text-align: center;
+    display:none;
+}
+
+
+
+.tempMsg{
+    position:absolute;
+    z-index:2000;
+    padding: 5px;
+    font-size: 30px;
+    /*left:-100px *
+    width:300px;*/
+}
+
+.playImgDiv{
+}
+.playImgDiv img{
+    max-width: 100%;
+    height: auto;
+    margin:auto;
+    display:block;
+}
+
+.scrollPanel{
+    overflow:auto;
+    height: 400px;
+}
+
+/*========================================================*/
+/* 一些基本设置 */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: normal;
+
+}
+
+.hidden{display:none!important}
+
+.pull-right {
+    float: right !important;
+}
+p {
+    margin: 0 0 10px;
+}
+a {
+
+    text-decoration: none;
+}
+a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+h1,
+.h1 {
+    font-size: 36px;
+}
+h2,
+.h2 {
+    font-size: 30px;
+}
+h3,
+.h3 {
+    font-size: 24px;
+}
+h4,
+.h4 {
+    font-size: 18px;
+}
+h5,
+.h5 {
+    font-size: 14px;
+}
+h6,
+.h6 {
+    font-size: 12px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 555;
+    line-height: 0.1;
+    color: inherit;
+}
+img {
+    vertical-align: middle;
+}
+small,
+.small {
+    font-size: 85%;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.text-nowrap {
+    white-space: nowrap;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td, th {
+    padding: 0;
+}
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+}
+
+
+/*========================================================*/
+/*按钮*/
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: normal;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-lg,
+.btn-group-lg > .btn {
+    padding: 14px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+.btn-sm,
+.btn-group-sm > .btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.btn-xs,
+.btn-group-xs > .btn {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.btn-block + .btn-block {
+    margin-top: 5px;
+}
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0;
+}
+.btn-group > .btn:first-child {
+    margin-left: 0;
+}
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .dropdown-toggle:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.btn-group .dropdown-toggle:active,
+.btn-group.open .dropdown-toggle {
+    outline: 0;
+}
+.btn-group > .btn + .dropdown-toggle {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.btn-group > .btn-lg + .dropdown-toggle {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.btn:hover{
+    text-decoration: none;
+}
+.btn-group.open .dropdown-toggle.btn-link {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.btn-group-justified {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+.btn-group-justified > .btn,
+.btn-group-justified > .btn-group {
+    float: none;
+    display: table-cell;
+    width: 1%;
+}
+.btn-group-justified > .btn-group .btn {
+    width: 100%;
+}
+.btn-group-justified > .btn-group .dropdown-menu {
+    left: auto;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.disabled, fieldset[disabled] a.btn {
+    pointer-events: none;
+}
+/*===========================================================*/
+/* 工具条 */
+#gnavbar {
+    position: relative;
+    height: 50px;
+    margin-bottom: 20px;
+
+    border-collapse: separate !important;
+    text-align: center;
+    table-layout:fixed;
+    width:100%;
+}
+
+
+
+#gnavbar td {
+    border-top: 0;
+    border-bottom: 0;
+    vertical-align: middle;
+}
+#gnavbar tr td:first-child {
+    border-left: 0;
+}
+#gnavbar tr td:last-child {
+    border-right: 0;
+}
+
+#gnavbar #navTitle{
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    font-weight:bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
+
+/*===============================*/
+/*对话框*/
+.modal {
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.modal.fade .modal-dialog {
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+.modal-content {
+    position: relative;
+    border-radius: 6px;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    outline: 0;
+    border: 1px solid #999999;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000000;
+}
+.modal-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.modal-backdrop.in {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.modal-header {
+    padding: 15px;
+}
+
+.modal-header .close {
+    margin-top: -2px;
+}
+.modal-title {
+    margin: 0;
+    line-height: normal;
+}
+.modal-body {
+    position: relative;
+    padding: 20px;
+}
+.modal-footer {
+    padding: 20px;
+    text-align: right;
+}
+.modal-footer .btn + .btn {
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+.modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+    .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+    .modal-sm {
+        width: 300px;
+    }
+}
+@media (min-width: 992px) {
+    .modal-lg {
+        width: 900px;
+    }
+}
+
+/*======================================*/
+/* 列表框 */
+.list-group {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+.list-group-item:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+a.list-group-item:hover,
+a.list-group-item:focus {
+    text-decoration: none;
+}
+
+
+
+
+/*==============*/
+/*面板*/
+.panel {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+/*=====================*/
+/*下拉菜单*/
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid \9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.dropup,
+.dropdown {
+    position: relative;
+}
+.dropdown-toggle:focus {
+    outline: 0;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+.dropdown-menu.pull-right {
+    right: 0;
+    left: auto;
+}
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+}
+.dropdown-menu > li > a, .dropdown-menu > li > .text-menu {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: normal;
+
+    white-space: nowrap;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    text-decoration: none;
+}
+
+.open > .dropdown-menu {
+    display: block;
+}
+.open > a {
+    outline: 0;
+}
+.dropdown-menu-right {
+    left: auto;
+    right: 0;
+}
+.dropdown-menu-left {
+    left: 0;
+    right: auto;
+}
+
+.game-container{
+    display: flex;
+}
+.game-brief .user-info img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.game-brief, .game-comments{
+    width: 370px;
+    background: #272b30;
+    color: #fff;
+}
+@media (max-width: 750px){
+    .game-container div.container{
+        max-width: initial;    
+    }
+}
+.game-container .container{
+    max-width: 370px;
+    background: #272b30;
+}
+
+.game-container{
+    max-width: 1110px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.game-brief, .game-comments{
+    padding: 10px 30px;
+}
+
+.game-comments{
+    //margin-left: 30px;
+}
+.game-brief .user-info{
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-brief .user-info .right-part{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 140px;
+}
+
+.game-brief .user-info .right-part .btns{
+    margin-top: 5px;
+}
+
+a.game-btn, a.game-btn:hover {
+    border: 1px solid gray;
+    color: #fff;
+    padding: 3px 3px;
+    font-size: 11px;
+    border-radius: 3px;
+    etext-decoration: none;
+    cursor: pointer;
+}
+
+.brief{
+    font-size: 14px;
+    margin-top: 10px;
+}
+.brief-title{
+    border: 1px solid gray;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 12px;
+    border-radius: 6px;   
+
+}
+
+.author-name {
+    font-size: 18px;
+    font-weight: 700;
+}
+.game-brief .tips{
+    margin-top: 15px;
+    font-size: 12px;
+    margin-left: auto;
+    width: 150px;
+    margin-right: auto;
+}
+
+.game-brief .qrcode img{
+    width: 150px;
+}
+
+.game-brief .qrcode{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-brief .drop-down{
+    text-align: center;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(113, 115, 122, 0.5);
+}
+.game-brief .drop-down .icon{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 6px;
+    width: 8px;
+    height: 5px;
+    background-image: url(../../images/new_icons.png);
+    background-repeat: no-repeat;
+    background-position: -26px -100px;
+}
+.game-brief .drop-down.act .icon{
+    background-position: -26px -88px;
+}
+
+.game-brief .brief.fixed-height{
+    height: 82px;
+    overflow: hidden;
+}
+
+.new-comment-body{
+    background:  rgb(39, 43, 48);
+    padding: 7px 18px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.comment-list .media {
+    border-bottom: none;
+}
+.new-comment-body .comment_content{
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #E6E6E6;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+a.user-name{
+    font-size: 12px;
+    color: #9FA1A5;
+    text-decoration: none;
+}
+.new-comment-body a.comment-thumb img{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.new-comment-body a.comment-thumb{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+}
+
+.new_add_comment{
+    width: 300px;
+    height: 32px;
+    border-radius: 5px;
+    margin: 14px 0 0 25px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.new_add_comment textarea{
+    width: 250px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    color: #E6E6E6;
+    padding-left: 10px;
+    background: #31353c;
+    font-family: '微软雅黑';
+    font-size: 11px;
+}
+
+
+.new_add_comment textarea::-webkit-scrollbar{
+
+    width: 0px;
+    height: 2px;
+    background-color: initial;
+
+}
+
+/*定义滚动条的轨道，内阴影及圆角*/
+
+.new_add_comment textarea::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: initial;
+
+}
+
+/*定义滑块，内阴影及圆角*/
+
+.new_add_comment textarea::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: black;
+
+}
+.comment-list {
+    height: 670px;
+    overflow-y: scroll;
+}
+.new_add_comment .add_comment_btn{
+    width: 50px;
+    height: 32px;
+    color: #FFAC28;
+    cursor: pointer;
+    font-family: '微软雅黑';
+    background: #2E2F31;
+}
+
+.game-container{
+    height: 100%;
+}
+
+.mobile-game-brief{
+    display: none;
+}
+@media(max-width: 750px){
+    div.mobile-game-brief{
+        display: block;
+    }
+    .pc-game-brief{
+        display: none;
+    }
+
+    .game-container{
+        display: initial;
+    }
+
+    .game-comments{
+        padding-bottom: 100px;
+    }
+}
+
+@media (max-width: 768px){
+    .game-container .container {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    div.game-brief, div.game-comments, .container{
+        max-width: initial;
+        width: 100%;
+    }
+    div.comment-list{
+        height: initial;
+    }
+}
+
+body.game-play{
+    background: #272b30;
+}
+
+.left-ad-bar{
+    position: fixed;
+    left: 5px;
+    top: 20px;
+}
+
+.right-ad-bar{
+    position: fixed;
+    right: 5px;
+    top: 20px;
+}
+
+.show-brief-item{
+    display: flex;
+    width: 100%;
+    line-height: 28px;
+}
+.show-brief-item .left-item{
+    display: flex;
+    align-items: center;
+}
+.show-brief-item .right-item{
+    margin-left: auto;
+}
+
+.show-brief-items{
+    margin-left: auto;
+    font-size: 14px;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+.show-brief-items.with-border{
+    border-bottom: 1px solid rgba(113, 115, 122, 0.5);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.icon.word-sum{
+    background-position: 0 -1398px;
+}
+.icon.play-time{
+    background-position: 0 -48px;
+}
+
+.icon.fav{
+    background-position: 0 -1386px;
+}
+
+.show-brief-item .icon{
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    line-height: 28px;
+    margin-right: 8px;
+    vertical-align: -2px;
+    background-image: url(/public/images/icons_1.png);
+    background-repeat: no-repeat;
+}
+.comment-list{
+    padding-left: 10px;
+}
+
+@media (max-width: 750px) {
+    .ad-bar{
+        display: none;
+    }
+}
+
+.ad-bar{
+    display: none;
+}

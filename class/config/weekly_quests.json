@@ -1,0 +1,14 @@
+{
+    "weekly_quests": [
+        {"id": "W1", "name": "Luyện Đan Trong Tuần", "day": 1, "type": "alchemy", "target": 10, "exp": 3000, "lt": 1000, "mt": 0},
+        {"id": "W2", "name": "Sát Thủ Trong Tuần", "day": 1, "type": "kill", "target": 100, "exp": 2500, "lt": 800, "mt": 0},
+        {"id": "W3", "name": "Chế Tạo Trong Tuần", "day": 2, "type": "craft", "target": 3, "exp": 3000, "lt": 1200, "mt": 0},
+        {"id": "W4", "name": "Đấu Boss Trong Tuần", "day": 2, "type": "boss", "target": 5, "exp": 3500, "lt": 1500, "mt": 0},
+        {"id": "W5", "name": "Nâng Cấp Trong Tuần", "day": 3, "type": "upgrade", "target": 5, "exp": 2500, "lt": 1000, "mt": 0},
+        {"id": "W6", "name": "Sát Thủ Tuần 2", "day": 3, "type": "kill", "target": 200, "exp": 3000, "lt": 1200, "mt": 0},
+        {"id": "W7", "name": "Luyện Đan Tuần 2", "day": 4, "type": "alchemy", "target": 20, "exp": 4000, "lt": 1500, "mt": 0},
+        {"id": "W8", "name": "Boss Tuần 2", "day": 4, "type": "boss", "target": 10, "exp": 4500, "lt": 2000, "mt": 0},
+        {"id": "W9", "name": "Thu Thập Trong Tuần", "day": 5, "type": "collect", "target": 50, "exp": 3000, "lt": 1000, "mt": 0},
+        {"id": "W10", "name": "Tổng Hợp Trong Tuần", "day": 6, "type": "complete_all", "target": 9, "exp": 10000, "lt": 5000, "mt": 20}
+    ]
+}

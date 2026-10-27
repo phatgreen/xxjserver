@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ff3100" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.9"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="url(#bg)"/>
+  <path d="M100 50 C100 50 130 70 130 95 C130 115 115 130 100 130 C85 130 70 115 70 95 C70 70 100 50 100 50" fill="none" stroke="#ff3100" stroke-width="2" opacity="0.5"/>
+  <circle cx="100" cy="90" r="15" fill="#ff3100" opacity="0.2"/>
+  <text x="100" y="98" text-anchor="middle" font-size="20" fill="#ff3100" font-family="serif" filter="url(#glow)">血</text>
+  <text x="100" y="165" text-anchor="middle" font-size="14" fill="#ff3100" font-family="sans-serif" font-weight="bold" opacity="0.8">Mệnh Huyết</text>
+</svg>

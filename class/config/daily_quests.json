@@ -1,0 +1,14 @@
+{
+    "daily_quest_pool": [
+        {"id": "D1", "name": "Tu Luyện Chăm Chỉ", "type": "cultivate", "target": 30, "unit": "minutes", "exp": 500, "lt": 200, "mt": 0},
+        {"id": "D2", "name": "Sát Thủ Nhỏ Nhẹ", "type": "kill", "target": 30, "unit": "monsters", "exp": 400, "lt": 150, "mt": 0},
+        {"id": "D3", "name": "Luyện Đan Mỗi Ngày", "type": "alchemy", "target": 3, "unit": "pills", "exp": 600, "lt": 300, "mt": 0},
+        {"id": "D4", "name": "Chế Tạo Mỗi Ngày", "type": "craft", "target": 1, "unit": "items", "exp": 500, "lt": 250, "mt": 0},
+        {"id": "D5", "name": "Nâng Cấp Trang Bị", "type": "upgrade", "target": 1, "unit": "upgrades", "exp": 400, "lt": 200, "mt": 0},
+        {"id": "D6", "name": "Thu Thập Nguyên Liệu", "type": "collect", "target": 10, "unit": "materials", "exp": 300, "lt": 100, "mt": 0},
+        {"id": "D7", "name": "Đấu Boss Hằng Ngày", "type": "boss", "target": 1, "unit": "bosses", "exp": 700, "lt": 400, "mt": 0},
+        {"id": "D8", "name": "Chiếm Linh Đấu Trường", "type": "pvp", "target": 3, "unit": "wins", "exp": 500, "lt": 300, "mt": 0}
+    ],
+    "daily_count": 5,
+    "daily_bonus": {"exp": 1000, "lt": 500, "mt": 5}
+}

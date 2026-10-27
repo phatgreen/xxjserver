@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#10bf61" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.9"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="url(#bg)"/>
+  <circle cx="100" cy="85" r="40" fill="none" stroke="#10bf61" stroke-width="2" opacity="0.5"/>
+  <path d="M100 45 L100 125" stroke="#10bf61" stroke-width="1.5" opacity="0.4"/>
+  <path d="M60 85 L140 85" stroke="#10bf61" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="100" cy="85" r="8" fill="#10bf61" opacity="0.5" filter="url(#glow)"/>
+  <text x="100" y="93" text-anchor="middle" font-size="20" fill="#fff" font-family="serif" filter="url(#glow)">天</text>
+  <text x="100" y="165" text-anchor="middle" font-size="14" fill="#10bf61" font-family="sans-serif" font-weight="bold" opacity="0.8">Thiên Địa</text>
+</svg>

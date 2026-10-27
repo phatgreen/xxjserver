@@ -1,0 +1,74 @@
+{
+  "upgrades": {
+    "1": {
+      "from_tier": 0,
+      "to_tier": 1,
+      "from_name": "Phàm",
+      "to_name": "Huyền",
+      "linh_thach_cost": 500,
+      "da_ngu_hanh_cost": 10,
+      "uexp_cost": 1000,
+      "success_rate": 100,
+      "description": "Nâng từ Phàm lên Huyền, tỷ lệ thành công 100%"
+    },
+    "2": {
+      "from_tier": 1,
+      "to_tier": 2,
+      "from_name": "Huyền",
+      "to_name": "Địa",
+      "linh_thach_cost": 2000,
+      "da_ngu_hanh_cost": 30,
+      "uexp_cost": 5000,
+      "success_rate": 80,
+      "description": "Nâng từ Huyền lên Địa, tỷ lệ thành công 80%"
+    },
+    "3": {
+      "from_tier": 2,
+      "to_tier": 3,
+      "from_name": "Địa",
+      "to_name": "Thiên",
+      "linh_thach_cost": 8000,
+      "da_ngu_hanh_cost": 80,
+      "uexp_cost": 20000,
+      "success_rate": 60,
+      "description": "Nâng từ Địa lên Thiên, tỷ lệ thành công 60%"
+    },
+    "4": {
+      "from_tier": 3,
+      "to_tier": 4,
+      "from_name": "Thiên",
+      "to_name": "Thánh",
+      "linh_thach_cost": 25000,
+      "da_ngu_hanh_cost": 200,
+      "uexp_cost": 80000,
+      "success_rate": 40,
+      "description": "Nâng từ Thiên lên Thánh, tỷ lệ thành công 40%"
+    },
+    "5": {
+      "from_tier": 4,
+      "to_tier": 5,
+      "from_name": "Thánh",
+      "to_name": "Niết",
+      "linh_thach_cost": 80000,
+      "da_ngu_hanh_cost": 500,
+      "uexp_cost": 300000,
+      "success_rate": 20,
+      "description": "Nâng từ Thánh lên Niết, tỷ lệ thành công 20%"
+    }
+  },
+  "da_ngu_hanh_ids": {
+    "kim": 1,
+    "moc": 2,
+    "thuy": 3,
+    "hoa": 4,
+    "tho": 5
+  },
+  "tier_names": {
+    "0": "Phàm",
+    "1": "Huyền",
+    "2": "Địa",
+    "3": "Thiên",
+    "4": "Thánh",
+    "5": "Niết"
+  }
+}

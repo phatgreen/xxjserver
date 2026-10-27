@@ -1,0 +1,29 @@
+.container {
+/* width : 300px ;*/
+ height : 5px ;
+ background-color : #ddd ;
+ border-radius: 10px ;
+ }
+
+ .skills {
+ line-height : 15px ;
+ color : white ;
+ border-radius: 9px ;
+/*text-align : center ;居中
+*/
+/*width : 55% ;显示面积占比
+*/
+ background-color:#fb9516 ;
+ }
+ 
+  .dise {
+ height : 18px ;/*宽度*/
+ /*background-color : #ddd ;*/
+ border-radius: 9px ;/*圆角*/
+/*text-align : center ;居中
+*/
+width : 70% ;
+/*width : 55% ;显示面积占比
+*/
+ background-color:#d6e2db ;
+ }

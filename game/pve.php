@@ -421,7 +421,10 @@ HTML;
 		$sjyxb = mt_rand(1,200);
         $yxb = round($guaiwu->glv*5) + $sjyxb;// Tính số linh thạch người chơi nhận được
         
-		// Nếu không gây được sát thương hoặc chênh lệch cấp quá lớn thì không nhận linh thạch
+		// $hurt = true khi sat thuong cua quai bi lam tron xuong 0. San 15% o ben tren
+		// = round(ggj*0.15), nen moi quai co ggj <= 3 LUON luon tra 0 linh thạch,
+		// khong phụ thuộc phòng ngự người chơi. (KHÔNG phải "người chơi không gây được
+		// sát thương" như comment cũ.)
 		if ($hurt) {
 			$yxb = 0;
 		}
@@ -432,7 +435,7 @@ HTML;
 		}
 
         $ret = \player\changeyxb(1,$yxb,$sid,$dblj);
-        if ($ret){
+        if ($ret && $yxb > 0){
             $huode .= "Nhận được linh thạch: $yxb<br/>";
         }
 

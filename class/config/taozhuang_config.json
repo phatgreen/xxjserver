@@ -1,0 +1,212 @@
+{
+  "_comment": "Cấu hình Thần Trang chuyển từ taozhuang.sql. Sửa các số trong tiers để tự cân bằng buff theo bậc. PHP không đọc _comment.",
+  "mode": "percent",
+  "stage_rules": {
+    "4": {
+      "title": "Sơ thành",
+      "extra_percent": {
+        "hp": 0,
+        "gj": 0,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      }
+    },
+    "8": {
+      "title": "Trung thành",
+      "extra_percent": {
+        "hp": 1,
+        "gj": 1,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      }
+    },
+    "12": {
+      "title": "Đại thành",
+      "extra_percent": {
+        "hp": 2,
+        "gj": 2,
+        "fy": 1,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      }
+    },
+    "16": {
+      "title": "Hoàn chỉnh",
+      "extra_percent": {
+        "hp": 3,
+        "gj": 3,
+        "fy": 1,
+        "bj": 1,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      }
+    }
+  },
+  "tiers": {
+    "10": {
+      "id": 1,
+      "tzid": 10,
+      "name": "Thần Trang 10 Sao",
+      "info": "Linh sáo trang kích hoạt đạt được trang bị gia tăng",
+      "color": "#00bebf",
+      "_note": "base_percent là chỉ số % nền của bậc này. Ví dụ bậc 1 mặc 4 món = hp/gj 1%; bậc 2 mặc 4 món = 2%. Muốn cân bằng thì sửa tại đây.",
+      "base_percent": {
+        "hp": 10,
+        "gj": 10,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      },
+      "sql_fixed_attr": {
+        "gj": 350,
+        "fy": 200,
+        "bj": 30,
+        "sb": 10,
+        "xx": 10,
+        "xy": 10,
+        "hp": 500
+      }
+    },
+    "1": {
+      "id": 2,
+      "tzid": 1,
+      "name": "Thần Trang 1 Sao",
+      "info": "Nội trắc mã trang bị sáo trang, độc quyền người chơi bản Closed Beta dùng.",
+      "color": "#09e0b0",
+      "_note": "base_percent là chỉ số % nền của bậc này. Ví dụ bậc 1 mặc 4 món = hp/gj 1%; bậc 2 mặc 4 món = 2%. Muốn cân bằng thì sửa tại đây.",
+      "base_percent": {
+        "hp": 1,
+        "gj": 1,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      },
+      "sql_fixed_attr": {
+        "gj": 123,
+        "fy": 123,
+        "bj": 5,
+        "sb": 5,
+        "xx": 5,
+        "xy": 5,
+        "hp": 123
+      }
+    },
+    "2": {
+      "id": 2,
+      "tzid": 2,
+      "name": "Thần Trang 2 Sao",
+      "info": "Cấu hình mặc định cho bậc 2.",
+      "color": "#f5a400",
+      "_note": "Có thể sửa base_percent để tăng/giảm buff bậc này.",
+      "base_percent": {
+        "hp": 2,
+        "gj": 2,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      },
+      "sql_fixed_attr": {
+        "gj": 0,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0,
+        "hp": 0
+      }
+    },
+    "3": {
+      "id": 3,
+      "tzid": 3,
+      "name": "Thần Trang 3 Sao",
+      "info": "Cấu hình mặc định cho bậc 3.",
+      "color": "#f5a400",
+      "_note": "Có thể sửa base_percent để tăng/giảm buff bậc này.",
+      "base_percent": {
+        "hp": 3,
+        "gj": 3,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      },
+      "sql_fixed_attr": {
+        "gj": 0,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0,
+        "hp": 0
+      }
+    },
+    "4": {
+      "id": 4,
+      "tzid": 4,
+      "name": "Thần Trang 4 Sao",
+      "info": "Cấu hình mặc định cho bậc 4.",
+      "color": "#f5a400",
+      "_note": "Có thể sửa base_percent để tăng/giảm buff bậc này.",
+      "base_percent": {
+        "hp": 4,
+        "gj": 4,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      },
+      "sql_fixed_attr": {
+        "gj": 0,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0,
+        "hp": 0
+      }
+    },
+    "5": {
+      "id": 5,
+      "tzid": 5,
+      "name": "Thần Trang 5 Sao",
+      "info": "Cấu hình mặc định cho bậc 5.",
+      "color": "#f5a400",
+      "_note": "Có thể sửa base_percent để tăng/giảm buff bậc này.",
+      "base_percent": {
+        "hp": 5,
+        "gj": 5,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0
+      },
+      "sql_fixed_attr": {
+        "gj": 0,
+        "fy": 0,
+        "bj": 0,
+        "sb": 0,
+        "xx": 0,
+        "xy": 0,
+        "hp": 0
+      }
+    }
+  }
+}

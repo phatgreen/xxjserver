@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#39b512" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.9"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="url(#bg)"/>
+  <rect x="75" y="60" width="50" height="60" rx="5" fill="none" stroke="#39b512" stroke-width="2" opacity="0.5"/>
+  <line x1="85" y1="70" x2="85" y2="110" stroke="#39b512" stroke-width="1" opacity="0.3"/>
+  <line x1="100" y1="70" x2="100" y2="110" stroke="#39b512" stroke-width="1" opacity="0.3"/>
+  <line x1="115" y1="70" x2="115" y2="110" stroke="#39b512" stroke-width="1" opacity="0.3"/>
+  <circle cx="100" cy="85" r="10" fill="#39b512" opacity="0.3" filter="url(#glow)"/>
+  <text x="100" y="93" text-anchor="middle" font-size="16" fill="#fff" font-family="serif">礦</text>
+  <text x="100" y="165" text-anchor="middle" font-size="14" fill="#39b512" font-family="sans-serif" font-weight="bold" opacity="0.8">Khoáng Mạch</text>
+</svg>

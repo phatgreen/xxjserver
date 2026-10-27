@@ -1,0 +1,302 @@
+{
+  "1": {
+    "name": "Linh Ly Thủy",
+    "element": "thuy",
+    "quality_tier": 0,
+    "base_hp": 120,
+    "base_atk": 8,
+    "base_def": 5,
+    "base_crit": 2,
+    "desc": "Thổ linh thủy tinh, sống ở những dòng suối nóng"
+  },
+  "2": {
+    "name": "Hoa Hoa Xà",
+    "element": "hoa",
+    "quality_tier": 0,
+    "base_hp": 100,
+    "base_atk": 10,
+    "base_def": 4,
+    "base_crit": 3,
+    "desc": "Xà hoa tinh tế, thường xuất hiện vào ban đêm"
+  },
+  "3": {
+    "name": "Báo Báo Ngưu",
+    "element": "tho",
+    "quality_tier": 0,
+    "base_hp": 150,
+    "base_atk": 6,
+    "base_def": 8,
+    "base_crit": 1,
+    "desc": "Ngưu si nhõm nheo, rất trung thành với chủ nhân"
+  },
+  "4": {
+    "name": "Khiêu Khiêu Thỏ",
+    "element": "moc",
+    "quality_tier": 0,
+    "base_hp": 90,
+    "base_atk": 12,
+    "base_def": 3,
+    "base_crit": 4,
+    "desc": "Thỏ tinh khiêu khích, nhanh nhẹn và tinh nghịch"
+  },
+  "5": {
+    "name": "Khóc Khóc Long",
+    "element": "kim",
+    "quality_tier": 0,
+    "base_hp": 110,
+    "base_atk": 9,
+    "base_def": 6,
+    "base_crit": 2,
+    "desc": "Nhỏ nhất trong các loài long, nhưng rất cảnh báo"
+  },
+  "6": {
+    "name": "Lưu Lưu Ma",
+    "element": "hoa",
+    "quality_tier": 1,
+    "base_hp": 180,
+    "base_atk": 15,
+    "base_def": 8,
+    "base_crit": 5,
+    "desc": "Ma tinh lưu loét, có thể đốt cháy mọi thứ"
+  },
+  "7": {
+    "name": "Mi Mi Dương",
+    "element": "thuy",
+    "quality_tier": 1,
+    "base_hp": 200,
+    "base_atk": 12,
+    "base_def": 10,
+    "base_crit": 3,
+    "desc": "Dương tinh đáng thương, nhưng thật ra rất mạnh mẽ"
+  },
+  "8": {
+    "name": "Soái Soái Hầu",
+    "element": "moc",
+    "quality_tier": 1,
+    "base_hp": 160,
+    "base_atk": 18,
+    "base_def": 6,
+    "base_crit": 6,
+    "desc": "Hầu tinh soái ngạo, vô cùng nhanh nhẹn trên cây"
+  },
+  "9": {
+    "name": "Đạn Đạn Kê",
+    "element": "kim",
+    "quality_tier": 1,
+    "base_hp": 140,
+    "base_atk": 20,
+    "base_def": 5,
+    "base_crit": 7,
+    "desc": "Kê tinh đạn đá, có thể ném đá với lực mạnh"
+  },
+  "10": {
+    "name": "Quái Quái Cầu",
+    "element": "tho",
+    "quality_tier": 1,
+    "base_hp": 220,
+    "base_atk": 10,
+    "base_def": 12,
+    "base_crit": 2,
+    "desc": "Cầu tinh quái ngoan, rất khó tính nhưng trung thành"
+  },
+  "11": {
+    "name": "Chiêu Tài Trụ",
+    "element": "kim",
+    "quality_tier": 2,
+    "base_hp": 280,
+    "base_atk": 25,
+    "base_def": 15,
+    "base_crit": 8,
+    "desc": "Trụ tinh chiêu tài, mang lại may mắn cho chủ nhân"
+  },
+  "12": {
+    "name": "Hắc Điểm Xà Vương",
+    "element": "hoa",
+    "quality_tier": 2,
+    "base_hp": 250,
+    "base_atk": 30,
+    "base_def": 12,
+    "base_crit": 10,
+    "desc": "Xà vương hắc điểm, đốt cháy mọi thứ bằng lửa đen"
+  },
+  "13": {
+    "name": "Thủy U Linh",
+    "element": "thuy",
+    "quality_tier": 2,
+    "base_hp": 320,
+    "base_atk": 22,
+    "base_def": 18,
+    "base_crit": 6,
+    "desc": "U linh thủy tinh, sống ở sâu dòng nước sâu"
+  },
+  "14": {
+    "name": "Thanh Cốt Hồ",
+    "element": "moc",
+    "quality_tier": 2,
+    "base_hp": 300,
+    "base_atk": 28,
+    "base_def": 14,
+    "base_crit": 9,
+    "desc": "Hồ cốt xanh, ranh mãnh và mạnh mẽ như cốt"
+  },
+  "15": {
+    "name": "Bạch Báo Yêu",
+    "element": "tho",
+    "quality_tier": 2,
+    "base_hp": 350,
+    "base_atk": 26,
+    "base_def": 20,
+    "base_crit": 7,
+    "desc": "Báo trắng yêu nghịch, nhanh nhẹn và dữ tợn"
+  },
+  "16": {
+    "name": "Huyền Tho Long",
+    "element": "kim",
+    "quality_tier": 3,
+    "base_hp": 450,
+    "base_atk": 40,
+    "base_def": 25,
+    "base_crit": 12,
+    "desc": "Long huyền tho, có thể lấp lánh như kim loại"
+  },
+  "17": {
+    "name": "Tiểu Hỏa Phượng",
+    "element": "hoa",
+    "quality_tier": 3,
+    "base_hp": 400,
+    "base_atk": 45,
+    "base_def": 20,
+    "base_crit": 15,
+    "desc": "Phượng hỏa nhỏ, nhưng đốt cháy như lửa cháy"
+  },
+  "18": {
+    "name": "Bình Sơn Mạnh",
+    "element": "tho",
+    "quality_tier": 3,
+    "base_hp": 500,
+    "base_atk": 35,
+    "base_def": 30,
+    "base_crit": 8,
+    "desc": "Mạnh bình sơn, có thể chịu đựng áp lực lớn"
+  },
+  "19": {
+    "name": "Lộc Nhũ Mi Hầu",
+    "element": "moc",
+    "quality_tier": 3,
+    "base_hp": 420,
+    "base_atk": 42,
+    "base_def": 22,
+    "base_crit": 14,
+    "desc": "Mi hầu có 6 tai, có thể nghe được mọi âm thanh"
+  },
+  "20": {
+    "name": "Tham Cốc Giào Long",
+    "element": "thuy",
+    "quality_tier": 3,
+    "base_hp": 480,
+    "base_atk": 38,
+    "base_def": 28,
+    "base_crit": 10,
+    "desc": "Giào long trong đám sâu, cực kỳ hiến hiếm"
+  },
+  "21": {
+    "name": "Kim Sư Đại Bàng",
+    "element": "kim",
+    "quality_tier": 4,
+    "base_hp": 600,
+    "base_atk": 55,
+    "base_def": 35,
+    "base_crit": 18,
+    "desc": "Đại bàng kim sư, có cánh vàng chống chói"
+  },
+  "22": {
+    "name": "Ly Hỏa Kì Lân",
+    "element": "hoa",
+    "quality_tier": 4,
+    "base_hp": 550,
+    "base_atk": 60,
+    "base_def": 30,
+    "base_crit": 20,
+    "desc": "Kì lân ly hỏa, đốt cháy bằng lửa thần"
+  },
+  "23": {
+    "name": "Bóng Giáp Mang",
+    "element": "thuy",
+    "quality_tier": 4,
+    "base_hp": 650,
+    "base_atk": 50,
+    "base_def": 40,
+    "base_crit": 15,
+    "desc": "Mang có giáp bóng, không thể phá vỡ"
+  },
+  "24": {
+    "name": "Thổ Giáp Long",
+    "element": "tho",
+    "quality_tier": 4,
+    "base_hp": 700,
+    "base_atk": 48,
+    "base_def": 42,
+    "base_crit": 12,
+    "desc": "Long thổ giáp, có thể che chở mọi thứ"
+  },
+  "25": {
+    "name": "Dư Thiên Côn Băng",
+    "element": "moc",
+    "quality_tier": 4,
+    "base_hp": 580,
+    "base_atk": 58,
+    "base_def": 32,
+    "base_crit": 19,
+    "desc": "Côn bàng dư thiên, có thể bay cao trời"
+  },
+  "26": {
+    "name": "Thần Loan",
+    "element": "kim",
+    "quality_tier": 5,
+    "base_hp": 800,
+    "base_atk": 70,
+    "base_def": 45,
+    "base_crit": 25,
+    "desc": "Thần loan vàng, biểu tượng của cuộc phục"
+  },
+  "27": {
+    "name": "La Hầu Hắc Phượng",
+    "element": "hoa",
+    "quality_tier": 5,
+    "base_hp": 750,
+    "base_atk": 75,
+    "base_def": 40,
+    "base_crit": 28,
+    "desc": "Hắc phượng la hầu, đốt cháy từ hơi phục sinh"
+  },
+  "28": {
+    "name": "Đại Đồng Tiền Hồ",
+    "element": "thuy",
+    "quality_tier": 5,
+    "base_hp": 900,
+    "base_atk": 65,
+    "base_def": 50,
+    "base_crit": 20,
+    "desc": "Tiền hồ đại đồng, có thể điều khiển nước"
+  },
+  "29": {
+    "name": "Đoàn Tỳ Kì Lân",
+    "element": "moc",
+    "quality_tier": 5,
+    "base_hp": 850,
+    "base_atk": 68,
+    "base_def": 48,
+    "base_crit": 22,
+    "desc": "Kì lân đoàn tỳ, sáng tạo và không thể dự đoán"
+  },
+  "30": {
+    "name": "Lưu Bằng",
+    "element": "tho",
+    "quality_tier": 5,
+    "base_hp": 950,
+    "base_atk": 62,
+    "base_def": 55,
+    "base_crit": 18,
+    "desc": "Lưu bằng có độc, có thể cuộn tất cả vào vòng xoáy"
+  }
+}

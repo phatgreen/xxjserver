@@ -1,0 +1,33 @@
+.content {
+	width:456px;
+	margin:0 auto;
+	text-align:center;
+	font-weight:800;
+}
+
+.kuai {
+	width:150px;
+	height:150px;
+	float:left;
+	line-height:150px;
+	border:1px solid #666;
+}
+.button {
+	width:456px;
+	margin:0 auto;
+	text-align:center;
+}
+.choujiang {
+	border:none;
+	color:#fff;
+	background-color:#5cb85c;
+	border-radius:4px;
+	font-size:20px;
+	color:#fff;
+	padding:5px 20px;
+	margin-top:20px;
+	cursor:pointer;
+}
+.choujiang:hover {
+	background-color:red;
+}

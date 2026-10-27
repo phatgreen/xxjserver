@@ -1,0 +1,1359 @@
+{
+    "qys": [
+        {
+            "qyid": 14,
+            "qyname": "<font color=#68AD39>Tân <font color=#419435>Thủ <font color=#1A7B31>Thôn ",
+            "mid": 225
+        },
+        {
+            "qyid": 16,
+            "qyname": "Tụ Tiên Thành",
+            "mid": 239
+        },
+        {
+            "qyid": 17,
+            "qyname": "Ma Hóa Khu Vực",
+            "mid": 249
+        },
+        {
+            "qyid": 18,
+            "qyname": "Vạn Thiên Sơn Vực",
+            "mid": 260
+        },
+        {
+            "qyid": 20,
+            "qyname": "Yêu Vương Điện",
+            "mid": 267
+        },
+        {
+            "qyid": 21,
+            "qyname": "Viêm Dương Thành",
+            "mid": 272
+        },
+        {
+            "qyid": 22,
+            "qyname": "Thông Thiên Phủ",
+            "mid": 280
+        },
+        {
+            "qyid": 23,
+            "qyname": "Thiên Không Thành",
+            "mid": 283
+        },
+        {
+            "qyid": 24,
+            "qyname": "<font color=#D65A4C>Hoa <font color=#BE9774>Quả <font color=#A6D49C>Sơn ",
+            "mid": 292
+        },
+        {
+            "qyid": 25,
+            "qyname": "Tịch Dương Thành",
+            "mid": 293
+        },
+        {
+            "qyid": 26,
+            "qyname": "Thiên Thủy Cốc",
+            "mid": 295
+        },
+        {
+            "qyid": 27,
+            "qyname": "Tây Lương Địa",
+            "mid": 297
+        },
+        {
+            "qyid": 28,
+            "qyname": "Hoang Thiên Lý",
+            "mid": 298
+        },
+        {
+            "qyid": 29,
+            "qyname": "<font color=#FC0000>Thiên <font color=#F90000>Tuyệt <font color=#F60000>Địa ",
+            "mid": 299
+        },
+        {
+            "qyid": 30,
+            "qyname": "Hồi Đầu Ngạn",
+            "mid": 300
+        }
+    ],
+    "mid": [
+        {
+            "mid": 225,
+            "mname": "Thôn Quảng Tràng",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 226,
+            "mqy": 14
+        },
+        {
+            "mid": 226,
+            "mname": "Thôn Đông",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 225,
+            "mright": 228,
+            "mqy": 14
+        },
+        {
+            "mid": 228,
+            "mname": "Thôn Khẩu [Chiến Đấu]",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 226,
+            "mright": 229,
+            "mqy": 14
+        },
+        {
+            "mid": 229,
+            "mname": "Tiểu Thụ Lâm",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 228,
+            "mright": 230,
+            "mqy": 14
+        },
+        {
+            "mid": 230,
+            "mname": "Thụ Lâm Thâm Xử",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 229,
+            "mright": 231,
+            "mqy": 14
+        },
+        {
+            "mid": 231,
+            "mname": "Sơn Lâm Ngoại Vi",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 230,
+            "mright": 232,
+            "mqy": 14
+        },
+        {
+            "mid": 232,
+            "mname": "Sơn Trung Hồ Bạc",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 231,
+            "mright": 233,
+            "mqy": 14
+        },
+        {
+            "mid": 233,
+            "mname": "Hồ Trung Tiểu Đảo",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 232,
+            "mright": 235,
+            "mqy": 14
+        },
+        {
+            "mid": 235,
+            "mname": "Sơn Mạch Đông Xuất Khẩu",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 233,
+            "mright": 236,
+            "mqy": 14
+        },
+        {
+            "mid": 236,
+            "mname": "Thành Tây Giao",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 235,
+            "mright": 237,
+            "mqy": 16
+        },
+        {
+            "mid": 237,
+            "mname": "Tụ Tiên Thành Tây",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 236,
+            "mright": 238,
+            "mqy": 16
+        },
+        {
+            "mid": 238,
+            "mname": "Tụ Tiên Tây Nhai",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 237,
+            "mright": 239,
+            "mqy": 16
+        },
+        {
+            "mid": 239,
+            "mname": "Tụ Tiên Thành",
+            "mup": 0,
+            "mdown": 273,
+            "mleft": 238,
+            "mright": 240,
+            "mqy": 16
+        },
+        {
+            "mid": 240,
+            "mname": "Tụ Tiên Đông Nhai",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 239,
+            "mright": 241,
+            "mqy": 16
+        },
+        {
+            "mid": 241,
+            "mname": "Tụ Tiên Thành Đông",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 240,
+            "mright": 242,
+            "mqy": 16
+        },
+        {
+            "mid": 242,
+            "mname": "Thành Đông Giao",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 241,
+            "mright": 243,
+            "mqy": 16
+        },
+        {
+            "mid": 243,
+            "mname": "Ma Hóa Động Quật",
+            "mup": 246,
+            "mdown": 0,
+            "mleft": 242,
+            "mright": 244,
+            "mqy": 16
+        },
+        {
+            "mid": 273,
+            "mname": "Môn Phái Sang Kiến Xử",
+            "mup": 239,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 16
+        },
+        {
+            "mid": 244,
+            "mname": "Động Quật Xuất Khẩu",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 243,
+            "mright": 245,
+            "mqy": 17
+        },
+        {
+            "mid": 245,
+            "mname": "Ma Hóa Bình Nguyên",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 244,
+            "mright": 247,
+            "mqy": 17
+        },
+        {
+            "mid": 246,
+            "mname": "Động Quật Thâm Xử",
+            "mup": 0,
+            "mdown": 243,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 17
+        },
+        {
+            "mid": 247,
+            "mname": "Bộ Lạc Tây Giao",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 245,
+            "mright": 248,
+            "mqy": 17
+        },
+        {
+            "mid": 248,
+            "mname": "Bộ Lạc Tây",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 247,
+            "mright": 249,
+            "mqy": 17
+        },
+        {
+            "mid": 249,
+            "mname": "Bộ Lạc",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 248,
+            "mright": 250,
+            "mqy": 17
+        },
+        {
+            "mid": 250,
+            "mname": "Bộ Lạc Đông",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 249,
+            "mright": 251,
+            "mqy": 17
+        },
+        {
+            "mid": 251,
+            "mname": "Bộ Lạc Đông Giao",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 250,
+            "mright": 252,
+            "mqy": 17
+        },
+        {
+            "mid": 252,
+            "mname": "Man Hà Ngạn Biên",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 251,
+            "mright": 253,
+            "mqy": 17
+        },
+        {
+            "mid": 253,
+            "mname": "Độ Hà Cảng Khẩu",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 252,
+            "mright": 254,
+            "mqy": 17
+        },
+        {
+            "mid": 254,
+            "mname": "Man Hà Đối Ngạn",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 253,
+            "mright": 255,
+            "mqy": 17
+        },
+        {
+            "mid": 255,
+            "mname": "Vị Tri Sơn Lĩnh1",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 254,
+            "mright": 256,
+            "mqy": 18
+        },
+        {
+            "mid": 256,
+            "mname": "Vị Tri Sơn Lĩnh2",
+            "mup": 257,
+            "mdown": 0,
+            "mleft": 255,
+            "mright": 258,
+            "mqy": 18
+        },
+        {
+            "mid": 257,
+            "mname": "Vô Nhân Sơn Động",
+            "mup": 0,
+            "mdown": 256,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 18
+        },
+        {
+            "mid": 258,
+            "mname": "Vị Tri Sơn Lĩnh3",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 256,
+            "mright": 259,
+            "mqy": 18
+        },
+        {
+            "mid": 259,
+            "mname": "Phong Linh Cổ Trấn Tây",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 258,
+            "mright": 260,
+            "mqy": 18
+        },
+        {
+            "mid": 260,
+            "mname": "Phong Linh Trấn",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 259,
+            "mright": 261,
+            "mqy": 18
+        },
+        {
+            "mid": 261,
+            "mname": "Phong Linh Cổ Trấn Đông",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 260,
+            "mright": 262,
+            "mqy": 18
+        },
+        {
+            "mid": 262,
+            "mname": "Yêu Thú Tùng Lâm Ngoại Bộ1",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 261,
+            "mright": 263,
+            "mqy": 18
+        },
+        {
+            "mid": 263,
+            "mname": "Yêu Thú Tùng Lâm Ngoại Bộ2",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 262,
+            "mright": 264,
+            "mqy": 18
+        },
+        {
+            "mid": 264,
+            "mname": "Tùng Lâm Thâm Xử Yêu Thú Sơn",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 263,
+            "mright": 265,
+            "mqy": 18
+        },
+        {
+            "mid": 265,
+            "mname": "Vạn Yêu Sơn Đê Cốc",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 264,
+            "mright": 266,
+            "mqy": 18
+        },
+        {
+            "mid": 266,
+            "mname": "Vạn Yêu Sơn Yêu",
+            "mup": 268,
+            "mdown": 267,
+            "mleft": 265,
+            "mright": 269,
+            "mqy": 18
+        },
+        {
+            "mid": 268,
+            "mname": "Vạn Yêu Sơn Đỉnh",
+            "mup": 0,
+            "mdown": 266,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 18
+        },
+        {
+            "mid": 267,
+            "mname": "Yêu Vương Điện",
+            "mup": 266,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 20
+        },
+        {
+            "mid": 269,
+            "mname": "Viêm Dương Giao Ngoại",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 266,
+            "mright": 270,
+            "mqy": 21
+        },
+        {
+            "mid": 270,
+            "mname": "Viêm Dương Tây Giao",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 269,
+            "mright": 271,
+            "mqy": 21
+        },
+        {
+            "mid": 271,
+            "mname": "Viêm Dương Tây Nhai",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 270,
+            "mright": 272,
+            "mqy": 21
+        },
+        {
+            "mid": 272,
+            "mname": "Viêm Dương Thành",
+            "mup": 0,
+            "mdown": 312,
+            "mleft": 271,
+            "mright": 311,
+            "mqy": 21
+        },
+        {
+            "mid": 311,
+            "mname": "Bích Sơn",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 272,
+            "mright": 0,
+            "mqy": 21
+        },
+        {
+            "mid": 312,
+            "mname": "Cửu Long Pha",
+            "mup": 272,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 313,
+            "mqy": 21
+        },
+        {
+            "mid": 313,
+            "mname": "Cổ Đằng Lâm",
+            "mup": 314,
+            "mdown": 0,
+            "mleft": 312,
+            "mright": 0,
+            "mqy": 21
+        },
+        {
+            "mid": 314,
+            "mname": "Cửu Đỉnh Sơn",
+            "mup": 316,
+            "mdown": 313,
+            "mleft": 0,
+            "mright": 315,
+            "mqy": 21
+        },
+        {
+            "mid": 315,
+            "mname": "Thần Ma Chi Tỉnh",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 314,
+            "mright": 0,
+            "mqy": 21
+        },
+        {
+            "mid": 316,
+            "mname": "Băng Phong Cốc",
+            "mup": 0,
+            "mdown": 314,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 21
+        },
+        {
+            "mid": 274,
+            "mname": "Thông Thiên Tiểu Lộ",
+            "mup": 275,
+            "mdown": 0,
+            "mleft": 280,
+            "mright": 0,
+            "mqy": 22
+        },
+        {
+            "mid": 275,
+            "mname": "Thông Thiên Vân Thê",
+            "mup": 276,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 22
+        },
+        {
+            "mid": 276,
+            "mname": "Đăng Thiên Đài",
+            "mup": 0,
+            "mdown": 275,
+            "mleft": 277,
+            "mright": 279,
+            "mqy": 22
+        },
+        {
+            "mid": 277,
+            "mname": "Quan Vân Tự",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 278,
+            "mright": 276,
+            "mqy": 22
+        },
+        {
+            "mid": 278,
+            "mname": "Vân Thành",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 277,
+            "mqy": 22
+        },
+        {
+            "mid": 279,
+            "mname": "Long Trì",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 276,
+            "mright": 0,
+            "mqy": 22
+        },
+        {
+            "mid": 280,
+            "mname": "Tam Giới Biên",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 281,
+            "mright": 274,
+            "mqy": 22
+        },
+        {
+            "mid": 281,
+            "mname": "Chiểu Trạch Địa",
+            "mup": 282,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 280,
+            "mqy": 22
+        },
+        {
+            "mid": 282,
+            "mname": "Lưu Vực",
+            "mup": 0,
+            "mdown": 281,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 22
+        },
+        {
+            "mid": 283,
+            "mname": "Vũ Thiên Đô",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 284,
+            "mqy": 23
+        },
+        {
+            "mid": 284,
+            "mname": "Lăng Tiêu Thành",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 283,
+            "mright": 285,
+            "mqy": 23
+        },
+        {
+            "mid": 285,
+            "mname": "Thánh Kinh Thành",
+            "mup": 286,
+            "mdown": 287,
+            "mleft": 284,
+            "mright": 0,
+            "mqy": 23
+        },
+        {
+            "mid": 286,
+            "mname": "Thiên Đế Thành",
+            "mup": 288,
+            "mdown": 285,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 23
+        },
+        {
+            "mid": 287,
+            "mname": "Thanh Vân Thành",
+            "mup": 285,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 23
+        },
+        {
+            "mid": 288,
+            "mname": "Bồng Lai Đỉnh",
+            "mup": 289,
+            "mdown": 286,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 23
+        },
+        {
+            "mid": 289,
+            "mname": "Vân Tiêu Bảo Đô",
+            "mup": 0,
+            "mdown": 288,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 23
+        },
+        {
+            "mid": 290,
+            "mname": "Hoa Quả Sơn",
+            "mup": 0,
+            "mdown": 291,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 291,
+            "mname": "Thủy Liêm Động",
+            "mup": 290,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 292,
+            "mqy": 24
+        },
+        {
+            "mid": 292,
+            "mname": "Ba Tiêu Lâm",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 291,
+            "mright": 301,
+            "mqy": 24
+        },
+        {
+            "mid": 301,
+            "mname": "Thất Thập Nhị Động Khẩu",
+            "mup": 305,
+            "mdown": 306,
+            "mleft": 292,
+            "mright": 302,
+            "mqy": 24
+        },
+        {
+            "mid": 302,
+            "mname": "Thất Thập Nhị Động Trung",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 301,
+            "mright": 303,
+            "mqy": 24
+        },
+        {
+            "mid": 303,
+            "mname": "Thất Thập Nhị Động Vĩ",
+            "mup": 308,
+            "mdown": 309,
+            "mleft": 302,
+            "mright": 307,
+            "mqy": 24
+        },
+        {
+            "mid": 304,
+            "mname": "Thải Phượng Cư",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 309,
+            "mqy": 24
+        },
+        {
+            "mid": 305,
+            "mname": "Phong Đầu Cư",
+            "mup": 0,
+            "mdown": 301,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 306,
+            "mname": "Kỳ Hoa Dị Thảo Cốc",
+            "mup": 301,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 307,
+            "mname": "Linh Hạc Trì",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 303,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 308,
+            "mname": "Thương Thiên Cổ Thụ",
+            "mup": 0,
+            "mdown": 303,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 309,
+            "mname": "Thâm Cốc Thủy Đàm",
+            "mup": 303,
+            "mdown": 310,
+            "mleft": 304,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 310,
+            "mname": "Thâm Cốc Đào Viên",
+            "mup": 309,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 24
+        },
+        {
+            "mid": 293,
+            "mname": "Tịch Dương Cổ Đô",
+            "mup": 294,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 25
+        },
+        {
+            "mid": 294,
+            "mname": "Huyết Sắc Bảo Lũy",
+            "mup": 317,
+            "mdown": 293,
+            "mleft": 318,
+            "mright": 319,
+            "mqy": 25
+        },
+        {
+            "mid": 317,
+            "mname": "Hoàng Tuyền Động",
+            "mup": 320,
+            "mdown": 294,
+            "mleft": 321,
+            "mright": 0,
+            "mqy": 25
+        },
+        {
+            "mid": 318,
+            "mname": "Thảo Hải",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 294,
+            "mqy": 25
+        },
+        {
+            "mid": 319,
+            "mname": "Giang Đô",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 294,
+            "mright": 0,
+            "mqy": 25
+        },
+        {
+            "mid": 320,
+            "mname": "Phích Lịch Đường",
+            "mup": 0,
+            "mdown": 317,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 25
+        },
+        {
+            "mid": 321,
+            "mname": "Bồng Lai Mê Cung",
+            "mup": 322,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 317,
+            "mqy": 25
+        },
+        {
+            "mid": 322,
+            "mname": "Thục Sơn Cổ Đạo",
+            "mup": 323,
+            "mdown": 321,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 25
+        },
+        {
+            "mid": 323,
+            "mname": "Thần Thụ",
+            "mup": 0,
+            "mdown": 322,
+            "mleft": 0,
+            "mright": 324,
+            "mqy": 25
+        },
+        {
+            "mid": 324,
+            "mname": "Linh Nhi Tiên Nhân Động",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 323,
+            "mright": 296,
+            "mqy": 25
+        },
+        {
+            "mid": 295,
+            "mname": "Lạc Nham Thôn",
+            "mup": 296,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 26
+        },
+        {
+            "mid": 296,
+            "mname": "Long Đàm Huyệt",
+            "mup": 326,
+            "mdown": 295,
+            "mleft": 324,
+            "mright": 325,
+            "mqy": 26
+        },
+        {
+            "mid": 325,
+            "mname": "Tỏa Yêu Tháp",
+            "mup": 0,
+            "mdown": 327,
+            "mleft": 296,
+            "mright": 328,
+            "mqy": 26
+        },
+        {
+            "mid": 326,
+            "mname": "Kiếm Trủng Thượng Tằng Tây Bộ",
+            "mup": 0,
+            "mdown": 296,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 26
+        },
+        {
+            "mid": 327,
+            "mname": "Hải Để Thành",
+            "mup": 325,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 26
+        },
+        {
+            "mid": 328,
+            "mname": "Bồng Lai Địa Hạ Mê Cung",
+            "mup": 0,
+            "mdown": 329,
+            "mleft": 325,
+            "mright": 330,
+            "mqy": 26
+        },
+        {
+            "mid": 329,
+            "mname": "Đại Độ Khẩu Mê Cung",
+            "mup": 328,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 26
+        },
+        {
+            "mid": 330,
+            "mname": "Dung Nham Địa Ngục Địa",
+            "mup": 0,
+            "mdown": 331,
+            "mleft": 328,
+            "mright": 332,
+            "mqy": 26
+        },
+        {
+            "mid": 331,
+            "mname": "Tân Tiên Giới",
+            "mup": 330,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 26
+        },
+        {
+            "mid": 332,
+            "mname": "Đường Gia Bảo",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 330,
+            "mright": 297,
+            "mqy": 26
+        },
+        {
+            "mid": 297,
+            "mname": "Bát Hoang Thành",
+            "mup": 334,
+            "mdown": 0,
+            "mleft": 332,
+            "mright": 333,
+            "mqy": 27
+        },
+        {
+            "mid": 333,
+            "mname": "Đăng Vân Lộc",
+            "mup": 338,
+            "mdown": 0,
+            "mleft": 297,
+            "mright": 335,
+            "mqy": 27
+        },
+        {
+            "mid": 334,
+            "mname": "Thục Sơn Phái",
+            "mup": 341,
+            "mdown": 297,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 27
+        },
+        {
+            "mid": 335,
+            "mname": "Lục La Chướng",
+            "mup": 336,
+            "mdown": 0,
+            "mleft": 333,
+            "mright": 337,
+            "mqy": 27
+        },
+        {
+            "mid": 336,
+            "mname": "Thục Sơn Ngoại Thành",
+            "mup": 0,
+            "mdown": 335,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 27
+        },
+        {
+            "mid": 337,
+            "mname": "Thắng Châu",
+            "mup": 340,
+            "mdown": 0,
+            "mleft": 335,
+            "mright": 339,
+            "mqy": 27
+        },
+        {
+            "mid": 338,
+            "mname": "Hà Nguyên",
+            "mup": 0,
+            "mdown": 333,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 27
+        },
+        {
+            "mid": 339,
+            "mname": "Dương Danh Bách Nạp",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 337,
+            "mright": 0,
+            "mqy": 27
+        },
+        {
+            "mid": 340,
+            "mname": "Thạch Thôn",
+            "mup": 0,
+            "mdown": 337,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 27
+        },
+        {
+            "mid": 298,
+            "mname": "Cương Thiết Các",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 341,
+            "mqy": 28
+        },
+        {
+            "mid": 341,
+            "mname": "Song Khê",
+            "mup": 343,
+            "mdown": 334,
+            "mleft": 298,
+            "mright": 342,
+            "mqy": 28
+        },
+        {
+            "mid": 342,
+            "mname": "Thục Sơn Cố Đạo",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 341,
+            "mright": 0,
+            "mqy": 28
+        },
+        {
+            "mid": 343,
+            "mname": "Tỏa Yêu Tháp",
+            "mup": 344,
+            "mdown": 341,
+            "mleft": 0,
+            "mright": 345,
+            "mqy": 28
+        },
+        {
+            "mid": 344,
+            "mname": "Bàn Cổ Chi Tâm",
+            "mup": 0,
+            "mdown": 343,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 28
+        },
+        {
+            "mid": 345,
+            "mname": "Thạch Trầm Khê Động",
+            "mup": 347,
+            "mdown": 0,
+            "mleft": 343,
+            "mright": 346,
+            "mqy": 28
+        },
+        {
+            "mid": 346,
+            "mname": "Tử Vân Giá",
+            "mup": 0,
+            "mdown": 349,
+            "mleft": 345,
+            "mright": 348,
+            "mqy": 28
+        },
+        {
+            "mid": 347,
+            "mname": "Sào Hồ",
+            "mup": 0,
+            "mdown": 345,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 28
+        },
+        {
+            "mid": 348,
+            "mname": "Bát Công Sơn",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 346,
+            "mright": 300,
+            "mqy": 28
+        },
+        {
+            "mid": 349,
+            "mname": "Nữ La Nham",
+            "mup": 346,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 350,
+            "mqy": 28
+        },
+        {
+            "mid": 350,
+            "mname": "Hoài Nam Vương Lăng",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 349,
+            "mright": 0,
+            "mqy": 28
+        },
+        {
+            "mid": 299,
+            "mname": "Thiên Tuyệt Cốc",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 29
+        },
+        {
+            "mid": 300,
+            "mname": "Bỉ Ngạn Hoa",
+            "mup": 0,
+            "mdown": 351,
+            "mleft": 348,
+            "mright": 0,
+            "mqy": 30
+        },
+        {
+            "mid": 351,
+            "mname": "Oản Khâu Sơn",
+            "mup": 300,
+            "mdown": 352,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 30
+        },
+        {
+            "mid": 352,
+            "mname": "Thiên Phật Tháp",
+            "mup": 351,
+            "mdown": 353,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 30
+        },
+        {
+            "mid": 353,
+            "mname": "Tử Vi Đạo",
+            "mup": 352,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 354,
+            "mqy": 30
+        },
+        {
+            "mid": 354,
+            "mname": "Bạch Hạo Đạo",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 353,
+            "mright": 355,
+            "mqy": 30
+        },
+        {
+            "mid": 355,
+            "mname": "Tịch Huyền Đạo",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 354,
+            "mright": 356,
+            "mqy": 30
+        },
+        {
+            "mid": 356,
+            "mname": "Nguyệt Nha Hà Cốc",
+            "mup": 358,
+            "mdown": 359,
+            "mleft": 355,
+            "mright": 357,
+            "mqy": 30
+        },
+        {
+            "mid": 357,
+            "mname": "Túy Hoa Ấm",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 356,
+            "mright": 0,
+            "mqy": 30
+        },
+        {
+            "mid": 358,
+            "mname": "Thanh Phong Giản",
+            "mup": 0,
+            "mdown": 356,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 30
+        },
+        {
+            "mid": 359,
+            "mname": "Tiên Hồ Cư",
+            "mup": 356,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 30
+        },
+        {
+            "mid": 360,
+            "mname": "Viêm Đế Thần Nông Động",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 361,
+            "mname": "Bách Linh Châu",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 362,
+            "mname": "Bất Chu Sơn",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 363,
+            "mname": "Bàn Long Trấn Trụ",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 364,
+            "mname": "Vô Thường Điện",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 365,
+            "mname": "Hoàng Tuyền Quỷ Đạo",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 366,
+            "mname": "Phong Thần Lăng",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 367,
+            "mname": "Toàn Mộng",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        },
+        {
+            "mid": 368,
+            "mname": "Quỳnh Hoa Phái",
+            "mup": 0,
+            "mdown": 0,
+            "mleft": 0,
+            "mright": 0,
+            "mqy": 31
+        }
+    ]
+}

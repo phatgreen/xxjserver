@@ -1,0 +1,62 @@
+{
+  "70": {
+    "name": "Bùa Thu Phục Tầng 1",
+    "lt_cost": 500,
+    "map": 1,
+    "desc": "Bú phục cơ bản, dùng để thu phục yêu thú ở Rừng Núi Thương"
+  },
+  "71": {
+    "name": "Bùa Thu Phục Tầng 2",
+    "lt_cost": 700,
+    "map": 2,
+    "desc": "Bú phục nâng cao, dùng để thu phục yêu thú ở Thung Lũng Âm U"
+  },
+  "72": {
+    "name": "Bùa Thu Phục Tầng 3",
+    "lt_cost": 1000,
+    "map": 3,
+    "desc": "Bú phục trung cấp, dùng để thu phục yêu thú ở Động Thủy Phục"
+  },
+  "73": {
+    "name": "Bùa Thu Phục Tầng 4",
+    "lt_cost": 1500,
+    "map": 4,
+    "desc": "Bú phục cao cấp, dùng để thu phục yêu thú ở Rừng Lửa Đỏ"
+  },
+  "74": {
+    "name": "Bùa Thu Phục Tầng 5",
+    "lt_cost": 2000,
+    "map": 5,
+    "desc": "Bú phục đặc biệt, dùng để thu phục yêu thú ở Núi Mây Trắng"
+  },
+  "75": {
+    "name": "Bùa Thu Phục Tầng 6",
+    "lt_cost": 2500,
+    "map": 6,
+    "desc": "Bú phục hiệu quả, dùng để thu phục yêu thú ở Hồ Tiên Phục"
+  },
+  "76": {
+    "name": "Bùa Thu Phục Tầng 7",
+    "lt_cost": 3500,
+    "map": 7,
+    "desc": "Bú phục siêu cấp, dùng để thu phục yêu thú ở Thâm Uyen Sâu"
+  },
+  "77": {
+    "name": "Bùa Thu Phục Tầng 8",
+    "lt_cost": 5000,
+    "map": 8,
+    "desc": "Bú phục cực phẩm, dùng để thu phục yêu thú ở Động Rỗng Kin"
+  },
+  "78": {
+    "name": "Bùa Thu Phục Tầng 9",
+    "lt_cost": 7000,
+    "map": 9,
+    "desc": "Bú phục huyền thoại, dùng để thu phục yêu thú ở Cung Đình Yêu Vương"
+  },
+  "79": {
+    "name": "Bùa Thu Phục Tầng 10",
+    "lt_cost": 10000,
+    "map": 10,
+    "desc": "Bú phục tối thượng, dùng để thu phục yêu thú ở Thiên Địa Huyền Nguyên"
+  }
+}

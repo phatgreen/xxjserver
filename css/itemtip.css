@@ -1,0 +1,49 @@
+/* Hop thong tin trang bi (tooltip) - dung o trang bi, tui do, Phuong thi, cua hang. */
+.tcg-itemtip{
+    position:fixed;
+    z-index:900;
+    display:none;
+    width:min(360px, calc(100vw - 16px));
+    max-height:calc(100vh - 24px);
+    overflow:auto;
+    padding:12px 13px;
+    border:1px solid rgba(253,186,116,.55);
+    border-radius:14px;
+    background:linear-gradient(180deg, rgba(14,26,62,.99), rgba(9,17,44,.99));
+    box-shadow:0 18px 42px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.06);
+    color:#e8f0ff;
+    font-size:14px;
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+    pointer-events:auto;
+}
+.tcg-itemtip-head{display:flex;align-items:center;gap:10px}
+.tcg-itemtip-icon{flex:0 0 auto;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(125,170,255,.34);border-radius:11px;background:rgba(9,18,48,.82)}
+.tcg-itemtip-icon img{max-width:100%;max-height:100%;display:block;object-fit:contain}
+.tcg-itemtip-heading{min-width:0;flex:1 1 auto}
+.tcg-itemtip-name{font-size:17px;font-weight:900;line-height:1.25;word-break:break-word}
+.tcg-itemtip-name em{margin-left:4px;font-style:normal;color:#fcd34d;font-weight:900}
+.tcg-itemtip-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.tcg-itemtip-tag{padding:2px 7px;border:1px solid rgba(148,163,184,.34);border-radius:7px;background:rgba(15,30,70,.72);font-size:12px;font-weight:800;line-height:1.35}
+.tcg-itemtip-tag.slot{color:#9ec5ff}
+.tcg-itemtip-meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin:9px 0 0;padding:8px 0 0;border-top:1px dashed rgba(148,163,184,.24);color:#a9c0e8;font-size:13px;font-weight:700}
+.tcg-itemtip-warn{margin-top:8px;padding:7px 9px;border:1px solid rgba(248,113,113,.5);border-radius:9px;background:rgba(127,29,29,.34);color:#fecaca;font-size:13px;font-weight:800}
+.tcg-itemtip-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 12px;margin-top:9px;padding:9px 0 0;border-top:1px dashed rgba(148,163,184,.24)}
+.tcg-itemtip-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-height:24px;padding:1px 0}
+.tcg-itemtip-row span{color:#9fb6dd;font-size:13px;font-weight:700;white-space:nowrap}
+.tcg-itemtip-row b{color:#f4f8ff;font-size:15px;font-weight:900;white-space:nowrap}
+.tcg-itemtip-row b i{margin-left:5px;font-style:normal;font-size:13px;font-weight:900}
+.tcg-itemtip-row b i.up{color:#4ade80}
+.tcg-itemtip-row b i.down{color:#f87171}
+.tcg-itemtip-vs{margin-top:9px;padding:7px 9px;border:1px solid rgba(253,186,116,.34);border-radius:9px;background:rgba(120,53,15,.26);color:#fed7aa;font-size:13px;font-weight:700}
+.tcg-itemtip-vs b{color:#fdba74;font-weight:900}
+.tcg-itemtip-text{margin-top:9px;padding:8px 10px;border-radius:9px;background:rgba(6,14,38,.72);color:#c6d6f2;font-size:13px;line-height:1.5}
+.tcg-itemtip-more{display:block;margin-top:10px;padding:9px 10px;border-radius:10px;background:linear-gradient(180deg,#f59e0b,#c2410c);color:#1b0f04;font-size:14px;font-weight:900;text-align:center;text-decoration:none}
+.tcg-itemtip-more:hover{filter:brightness(1.08)}
+.tcg-itemtip-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:880;background:rgba(2,6,20,.62)}
+
+@media (max-width:430px){
+    .tcg-itemtip{width:calc(100vw - 12px);padding:11px 11px;font-size:14px}
+    .tcg-itemtip-stats{grid-template-columns:minmax(0,1fr)}
+    .tcg-itemtip-name{font-size:17px}
+}

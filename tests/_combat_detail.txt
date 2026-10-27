@@ -1,0 +1,20 @@
+gid=1356 mid=225 len=7123
+KHAC: khPpWdvbWlkJm5ld21pZD0yMjUmc2lkPWUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUy">
+KHAC: khPpXRhc2tndWlkZSZzaWQ9ZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTIO0O0O">
+KHAC: khPpWFsbG1hcCZzaWQ9ZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTIO0O0O">
+KHAC: khPpWdhbW5vbCZzaWQ9ZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTIO0O0O">
+KHAC: khPpWNsdWImc2lkPWUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUy">
+KHAC: khắc Thủy!
+KHAC: khí cuồn cuộn ngưng tụ nơi đầu ngón tay, một chưởng ấn khổng lồ đè thẳng xuống, in hằn lên thân thể Thuy U Linh một dấu chưởng nóng rực!
+KHAC: khi đã bấm Tấn công và trận còn đang diễn ra -->
+KHAC: khPpWdvbWlkJm5ld21pZD0yMjUmc2lkPWUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUy">↩ Bỏ chạy
+KHAC: khPpXB2ZWdqJmdpZD0xMzU2JnNpZD1lMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMiZub3dtaWQ9MjI1">⚔ Tấn công
+KHAC: khPpXB2ZWdqJmNhbnNodT11c2VqbiZqbmlkPTAmc2lkPWUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyJmdpZD0xMzU2Jm5vd21pZD0yMjUO0O0O">Phù lục 1
+KHAC: khPpXB2ZWdqJmNhbnNodT11c2VqbiZqbmlkPTAmc2lkPWUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyJmdpZD0xMzU2Jm5vd21pZD0yMjUO0O0O">Phù lục 2
+KHAC: khPpXB2ZWdqJmNhbnNodT11c2VqbiZqbmlkPTAmc2lkPWUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyJmdpZD0xMzU2Jm5vd21pZD0yMjUO0O0O">Phù lục 3
+KHAC: khPpXB2ZSZjYW5zaHU9dXNleXAmeXBpZD0wJnNpZD1lMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMiZnaWQ9MTM1NiZub3dtaWQ9MjI1">Thuốc 1
+KHAC: khPpXB2ZSZjYW5zaHU9dXNleXAmeXBpZD0wJnNpZD1lMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMiZnaWQ9MTM1NiZub3dtaWQ9MjI1">Thuốc 2
+KHAC: khPpXB2ZSZjYW5zaHU9dXNleXAmeXBpZD0wJnNpZD1lMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMmUyZTJlMiZnaWQ9MTM1NiZub3dtaWQ9MjI1">Thuốc 3
+HAS_TRANGBI_KHAC=yes
+HAS_LINHCAN_KHAC=no
+HAS_BI_KHAC=no

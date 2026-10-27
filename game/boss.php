@@ -426,7 +426,8 @@ HTML;
         $ret = \player\changeyxb(1,$yxb,$sid,$dblj);//选择1方案（加钱），改变数量=yxb，id，关闭数据库；
 		$ret1 = \player\changeczb(1,$sj,$sid,$dblj);//魔石增加
         if ($ret){
-            $huode .= "Nhận được: $yxb linh thạch<br/> Nhận được: $sj ma thạch<br>";
+            if ($yxb > 0) { $huode .= "Nhận được: $yxb linh thạch<br/>"; }
+            if ($sj > 0) { $huode .= "Nhận được: $sj ma thạch<br>"; }
         }
         // Kinh nghiệm võ công được cộng ở phần kết quả chiến thắng bên dưới.
         // Không cộng tại đây để tránh nhận EXP võ công 2 lần.

@@ -1,0 +1,83 @@
+{
+  "1": {
+    "ypname": "Bách Niên Tiên Đào",
+    "ypid": 1,
+    "yphp": 2000,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 5000
+  },
+  "2": {
+    "ypname": "Thiên Niên Nhân Tham",
+    "ypid": 2,
+    "yphp": 5000,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 10000
+  },
+  "6": {
+    "ypname": "Hoàn Nguyên Đan",
+    "ypid": 6,
+    "yphp": 100,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 100
+  },
+  "7": {
+    "ypname": "Hồi Huyết Tán",
+    "ypid": 7,
+    "yphp": 300,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 400
+  },
+  "8": {
+    "ypname": "Hồi Xuân Thang",
+    "ypid": 8,
+    "yphp": 600,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 500
+  },
+  "9": {
+    "ypname": "Phục Thương Đan",
+    "ypid": 9,
+    "yphp": 1200,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 1000
+  },
+  "10": {
+    "ypname": "Đại Lãng Bính",
+    "ypid": 10,
+    "yphp": -200,
+    "ypgj": 0,
+    "ypfy": 1,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypjg": 50000
+  },
+  "17": {
+    "ypname": "Thể Lực Đan",
+    "ypid": 17,
+    "yphp": 0,
+    "ypgj": 0,
+    "ypfy": 0,
+    "ypxx": 0,
+    "ypbj": 0,
+    "ypstamina": 20,
+    "ypjg": 5000
+  }
+}

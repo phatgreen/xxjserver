@@ -1236,6 +1236,19 @@ $ys=1 ;
 
         for ($i=0;$i<count($rangeslv)-1;$i++){
             if ($playernextlv >= $rangeslv[$i] && $playernextlv < $rangeslv[$i+1]){
+                // $rangeslv co 87 phan tu (0..4300) trong khi cac bang thuoc tinh chi
+                // co 14-17 phan tu. Tu cap ~750 tro len, $bang[$i] khong ton tai =>
+                // bind NULL => "umaxhp = umaxhp + NULL" set ca cot thanh NULL.
+                $hi  = min($i, count($rangeshp) - 1);
+                $gi  = min($i, count($rangesgj) - 1);
+                $fi  = min($i, count($rangesfy) - 1);
+                $bi  = min($i, count($rangesbj) - 1);
+                $xi  = min($i, count($rangesxx) - 1);
+                $yi  = min($i, count($rangesxy) - 1);
+                $thi = min($i, count($tfhp1) - 1);
+                $tfi = min($i, count($tffy1) - 1);
+                $tgi = min($i, count($tfgj1) - 1);
+                $wi  = min($i, count($rangeswx) - 1);
                 $stmt = $dblj->prepare("UPDATE game1 SET ulv = ulv + 1,
                                            umaxhp = umaxhp + :hp,
                                            ugj = ugj + :gj,
@@ -1249,10 +1262,10 @@ $ys=1 ;
                                            uwx = uwx + :wx
                                            WHERE sid = :sid");
                 $stmt->execute(array(
-                    ':hp' => $rangeshp[$i], ':gj' => $rangesgj[$i], ':fy' => $rangesfy[$i],
-                    ':bj' => $rangesbj[$i], ':xx' => $rangesxx[$i], ':xy' => $rangesxy[$i],
-                    ':tfhp' => $tfhp1[$i], ':tffy' => $tffy1[$i], ':tfgj' => $tfgj1[$i],
-                    ':wx' => $rangeswx[$i], ':sid' => $sid
+                    ':hp' => $rangeshp[$hi], ':gj' => $rangesgj[$gi], ':fy' => $rangesfy[$fi],
+                    ':bj' => $rangesbj[$bi], ':xx' => $rangesxx[$xi], ':xy' => $rangesxy[$yi],
+                    ':tfhp' => $tfhp1[$thi], ':tffy' => $tffy1[$tfi], ':tfgj' => $tfgj1[$tgi],
+                    ':wx' => $rangeswx[$wi], ':sid' => $sid
                 ));
                 break;
             }
@@ -1838,12 +1851,17 @@ function addplayersx($sx,$gaibian,$sid,$dblj){
 }
 // Linh Thạch
 function changeyxb($lx,$gaibian,$sid,$dblj){
+    // So am o mode 1 se tru tien nguoc, nen chan ngay dau ham.
+    if (!is_numeric($gaibian) || $gaibian < 0) { return false; }
     if ($lx==1){
         $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb + :val WHERE sid = :sid");
         $stmt->execute(array(':val' => $gaibian, ':sid' => $sid));
         player_cache_clear($sid);
         return true;
     }elseif($lx==2){
+        // UPDATE voi :val = 0 khong doi dong nao => rowCount() = 0 => ham tung bao
+        // "khong du Linh Thach" cho mot han dong mien phi.
+        if ($gaibian == 0) { return true; }
         $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb - :val WHERE sid = :sid AND uyxb >= :val2");
         $stmt->execute(array(':val' => $gaibian, ':val2' => $gaibian, ':sid' => $sid));
         player_cache_clear($sid);
@@ -1852,12 +1870,17 @@ function changeyxb($lx,$gaibian,$sid,$dblj){
 }
 // Ma Thạch
 function changeczb($lx,$gaibian,$sid,$dblj){
+    // So am o mode 1 se tru tien nguoc, nen chan ngay dau ham.
+    if (!is_numeric($gaibian) || $gaibian < 0) { return false; }
     if ($lx==1){
         $stmt = $dblj->prepare("UPDATE game1 SET uczb = uczb + :val WHERE sid = :sid");
         $stmt->execute(array(':val' => $gaibian, ':sid' => $sid));
         player_cache_clear($sid);
         return true;
     }elseif($lx==2){
+        // UPDATE voi :val = 0 khong doi dong nao => rowCount() = 0 => ham tung bao
+        // "khong du Ma Thach" cho mot han dong mien phi.
+        if ($gaibian == 0) { return true; }
         $stmt = $dblj->prepare("UPDATE game1 SET uczb = uczb - :val WHERE sid = :sid AND uczb >= :val2");
         $stmt->execute(array(':val' => $gaibian, ':val2' => $gaibian, ':sid' => $sid));
         player_cache_clear($sid);
@@ -2369,7 +2392,7 @@ function getchongwu($cwid, $dblj){
     for ($i=0; $i < $rangesCount - 1; $i++){
         if ($chongwu->cwlv>=$rangeslv[$i] && $chongwu->cwlv<$rangeslv[$i+1]){
             $cwnextlv = $chongwu->cwlv + 1;
-            $chongwu->cwmaxexp = $cwnextlv *($cwnextlv+round($cwnextlv/2))*50*$rangesexp[$i]+$cwnextlv;//宠物升级cwmaxexp升级计算，我改成50倍默认10倍
+            $chongwu->cwmaxexp = $cwnextlv *($cwnextlv+round($cwnextlv/2))*50*$rangesexp[min($i, count($rangesexp) - 1)]+$cwnextlv;//宠物升级cwmaxexp升级计算，我改成50倍默认10倍
             break;
         }
     }

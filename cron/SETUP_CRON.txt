@@ -1,0 +1,60 @@
+===============================================================
+ HỒI THỂ LỰC THEO THỜI GIAN THỰC — HƯỚNG DẪN CÀI CRON (TÙY CHỌN)
+===============================================================
+
+TÍNH NĂNG HỒI THỂ LỰC ĐÃ HOẠT ĐỘNG MÀ KHÔNG CẦN CRON!
+---------------------------------------------------------
+- Cơ chế hồi "lười biếng" (lazy) nằm TRONG code (game.php + hàm
+  \player\settle_stamina trong class/player.php).
+- Mỗi lần nhân vật tương tác, server tự tính số Thể lực hồi được dựa
+  trên mốc stamina_time + thời gian trôi qua (mỗi 5 phút +1 điểm).
+- Điều này nghĩa là:
+     * KHÔNG cần cài gì, KHÔNG thể quên.
+     * Chạy tốt trên Windows, Linux, macOS — mọi nơi.
+     * Nhân vật OFFLINE nghỉ ngơi: khi quay lại sẽ được cộng đủ số
+       Thể lực đã hồi trong thời gian vắng mặt.
+=> Cron bên dưới là TÙY CHỌN, chỉ để giữ DB luôn "tươi" sẵn cho các
+   công cụ quản trị/GM đọc trực tiếp DB. KHÔNG gây đôi/lệch vì dùng
+   chung một hàm settle_stamina.
+
+-----------------------------------------------------------
+A) CÀI CRON TRÊN WINDOWS (tùy chọn)
+-----------------------------------------------------------
+Cách 1: Chạy file này với quyền Administrator:
+    install_stamina_recovery_task.bat
+    (bấm chuột phải -> Run as administrator)
+
+Cách 2: chạy tay trong cmd (Admin):
+    schtasks /Create /F /SC MINUTE /MO 5 /TN "XXJ Stamina Recovery" ^
+      /TR "D:\XXJserver\phpstudy_pro\WWW\cron\run_stamina_recovery.bat" /RU SYSTEM
+
+Gỡ tác vụ (nếu muốn):
+    schtasks /Delete /F /TN "XXJ Stamina Recovery"
+
+-----------------------------------------------------------
+B) CÀI CRON TRÊN LINUX (tùy chọn)
+-----------------------------------------------------------
+File chạy được (PHP CLI) đã có sẵn, độc lập hệ điều hành:
+    cron/stamina_recovery.php
+
+Mở crontab:
+    crontab -e
+
+Thêm dòng (chạy mỗi 5 phút):
+    */5 * * * * /usr/bin/php /đường/dẫn/đến/WWW/cron/stamina_recovery.php >> /đường/dẫn/đến/WWW/cron/logs/stamina_cron_console.log 2>&1
+
+Lưu ý: thay /đường/dẫn/đến bằng đường dẫn thật (tương đương
+D:\XXJserver\phpstudy_pro\WWW).
+
+Kiểm tra log:
+    cat /đường/dẫn/đến/WWW/cron/logs/stamina_recovery.log
+
+-----------------------------------------------------------
+GHI CHÚ QUAN TRỌNG
+-----------------------------------------------------------
+- Nếu bạn KHÔNG cài cron: nhân vật vẫn hồi Thể lực bình thường khi tương
+  tác (không bị mất do offline). Chỉ là giá trị trong bảng game1 của nhân
+  vật đang offline chưa được "làm mới" cho tới khi họ quay lại.
+- Muốn giá trị DB luôn tươi (cho GM/script đọc thẳng) -> nên cài cron.
+- Chạy cron chồng nhiều lần an toàn: mỗi lần chỉ nhích mốc theo đúng số
+  bước thời gian trôi qua, không bao giờ hồi trùng/dôi.

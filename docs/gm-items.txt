@@ -1,0 +1,135 @@
+520001;Kim Trư
+200164;Kim Chuyên
+200165;Trang Bị·Tầm Bảo Quyển
+200166;Chiến Văn·Tầm Bảo Quyển
+200300;Truyện Thế Tầm Bảo Quyển
+200982;Hoạt Động Tầm Bảo Quyển
+201103;10 Vạn Nguyên Bảo Tạp
+200137;Trực Thăng Đan
+200001;Vũ Mao
+200002;Cường Hóa Thạch
+200003;Chú Tạo Tinh Thạch
+200004;Kinh Mạch Đan
+200005;Long Hồn Toái Phiến
+200006;Hộ Thuẫn Toái Phiến
+200007;Thần Trang Toái Phiến
+200008;Nhiệt Huyết Toái Phiến
+200009;Cao Cấp Chuyển Sinh Đan
+200010;Siêu Cấp Chuyển Sinh Đan
+200011;Cao Cấp Chuyển Sinh Đan Vô Sử Dụng Thứ Số Hạn Chế
+200012;Siêu Cấp Chuyển Sinh Đan Vô Sử Dụng Thứ Số Hạn Chế
+201106;Cao Cấp Luân Hồi Đan Vô Sử Dụng Thứ Số Hạn Chế
+201107;Siêu Cấp Luân Hồi Đan Vô Sử Dụng Thứ Số Hạn Chế
+200013;Ma Tý Giới Chỉ
+200014;Hộ Thân Giới Chỉ
+200015;Đặc Giới Toái Phiến
+200016;Kinh Nghiệm Đan
+200061;Thần Khí·Tài Quyết
+200062;Thần Khí·Huyết Thí
+200063;Thần Khí·Thâm Uyên
+200064;Thần Khí·Đồ Long
+200065;Thần Khí·Thiên Vũ
+200066;Thần Khí·Thương Hải
+200067;Thần Khí·Phệ Hồn
+200068;Thần Khí·Trảm Tiên
+200069;Lam Linh
+200070;Tử Hồn
+200071;Chanh Phách
+200072;Chủ Tể Diện Giáp
+200073;Chủ Tể Hộ Kiên
+200074;Chủ Tể Hộ Tất
+200075;Chủ Tể Điếu Trụy
+200076;Chủ Tể Toái Phiến
+200077;Chủ Tể Tinh Thạch
+200167;Hắc Thiết
+200168;Tinh Diệu Thạch
+200169;Tinh Hồn Chi Tâm
+200170;Tinh Hồn Chi Linh
+200171;Tinh Diệu Chi Phách
+200172;Sinh Mệnh Thạch
+200173;Sinh Mệnh Chi Tâm
+200174;Sinh Mệnh Chi Linh
+200175;Sinh Mệnh Chi Phách
+200176;Sinh Mệnh Chi Tuyền
+200177;Sinh Mệnh Chi Tuệ
+200178;Mị Hoặc Thạch
+200179;Mị Hoặc Chi Tâm
+200180;Mị Hoặc Chi Linh
+200181;Mị Hoặc Chi Phách
+200182;Mị Hoặc Chi Tuyền
+200183;Mị Hoặc Chi Tuệ
+200184;Ngũ Thải Thạch
+200185;Ngũ Thải Chi Tâm
+200186;Ngũ Thải Chi Linh
+200187;Ngũ Thải Chi Phách
+200188;Ngũ Thải Chi Tuyền
+200189;Ngũ Thải Chi Tuệ
+200190;Ngũ Thải Chi Thiểm
+200191;Ngũ Thải Chi Diệu
+200192;Cổ Độc Thạch
+200193;Cổ Độc Chi Tâm
+200194;Cổ Độc Chi Linh
+200195;Cổ Độc Chi Phách
+200196;Cổ Độc Chi Tuyền
+200197;Cổ Độc Chi Tuệ
+200198;Cổ Độc Chi Thiểm
+200199;Cổ Độc Chi Diệu
+200200;Chiến Thần Thạch
+200201;Chiến Thần Chi Tâm
+200202;Chiến Thần Chi Linh
+200203;Chiến Thần Chi Phách
+200204;Chiến Thần Chi Tuyền
+200205;Chiến Thần Chi Tuệ
+200206;Chiến Thần Chi Thiểm
+200207;Chiến Thần Chi Diệu
+210000;Thiên Hạ Vô Song Xưng Hào
+900030;Anh Dũng Thanh Đồng Xưng Hào
+900031;Vô Úy Bạch Ngân Xưng Hào
+900032;Vinh Diệu Hoàng Kim Xưng Hào
+900033;Tôn Quý Bạc Kim Xưng Hào
+900034;Tinh Diệu Toản Thạch Xưng Hào
+900035;Cạnh Kỹ Bá Chủ Xưng Hào
+900036;Chí Tôn Vương Giả Xưng Hào
+900037;Tung Hoành Thiên Hạ Xưng Hào
+900038;Độc Cô Cầu Bại Xưng Hào
+204224;Bát Hoang Lục Hợp Duy Ngã Độc Tôn Xưng Hào
+900039;Ám Hắc Tài Quyết
+900040;Hoàng Kim Đồ Long Đao
+620000;Duy Ngã Độc Tôn Chi Nhận
+620001;Độc Tôn Thống Lĩnh Chi Nhận
+620002;Độc Tôn Chiến Tương Chi Nhận
+900041;Ám Hắc Thiên Ma
+900042;Hoàng Kim Chiến Giáp
+200153;Truyện Thế Bảo Tương
+200154;Chanh Sắc Đồ Giám Lễ Bao
+204077;Chí Tôn Thần Kiếm
+204078;Chí Tôn Đầu Khôi
+204079;Chí Tôn Thần Giáp
+204080;Chí Tôn Hạng Liên
+204081;Chí Tôn Thủ Trạc
+204082;Chí Tôn Giới Chỉ
+204083;Chí Tôn Yêu Đái
+204084;Chí Tôn Hài Tử
+260067;------ Đồ Giám ------
+260067;Thánh Chiến Pháp Thần Thiên Tôn Kim Trang
+201006;Mỹ Nữ Như Vân Đồ Giám Bao Chanh Sắc
+201007;Mỹ Nữ Như Vân Đồ Giám Bao Hồng Sắc
+201008;Mỹ Nữ Như Vân Đồ Giám Bao Kim Sắc
+201009;Truyện Kỳ Thịnh Thế Đồ Giám Bao Lục Sắc
+201010;Truyện Kỳ Thịnh Thế Đồ Giám Bao Tử Sắc
+201011;Truyện Kỳ Thịnh Thế Đồ Giám Bao Chanh Sắc
+201012;Truyện Kỳ Thịnh Thế Đồ Giám Bao Hồng Sắc
+201015;Truyện Kỳ Chi Lộ Đồ Giám Bao Lục Sắc
+201016;Truyện Kỳ Chi Lộ Đồ Giám Bao Tử Sắc
+201017;Truyện Kỳ Chi Lộ Đồ Giám Bao Chanh Sắc
+201018;Truyện Kỳ Chi Lộ Đồ Giám Bao Hồng Sắc
+204132;Khuynh Quốc Khuynh Thành Đồ Giám Bao Chanh Sắc
+204133;Khuynh Quốc Khuynh Thành Đồ Giám Bao Hồng Sắc
+204134;Khuynh Quốc Khuynh Thành Đồ Giám Bao Kim Sắc
+500009;Chanh Sắc Chiến Văn Bảo Tương
+500010;Hồng Sắc Chiến Văn Bảo Tương
+201100;1 Vạn Nguyên Bảo Tạp
+201101;3 Vạn Nguyên Bảo Tạp
+201102;5 Vạn Nguyên Bảo Tạp
+201104;Cao Cấp Luân Hồi Đan
+201105;Siêu Cấp Luân Hồi Đan

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>lcshot</title>
+<style>html,body{margin:0;padding:0;background:#05070f;overflow:hidden}</style></head>
+<body><iframe id="f" src="" frameborder="0" style="border:0;display:block"></iframe>
+<script>
+var q=new URLSearchParams(location.search);
+var w=parseInt(q.get('w')||'390',10), h=parseInt(q.get('h')||'1600',10);
+var f=document.getElementById('f');
+f.style.width=w+'px'; f.style.height=h+'px'; f.src=q.get('u')||'';
+f.onload=function(){setTimeout(function(){try{var d=f.contentDocument;
+d.body.style.zoom=1;d.documentElement.style.zoom=1;
+document.title='ok w='+w+' docH='+d.body.scrollHeight;}catch(e){document.title='ERR '+e.message;}},900);};
+</script></body></html>

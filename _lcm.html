@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>lcm</title>
+<style>html,body{margin:0;padding:0;background:#000;color:#8f8;font:12px monospace}</style></head>
+<body><iframe id="f" src="" frameborder="0" style="border:0;display:block;width:1400px;height:2400px"></iframe>
+<script>
+var q = new URLSearchParams(location.search);
+var W = parseInt(q.get('w') || '390', 10);
+var f = document.getElementById('f');
+f.style.width = W + 'px';
+f.src = q.get('u') || '';
+f.onload = function () {
+  setTimeout(function () {
+    try {
+      var d = f.contentDocument, out = [];
+      d.body.style.zoom = 1; d.documentElement.style.zoom = 1;
+      var wrap = d.querySelector('.lc-wrap');
+      if (!wrap) { document.title = 'NO .lc-wrap'; return; }
+      var wr = wrap.getBoundingClientRect();
+      var img = d.querySelector('.lc-ring-img'), stg = d.querySelector('.lc-stage');
+      var ir = img.getBoundingClientRect(), sr = stg.getBoundingClientRect();
+      out.push('wrap=' + Math.round(wr.width) + 'x' + Math.round(wr.height) +
+               ' docH=' + d.body.scrollHeight + ' scrollW=' + d.documentElement.scrollWidth);
+      out.push('stage=' + Math.round(sr.width) + 'x' + Math.round(sr.height) +
+               ' img=' + Math.round(ir.width) + 'x' + Math.round(ir.height) +
+               ' off=' + (ir.left - sr.left).toFixed(1) + ',' + (ir.top - sr.top).toFixed(1));
+      function box(sel, i) {
+        var n = d.querySelectorAll(sel); if (!n.length) return sel + ' MISSING';
+        var e = n[Math.min(i, n.length - 1)], r = e.getBoundingClientRect(), cs = d.defaultView.getComputedStyle(e);
+        return sel + '[' + i + ']=' + Math.round(r.width) + 'x' + Math.round(r.height) +
+               '@' + Math.round(r.left) + ',' + Math.round(r.top) + ' disp=' + cs.display +
+               ' lh=' + cs.lineHeight + ' fs=' + cs.fontSize;
+      }
+      var gems = d.querySelectorAll('.lc-gem');
+      for (var i = 0; i < gems.length; i++) {
+        var r = gems[i].getBoundingClientRect();
+        out.push(gems[i].className.replace('lc-gem ', '') + ' ' + Math.round(r.width) + 'px @' +
+          (((r.left + r.width / 2 - ir.left) / ir.width) * 100).toFixed(1) + ',' +
+          (((r.top + r.height / 2 - ir.top) / ir.height) * 100).toFixed(1));
+      }
+      out.push(box('.lc-core', 0));
+      out.push(box('.lc-core-name', 0));
+      function ps(sel, i, pe) {
+        var n = d.querySelectorAll(sel); if (!n.length) return sel + ' MISSING';
+        var cs = d.defaultView.getComputedStyle(n[Math.min(i, n.length - 1)], pe);
+        return sel + pe + ' op=' + cs.opacity + ' anim=' + cs.animationName + ' ' + cs.animationDuration +
+               ' disp=' + cs.display + ' blend=' + cs.mixBlendMode;
+      }
+      out.push('FX=' + (wrap.className.match(/lc-fx\d/) || ['-'])[0]);
+      out.push(ps('.lc-stage', 0, '::after'));
+      out.push(ps('.lc-gem', 0, '::before'));
+      out.push(ps('.lc-core', 0, '::before'));
+      out.push('ringAnim=' + d.defaultView.getComputedStyle(d.querySelector('.lc-ring-img')).animationName);
+      out.push('coreAnim=' + d.defaultView.getComputedStyle(d.querySelector('.lc-core')).animationName);
+      out.push(box('.lc-stage-chip', 0));
+      out.push(box('.lc-rail', 0));
+      out.push(box('.lc-tabbar', 0));
+      out.push(box('.lc-btn', 0));
+      var tabs = d.querySelectorAll('.lc-tabbar a');
+      out.push('tabs=' + tabs.length + ' w=' + (tabs[0] ? Math.round(tabs[0].getBoundingClientRect().width) : '-') +
+               ' h=' + (tabs[0] ? Math.round(tabs[0].getBoundingClientRect().height) : '-'));
+      var cols = d.querySelectorAll('.lc-cols > .lc-col');
+      out.push('cols=' + cols.length + (cols[0] ? ' c0=' + Math.round(cols[0].getBoundingClientRect().width) + 'x' + Math.round(cols[0].getBoundingClientRect().height) : ''));
+      document.title = out.join(' | ');
+    } catch (e) { document.title = 'ERR ' + e.message; }
+  }, 1600);
+};
+</script></body></html>

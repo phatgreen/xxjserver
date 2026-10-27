@@ -1,0 +1,542 @@
+{
+    "1": {
+        "zbname": "Phàm Kim Cô Thiết Bảng","zbinfo": "Trang bị phẩm Phàm hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 40,"zbfy": 0,"zbbj": 10,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 1,"zbhp": 0,"zblv": 1,"zbtool": 1,"zbys": "#9e9e9e","taozhuang": 1,"element": "kim","rarity": 1,"rarity_name": "Pham","realm_require": 1
+    },
+    "2": {
+        "zbname": "Phàm Mộc Thiên Cô Hàn Vân","zbinfo": "Trang bị phẩm Phàm hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 40,"zbfy": 0,"zbbj": 10,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 2,"zbhp": 0,"zblv": 1,"zbtool": 1,"zbys": "#9e9e9e","taozhuang": 2,"element": "moc","rarity": 1,"rarity_name": "Pham","realm_require": 1
+    },
+    "3": {
+        "zbname": "Phàm Thủy Khai Dương Song Nghi","zbinfo": "Trang bị phẩm Phàm hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 40,"zbfy": 0,"zbbj": 10,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 3,"zbhp": 0,"zblv": 1,"zbtool": 1,"zbys": "#9e9e9e","taozhuang": 3,"element": "thuy","rarity": 1,"rarity_name": "Pham","realm_require": 1
+    },
+    "4": {
+        "zbname": "Phàm Hỏa Thôn Trường Lệnh Bài","zbinfo": "Trang bị phẩm Phàm hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 40,"zbfy": 0,"zbbj": 10,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 4,"zbhp": 0,"zblv": 1,"zbtool": 1,"zbys": "#9e9e9e","taozhuang": 4,"element": "hoa","rarity": 1,"rarity_name": "Pham","realm_require": 1
+    },
+    "5": {
+        "zbname": "Phàm Thổ Hoàng Kiếm","zbinfo": "Trang bị phẩm Phàm hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 40,"zbfy": 0,"zbbj": 10,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 5,"zbhp": 0,"zblv": 1,"zbtool": 1,"zbys": "#9e9e9e","taozhuang": 5,"element": "tho","rarity": 1,"rarity_name": "Pham","realm_require": 1
+    },
+    "6": {
+        "zbname": "Linh Kim Hộ Thân Giáp","zbinfo": "Trang bị phẩm Linh hệ Kim, lắp vào ô Giáp Bào. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 6,"zbhp": 46,"zblv": 10,"zbtool": 4,"zbys": "#4CAF50","taozhuang": 1,"element": "kim","rarity": 2,"rarity_name": "Linh","realm_require": 10
+    },
+    "7": {
+        "zbname": "Linh Mộc Sinh Khí Y","zbinfo": "Trang bị phẩm Linh hệ Mộc, lắp vào ô Giáp Bào. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 7,"zbhp": 46,"zblv": 10,"zbtool": 4,"zbys": "#4CAF50","taozhuang": 2,"element": "moc","rarity": 2,"rarity_name": "Linh","realm_require": 10
+    },
+    "8": {
+        "zbname": "Linh Thủy Thanh Liên Y","zbinfo": "Trang bị phẩm Linh hệ Thủy, lắp vào ô Giáp Bào. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 8,"zbhp": 46,"zblv": 10,"zbtool": 4,"zbys": "#4CAF50","taozhuang": 3,"element": "thuy","rarity": 2,"rarity_name": "Linh","realm_require": 10
+    },
+    "9": {
+        "zbname": "Linh Hỏa Chiêm Điểm Giáp","zbinfo": "Trang bị phẩm Linh hệ Hỏa, lắp vào ô Giáp Bào. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 9,"zbhp": 46,"zblv": 10,"zbtool": 4,"zbys": "#4CAF50","taozhuang": 4,"element": "hoa","rarity": 2,"rarity_name": "Linh","realm_require": 10
+    },
+    "10": {
+        "zbname": "Linh Thổ Huyền Vũ Y","zbinfo": "Trang bị phẩm Linh hệ Thổ, lắp vào ô Giáp Bào. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 10,"zbhp": 46,"zblv": 10,"zbtool": 4,"zbys": "#4CAF50","taozhuang": 5,"element": "tho","rarity": 2,"rarity_name": "Linh","realm_require": 10
+    },
+    "11": {
+        "zbname": "Huyền Kim Bát Tướng Giới","zbinfo": "Trang bị phẩm Huyền hệ Kim, lắp vào ô Giới Chỉ. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 13,"zbfy": 0,"zbbj": 16,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 11,"zbhp": 0,"zblv": 30,"zbtool": 6,"zbys": "#9C27B0","taozhuang": 1,"element": "kim","rarity": 3,"rarity_name": "Huyen","realm_require": 30
+    },
+    "12": {
+        "zbname": "Huyền Mộc Linh Giác Giới","zbinfo": "Trang bị phẩm Huyền hệ Mộc, lắp vào ô Giới Chỉ. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 13,"zbfy": 0,"zbbj": 16,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 12,"zbhp": 0,"zblv": 30,"zbtool": 6,"zbys": "#9C27B0","taozhuang": 2,"element": "moc","rarity": 3,"rarity_name": "Huyen","realm_require": 30
+    },
+    "13": {
+        "zbname": "Huyền Thủy Thanh Hoan Giới","zbinfo": "Trang bị phẩm Huyền hệ Thủy, lắp vào ô Giới Chỉ. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 13,"zbfy": 0,"zbbj": 16,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 13,"zbhp": 0,"zblv": 30,"zbtool": 6,"zbys": "#9C27B0","taozhuang": 3,"element": "thuy","rarity": 3,"rarity_name": "Huyen","realm_require": 30
+    },
+    "14": {
+        "zbname": "Huyền Hỏa Liêm Giác Giới","zbinfo": "Trang bị phẩm Huyền hệ Hỏa, lắp vào ô Giới Chỉ. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 13,"zbfy": 0,"zbbj": 16,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 14,"zbhp": 0,"zblv": 30,"zbtool": 6,"zbys": "#9C27B0","taozhuang": 4,"element": "hoa","rarity": 3,"rarity_name": "Huyen","realm_require": 30
+    },
+    "15": {
+        "zbname": "Huyền Thổ Trấn Phái Giới","zbinfo": "Trang bị phẩm Huyền hệ Thổ, lắp vào ô Giới Chỉ. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 13,"zbfy": 0,"zbbj": 16,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 15,"zbhp": 0,"zblv": 30,"zbtool": 6,"zbys": "#9C27B0","taozhuang": 5,"element": "tho","rarity": 3,"rarity_name": "Huyen","realm_require": 30
+    },
+    "16": {
+        "zbname": "Địa Kim Phi Sát Phong","zbinfo": "Trang bị phẩm Địa hệ Kim, lắp vào ô Phi Phong. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 12,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 16,"zbhp": 22,"zblv": 60,"zbtool": 8,"zbys": "#FF9800","taozhuang": 1,"element": "kim","rarity": 4,"rarity_name": "Dia","realm_require": 60
+    },
+    "17": {
+        "zbname": "Địa Mộc Thanh U Phong","zbinfo": "Trang bị phẩm Địa hệ Mộc, lắp vào ô Phi Phong. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 12,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 17,"zbhp": 22,"zblv": 60,"zbtool": 8,"zbys": "#FF9800","taozhuang": 2,"element": "moc","rarity": 4,"rarity_name": "Dia","realm_require": 60
+    },
+    "18": {
+        "zbname": "Địa Thủy Huyền Vũ Phong","zbinfo": "Trang bị phẩm Địa hệ Thủy, lắp vào ô Phi Phong. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 12,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 18,"zbhp": 22,"zblv": 60,"zbtool": 8,"zbys": "#FF9800","taozhuang": 3,"element": "thuy","rarity": 4,"rarity_name": "Dia","realm_require": 60
+    },
+    "19": {
+        "zbname": "Địa Hỏa Chiêm Điểm Phong","zbinfo": "Trang bị phẩm Địa hệ Hỏa, lắp vào ô Phi Phong. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 12,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 19,"zbhp": 22,"zblv": 60,"zbtool": 8,"zbys": "#FF9800","taozhuang": 4,"element": "hoa","rarity": 4,"rarity_name": "Dia","realm_require": 60
+    },
+    "20": {
+        "zbname": "Địa Thổ Bát Động Phong","zbinfo": "Trang bị phẩm Địa hệ Thổ, lắp vào ô Phi Phong. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 12,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 20,"zbhp": 22,"zblv": 60,"zbtool": 8,"zbys": "#FF9800","taozhuang": 5,"element": "tho","rarity": 4,"rarity_name": "Dia","realm_require": 60
+    },
+    "21": {
+        "zbname": "Thiên Kim Lan Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 72,"zbfy": 0,"zbbj": 18,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 21,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 1,"element": "kim","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "22": {
+        "zbname": "Thiên Mộc Đức Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 72,"zbfy": 0,"zbbj": 18,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 22,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 2,"element": "moc","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "23": {
+        "zbname": "Thiên Thủy Lam Tinh Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 72,"zbfy": 0,"zbbj": 18,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 23,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 3,"element": "thuy","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "24": {
+        "zbname": "Thiên Hỏa Huyết Điểm Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 72,"zbfy": 0,"zbbj": 18,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 24,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 4,"element": "hoa","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "25": {
+        "zbname": "Thiên Thổ Hoàng Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 72,"zbfy": 0,"zbbj": 18,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 25,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "tho","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "26": {
+        "zbname": "Thiên Kim Linh Phù","zbinfo": "Trang bị phẩm Thiên hệ Kim, lắp vào ô Linh Phù. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 36,"zbfy": 0,"zbbj": 9,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 26,"zbhp": 0,"zblv": 120,"zbtool": 9,"zbys": "#ff9800","taozhuang": 1,"element": "kim","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "27": {
+        "zbname": "Thiên Mộc Linh Phù","zbinfo": "Trang bị phẩm Thiên hệ Mộc, lắp vào ô Linh Phù. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 36,"zbfy": 0,"zbbj": 9,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 27,"zbhp": 0,"zblv": 120,"zbtool": 9,"zbys": "#ff9800","taozhuang": 2,"element": "moc","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "28": {
+        "zbname": "Thiên Thủy Linh Phù","zbinfo": "Trang bị phẩm Thiên hệ Thủy, lắp vào ô Linh Phù. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 36,"zbfy": 0,"zbbj": 9,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 28,"zbhp": 0,"zblv": 120,"zbtool": 9,"zbys": "#ff9800","taozhuang": 3,"element": "thuy","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "29": {
+        "zbname": "Thiên Hỏa Linh Phù","zbinfo": "Trang bị phẩm Thiên hệ Hỏa, lắp vào ô Linh Phù. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 36,"zbfy": 0,"zbbj": 9,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 29,"zbhp": 0,"zblv": 120,"zbtool": 9,"zbys": "#ff9800","taozhuang": 4,"element": "hoa","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "30": {
+        "zbname": "Thiên Thổ Linh Phù","zbinfo": "Trang bị phẩm Thiên hệ Thổ, lắp vào ô Linh Phù. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 36,"zbfy": 0,"zbbj": 9,"zbxx": 5,"tuposjs": 0,"tupoexp": 0,"zbid": 30,"zbhp": 0,"zblv": 120,"zbtool": 9,"zbys": "#ff9800","taozhuang": 5,"element": "tho","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "31": {
+        "zbname": "Thiên Kim Ngọc Nhãn","zbinfo": "Trang bị phẩm Thiên hệ Kim, lắp vào ô Ngọc Nhãn. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 9,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 31,"zbhp": 0,"zblv": 120,"zbtool": 10,"zbys": "#ff9800","taozhuang": 1,"element": "kim","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "32": {
+        "zbname": "Thiên Mộc Ngọc Nhãn","zbinfo": "Trang bị phẩm Thiên hệ Mộc, lắp vào ô Ngọc Nhãn. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 9,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 32,"zbhp": 0,"zblv": 120,"zbtool": 10,"zbys": "#ff9800","taozhuang": 2,"element": "moc","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "33": {
+        "zbname": "Thiên Thủy Ngọc Nhãn","zbinfo": "Trang bị phẩm Thiên hệ Thủy, lắp vào ô Ngọc Nhãn. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 9,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 33,"zbhp": 0,"zblv": 120,"zbtool": 10,"zbys": "#ff9800","taozhuang": 3,"element": "thuy","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "34": {
+        "zbname": "Thiên Hỏa Ngọc Nhãn","zbinfo": "Trang bị phẩm Thiên hệ Hỏa, lắp vào ô Ngọc Nhãn. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 9,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 34,"zbhp": 0,"zblv": 120,"zbtool": 10,"zbys": "#ff9800","taozhuang": 4,"element": "hoa","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "35": {
+        "zbname": "Thiên Thổ Ngọc Nhãn","zbinfo": "Trang bị phẩm Thiên hệ Thổ, lắp vào ô Ngọc Nhãn. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 9,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 35,"zbhp": 0,"zblv": 120,"zbtool": 10,"zbys": "#ff9800","taozhuang": 5,"element": "tho","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "36": {
+        "zbname": "Thiên Kim Quan","zbinfo": "Trang bị phẩm Thiên hệ Kim, lắp vào ô Thiên Quan. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 18,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 36,"zbhp": 36,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 1,"element": "kim","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "37": {
+        "zbname": "Thiên Mộc Quan","zbinfo": "Trang bị phẩm Thiên hệ Mộc, lắp vào ô Thiên Quan. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 18,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 37,"zbhp": 36,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 2,"element": "moc","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "38": {
+        "zbname": "Thiên Thủy Quan","zbinfo": "Trang bị phẩm Thiên hệ Thủy, lắp vào ô Thiên Quan. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 18,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 38,"zbhp": 36,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 3,"element": "thuy","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "39": {
+        "zbname": "Thiên Hỏa Quan","zbinfo": "Trang bị phẩm Thiên hệ Hỏa, lắp vào ô Thiên Quan. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 18,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 39,"zbhp": 36,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 4,"element": "hoa","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "40": {
+        "zbname": "Thiên Thổ Quan","zbinfo": "Trang bị phẩm Thiên hệ Thổ, lắp vào ô Thiên Quan. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 18,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 40,"zbhp": 36,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 5,"element": "tho","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "41": {
+        "zbname": "Thiên Kim Thiên Thuẫn","zbinfo": "Trang bị phẩm Thiên hệ Kim, lắp vào ô Thiên Thuẫn. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 27,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 41,"zbhp": 18,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 1,"element": "kim","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "42": {
+        "zbname": "Thiên Mộc Thiên Thuẫn","zbinfo": "Trang bị phẩm Thiên hệ Mộc, lắp vào ô Thiên Thuẫn. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 27,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 42,"zbhp": 18,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 2,"element": "moc","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "43": {
+        "zbname": "Thiên Thủy Thiên Thuẫn","zbinfo": "Trang bị phẩm Thiên hệ Thủy, lắp vào ô Thiên Thuẫn. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 27,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 43,"zbhp": 18,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 3,"element": "thuy","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "44": {
+        "zbname": "Thiên Hỏa Thiên Thuẫn","zbinfo": "Trang bị phẩm Thiên hệ Hỏa, lắp vào ô Thiên Thuẫn. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 27,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 44,"zbhp": 18,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 4,"element": "hoa","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "45": {
+        "zbname": "Thiên Thổ Thiên Thuẫn","zbinfo": "Trang bị phẩm Thiên hệ Thổ, lắp vào ô Thiên Thuẫn. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 27,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 45,"zbhp": 18,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 5,"element": "tho","rarity": 5,"rarity_name": "Thien","realm_require": 120
+    },
+    "46": {
+        "zbname": "Thánh Kim Lan Giáp","zbinfo": "Trang bị phẩm Thánh hệ Kim, lắp vào ô Giáp Bào. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 33,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 46,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 1,"element": "kim","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "47": {
+        "zbname": "Thánh Mộc Thanh Liên Giáp","zbinfo": "Trang bị phẩm Thánh hệ Mộc, lắp vào ô Giáp Bào. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 33,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 47,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 2,"element": "moc","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "48": {
+        "zbname": "Thánh Thủy Huyền Vũ Giáp","zbinfo": "Trang bị phẩm Thánh hệ Thủy, lắp vào ô Giáp Bào. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 33,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 48,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 3,"element": "thuy","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "49": {
+        "zbname": "Thánh Hỏa Phệ Hồn Giáp","zbinfo": "Trang bị phẩm Thánh hệ Hỏa, lắp vào ô Giáp Bào. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 33,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 49,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 4,"element": "hoa","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "50": {
+        "zbname": "Thánh Thổ Trấn Sơn Giáp","zbinfo": "Trang bị phẩm Thánh hệ Thổ, lắp vào ô Giáp Bào. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 33,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 50,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 5,"element": "tho","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "51": {
+        "zbname": "Thánh Kim Cổ Ngọc","zbinfo": "Trang bị phẩm Thánh hệ Kim, lắp vào ô Cổ Ngọc. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 16,"zbxx": 16,"tuposjs": 0,"tupoexp": 0,"zbid": 51,"zbhp": 44,"zblv": 200,"zbtool": 11,"zbys": "#2196F3","taozhuang": 1,"element": "kim","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "52": {
+        "zbname": "Thánh Mộc Cổ Ngọc","zbinfo": "Trang bị phẩm Thánh hệ Mộc, lắp vào ô Cổ Ngọc. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 16,"zbxx": 16,"tuposjs": 0,"tupoexp": 0,"zbid": 52,"zbhp": 44,"zblv": 200,"zbtool": 11,"zbys": "#2196F3","taozhuang": 2,"element": "moc","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "53": {
+        "zbname": "Thánh Thủy Cổ Ngọc","zbinfo": "Trang bị phẩm Thánh hệ Thủy, lắp vào ô Cổ Ngọc. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 16,"zbxx": 16,"tuposjs": 0,"tupoexp": 0,"zbid": 53,"zbhp": 44,"zblv": 200,"zbtool": 11,"zbys": "#2196F3","taozhuang": 3,"element": "thuy","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "54": {
+        "zbname": "Thánh Hỏa Cổ Ngọc","zbinfo": "Trang bị phẩm Thánh hệ Hỏa, lắp vào ô Cổ Ngọc. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 16,"zbxx": 16,"tuposjs": 0,"tupoexp": 0,"zbid": 54,"zbhp": 44,"zblv": 200,"zbtool": 11,"zbys": "#2196F3","taozhuang": 4,"element": "hoa","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "55": {
+        "zbname": "Thánh Thổ Cổ Ngọc","zbinfo": "Trang bị phẩm Thánh hệ Thổ, lắp vào ô Cổ Ngọc. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 16,"zbxx": 16,"tuposjs": 0,"tupoexp": 0,"zbid": 55,"zbhp": 44,"zblv": 200,"zbtool": 11,"zbys": "#2196F3","taozhuang": 5,"element": "tho","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "56": {
+        "zbname": "Thánh Kim Vai Khôi","zbinfo": "Trang bị phẩm Thánh hệ Kim, lắp vào ô Vai Khôi. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 22,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 56,"zbhp": 44,"zblv": 200,"zbtool": 12,"zbys": "#2196F3","taozhuang": 1,"element": "kim","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "57": {
+        "zbname": "Thánh Mộc Vai Khôi","zbinfo": "Trang bị phẩm Thánh hệ Mộc, lắp vào ô Vai Khôi. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 22,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 57,"zbhp": 44,"zblv": 200,"zbtool": 12,"zbys": "#2196F3","taozhuang": 2,"element": "moc","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "58": {
+        "zbname": "Thánh Thủy Vai Khôi","zbinfo": "Trang bị phẩm Thánh hệ Thủy, lắp vào ô Vai Khôi. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 22,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 58,"zbhp": 44,"zblv": 200,"zbtool": 12,"zbys": "#2196F3","taozhuang": 3,"element": "thuy","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "59": {
+        "zbname": "Thánh Hỏa Vai Khôi","zbinfo": "Trang bị phẩm Thánh hệ Hỏa, lắp vào ô Vai Khôi. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 22,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 59,"zbhp": 44,"zblv": 200,"zbtool": 12,"zbys": "#2196F3","taozhuang": 4,"element": "hoa","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "60": {
+        "zbname": "Thánh Thổ Vai Khôi","zbinfo": "Trang bị phẩm Thánh hệ Thổ, lắp vào ô Vai Khôi. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 22,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 60,"zbhp": 44,"zblv": 200,"zbtool": 12,"zbys": "#2196F3","taozhuang": 5,"element": "tho","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "61": {
+        "zbname": "Thánh Kim Bào","zbinfo": "Trang bị phẩm Thánh hệ Kim, lắp vào ô Giáp Bào. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 61,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 1,"element": "kim","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "62": {
+        "zbname": "Thánh Mộc Bào","zbinfo": "Trang bị phẩm Thánh hệ Mộc, lắp vào ô Giáp Bào. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 62,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 2,"element": "moc","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "63": {
+        "zbname": "Thánh Thủy Bào","zbinfo": "Trang bị phẩm Thánh hệ Thủy, lắp vào ô Giáp Bào. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 63,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 3,"element": "thuy","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "64": {
+        "zbname": "Thánh Hỏa Bào","zbinfo": "Trang bị phẩm Thánh hệ Hỏa, lắp vào ô Giáp Bào. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 64,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 4,"element": "hoa","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "65": {
+        "zbname": "Thánh Thổ Bào","zbinfo": "Trang bị phẩm Thánh hệ Thổ, lắp vào ô Giáp Bào. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 65,"zbhp": 88,"zblv": 200,"zbtool": 4,"zbys": "#2196F3","taozhuang": 5,"element": "tho","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+    },
+    "66": {
+        "zbname": "Tiên Kim Giới Chỉ","zbinfo": "Trang bị phẩm Tiên hệ Kim, lắp vào ô Giới Chỉ. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 28,"zbfy": 0,"zbbj": 34,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 66,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#FF5722","taozhuang": 1,"element": "kim","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "67": {
+        "zbname": "Tiên Mộc Giới Chỉ","zbinfo": "Trang bị phẩm Tiên hệ Mộc, lắp vào ô Giới Chỉ. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 28,"zbfy": 0,"zbbj": 34,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 67,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#FF5722","taozhuang": 2,"element": "moc","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "68": {
+        "zbname": "Tiên Thủy Giới Chỉ","zbinfo": "Trang bị phẩm Tiên hệ Thủy, lắp vào ô Giới Chỉ. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 28,"zbfy": 0,"zbbj": 34,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 68,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#FF5722","taozhuang": 3,"element": "thuy","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "69": {
+        "zbname": "Tiên Hỏa Giới Chỉ","zbinfo": "Trang bị phẩm Tiên hệ Hỏa, lắp vào ô Giới Chỉ. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 28,"zbfy": 0,"zbbj": 34,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 69,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#FF5722","taozhuang": 4,"element": "hoa","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "70": {
+        "zbname": "Tiên Thổ Giới Chỉ","zbinfo": "Trang bị phẩm Tiên hệ Thổ, lắp vào ô Giới Chỉ. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 28,"zbfy": 0,"zbbj": 34,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 70,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#FF5722","taozhuang": 5,"element": "tho","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "71": {
+        "zbname": "Tiên Kim Hộ Thủ","zbinfo": "Trang bị phẩm Tiên hệ Kim, lắp vào ô Hộ Thủ. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 71,"zbhp": 26,"zblv": 300,"zbtool": 5,"zbys": "#FF5722","taozhuang": 1,"element": "kim","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "72": {
+        "zbname": "Tiên Mộc Hộ Thủ","zbinfo": "Trang bị phẩm Tiên hệ Mộc, lắp vào ô Hộ Thủ. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 72,"zbhp": 26,"zblv": 300,"zbtool": 5,"zbys": "#FF5722","taozhuang": 2,"element": "moc","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "73": {
+        "zbname": "Tiên Thủy Hộ Thủ","zbinfo": "Trang bị phẩm Tiên hệ Thủy, lắp vào ô Hộ Thủ. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 73,"zbhp": 26,"zblv": 300,"zbtool": 5,"zbys": "#FF5722","taozhuang": 3,"element": "thuy","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "74": {
+        "zbname": "Tiên Hỏa Hộ Thủ","zbinfo": "Trang bị phẩm Tiên hệ Hỏa, lắp vào ô Hộ Thủ. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 74,"zbhp": 26,"zblv": 300,"zbtool": 5,"zbys": "#FF5722","taozhuang": 4,"element": "hoa","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "75": {
+        "zbname": "Tiên Thổ Hộ Thủ","zbinfo": "Trang bị phẩm Tiên hệ Thổ, lắp vào ô Hộ Thủ. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 17,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 75,"zbhp": 26,"zblv": 300,"zbtool": 5,"zbys": "#FF5722","taozhuang": 5,"element": "tho","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "76": {
+        "zbname": "Tiên Kim Đai","zbinfo": "Trang bị phẩm Tiên hệ Kim, lắp vào ô Yêu Đai. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 76,"zbhp": 52,"zblv": 300,"zbtool": 7,"zbys": "#FF5722","taozhuang": 1,"element": "kim","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "77": {
+        "zbname": "Tiên Mộc Đai","zbinfo": "Trang bị phẩm Tiên hệ Mộc, lắp vào ô Yêu Đai. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 77,"zbhp": 52,"zblv": 300,"zbtool": 7,"zbys": "#FF5722","taozhuang": 2,"element": "moc","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "78": {
+        "zbname": "Tiên Thủy Đai","zbinfo": "Trang bị phẩm Tiên hệ Thủy, lắp vào ô Yêu Đai. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 78,"zbhp": 52,"zblv": 300,"zbtool": 7,"zbys": "#FF5722","taozhuang": 3,"element": "thuy","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "79": {
+        "zbname": "Tiên Hỏa Đai","zbinfo": "Trang bị phẩm Tiên hệ Hỏa, lắp vào ô Yêu Đai. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 79,"zbhp": 52,"zblv": 300,"zbtool": 7,"zbys": "#FF5722","taozhuang": 4,"element": "hoa","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "80": {
+        "zbname": "Tiên Thổ Đai","zbinfo": "Trang bị phẩm Tiên hệ Thổ, lắp vào ô Yêu Đai. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 80,"zbhp": 52,"zblv": 300,"zbtool": 7,"zbys": "#FF5722","taozhuang": 5,"element": "tho","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "81": {
+        "zbname": "Tiên Kim Linh Bội","zbinfo": "Trang bị phẩm Tiên hệ Kim, lắp vào ô Linh Bội. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 0,"zbbj": 17,"zbxx": 17,"tuposjs": 0,"tupoexp": 0,"zbid": 81,"zbhp": 0,"zblv": 300,"zbtool": 14,"zbys": "#FF5722","taozhuang": 1,"element": "kim","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "82": {
+        "zbname": "Tiên Mộc Linh Bội","zbinfo": "Trang bị phẩm Tiên hệ Mộc, lắp vào ô Linh Bội. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 0,"zbbj": 17,"zbxx": 17,"tuposjs": 0,"tupoexp": 0,"zbid": 82,"zbhp": 0,"zblv": 300,"zbtool": 14,"zbys": "#FF5722","taozhuang": 2,"element": "moc","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "83": {
+        "zbname": "Tiên Thủy Linh Bội","zbinfo": "Trang bị phẩm Tiên hệ Thủy, lắp vào ô Linh Bội. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 0,"zbbj": 17,"zbxx": 17,"tuposjs": 0,"tupoexp": 0,"zbid": 83,"zbhp": 0,"zblv": 300,"zbtool": 14,"zbys": "#FF5722","taozhuang": 3,"element": "thuy","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "84": {
+        "zbname": "Tiên Hỏa Linh Bội","zbinfo": "Trang bị phẩm Tiên hệ Hỏa, lắp vào ô Linh Bội. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 0,"zbbj": 17,"zbxx": 17,"tuposjs": 0,"tupoexp": 0,"zbid": 84,"zbhp": 0,"zblv": 300,"zbtool": 14,"zbys": "#FF5722","taozhuang": 4,"element": "hoa","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "85": {
+        "zbname": "Tiên Thổ Linh Bội","zbinfo": "Trang bị phẩm Tiên hệ Thổ, lắp vào ô Linh Bội. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 0,"zbbj": 17,"zbxx": 17,"tuposjs": 0,"tupoexp": 0,"zbid": 85,"zbhp": 0,"zblv": 300,"zbtool": 14,"zbys": "#FF5722","taozhuang": 5,"element": "tho","rarity": 7,"rarity_name": "Tien","realm_require": 300
+    },
+    "86": {
+        "zbname": "Thần Kim Yêu Đai","zbinfo": "Trang bị phẩm Thần hệ Kim, lắp vào ô Yêu Đai. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 86,"zbhp": 52,"zblv": 400,"zbtool": 7,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "87": {
+        "zbname": "Thần Mộc Yêu Đai","zbinfo": "Trang bị phẩm Thần hệ Mộc, lắp vào ô Yêu Đai. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 87,"zbhp": 52,"zblv": 400,"zbtool": 7,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "88": {
+        "zbname": "Thần Thủy Yêu Đai","zbinfo": "Trang bị phẩm Thần hệ Thủy, lắp vào ô Yêu Đai. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 88,"zbhp": 52,"zblv": 400,"zbtool": 7,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "89": {
+        "zbname": "Thần Hỏa Yêu Đai","zbinfo": "Trang bị phẩm Thần hệ Hỏa, lắp vào ô Yêu Đai. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 89,"zbhp": 52,"zblv": 400,"zbtool": 7,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "90": {
+        "zbname": "Thần Thổ Yêu Đai","zbinfo": "Trang bị phẩm Thần hệ Thổ, lắp vào ô Yêu Đai. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 14,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 90,"zbhp": 52,"zblv": 400,"zbtool": 7,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "91": {
+        "zbname": "Thần Kim Phi Phong","zbinfo": "Trang bị phẩm Thần hệ Kim, lắp vào ô Phi Phong. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 28,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 91,"zbhp": 52,"zblv": 400,"zbtool": 8,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "92": {
+        "zbname": "Thần Mộc Phi Phong","zbinfo": "Trang bị phẩm Thần hệ Mộc, lắp vào ô Phi Phong. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 28,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 92,"zbhp": 52,"zblv": 400,"zbtool": 8,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "93": {
+        "zbname": "Thần Thủy Phi Phong","zbinfo": "Trang bị phẩm Thần hệ Thủy, lắp vào ô Phi Phong. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 28,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 93,"zbhp": 52,"zblv": 400,"zbtool": 8,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "94": {
+        "zbname": "Thần Hỏa Phi Phong","zbinfo": "Trang bị phẩm Thần hệ Hỏa, lắp vào ô Phi Phong. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 28,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 94,"zbhp": 52,"zblv": 400,"zbtool": 8,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "95": {
+        "zbname": "Thần Thổ Phi Phong","zbinfo": "Trang bị phẩm Thần hệ Thổ, lắp vào ô Phi Phong. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 28,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 95,"zbhp": 52,"zblv": 400,"zbtool": 8,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "96": {
+        "zbname": "Thần Kim Tọa Kỵ","zbinfo": "Trang bị phẩm Thần hệ Kim, lắp vào ô Tọa Kỵ. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 96,"zbhp": 78,"zblv": 400,"zbtool": 15,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "97": {
+        "zbname": "Thần Mộc Tọa Kỵ","zbinfo": "Trang bị phẩm Thần hệ Mộc, lắp vào ô Tọa Kỵ. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 97,"zbhp": 78,"zblv": 400,"zbtool": 15,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "98": {
+        "zbname": "Thần Thủy Tọa Kỵ","zbinfo": "Trang bị phẩm Thần hệ Thủy, lắp vào ô Tọa Kỵ. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 98,"zbhp": 78,"zblv": 400,"zbtool": 15,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "99": {
+        "zbname": "Thần Hỏa Tọa Kỵ","zbinfo": "Trang bị phẩm Thần hệ Hỏa, lắp vào ô Tọa Kỵ. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 99,"zbhp": 78,"zblv": 400,"zbtool": 15,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "100": {
+        "zbname": "Thần Thổ Tọa Kỵ","zbinfo": "Trang bị phẩm Thần hệ Thổ, lắp vào ô Tọa Kỵ. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 14,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 100,"zbhp": 78,"zblv": 400,"zbtool": 15,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 8,"rarity_name": "Than","realm_require": 400
+    },
+    "101": {
+        "zbname": "Đế Kim Linh Phù","zbinfo": "Trang bị phẩm Đế hệ Kim, lắp vào ô Linh Phù. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 101,"zbhp": 0,"zblv": 600,"zbtool": 9,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "102": {
+        "zbname": "Đế Mộc Linh Phù","zbinfo": "Trang bị phẩm Đế hệ Mộc, lắp vào ô Linh Phù. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 102,"zbhp": 0,"zblv": 600,"zbtool": 9,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "103": {
+        "zbname": "Đế Thủy Linh Phù","zbinfo": "Trang bị phẩm Đế hệ Thủy, lắp vào ô Linh Phù. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 103,"zbhp": 0,"zblv": 600,"zbtool": 9,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "104": {
+        "zbname": "Đế Hỏa Linh Phù","zbinfo": "Trang bị phẩm Đế hệ Hỏa, lắp vào ô Linh Phù. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 104,"zbhp": 0,"zblv": 600,"zbtool": 9,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "105": {
+        "zbname": "Đế Thổ Linh Phù","zbinfo": "Trang bị phẩm Đế hệ Thổ, lắp vào ô Linh Phù. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 105,"zbhp": 0,"zblv": 600,"zbtool": 9,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "106": {
+        "zbname": "Đế Kim Ngọc Nhãn","zbinfo": "Trang bị phẩm Đế hệ Kim, lắp vào ô Ngọc Nhãn. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 106,"zbhp": 0,"zblv": 600,"zbtool": 10,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "107": {
+        "zbname": "Đế Mộc Ngọc Nhãn","zbinfo": "Trang bị phẩm Đế hệ Mộc, lắp vào ô Ngọc Nhãn. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 107,"zbhp": 0,"zblv": 600,"zbtool": 10,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "108": {
+        "zbname": "Đế Thủy Ngọc Nhãn","zbinfo": "Trang bị phẩm Đế hệ Thủy, lắp vào ô Ngọc Nhãn. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 108,"zbhp": 0,"zblv": 600,"zbtool": 10,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "109": {
+        "zbname": "Đế Hỏa Ngọc Nhãn","zbinfo": "Trang bị phẩm Đế hệ Hỏa, lắp vào ô Ngọc Nhãn. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 109,"zbhp": 0,"zblv": 600,"zbtool": 10,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "110": {
+        "zbname": "Đế Thổ Ngọc Nhãn","zbinfo": "Trang bị phẩm Đế hệ Thổ, lắp vào ô Ngọc Nhãn. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 50,"zbxx": 50,"tuposjs": 0,"tupoexp": 0,"zbid": 110,"zbhp": 0,"zblv": 600,"zbtool": 10,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 9,"rarity_name": "De","realm_require": 600
+    },
+    "111": {
+        "zbname": "Đạo Kim Cổ Ngọc","zbinfo": "Trang bị phẩm Đạo hệ Kim, lắp vào ô Cổ Ngọc. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 111,"zbhp": 160,"zblv": 800,"zbtool": 11,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "112": {
+        "zbname": "Đạo Mộc Cổ Ngọc","zbinfo": "Trang bị phẩm Đạo hệ Mộc, lắp vào ô Cổ Ngọc. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 112,"zbhp": 160,"zblv": 800,"zbtool": 11,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "113": {
+        "zbname": "Đạo Thủy Cổ Ngọc","zbinfo": "Trang bị phẩm Đạo hệ Thủy, lắp vào ô Cổ Ngọc. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 113,"zbhp": 160,"zblv": 800,"zbtool": 11,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "114": {
+        "zbname": "Đạo Hỏa Cổ Ngọc","zbinfo": "Trang bị phẩm Đạo hệ Hỏa, lắp vào ô Cổ Ngọc. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 114,"zbhp": 160,"zblv": 800,"zbtool": 11,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "115": {
+        "zbname": "Đạo Thổ Cổ Ngọc","zbinfo": "Trang bị phẩm Đạo hệ Thổ, lắp vào ô Cổ Ngọc. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 115,"zbhp": 160,"zblv": 800,"zbtool": 11,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "116": {
+        "zbname": "Đạo Kim Vai Khôi","zbinfo": "Trang bị phẩm Đạo hệ Kim, lắp vào ô Vai Khôi. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 116,"zbhp": 160,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "117": {
+        "zbname": "Đạo Mộc Vai Khôi","zbinfo": "Trang bị phẩm Đạo hệ Mộc, lắp vào ô Vai Khôi. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 117,"zbhp": 160,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "118": {
+        "zbname": "Đạo Thủy Vai Khôi","zbinfo": "Trang bị phẩm Đạo hệ Thủy, lắp vào ô Vai Khôi. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 118,"zbhp": 160,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "119": {
+        "zbname": "Đạo Hỏa Vai Khôi","zbinfo": "Trang bị phẩm Đạo hệ Hỏa, lắp vào ô Vai Khôi. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 119,"zbhp": 160,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "120": {
+        "zbname": "Đạo Thổ Vai Khôi","zbinfo": "Trang bị phẩm Đạo hệ Thổ, lắp vào ô Vai Khôi. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 120,"zbhp": 160,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "121": {
+        "zbname": "Đạo Kim Đai","zbinfo": "Trang bị phẩm Đạo hệ Kim, lắp vào ô Linh Đai. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 40,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 121,"zbhp": 120,"zblv": 800,"zbtool": 13,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "122": {
+        "zbname": "Đạo Mộc Đai","zbinfo": "Trang bị phẩm Đạo hệ Mộc, lắp vào ô Linh Đai. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 40,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 122,"zbhp": 120,"zblv": 800,"zbtool": 13,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "123": {
+        "zbname": "Đạo Thủy Đai","zbinfo": "Trang bị phẩm Đạo hệ Thủy, lắp vào ô Linh Đai. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 40,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 123,"zbhp": 120,"zblv": 800,"zbtool": 13,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "124": {
+        "zbname": "Đạo Hỏa Đai","zbinfo": "Trang bị phẩm Đạo hệ Hỏa, lắp vào ô Linh Đai. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 40,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 124,"zbhp": 120,"zblv": 800,"zbtool": 13,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "125": {
+        "zbname": "Đạo Thổ Đai","zbinfo": "Trang bị phẩm Đạo hệ Thổ, lắp vào ô Linh Đai. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 40,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 125,"zbhp": 120,"zblv": 800,"zbtool": 13,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "126": {
+        "zbname": "Đạo Kim Linh Bội","zbinfo": "Trang bị phẩm Đạo hệ Kim, lắp vào ô Linh Bội. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 40,"tuposjs": 0,"tupoexp": 0,"zbid": 126,"zbhp": 80,"zblv": 800,"zbtool": 14,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "127": {
+        "zbname": "Đạo Mộc Linh Bội","zbinfo": "Trang bị phẩm Đạo hệ Mộc, lắp vào ô Linh Bội. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 40,"tuposjs": 0,"tupoexp": 0,"zbid": 127,"zbhp": 80,"zblv": 800,"zbtool": 14,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "128": {
+        "zbname": "Đạo Thủy Linh Bội","zbinfo": "Trang bị phẩm Đạo hệ Thủy, lắp vào ô Linh Bội. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 40,"tuposjs": 0,"tupoexp": 0,"zbid": 128,"zbhp": 80,"zblv": 800,"zbtool": 14,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "129": {
+        "zbname": "Đạo Hỏa Linh Bội","zbinfo": "Trang bị phẩm Đạo hệ Hỏa, lắp vào ô Linh Bội. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 40,"tuposjs": 0,"tupoexp": 0,"zbid": 129,"zbhp": 80,"zblv": 800,"zbtool": 14,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "130": {
+        "zbname": "Đạo Thổ Linh Bội","zbinfo": "Trang bị phẩm Đạo hệ Thổ, lắp vào ô Linh Bội. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 0,"zbbj": 0,"zbxx": 40,"tuposjs": 0,"tupoexp": 0,"zbid": 130,"zbhp": 80,"zblv": 800,"zbtool": 14,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "131": {
+        "zbname": "Đạo Kim Tọa Kỵ","zbinfo": "Trang bị phẩm Đạo hệ Kim, lắp vào ô Tọa Kỵ. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 131,"zbhp": 240,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "132": {
+        "zbname": "Đạo Mộc Tọa Kỵ","zbinfo": "Trang bị phẩm Đạo hệ Mộc, lắp vào ô Tọa Kỵ. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 132,"zbhp": 240,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "133": {
+        "zbname": "Đạo Thủy Tọa Kỵ","zbinfo": "Trang bị phẩm Đạo hệ Thủy, lắp vào ô Tọa Kỵ. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 133,"zbhp": 240,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "134": {
+        "zbname": "Đạo Hỏa Tọa Kỵ","zbinfo": "Trang bị phẩm Đạo hệ Hỏa, lắp vào ô Tọa Kỵ. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 134,"zbhp": 240,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "135": {
+        "zbname": "Đạo Thổ Tọa Kỵ","zbinfo": "Trang bị phẩm Đạo hệ Thổ, lắp vào ô Tọa Kỵ. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 0,"zbfy": 80,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 135,"zbhp": 240,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 10,"rarity_name": "Dao","realm_require": 800
+    },
+    "136": {
+        "zbname": "Thiên Kim Trảm Xương Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 56,"zbfy": 0,"zbbj": 14,"zbxx": 7,"tuposjs": 0,"tupoexp": 0,"zbid": 136,"zbhp": 0,"zblv": 150,"zbtool": 1,"zbys": "#ff9800","taozhuang": 1,"element": "kim","rarity": 5,"rarity_name": "Thien","realm_require": 150
+    },
+    "137": {
+        "zbname": "Thiên Mộc Phá Phong Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 56,"zbfy": 0,"zbbj": 14,"zbxx": 7,"tuposjs": 0,"tupoexp": 0,"zbid": 137,"zbhp": 0,"zblv": 150,"zbtool": 1,"zbys": "#ff9800","taozhuang": 2,"element": "moc","rarity": 5,"rarity_name": "Thien","realm_require": 150
+    },
+    "138": {
+        "zbname": "Thiên Thủy Đương Trận Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 56,"zbfy": 0,"zbbj": 14,"zbxx": 7,"tuposjs": 0,"tupoexp": 0,"zbid": 138,"zbhp": 0,"zblv": 150,"zbtool": 1,"zbys": "#ff9800","taozhuang": 3,"element": "thuy","rarity": 5,"rarity_name": "Thien","realm_require": 150
+    },
+    "139": {
+        "zbname": "Thiên Hỏa Liêu Nguyên Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 56,"zbfy": 0,"zbbj": 14,"zbxx": 7,"tuposjs": 0,"tupoexp": 0,"zbid": 139,"zbhp": 0,"zblv": 150,"zbtool": 1,"zbys": "#ff9800","taozhuang": 4,"element": "hoa","rarity": 5,"rarity_name": "Thien","realm_require": 150
+    },
+    "140": {
+        "zbname": "Thiên Thổ Trấn Sơn Kiếm","zbinfo": "Trang bị phẩm Thiên hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 56,"zbfy": 0,"zbbj": 14,"zbxx": 7,"tuposjs": 0,"tupoexp": 0,"zbid": 140,"zbhp": 0,"zblv": 150,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "tho","rarity": 5,"rarity_name": "Thien","realm_require": 150
+    },
+    "141": {
+        "zbname": "Thánh Kim Huyền Vũ Kiếm","zbinfo": "Trang bị phẩm Thánh hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 80,"zbfy": 0,"zbbj": 20,"zbxx": 10,"tuposjs": 0,"tupoexp": 0,"zbid": 141,"zbhp": 0,"zblv": 250,"zbtool": 1,"zbys": "#2196F3","taozhuang": 1,"element": "kim","rarity": 6,"rarity_name": "Thanh","realm_require": 250
+    },
+    "142": {
+        "zbname": "Thánh Mộc Thương Thiên Kiếm","zbinfo": "Trang bị phẩm Thánh hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 80,"zbfy": 0,"zbbj": 20,"zbxx": 10,"tuposjs": 0,"tupoexp": 0,"zbid": 142,"zbhp": 0,"zblv": 250,"zbtool": 1,"zbys": "#2196F3","taozhuang": 2,"element": "moc","rarity": 6,"rarity_name": "Thanh","realm_require": 250
+    },
+    "143": {
+        "zbname": "Thánh Thủy Quy Nguyên Kiếm","zbinfo": "Trang bị phẩm Thánh hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 80,"zbfy": 0,"zbbj": 20,"zbxx": 10,"tuposjs": 0,"tupoexp": 0,"zbid": 143,"zbhp": 0,"zblv": 250,"zbtool": 1,"zbys": "#2196F3","taozhuang": 3,"element": "thuy","rarity": 6,"rarity_name": "Thanh","realm_require": 250
+    },
+    "144": {
+        "zbname": "Thánh Hỏa Phạt Tà Kiếm","zbinfo": "Trang bị phẩm Thánh hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 80,"zbfy": 0,"zbbj": 20,"zbxx": 10,"tuposjs": 0,"tupoexp": 0,"zbid": 144,"zbhp": 0,"zblv": 250,"zbtool": 1,"zbys": "#2196F3","taozhuang": 4,"element": "hoa","rarity": 6,"rarity_name": "Thanh","realm_require": 250
+    },
+    "145": {
+        "zbname": "Thánh Thổ Anh Linh Kiếm","zbinfo": "Trang bị phẩm Thánh hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 80,"zbfy": 0,"zbbj": 20,"zbxx": 10,"tuposjs": 0,"tupoexp": 0,"zbid": 145,"zbhp": 0,"zblv": 250,"zbtool": 1,"zbys": "#2196F3","taozhuang": 5,"element": "tho","rarity": 6,"rarity_name": "Thanh","realm_require": 250
+    },
+    "146": {
+        "zbname": "Tiên Kim Phá Hư Kiếm","zbinfo": "Trang bị phẩm Tiên hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 88,"zbfy": 0,"zbbj": 22,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 146,"zbhp": 0,"zblv": 350,"zbtool": 1,"zbys": "#FF5722","taozhuang": 1,"element": "kim","rarity": 7,"rarity_name": "Tien","realm_require": 350
+    },
+    "147": {
+        "zbname": "Tiên Mộc Duyên Sinh Kiếm","zbinfo": "Trang bị phẩm Tiên hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 88,"zbfy": 0,"zbbj": 22,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 147,"zbhp": 0,"zblv": 350,"zbtool": 1,"zbys": "#FF5722","taozhuang": 2,"element": "moc","rarity": 7,"rarity_name": "Tien","realm_require": 350
+    },
+    "148": {
+        "zbname": "Tiên Thủy Quyết Lãng Kiếm","zbinfo": "Trang bị phẩm Tiên hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 88,"zbfy": 0,"zbbj": 22,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 148,"zbhp": 0,"zblv": 350,"zbtool": 1,"zbys": "#FF5722","taozhuang": 3,"element": "thuy","rarity": 7,"rarity_name": "Tien","realm_require": 350
+    },
+    "149": {
+        "zbname": "Tiên Hỏa Tuyệt Diệt Kiếm","zbinfo": "Trang bị phẩm Tiên hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 88,"zbfy": 0,"zbbj": 22,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 149,"zbhp": 0,"zblv": 350,"zbtool": 1,"zbys": "#FF5722","taozhuang": 4,"element": "hoa","rarity": 7,"rarity_name": "Tien","realm_require": 350
+    },
+    "150": {
+        "zbname": "Tiên Thổ Vô Cực Kiếm","zbinfo": "Trang bị phẩm Tiên hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 88,"zbfy": 0,"zbbj": 22,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 150,"zbhp": 0,"zblv": 350,"zbtool": 1,"zbys": "#FF5722","taozhuang": 5,"element": "tho","rarity": 7,"rarity_name": "Tien","realm_require": 350
+    },
+    "151": {
+        "zbname": "Thần Kim Đồ Long Kiếm","zbinfo": "Trang bị phẩm Thần hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 96,"zbfy": 0,"zbbj": 24,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 151,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#d4af37","taozhuang": 1,"element": "kim","rarity": 8,"rarity_name": "Than","realm_require": 500
+    },
+    "152": {
+        "zbname": "Thần Mộc Hồi Xuân Kiếm","zbinfo": "Trang bị phẩm Thần hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 96,"zbfy": 0,"zbbj": 24,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 152,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#d4af37","taozhuang": 2,"element": "moc","rarity": 8,"rarity_name": "Than","realm_require": 500
+    },
+    "153": {
+        "zbname": "Thần Thủy Thôn Thiên Kiếm","zbinfo": "Trang bị phẩm Thần hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 96,"zbfy": 0,"zbbj": 24,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 153,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#d4af37","taozhuang": 3,"element": "thuy","rarity": 8,"rarity_name": "Than","realm_require": 500
+    },
+    "154": {
+        "zbname": "Thần Hỏa Phệ Hồn Kiếm","zbinfo": "Trang bị phẩm Thần hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 96,"zbfy": 0,"zbbj": 24,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 154,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#d4af37","taozhuang": 4,"element": "hoa","rarity": 8,"rarity_name": "Than","realm_require": 500
+    },
+    "155": {
+        "zbname": "Thần Thổ Khai Thiên Kiếm","zbinfo": "Trang bị phẩm Thần hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 96,"zbfy": 0,"zbbj": 24,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 155,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#d4af37","taozhuang": 5,"element": "tho","rarity": 8,"rarity_name": "Than","realm_require": 500
+    },
+    "156": {
+        "zbname": "Thần Kim Hoa Chi Kiếm","zbinfo": "Trang bị phẩm Thần hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 92,"zbfy": 0,"zbbj": 23,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 156,"zbhp": 0,"zblv": 450,"zbtool": 1,"zbys": "#f44336","taozhuang": 1,"element": "kim","rarity": 8,"rarity_name": "Than","realm_require": 450
+    },
+    "157": {
+        "zbname": "Thần Mộc Phong Chi Kiếm","zbinfo": "Trang bị phẩm Thần hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 92,"zbfy": 0,"zbbj": 23,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 157,"zbhp": 0,"zblv": 450,"zbtool": 1,"zbys": "#f44336","taozhuang": 2,"element": "moc","rarity": 8,"rarity_name": "Than","realm_require": 450
+    },
+    "158": {
+        "zbname": "Thần Thủy Lôi Chi Kiếm","zbinfo": "Trang bị phẩm Thần hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 92,"zbfy": 0,"zbbj": 23,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 158,"zbhp": 0,"zblv": 450,"zbtool": 1,"zbys": "#f44336","taozhuang": 3,"element": "thuy","rarity": 8,"rarity_name": "Than","realm_require": 450
+    },
+    "159": {
+        "zbname": "Thần Hỏa Quang Chi Kiếm","zbinfo": "Trang bị phẩm Thần hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 92,"zbfy": 0,"zbbj": 23,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 159,"zbhp": 0,"zblv": 450,"zbtool": 1,"zbys": "#f44336","taozhuang": 4,"element": "hoa","rarity": 8,"rarity_name": "Than","realm_require": 450
+    },
+    "160": {
+        "zbname": "Thần Thổ Phong Chi Kiếm","zbinfo": "Trang bị phẩm Thần hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 92,"zbfy": 0,"zbbj": 23,"zbxx": 11,"tuposjs": 0,"tupoexp": 0,"zbid": 160,"zbhp": 0,"zblv": 450,"zbtool": 1,"zbys": "#f44336","taozhuang": 5,"element": "tho","rarity": 8,"rarity_name": "Than","realm_require": 450
+    },
+    "161": {
+        "zbname": "Thần Kim Phách Huyết Kiếm","zbinfo": "Trang bị phẩm Thần hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 100,"zbfy": 0,"zbbj": 25,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 161,"zbhp": 0,"zblv": 550,"zbtool": 1,"zbys": "#f44336","taozhuang": 1,"element": "kim","rarity": 8,"rarity_name": "Than","realm_require": 550
+    },
+    "162": {
+        "zbname": "Thần Mộc Sinh Uy Kiếm","zbinfo": "Trang bị phẩm Thần hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 100,"zbfy": 0,"zbbj": 25,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 162,"zbhp": 0,"zblv": 550,"zbtool": 1,"zbys": "#f44336","taozhuang": 2,"element": "moc","rarity": 8,"rarity_name": "Than","realm_require": 550
+    },
+    "163": {
+        "zbname": "Thần Thủy Tuyệt Tình Kiếm","zbinfo": "Trang bị phẩm Thần hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 100,"zbfy": 0,"zbbj": 25,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 163,"zbhp": 0,"zblv": 550,"zbtool": 1,"zbys": "#f44336","taozhuang": 3,"element": "thuy","rarity": 8,"rarity_name": "Than","realm_require": 550
+    },
+    "164": {
+        "zbname": "Thần Hỏa Liệt Hỏa Kiếm","zbinfo": "Trang bị phẩm Thần hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 100,"zbfy": 0,"zbbj": 25,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 164,"zbhp": 0,"zblv": 550,"zbtool": 1,"zbys": "#f44336","taozhuang": 4,"element": "hoa","rarity": 8,"rarity_name": "Than","realm_require": 550
+    },
+    "165": {
+        "zbname": "Thần Thổ Huyền Vi Kiếm","zbinfo": "Trang bị phẩm Thần hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 100,"zbfy": 0,"zbbj": 25,"zbxx": 12,"tuposjs": 0,"tupoexp": 0,"zbid": 165,"zbhp": 0,"zblv": 550,"zbtool": 1,"zbys": "#f44336","taozhuang": 5,"element": "tho","rarity": 8,"rarity_name": "Than","realm_require": 550
+    },
+    "166": {
+        "zbname": "Đế Kim Vô Cực Kiếm","zbinfo": "Trang bị phẩm Đế hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 108,"zbfy": 0,"zbbj": 27,"zbxx": 13,"tuposjs": 0,"tupoexp": 0,"zbid": 166,"zbhp": 0,"zblv": 650,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 1,"element": "kim","rarity": 9,"rarity_name": "De","realm_require": 650
+    },
+    "167": {
+        "zbname": "Đế Mộc Tàn Thủy Kiếm","zbinfo": "Trang bị phẩm Đế hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 108,"zbfy": 0,"zbbj": 27,"zbxx": 13,"tuposjs": 0,"tupoexp": 0,"zbid": 167,"zbhp": 0,"zblv": 650,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 2,"element": "moc","rarity": 9,"rarity_name": "De","realm_require": 650
+    },
+    "168": {
+        "zbname": "Đế Thủy Hành Thiên Hạ Kiếm","zbinfo": "Trang bị phẩm Đế hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 108,"zbfy": 0,"zbbj": 27,"zbxx": 13,"tuposjs": 0,"tupoexp": 0,"zbid": 168,"zbhp": 0,"zblv": 650,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 3,"element": "thuy","rarity": 9,"rarity_name": "De","realm_require": 650
+    },
+    "169": {
+        "zbname": "Đế Hỏa Ngục Tiên Kiếm","zbinfo": "Trang bị phẩm Đế hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 108,"zbfy": 0,"zbbj": 27,"zbxx": 13,"tuposjs": 0,"tupoexp": 0,"zbid": 169,"zbhp": 0,"zblv": 650,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 4,"element": "hoa","rarity": 9,"rarity_name": "De","realm_require": 650
+    },
+    "170": {
+        "zbname": "Đế Thổ Vô Tận Kiếm","zbinfo": "Trang bị phẩm Đế hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 108,"zbfy": 0,"zbbj": 27,"zbxx": 13,"tuposjs": 0,"tupoexp": 0,"zbid": 170,"zbhp": 0,"zblv": 650,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 5,"element": "tho","rarity": 9,"rarity_name": "De","realm_require": 650
+    },
+    "171": {
+        "zbname": "Đế Kim Tuyệt Thiên Kiếm","zbinfo": "Trang bị phẩm Đế hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 112,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 171,"zbhp": 0,"zblv": 700,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 1,"element": "kim","rarity": 9,"rarity_name": "De","realm_require": 700
+    },
+    "172": {
+        "zbname": "Đế Mộc Thanh Vân Kiếm","zbinfo": "Trang bị phẩm Đế hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 112,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 172,"zbhp": 0,"zblv": 700,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 2,"element": "moc","rarity": 9,"rarity_name": "De","realm_require": 700
+    },
+    "173": {
+        "zbname": "Đế Thủy Kim Liên Hoa Kiếm","zbinfo": "Trang bị phẩm Đế hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 112,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 173,"zbhp": 0,"zblv": 700,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 3,"element": "thuy","rarity": 9,"rarity_name": "De","realm_require": 700
+    },
+    "174": {
+        "zbname": "Đế Hỏa Kim Chú Kiếm","zbinfo": "Trang bị phẩm Đế hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 112,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 174,"zbhp": 0,"zblv": 700,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 4,"element": "hoa","rarity": 9,"rarity_name": "De","realm_require": 700
+    },
+    "175": {
+        "zbname": "Đế Thổ Vạn Nhật Kiếm","zbinfo": "Trang bị phẩm Đế hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 112,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 175,"zbhp": 0,"zblv": 700,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 5,"element": "tho","rarity": 9,"rarity_name": "De","realm_require": 700
+    },
+    "176": {
+        "zbname": "Đế Kim Hoàng Vũ Kiếm","zbinfo": "Trang bị phẩm Đế hệ Kim, lắp vào ô Vũ Khí. Sức mạnh Kim thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 116,"zbfy": 0,"zbbj": 29,"zbxx": 15,"tuposjs": 0,"tupoexp": 0,"zbid": 176,"zbhp": 0,"zblv": 750,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 1,"element": "kim","rarity": 9,"rarity_name": "De","realm_require": 750
+    },
+    "177": {
+        "zbname": "Đế Mộc Vạn Tượng Kiếm","zbinfo": "Trang bị phẩm Đế hệ Mộc, lắp vào ô Vũ Khí. Sức mạnh Mộc thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 116,"zbfy": 0,"zbbj": 29,"zbxx": 15,"tuposjs": 0,"tupoexp": 0,"zbid": 177,"zbhp": 0,"zblv": 750,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 2,"element": "moc","rarity": 9,"rarity_name": "De","realm_require": 750
+    },
+    "178": {
+        "zbname": "Đế Thủy Chấn Hồn Kiếm","zbinfo": "Trang bị phẩm Đế hệ Thủy, lắp vào ô Vũ Khí. Sức mạnh Thủy thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 116,"zbfy": 0,"zbbj": 29,"zbxx": 15,"tuposjs": 0,"tupoexp": 0,"zbid": 178,"zbhp": 0,"zblv": 750,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 3,"element": "thuy","rarity": 9,"rarity_name": "De","realm_require": 750
+    },
+    "179": {
+        "zbname": "Đế Hỏa Phục Diệt Kiếm","zbinfo": "Trang bị phẩm Đế hệ Hỏa, lắp vào ô Vũ Khí. Sức mạnh Hỏa thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 116,"zbfy": 0,"zbbj": 29,"zbxx": 15,"tuposjs": 0,"tupoexp": 0,"zbid": 179,"zbhp": 0,"zblv": 750,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 4,"element": "hoa","rarity": 9,"rarity_name": "De","realm_require": 750
+    },
+    "180": {
+        "zbname": "Đế Thổ Phượng Hoàng Kiếm","zbinfo": "Trang bị phẩm Đế hệ Thổ, lắp vào ô Vũ Khí. Sức mạnh Thổ thuần túy cộng hưởng ngũ hành, khắc chế kẻ địch trái hành.","zbgj": 116,"zbfy": 0,"zbbj": 29,"zbxx": 15,"tuposjs": 0,"tupoexp": 0,"zbid": 180,"zbhp": 0,"zblv": 750,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 5,"element": "tho","rarity": 9,"rarity_name": "De","realm_require": 750
+    }
+}

@@ -1,0 +1,104 @@
+{
+    "achievements": {
+        "monster_slayer": {
+            "name": "Sát Thủ",
+            "icon": "⚔",
+            "description": "Tiêu diệt quái vật",
+            "tiers": [
+                {"id": "MS1", "name": "Sát Thủ Thường", "target": 1000, "exp": 10000, "lt": 5000, "mt": 0},
+                {"id": "MS2", "name": "Sát Thủ Luyện", "target": 5000, "exp": 50000, "lt": 20000, "mt": 0},
+                {"id": "MS3", "name": "Sát Thủ Vua", "target": 10000, "exp": 200000, "lt": 100000, "mt": 0}
+            ]
+        },
+        "alchemy_master": {
+            "name": "Luyện Đan Sư",
+            "icon": "💊",
+            "description": "Luyện đan thành công",
+            "tiers": [
+                {"id": "AM1", "name": "Luyện Đan Sinh", "target": 100, "exp": 15000, "lt": 8000, "mt": 0},
+                {"id": "AM2", "name": "Luyện Đan Sư", "target": 500, "exp": 75000, "lt": 30000, "mt": 0},
+                {"id": "AM3", "name": "Đại Luyện Đan Sư", "target": 1000, "exp": 300000, "lt": 120000, "mt": 0}
+            ]
+        },
+        "blacksmith": {
+            "name": "Thợ Rèn",
+            "icon": "🔨",
+            "description": "Chế tạo trang bị",
+            "tiers": [
+                {"id": "BS1", "name": "Thợ Rèn Sơ", "target": 50, "exp": 15000, "lt": 8000, "mt": 0},
+                {"id": "BS2", "name": "Thợ Rèn Khoá", "target": 200, "exp": 75000, "lt": 30000, "mt": 0},
+                {"id": "BS3", "name": "Đại Thợ Rèn", "target": 500, "exp": 300000, "lt": 120000, "mt": 0}
+            ]
+        },
+        "collector": {
+            "name": "Thu Thập",
+            "icon": "📦",
+            "description": "Thu thập nguyên liệu",
+            "tiers": [
+                {"id": "CL1", "name": "Người Thu Thập", "target": 500, "exp": 10000, "lt": 5000, "mt": 0},
+                {"id": "CL2", "name": "Đại Người Thu Thập", "target": 2000, "exp": 40000, "lt": 20000, "mt": 0},
+                {"id": "CL3", "name": "Vua Thu Thập", "target": 5000, "exp": 150000, "lt": 80000, "mt": 0}
+            ]
+        },
+        "boss_hunter": {
+            "name": "Thợ Săn Boss",
+            "icon": "👑",
+            "description": "Tiêu diệt Boss",
+            "tiers": [
+                {"id": "BH1", "name": "Thợ Săn Boss", "target": 10, "exp": 20000, "lt": 10000, "mt": 0},
+                {"id": "BH2", "name": "Thành Thợ Săn Boss", "target": 50, "exp": 100000, "lt": 50000, "mt": 0},
+                {"id": "BH3", "name": "Vua Thợ Săn Boss", "target": 100, "exp": 500000, "lt": 200000, "mt": 0}
+            ]
+        },
+        "pvp_warrior": {
+            "name": "Chiến Binh",
+            "icon": "🏆",
+            "description": "Chiến thắng PVP",
+            "tiers": [
+                {"id": "PV1", "name": "Chiến Binh Sơ", "target": 10, "exp": 15000, "lt": 8000, "mt": 0},
+                {"id": "PV2", "name": "Chiến Binh Kinh Nghiệm", "target": 500, "exp": 60000, "lt": 30000, "mt": 0},
+                {"id": "PV3", "name": "Vô Địch", "target": 1000, "exp": 250000, "lt": 100000, "mt": 0}
+            ]
+        },
+        "cultivation_expert": {
+            "name": "Tiên Sĩ",
+            "icon": "🧘",
+            "description": "Phút tu luyện",
+            "tiers": [
+                {"id": "CE1", "name": "Tiên Sĩ Sơ", "target": 100, "exp": 20000, "lt": 10000, "mt": 0},
+                {"id": "CE2", "name": "Tiên Sĩ", "target": 500, "exp": 100000, "lt": 50000, "mt": 0},
+                {"id": "CE3", "name": "Đại Tiên Sĩ", "target": 1000, "exp": 400000, "lt": 200000, "mt": 0}
+            ]
+        },
+        "set_collector": {
+            "name": "Đồng Bộ",
+            "icon": "🎯",
+            "description": "Bộ sưu tập trang bị",
+            "tiers": [
+                {"id": "SC1", "name": "Thợ Đồng Bộ", "target": 1, "exp": 50000, "lt": 25000, "mt": 0},
+                {"id": "SC2", "name": "Đồng Bộ Thủ", "target": 3, "exp": 200000, "lt": 100000, "mt": 0},
+                {"id": "SC3", "name": "Bộ Sưu Tập Vàng", "target": 5, "exp": 1000000, "lt": 500000, "mt": 0}
+            ]
+        },
+        "tower_climber": {
+            "name": "Leo Tháp",
+            "icon": "🗼",
+            "description": "Vượt tầng tháp",
+            "tiers": [
+                {"id": "TC1", "name": "Leo Tháp Sơ", "target": 10, "exp": 10000, "lt": 5000, "mt": 0},
+                {"id": "TC2", "name": "Leo Tháp Cao", "target": 50, "exp": 50000, "lt": 25000, "mt": 0},
+                {"id": "TC3", "name": "Chinh Phục Tháp", "target": 150, "exp": 250000, "lt": 100000, "mt": 0}
+            ]
+        },
+        "linhcan_collector": {
+            "name": "Linh Căn",
+            "icon": "✨",
+            "description": "Tinh luyện linh căn",
+            "tiers": [
+                {"id": "LC1", "name": "Khai Linh", "target": 1, "exp": 50000, "lt": 20000, "mt": 0},
+                {"id": "LC2", "name": "Dưỡng Linh", "target": 5, "exp": 200000, "lt": 100000, "mt": 0},
+                {"id": "LC3", "name": "Linh Chủ", "target": 10, "exp": 500000, "lt": 300000, "mt": 0}
+            ]
+        }
+    }
+}

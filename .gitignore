@@ -1,0 +1,8 @@
+*.log
+*.sql
+*.zip
+*.rar
+*.7z
+runtime/
+cache/
+logs/

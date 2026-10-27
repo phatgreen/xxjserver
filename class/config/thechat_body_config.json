@@ -1,0 +1,176 @@
+{
+  "schema": "thechat_body_v1",
+  "nodes": {
+    "1": {
+      "id": 1,
+      "name": "Bì Phủ",
+      "short": "Da",
+      "stat": "def",
+      "per_lv": 4,
+      "slot": "top",
+      "desc": "Luyện da bì để đỡ đao thương. Mỗi cấp tăng Phòng Thủ."
+    },
+    "2": {
+      "id": 2,
+      "name": "Cơ Nhục",
+      "short": "Thịt",
+      "stat": "hp",
+      "per_lv": 20,
+      "slot": "left-up",
+      "desc": "Nuôi cơ nhục đầy đặn, khí huyết sung mãn. Mỗi cấp tăng Khí Huyết."
+    },
+    "3": {
+      "id": 3,
+      "name": "Cân Cốt",
+      "short": "Gân cốt",
+      "stat": "atk",
+      "per_lv": 3,
+      "slot": "right-up",
+      "desc": "Gân cốt dẻo dai, lực phát ra nhanh. Mỗi cấp tăng Công Kích."
+    },
+    "4": {
+      "id": 4,
+      "name": "Cốt Tủy",
+      "short": "Tủy",
+      "stat": "crit",
+      "per_lv": 0.2,
+      "slot": "left-down",
+      "desc": "Tủy sinh huyết, huyết dưỡng thần. Mỗi cấp tăng Bạo Kích."
+    },
+    "5": {
+      "id": 5,
+      "name": "Huyết Khí",
+      "short": "Máu",
+      "stat": "lifesteal",
+      "per_lv": 0.5,
+      "slot": "right-down",
+      "desc": "Huyết khí nóng, đánh xong tự hồi. Mỗi cấp tăng Hút Máu."
+    },
+    "6": {
+      "id": 6,
+      "name": "Thần Thức",
+      "short": "Thần",
+      "stat": "exp",
+      "per_lv": 0.4,
+      "slot": "bottom",
+      "desc": "Thần thức tỉnh táo, hấp thu linh khí nhanh. Mỗi cấp tăng Tu Luyện."
+    }
+  },
+  "stat_labels": {
+    "hp": "Khí Huyết",
+    "atk": "Công Kích",
+    "def": "Phòng Thủ",
+    "crit": "Bạo Kích",
+    "lifesteal": "Hút Máu",
+    "exp": "Tu Luyện"
+  },
+  "tiers": {
+    "0": {
+      "stage": 0,
+      "name": "Phàm Cốt",
+      "lv_cap": 10,
+      "total_lv_require": 0,
+      "realm_min_level": 0,
+      "material_id": 0,
+      "material_amount": 0,
+      "linh_thach_cost": 0,
+      "desc": "Thân thể phàm thai, cốt cách chưa tôi."
+    },
+    "1": {
+      "stage": 1,
+      "name": "Kim Cốt",
+      "lv_cap": 20,
+      "total_lv_require": 30,
+      "realm_min_level": 150,
+      "material_id": 100,
+      "material_amount": 20,
+      "linh_thach_cost": 20000,
+      "desc": "Cốt hóa kim, cứng hơn sắt đá."
+    },
+    "2": {
+      "stage": 2,
+      "name": "Ngọc Cốt",
+      "lv_cap": 30,
+      "total_lv_require": 80,
+      "realm_min_level": 200,
+      "material_id": 104,
+      "material_amount": 5,
+      "linh_thach_cost": 100000,
+      "desc": "Cốt trong như ngọc, tà khí không xâm."
+    },
+    "3": {
+      "stage": 3,
+      "name": "Linh Cốt",
+      "lv_cap": 40,
+      "total_lv_require": 150,
+      "realm_min_level": 280,
+      "material_id": 105,
+      "material_amount": 5,
+      "linh_thach_cost": 500000,
+      "desc": "Linh khí thấm tận xương tủy."
+    },
+    "4": {
+      "stage": 4,
+      "name": "Kiếp Cốt",
+      "lv_cap": 50,
+      "total_lv_require": 210,
+      "realm_min_level": 360,
+      "material_id": 106,
+      "material_amount": 6,
+      "linh_thach_cost": 2000000,
+      "desc": "Qua một kiếp phong vũ, cốt cách bất hoại."
+    },
+    "5": {
+      "stage": 5,
+      "name": "Tiên Cốt",
+      "lv_cap": 60,
+      "total_lv_require": 270,
+      "realm_min_level": 450,
+      "material_id": 107,
+      "material_amount": 8,
+      "linh_thach_cost": 8000000,
+      "desc": "Thân tại nhân gian, cốt đã liệt hàng tiên."
+    }
+  },
+  "refine": {
+    "material_id": 100,
+    "material_base": 1,
+    "material_per_lv": 5,
+    "linh_thach_base": 100,
+    "linh_thach_per_lv": 100
+  },
+  "milestones": {
+    "1": {
+      "total_lv": 20,
+      "bonus_percent": 5,
+      "name": "Thiết Thân"
+    },
+    "2": {
+      "total_lv": 60,
+      "bonus_percent": 12,
+      "name": "Cương Thân"
+    },
+    "3": {
+      "total_lv": 120,
+      "bonus_percent": 22,
+      "name": "Kim Cương Thân"
+    },
+    "4": {
+      "total_lv": 200,
+      "bonus_percent": 35,
+      "name": "Bất Hoại Thân"
+    },
+    "5": {
+      "total_lv": 300,
+      "bonus_percent": 50,
+      "name": "Luân Hồi Thân"
+    }
+  },
+  "material_names": {
+    "100": "Tinh Thể Đá",
+    "104": "Thánh Thạch",
+    "105": "Tiên Lộ",
+    "106": "Thần Thạch",
+    "107": "Đế Lệnh"
+  }
+}

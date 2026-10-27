@@ -1,0 +1,1563 @@
+
+
+html { *overflow-x: hidden}
+body.full_show{
+    background: #272b30;
+}
+
+body{
+    background: #272b30;
+}
+
+body { background-color: #F5F6F8; line-height: 1.42857143}
+
+img {  border: none; vertical-align: middle; max-width: 100%; }
+a{ outline: none;}
+.head { position: fixed; left: 0; top: 0; height: 48px; width: 100%; background: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.3); /* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/ z-index: 999; }
+
+.head > .top-bar { width: 1180px; height: 100%; margin: auto; }
+
+    .head > .top-bar > div { height: 100%; }
+
+    .head > .top-bar > .logo { font-size: 15px; }
+  
+    .head > .top-bar > .logo > a { height: 100%; color:#000000; margin-left: 30px;}
+
+        .head > .top-bar > .logo img { display: inline; max-width: none \9;  height: 30px; margin-top: 0px; }
+
+        .head > .top-bar > .logo span { padding-left: 8px; *display: inline-block; *zoom: 1; *display: inline; *padding-top: 20px;  white-space: nowrap \9;}
+
+    .head > .top-bar > .user-box { }
+
+        .head > .top-bar > .user-box > span { float: left; height: 100%; line-height: 48px; padding: 0 9px; transition: background-color .4s; }
+
+        .head > .top-bar > .user-box > .icon_notice_box { width: 38px; text-align: center; padding: 0; }
+        
+        .head > .top-bar > .user-box > .angle { padding-left: 0;}
+
+            .head > .top-bar > .user-box > span:hover { background-color: #2E2F31; }
+
+            .head > .top-bar > .user-box > span > a { display: inline-block; color:#000000; transition: color .4s; }
+      
+        .head > .top-bar > .user-box > span > a:hover { color:#FFF; }
+
+                .head > .top-bar > .user-box > span > a > img { vertical-align: middle;}
+
+        .head > .top-bar > .user-box > .user-face > a > img { height: 30px; width: 30px; border-radius: 15px; }
+
+
+
+        .head > .top-bar > .user-box > .msg > .msg-menu { top: 48px; left: 0; width: 126px; background-color: #2E2F31; display: none; border-radius: 0 0 5px 5px; }
+
+            .head > .top-bar > .user-box > .msg > .msg-menu > li { display: block; height: 30px; line-height: 30px; padding: 0 10px; font-size: 12px; transition: background-color .4s; }
+
+                .head > .top-bar > .user-box > .msg > .msg-menu > li > a { display: block; height: 100%; color: #FFF; *cursor: pointer; *zoom: 1; }
+
+                    .head > .top-bar > .user-box > .msg > .msg-menu > li > a:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+
+                        .head > .top-bar > .user-box > .msg > .msg-menu > li > a > .txt { float: left; }
+
+                        .head > .top-bar > .user-box > .msg > .msg-menu > li > a > .num { float: right; }
+
+                    .head > .top-bar > .user-box > .msg > .msg-menu > li:hover { background-color: #71737A; background-color: rgba(113,115,122,.6); }
+
+            .head > .top-bar > .user-box > .msg:hover > .msg-menu { display: block; }
+      
+      .head > .top-bar > .user-box > .msg > .msg-dot { position: absolute; right: 2px; top: 16px; height: 6px; width: 6px; background-color: #FF6600; border-radius: 3px; }
+
+.cover-img, .cover-img > div{ height: 200px; background-repeat: no-repeat; background-position: center center; }
+
+  .cover-img > div { width: 1180px; margin: 0 auto; }
+
+.top-menu-box { height: 54px; background-color: #FFF; border-bottom: 1px solid #EAEBED; box-shadow: 0 3px 3px 0 rgba(234,235,237,.6);}
+
+    .top-menu-box > .menu { width: 1180px; margin: 0 auto; background-color: #FFF; }
+
+.top-menu-list { height: 100%; }
+
+    .top-menu-list > li { float: left; position: relative; margin-right: 82px; line-height: 54px; font-size: 14px; *z-index: 10;}
+
+        .top-menu-list > li > a { display: block; height: 52px; transition: color .4s; }
+
+        .top-menu-list > li.active > a { border-bottom: 2px solid #FFAC28; color: #FFAC28;  padding: 0 4px;}
+
+        .top-menu-list > li > a:hover { color: #FFAC28; }
+    
+    .top-menu-list > li > a > i { display: inline-block; vertical-align: middle; margin-left: 10px; height: 100%; width: 8px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/menu_down.png?v=20160517) no-repeat center center; }
+    
+        .top-menu-list > li > .sub-menu-list { display: none; position: absolute; top: 52px; left: -20px; width: 130px; padding-top: 2px; background-color: #FFF; box-shadow: 0 3px 3px 0 rgba(220,220,220,.6); border-radius: 0 0 4px 4px; *border: 1px solid #EAEBED; *border-top: 0; z-index: 9; overflow: hidden; }
+
+            .top-menu-list > li > .sub-menu-list > li { display: block; height: 40px; padding: 0 20px; line-height: 40px; font-size: 14px; transition: background-color .4s; }
+
+                .top-menu-list > li > .sub-menu-list > li:hover { background-color: #F5F6F8; }
+
+                .top-menu-list > li > .sub-menu-list > li > a { display: block; height: 100%; color: #2E2F31; }
+
+        .top-menu-list > li:hover > .sub-menu-list { display: block; }
+    
+    .top-menu-list > li:hover > a > i { background: url(https://c1.cgyouxi.com/website/orange/img/common/index/menu_up.png?v=20160517) no-repeat center center; }
+
+.top-search-box { width: 210px; height: 32px; padding-left: 10px; margin-top: 11px; border: 1px solid #E6E6E6; border-radius: 4px; background-color: #FFF; box-shadow: 0 0 3px 0 rgba(0,0,0,.1); overflow: hidden; }
+.top-menu-list > li > .sub-menu-list > li.no-login{ display: none;}
+  .top-search-box form{ display: block; height: 100%; }
+
+    .top-search-box .text { display: block; border: 0; height: 32px; line-height: 32px; color: #9FA1A5; width: 178px; font-family: '微软雅黑'; transition: color .4s; }
+
+        .top-search-box .text:focus { color: #2E2F31; }
+
+    .top-search-box input[type=submit] { height: 32px; width: 32px; border: 0; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/search.png?v=20160517) no-repeat center center #FFF; cursor: pointer; }
+
+    .top-search-box input:focus, .top-search-box :focus { outline: none; }
+
+.main { width: 1180px; margin: auto; }
+
+    .main > .menu-box { position: relative; height: 80px; background-color: #FFF; margin-top: 20px; border-radius: 6px; overflow: hidden; box-shadow: 0 3px 3px 0 rgba(234,235,237,.6); }
+
+        .main > .menu-box > .title { position: absolute; left: 0; top: 0; width: 80px; *z-index: 2; }
+
+        .main > .menu-box > div > .tab{ position: relative; cursor: pointer;  line-height: 30px; height: 30px; text-align: center; background: #ecedef; color: #71737a;}
+        
+        .main > .menu-box > div > .tab.active{ line-height: 50px; color: #FFF; text-align: center; height: 50px; background: #ffac28; }
+        
+        .main > .menu-box > div > .tab > .triangle-icon { visibility: hidden;}
+        
+        .main > .menu-box > div > .tab.active > .triangle-icon { line-height: 0; *display: inline; display: inline-block; font-size: 0; *zoom: 1; visibility: visible; z-index: 9; border-color: transparent; border-width: 6px; border-style: solid; border-left-color: #ffac28; position: absolute; right: -12px; top: 50%; margin-top: -6px;}
+        
+        .main > .menu-box > .list-box { overflow: hidden; position: absolute; left: 80px; top: 0; width: 1020px; padding-left: 60px; background-color: #FFF; font-size: 14px; *z-index: 1; }
+
+            .main > .menu-box > .list-box > i { position: absolute; top: 34px; left: 0; border-width: 6px; border-color: transparent; border-style: solid; border-left-color: #FFAC28; z-index: 1; *font-size: 0; *line-height: 0; }
+
+            .main > .menu-box > .list-box > .list { float: left; margin-left: 60px; }
+
+                .main > .menu-box > .list-box > .list:first-child { margin-left: 0; }
+
+                .main > .menu-box > .list-box > .list > span { float: left; height: 50px; width: 20px; margin-top: 10px; padding: 10px 5px 0; background-color: #C2C5C9; border-radius: 15px; color: #FFF; text-align: center; line-height: 20px; }
+
+        .main > .menu-box > .list-box > .list > table { float: left; height: 80px; padding: 10px 0; }
+                  
+            .main > .menu-box > .list-box > .list > table  td { line-height: normal; padding-left: 40px; text-align: left; }
+            
+              .main > .menu-box > .list-box > .list > table  td > a{ transition: color .4s; }
+        
+                .main > .menu-box > .list-box > .list > div { float: left; margin-top: 10px; }
+
+                    .main > .menu-box > .list-box > .list > div > div { height: 30px; line-height: 30px; }
+                
+                .main > .menu-box > .list-box > .list a.classic {overflow: visible; position: relative;}
+                
+                .main > .menu-box > .list-box > .list a.classic:before {content: ''; width: 8px; height: 8px; background: #f5d315; border-radius: 50%; position: absolute; right: -14px; top: 6px;}
+
+                .main > .menu-box > .list-box > .list a:hover { color: #FFAC28; }
+
+    .main > .menu-box > .button { height: 100%; overflow: hidden; position: absolute; right: 0; top: 0; width: 10px; transition: background-color .4s; background-color: #FFAC28; }
+
+.main > .classic-box { margin-top: 31px; }
+/*标题+说明部分*/
+.classic-box .classic-title { height: 38px; margin-bottom: 18px;}
+  .classic-box .classic-title .online-activity { float: left; width: 454px; margin-right: 14px; padding-left: 4px; font-size: 18px; color: #2e2f31; line-height: 38px;border-bottom:1px solid #e6e6e6}
+  .classic-box .classic-title .classic-zone { position: relative;pointer;z-index: 5; }
+    .classic-box .classic-title .classic-zone > .answer-icon { display: inline-block; height: 14px; width: 14px;  margin:0;  position: absolute; left: 80px; top: 0; cursor: pointer; background: url('https://c1.cgyouxi.com/website/orange/img/common/index/answer-icon.png?v=20160517') no-repeat 0 0; border: none; }
+.classic-box .classic-title .classic-zone .point-out { background: url('https://c1.cgyouxi.com/website/orange/img/common/index/point-out-bg.png?v=20160517') no-repeat 0 0; display: none; z-index: 1; position: absolute; padding: 20px 28px 24px 30px; top: -28px; left: 98px; font-size: 12px; color: #87898f; line-height: 22px; text-justify: auto; text-align: justify; border-radius: 2px; width: 265px; height: 91px;}
+  .classic-box .classic-title .classic-zone .point-out .point-out-bg { z-index: -1; position: absolute; left: 0; top: 0; width: 323px; height: 130px;}
+  .classic-box .classic-title .more { float: right; width: 72px; height: 24px; line-height: 24px; border: 1px solid #E6E6E6; border-radius: 8px 8px 8px 0; text-align: center; color: #FFAC28; font-size: 12px; transition: background-color .4s;position: relative; top: 13px; }
+    .classic-box .classic-title .more > i { display: inline-block; height: 10px; width: 7px; margin-left: 4px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/more.png?v=20160517) no-repeat center center; }
+    .classic-box .classic-title .more:hover { background-color: #E6E6E6; }
+/*经典专区切换*/
+.classic-tab-title{ position: relative; width:708px; line-height: 36px; float: left; border-bottom:1px solid #e6e6e6; *z-index: 9;} 
+.classic-tab-title .switch { border-bottom: 2px solid transparent;   color: #9fa1a5; font-size: 18px;
+margin-right: 30px; position: relative; text-align: center; transition: border,color .4s; width: 80px;
+float: left; top:1px; z-index: 2;}
+.classic-tab-title .switch.active {border-bottom: 2px solid #ffac28; color: #2e2f31;}
+.classic-tab-title  .switch.active > i, .classic-tab-title .switch.active > i > em {    border-color: transparent;  border-style: solid; border-width: 6px 8px; position: absolute;}
+.classic-tab-title .switch.active> i > em{border-top-color: #f5f6f8;  bottom: -3.6px; left: -8px;}
+.classic-tab-title .switch.active > i { border-top-color: #ffac28; bottom: -12px; left: 50%;margin-left: -8px;}
+.fill-blank{ position: absolute; right:0;bottom:-1px; z-index: 1; width: 6px; height: 1px; background: #f5f6f8;}
+.classic-refesh-box{ cursor: pointer; z-index: 2; position:absolute; right:0px; bottom:3px; height: 24px; line-height: 24px; border: 1px solid #E6E6E6; border-radius: 8px 8px 0 0; overflow:hidden; text-align: center; color: #2e2f31; font-size: 12px; transition: background-color .4s; }
+.classic-refesh-box span{ display: block; height: 100%; user-select: none; -ms-user-select:none; -webkit-user-select:none; -moz-user-select:none;}
+.classic-refesh-box span a{ float: left; height: 100%; padding: 0 8px; border-left: 1px solid #E6E6E6; color: #2e2f31; transition: background-color .4s; }
+  .classic-refesh-box span a:first-child { border-left: 0; }
+  .classic-refesh-box span a:hover, .classic-refesh-box span a.active{ background-color: #E6E6E6; }
+.classic-refesh-box .classic-refesh-ico { width: 12px; height: 12px; margin: -2.6px 0 0 6px; background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-renovate.png?v=20160517'); display: inline-block; background-repeat: no-repeat; vertical-align: middle;}
+.classic-com-refesh.js-icon-act{ background: #e6e6e6; }
+.classic-com-refesh.js-icon-act .classic-refesh-ico{transition: 2s; transform:rotate(720deg); -ms-transform:rotate(720deg); /* IE 9 */ -moz-transform:rotate(720deg); /* Firefox */ -webkit-transform:rotate(720deg); /* Safari 和 Chrome */ -o-transform:rotate(720deg); transition: 1.5s; }  
+.classic-game-wrap{ position: relative; width: 720px; height: 264px; overflow: hidden; float: left;}
+
+/*Begin 通用轮播图*/
+.org-pic-show { position: relative; height: 264px; width: 460px; overflow: hidden; border-radius: 6px; }
+.org-pic-show > .org-pic-show-inner { position: absolute; left: 0; top: 0; overflow: hidden; height: 100%; }
+ .org-pic-show > .org-pic-show-inner > a { float: left; height: 100%; width: 456px; }
+.org-pic-show > .org-pic-show-inner > a > img { height: 100%; width: 100%; }
+.org-pic-show > .org-pic-show-txt-box { position: absolute; left: 0; bottom: 0; width: 432px; padding: 0 14px; height: 36px; line-height: 36px; color: #FFF; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; background: url('https://c1.cgyouxi.com/website/orange/img/common/index/fav_shadow_bg_big.png?v=20160517') repeat-x left center; }
+.org-pic-show > .org-pic-show-control { position: absolute; right: 14px; bottom: 2px; *zoom: 1; overflow: hidden;}
+.org-pic-show > .org-pic-show-control:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+ .org-pic-show > .org-pic-show-control > li { float: left; padding: 4.5px; cursor: pointer;}
+.org-pic-show > .org-pic-show-control > li:last-child { padding-right: 0;}
+.org-pic-show > .org-pic-show-control > li > span { display: inline-block; height: 9px; width: 9px; background-color: #FFF; border-radius: 9px; transition: background-color, width .4s; }
+.org-pic-show > .org-pic-show-control > li > span.active { width: 26px; background-color: #FF6600; }
+/*End 通用轮播图*/
+/*Begin 通用内容切换*/
+.org-box-switcher { /*position: relative;*/ }
+.org-box-switcher > ul { position: absolute; left: 0; top: 0; *zoom: 1; }
+.org-box-switcher > ul:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+/*End 通用内容切换*/
+
+/*Begin 通用游戏列表(首页上部)*/
+.game-list-1{ top:0}
+.game-list-1 > li { float: left; position: relative; height: 124px; margin: 0 0 16px 20px; width: 220px; font-size: 12px; border-radius: 6px; overflow: hidden; background: #EFEFEF; }
+.game-list-1 > li:hover > a > .img-box > span { bottom: -26px; }
+.game-list-1 > li > a { display: block; height: 100%; }
+.game-list-1 > li > a > .img-box { position: relative; height: 100%; }
+.game-list-1 > li > a > .img-box > img {border-radius: 7px; height: 100%; width: 100%; }
+.recom-show .game-list-1 > li > a > .img-box> img { border-radius: 0;}
+.game-list-1 > li > a > .img-box > span { position: absolute; left: 0; right:0; bottom: 0;  padding: 0 2%; height: 30px; line-height: 30px; color: #FFF; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; background: url('https://c1.cgyouxi.com/website/orange/img/common/index/fav_shadow_bg_small.png?v=20160517') repeat-x left center; opacity: 1; transition: all .2s;  }
+.game-list-1 > li > a > .img-box > i { position: absolute; right: 0; top: 0; height: 26px; width: 52px; background-repeat: no-repeat; background-position: center center;}
+.classic-jd{background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/classic.png?v=20160517); }
+.classic-bt { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-bt.png?v=20160517'); }
+
+.game-list-1 > li > a > .details { position: absolute; left: 0; top: 0; height: 100%; width: 100%; background: rgb(0, 0, 0); background: transparent; background: rgba(46, 47, 49, 0.5); /* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000); /*IE 5.5-7*/ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000)"; /*IE8*/ zoom: 1; border-radius: 7px; opacity: 0; visibility: hidden; transition: opacity .6s; color: #c2c5c9; }
+.game-list-1 > li:hover > a > .details { visibility: visible; opacity: 1; }
+.game-list-1 > li > a > .details > span, .game-list-1 > li > a > .details > div { position: absolute; left: 8px; width: 204px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.game-list-1 > li > a > .details > .desc { top: 14px; line-height: 20px; white-space: normal; color: #FFF; }
+.game-list-1 > li > a > .details > .author { bottom: 36px; }
+.game-list-1 > li > a > .details > .info { bottom: 14px; }
+.game-list-1 > li > a > .details > .info > span { float: left; width: 52px; padding-left: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; background-repeat: no-repeat; background-position: left center; }
+.game-list-1 > li > a > .details > .info > .word { background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/mask_word2.png?v=20160517); }
+.game-list-1 > li > a > .details > .info > .fav { background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/mask_fav.png?v=20160517); }
+.game-list-1 > li > a > .details > .info > .flower { background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/mask_flower.png?v=20160517); }
+/*End 通用游戏列表(首页上部)*/
+.classic-show { 
+    position: absolute; width: 724px; height: 264px; overflow: hidden; 
+    margin-left: 460px;
+}
+.z-index-hide { z-index: -1; opacity: 0; }
+.z-index-show { z-index: 1; opacity: 1;}
+.recom-show-box { position: relative; height: 124px; margin-top: 16px; }
+.recom-show { width: 100%; height: 124px; overflow: hidden; position: absolute; transition: 0.2s;}
+.recom-show > .game-list-1 { margin-left: -20px; }
+.recom-box { margin-top: 34px; }
+.recom-box > .recom-title { position: relative; border-bottom: 1px solid #E6E6E6; border-bottom-right-radius: 8px; }
+.recom-box > .recom-title > .switch { position: relative; width: 80px; margin-right: 26px; padding-bottom: 8px; border-bottom: 2px solid transparent; font-size: 18px; text-align: center; color: #9FA1A5; transition: border,color .4s; }
+.recom-box > .recom-title > .switch.active { color: #2E2F31; border-bottom: 2px solid #FFAC28; }
+.recom-box > .recom-title > .switch.active > i, .recom-box > .recom-title > .switch.active > i > em { position: absolute; border-width: 6px 8px; border-style: solid; border-color: transparent; }
+.recom-box > .recom-title > .switch.active > i { left: 50%; bottom: -12px; margin-left: -8px; border-top-color: #FFAC28; }
+.recom-box > .recom-title > .switch.active > i > em { border-top-color: #F5F6F8; left: -8px; bottom: -3.6px; }
+  .recom-box > .recom-title > .js-recomm-pager { position: absolute; right: 82px; bottom: -1px; height: 24px; width: 96px; line-height: 24px; border: 1px solid #E6E6E6; border-radius: 8px 8px 0 0; overflow: hidden; }
+      .recom-box > .recom-title > .js-recomm-pager > a { float: left; height: 100%; width: 48px; color: #2e2f31; text-align: center; font-size: 12px; transition: background-color .4s; }
+        .recom-box > .recom-title > .js-recomm-pager > a.active { background-color: #FFAC28; color: #FFF; }
+.recom-box > .recom-title > .more { position: absolute; right: 0; bottom: -1px; width: 72px; height: 24px; line-height: 24px; border: 1px solid #E6E6E6; border-radius: 8px 8px 8px 0; text-align: center; color: #FFAC28; font-size: 12px; transition: background-color .4s; }
+.recom-box > .recom-title > .more > i{ display: inline-block; height: 10px; width: 7px; margin-left: 4px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/more.png?v=20160517) no-repeat center center; }
+.recom-box > .recom-title > .more:hover { background-color: #E6E6E6; }
+.recom-show.weekly > .game-list-1 .details { text-align: center; }
+.recom-show.weekly > .game-list-1 .desc { top: 36px; }
+/************邵敏*****************/
+/*myfav-box start shaomin*/
+.myfav-con-box .ps-container .ps-scrollbar-y-rail { opacity: 1; right: 0; width: 6px; background: #e6e6e6; }
+.myfav-con-box .ps-container .ps-scrollbar-y { width: 6px; background-color: #c1c5c8!important; }
+.myfav-box { width: 100%; margin-top: 34px; }
+.myfav-con-wrap { font-size: 12px; width: 100%; overflow: hidden; height: 460px; }
+.index-tab-tit { width: 100%; height: 37px; border-bottom: 1px solid #e6e6e6; margin-bottom: 18px; }
+.index-tab-tit li { display: inline-block; float: left; margin-right: 15px; }
+.index-tab-tit li a { width: 80px; display: block; height: 36px; line-height: 36px; font-size: 18px; color: #9fa1a5; text-align: center; }
+.index-tab-tit li .index-tit-cor { display: none; }
+.index-tab-tit li.active { position: relative; }
+.index-tab-tit li a:hover{color: #2e2f31; }
+.index-tab-tit li.active a { color: #2e2f31; border-bottom: 2px solid #ffac28; }
+.index-tab-tit li.active .index-tit-cor { display: block; position: absolute; left: 50%; bottom: -4px; margin-left: -5px; width: 10px; height: 6px; background: #f5f6f8 url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat 0 -291px; }
+.ranking-box { visibility: hidden; padding-bottom: 2px;}
+/*我的关注*/
+.myatten-wrap { position: relative; height: 456px; overflow: hidden; }
+.myatten-box { width: 100%; }
+.myatten-game { width: 1180px;}
+.myatten-game li { position: relative; float: left; margin: 0 16px 16px 0; width: 220px; height: 136px; background: #fff; box-shadow: 0px 1px 2px #e7e8e9; border-radius: 6px; overflow: hidden; }
+.myatten-game li a { display: block;}
+.myatten-game li a:hover{ color: #ffac28;}
+.myatten-game li .author-img { left: 6px; top: 6px; width: 38px; height: 38px; position: absolute;}
+.myatten-game li .author-img > .cover-name { background: rgba(0, 0, 0, 0.5); color: #fff; display: none; font-size: 12px; height: 38px; left: 0; line-height: 38px; overflow: hidden; padding: 0 2px; position: absolute; text-align: center; text-overflow: ellipsis; top: 0; white-space: nowrap; width: 38px; }
+.myatten-game li .author-img > .cover { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.myatten-game li .action{position: absolute;left:25px; top: 25px; z-index: 5;width:38px; height: 38px; background:url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat 0 -52px;}
+.myatten-game li .action.o{ background-position:0 -131px ;}
+.myatten-game li .action.b{ background-position:0 -91px ;}
+.myatten-game li .action a{ position: static;margin: 11px auto 0;width:16px; height: 16px;
+ background-image:url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517); background-repeat: no-repeat;}
+.myatten-game li .action .fav-shoucang{  background-position:-50px 0; }
+.myatten-game li .action .fav-xianhua{ background-position:-50px -231px; }
+.myatten-game li .action .fav-pinglun{background-position:-50px -22px; }
+.myatten-game li .action .fav-jingping{ background-position:-50px -46px; }
+.myatten-game li .action .fav-fenxiang{background-position:-50px -71px; }
+.myatten-game li .action .fav-toupiao{ width:17px;background-position:-49px -93px; }
+.myatten-game li .action .fav-gengxin{background-position:-50px -116px; }
+.myatten-game li .action .fav-xin{background-position:-50px -141px; }
+.myatten-game li .action .fav-biantui{background-position:-50px -165px; }
+.myatten-game li .action .fav-guoshen{background-position:-48px -188px; }
+.myatten-game li .action .fav-wanjie{width:17px;background-position:-48px -210px; }
+.fav-game { width: 177px; height: 100px; float: right; text-align: center; background: #000; position: relative; }
+.fav-game img { height: 100%; }
+.fav-game div { position: absolute;left:0;  right: 0; top: 70px; height: 30px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/fav_shadow_bg_small.png?v=20160517) repeat-x 0 0; line-height: 30px; color: #fff; padding: 0 5px; overflow: hidden; text-align: left;}
+.fav-game:hover div{ color: #ffac28;}
+.myatten-game li .fav-desc { position: absolute; left: 0; bottom: 0; width: 100%; background: #fff; height: 36px; z-index: 5; border-radius: 0 0 6px 6px; }
+.myatten-game li .fav-desc-in { cursor: pointer; +width:83%; padding: 3px 12% 0 5%; position: absolute; left: 0; right:0;  bottom: 10px; line-height: 20px; background: #fff; height: 20px; overflow: hidden; }
+.myatten-game li .fav-desc div a { display: inline; position: static; left: inherit; top: inherit; color: #2e2f31; }
+.myatten-game li .fav-desc div a:hover { color: #ffac28; }
+.myatten-game li .fav-desc div span { display: block; line-height: 20px; color: #9fa1a5; }
+.myatten-game li .fav-desc div span.fav-desc-cursor { margin-bottom: 3px;  overflow: hidden; }
+.myatten-game li .fav-desc div span > p { display: inline;}
+.myatten-game li .fav-desc div.auto-height { height: auto; }
+.myatten-game li .fav-desc label { cursor: pointer; display: block; position: absolute; right: 0; bottom: 0; width: 22px; height: 30px; }
+.myatten-game li .fav-desc i { display: block; margin: 8px auto 0; width: 8px; height: 5px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat -1px -173px; }
+.myatten-game li .fav-desc i.hover { background-position: -1px -198px; }
+/*关注作者盒子*/
+.myatten-author-wrap { margin-bottom: 5px; width: 1164px; height: 116px; padding: 10px 0; background: #fff; border-radius: 6px; box-shadow: 0px 1px 2px #e7e8e9; overflow: hidden; }
+
+.myatten-author-tit { margin-left: 28px; height: 24px; line-height: 24px; font-size: 14px; color: #9fa1a5; }
+
+.myatten-author-box { margin-top: 12px; padding-left: 30px; }
+
+.myatten-author-box li { float: left; margin-right: 33px; margin-bottom: 20px; width: 54px; height: 80px; }
+.myatten-author-box li a { display: block; }
+.myatten-author-box li a.myatten-author-pic { width: 50px; height: 50px; overflow: hidden; position: relative; }
+.myatten-author-box li a img { display: block; width: 100%; height: 100%; }
+.myatten-author-box li a img.cover { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.myatten-author-box li a .cover-name { background: rgba(0, 0, 0, 0.95); color: #fff; display: none; font-size: 12px; height: 100%; left: 0; line-height: 50px; overflow: hidden; padding: 0 2px; position: absolute; text-align: center; text-overflow: ellipsis; top: 0; white-space: nowrap; width: 100%; }
+.myatten-btn { margin-top: 7px; display: block; width: 52px; height: 22px; line-height: 22px; color: #2e2f31; border: 1px solid #ebecee; background: #fff; border-radius: 3px; }
+.myatten-btn i { float: left; margin: 0 6px; display: inline-block; width: 10px; height: 22px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat 0 -218px; }
+.myatten-btn:hover, .myatten-btn.hover { border: 1px solid #ffac28; background: #ffac28; color: #fff; }
+.myatten-btn.hover { text-align: center;}
+.myatten-btn:hover i, .myatten-btn.hover i { background-position: 0 -250px; }
+/*未登陆时，我的关注*/
+.myatten-box .login-box { height: 136px; margin-bottom: 16px; }
+.myatten-box .login-box > div { height: 116px; padding: 10px 0; }
+.myatten-box .login-box > .login { float: left; width: 456px; background-color: #FFF; box-shadow: 0px 1px 2px #e7e8e9; border-radius: 6px; }
+.myatten-box .login-box > .login > i { height: 111px; width: 84px; margin: 0px 40px 0 38px; background: url(https://c1.cgyouxi.com/website/orange/img/common/myfav_icon.png?v=20160517) no-repeat -140px 0; }
+.myatten-box .login-box > .login > div { margin-top: 12px; color: #000; font-size: 14px; height: 24px; line-height: 24px; }
+.myatten-box .login-box > .login > div > span { display: block; }
+.myatten-box .login-box > .login .my-fav-button { height: 30px; width: 120px; margin-right: 4px; margin-top: 12px; display: inline-block; color: #FFF; text-align: center; line-height: 30px; border-radius: 4px; transition: all 0.4s; }
+
+.myatten-box .login-box > .login .my-fav-button.login { background-color: #ff6600; }
+
+.myatten-box .login-box > .login .my-fav-button.sign { height: 28px; line-height: 28px; width: 118px; color: #ff6600; border: 1px solid #ff6600; background-color: #fff; }
+
+.myatten-box .login-box > .login .my-fav-button.login:hover { background-color: #ffac28; }
+
+.myatten-box .login-box > .login .my-fav-button.sign:hover { color: #fff; background-color: #ffac28; border: 1px solid #ffac28;  }
+
+.myatten-box .login-box > .editor-daily { float: left; text-align: center; margin-left: 16px; width: 692px; padding: 10px 0px; background-color: #fff; font-size: 14px; box-shadow: 0px 1px 2px #e7e8e9; border-radius: 6px; }
+
+.myatten-box .login-box > .editor-daily > div { margin-left: 28px; height: 18px; line-height: 18px; color: #9fa1a5; text-align: left; }
+
+.myatten-box .login-box > .editor-daily > ul { margin: 10px 0 0 28px;}
+
+.myatten-box .login-box > .editor-daily > ul > li {margin-right: 16px; padding-top: 6px; float: left; height: 80px; width: 92px; border: 1px solid transparent; text-align: center; border-radius: 3px; }
+
+.myatten-box .login-box > .editor-daily > ul > .editor-daily_li_act {border: 1px solid #ffac28; box-shadow: 0px 1px 2px #ccc; }
+
+.myatten-box .login-box > .editor-daily > ul > li > a { font-size: 12px; display: block; height: 100%; width: 100%; }
+
+.myatten-box .login-box > .editor-daily > ul > li > a > img { height: 50px; width: 50px; border-radius: 50px; border: 1px solid transparent; }
+
+.myatten-box .login-box > .editor-daily > ul > li > a > span { margin-top: 5px; display: block; color: #2e2f31; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+.myatten-box .login-box > .editor-daily > ul > li:hover > a > span { color: #ffac28; }
+
+/*flower-box*/
+.flower-list a:hover { color: #ff6600; }
+
+.flower-box { width: 456px; }
+
+.myfav-tit-l { width: 330px; }
+
+.myfav-tit-name { padding-left: 5px; height: 35px; line-height: 24px; color: #2e2f31; font-size: 18px; }
+
+.myfav-tit-r { float: right; width: 105px; }
+
+.myfav-tit-r a { display: block; float: left; margin-left: 5px; width: 42px; height: 24px; line-height: 24px; text-align: center; color: #2e2f31; margin-left: 10px; }
+
+.myfav-tit-r a.active, .myfav-tit-r a:hover { background: #ffac28; color: #fff; border-radius: 6px; }
+
+.flower-list { margin-top: 2px; width: 100%; height: 86px; background: #fff; box-shadow: 0px 1px 2px #e7e8e9; border-radius: 6px; }
+
+.flower-list div { line-height: 86px; }
+
+.rank-num { width: 34px; height: 100%; text-align: center; color: #c2c5c9; }
+
+.ranking1 { background: url('https://c1.cgyouxi.com/website/orange/img/common/index/ranking-icon1.png?v=20160517') no-repeat center center;}
+
+.ranking2 { background: url('https://c1.cgyouxi.com/website/orange/img/common/index/ranking-icon2.png?v=20160517') no-repeat center center;}
+
+.ranking3 { background: url('https://c1.cgyouxi.com/website/orange/img/common/index/ranking-icon3.png?v=20160517') no-repeat center center;}
+
+.ranking_bt , .ranking_wj { width: 34px; height: 21px; position: absolute; right: 0; top: 0; z-index: 1;}
+
+.ranking_bt { 
+  background: url('https://c1.cgyouxi.com/website/orange/img/common/index/ranking_bt.png?v=20160517') no-repeat 0 0;
+   }
+
+.ranking_wj{ background: url('https://c1.cgyouxi.com/website/orange/img/common/index/ranking_wj.png?v=20160517') no-repeat 0 0;}
+
+.flower-list .hot { color: #fe6500; }
+
+.rank-game-pic { margin-top: 6px; margin-right: 16px; }
+
+.rank-game-pic, .rank-game-pic a, .rank-game-pic img { display: block; width: 130px; height: 73px; overflow: hidden; position: relative; border-radius: 7px;}
+
+.rank-game-pic img {border: none; }
+
+.rank-game-tit { width: 174px; margin-right: 8px; display: inline-block; }
+
+.rank-game-tit span, .rank-game-tit p { display: block; height: 24px; line-height: 24px; overflow: hidden; font-size: 12px; }
+
+.rank-game-tit span { margin: 16px 0 4px 0; }
+
+.rank-game-tit span a { color: #2e2f31; font-weight: bold;}
+.rank-game-tit a:hover{ color: #ffac28;}
+.rank-game-tit p, .rank-game-tit p a { color: #9fa1a5; }
+.rank-game-tit p .lazy_org_img { width: 18px; height: 18px;}
+
+.rank-hot-num { width: 90px; height: 100%; color: #71737a; font-size: 12px; white-space: nowrap;}
+
+.flower-ico { float: left; display: block; margin-top: 32px; margin-right: 8px; width: 21px; height: 21px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat 0 0; }
+
+.flower-list-nor { height: 41px; margin-top: 3px; margin-bottom: -2px; box-shadow: none; }
+
+.ranking-bg{ box-shadow: 0 1px 2px rgba(0,0,0,.08); margin-bottom: -1px; height: 44px;}
+.ranking-bg .rank-game-tit { line-height: 44px;}
+
+.flower-list-nor div { line-height: 40px; }
+
+.flower-list-nor .rank-game-tit { width: 320px; margin-right: 8px; display: inline-block; height: 41px; line-height: 41px; overflow: hidden; position: relative; }
+
+.flower-list-nor .rank-game-tit span, .flower-list-nor .rank-game-tit p { display: inline-block; float: left; color: #9fa1a5; margin: 0; height: 41px; line-height: 41px; }
+.flower-list-nor .rank-game-tit span {overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+
+.flower-list-nor .rank-game-tit span a { font-weight: normal; display: inline-block; width: 145px; float: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+.flower-list-nor .rank-game-tit span .cut-apart { font-style: normal; margin-left: 10px;}
+
+.flower-list-nor .rank-game-tit p { position:absolute;margin-left: 8px; overflow: hidden;}
+
+.flower-list-nor .flower-ico { margin-top: 7px; }
+
+a.check-all-list { margin-top: 4px; display: block; width: 100%; height: 30px; line-height: 30px; text-align: center; color: #ff6600; border-radius: 6px; background: #fff; box-shadow: 0px 1px 2px #e7e8e9; }
+
+.check-all-list i { font-style: normal; font-weight: bold; margin-left: 10px; color: #c5c8cb; font-family: "宋体"; }
+.check-all-list:hover{ background-color: #E6E6E6;}
+.mar-r16 { margin-right: 16px; }
+/*popular-box*/
+.popular-box, .new-works-box { width: 346px; }
+
+.popular-box .myfav-tit-l { width: 220px; }
+
+.popular-box .rank-game-tit { width: 160px; margin-right: 0; }
+
+.popular-box .flower-list-nor .rank-game-tit { width: 300px; }
+/*dark-horse style*/
+.dark-horse .myfav-tit-r { float: right; width: 158px; }
+
+.dark-horse .myfav-tit-l { width: 186px; }
+
+.dark-horse .myfav-tit-r > a { width: 68px;}
+/*limit today*/
+.free-limit-box { overflow: hidden; position: relative; visibility: hidden; height: 460px; }
+.free-limit-box .limit-game-scrollbar { position: relative; overflow: hidden; }
+.limit-game { display: inline-block; *zoom: 1; *display: inline;  margin-right: 15px; margin-bottom: 12px; width: 580px; height: 164px; overflow: hidden; border-radius: 6px; box-shadow: 0px 1px 2px #e7e8e9; background: #fff; }
+  .limit-game-coupon{margin-right:-15px;}
+    .limit-game-coupon img.empty { *width: 100%; *height: 100%; *vertical-align: baseline; }
+  .limit-game.coupon{ position: relative; width:586px; margin-left: -10px; background-color:transparent; box-shadow:none; }
+    .limit-game.coupon > .empty{margin:40px 0 0 38px;*height:64px;*width:513px;}
+    .limit-game.coupon > h4 { padding: 2px 0 12px 10px; font-size: 18px; line-height: 18px; color: #2E2F31; font-weight: normal; }
+    .limit-game.coupon > a { position: absolute; right: 0; top: 0; font-size: 12px; color: #FF6600; }
+    .limit-game.coupon > div { position: relative; overflow:hidden; float: left; width: 283px; height:62px; margin: 0 0 8px 10px; background: url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/3.png) no-repeat center center; }
+      .limit-game.coupon > div > div{float:left; font-size:12px;}
+    .limit-game.coupon .col1{width:65%;}
+      .limit-game.coupon .col1 > div { padding-left: 25px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .limit-game.coupon .col1 > .name{width:80%;font-weight:bold;padding-top:17px;line-height:12px;}
+        .limit-game.coupon .col1 > .name > a { color: #333; }
+        .limit-game.coupon .col1 > .name > a:hover { color: #FFAC28; }
+      .limit-game.coupon .col1 > .date{ line-height:12px; padding-top:8px; color: #9fa1a5;}
+    .limit-game.coupon .col2{width:18%;text-align:center;line-height:62px;color:#FF6600;cursor:pointer;}
+      .limit-game.coupon .col2:hover{color:#2e2f31;}
+    .limit-game.coupon .col3{width:17%;text-align:center;line-height:62px;color:#2E2F31;cursor:pointer;}
+      .limit-game.coupon .col3:hover{color:#FFF;}
+  .limit-game.coupon > div > .icon { position: absolute; left: 0px; top: 0px; height: 16px; width:24px; background-repeat: no-repeat; background-position: center center; }
+    .limit-game.coupon > div > .icon.xin{background-image:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/xin.png);}
+    .limit-game.coupon > div > .icon.zeng{background-image:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/zeng.png);}
+.no-margin-r { margin-right: 0 !important;}
+.game-one-row{ height: 165px;}
+.limit-game-many { margin-right: 10px; width: 576px;}
+
+.limit-game .img-box { float: left; width: 220px; height: 124px; position: relative; }
+.limit-game .img-box > .img-box-type , .limit-tomorrow-pic > .img-box-type{width: 52px;height: 26px;position: absolute;  right: 0; top: 0 ; background-repeat: no-repeat; z-index: 1;} 
+.limit-game .img-box > img { width: 100%; height: 100%; }
+
+.limit-game .img-box > div { width: 219px; height: 40px; line-height: 40px; color: #9fa1a5; text-align: center; border-right: 1px solid #e7e7e7; }
+
+.limit-game .img-box > div > span { display: inline-block; vertical-align: middle; }
+
+.limit-game .img-box > i { position: absolute; left: -15px; top: -15px; height: 65px; width: 65px; background: url(https://c1.cgyouxi.com/website/orange/img/common/limited_time_free/classic.png?v=20160517) no-repeat center center; }
+
+.limit-game .info-box { width: 316px; padding: 6px 20px 10px 20px; overflow: hidden; }
+
+.limit-game .info-box > h2 { height: 42px; line-height: 40px; font-size: 14px; color: #9fa1a5; font-weight: normal; overflow: hidden; }
+
+.limit-game .info-box > h2 > a { margin-right: 7px; color: #2e2f31; font-weight: bold; }
+
+.limit-game .info-box > h2 a:hover {color: #FFAC28;}
+
+.limit-game .info-box > h2 > span { font-size: 14px; color: #9fa1a5; padding-left: 8px; word-break: break-all; }
+
+.limit-game .info-box > h2 > span > a { color: #9fa1a5; }
+
+.limit-game .free-info { border-bottom: 1px solid #E7E7E7; }
+
+    .limit-game .free-info > .left { float: left; }
+
+        .limit-game .free-info > .left > span { display: block; color: #2e2f31; }
+
+        .limit-game .free-info > .left > .date { color: #434343; }
+
+        .limit-game .free-info > .left > .rule { }
+
+            .limit-game .free-info > .left > .rule > i { font-style: normal; }
+
+            .limit-game .free-info > .left > .rule > b { color: #ffac28; font-weight: normal; margin: 0 2px; }
+
+        .limit-game .free-info > .right { float: right; padding: 0 0 5px 5px; }
+
+            .limit-game .free-info > .right > span { display: block; font-size: 14px; }
+
+            .limit-game .free-info > .right button { cursor: pointer; margin-top: 4px; border: 0; display: inline-block; height: 44px; width: 120px; background: url(https://c1.cgyouxi.com/website/orange/img/common/limited_time_free/exchange.png?v=20160517) center center no-repeat; }
+
+                .limit-game .free-info > .right button:focus { outline: none; }
+
+                .limit-game .free-info > .right button.disabled { background: url(https://c1.cgyouxi.com/website/orange/img/common/limited_time_free/exchange_disabled.png?v=20160517) center center no-repeat; }
+
+        .limit-game .free-info .icon { display: inline-block; height: 30px; line-height: 30px; }
+
+        .limit-game .free-info .icon em { margin-right: 4px; font-style: normal;}
+        
+          .limit-game .free-info .icon b { background-position: left center; background-repeat: no-repeat; display: inline-block; vertical-align: middle; margin-right: 6px; }
+        
+        .limit-game .free-info .jifen { background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/integral.png?v=20160517); width: 22px; height: 18px; margin-top: -4px; }
+
+        .limit-game .free-info .tanhua { background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/epiphyllum_icon.png?v=20160517); width: 21px; height: 19px; margin-left: 2px; margin-top: -2px; }
+
+    .limit-game .note { color: #9fa1a5; height: 40px; line-height: 20px; overflow: hidden; padding-top: 8px; }
+    /*倒计时*/
+.limit-game .count-down > span { display: inline-block; vertical-align: middle; }
+
+.limit-game .count-down > .time { margin-top: -2px; width: 20px; height: 20px; line-height: 20px; background-color: #2e2f31; color: #FFF; }
+
+.limit-game .count-down.disabled > .time { background-color: #BBB; }
+/*limit-tomorrow-box*/
+.limit-tomorrow-box { margin-top: 20px; }
+
+.limit-tomorrow-tit { width: 81px; height: 83px; line-height: 83px; font-size: 14px; color: #fff; text-align: center; background: #ffac28; position: relative; border-radius: 6px 0 0 6px; }
+
+    .limit-tomorrow-tit .triangle-ico { position: absolute; left: 80px; top: 39px; display: block; width: 5px; height: 9px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) 0 -35px no-repeat; }
+
+.limit-tomorrow-inner { position: relative; width: 1099px; height: 85px; overflow: hidden;}
+
+.limit-tomorrow-div { position: relative; }
+
+.limit-tomorrow-game { margin-bottom: 14px; margin-left: 20px; width: 522px; height: 83px; background: #fff; border-radius: 6px; box-shadow: 0px 1px 2px #e7e8e9; }
+
+.limit-tomorrow-game-many { margin-left: 14px;}
+
+.org-box-switcher-limit .org-box-switcher-control { width: 6px; height: 100%; position: absolute; top: 0; right: 0; }
+                          
+    .org-box-switcher-limit .org-box-switcher-control .control-bar { width: 100%; height: 32px; cursor: pointer; transition: all .4s; border-radius: 100px; background-color: #E6E6E6; }
+    
+    .org-box-switcher-limit .org-box-switcher-control .control-bar.active { background: #c1c6ca;}
+                                                                                                                                                                                
+    .org-box-switcher-limit .org-box-switcher-control .control-bar:first-child { margin-top: 0; }
+                          
+.limit-tomorrow-pic, .limit-tomorrow-pic a, .limit-tomorrow-pic img { display: block; width: 160px; height: 83px; }
+
+.limit-tomorrow-pic { position: relative;}
+
+.limit-tomorrow-pic a { position: relative;}
+
+.limit-tomorrow-pic a > i{ width: 52px; height: 26px; background-position: 0 0; background-repeat: no-repeat; position: absolute; top: 0; right: 0; }
+
+    .limit-tomorrow-pic img { border-radius: 6px 0 0 6px; }
+
+.limit-tomorrow-info { width: 209px; padding: 0 26px; margin: 11px 0 0; border-right: 1px solid #E6E6E6; }
+
+    .limit-tomorrow-info h2 { font-size: 12px; color: #9fa1a5; height: 20px; line-height: 20px; font-weight: normal; overflow: hidden; font-weight:bold; }
+
+    .limit-tomorrow-info .limit-tomorrow-gname { margin-right: 8px; color: #2e2f31; }
+  .limit-tomorrow-info .limit-tomorrow-gname:hover{color:#FFAC28;}
+
+    .limit-tomorrow-info .limit-tomorrow-author {color: #9fa1a5; font-weight: normal; }
+  .limit-tomorrow-info .limit-tomorrow-author:hover{color:#FFAC28;}
+
+    .limit-tomorrow-info p { color: #2e2f31; height: 22px; line-height: 22px; overflow: hidden; }
+.limit-tomorrow-flower {width: 80px;padding-top:10px;padding-left:20px;}
+.limit-tomorrow-flower > span {display:block;line-height:30px;color: #71737A;}
+.limit-tomorrow-flower > span i{display:inline-block;height:12px;width:12px;position:relative;top:2px;*vertical-align:text-top;*padding-right: 4px;}
+.limit-tomorrow-flower > span i.word-number-icon{background:url(https://c1.cgyouxi.com/website/orange/img/common/index/worldList-wordCount-colour2.png?v=20160517) no-repeat left center;}
+.limit-tomorrow-flower > span i.flower-number-icon{background:url(https://c1.cgyouxi.com/website/orange/img/common/index/worldList-flower-colour.png?v=20160517) no-repeat left center;}
+.limit-tomorrow-tab { width: 6px; height: 73px; overflow: hidden; display: none;}
+
+    .limit-tomorrow-tab a { margin-bottom: 9px; display: block; width: 6px; height: 32px; background: #e6e6e6; border-radius: 6px; }
+
+        .limit-tomorrow-tab a:hover, .limit-tomorrow-tab a.active { background: #c1c6ca; }
+        .myfav-con-box { visibility: hidden; position: absolute; width: 1180px; }
+        
+ /*橙光日历 start*/
+.cg-calendar{ margin-top: 10px;}   
+.cg-cal-fir-hover{ height: 0; overflow: hidden; position: relative;}
+.cg-cal-dl{ float: left; width: 147px; position: relative; transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-webkit-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out; overflow: hidden;-moz-user-select:none; }      
+.cg-cal-dl dt{ cursor: pointer; height: 34px; line-height: 34px; text-indent: 19px; color: #747ca4; font-size: 12px; background: #ebecee;}  
+.cg-calendar .cg-cal-dl:first-child dt{ border-radius: 5px 0 0 0;}
+.cg-calendar .cg-cal-dl.active:first-child dt{ border-radius: 5px 5px 0 0;}
+.cg-calendar .cg-cal-dl:first-child dd{border-radius: 0 0 0 5px; }
+.cg-calendar .cg-cal-dl:last-child dt{ border-radius: 0px 5px 0 0;}
+.cg-calendar .cg-cal-dl.active:last-child dt{ border-radius: 5px 5px 0 0;}
+.cg-up-arr,.cg-down-arr{ display: block; z-index: 5; position: absolute; left:1px; width: 100%; height: 58px; background-repeat: repeat-x; cursor: pointer;display: none; overflow: hidden; }
+.cg-up-arr{ top:0; background-image: url(../../../orange/img/common/index/cg_top_arr_line.png);}
+.cg-down-arr{ bottom:0; background-image: url(../../../orange/img/common/index/cg_down_arr_line.png);}
+.cg-calendar dl.active .cg-up-arr{ height: 58px;top:0;}
+.cg-calendar dl.active .cg-down-arr{ height: 58px; }
+.cg-calendar dl .cg-down-arr .down-icon ,.cg-calendar dl .cg-up-arr .up-icon { width: 8px; height: 5px; position: absolute; left: 50%; margin-left: -4px; background-image: url(../../../orange/img/common/index/cg_arr2.png); background-repeat: no-repeat; }
+.cg-calendar dl .cg-down-arr .down-icon { background-position: 0 -12px; top:34px}
+.cg-calendar dl .cg-up-arr .up-icon { background-position: 0 -18px; top: 19px;}
+.cg-calendar dl.active .cg-down-arr .down-icon{ background-position: 0 0; top: 34px;}
+.cg-calendar dl.active .cg-up-arr .up-icon { background-position: 0 -6px; top: 19px;}
+.cg-sun dd{border-radius: 0 0 5px 0;border-right:1px solid #ebecee; }
+.cg-cal-dl dt span{ display: none;}
+.cg-cal-dl dd{padding: 0 18px; width:111px ; height: 409px; border-left:1px solid #ebecee; border-bottom:1px solid #ebecee; background: #fff; font-size: 12px; overflow: hidden; position: relative;}
+.cg-cal-ul{ position: absolute; margin: 12px 0; top: 0; left:18px; right:18px;  transition: width .5s;-moz-transition: width .5s;-webkit-transition: width .5s;-o-transition: width .5s;}
+.cg-calendar dl.active .cg-cal-ul{left:12px; right:12px;}
+.cg-cal-ul li { margin-bottom: 4px; overflow: hidden;}
+.cg-cal-ul li .cg-cal-normal{ overflow: hidden; }
+.cg-cal-ul li .cg-cal-gname{ height: 24px; line-height: 24px; overflow: hidden; }
+.cg-cal-ul li .cg-cal-gname a{color: #2e2f31;}
+.cg-cal-ul li .cg-cal-author{ height: 18px; line-height:18px; overflow: hidden; }   
+.cg-cal-ul li .cg-cal-author a{color: #9fa1a5;}
+.cg-cal-dl.cg-sun dd{ width: 110px;}
+.cg-calendar dl.active{ width: 298px; position:relative; top: -10px; z-index: 5; border:none; box-shadow:0px 0px 8px #fcd79c; }
+@media screen\0 {width: 297px;.cg-calendar dl.active {border-bottom:1px solid #ebecee;border-left:1px solid #ebecee;}} /*只对IE8/9/10有效*/
+@media screen and (min-width:0\0) {.cg-calendar dl.active {  border:none;}} /*只对IE9/10有效*/
+*+ html .cg-calendar dl.active{width: 297px;border-bottom:1px solid #ebecee;border-left:1px solid #ebecee;}
+.cg-calendar dl.active dt{ background: #ffac28; border-radius: 5px 5px 0 0; font-size: 14px; height: 44px; line-height: 38px; color: #fff; text-indent: 0; text-align: center;}
+.cg-calendar dl.active dt span{ margin-left: 5px; display: inline-block; color:#ffcb77;font-size: 20px;position: relative; top: 3px;  }
+.cg-calendar dl.active dt span i{ margin-left:5px; font-size: 10px; color: #fff; font-style: normal;position: relative; top: 2px; }
+.cg-calendar dl.active dd{padding:0 12px; width:274px ; height: 416px; border:none; background: #fff; font-size: 12px; border-radius: 0 0 6px 6px;}
+.cg-cal-ul li a:hover{color:#ffac28;}  
+.cg-calendar dl.active li{  margin-bottom:0;line-height: 33px; border-bottom:1px solid #ebecee; clear:both; overflow:hidden;}
+.cg-calendar dl.active li .cg-cal-gname{ float: left; display: inline-block;width: 184px; height: 33px; line-height: 33px; padding-left: 8px;}
+.cg-calendar dl.active li .cg-cal-author{float: left; display: inline-block; margin-top: 9px; padding-left: 10px;  width: 71px; overflow: hidden; border-left:1px solid #babbbe; height: 15px; line-height: 15px;}
+.cg-calendar dl.active .cg-cal-fir-hover{ height:0;padding-bottom: 2px; transition: all 0.3s; height: 214px;overflow: hidden; position: relative;}
+.cg-cal-ul li .cg-cal-gname{ height: 24px; line-height: 24px;}
+.cg-calendar dl.active .cg-cal-fir{ height:0;}
+.cg-cal-pic {  margin-bottom: 7px;}
+.cg-cal-pic a{ display:block;width:100%; height: 153px; position: relative; overflow: hidden;}
+.cg-cal-pic img{transition: all 0.5s; -webkit-transition: all 0.5s;width:100%; border-radius: 6px;}
+.cal-info{ transition: all 0.5s; -webkit-transition: all 0.5s; z-index: 2; position: absolute;  left:0; top:160px; padding:35px 20px;height: 83px; overflow: hidden; color: #fff; line-height: 20px;}
+.cal-info-mask{transition: all 0.5s;  -webkit-transition: all 0.5s;z-index: 1;position: absolute; left:0;  top:160px;width:100%;height: 153px;border-radius: 6px; background:rgba(46, 47, 49, 0.5);}
+.cg-cal-pic .on{ top:0;}
+.cal-info-btn { transition: all 0.5s;  -webkit-transition: all 0.5s;display: block; z-index:3;position: absolute; right:14px; bottom:10px; width: 24px; height: 24px;background: url("../../img/common/index/cal_btn.png") no-repeat 0 0;  }
+.cg-cal-pic .btn-on{ bottom:-25px;}
+.cal-wj-ico{transition: all 0.5s;  -webkit-transition: all 0.5s; float: left; margin:3px 6px 0 0; width: 36px; height: 18px; background: url("../../img/common/index/cal_ico.png") no-repeat 0 0;}
+.cal-com-end-ico{transition: all 0.5s;  -webkit-transition: all 0.5s; float: left; margin:3px 6px 0 0; width: 56px; height: 18px; background: url("../../img/common/index/cal_ico.png") no-repeat 0 -25px; }
+.cal-wj-ico,.cal-com-end-ico { margin-top: 3px;}
+.active .cg-cal-normal .cal-wj-ico,.active .cg-cal-normal .cal-com-end-ico { margin-top: 7px;}
+.active .on .cal-wj-ico,.active .on .cal-com-end-ico{margin-top: 3px;}
+.active .cg-cal-fir-hover .cal-wj-ico,.active .cg-cal-fir-hover .cal-com-end-ico{margin-top: 3px;}
+.cg-cal-tit{ height: 24px; line-height: 24px; overflow: hidden;}
+.cg-calendar dl.active .cg-cal-tit .cg-cal-gname{ font-weight: bold; }
+.cg-calendar dl.active .cg-cal-fir-hover .cg-cal-gname{ line-height: 24px;}
+.cg-calendar dl.active .cg-cal-tit .cg-cal-author{ margin-top:5px;}
+.cg-calendar dl.active .game-collect-number { cursor: pointer;}
+.cg-calendar dl.active .game-word-number,.cg-calendar dl.active .game-collect-number,.cg-calendar dl.active .game-flower-number{ color: #71737a; display: block; float: left; font-size: 12px; line-height: 30px; position: relative; text-align: left; width: 25.3%;margin-right: 4%;}
+.cg-calendar dl.active .cg-cal-fir-hover-data { padding-left:8px;}
+.cg-calendar dl.active .cg-cal-fir-hover-data i {background-repeat: no-repeat;display: inline-block; height: 12px; position: relative; top: -1px; vertical-align: middle; width: 12px; }
+*+html .cg-calendar dl.active .game-word-number,.cg-calendar dl.active .game-collect-number,.cg-calendar dl.active .game-flower-number{width: 25.2%; margin-right: 4%;}
+*+html .cg-calendar dl.active .cg-cal-fir-hover-data i { margin-right: 3px;top:0px;}
+.cg-calendar dl.active .word-number-icon { background-image: url("https://c1.cgyouxi.com/website/orange/img/common/index/worldList-wordCount-colour2.png?v=20160517");} 
+.cg-calendar dl.active .flower-number-icon {background-image: url("https://c1.cgyouxi.com/website/orange/img/common/index/worldList-flower-colour.png?v=20160517");}   
+.cg-calendar dl.active .collect-number-icon { background-image: url("https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect.png?v=20160517");}
+.cg-calendar dl.active .game-collect-number:hover .collect-number-icon { background-image: url("https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect-colour.png?v=20160517");} 
+.cg-calendar dl.active .ed .collect-number-icon {background-image: url("https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect-colour.png?v=20160517");}
+.cg-calendar dl.active .title { background: #fff; border: 1px solid #9fa1a5; border-radius: 4px; font-style: normal; left: 0; line-height: 15px; padding: 4.5px; position: absolute; top: -18px; visibility: hidden;}  
+.cg-calendar dl.active .game-collect-number:hover .title ,.cg-calendar dl.active .game-word-number:hover .title { visibility: visible;}    
+.active .cg-cal-ul li .cg-cal-fir-hover{transition: height 1s;  -webkit-transition:height 1s; height: 0px; padding:0; }
+.active .cg-cal-ul li .cg-cal-normal{transition: height 1s; -webkit-transition:height 1s; height:33px;}
+.active .cg-cal-ul li.hover .cg-cal-fir-hover{ height: 214px;padding-bottom: 2px;}
+.active .cg-cal-ul li.hover .cg-cal-normal{ height: 0px;}
+.active .cg-cal-ul li.on .cg-cal-fir-hover{ height: 214px; padding-bottom: 2px;}
+.active .cg-cal-ul li.on .cg-cal-normal{height: 0;}
+.active .cg-cal-ul li.off .cg-cal-fir-hover{height: 0; padding: 0;}
+.active .cg-cal-ul li.off .cg-cal-normal{ height:33px;}
+ /*橙光日历 end*/           
+/*myfav-box end*/
+/*我的关注下方广告*/
+.index-ad-wrap { margin: 30px auto; width: 100%; height: 100px; overflow: hidden; }
+
+    .index-ad-wrap ul { width: 1200px; }
+
+        .index-ad-wrap ul li { width: 280px; height: 100px; float: left; margin-right: 20px; }
+
+            .index-ad-wrap ul li a { display: block; }
+
+                .index-ad-wrap ul li a img { width: 100%; height: 100%; border-radius: 6px; }
+/*电梯导航*/
+
+.elev-pic { position: relative; z-index: 1; margin: 0 auto; width: 54px; height: 53px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat -84px 0; }
+
+.elev-ewm-box { cursor: pointer; margin: 8px auto; position: relative; width: 60px; height: 46px; background-color: #fff; border: 1px solid #ececee; }
+
+.elev-blank { display: block; width: 30px; height: 60px; position: absolute; left: -28px; top: -6px; }
+
+.elev-ewm-sm { display: block; width: 24px; height: 24px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png) no-repeat -84px -73px; margin: 11px auto; }
+.elev-con{ display: none; position:absolute;left:-171px; top: -65px; width: 171px; height: 186px; padding-top: 18px; background:url(https://c1.cgyouxi.com/website/orange/img/common//index/ewm_bg1.png?v=20160517) no-repeat 0 0;}
+.elev-con img{ display: block; width: 126px; height: 126px; margin: 0px 0 0 19px;}
+.elev-con p{ font-size: 12px; margin-top:7px; margin-left:19px;width: 126px; height: 20px; line-height: 20px; text-align: center; }
+.goto-top { display: block; width: 60px; height: 38px; line-height: 38px; background: #fff; border: 1px solid #ececee; border-radius: 2px; }
+.goto-top:hover{ background-color: #ececee;}
+.goto-top i { margin: 13px auto; display: block; width: 18px; height: 11px; background: url(https://c1.cgyouxi.com/website/orange/img/common/index/rank_ico_index.png?v=20160517) no-repeat -84px -120px; }
+.jumpto-subnav { width: 62px; position: fixed; left: 50%; margin-left:606px;top: 50px; z-index: 999; user-select: none; -ms-user-select:none; -webkit-user-select:none; -moz-user-select:none;}
+.jumpto-first { margin-top: -10px; width: 60px; border: 1px solid #ececee; background-color: #fff; border-radius: 2px; border-bottom:none; }
+.jumpto-first li, .jumpto-first a {font-size: 12px; display: block; height: 32px; line-height: 32px; text-align: center;}
+.jumpto-first li { border-bottom: 1px solid #ececee; }
+.jumpto-first a { color: #747379; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jumpto-first a:hover,.jumpto-first li a.active  { position: relative; left: -1px; top: -1px; width: 62px; height: 34px; background-color: #ffac28; color: #fff; border-radius: 2px; line-height: 34px; }
+.classic-box .js-jump-tit,.recom-box .js-jump-tit,.myfav-box .js-jump-tit{ width: 0; height: 0; overflow: hidden;}
+
+/* shaomin end*/
+
+/*******************红日************************/
+/*--visibility控制显示隐藏----*/
+.visibility-hidden { visibility: hidden; z-index: -1; }
+.visibility-visible { visibility: visible; z-index: 1;}
+/*---css 文字溢出隐藏---*/
+.text-overflow { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.no-margin { margin: 0; }
+.ie-inline-block { *zoom: 1; *display: inline; display: inline-block; }
+/*---头部开始    .world-list-head  2016-06-07新加全橙高考 .tag-tmp-list开头 ---*/
+.world-list,  .tag-tmp-list { margin-top:32px;}
+.world-list .world-list-head, .tag-tmp-list .world-list-head { overflow: hidden; }
+
+    .world-list .world-list-head .world-type, .tag-tmp-list .world-list-head .world-type { float: left; white-space: nowrap;}
+
+        .world-list .world-list-head .world-type > *,        
+        .world-list .world-list-head .world-tab .world-tab-list,
+        .tag-tmp-list .world-list-head .world-type > *,
+        .tag-tmp-list .world-list-head .world-tab .world-tab-list {vertical-align: middle; display: inline-block; *zoom: 1; *display: inline; }
+
+    .world-list .world-list-head .world-type-icon, .tag-tmp-list .world-list-head .world-type-icon { width: 40px; height: 40px; border-radius: 50%; }
+
+    .world-list .world-list-head .world-type-name, .tag-tmp-list .world-list-head .world-type-name { font-size: 24px; color: #2e2f31; font-weight: normal; margin: -4px 14px 0 6px; }
+
+    .world-list .world-list-head .world-type-close, .tag-tmp-list .world-list-head .world-type-close { width: 12px; display: inline-block; *zoom: 1; *display: inline; height: 12px; background: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-close.png') no-repeat 0 0; cursor: pointer; }
+
+       .world-list .world-list-head .world-type-close:hover, .tag-tmp-list .world-list-head .world-type-close:hover { background-image:  url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-close-hover.png'); }
+       
+        .world-list .world-list-head .world-type-close:hover, .tag-tmp-list .world-list-head .world-type-close:hover { transform-origin: center; }
+
+    .world-list .world-list-head .world-tab, .tag-tmp-list .world-list-head .world-tab  { float: right; margin-top: 7px; }
+
+    /*.world-list .world-list-head .world-tab-list, .tag-tmp-list .world-list-head .world-tab-list { color: #2e2f31; font-size: 12px; padding: 0 12px; margin-right: 10px; background-color: transparent; line-height: 26px; cursor: pointer; transition: .3s; 
+                                                     -webkit-user-select: none; 
+                                                     -moz-user-select: none; 
+                                                     -o-user-select: none; 
+                                                     -ms-user-select: none; 
+                                                     user-select: none; 
+                                                     }
+*/
+        .world-list .world-list-head .js-list-act:hover, .tag-tmp-list .world-list-head .js-list-act:hover { color: #ffac28; }
+        
+        /*.world-list .world-list-head .js-list-act:hover .world-tab-list-renovate, .tag-tmp-list .world-list-head .js-list-act:hover .world-tab-list-renovate { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-renovate-hover.png?v=20160517');}
+*/
+.world-list .world-list-head .world-tab .more, .tag-tmp-list .world-list-head .world-tab .more { border-radius: 8px 8px 8px 0; width: 72px; height: 24px; line-height: 26px; margin: 0; padding: 0; text-align: center; }/*---除七大世界，其他默认颜色---*/
+
+.world-list .world-list-head .world-tab .more > a, .tag-tmp-list .world-list-head .world-tab .more > a { width: 100%; height: 100%; display: inline-block; } /*---除七大世界，其他默认颜色---*/
+
+.world-list .world-list-head .world-tab > li.list-act, .tag-tmp-list .world-list-head .world-tab > li.list-act { color: #fff; line-height: 26px; border-radius: 8px; }/*---除七大世界，其他默认颜色---*/
+   
+    .world-list .world-list-head .world-tab > li > .js-icon-act, .tag-tmp-list .world-list-head .world-tab > li > .js-icon-act { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-renovate-act.png?v=20160517'); 
+                                                                            transform:rotate(720deg); 
+                                                                            -ms-transform:rotate(720deg);   /* IE 9 */
+                                                                            -moz-transform:rotate(720deg);  /* Firefox */
+                                                                              -webkit-transform:rotate(720deg); /* Safari 和 Chrome */
+                                                                            -o-transform:rotate(720deg); 
+                                                                      transition: 2s;
+                                                                    -ms-transition: 2s;
+                                                                  }
+
+.world-list .world-list-head .world-tab > li > .js-icon-act2, .tag-tmp-list .world-list-head .world-tab > li > .js-icon-act2 { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-renovate-act.png?v=20160517');}
+
+/*.world-list .world-list-head .world-tab-list-renovate, .tag-tmp-list .world-list-head .world-tab-list-renovate { width: 12px; height: 12px; margin: -2.6px 0 0 4px; transition: .3s; background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-renovate.png?v=20160517'); display: inline-block; background-repeat: no-repeat; vertical-align: middle; }
+*/
+.world-list .world-list-head .more .more-icon, .tag-tmp-list .world-list-head .more .more-icon { width: 7px; height: 10px; background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-more.png?v=20160517'); display: inline-block; }
+/*---游戏列表部分开始    .world-game ---*/
+.world-list .world-game .world-game-list, .tag-tmp-list .world-game .world-game-list { 
+    width: 220px; height: 211px; background: #fff; float: left;  border-radius: 6px; box-shadow: 0 1px 2px rgba(0, 0, 0, .15); border: 1px solid #e7e8e9 \9; margin-left: 17.5px \9; 
+    flex-basis: 18%;
+    margin-top: 18px;
+}
+
+.world-list .world-game, .tag-tmp-list .world-game { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: -20px;
+}
+
+.world-list .world-game > li.no-margin, .tag-tmp-list .world-game > li.no-margin { margin-left: 0; }
+
+.world-list .world-game .world-game-list .game-surface, .tag-tmp-list .world-game .world-game-list .game-surface {
+ width: 220px; height: 124px; display: inline-block; cursor: pointer; position: relative;
+}
+
+    .world-list .world-game .world-game-list .game-surface .game-surface-img, .tag-tmp-list .world-game .world-game-list .game-surface .game-surface-img {
+     max-width: 100%; width: 100%; height: 124px; border-radius: 5px 6px 0 0;
+ }
+
+    .world-list .world-game .world-game-list .game-surface:hover .game-shade, .tag-tmp-list .world-game .world-game-list .game-surface:hover .game-shade { display: block; }
+
+    .world-list .world-game .world-game-list .game-surface .game-superscript,
+    .tag-tmp-list .world-game .world-game-list .game-surface .game-superscript { border-radius: 0 5px 0 0; width: 52px; height: 26px; position: absolute; top: 0; right: 0; background-repeat: no-repeat; }
+
+    .superscript-bt { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-bt.png?v=20160517'); }
+
+    .superscript-gx { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-gx.png?v=20160517'); }
+
+    .superscript-jd { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-jd.png?v=20160517'); }
+
+    .superscript-wj { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-wj.png?v=20160517'); }
+
+    .superscript-xz { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-xz.png?v=20160517'); }
+
+.world-list .world-game .world-game-list .game-message, .tag-tmp-list .world-game .world-game-list .game-message { width: 200px; height: 56px; border-bottom: 1px solid #e7e7e7; font-size: 12px; padding: 0 10px; overflow: hidden; }
+  .world-list .world-game .world-game-list .game-message > a:hover,
+  .tag-tmp-list .world-game .world-game-list .game-message > a:hover { color: #ffac28;}
+    .world-list .world-game .world-game-list .game-message .game-name,
+    .tag-tmp-list .world-game .world-game-list .game-message .game-name,
+    .world-list .world-game .world-game-list .game-message .game-author,
+    .tag-tmp-list .world-game .world-game-list .game-message .game-author { color: #2e2f31; font-weight: bold; display: block; margin-top: 8px; }
+    
+    .world-list .world-game .world-game-list .game-message .game-name > span,
+    .tag-tmp-list .world-game .world-game-list .game-message .game-name > span { color: #9ea1a3; font-weight: normal;}
+
+    .world-list .world-game .world-game-list .game-message .game-author,
+    .tag-tmp-list .world-game .world-game-list .game-message .game-author { font-weight: normal; margin-top: 6px;}
+
+        .world-list .world-game .world-game-list .game-message .game-author em,
+        .tag-tmp-list .world-game .world-game-list .game-message .game-author em  {  font-style: normal; color: #9fa1a5; margin-right: 3px;}
+
+.world-list .world-game .world-game-list .game-data, .tag-tmp-list .world-game .world-game-list .game-data { height: 30px; }
+
+    .world-list .world-game .world-game-list .game-data > li,
+    .tag-tmp-list .world-game .world-game-list .game-data > li { width: 33.3%; float: left; font-size: 12px; color: #71737a; line-height: 30px; text-align: center; position: relative; }
+
+        .world-list .world-game .world-game-list .game-data > li > i,
+        .tag-tmp-list .world-game .world-game-list .game-data > li > i { display: inline-block; width: 12px; height: 12px; vertical-align: middle; margin-top: -3px; background-repeat: no-repeat; }
+
+    .world-list .world-game .world-game-list .game-data .game-word-number .word-number-icon,
+    .tag-tmp-list .world-game .world-game-list .game-data .game-word-number .word-number-icon { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-wordCount-colour2.png?v=20160517'); }
+
+.world-list .world-game .world-game-list .game-data .game-word-number .title , .world-list .world-game .world-game-list .game-data .game-collect-number .title,
+.tag-tmp-list .world-game .world-game-list .game-data .game-word-number .title , .tag-tmp-list .world-game .world-game-list .game-data .game-collect-number .title {padding: 4.5px; line-height: 15px; border: 1px solid #9fa1a5; position: absolute; left: 0 ; top: -18px; font-style: normal; visibility: hidden; background: #fff; border-radius: 4px;}
+
+.world-list .world-game .world-game-list .game-data .game-collect-number , .world-list .world-game .world-game-list .game-data .game-word-number,
+.tag-tmp-list .world-game .world-game-list .game-data .game-collect-number , .tag-tmp-list .world-game .world-game-list .game-data .game-word-number { cursor: pointer;}  
+
+.world-list .world-game .world-game-list .game-data .game-collect-number .collect-number-icon,
+.tag-tmp-list .world-game .world-game-list .game-data .game-collect-number .collect-number-icon { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect.png?v=20160517'); }
+
+.world-list .world-game .world-game-list .game-data .game-collect-number:hover .collect-number-icon,
+.tag-tmp-list .world-game .world-game-list .game-data .game-collect-number:hover .collect-number-icon { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect-colour.png?v=20160517'); }
+
+.world-list .world-game .world-game-list .game-data .game-word-number:hover .title , .world-list .world-game .world-game-list .game-data .game-collect-number:hover .title,
+.tag-tmp-list .world-game .world-game-list .game-data .game-word-number:hover .title , .tag-tmp-list .world-game .world-game-list .game-data .game-collect-number:hover .title {visibility: visible;} 
+
+.world-list .world-game .world-game-list .game-data .ed .collect-number-icon,
+.tag-tmp-list .world-game .world-game-list .game-data .ed .collect-number-icon{  background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect-colour.png?v=20160517');}
+
+.world-list .world-game .world-game-list .game-data .game-flower-number .flower-number-icon,
+.tag-tmp-list .world-game .world-game-list .game-data .game-flower-number .flower-number-icon  { background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-flower-colour.png?v=20160517'); }
+
+.world-list .world-game .world-game-list .game-shade,
+.tag-tmp-list .world-game .world-game-list .game-shade { width: 220px; height: 124px; 
+    overflow: hidden;
+    display: none; word-wrap: break-word; padding: 0 10px; position: absolute; top: 0; left: 0; z-index: 9; cursor: pointer; }
+
+    .world-list .world-game .world-game-list .game-shade .game-log-time,
+    .tag-tmp-list .world-game .world-game-list .game-shade .game-log-time { font-size: 12px; color: #c2c9c5; padding-top: 20px; }
+
+    .world-list .world-game .world-game-list .game-shade .game-log-content,
+    .tag-tmp-list .world-game .world-game-list .game-shade .game-log-content { width: 200px; padding-top: 10px; font-size: 12px; height: 60px; line-height: 20px; color: #fff; overflow: hidden; }
+
+.world-list .world-game .world-game-list .game-shade-bg,
+.tag-tmp-list .world-game .world-game-list .game-shade-bg {
+ width: 220px; height: 124px; position: absolute; left: 0; top: 0; background: #2f2f31; opacity: .5; filter: Alpha(opacity=95); z-index: -1; zoom: 1; border-radius: 5px 5px 0 0;}
+
+/*---自定义---*/
+.world-definition-box{position: relative; -moz-user-select: none; user-select: none; -ms-user-select:none; -webkit-user-select:none; display: nocne;}
+.world-definition-box .world-definition { color: #2e2f31; line-height: 44px; text-align: center; background: #fff; border-radius: 6px; margin: 30px 0 54px; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, .1); border: 1px solid #e7e8e9 \9; }
+.world-definition-box .definition-icon { width: 14px; height: 14px; margin: -2px 10px 0 0; display: inline-block; vertical-align: middle; background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/worldList-definition.png?v=20160517'); background-repeat: no-repeat; *margin-top: 3px; }
+/*---自定义菜单开始---*/
+
+.world-definition-box .world-definition-menu { width: 954px; min-height: 330px; background: #fff; position: absolute; bottom: 57px; left: 50%; margin-left: -477px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 10; cursor:default;}
+.world-definition-box .world-definition-menu:before{content: ''; border-width:6px ; border-color: transparent; border-style: solid; position: absolute; bottom: -12px ;left:50%; margin-left: -6px;  border-top-color:#fff;}
+
+.world-definition-box .world-definition-menu .take-menu,
+.world-definition-box .world-definition-menu .no-take-menu { vertical-align: middle; float: left; }
+
+.world-definition-box .world-definition-menu .take-menu { width: 365px; padding: 50px 45px 109px 60px; }
+
+.world-definition-box .world-definition-menu .no-take-menu { width: 394px; padding: 50px 60px 109px 30px; }
+
+.world-definition-box .world-definition-menu .menu-title { margin-bottom: 5px; font-size: 24px; color: #2e2f31; text-align: left; }
+
+    .world-definition-box .world-definition-menu .menu-title .subhead { font-size: 12px; color: #9fa1a5; }
+
+.world-definition-box .world-definition-menu .menu-list-box .menu-list { height: 25px; font-size: 12px; color: #2e2f31; line-height: normal; white-space: nowrap;}
+
+
+.world-definition-box .world-definition-menu .take-menu .menu-list-box .menu-list { width: 88px; margin-top: 16px; float: left; }
+
+.world-definition-box .world-definition-menu .menu-list-box .menu-list .list-name { display: inline-block; *zoom: 1; *display: inline; cursor: pointer; }
+
+  .world-definition-box .world-definition-menu .take-menu .menu-list-box .menu-list .list-name { padding: 3px 10px; border: 1px dashed #d1d3d7; position: relative; }
+
+    .world-definition-box .world-definition-menu .take-menu .menu-list-box .menu-list .list-name:hover{ background: #ff6500; border: 1px solid #ffac28; color: #fff;}
+    
+    .world-definition-box .world-definition-menu .take-menu .menu-list-box .menu-list .list-name:hover .operate-icon {background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/remove-menu-list-act.png?v=20160517');}
+    
+    .world-definition-box .world-definition-menu .take-menu .menu-list-box .menu-list .list-name > span { line-height: 12px; display: inline-block; *zoom: 1; *display: inline; max-width: 58px; overflow: hidden; text-overflow: ellipsis; }
+
+.world-definition-box .world-definition-menu .take-menu .menu-list-box .menu-list .operate-icon { width: 14px; height: 14px; position: absolute; right: -7px; top: -7px; background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/remove-menu-list.png?v=20160517'); background-repeat: no-repeat; }
+
+.world-definition-box .world-definition-menu .no-take-menu .menu-list-box .menu-list { width: 94px; margin-top: 16px; float: left; margin-right: 2px; }
+
+    .world-definition-box .world-definition-menu .no-take-menu .menu-list-box .menu-list .list-name { padding: 4px 10px; background-color: #ebecee; max-width: 74px; overflow: hidden; text-overflow: ellipsis; position: relative; display: inline-block; *zoom: 1; *display: inline; }
+    
+    .world-definition-box .world-definition-menu .no-take-menu .menu-list-box .menu-list .list-name:hover { background: #ff6500; color: #fff;}
+
+    .world-definition-box .world-definition-menu .no-take-menu .menu-list-box .menu-list .list-name:hover .operate-icon  {background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/add-menu-list-act.png?v=20160517');}
+
+.world-definition-box .world-definition-menu .no-take-menu .menu-list-box .menu-list .operate-icon  { width: 10px; height: 10px; background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/add-menu-list.png?v=20160517'); background-repeat: no-repeat; display: inline-block; vertical-align: middle; margin: -2px 2px 0 0; }
+.dragsort-hint { border: 1px dashed #999; width: 66px; height: 22px; }
+
+.cus-btn-box{position: absolute;bottom: 0;left: 0;width: 100%;height: 48px; line-height: 48px;border-top:1px solid #EBECEE;text-align: center; }
+  .cus-btn-box > a {display: inline-block; padding: 0 40px; color: #2E2F31; font-size: 12px; transition: color .4s; }
+    .cus-btn-box > a:hover{color: #FF6600;}
+  .cus-btn-box > i{ display: inline-block; line-height: normal; height: 50%; vertical-align: middle; margin: 0 34px; border-right: 1px solid #EBECEE; width:0; }
+
+/*---底部banner---*/
+.index-see-all {  height: 90px;  overflow: hidden; margin: 54px 0 38px;}
+.index-see-all > a { float: left; height: 90px; background: url(../../img/common/index/new_index_free_banner04.png?v=20160517) no-repeat;}
+.index-see-all > .index-see-1 { background-position: 0 0px; width: 755px; }
+.index-see-all > .index-see-1:hover { background-position:0 -184px }
+.index-see-all > .index-see-2.hover-act { background-position: 0 -368px; }
+.index-see-all > .index-see-2 { background-position: 0 -92px; width: 425px; }
+.index-see-all > .index-see-2:hover { background-position: 0 -368px; }
+.index-see-all > .index-see-1.hover-act { background-position: 0 -184px; }
+.index-see-all .index-see-2 > p {color: #56240D; font-size: 20px; line-height: 100px;  margin: 0 0 0 -120px; }
+.index-see-all .index-see-2.unlog > p {color: #56240D; font-size: 20px; line-height: 100px;  margin: 0 0 0 50px; }  
+/*0505 临时*/           
+.index-see-all > a.unlog{
+  background-image: url('https://c1.cgyouxi.com/website/orange/img/common/index/new_index_free_banner.png?v=20160517'); background-repeat: no-repeat;}   
+/*---底部开始---*/
+.footer { border-top:0px solid #e7e7e7; text-align: center; padding-top: 24px; padding-left: 75px; padding-right: 75px; }
+.footer div{ line-height: 26px; }
+.footer a , .footer a:link , .footer a:hover , .footer a:active{ color: #a0a1a6; font-size: 12px; text-decoration: none; padding: 0 12px; }
+.footer span { display: inline-block; vertical-align: middle;}
+@media screen and (max-width:1335px) {
+  .jumpto-subnav{ display: none;}
+}   
+
+/*优惠券 弹窗*/
+.more-coupon{ height: 395px; width: 327px; color: #2E2F31; background-color: #FFF; overflow: hidden;     box-shadow: 0 0 20px 0 rgba(0,0,0,.2); border-radius: 4px; display: none; }
+  .more-coupon > .title { position: relative; height: 50px; line-height: 50px; padding: 0 20px; font-size: 14px; background-color: #F5F6F8; }
+    .more-coupon > .title > span { position: absolute; height: 50px; width: 50px; right: 0; top: 0; font-size: 30px; color: #C2C5C9; text-align: center; line-height: 40px; cursor: pointer; }
+      .more-coupon > .title > span:hover { color: #000; }
+.more-coupon > .body { position: relative; height: 320px; margin-top: 10px; padding: 0 20px; overflow: hidden; }
+.more-coupon .item{ position: relative; width: 286px; height: 64px; margin: 10px auto 0; background:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/1.png) no-repeat center center; }
+    .more-coupon .item > div { float: left; }
+    .more-coupon .item > .col1{width:65%;}
+      .more-coupon .item > .col1 > div { padding-left: 25px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .more-coupon .item > .col1 > .name{width:80%;font-weight:bold;padding-top:17px;line-height:12px;}
+        .more-coupon .item > .col1 > .name > a { color: #2E2F31; }
+        .more-coupon .item > .col1 > .name > a:hover { color: #FFAC28; }
+      .more-coupon .item > .col1 > .date{line-height:12px;padding-top:8px;color:#9fa1a5;}
+    .more-coupon .item > .col2{width:18%;text-align:center;line-height:62px;color:#FF6600;cursor:pointer;}
+      .more-coupon .item > .col2:hover{color:#2e2f31;}
+    .more-coupon .item > .col3{width:17%;text-align:center;line-height:62px;color:#2E2F31;cursor:pointer;}
+      .more-coupon .item > .col3:hover{color:#FFF;}
+  .more-coupon .item > .icon { position: absolute; left: -1px; top: -1px; height: 16px; width:26px; background-repeat: no-repeat; background-position: center center; }
+    .more-coupon .item > .icon.xin{background-image:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/xin.png);}
+    .more-coupon .item > .icon.zeng{background-image:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/zeng.png);}
+    .more-coupon .ps-scrollbar-y-rail{width:6px!important;}
+    .more-coupon .ps-scrollbar-y{width:6px!important;}
+.coupon-window { display: none; position: relative; width: 406px; height: 235px; color: #9FA1A5; background-color: #FFF; box-shadow: 0 0 30px 0 rgba(0,0,0,.2); border-radius: 4px; overflow: hidden; }
+.coupon-window h2 { font-size: 24px; color: #2E2F31; font-weight: normal; }
+.coupon-window h2.orange { color: #FF6600; }
+.coupon-window .note { margin-top: 28px; line-height:20px; }
+.coupon-window em { font-style: normal; color: #2E2F31; }
+.coupon-window > .btn-box { position: absolute; left: 0; bottom: 0; height: 48px; width: 100%; border-top: 1px solid #E6E6E6; text-align: right; }
+  .coupon-window > .btn-box > a { display: inline-block; height: 20px; width: 150px; margin-top: 14px; text-align: center; color: #2E2F31; transition: color .4s; }
+    .coupon-window > .btn-box > a:hover { color: #000; }
+    .coupon-window > .btn-box > a.orange { color: #FF6600; border-left: 1px solid #E6E6E6; }
+      .coupon-window > .btn-box > a.orange:hover { color: #2e2f31; }
+.coupon-window > .modal-close { position: absolute; right: 0; top: 0; height: 40px; width: 40px; line-height: 40px; text-align: center; font-size: 30px; color: #C2C5C9; transition: color .4s; cursor: pointer; }
+  .coupon-window > .modal-close:hover { color: #000; }
+.coupon-window.give > .inner { margin:36px 32px 0 154px;  }
+.coupon-window.give > .bg{ position: absolute; left: 0; bottom: 0; height: 226px; width: 124px; background:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/b3.png) no-repeat center center; }
+.coupon-window.give .note { color: #2E2F31; }
+.coupon-window.give .txtbox { height: 30px; width: 210px; border: 1px solid #E6E6E6; margin-top: 10px; line-height: 30px; padding: 0 5px; font-family:'微软雅黑'; border-radius: 3px; font-size: 12px; }
+.coupon-window.give-result{}
+.coupon-window.give-result > .inner { margin: 60px 0 0 50px; }
+.coupon-window.give-result .note{width:160px;}
+.coupon-window.give-result .btn-box { text-align: center; }
+.coupon-window.give-result > .bg{ position: absolute; right: 0; bottom: 10px; height: 177px; width: 131px; background:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/b4.png) no-repeat center center; }
+.coupon-window.tip{}
+.coupon-window.tip > .inner { margin: 50px 0 0 48px; }
+.coupon-window.tip .note { width: 276px; }
+.coupon-window.tip .btn-box { text-align: center; }
+.coupon-window.tip > .bg{ position: absolute; right: 20px; bottom: 18px; height: 86px; width: 86px; background:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/b1.png) no-repeat center center; }
+.coupon-window.confirm{}
+.coupon-window.confirm > .inner {margin:36px 0 0 150px;}
+.coupon-window.confirm .note {width:225px;}
+  .coupon-window.confirm .note > b {color: #71737A;}
+.coupon-window.confirm > .bg{ position: absolute; left: 0; bottom: -10px; height: 226px; width: 124px; background:url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/b2.png) no-repeat center center; }
+
+/*"谁赠送的"提示框*/
+#curpon-tip { display: none; position:relative; background-color: #FFF; padding: 15px 30px; box-shadow: 1px 1px 3px 0 rgba(0,0,0,.2); font-size: 12px; z-index: 99999; }
+#curpon-tip > a{ color: #FFAC28; }
+#curpon-tip > a:hover{ color: #DD4400; }
+#curpon-tip > em, #curpon-tip > em > i { position: absolute; bottom: -12px; left: 50%; margin-left: -6px; height: 0; width: 0; font-size: 0; line-height: 0; border: 6px solid transparent; border-top-color: #E4E4E4; }
+#curpon-tip > em > i { bottom: -4px; left: -0; border-top-color: #FFF; }
+
+/*更多优惠券的箭头*/
+.js-showmore-coupon > i { display: inline-block;display: inline-block;height: 10px;width: 7px;margin-left: 4px;background: url(https://c1.cgyouxi.com/website/orange/img/common/index/more.png?v=20160517) no-repeat center center; vertical-align: middle; }
+/*优惠券角标*/
+.curpon_free_game { position: relative; }
+.icon-coupon { position: absolute; right: 0; top: 0; height: 38px; width: 38px; background: url(https://c1.cgyouxi.com/website/orange/img/common/you_hui_quan/coupon.png) no-repeat center center; }
+
+
+.game-list img, .world-game-list img{
+    width:  100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.world-list > .recom-title {
+    position: relative;
+    border-bottom: 1px solid #E6E6E6;
+    border-bottom-right-radius: 8px;
+}
+
+
+.world-list > .recom-title > .switch.active {
+    color: #2E2F31;
+    border-bottom: 2px solid #FFAC28;
+}
+
+.world-list > .recom-title > .switch {
+    position: relative;
+    width: 80px;
+    margin-right: 26px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid transparent;
+    font-size: 18px;
+    text-align: center;
+    color: #9FA1A5;
+    transition: border,color .4s;
+}
+
+
+.world-list > .recom-title > .switch.active > i > em {
+    border-top-color: #F5F6F8 !important;
+    left: -8px;
+    bottom: -3.6px;
+}
+
+.world-list > .recom-title > .switch.active > i, .world-list > .recom-title > .switch.active > i > em {
+    position: absolute;
+    border-width: 6px 8px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+
+.world-list > .recom-title > .switch.active {
+    color: #2E2F31;
+    border-bottom: 2px solid #FFAC28;
+}
+
+
+.world-list > .recom-title > .switch.active > i {
+    left: 50%;
+    bottom: -12px;
+    margin-left: -8px;
+    border-top-color: #FFAC28;
+}
+
+.world-list > .recom-title > .switch {
+    position: relative;
+    width: 80px;
+    margin-right: 26px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid transparent;
+    font-size: 18px;
+    text-align: center;
+    color: #9FA1A5;
+    transition: border,color .4s;
+}
+
+
+.world-tab-list-renovate {
+  background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/worldList-renovate-hover.png?v=20160517) !important;
+  width: 12px;
+  height: 12px;
+  margin: -2.6px 0 0 0px;
+  transition: .3s;
+  display: inline-block;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+.game-link-all{
+  margin-right: 20px;
+  color: #2e2f31;
+  font-color: #2e2f31;
+  font-size: 12px;
+  float: right;
+  background-color: transparent;
+  line-height: 26px;
+  cursor: pointer; 
+  transition: .3s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.game-link-all a{
+  color: #2e2f31;
+}
+.world-tab-list-renovate-all {
+  background-image: url("../images/all.png") !important;
+  width: 12px;
+  height: 12px;
+  margin: -2.6px 0 0 0px;
+  transition: .3s;
+  display: inline-block;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  
+}
+
+.js-tag-refresh-shuffle{
+  color: #2e2f31;
+  font-size: 12px;
+  float: right;
+  background-color: transparent;
+  line-height: 26px;
+  cursor: pointer; 
+  transition: .3s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.game-list-1 > li > a > .details > .info > span{
+    line-height: 16px;
+}
+
+.editor_games.ed{
+  background-image: url(https://c1.cgyouxi.com/website/orange/img/common/index/worldList-collect-colour.png?v=20160517) !important;
+}
+.game_Collection_editor{
+    z-index: 1000 !important;
+}
+
+.tabEle_content {
+    width: 100%;
+    word-break: break-all;
+}
+
+.notification-count .new {
+    color: #F86334 !important;
+}
+
+.head > .top-bar > .user-box > span {
+    float: left;
+    height: 100%;
+    line-height: 48px;
+    padding: 0 9px;
+    transition: background-color .4s;
+}
+
+.notification-count .new .count {
+    display: inline;
+}
+.notification-count .count {
+    margin-left: 4px;
+    display: none;
+    font-size: 12px;
+}
+
+
+.main.jumpto-cotainer.mobile_page{
+    width: 100%;
+    padding-top: 40px;
+    padding-left: 40px;
+    margin: 0 auto;
+}
+
+#orgPicShow.mobile_page{
+  margin: 10px auto;
+  display: block;
+  width: 375px;
+  overflow: hidden;
+}
+
+.org-pic-show.mobile_page > .org-pic-show-inner > a{
+  left: 18px;
+}
+
+.classic-box .classic-title.mobile_page {
+    height: 38px;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
+.classic-tab-title.mobile_page{
+    display: none;
+}
+
+.classic-show.mobile_page, .recom-box.mobile_page{
+    position: initial;
+    width: 100%;
+    height: initial;
+    overflow: initial;
+}
+
+.mobile_page.recom-box > .recom-title > .switch{
+    margin-top: 10px;
+}
+.classic-show.mobile_page > .game-list-1{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-between;
+}
+
+.recom-show.mobile_page > .org-box-switcher > ul{
+  position: initial;
+}
+
+.classic-show.mobile_page > .game-list-1 > li{
+  width: 49%;
+  margin: 0 0 10px 3px;
+}
+
+.recom-box.mobile_page .recom-show-box{
+  height: initial;
+}
+.recom-box.mobile_page .recom-show {
+  height: initial;
+  overflow: initial;
+  position: relative;
+}
+
+.recom-box.mobile_page .org-box-switcher > ul{
+    position: initial;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 0px;
+}
+
+.recom-box.mobile_page .org-box-switcher .game-list-1 > li{
+    width: 49%;
+    margin: 0 0 16px 1px;
+}
+
+
+@media (max-width: 480px)
+  .pagination {
+    display: block;
+  }
+.pagination {
+    margin: 0;
+}
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.main.mobile_page .classic-box .classic-title .online-activity{
+  width: 100%;
+  margin-right: 0px;
+  padding-left: 0px;
+}
+
+.custom.mobile_page {
+    width: 100%;
+}
+
+
+.panel .panel-footer {
+    padding: 6px 15px;
+    border-top-color: #eee;
+    background: #fafafa;
+}
+
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.custom.mobile_page .world-list{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.custom.mobile_page .world-list .world-game .world-game-list .game-surface, .tag-tmp-list .world-game .world-game-list .game-surface{
+  width: 124%;
+}
+
+.custom.mobile_page .world-list .world-game, .tag-tmp-list .world-game {
+    height: initial;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 0px;
+}
+
+.custom.mobile_page .world-list .world-game .world-game-list, .tag-tmp-list .world-game .world-game-list{
+    width: 49%;
+    margin: 18px 0px 0 0px;
+    height: initial;
+    flex-basis: initial;
+
+}
+
+.world-list .world-game .world-game-list, .tag-tmp-list .world-game .world-game-list{
+    margin-left: 20px
+}
+
+.custom.mobile_page .world-list .world-game .world-game-list .game-message, .tag-tmp-list .world-game .world-game-list .game-message{
+    width: 100%;
+    padding: 0 1px;
+}
+
+.custom.mobile_page .world-list .world-game .world-game-list .game-surface .game-surface-img, .tag-tmp-list .world-game .world-game-list .game-surface .game-surface-img{
+    width: 81%;
+}
+
+.custom.mobile_page .world-list > .recom-title{
+    margin-right: 0px;
+}
+
+body.mobile_page{
+    /*width: 120%;*/
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.mobile_page .org-pic-show > .org-pic-show-txt-box{
+  width: 95%;
+}
+
+body.mobile_page .head > .top-bar{
+    width: 100%;
+}
+
+body.mobile_page .hm-t-container{
+  display: none;
+}
+
+.footer.mobile_page{
+    padding: 0px;
+    margin-left: 40px;
+    border-top: none;
+}
+
+.classic-tab-title.mobile_page-item{
+    width: 100%;
+    display: block;
+    float: none;
+    margin-bottom: 15px;
+}
+
+
+.classic-tab-title.mobile_page-item .classic-refesh-box{
+    position: initial;
+    float: right;
+}
+
+.head.mobile_page{
+    line-height: 35px;
+    top: 10px;
+}
+
+.head.mobile_page > .top-bar > .user-box > span{
+    line-height: 35px;
+}
+
+.head.mobile_page .logo a.custom-link{
+    line-height: 35px;
+}
+
+.head.mobile_page > .top-bar > div{
+    height: initial;
+}
+
+.head.mobile_page > .top-bar > .logo > a {
+    margin-left: 5px;
+}
+
+/*.head.mobile_page > .top-bar > .logo > a.first{
+    margin-left: 40px;
+}*/
+
+.head.mobile_page .fr{
+    margin-right: 40px;
+    float: none;
+}
+
+.head.mobile_page .top-bar{
+    padding-left: 40px;
+}
+
+
+.paging {
+  height: 4rem;
+  width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  margin: auto;
+}
+
+.paging span {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    line-height: 4rem;
+    overflow: hidden;
+}
+
+.paging a{
+    color: #2E2F31;
+}
+
+.paging button {
+    display: inline-block;
+    height: 2.2rem;
+    width: 2.2rem;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: #f6f6f6;
+}
+
+.paging .disabled {
+    color: #DDD;
+}
+
+input#js-skip-input {
+    width: 50px;
+}
+
+.mobile_page .world-list .world-game .world-game-list .game-shade, .tag-tmp-list .world-game .world-game-list .game-shade{
+    width: 81%;
+}
+
+.classic-show.mobile_page{
+    margin-left: 0px;
+}
+
+
+.main.nohengfu{
+  margin-top: 60px;
+}
+
+
+
+.comment-list .media{
+    width: 100%;
+    margin-left: initial;
+    margin-right: initial;
+}
+
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+/* http://www.ylefu.com/post/434.html */
+.comment-list::-webkit-scrollbar{
+
+    width: 4px;
+
+    height: 2px;
+
+    background-color: initial;
+
+}
+
+/*定义滚动条的轨道，内阴影及圆角*/
+
+.comment-list::-webkit-scrollbar-track{
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+
+    border-radius: 10px;
+
+    background-color: initial;
+
+}
+
+/*定义滑块，内阴影及圆角*/
+
+.comment-list::-webkit-scrollbar-thumb{
+
+    /*width: 10px;*/
+
+    height: 20px;
+
+    border-radius: 10px;
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+
+    background-color: black;
+
+}
+
+@media screen and (max-width:750px) {
+    ul.ad-game-list{
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .recom-show > .game-list-1.ad-game-list{
+        margin-left: 0px;
+    }
+
+    ul.ad-game-list li{
+      width: 49%;
+      margin: 0px;
+    }
+    ul.ad-game-list li:first-child{
+        margin-right: 5px;
+    }
+}

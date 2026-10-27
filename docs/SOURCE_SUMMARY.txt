@@ -1,0 +1,179 @@
+GHI CHU TOM TAT CAP NHAT SOURCE TU CHAN GIOI
+Ngay tong hop: 2026-07-11
+
+1. Database va JSON
+- Da chuyen mot so bang cau hinh tinh sang doc tu JSON, gom cac nhom nhu trang bi, duoc pham, dan duoc, nhiem vu, map...
+- Cac bang da tich hop JSON thi nen xoa bang cau hinh cu trong database, chi giu bang du lieu rieng cua nguoi choi.
+- Da tao huong dan / ghi chu rieng ve tao database va tach cac lenh tao bang ra file setup rieng, tranh de logic tao DB nam rai rac trong tung tinh nang.
+- File lien quan:
+  - WWW/database_setup.php
+  - WWW/database_json_cleanup.sql
+  - WWW/class/config/
+  - WWW/class/function/
+
+2. Danh sach map va anh ban do
+- Danh sach map nam trong cau hinh / database map va duoc hien thi qua phan ban do.
+- Thu muc anh ban do: WWW/dt/ditu/
+- Da thiet ke lai anh ban do theo tung khu vuc, dua tren du lieu map hien tai, khong dung anh minh hoa ngau nhien.
+- Da dong bo loi ten map Bich Son / Cuu Dinh Son de tranh hien thi ten o duong di gan nhat khac voi anh ban do.
+- Neu them map moi can dong bo ca:
+  - Du lieu map / vi tri / loi di
+  - Anh ban do trong WWW/dt/ditu/
+  - Cache hoac version anh neu trinh duyet van hien anh cu
+
+3. Toa Yeu Thap
+- Da tao pho ban leo thap ten Toa Yeu Thap.
+- Quy mo: 150 tang.
+- Moi tang boss manh hon, nguoi choi qua tang nhan tu vi va kinh nghiem vo cong.
+- Co banner rieng, giao dien rieng, trang thai boss, tien do tang, ky luc.
+- Khi thieu mau thi co nut ve hoi phuc.
+- Viec can sua tiep theo yeu cau moi:
+  - Neu chi mat mau: cho ve hoi phuc / dung duoc pham.
+  - Neu dang trong thuong: khong ve tui duoc pham, phai dieu huong den NPC Van Du Tien Y [Tri Lieu].
+
+4. Van Dinh Dai
+- Da de xuat va tao dau truong tranh top ten Van Dinh Dai.
+- Chien thang tang hang, tang tu vi va kinh nghiem vo cong.
+- Top 10 moi ngay co thuong Linh thach va Ma thach, giam dan tu top 1 den top 10.
+- Thoi gian tong ket / phat thuong co dinh: 21:00 hang ngay.
+- Co huong dan chay tu dong tren Windows va Linux bang cron / scheduled task.
+- Co banner rieng nhu Toa Yeu Thap.
+
+5. Ham Mo Linh Khoang
+- Da tao tinh nang Ham Mo de nguoi choi dao khoang.
+- Co gioi han luot dao moi ngay.
+- Co phi dao bang Ma thach.
+- Da tang phi dao len 10 Ma thach / luot.
+- Da giam san luong Linh thach vi ban dau roi qua nhieu.
+- Da them cac loai khoang:
+  - Da vun
+  - Linh thach tho
+  - Manh linh quang
+  - Linh thach nguyen khoi
+  - Linh thach tinh
+- Hai loai hiem hon cho nhieu Linh thach hon nhung ti le thap hon.
+- Ti le Ma thach rat thap.
+- Co banner rieng.
+
+6. Banner va giao dien
+- Da them / cap nhat banner cho:
+  - Toa Yeu Thap
+  - Van Dinh Dai
+  - Ham Mo Linh Khoang
+  - Bang Nhiem Vu
+- Da chuyen CSS rai rac ve WWW/css/mystyle.css de gon hon.
+- Da nhieu lan tang version CSS trong WWW/game.php de tranh trinh duyet dung cache cu.
+- Luu y: mot so file hien co van co chu tieng Viet bi lech ma do encoding cu, can can than khi sua bang editor.
+
+7. Bang Nhiem Vu
+- Da cap nhat giao dien bang nhiem vu co banner rieng.
+- Da can chinh mot so thanh phan UI bi lech dong, dac biet news-task-mark va chu "nhiem vu".
+- Luu y khi sua tiep: tranh de line-height / text-align lam box bi dan thua.
+
+8. Trang bi
+- Da cap nhat lai danh sach loai trang bi theo thu tu:
+  1. Vu khi
+  2. Mu
+  3. Phong cu
+  4. Giay
+  5. Gang tay
+  6. Dai lung
+  7. Hang lien
+  8. Nhan
+  9. Trang suc
+  10. Phi phong
+  11. Canh
+  12. Phap bao
+  13. Am khi
+  14. Lenh bai
+  15. Thu tich
+  16. Toa ky
+- Da sua ten Bao vu phe hon lien thanh Bao vu huyen quan theo yeu cau.
+- Da dong bo nhieu noi su dung slot trang bi:
+  - WWW/game/zhuangtai.php
+  - WWW/game/otherzhuangtai.php
+  - WWW/game/zbinfo.php
+  - WWW/game/zbinfo_sys.php
+  - WWW/game/taozhuang.php
+  - WWW/class/config/zhuangbei_config.json
+  - WWW/images/items/manifest.json
+- Da gop Nhan trai / Nhan phai thanh mot loai Nhan, nen co the co trang bi thua can xu ly neu nguoi choi dang mac ca hai nhan cu.
+- Da cap nhat tui do -> trang bi:
+  - Nut cu: Ban, Phan giai
+  - Nut moi: Phan Giai, Trang bi
+- Da cap nhat trang chi tiet trang bi:
+  - Nut "Mac trang bi" doi thanh "Phan giai trang bi"
+  - Nut "Phan giai trang bi" doi thanh "Ban"
+- Viec can sua tiep theo yeu cau moi:
+  - Cuong hoa trang bi khong duoc lon hon cap nhan vat.
+  - Neu trang bi +14 ma nhan vat cap 10 thi khong duoc cuong hoa len +15.
+  - Can chan ca logic xu ly upzb trong WWW/game/zbinfo.php va giao dien nut cuong hoa.
+
+9. Tui do va duoc pham
+- Da them nut "Tui duoc pham" o man hinh trong thuong, sau do ban yeu cau sua lai:
+  - Truong hop trong thuong: phai di Van Du Tien Y [Tri Lieu], khong phai ve tui duoc pham.
+  - Tui duoc pham chi dung cho hoi mau khi chua bi trong thuong.
+- Da them nut "Su dung" truc tiep trong tui do -> duoc pham, nam canh nut "Xem".
+- Nut "Su dung" dung luong duoc pham hien co, khong can vao trang chi tiet.
+- Trang chi tiet duoc pham van co:
+  - Gan duoc pham vao o dung nhanh 1 / 2 / 3
+  - Su dung duoc pham
+- File lien quan:
+  - WWW/game/bagyp.php
+  - WWW/game/ypinfo.php
+  - WWW/game/nowmid.php
+  - WWW/css/mystyle.css
+
+10. Trong thuong va tri lieu
+- Trang thai trong thuong hien dang chan tiep tuc chien dau / di chuyen.
+- Text hien co can chinh theo dung logic:
+  - "Dang trong thuong" thi phai den NPC Van Du Tien Y [Tri Lieu].
+  - Duoc pham chi dung khi con co the hoi HP, khong thay the tri lieu trong thuong.
+- NPC lien quan nam trong:
+  - WWW/class/config/npc_config.json
+  - Ten NPC: Van Du Tien Y [Tri Lieu]
+- Viec can lam tiep:
+  - Tim mid / npc command den Van Du Tien Y.
+  - Sua nut trong WWW/game/nowmid.php.
+  - Sua nut trong WWW/game/toayeuthap.php.
+  - Neu co thong bao dung duoc pham that bai trong WWW/game/ypinfo.php thi nen them link den Van Du Tien Y.
+
+11. CSS / UI can luu y
+- File CSS chinh: WWW/css/mystyle.css
+- Da co nhieu rule them o cuoi file de uu tien ghi de cac rule cu.
+- Khi them nut moi nen dung inline-flex hoac grid de can doc chuan, tranh bi lech chu len tren.
+- Cac nut da sua gan day:
+  - .tcg-injured-btn
+  - .tcg-injured-btn.medicine
+  - .bag-btn.use-now
+  - .bag-btn.equip
+  - .zb-action-resolve
+  - .zb-action-sell
+
+12. Cac file PHP can test sau khi sua
+- Dung PHP 5.6 trong workspace:
+  D:\XXJserver\phpstudy_pro\Extensions\php\php5.6.9nts\php.exe
+- Lenh test cu phap mau:
+  php.exe -l WWW/game/ten_file.php
+- Cac file nen test neu sua cac phan hien tai:
+  - WWW/game.php
+  - WWW/game/nowmid.php
+  - WWW/game/toayeuthap.php
+  - WWW/game/zbinfo.php
+  - WWW/game/bagzb.php
+  - WWW/game/bagyp.php
+  - WWW/game/ypinfo.php
+
+13. Viec moi nhat dang can xu ly tiep
+- Sua logic trong thuong:
+  - Man hinh trong thuong khong hien nut Tui duoc pham nua.
+  - Doi thanh nut den Van Du Tien Y [Tri Lieu].
+  - Toa Yeu Thap cung phan biet mat mau va trong thuong.
+- Sua logic cuong hoa:
+  - Cap cuong hoa khong duoc lon hon cap nhan vat.
+  - Chan hanh dong upzb neu qianghua >= ulv.
+  - Hien thong bao ro: "Cap cuong hoa khong duoc lon hon cap nhan vat".
+- Kiem tra lai cac nut trang bi moi:
+  - Tui do -> Trang bi: Phan Giai, Trang bi.
+  - Chi tiet trang bi: Phan giai trang bi, Ban.
+

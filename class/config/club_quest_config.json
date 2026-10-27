@@ -1,0 +1,130 @@
+{
+    "daily_min": 7,
+    "daily_max": 7,
+    "completion_bonus_exp": 500,
+    "types": {
+        "donate_lt": {
+            "name": "Quyên góp Linh Thạch",
+            "icon": "💰",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 50, "reward": 200, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 100, "reward": 400, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 200, "reward": 800, "color": "#f87171" }
+            ],
+            "track_field": "uyxb",
+            "track_action": "donate"
+        },
+        "boss_kill": {
+            "name": "Tấn Công Boss",
+            "icon": "🐉",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 200, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 3, "reward": 400, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 5, "reward": 800, "color": "#f87171" }
+            ],
+            "track_action": "boss_attack"
+        },
+        "boss_damage": {
+            "name": "Gây Sát Thương Boss",
+            "icon": "⚔️",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 50000, "reward": 300, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 100000, "reward": 600, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 200000, "reward": 1200, "color": "#f87171" }
+            ],
+            "track_action": "boss_damage"
+        },
+        "meditate": {
+            "name": "Tu Luyện",
+            "icon": "🧘",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 30, "reward": 150, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 60, "reward": 300, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 120, "reward": 600, "color": "#f87171" }
+            ],
+            "track_unit": "phút",
+            "track_action": "meditate"
+        },
+        "pve_win": {
+            "name": "Chiến Đấu PVE",
+            "icon": "🗡️",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 5, "reward": 100, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 10, "reward": 200, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 20, "reward": 400, "color": "#f87171" }
+            ],
+            "track_action": "pve_win"
+        },
+        "online": {
+            "name": "Online",
+            "icon": "⏰",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 100, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 2, "reward": 200, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 4, "reward": 400, "color": "#f87171" }
+            ],
+            "track_unit": "giờ",
+            "track_action": "online"
+        },
+        "alchemy": {
+            "name": "Luyện Đan",
+            "icon": "🔥",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 150, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 3, "reward": 350, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 5, "reward": 700, "color": "#f87171" }
+            ],
+            "track_action": "alchemy"
+        },
+        "alchemy_craft": {
+            "name": "Luyện Đan Thành Công",
+            "icon": "⚗️",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 2, "reward": 200, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 5, "reward": 500, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 10, "reward": 1000, "color": "#f87171" }
+            ],
+            "track_action": "alchemy_craft"
+        },
+        "alchemy_high_van": {
+            "name": "Luyện Đan Cao Cấp",
+            "icon": "✨",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 300, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 3, "reward": 700, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 5, "reward": 1500, "color": "#f87171" }
+            ],
+            "track_action": "alchemy_high_van"
+        },
+        "alchemy_no_toxin": {
+            "name": "Luyện Đan Không Độc",
+            "icon": "💚",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 250, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 3, "reward": 600, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 5, "reward": 1200, "color": "#f87171" }
+            ],
+            "track_action": "alchemy_no_toxin"
+        },
+        "detox": {
+            "name": "Giải Độc",
+            "icon": "💊",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 150, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 3, "reward": 350, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 5, "reward": 700, "color": "#f87171" }
+            ],
+            "track_action": "detox"
+        },
+        "alchemy_rank_up": {
+            "name": "Nâng Cấp Luyện Đan Sư",
+            "icon": "👨‍🔬",
+            "tiers": [
+                { "tier": 1, "name": "Dễ", "target": 1, "reward": 500, "color": "#4ade80" },
+                { "tier": 2, "name": "Trung", "target": 2, "reward": 1000, "color": "#facc15" },
+                { "tier": 3, "name": "Khó", "target": 3, "reward": 2000, "color": "#f87171" }
+            ],
+            "track_action": "alchemy_rank_up"
+        }
+    }
+}
