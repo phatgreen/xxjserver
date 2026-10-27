@@ -1,6 +1,6 @@
 # KẾ HOẠCH MỞ RỘNG NỘI DUNG — theo cấp độ & cảnh giới mới
 
-> Lập: 2026-10-27 · Trạng thái: **kế hoạch, đang chờ dữ liệu bản đồ + mốc cấp mục tiêu** (mục 6).
+> Lập: 2026-10-27 · Trạng thái: **đã có dump DB (`docs/db/game.sql`)**, chờ mốc cấp mục tiêu (mục 6).
 > Bối cảnh: game ban đầu chỉ có tu luyện, võ công, công pháp, sủng vật cơ bản. Nay đã thêm Thiên Phú, Linh Căn,
 > Huyết Mạch, Thể Chất, Luyện Đan, Chế Tạo, Thế Võ, Cộng Hưởng… và mở cảnh giới rất xa, nhưng **nội dung chưa theo kịp**.
 
@@ -17,6 +17,36 @@
 | Nhiệm vụ NPC | 44 nhiệm vụ (`renwu_config.json`) — gần như đều không ghi cấp | Không có lộ trình theo cấp |
 | Võ công | 29 bộ, 4 phẩm, yêu cầu cảnh giới tối đa 25 | Mỏng ở cảnh giới cao, chỉ có 1 nguồn (Thiên Cơ Các) |
 | Công pháp | 28 bộ, yêu cầu cảnh giới tối đa 43 | Như trên |
+
+### 1b. Bản đồ theo khu vực (từ dump DB, 142 bản đồ / 15 khu vực)
+
+| qyid | Khu vực | Số map | Cấp quái |
+|---|---|---|---|
+| 14 | Tân Thủ Thôn | 9 | 1–12 |
+| 16 | Tụ Tiên Thành | 9 | 13–18 |
+| 17 | Ma Hóa Khu Vực | 11 | 19–27 |
+| 18 | Vạn Thiên Sơn Vực | 13 | 28–51 |
+| 20 | Yêu Vương Điện | 1 | 50–56 |
+| 21 | Viêm Dương Thành | 10 | 45–58 |
+| 22 | Thông Thiên Phủ | 9 | 51–60 |
+| 23 | Thiên Không Thành | 7 | 57–59 |
+| 25 | Tịch Dương Thành | 10 | 61–71 |
+| 26 | Thiên Thủy Cốc | 10 | 57–77 |
+| 24 | Hoa Quả Sơn | 13 | 92–100 |
+| 29 | Thiên Tuyệt Địa | 1 | 48 |
+| 27 | Tây Lương Địa | 9 | **chưa có quái** |
+| 28 | Hoang Thiên Lý | 11 | **chưa có quái** |
+| 30 | Hồi Đầu Ngạn | 10 | **chưa có quái** |
+| 31 | (chưa đặt tên) | 9 | **chưa có quái** |
+
+⇒ Có sẵn **39 bản đồ trống** ở 4 khu — đợt B dùng chúng trước (thêm quái vào `mid.mgid`), thiếu mới tạo map.
+Dải cấp 78–91 cũng đang trống giữa Thiên Thủy Cốc và Hoa Quả Sơn.
+
+## 1c. Chạy thử trên cloud
+
+- MariaDB + dump `docs/db/game.sql` (cần `innodb_strict_mode=0`), PHP 8.3 chạy **bản sao** có vá `parse_str` 1 tham số
+  (chỉ để thử, không sửa code thật — game vẫn là PHP 5.6). Đã kiểm chứng thật: thế võ PVE, Boss tụ lực/phá thế,
+  trang Võ Công / Công Pháp / Cộng Hưởng.
 
 ## 2. Nguyên tắc
 
