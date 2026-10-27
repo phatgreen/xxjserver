@@ -128,7 +128,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
     <div class="tpc-cover">PHÚ CÁC<i class="tp-emoji">🗄</i><span>18 thiên phú bẩm sinh</span></div>
     <div class="tpc-head">
         <span>Sưu tầm</span>
-        <span>Đã có <b><?= $tpcHaveCount ?>/18</b> · tf <b><?= intval($tpcW['tf']) ?></b> · Linh Thạch <b><?= number_format($tpcW['uyxb'], 0, ',', '.') ?></b></span>
+        <span>Đã có <b><?= $tpcHaveCount ?>/18</b> · Điểm Thiên Phú <b><?= intval($tpcW['tf']) ?></b> · Linh Thạch <b><?= number_format($tpcW['uyxb'], 0, ',', '.') ?></b></span>
     </div>
 <?php if ($tpcPick > 0): ?>
     <div class="tp-note">Đang chọn thiên phú cho <b>Phú Vi <?= $tpcPick ?></b> — chạm một ô trong lưới bên dưới.</div>
@@ -167,15 +167,15 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
             <span class="tpc-detail-name"><i class="tp-emoji"><?= $tpcRow['icon'] ?></i> <?= htmlspecialchars($tpcDef ? $tpcDef['name'] : '?') ?></span>
             <span class="tpc-detail-q"><?php
                 echo $tpcHave
-                    ? (htmlspecialchars(\player\tianfu_quality_name($tpcQ)) . ' · trần Lv ' . $tpcCapLv)
+                    ? (htmlspecialchars(\player\tianfu_quality_name($tpcQ)) . ' · cấp tối đa ' . $tpcCapLv)
                     : 'Chưa khai mở';
             ?></span>
         </div>
         <div class="tpc-detail-desc"><?= htmlspecialchars($tpcDef ? $tpcDef['desc'] : '') ?></div>
         <div class="tpc-detail-rows">
-            <div><i class="tp-emoji">🧩</i> <?= htmlspecialchars($tpcGroupName) ?> · <b><?= htmlspecialchars($tpcGateName) ?></b> <?= $tpcPerTxt ?><?= $tpcSubTxt ?> <span class="tp-attr-cap">(trần <?= $tpcCap ?>%)</span></div>
+            <div><i class="tp-emoji">🧩</i> <?= htmlspecialchars($tpcGroupName) ?> · <b><?= htmlspecialchars($tpcGateName) ?></b> <?= $tpcPerTxt ?><?= $tpcSubTxt ?> <span class="tp-attr-cap">(tối đa <?= $tpcCap ?>%)</span></div>
 <?php if ($tpcHave): ?>
-            <div><i class="tp-emoji">📈</i> Lv <b><?= $tpcLv ?></b>/<?= $tpcCapLv ?> · phí kế tiếp <b><?= intval($tpcLvCost["tf"]) ?></b> tf + <b><?= number_format(intval($tpcLvCost["linh_thach"]), 0, ',', '.') ?></b> Linh Thạch</div>
+            <div><i class="tp-emoji">📈</i> Lv <b><?= $tpcLv ?></b>/<?= $tpcCapLv ?> · phí kế tiếp <b><?= intval($tpcLvCost["tf"]) ?></b> Điểm Thiên Phú + <b><?= number_format(intval($tpcLvCost["linh_thach"]), 0, ',', '.') ?></b> Linh Thạch</div>
             <div class="<?= $tpcSlot > 0 ? 'ok' : 'no' ?>"><i class="tp-emoji"><?= $tpcSlot > 0 ? '✅' : '⭕' ?></i> <?php
                 echo $tpcSlot > 0
                     ? ('Đang phát huy — Phú Vi ' . $tpcSlot)
@@ -193,7 +193,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
         </div>
 <?php endif; ?>
 <?php if ($tpcHave && $tpcQ < 10 && count($tpcBrRows) > 0): ?>
-        <div class="tp-gate" style="--tp-color:<?= $tpcColor ?>"><i class="tp-emoji"><?= \player\tianfu_quality_icon($tpcQ) ?></i> <?= htmlspecialchars(\player\tianfu_quality_name($tpcQ)) ?> → <i class="tp-emoji"><?= $tpcNextQ['icon'] ?></i> <?= htmlspecialchars($tpcNextQ['name']) ?> · trần <?= intval($tpcNextQ['lv_cap']) ?></div>
+        <div class="tp-gate" style="--tp-color:<?= $tpcColor ?>"><i class="tp-emoji"><?= \player\tianfu_quality_icon($tpcQ) ?></i> <?= htmlspecialchars(\player\tianfu_quality_name($tpcQ)) ?> → <i class="tp-emoji"><?= $tpcNextQ['icon'] ?></i> <?= htmlspecialchars($tpcNextQ['name']) ?> · cấp tối đa <?= intval($tpcNextQ['lv_cap']) ?></div>
         <div class="tp-reqs"><?php foreach ($tpcBrRows as $tpcBr): ?>
             <div><span class="<?= empty($tpcBr['ok']) ? 'no' : 'ok' ?>"><?= empty($tpcBr['ok']) ? '✗' : '✓' ?></span> <?= htmlspecialchars($tpcBr['text']) ?></div>
 <?php endforeach; ?>

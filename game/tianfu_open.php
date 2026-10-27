@@ -71,7 +71,7 @@ $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
 <?php if ($tpoROk): ?>
         <div class="tpo-result tp-fx<?= $tpoRFx ?>" style="--tp-tier:<?= $tpoRColor ?>">
             <div class="tpo-result-name"><i class="tp-emoji"><?= $tpoRIcon ?></i> <?= htmlspecialchars($tpoRName) ?></div>
-            <div class="tpo-result-q"><?= htmlspecialchars($tpoRQName) ?> · trần Lv <?= $tpoRCap ?></div>
+            <div class="tpo-result-q"><?= htmlspecialchars($tpoRQName) ?> · cấp tối đa <?= $tpoRCap ?></div>
             <div class="tpo-result-new"><?= $tpoRNew ? 'Thiên phú MỚI — đã vào Phú Các' : 'Đã có sẵn — tăng 1 phẩm chất' ?></div>
         </div>
 <?php endif; ?>
@@ -84,7 +84,7 @@ $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
         </form>
 
         <table class="tpo-table">
-            <tr><th>Phẩm</th><th>Danh xưng</th><th>Trần Lv</th><th>Tỷ lệ</th></tr>
+            <tr><th>Phẩm</th><th>Danh xưng</th><th>Cấp tối đa</th><th>Tỷ lệ</th></tr>
 <?php foreach ($tpoQs as $tpoQi => $tpoQd):
     $tpoPct = $tpoSum > 0 ? round(floatval($tpoQd['weight']) / $tpoSum * 100, 2) : 0.0;
 ?>

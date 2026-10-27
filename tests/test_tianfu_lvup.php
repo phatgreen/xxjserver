@@ -47,7 +47,7 @@ tassert('LT 100000 -> 99800', $W['uyxb'], 99800);
 for ($i = 1; $i < 10; $i++) { \player\tianfu_lvup($TESTSID, $db, 1); }
 $R = \player\tianfu_lvup($TESTSID, $db, 1);
 tassert('lv 10 la tran q1', $R['ok'], false);
-tassert('msg bao tran', strpos($R['msg'], 'trần') !== false, true);
+tassert('msg bao tran', strpos($R['msg'], 'cấp tối đa') !== false, true);
 $O = \player\tianfu_owned($TESTSID, $db);
 tassert('lv dung bang 10', $O[1]['lv'], 10);
 

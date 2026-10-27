@@ -568,7 +568,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_lvup')) {
         $cap = tianfu_lv_cap(intval($O[$id]['quality']));
         if ($lv >= $cap) {
             $empty['cap'] = $cap; $empty['lv'] = $lv;
-            $empty['msg'] = $def['name'] . ' đã đạt trần ' . $cap . ' cấp — phải Dot Pham để luyện tiếp.';
+            $empty['msg'] = $def['name'] . ' đã đạt cấp tối đa ' . $cap . ' — phải Đột Phá phẩm chất để luyện tiếp.';
             return $empty;
         }
 
@@ -636,7 +636,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_break')) {
         }
         if ($lv < $cap) {
             $empty['quality'] = $q;
-            $empty['msg'] = 'Cần đạt trần cấp ' . $cap . ' trước khi Dot Pham — hiện ' . $lv . '.';
+            $empty['msg'] = 'Cần đạt cấp tối đa ' . $cap . ' trước khi Đột Phá phẩm chất — hiện cấp ' . $lv . '.';
             return $empty;
         }
 
@@ -701,7 +701,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_lvup_rows')) {
             tianfu_row_state('Linh Thạch: ' . number_format($W['uyxb'], 0, ',', '.') . ' / '
                              . number_format($cost['linh_thach'], 0, ',', '.'),
                              $W['uyxb'] >= $cost['linh_thach']),
-            tianfu_row_state('Cấp: ' . intval($O[$id]['lv']) . ' / ' . $cap . ' (trần '
+            tianfu_row_state('Cấp: ' . intval($O[$id]['lv']) . ' / ' . $cap . ' (tối đa của '
                              . tianfu_quality_name(intval($O[$id]['quality'])) . ')',
                              intval($O[$id]['lv']) < $cap),
         );
@@ -723,7 +723,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_break_rows')) {
             return array(tianfu_row_state('Đã ở phẩm chất cao nhất', false));
         }
         return array(
-            tianfu_row_state('Cấp trần: ' . $lv . ' / ' . $cap, $lv >= $cap),
+            tianfu_row_state('Đạt cấp tối đa: ' . $lv . ' / ' . $cap, $lv >= $cap),
             tianfu_row_state('Điểm Thiên Phú: ' . $W['tf'] . ' / ' . $cost['tf'],
                              $W['tf'] >= $cost['tf']),
             tianfu_row_state('Linh Thạch: ' . number_format($W['uyxb'], 0, ',', '.') . ' / '
@@ -776,7 +776,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
         $bad  = array('ok' => false, 'slot' => $slot, 'moved' => array(), 'msg' => '',
                       'mirror' => array());
 
-        if ($slot < 0 || $slot > 4) { $bad['msg'] = 'Phu Vi không hợp lệ.'; return $bad; }
+        if ($slot < 0 || $slot > 4) { $bad['msg'] = 'Phú Vi không hợp lệ.'; return $bad; }
         if ($id === 0 && $slot === 0) { $bad['msg'] = 'Không có thay đổi.'; return $bad; }
 
         $O   = tianfu_owned($sid, $dblj);
@@ -792,7 +792,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
                 if (!in_array($slot, tianfu_slot_open($W['ulv']), true)) {
                     $sd = array();
                     foreach (tianfu_slot_defs() as $s) $sd[intval($s['i'])] = intval($s['ulv']);
-                    $bad['msg'] = 'Phu Vi ' . $slot . ' chưa mở — cần cấp ' . $sd[$slot]
+                    $bad['msg'] = 'Phú Vi ' . $slot . ' chưa mở — cần cấp ' . $sd[$slot]
                                 . ', đang cấp ' . $W['ulv'] . '.';
                     return $bad;
                 }
@@ -814,7 +814,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
             if ($target === 0) { $bad['msg'] = 'Thiên phú này chưa được kích hoạt.'; return $bad; }
             $plan[$target] = 0;
         } elseif ($id === 0) {                      // xoa o
-            if (!isset($plan[$slot])) { $bad['msg'] = 'Phu Vi này đang trống.'; return $bad; }
+            if (!isset($plan[$slot])) { $bad['msg'] = 'Phú Vi này đang trống.'; return $bad; }
             $plan[$slot] = 0;
         } else {
             $prev = isset($plan[$slot]) ? intval($plan[$slot]) : 0;
@@ -840,7 +840,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
             $dblj->commit();
         } catch (Exception $e) {
             $dblj->rollBack();
-            $bad['msg'] = 'Thay đổi Phu Vi thất bại, thử lại sau.';
+            $bad['msg'] = 'Thay đổi Phú Vi thất bại, thử lại sau.';
             return $bad;
         }
 

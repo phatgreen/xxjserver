@@ -132,7 +132,7 @@ $tpPostCmd = $encode->encode("cmd=tianfu&grp=$tpView&sid=$sid");
     <div class="tp-head">
         <div class="tp-hrow">
             <span class="tp-title">THIÊN PHÚ</span>
-            <span class="tp-badge" style="border-color:<?= $tpTierColor ?>66;color:<?= $tpTierColor ?>"><i class="tp-badge-ico"><?= $tpQIcon ?></i><?= htmlspecialchars($tpQName) ?> · trần <?= $tpLvCap ?></span>
+            <span class="tp-badge" style="border-color:<?= $tpTierColor ?>66;color:<?= $tpTierColor ?>"><i class="tp-badge-ico"><?= $tpQIcon ?></i><?= htmlspecialchars($tpQName) ?> · cấp tối đa <?= $tpLvCap ?></span>
         </div>
     </div>
 
@@ -204,11 +204,11 @@ foreach ($tpSlots as $tpSd):
                 <div class="tp-forge-pct"><?= $tpPerTxt ?> · <?= htmlspecialchars($tpGateName) ?>: <b><?= $tpNowPct ?><?= htmlspecialchars($tpGateUnit) ?></b></div>
             </div>
 <?php if ($tpAtCap): ?>
-            <div class="tp-note dim">Trần <?= $tpLvCap ?> cấp — phải <b>Đột Phá</b> phẩm chất mới luyện tiếp được.</div>
+            <div class="tp-note dim">Đã đạt cấp tối đa <?= $tpLvCap ?> — phải <b>Đột Phá</b> phẩm chất mới luyện tiếp được.</div>
 <?php else: ?>
             <div class="tp-forge-row">
                 <div class="tp-forge-cost">
-                    <span class="<?= $tpTfOk ? 'ok' : 'no' ?>"><i class="tp-emoji">🎯</i> Điểm tf <b><?= intval($tpW['tf']) ?>/<?= $tpCostTf ?></b></span>
+                    <span class="<?= $tpTfOk ? 'ok' : 'no' ?>"><i class="tp-emoji">🎯</i> Điểm Thiên Phú <b><?= intval($tpW['tf']) ?>/<?= $tpCostTf ?></b></span>
                     <span class="<?= $tpLtOk ? 'ok' : 'no' ?>"><i class="tp-emoji">💰</i> Linh Thạch <b><?= number_format($tpW['uyxb'], 0, ',', '.') ?>/<?= number_format($tpCostLt, 0, ',', '.') ?></b></span>
                 </div>
                 <form method="post" action="?cmd=<?= $tpPostCmd ?>">
@@ -235,7 +235,7 @@ foreach ($tpSlots as $tpSd):
 <!-- ===== CARD 2: 2 cot — ky nang kich hoat | Dot Pham (4 Phu Vi da len tren anh) ===== -->
 <div class="tp-card tp-cols">
     <div class="tp-col">
-        <div class="tp-h3">Kỹ Năng Kích Hoạt <span class="tp-attr-cap">trần <?= $tpCap ?>%/cổng</span></div>
+        <div class="tp-h3">Kỹ Năng Kích Hoạt <span class="tp-attr-cap">tối đa <?= $tpCap ?>% mỗi dòng</span></div>
         <div class="tp-attrs">
 <?php foreach ($tpGates as $tpGkey => $tpGd):
     $tpVal = floatval($tpB[$tpGkey]);
@@ -275,7 +275,7 @@ foreach ($tpSlots as $tpSd):
         <div class="tp-gate" style="--tp-color:<?= $tpTierColor ?>"><?= $tpQIcon ?> <?= htmlspecialchars($tpQName) ?></div>
         <div class="tp-reqs">Đạo Phẩm là cực hạn của thiên phú.</div>
 <?php else: ?>
-        <div class="tp-gate" style="--tp-color:<?= $tpNextQd['color'] ?>"><i class="tp-emoji"><?= $tpQIcon ?></i> <?= htmlspecialchars($tpQName) ?> → <i class="tp-emoji"><?= $tpNextQd['icon'] ?></i> <?= htmlspecialchars($tpNextQd['name']) ?> · trần <?= intval($tpNextQd['lv_cap']) ?></div>
+        <div class="tp-gate" style="--tp-color:<?= $tpNextQd['color'] ?>"><i class="tp-emoji"><?= $tpQIcon ?></i> <?= htmlspecialchars($tpQName) ?> → <i class="tp-emoji"><?= $tpNextQd['icon'] ?></i> <?= htmlspecialchars($tpNextQd['name']) ?> · cấp tối đa <?= intval($tpNextQd['lv_cap']) ?></div>
         <div class="tp-reqs">
 <?php foreach ($tpBreakRows as $tpBr): ?>
             <div><span class="<?= $tpBr['ok'] ? 'ok' : 'no' ?>">[<?= $tpBr['ok'] ? 'Đủ' : 'Thiếu' ?>]</span> <?= htmlspecialchars($tpBr['text']) ?></div>
