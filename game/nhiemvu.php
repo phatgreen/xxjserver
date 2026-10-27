@@ -135,6 +135,10 @@ $html = <<<HTML
 .nv-achieve-cat{font-weight:700;color:#f0e6d3;font-size:13px;margin-bottom:6px}
 .nv-achieve-cat small{font-weight:400;color:#888;font-size:11px}
 .nv-claim-all-wrap{text-align:center;padding:12px 0 4px}
+.nv-ch>summary{cursor:pointer;list-style:none;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.nv-ch>summary::-webkit-details-marker{display:none}
+.nv-ch>summary:before{content:'▸ ';color:#888}
+.nv-ch[open]>summary:before{content:'▾ '}
 </style>
 <div class="nv-wrap">
     <div class="nv-tabs">{$tabHtml}</div>
@@ -350,10 +354,18 @@ elseif ($tab === 'main') {
     if (empty($mainQuests)) {
         $html .= '<div class="nv-empty">Chưa có nhiệm vụ chính tuyến.</div>';
     } else {
+        // Chỉ mở chương đang làm; chương đã xong / chưa tới thu gọn (bấm tiêu đề để xem)
+        $curFound = false;
         foreach ($mainQuests as $ch) {
             $ch['quests'] = \player\nhiemvu_apply_reward_list($ch['quests'], 'main', \player\nhiemvu_main_ref_level($ch, $player->ulv));
-            $html .= '<div class="nv-achieve-group">
-                <div class="nv-achieve-cat" style="color:#facc15">CH'.$ch['id'].': '.$ch['name'].' <small>Cấp '.$ch['level_range'][0].'-'.$ch['level_range'][1].'</small></div>';
+            $chDone = 0;
+            foreach ($ch['quests'] as $cq) if ($cq['status'] == 2) $chDone++;
+            $chAll = count($ch['quests']);
+            $isCur = (!$curFound && $chDone < $chAll);
+            if ($isCur) $curFound = true;
+            $chTag = $chDone >= $chAll ? '✅ Hoàn thành' : ($isCur ? '⏳ Đang làm ' . $chDone . '/' . $chAll : '🔒 Chưa mở');
+            $html .= '<details class="nv-achieve-group nv-ch"' . ($isCur ? ' open' : '') . '>
+                <summary class="nv-achieve-cat" style="color:#facc15">CH'.$ch['id'].': '.$ch['name'].' <small>Cấp '.$ch['level_range'][0].'-'.$ch['level_range'][1].' · '.$chTag.'</small></summary>';
             foreach ($ch['quests'] as $q) {
                 $status = $q['status'];
                 if ($status == 2) {
@@ -390,7 +402,7 @@ elseif ($tab === 'main') {
                     </div>
                 </div>';
             }
-            $html .= '</div>';
+            $html .= '</details>';
         }
     }
     $html .= '</div>';

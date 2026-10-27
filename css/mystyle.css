@@ -7805,3 +7805,7 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 @keyframes pvePopIn{from{opacity:0}to{opacity:1}}
 /* Thông báo hoàn thành nhiệm vụ chính tuyến (Đại Sảnh, Cộng Hưởng) */
 .tcg-nv-notice{margin:8px 0;padding:9px 12px;border-radius:12px;border:1px solid rgba(250,204,21,.45);background:rgba(250,204,21,.10);color:#fde68a;font-weight:800;font-size:13px;text-align:center}
+/* NPC của bản đồ ở Đại Sảnh */
+.tcg-npc-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.tcg-npc-label{padding:4px 10px;border-radius:999px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.4);color:#7dd3fc;font-size:12px;font-weight:900}
+.tcg-npc-row img{width:16px;height:16px;vertical-align:middle}

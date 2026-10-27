@@ -326,6 +326,7 @@ if ($clmid->mnpc != ""){
         $taskid = $cxnpcall[$i]['taskid'];
         $taskarr = explode(',',$taskid);
         $yrw = false;
+        $npcMarkStart = strlen($npchtml); // dấu ?/! của NPC này — gộp thành 1 biểu tượng trong nút
         if ($taskid!=''){
             for ($l=0;$l<count($taskarr);$l++){
                 $nowrw = \player\gettask($taskarr[$l],$dblj);
@@ -391,10 +392,14 @@ if ($clmid->mnpc != ""){
             }
         }
         $npccmd = $encode->encode("cmd=npc&nid=$nid&sid=$player->sid");
+        $npcMarks = substr($npchtml, $npcMarkStart);
+        $npchtml = substr($npchtml, 0, $npcMarkStart);
+        $npcMarkHtml = strpos($npcMarks, 'tan.gif') !== false ? '<img src="images/tan.gif" alt="!"> '
+            : (strpos($npcMarks, 'wen.gif') !== false ? '<img src="images/wen.gif" alt="?"> ' : '');
 		
         $npchtml .= <<<HTML
       
-<a class="tcg-pill npc-pill" href="?cmd=$npccmd">{$nname}</a>
+<a class="tcg-pill npc-pill" href="?cmd=$npccmd">{$npcMarkHtml}{$nname}</a>
 HTML;
     }//这个是$npchtml.....任务NPC的问号提示...
 }
@@ -514,6 +519,8 @@ $chetaoCmd = $encode->encode("cmd=chetao&sid=$sid");
 $gwhtmlView = trim($gwhtml) != '' ? $gwhtml : '<div class="tcg-pill">Không có quái vật</div>';
 $bosshtmlView = trim($bosshtml) != '' ? $bosshtml : '';
 $npcView = trim($npchtml) != '' ? $npchtml : '<div class="tcg-pill">Không có NPC</div>';
+// Hiện NPC của bản đồ ngay ở Đại Sảnh (map không có NPC thì không hiện khối này)
+$npcBlockView = trim($npchtml) != '' ? '<div class="tcg-npc-row"><span class="tcg-npc-label">NPC</span>' . $npchtml . '</div>' : '';
 $playerView = trim($playerhtml) != '' ? $playerhtml : '<div class="tcg-pill">Chưa có người chơi khác</div>';
 $newsLine = trim($clmid->midinfo.' '.$clmid->playerinfo);
 if ($newsLine == '') {
@@ -573,6 +580,7 @@ $nvMapNoticeHtml
         $gwhtmlView
         $bosshtmlView
     </div>
+    $npcBlockView
     $djsView
 </div>
 
