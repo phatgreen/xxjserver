@@ -175,7 +175,7 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
         <div class="tpc-detail-rows">
             <div><i class="tp-emoji">🧩</i> <?= htmlspecialchars($tpcGroupName) ?> · <b><?= htmlspecialchars($tpcGateName) ?></b> <?= $tpcPerTxt ?><?= $tpcSubTxt ?> <span class="tp-attr-cap">(tối đa <?= $tpcCap ?>%)</span></div>
 <?php if ($tpcHave): ?>
-            <div><i class="tp-emoji">📈</i> Lv <b><?= $tpcLv ?></b>/<?= $tpcCapLv ?> · phí kế tiếp <b><?= intval($tpcLvCost["tf"]) ?></b> Điểm Thiên Phú + <b><?= number_format(intval($tpcLvCost["linh_thach"]), 0, ',', '.') ?></b> Linh Thạch</div>
+            <div><i class="tp-emoji">📈</i> Cấp <b><?= $tpcLv ?></b>/<?= $tpcCapLv ?> · phí kế tiếp <b><?= intval($tpcLvCost["tf"]) ?></b> Điểm Thiên Phú + <b><?= number_format(intval($tpcLvCost["linh_thach"]), 0, ',', '.') ?></b> Linh Thạch</div>
             <div class="<?= $tpcSlot > 0 ? 'ok' : 'no' ?>"><i class="tp-emoji"><?= $tpcSlot > 0 ? '✅' : '⭕' ?></i> <?php
                 echo $tpcSlot > 0
                     ? ('Đang phát huy — Phú Vi ' . $tpcSlot)
@@ -226,20 +226,20 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
 <?php if (!$tpcSOpen): ?>
             <div class="tp-reqs"><span class="no">[Khóa]</span> Phú Vi <?= $tpcSn ?> cần cấp <?= intval($tpcSd['ulv']) ?>.</div>
 <?php elseif ($tpcSConf !== false): ?>
-            <div class="tp-reqs"><span class="no">[Trùng]</span> Phú Vi <?= $tpcSn ?> trùng môn <?= htmlspecialchars($tpcSConf) ?>.</div>
+            <div class="tp-reqs"><span class="no">[Trùng]</span> Phú Vi <?= $tpcSn ?>: trùng loại với <?= htmlspecialchars($tpcSConf) ?>.</div>
 <?php elseif ($tpcSHolder === $tpcSel): ?>
             <form method="post" action="?cmd=<?= $tpcPostCmd ?>">
                 <input type="hidden" name="tp_action" value="slot">
                 <input type="hidden" name="tf_id" value="<?= $tpcSel ?>">
                 <input type="hidden" name="tf_slot" value="0">
-                <button type="submit" class="tpc-act">Bỏ PV<?= $tpcSn ?></button>
+                <button type="submit" class="tpc-act">Gỡ khỏi Phú Vi <?= $tpcSn ?></button>
             </form>
 <?php else: ?>
             <form method="post" action="?cmd=<?= $tpcPostCmd ?>">
                 <input type="hidden" name="tp_action" value="slot">
                 <input type="hidden" name="tf_id" value="<?= $tpcSel ?>">
                 <input type="hidden" name="tf_slot" value="<?= $tpcSn ?>">
-                <button type="submit" class="tpc-act"><?= $tpcPick === $tpcSn ? '▶ ' : '' ?>PV<?= $tpcSn ?><?= $tpcSHolder > 0 ? ' (thay)' : '' ?></button>
+                <button type="submit" class="tpc-act"><?= $tpcPick === $tpcSn ? '▶ ' : '' ?><?= $tpcSHolder > 0 ? 'Thay vào' : 'Đặt vào' ?> Phú Vi <?= $tpcSn ?></button>
             </form>
 <?php endif; ?>
 <?php endforeach; ?>
