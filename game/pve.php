@@ -1191,7 +1191,9 @@ HTML;
 if ($pveResultHtml !== '') {
     $html .= '<div class="pve-pop show" id="pve-pop" onclick="if(event.target===this)this.className=\'pve-pop\'">'
         . '<div class="pve-pop-box"><a class="pve-pop-x" href="javascript:void(0)" title="Xem lại trận đấu"'
-        . ' onclick="document.getElementById(\'pve-pop\').className=\'pve-pop\'">✕</a>' . $pveResultHtml . '</div></div>';
+        . ' onclick="document.getElementById(\'pve-pop\').className=\'pve-pop\'">✕</a>' . $pveResultHtml . '</div></div>'
+        // Đưa popup ra <body>: khung game có backdrop-filter làm position:fixed bị tính theo khung thay vì màn hình
+        . '<script>(function(){var p=document.getElementById(\'pve-pop\');if(p&&p.parentNode!==document.body)document.body.appendChild(p);})();</script>';
 }
 echo '<style>.pve-step{display:block;margin:3px 0;padding:1px 0 .5px;color:#f5f5f5;font-size:14px;line-height:1.5;animation:pveStepIn .45s ease-out both}.pve-step:nth-child(1){animation-delay:.05s}.pve-step:nth-child(2){animation-delay:.11s}.pve-step:nth-child(3){animation-delay:.17s}.pve-step:nth-child(4){animation-delay:.23s}.pve-step:nth-child(5){animation-delay:.29s}.pve-step:nth-child(6){animation-delay:.35s}@keyframes pveStepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.pve-result-wrap{margin-top:14px}.pve-alert{margin:10px 0}</style>';
 echo $html;
