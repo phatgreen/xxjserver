@@ -708,6 +708,13 @@ function getplayer($sid,$dblj){
     if ($cp_penalty_def > 0) {
         $player->ufy = max(1, intval($player->ufy * (100 - min(80, $cp_penalty_def)) / 100));
     }
+    // Công pháp atk_bonus / def_bonus (% công, % thủ) — hệ số + trần trong wugong_skill_config.json.
+    if (function_exists(__NAMESPACE__ . '\\combat_cp_value')) {
+        $cpAtkPct = combat_cp_value($player, 'atk_bonus');
+        $cpDefPct = combat_cp_value($player, 'def_bonus');
+        if ($cpAtkPct > 0) $player->ugj = intval($player->ugj * (100 + $cpAtkPct) / 100);
+        if ($cpDefPct > 0) $player->ufy = intval($player->ufy * (100 + $cpDefPct) / 100);
+    }
 
     // ===== BUFF LINH CĂN (Passive) =====
     // Linh căn buff thuộc tính + pet bonus, áp dụng SAU congphap.
@@ -2051,6 +2058,10 @@ function useyaopin($ypid,$ypsum,$sid,$dblj){
         $hpc = $player->umaxhp - $player->uhp;
         $yaopin = getyaopinonce($ypid,$dblj);
         $healAmount = intval($yaopin->yphp * $multiplier);
+        // Công pháp heal_bonus: chỉ tăng lượng hồi máu, không tăng chỉ số cộng vĩnh viễn của dược.
+        if (function_exists(__NAMESPACE__ . '\\combat_cp_value')) {
+            $healAmount = intval($healAmount * (100 + combat_cp_value($player, 'heal_bonus')) / 100);
+        }
         if ($healAmount >= $hpc){
             addplayersx('uhp',$hpc,$sid,$dblj);
         }else{

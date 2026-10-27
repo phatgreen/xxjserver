@@ -207,3 +207,30 @@ if (!function_exists(__NAMESPACE__ . '\\combat_move_wait')) {
         return isset($st[$key]) ? max(0, intval($st[$key]) - $next) : 0;
     }
 }
+
+if (!function_exists(__NAMESPACE__ . '\\combat_cp_value')) {
+    /**
+     * Tổng % hiệu ứng công pháp đang trang bị theo loại, đã nhân hệ số + chặn trần
+     * (rules.congphap_ratio / rules.congphap_cap). $player->cp_effects do getplayer() nạp.
+     */
+    function combat_cp_value($player, $type){
+        if (empty($player->cp_effects) || !is_array($player->cp_effects)) return 0;
+        $ratio = combat_rule('congphap_ratio', $type, 0);
+        if ($ratio <= 0) return 0;
+        $sum = 0;
+        foreach ($player->cp_effects as $e) {
+            if (isset($e['type']) && $e['type'] === $type) $sum += floatval($e['value']);
+        }
+        $cap = floatval(combat_rule('congphap_cap', $type, 0));
+        $val = $sum * floatval($ratio);
+        return round($cap > 0 ? min($cap, $val) : $val, 2);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\combat_cp_effective')) {
+    // Giá trị % thực áp dụng của 1 công pháp (đã nhân hệ số, chưa xét trần tổng) — dùng để hiển thị.
+    function combat_cp_effective($type, $val){
+        $ratio = combat_rule('congphap_ratio', $type, null);
+        return $ratio === null ? floatval($val) : floatval($val) * floatval($ratio);
+    }
+}

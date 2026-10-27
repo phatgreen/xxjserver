@@ -82,5 +82,20 @@ tassert('C5 chieu quai moi he deu co van', $okMob, true);
 tassert('C5 combat_text thay {mob}', \player\combat_text('{mob} ngã', 'Hồ Yêu'), 'Hồ Yêu ngã');
 tassert('C5 mo ta hieu ung', \player\combat_effect_text('stun', 40), '40% làm địch mất lượt phản kích');
 
+// ===== C6: hiệu ứng công pháp (hệ số + trần) =====
+$pl = new stdClass();
+$pl->cp_effects = array(
+    array('type' => 'atk_bonus', 'value' => 50, 'name' => 'A'),
+    array('type' => 'atk_bonus', 'value' => 35, 'name' => 'B'),
+    array('type' => 'dmg_reduce', 'value' => 20, 'name' => 'C'),
+    array('type' => 'exp_bonus', 'value' => 30, 'name' => 'D'),
+);
+tassert('C6 atk_bonus 85*0.4=34 bi chan tran 25', \player\combat_cp_value($pl, 'atk_bonus'), 25.0);
+tassert('C6 dmg_reduce 20*0.4=8', \player\combat_cp_value($pl, 'dmg_reduce'), 8.0);
+tassert('C6 loai khong co he so = 0 (exp_bonus xu ly rieng)', \player\combat_cp_value($pl, 'exp_bonus'), 0);
+tassert('C6 khong trang bi = 0', \player\combat_cp_value(new stdClass(), 'atk_bonus'), 0);
+tassert('C6 hien thi gia tri thuc', \player\combat_cp_effective('def_bonus', 50), 20.0);
+tassert('C6 hien thi exp_bonus giu nguyen', \player\combat_cp_effective('exp_bonus', 30), 30.0);
+
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

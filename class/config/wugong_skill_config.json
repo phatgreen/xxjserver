@@ -1,5 +1,5 @@
 {
- "_note": "Thế võ khi chiến đấu. Số liệu cân bằng nằm ở 'rules'. text dùng {mob} = tên quái.",
+ "_note": "Thế võ khi chiến đấu. Số liệu cân bằng nằm ở 'rules'. text dùng {mob} = tên quái. congphap_ratio/congphap_cap: hệ số và trần (%) khi áp hiệu ứng công pháp đang trang bị.",
  "rules": {
   "tier_label": {
    "1": "Võ Kỹ",
@@ -50,7 +50,27 @@
    "per_lv": 0.07
   },
   "hp_regen_ratio": 0.25,
-  "escape_ratio": 0.1
+  "escape_ratio": 0.1,
+  "congphap_ratio": {
+   "atk_bonus": 0.4,
+   "def_bonus": 0.4,
+   "dmg_reduce": 0.4,
+   "crit_dmg": 0.5,
+   "hp_regen": 0.1,
+   "heal_bonus": 1.0,
+   "drop_rate": 0.3,
+   "stone_bonus": 0.3
+  },
+  "congphap_cap": {
+   "atk_bonus": 25,
+   "def_bonus": 25,
+   "dmg_reduce": 20,
+   "crit_dmg": 30,
+   "hp_regen": 5,
+   "heal_bonus": 40,
+   "drop_rate": 20,
+   "stone_bonus": 15
+  }
  },
  "moves": {
   "2": [

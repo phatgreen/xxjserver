@@ -116,7 +116,7 @@ if ($canshu != '') {
 
         <div class="cp-detail-grid">
             <div><b>Loại</b><span>'.wg_safe_text($cx->cpsort).'</span></div>
-            <div><b>Hiệu ứng</b><span style="color:#4caf50">+'.number_format($realVal, 1).'% '.$effectName.'</span></div>
+            <div><b>Hiệu ứng</b><span style="color:#4caf50">+'.number_format(\player\combat_cp_effective($cx->effect_type, $realVal), 1).'% '.$effectName.'</span></div>
             <div><b>Cấp độ</b><span>'.$cx->cpdj.' / '.$maxLevel.'</span></div>
             <div><b>Kinh nghiệm</b><span>'.number_format($cx->cpexp).' / '.number_format($cx->cpexpmax).'</span></div>
         </div>
@@ -192,7 +192,7 @@ if (!empty($allCp)) {
                     <div class="cp-meta">
                         <span>Lv '.$thisDj.'/'.$thisMaxLv.'</span>
                         <span class="cp-dot">•</span>
-                        <span style="color:'.$thisColor.'">'.$effectName.' +'.number_format($realVal,1).'%</span>
+                        <span style="color:'.$thisColor.'">'.$effectName.' +'.number_format(\player\combat_cp_effective($effectType, $realVal),1).'%</span>
                         '.$penaltyInfo.'
                     </div>
                     <div class="cp-exp-bar">

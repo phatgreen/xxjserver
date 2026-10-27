@@ -309,6 +309,15 @@ HTML;
         $phurt = max(1, $phurt - $cbGuard);
         $tishihtml .= "<font color='#42a5f5'>🛡 «{$cbMove['name']}» hộ thể: chặn {$cbGuard} sát thương</font><br/>";
     }
+    // Công pháp dmg_reduce: giảm % sát thương nhận vào.
+    $cbCpReduce = \player\combat_cp_value($player, 'dmg_reduce');
+    if ($cbCpReduce > 0 && $phurt > 0) {
+        $cbCpBlock = round($phurt * $cbCpReduce / 100);
+        if ($cbCpBlock > 0) {
+            $phurt = max(1, $phurt - $cbCpBlock);
+            $tishihtml .= "<font color='#80cbc4'>📜 Công pháp hộ thân: giảm {$cbCpBlock} sát thương</font><br/>";
+        }
+    }
 
     // Hiệu ứng võ công: giảm sát thương nhận vào.
     if (($wgEffectType == 'damage_reduce' || $wgEffectType == 'control_reduce_damage') && $wgEffectValue > 0 && $phurt > 0) {
@@ -323,6 +332,7 @@ HTML;
         if ($cbWg && $cbWg->effect_type == 'crit_dmg' && intval($cbWg->effect_value) > 0) {
             $cbCritMult += intval($cbWg->effect_value) / 100 * \player\combat_passive_scale($cbWg->wgdj);
         }
+        $cbCritMult += \player\combat_cp_value($player, 'crit_dmg') / 100;
         $player->ugj = round($player->ugj * $cbCritMult);
         $pvebj = 'Bạo kích';
         $tishihtml .= "<font color='#ffeb3b'><b>Bạo kích!</b> Đòn đánh thần tốc gây thêm sát thương</font><br/>";
@@ -342,6 +352,8 @@ HTML;
     // ===== MACH HUYET (Task 11) =====
     $hmCs = \player\huyetmach_combat_stats(isset($player->huyetmach_vessel) ? $player->huyetmach_vessel : array());
     $tpDropPct = isset($player->tianfu_bonus['drop']) ? floatval($player->tianfu_bonus['drop']) : 0;
+    // Công pháp drop_rate cộng chung vào % may mắn rơi đồ (chung trần với Thiên Phú).
+    $tpDropPct += \player\combat_cp_value($player, 'drop_rate');
     // Hiệu ứng võ công: xuyên phòng / phá giáp làm giảm phòng ngự quái khi tính sát thương.
     $guaiwuFyForDamage = $guaiwu->gfy;
     if (($wgEffectType == 'pierce_def' || $wgEffectType == 'break_armor') && $wgEffectValue > 0) {
@@ -476,6 +488,7 @@ HTML;
     if ($cbMove && $cbMove['effect'] == 'heal') {
         $cbHeal += round($player->umaxhp * $cbMove['value'] / 100);
     }
+    $cbHeal += round($player->umaxhp * \player\combat_cp_value($player, 'hp_regen') / 100);
     if ($cbWg && $cbWg->effect_type == 'hp_regen' && intval($cbWg->effect_value) > 0) {
         $cbHeal += round($player->umaxhp * intval($cbWg->effect_value) * floatval(\player\combat_rule('hp_regen_ratio', null, 0.25)) / 100 * \player\combat_passive_scale($cbWg->wgdj));
     }
@@ -547,6 +560,11 @@ HTML;
 			$huode .= "<font color='orange'>Cấp nhân vật quá cao không nhận được linh thạch.</font><br/>";
 		}
 
+        // Công pháp stone_bonus: thêm % linh thạch.
+        $cbCpStone = \player\combat_cp_value($player, 'stone_bonus');
+        if ($cbCpStone > 0 && $yxb > 0) {
+            $yxb += max(1, round($yxb * $cbCpStone / 100));
+        }
         $ret = \player\changeyxb(1,$yxb,$sid,$dblj);
         if ($ret && $yxb > 0){
             $huode .= "Nhận được linh thạch: $yxb<br/>";
