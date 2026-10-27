@@ -314,7 +314,7 @@ if ($currentTab === 'wg') {
 
             $disabledClass = $canBuy ? '' : ' disabled';
 
-            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '">';
+            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '" data-f="' . $rarity . '" data-ok="' . ($canBuy ? 1 : 0) . '">';
             $itemsHtml .= '<div class="tcg-tcc-item-color" style="background:' . $wgys . '"></div>';
             $itemsHtml .= '<div class="tcg-tcc-item-info">';
             $itemsHtml .= '<div class="tcg-tcc-item-name" style="color:' . $wgys . '">' . $wgname . '</div>';
@@ -425,7 +425,7 @@ if ($currentTab === 'wg') {
 
             $disabledClass = $canBuy ? '' : ' disabled';
 
-            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '">';
+            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '" data-f="g' . $giai . '" data-ok="' . ($canBuy ? 1 : 0) . '">';
             $itemsHtml .= '<div class="tcg-tcc-item-color" style="background:' . $cpys . '"></div>';
             $itemsHtml .= '<div class="tcg-tcc-item-info">';
             $itemsHtml .= '<div class="tcg-tcc-item-name" style="color:' . $cpys . '">' . $cpname . '</div>';
@@ -467,6 +467,18 @@ if ($currentTab === 'wg') {
     }
 }
 
+// Thanh lọc (chỉ ẩn/hiện phía trình duyệt): Mua được / Tất cả / theo phẩm (võ công) hoặc giai (công pháp).
+$tccFilters = array('ok' => 'Mua được', 'all' => 'Tất cả');
+if ($currentTab === 'wg') {
+    foreach ($wgRarityNames as $rk => $rn) $tccFilters[$rk] = $rn;
+} else {
+    foreach ($giaiNames as $gk => $gn) $tccFilters['g' . $gk] = $gn;
+}
+$tccFilterHtml = '';
+foreach ($tccFilters as $fk => $fn) {
+    $tccFilterHtml .= '<a class="tcg-tcc-chip" data-k="' . $fk . '" href="javascript:void(0)" onclick="tccFilter(\'' . $fk . '\')">' . $fn . '</a>';
+}
+
 $tabWgActive = ($currentTab === 'wg') ? ' active' : '';
 $tabCpActive = ($currentTab === 'cp') ? ' active' : '';
 
@@ -491,9 +503,32 @@ $html = <<<HTML
     {$tssb}
     {$tscg}
 
-    <div class="tcg-tcc-list">
+    <div class="tcg-tcc-filter">{$tccFilterHtml}</div>
+
+    <div class="tcg-tcc-list" id="tcc-list">
         {$itemsHtml}
     </div>
+    <div class="tcg-tcc-empty" id="tcc-empty" style="display:none">Không có bí tịch nào trong mục này.</div>
+    <script>
+    function tccFilter(k){
+        var list=document.getElementById('tcc-list'); if(!list) return;
+        var tiers=list.querySelectorAll('.tcg-tcc-tier'), shown=0;
+        for(var i=0;i<tiers.length;i++){
+            var items=tiers[i].querySelectorAll('.tcg-tcc-item'), n=0;
+            for(var j=0;j<items.length;j++){
+                var it=items[j], ok=(k==='all')||(k==='ok'&&it.getAttribute('data-ok')==='1')||it.getAttribute('data-f')===k;
+                it.style.display=ok?'':'none'; if(ok) n++;
+            }
+            tiers[i].style.display=n?'':'none'; shown+=n;
+        }
+        document.getElementById('tcc-empty').style.display=shown?'none':'block';
+        var chips=document.querySelectorAll('.tcg-tcc-chip');
+        for(var c=0;c<chips.length;c++) chips[c].className='tcg-tcc-chip'+(chips[c].getAttribute('data-k')===k?' on':'');
+        return shown;
+    }
+    // Mặc định chỉ hiện bí tịch mua được; nếu không có thì hiện tất cả.
+    if(!tccFilter('ok')) tccFilter('all');
+    </script>
 
     <div class="tcg-tcc-footer">
         <a class="tcg-wg-navbtn" href="#" onClick="javascript:history.back(-1);">Trở về</a>
@@ -636,6 +671,10 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     color: #94a3b8;
     border: 1px solid rgba(148,163,184,.30);
 }
+.tcg-tcc-filter { display:flex; gap:6px; overflow-x:auto; padding:2px 0 10px; margin-bottom:4px; -webkit-overflow-scrolling:touch; }
+.main a.tcg-tcc-chip, .tcg-tcc-chip { flex:0 0 auto; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:900; white-space:nowrap; text-decoration:none; color:#cbd5e1 !important; background:rgba(30,41,59,.85); border:1px solid rgba(148,163,184,.35); }
+.main a.tcg-tcc-chip.on, .tcg-tcc-chip.on { color:#1e1b4b !important; background:linear-gradient(135deg,#fde68a,#f59e0b); border-color:#fde68a; }
+.tcg-tcc-empty { text-align:center; color:#94a3b8; padding:20px 0; }
 .wrar-ha {
     background: rgba(56,189,248,.16);
     color: #7dd3fc;
