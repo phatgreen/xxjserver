@@ -27,7 +27,7 @@ if ($canshu != '') {
                 if ($equipCount >= $maxEquip) {
                     $tiss = '<div class="cp-message error">Đã đạt số slot vận công tối đa ('.$maxEquip.'). Hãy bỏ vận công một công pháp khác.</div>';
                 } else {
-                    \player\congphap_unequip_all($sid, $dblj);
+                    // Vận thêm vào slot trống (tối đa theo cảnh giới) — không gỡ công pháp đang vận.
                     \player\congphap_equip($cpid, $sid, $dblj, true);
                     $tscg = wg_popup_html('success', 'Vận công thành công');
                 }
@@ -243,7 +243,7 @@ $cwhtml = <<<HTML
             <h2>Công Pháp</h2>
             <p>Pháp môn tu luyện bị động, tăng tốc hấp thu linh khí, bạo kích, phòng ngự và nhiều hiệu ứng quý giá khác.</p>
             <div class="tcg-wg-current">
-                <span>Vận Công</span>
+                <span>Vận Công ($equipCount/$maxEquip)</span>
                 <b>$equipText</b>
             </div>
         </div>
