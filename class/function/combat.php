@@ -155,10 +155,20 @@ if (!function_exists(__NAMESPACE__ . '\\combat_state_ready')) {
                 turn INT NOT NULL DEFAULT 0,
                 cd2 INT NOT NULL DEFAULT 0,
                 cd3 INT NOT NULL DEFAULT 0,
+                flag INT NOT NULL DEFAULT 0,
                 updated INT NOT NULL DEFAULT 0
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
             $q = $dblj->query("SHOW TABLES LIKE 'player_combat_state'");
             $ready = ($q && $q->fetchColumn() !== false);
+        }
+        // Cột flag (boss tụ lực) thêm sau — bảng tạo từ bản đầu thì bổ sung.
+        if ($ready) {
+            $q = $dblj->query("SHOW COLUMNS FROM player_combat_state LIKE 'flag'");
+            if (!$q || $q->fetchColumn() === false) {
+                $dblj->exec("ALTER TABLE player_combat_state ADD COLUMN flag INT NOT NULL DEFAULT 0 AFTER cd3");
+                $q = $dblj->query("SHOW COLUMNS FROM player_combat_state LIKE 'flag'");
+                $ready = ($q && $q->fetchColumn() !== false);
+            }
         }
         return $ready;
     }
@@ -170,16 +180,17 @@ if (!function_exists(__NAMESPACE__ . '\\combat_state_load')) {
      * 'ok' = false khi bảng không dùng được => chỉ cho dùng Võ Kỹ.
      */
     function combat_state_load($sid, $gid, $dblj){
-        $st = array('ok' => false, 'gid' => intval($gid), 'turn' => 0, 'cd2' => 0, 'cd3' => 0);
+        $st = array('ok' => false, 'gid' => intval($gid), 'turn' => 0, 'cd2' => 0, 'cd3' => 0, 'flag' => 0);
         if (!combat_state_ready($dblj)) return $st;
         $st['ok'] = true;
-        $stmt = $dblj->prepare("SELECT gid, turn, cd2, cd3 FROM player_combat_state WHERE sid = ? LIMIT 1");
+        $stmt = $dblj->prepare("SELECT gid, turn, cd2, cd3, flag FROM player_combat_state WHERE sid = ? LIMIT 1");
         if ($stmt && $stmt->execute(array($sid))) {
             $row = $stmt->fetch(\PDO::FETCH_ASSOC);
             if ($row && intval($row['gid']) === intval($gid)) {
                 $st['turn'] = intval($row['turn']);
                 $st['cd2'] = intval($row['cd2']);
                 $st['cd3'] = intval($row['cd3']);
+                $st['flag'] = intval($row['flag']);
             }
         }
         return $st;
@@ -189,12 +200,13 @@ if (!function_exists(__NAMESPACE__ . '\\combat_state_load')) {
 if (!function_exists(__NAMESPACE__ . '\\combat_state_save')) {
     function combat_state_save($sid, $st, $dblj){
         if (empty($st['ok'])) return false;
-        $stmt = $dblj->prepare("INSERT INTO player_combat_state (sid, gid, turn, cd2, cd3, updated)
-            VALUES (?, ?, ?, ?, ?, ?)
+        $stmt = $dblj->prepare("INSERT INTO player_combat_state (sid, gid, turn, cd2, cd3, flag, updated)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE gid = VALUES(gid), turn = VALUES(turn), cd2 = VALUES(cd2),
-                cd3 = VALUES(cd3), updated = VALUES(updated)");
+                cd3 = VALUES(cd3), flag = VALUES(flag), updated = VALUES(updated)");
+        $flag = isset($st['flag']) ? intval($st['flag']) : 0;
         return $stmt ? $stmt->execute(array($sid, intval($st['gid']), intval($st['turn']),
-            intval($st['cd2']), intval($st['cd3']), time())) : false;
+            intval($st['cd2']), intval($st['cd3']), $flag, time())) : false;
     }
 }
 
@@ -232,5 +244,54 @@ if (!function_exists(__NAMESPACE__ . '\\combat_cp_effective')) {
     function combat_cp_effective($type, $val){
         $ratio = combat_rule('congphap_ratio', $type, null);
         return $ratio === null ? floatval($val) : floatval($val) * floatval($ratio);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\combat_pick_move')) {
+    /**
+     * Chọn thế được dùng ở lượt này. $tier = thế người chơi bấm; không đủ điều kiện => về Võ Kỹ.
+     * $base = thể lực của 1 đòn thường; $freeTier1 = true khi đòn thường không tốn thể lực (Boss).
+     * Trả array('move' => array|null, 'cost' => thể lực cần trừ, 'note' => lý do bị đổi về Võ Kỹ).
+     */
+    function combat_pick_move($moves, $st, $tier, $stamina, $base, $freeTier1){
+        $move = isset($moves[1]) ? $moves[1] : null;
+        $note = '';
+        $tier = intval($tier);
+        if ($tier > 1) {
+            if (!isset($moves[$tier])) {
+                $note = 'Chưa trang bị võ công.';
+            } elseif (!$moves[$tier]['unlocked']) {
+                $note = $moves[$tier]['label'] . ' mở khi võ công đạt cấp ' . $moves[$tier]['unlock_lv'] . '.';
+            } elseif (empty($st['ok'])) {
+                $note = 'Chưa khởi tạo dữ liệu thế võ (bảng player_combat_state).';
+            } elseif (combat_move_wait($st, $tier) > 0) {
+                $note = '«' . $moves[$tier]['name'] . '» còn hồi ' . combat_move_wait($st, $tier) . ' lượt.';
+            } elseif (intval($stamina) < max(1, intval(round($base * $moves[$tier]['stamina_mult'])))) {
+                $note = 'Không đủ thể lực để thi triển «' . $moves[$tier]['name'] . '».';
+            } else {
+                $move = $moves[$tier];
+            }
+        }
+        $cost = 0;
+        if ($move && ($move['tier'] > 1 || !$freeTier1)) {
+            $cost = max(1, intval(round($base * $move['stamina_mult'])));
+        }
+        return array('move' => $move, 'cost' => $cost, 'note' => $note);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\combat_boss_rule')) {
+    function combat_boss_rule($key, $default){
+        $cfg = combat_cfg('guaiwu_skill_config.json');
+        return isset($cfg['boss'][$key]) ? $cfg['boss'][$key] : $default;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\combat_boss_skill_name')) {
+    // Tên chiêu tụ lực của boss = chiêu đặc trưng theo hệ.
+    function combat_boss_skill_name($element){
+        $cfg = combat_cfg('guaiwu_skill_config.json');
+        if (isset($cfg['element'][$element]['special']['name'])) return $cfg['element'][$element]['special']['name'];
+        return isset($cfg['element']['none']['special']['name']) ? $cfg['element']['none']['special']['name'] : 'Tuyệt Kỹ';
     }
 }

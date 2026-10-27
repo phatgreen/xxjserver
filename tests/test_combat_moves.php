@@ -97,5 +97,26 @@ tassert('C6 khong trang bi = 0', \player\combat_cp_value(new stdClass(), 'atk_bo
 tassert('C6 hien thi gia tri thuc', \player\combat_cp_effective('def_bonus', 50), 20.0);
 tassert('C6 hien thi exp_bonus giu nguyen', \player\combat_cp_effective('exp_bonus', 30), 30.0);
 
+// ===== C7: chọn thế (combat_pick_move) =====
+$wg->wgid = 2; $wg->rarity = 'nhap_mon'; $wg->wgdj = 12;
+$mvs = \player\combat_wugong_moves($wg);
+$st = array('ok' => true, 'turn' => 0, 'cd2' => 0, 'cd3' => 0, 'flag' => 0);
+$pk = \player\combat_pick_move($mvs, $st, 3, 100, 5, true);
+tassert('C7 Tuyet Chieu hop le: ton 10 the luc', array($pk['move']['tier'], $pk['cost'], $pk['note']), array(3, 10, ''));
+$pk = \player\combat_pick_move($mvs, $st, 1, 100, 5, true);
+tassert('C7 Boss: don thuong mien phi', $pk['cost'], 0);
+$pk = \player\combat_pick_move($mvs, $st, 1, 100, 5, false);
+tassert('C7 PVE: don thuong ton 5', $pk['cost'], 5);
+$pk = \player\combat_pick_move($mvs, $st, 3, 9, 5, true);
+tassert('C7 thieu the luc -> ve Vo Ky', array($pk['move']['tier'], $pk['cost']), array(1, 0));
+$st['cd3'] = 5;
+$pk = \player\combat_pick_move($mvs, $st, 3, 100, 5, true);
+tassert('C7 dang hoi chieu -> ve Vo Ky + ly do', array($pk['move']['tier'], strpos($pk['note'], 'còn hồi') !== false), array(1, true));
+$st['ok'] = false; $st['cd3'] = 0;
+$pk = \player\combat_pick_move($mvs, $st, 2, 100, 5, true);
+tassert('C7 chua co bang -> ve Vo Ky', $pk['move']['tier'], 1);
+tassert('C7 luat boss doc tu config', \player\combat_boss_rule('charge_every', 0), 4);
+tassert('C7 ten chieu tu luc theo he', \player\combat_boss_skill_name('hoa'), 'Liệt Hỏa Phệ Tâm');
+
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

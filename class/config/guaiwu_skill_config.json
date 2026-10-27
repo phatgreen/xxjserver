@@ -1,5 +1,5 @@
 {
- "_note": "Chiêu phản kích của quái thường theo hệ. text dùng {mob}.",
+ "_note": "Chiêu phản kích của quái thường theo hệ. text dùng {mob}. boss: tụ lực mỗi charge_every lượt, lượt sau đánh x charge_mult; HP <= enrage_hp% thì x enrage_mult; khống chế lên boss chỉ còn stun_ratio.",
  "rules": {
   "special_chance": 20,
   "special_mult": 1.3,
@@ -68,5 +68,16 @@
     "text": "{mob} đập mạnh xuống đất, mặt đất nứt toác, đá tảng ập lên người ngươi!"
    }
   }
+ },
+ "boss": {
+  "charge_every": 4,
+  "charge_mult": 1.8,
+  "enrage_hp": 50,
+  "enrage_mult": 1.2,
+  "stun_ratio": 0.5,
+  "charge_text": "⚠ {mob} gầm lên, ma khí cuồn cuộn tụ về thân — lượt sau sẽ tung «{skill}»! Dùng Tuyệt Chiêu để phá thế, hoặc thế hộ thể / khống chế để chống đỡ.",
+  "release_text": "💥 {mob} giải phóng «{skill}» với toàn bộ ma lực tích tụ!",
+  "break_text": "⚡ Tuyệt Chiêu «{move}» đánh gãy thế tụ lực của {mob}, «{skill}» tan biến!",
+  "enrage_text": "😡 {mob} trọng thương hóa cuồng nộ, sát thương tăng mạnh!"
  }
 }

@@ -231,6 +231,29 @@ HTML;
     // $player->ubj +=$jineng->jnbj;
     // $player->uxx +=$jineng->jnxx;
 
+    // === THẾ VÕ (Boss): đòn thường miễn phí như cũ; Tuyệt Kỹ / Tuyệt Chiêu tốn thể lực ===
+    $cbState = \player\combat_state_load($sid, -intval($bossid), $dblj);
+    $cbWg = (isset($player->wugong) && intval($player->wugong) > 0) ? \player\wgcx(intval($player->wugong), $sid, $dblj) : false;
+    $cbMoves = \player\combat_wugong_moves($cbWg);
+    $cbPick = \player\combat_pick_move($cbMoves, $cbState,
+        (isset($canshu) && $canshu == 'usewg' && isset($wgt)) ? intval($wgt) : 1,
+        intval($player->ustamina), max(1, intval(round($player->umaxstamina * 0.05))), true);
+    $cbMove = $cbPick['move'];
+    if ($cbPick['note'] !== '') {
+        $tishihtml .= "<font color='#9e9e9e'>{$cbPick['note']} Chuyển sang đánh thường.</font><br/>";
+    }
+    if ($cbPick['cost'] > 0) {
+        $player->ustamina = max(0, intval($player->ustamina) - $cbPick['cost']);
+        $stmt = $dblj->prepare("UPDATE game1 SET ustamina = :stamina WHERE sid = :sid");
+        $stmt->execute(array(':stamina' => $player->ustamina, ':sid' => $sid));
+    }
+    if ($cbState['ok']) {
+        $cbState['turn']++;
+        if ($cbMove && $cbMove['tier'] > 1) {
+            $cbState['cd' . $cbMove['tier']] = $cbState['turn'] + $cbMove['cooldown'] + 1;
+        }
+    }
+
     $lvc = $player->ulv - $boss->bosslv;
 	//攻击伤害计算
     if ($lvc <= 0){
@@ -266,9 +289,49 @@ HTML;
         $phurt = round($boss->bossgj*0.25);
     }
 
+    // Boss: cuồng nộ khi máu thấp + tụ lực báo trước (guaiwu_skill_config.json > boss).
+    $cbBossSkill = \player\combat_boss_skill_name(isset($boss->element) ? $boss->element : 'none');
+    $cbBossMsg = '';
+    if (intval($boss->bossmaxhp) > 0 && $boss->bosshp * 100 <= $boss->bossmaxhp * intval(\player\combat_boss_rule('enrage_hp', 50))) {
+        $phurt = round($phurt * floatval(\player\combat_boss_rule('enrage_mult', 1.2)));
+        $cbBossMsg .= "<font color='#ef5350'>" . \player\combat_text(\player\combat_boss_rule('enrage_text', ''), $boss->bossname) . "</font><br/>";
+    }
+    if ($cbState['ok'] && $cbState['flag'] == 1) {
+        $cbState['flag'] = 0;
+        if ($cbMove && $cbMove['tier'] == 3) {
+            $cbBossMsg .= "<font color='#ffd54f'>" . str_replace(array('{move}', '{skill}'), array($cbMove['name'], $cbBossSkill),
+                \player\combat_text(\player\combat_boss_rule('break_text', ''), $boss->bossname)) . "</font><br/>";
+        } else {
+            $phurt = round($phurt * floatval(\player\combat_boss_rule('charge_mult', 1.8)));
+            $cbBossMsg .= "<font color='#ff7043'>" . str_replace('{skill}', $cbBossSkill,
+                \player\combat_text(\player\combat_boss_rule('release_text', ''), $boss->bossname)) . "</font><br/>";
+        }
+    } elseif ($cbState['ok'] && $cbState['turn'] % max(2, intval(\player\combat_boss_rule('charge_every', 4))) == 0) {
+        $cbState['flag'] = 1;
+    }
+    if ($cbMove && $cbMove['effect'] == 'guard' && $phurt > 0) {
+        $cbGuard = round($phurt * $cbMove['value'] / 100);
+        $phurt = max(1, $phurt - $cbGuard);
+        $cbBossMsg .= "<font color='#42a5f5'>🛡 «{$cbMove['name']}» hộ thể: chặn {$cbGuard} sát thương</font><br/>";
+    }
+    $cbCpReduce = \player\combat_cp_value($player, 'dmg_reduce');
+    if ($cbCpReduce > 0 && $phurt > 0) {
+        $cbCpBlock = round($phurt * $cbCpReduce / 100);
+        if ($cbCpBlock > 0) {
+            $phurt = max(1, $phurt - $cbCpBlock);
+            $cbBossMsg .= "<font color='#80cbc4'>📜 Công pháp hộ thân: giảm {$cbCpBlock} sát thương</font><br/>";
+        }
+    }
+    \player\combat_state_save($sid, $cbState, $dblj);
+
     $ran = mt_rand(1,200);//控制暴击概率
     if ($player->ubj >= $ran){
-        $player->ugj = round($player->ugj * 1.72);
+        $cbCritMult = floatval(\player\combat_rule('crit_mult', null, 1.72));
+        if ($cbWg && $cbWg->effect_type == 'crit_dmg' && intval($cbWg->effect_value) > 0) {
+            $cbCritMult += intval($cbWg->effect_value) / 100 * \player\combat_passive_scale($cbWg->wgdj);
+        }
+        $cbCritMult += \player\combat_cp_value($player, 'crit_dmg') / 100;
+        $player->ugj = round($player->ugj * $cbCritMult);
         $pvbbj = 'Bạo kích';
     }
     // Sủng vật chỉ tham chiến khi đang xuất chiến và HP > 0.
@@ -334,7 +397,28 @@ HTML;
             $tishihtml .= "{$elemIcon} {$elemSrcLabel} bị {$bossElemName} khắc! <font color='#f44336'>{$elemBonusText}</font><br/>";
         }
     }
+    // Thế võ: xuyên phòng → hệ số → bạo kích chắc chắn → thiêu đốt.
+    if ($cbMove) {
+        if ($cbMove['effect'] == 'pierce') {
+            $gphurt += round($hmBossFy * 0.75 * $cbMove['value'] / 100);
+        }
+        if ($cbMove['mult'] != 1.0) {
+            $gphurt = round($gphurt * $cbMove['mult']);
+        }
+        if ($cbMove['effect'] == 'crit' && $pvbbj == '' && mt_rand(1, 100) <= $cbMove['value']) {
+            $gphurt = round($gphurt * floatval(\player\combat_rule('crit_mult', null, 1.72)));
+            $pvbbj = 'Bạo kích';
+        }
+        if ($cbMove['effect'] == 'burn') {
+            $cbBurn = max(1, round($gphurt * $cbMove['value'] / 100));
+            $gphurt += $cbBurn;
+            $tishihtml .= "<font color='#ff7043'>🔥 Thiêu đốt thêm {$cbBurn} sát thương</font><br/>";
+        }
+    }
     $pvbxx = ceil($gphurt * ($player->uxx/200) );//控制吸血强度
+    if ($cbMove && $cbMove['effect'] == 'lifesteal') {
+        $pvbxx += ceil($gphurt * $cbMove['value'] / 100);
+    }
 
     if ($phurt <= 0){
         $hurt = true;
@@ -352,6 +436,27 @@ HTML;
         $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tránh): {$boss->bossname} vung trúng khoảng không</font><br/>";
     }
     $phurt = $hmIncoming;
+    $cbStunned = false;
+    if ($phurt > 0 && $cbMove && $cbMove['effect'] == 'stun'
+        && mt_rand(1, 100) <= round($cbMove['value'] * floatval(\player\combat_boss_rule('stun_ratio', 0.5)))) {
+        $phurt = 0;
+        $cbStunned = true;
+    }
+    if ($phurt > 0 && $cbWg && $cbWg->effect_type == 'escape' && intval($cbWg->effect_value) > 0) {
+        $cbDodge = intval($cbWg->effect_value) * floatval(\player\combat_rule('escape_ratio', null, 0.1)) * \player\combat_passive_scale($cbWg->wgdj);
+        if (mt_rand(1, 1000) <= round($cbDodge * 10)) {
+            $phurt = 0;
+            $cbBossMsg .= "<font color='#90caf9'>💨 Võ công {$cbWg->wgname}: thân pháp né khỏi đòn của {$boss->bossname}</font><br/>";
+        }
+    }
+    $cbHeal = 0;
+    if ($cbMove && $cbMove['effect'] == 'heal') {
+        $cbHeal += round($player->umaxhp * $cbMove['value'] / 100);
+    }
+    $cbHeal += round($player->umaxhp * \player\combat_cp_value($player, 'hp_regen') / 100);
+    if ($cbWg && $cbWg->effect_type == 'hp_regen' && intval($cbWg->effect_value) > 0) {
+        $cbHeal += round($player->umaxhp * intval($cbWg->effect_value) * floatval(\player\combat_rule('hp_regen_ratio', null, 0.25)) / 100 * \player\combat_passive_scale($cbWg->wgdj));
+    }
 
     if ($phurt < $pvbxx){
         $pvbxx = $phurt - 7;
@@ -362,7 +467,7 @@ HTML;
         }
     }
 	$sb = mt_rand(1,100);//引入闪避随机数
-	if ($sb > 80){
+	if ($sb > 80 && !($cbMove && $cbMove['tier'] > 1)){
 		$gphurt = 0;
 		$pvbxx = 0;
 		$pvbsb = '(Né tránh)';
@@ -384,7 +489,12 @@ HTML;
             "Ngươi hét lên một tiếng, sát khí bùng nổ, chưởng ảnh phân chia như sao băng, đánh 'bùng' một tiếng giáng mạnh xuống trên đầu {$boss->bossname}!",
             "Ngươi thét dài, thân pháp lóe lên như điện, một đạo kiếm khí kinh thiên xé toạc không trung, hung hãn chém thẳng vàophần bụng {$boss->bossname}!"
         );
-        $tishihtml .= "<font color='#ffab40'>".$bossHitDesc[mt_rand(0, count($bossHitDesc) - 1)]." Kết quả 'xoẹt' một tiếng, rạch ra một vết thương đầm đìa máu, gây <b>{$gphurt}</b> sát thương!</font><br/>";
+        if ($cbMove) {
+            $tishihtml .= "<font color='#ffab40'>⚔ {$cbMove['label']} «<b>{$cbMove['name']}</b>»" . ($cbMove['hits'] > 1 ? " ({$cbMove['hits']} đòn)" : '') . ": "
+                . \player\combat_text($cbMove['text'], $boss->bossname) . " Gây <b>{$gphurt}</b> sát thương" . ($pvbbj != '' ? ' (bạo kích)' : '') . "!</font><br/>";
+        } else {
+            $tishihtml .= "<font color='#ffab40'>".$bossHitDesc[mt_rand(0, count($bossHitDesc) - 1)]." Kết quả 'xoẹt' một tiếng, rạch ra một vết thương đầm đìa máu, gây <b>{$gphurt}</b> sát thương!</font><br/>";
+        }
     }
 
     if ($boss->bosshp <=0 ){
@@ -521,9 +631,30 @@ HTML;
     }
 	
     $pzssh = $phurt - $pvbxx;
+    if ($boss->bosshp > 0) {
+        $tishihtml .= $cbBossMsg;
+        if ($pzssh > 0) {
+            $cbBossHit = \player\combat_mob_move(isset($boss->element) ? $boss->element : 'none');
+            $tishihtml .= "<font color='#f44336'>👹 {$boss->bossname} phản kích" . ($gwbj != '' ? ' <b>(trọng kích)</b>' : '') . ": "
+                . \player\combat_text($cbBossHit['text'], $boss->bossname) . " <b>Nhận {$pzssh} sát thương</b>.</font><br/>";
+        } elseif ($cbStunned) {
+            $tishihtml .= "<font color='#ce93d8'>💫 {$boss->bossname} bị «{$cbMove['name']}» khống chế, không thể phản kích!</font><br/>";
+        }
+        if ($cbState['ok'] && $cbState['flag'] == 1) {
+            $tishihtml .= "<font color='#ffca28'><b>" . str_replace('{skill}', $cbBossSkill,
+                \player\combat_text(\player\combat_boss_rule('charge_text', ''), $boss->bossname)) . "</b></font><br/>";
+        }
+    }
 	
-    $stmt = $dblj->prepare("UPDATE game1 SET uhp = GREATEST(0, uhp - :dmg) WHERE sid = :sid");
-    $stmt->execute(array(':dmg' => $pzssh, ':sid' => $sid));
+    $cbHealSql = 0;
+    if ($cbHeal > 0 && $player->uhp - $pzssh > 0) {
+        $cbHealSql = max(0, min($cbHeal, intval($player->umaxhp) - (intval($player->uhp) - $pzssh)));
+        if ($cbHealSql > 0) {
+            $tishihtml .= "<font color='#4CAF50'>💚 Hồi phục {$cbHealSql} khí huyết</font><br/>";
+        }
+    }
+    $stmt = $dblj->prepare("UPDATE game1 SET uhp = GREATEST(0, uhp - :dmg) + :heal WHERE sid = :sid");
+    $stmt->execute(array(':dmg' => $pzssh, ':heal' => $cbHealSql, ':sid' => $sid));
 	
     $player =  player\getplayer($sid,$dblj);
 	$cwxl = round($phurt*2.2);// Sát thương sủng vật phải nhận
@@ -846,6 +977,34 @@ if ($tishihtml != '' || $cwresthtml != '' || $tx != '') {
 }
 
 $playerNameSafe = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
+
+// Nút Tuyệt Kỹ / Tuyệt Chiêu (đòn thường = nút Tấn Công).
+$cbBtnHtml = '';
+$cbWgV = isset($cbWg) ? $cbWg : ((isset($player->wugong) && intval($player->wugong) > 0) ? \player\wgcx(intval($player->wugong), $sid, $dblj) : false);
+$cbMovesV = \player\combat_wugong_moves($cbWgV);
+if (!empty($cbMovesV) && $boss->bosshp > 0) {
+    $cbStV = isset($cbState) ? $cbState : \player\combat_state_load($sid, -intval($bossid), $dblj);
+    $cbBase = max(1, intval(round($player->umaxstamina * 0.05)));
+    foreach (array(2, 3) as $t) {
+        $mv = $cbMovesV[$t];
+        $cost = max(1, intval(round($cbBase * $mv['stamina_mult'])));
+        $wait = \player\combat_move_wait($cbStV, $t);
+        $sub = '';
+        if (!$mv['unlocked']) $sub = '🔒 Võ công cấp ' . $mv['unlock_lv'];
+        elseif (!$cbStV['ok']) $sub = 'Chưa khởi tạo';
+        elseif ($wait > 0) $sub = '⏳ Hồi ' . $wait . ' lượt';
+        elseif ($player->ustamina < $cost) $sub = 'Thiếu thể lực';
+        $inner = "<b>{$mv['label']}</b><span>{$mv['name']}</span><small>" . ($sub !== '' ? $sub : 'x' . $mv['mult'] . ' · ' . $cost . ' thể lực') . "</small>";
+        if ($sub === '') {
+            $cbUrl = $encode->encode("cmd=pvbgj&canshu=usewg&wgt=$t&bossid=$bossid&sid=$sid&nowmid=$nowmid");
+            $cbBtnHtml .= "<a class=\"pve-move t{$t}\" href=\"?cmd={$cbUrl}\">{$inner}</a>";
+        } else {
+            $cbBtnHtml .= "<span class=\"pve-move t{$t} is-off\">{$inner}</span>";
+        }
+    }
+    $cbWarn = (!empty($cbStV['flag'])) ? "<div class=\"boss-charge-warn\">⚠ BOSS đang tụ lực — dùng Tuyệt Chiêu để phá thế!</div>" : '';
+    $cbBtnHtml = $cbWarn . "<div class=\"pve-move-box\">{$cbBtnHtml}</div>";
+}
 $bossNameSafe = htmlspecialchars($boss->bossname, ENT_QUOTES, 'UTF-8');
 
 $html=<<<HTML
@@ -924,6 +1083,7 @@ $html=<<<HTML
             {$lcskillHtmlBoss}
             <a class="battle-btn escape" href="?cmd=$tp">🏃 Chạy Thôi</a>
         </div>
+        $cbBtnHtml
 
         <div class="battle-items">
             <a href="?cmd=$useyp1">$ypname1</a>

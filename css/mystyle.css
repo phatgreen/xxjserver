@@ -7684,3 +7684,5 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tcg-wg-move-stat{font-size:12px;color:#7dd3fc}
 .tcg-wg-move-eff{font-size:12px;color:#fca5a5;margin-top:2px}
 .tcg-wg-move-text{font-size:12px;color:#cbd5e1;margin-top:5px;line-height:1.45}
+.boss-charge-warn{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(127,29,29,.55);border:1px solid rgba(252,165,165,.6);color:#fde68a;font-weight:900;text-align:center;animation:bossChargePulse 1.2s ease-in-out infinite}
+@keyframes bossChargePulse{0%,100%{opacity:1}50%{opacity:.7}}
