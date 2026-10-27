@@ -235,6 +235,6 @@ Bảng hệ số công pháp (giá trị config × hệ số, chặn trần tổ
   Huyền Thủy Bí Lục (Thủy → Phòng), Thanh Mộc Trường Sinh Lục (Mộc → Khí huyết), Hỗn Nguyên Vạn Pháp Lục (all/none → Khí huyết).
 - **Viên Mãn**: võ công cấp ≥ 10; công pháp đạt `max_level`. Bộ không trang bị vẫn tính.
 - Mốc mỗi nhóm: 2 bộ +0.3% · 4 bộ +0.5% · toàn bộ +0.7% (cộng dồn 1.5%/nhóm) ⇒ tối đa **3% mỗi chỉ số**.
-- Tab "Cộng Hưởng" có ở trang Võ Công và Công Pháp. Nhóm thu gọn, bấm mới xổ danh sách bộ.
+- Tab "Cộng Hưởng" có ở trang Võ Công và Công Pháp. Trang chỉ có lưới 6 ô nhóm (tên, x/N Viên Mãn, % đang nhận); bấm ô mở **popup** mốc + danh sách bộ. Ảnh: `docs/img/vocong/conghuong-popup-390.png`.
 - Test: `tests/test_conghuong.php`. Ảnh: `docs/img/vocong/conghuong-390.png`.
 - `mining_bonus` (Phá Đá Khai Sơn): giữ nguyên, làm khi có hệ đào mỏ.

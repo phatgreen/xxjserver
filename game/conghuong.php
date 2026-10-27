@@ -20,7 +20,8 @@ foreach ($chRes['bonus'] as $stat => $pct) {
     $chSum .= '<div class="ch-sum-item"><span>' . \player\conghuong_stat_name($stat) . '</span><b>+' . number_format($pct, 1) . '%</b></div>';
 }
 
-$chGroups = '';
+$chTiles = '';
+$chPopups = '';
 foreach ($chRes['groups'] as $g) {
     $statName = \player\conghuong_stat_name($g['stat']);
     $tiers = '';
@@ -39,14 +40,22 @@ foreach ($chRes['groups'] as $g) {
             . '<small>' . $state . '</small></div>';
     }
     $pctDone = $g['total'] > 0 ? round($g['done'] * 100 / $g['total']) : 0;
-    // Thu gọn: bấm tiêu đề nhóm mới xổ danh sách bộ (trang đỡ dài).
-    $chGroups .= '<details class="ch-group"><summary>'
+    // Lưới ô nhỏ (chỉ tên + tiến độ); bấm ô mở popup chi tiết mốc + danh sách bộ.
+    $chKey = preg_replace('/[^a-z_]/', '', $g['key']);
+    $chTiles .= '<a class="ch-tile' . ($g['pct'] > 0 ? ' on' : '') . '" href="javascript:void(0)" onclick="chOpen(\'' . $chKey . '\')">'
+        . '<span class="ch-tile-icon">' . $g['icon'] . '</span>'
+        . '<b>' . wg_safe_text($g['name']) . '</b>'
+        . '<small>' . $g['done'] . '/' . $g['total'] . ' Viên Mãn</small>'
+        . '<span class="ch-bar"><i style="width:' . $pctDone . '%"></i></span>'
+        . '<em>+' . number_format($g['pct'], 1) . '% ' . $statName . '</em></a>';
+    $chPopups .= '<div class="ch-pop" id="ch-pop-' . $chKey . '" onclick="if(event.target===this)chClose(this)">'
+        . '<div class="ch-pop-box"><a class="ch-pop-x" href="javascript:void(0)" onclick="chClose(this.parentNode.parentNode)">✕</a>'
         . '<div class="ch-group-head"><span class="ch-group-icon">' . $g['icon'] . '</span>'
         . '<div class="ch-group-title"><b>' . wg_safe_text($g['name']) . '</b><small>Viên Mãn ' . $g['done'] . '/' . $g['total']
-        . ' · đang nhận +' . number_format($g['pct'], 1) . '% ' . $statName . '</small></div><span class="ch-toggle">▾</span></div>'
+        . ' · đang nhận +' . number_format($g['pct'], 1) . '% ' . $statName . '</small></div></div>'
         . '<div class="ch-bar"><i style="width:' . $pctDone . '%"></i></div>'
-        . '<div class="ch-tiers">' . $tiers . '</div></summary>'
-        . '<div class="ch-items">' . $items . '</div></details>';
+        . '<div class="ch-tiers">' . $tiers . '</div>'
+        . '<div class="ch-items">' . $items . '</div></div></div>';
 }
 
 echo <<<HTML
@@ -54,7 +63,7 @@ echo <<<HTML
     <div class="ch-hero">
         <div class="ch-kicker">Tàng Kinh Các</div>
         <h1>Cộng Hưởng</h1>
-        <p>Sưu tầm võ công và công pháp cùng hệ. Mỗi bộ luyện đến <b>Viên Mãn</b> (võ công cấp {$chWgNeed}, công pháp cấp tối đa) đều được tính — kể cả bộ không trang bị. Đạt mốc số bộ trong nhóm sẽ nhận chỉ số vĩnh viễn.</p>
+        <p>Luyện võ công cấp {$chWgNeed} / công pháp cấp tối đa = <b>Viên Mãn</b> (không cần trang bị). Đủ mốc trong nhóm nhận chỉ số vĩnh viễn. Bấm từng nhóm để xem chi tiết.</p>
     </div>
     <div class="ch-tabs">
         <a href="?cmd={$chWgCmd}">Võ Công</a>
@@ -62,7 +71,12 @@ echo <<<HTML
         <a class="active" href="javascript:void(0)">Cộng Hưởng</a>
     </div>
     <div class="ch-sum">{$chSum}</div>
-    {$chGroups}
+    <div class="ch-grid">{$chTiles}</div>
+    {$chPopups}
     <div class="ch-bottom"><a href="?cmd={$gonowmid}">Trở về trò chơi</a></div>
 </div>
+<script>
+function chOpen(k){var e=document.getElementById('ch-pop-'+k);if(e)e.className='ch-pop show';}
+function chClose(e){if(e)e.className='ch-pop';}
+</script>
 HTML;
