@@ -140,13 +140,12 @@ $purposeCss = array(
 if ($canshu != '') {
     switch ($canshu) {
         case 'buy_wg':
-            $wgCfgAll = \player\wugong_config_all();
-            $wgKey = (string)intval($buy_id);
-            if (!isset($wgCfgAll[$wgKey])) {
+            // Tra theo wgid (key JSON là số thứ tự, KHÔNG trùng wgid — tra theo key sẽ lấy nhầm bộ khác).
+            $wgCfg = \player\wugong_config_get(intval($buy_id));
+            if (!$wgCfg) {
                 $tssb = wg_popup_html('error', 'Võ công không tồn tại!');
                 break;
             }
-            $wgCfg = $wgCfgAll[$wgKey];
             $realmReq = isset($wgCfg['realm_require']) ? intval($wgCfg['realm_require']) : 0;
             $priceLT = isset($wgCfg['price_linhthong']) ? intval($wgCfg['price_linhthong']) : 0;
             $priceMT = isset($wgCfg['price_masthach']) ? intval($wgCfg['price_masthach']) : 0;
