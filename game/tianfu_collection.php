@@ -195,7 +195,11 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
 <?php if ($tpcHave && $tpcQ < 10 && count($tpcBrRows) > 0): ?>
         <div class="tp-gate" style="--tp-color:<?= $tpcColor ?>"><i class="tp-emoji"><?= \player\tianfu_quality_icon($tpcQ) ?></i> <?= htmlspecialchars(\player\tianfu_quality_name($tpcQ)) ?> → <i class="tp-emoji"><?= $tpcNextQ['icon'] ?></i> <?= htmlspecialchars($tpcNextQ['name']) ?> · cấp tối đa <?= intval($tpcNextQ['lv_cap']) ?></div>
         <div class="tp-reqs"><?php foreach ($tpcBrRows as $tpcBr): ?>
-            <div><span class="<?= empty($tpcBr['ok']) ? 'no' : 'ok' ?>"><?= empty($tpcBr['ok']) ? '✗' : '✓' ?></span> <?= htmlspecialchars($tpcBr['text']) ?></div>
+            <div><span class="<?= empty($tpcBr['ok']) ? 'no' : 'ok' ?>"><?= empty($tpcBr['ok']) ? '✗' : '✓' ?></span> <?= htmlspecialchars($tpcBr['text']) ?><?php
+                if (empty($tpcBr['ok']) && isset($tpcBr['key']) && $tpcBr['key'] === 'realm') {
+                    $tpcGo = \player\tianfu_realm_link($player, $sid, $encode);
+                    echo ' <a class="tp-go" href="?cmd=' . $tpcGo['href'] . '">' . $tpcGo['label'] . ' ›</a>';
+                } ?></div>
 <?php endforeach; ?>
         </div>
 <?php elseif ($tpcHave && $tpcQ >= 10): ?>
@@ -207,13 +211,13 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
             <form method="post" action="?cmd=<?= $tpcPostCmd ?>">
                 <input type="hidden" name="tp_action" value="lvup">
                 <input type="hidden" name="tf_id" value="<?= $tpcSel ?>">
-                <button type="submit" class="tpc-act<?= $tpcCanLvup ? '' : ' is-off' ?>" <?= $tpcCanLvup ? '' : 'disabled' ?>>Nâng Cấp</button>
+                <button type="submit" class="tpc-act tpc-act-up<?= $tpcCanLvup ? '' : ' is-off' ?>" <?= $tpcCanLvup ? '' : 'disabled' ?>>Nâng Cấp</button>
             </form>
 <?php if ($tpcQ < 10): ?>
             <form method="post" action="?cmd=<?= $tpcPostCmd ?>">
                 <input type="hidden" name="tp_action" value="break">
                 <input type="hidden" name="tf_id" value="<?= $tpcSel ?>">
-                <button type="submit" class="tpc-act<?= $tpcBrOk ? '' : ' is-off' ?>" <?= $tpcBrOk ? '' : 'disabled' ?>>Đột Phá</button>
+                <button type="submit" class="tpc-act tpc-act-break<?= $tpcBrOk ? '' : ' is-off' ?>" <?= $tpcBrOk ? '' : 'disabled' ?>>Đột Phá</button>
             </form>
 <?php endif; ?>
 <?php foreach ($tpcSlots as $tpcSd):
@@ -232,21 +236,21 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
                 <input type="hidden" name="tp_action" value="slot">
                 <input type="hidden" name="tf_id" value="<?= $tpcSel ?>">
                 <input type="hidden" name="tf_slot" value="0">
-                <button type="submit" class="tpc-act">Gỡ khỏi Ô Kích Hoạt <?= $tpcSn ?></button>
+                <button type="submit" class="tpc-act tpc-act-ghost">Gỡ khỏi Ô Kích Hoạt <?= $tpcSn ?></button>
             </form>
 <?php else: ?>
             <form method="post" action="?cmd=<?= $tpcPostCmd ?>">
                 <input type="hidden" name="tp_action" value="slot">
                 <input type="hidden" name="tf_id" value="<?= $tpcSel ?>">
                 <input type="hidden" name="tf_slot" value="<?= $tpcSn ?>">
-                <button type="submit" class="tpc-act"><?= $tpcPick === $tpcSn ? '▶ ' : '' ?><?= $tpcSHolder > 0 ? 'Thay vào' : 'Đặt vào' ?> Ô Kích Hoạt <?= $tpcSn ?></button>
+                <button type="submit" class="tpc-act tpc-act-slot"><?= $tpcPick === $tpcSn ? '▶ ' : '' ?><?= $tpcSHolder > 0 ? 'Thay vào' : 'Đặt vào' ?> Ô Kích Hoạt <?= $tpcSn ?></button>
             </form>
 <?php endif; ?>
 <?php endforeach; ?>
         </div>
 <?php else: ?>
         <div class="tpc-acts">
-            <a class="tpc-act" href="?cmd=<?= $tpcOpenPageCmd ?>">Mở Thiên Phú</a>
+            <a class="tpc-act tpc-act-open" href="?cmd=<?= $tpcOpenPageCmd ?>">Mở Thiên Phú</a>
         </div>
 <?php endif; ?>
     </div>

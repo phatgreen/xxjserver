@@ -7626,6 +7626,16 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tpc-acts form{flex:1 1 120px;margin:0}
 .main .tpc-act{width:100%;padding:10px 12px;font-size:13px}
 .main a.tpc-act,.main a.tpc-act:link,.main a.tpc-act:visited,.main a.tpc-act:hover{background:#fff;border:1px solid #e3e3e3;border-radius:3px;color:#0093E8;text-decoration:none;text-align:center}
+/* 2026-10-27: nut Phu Cac theo phong cach game (thay nut trang mac dinh) */
+.main .tpc-act,.main a.tpc-act,.main a.tpc-act:link,.main a.tpc-act:visited,.main a.tpc-act:hover{display:block;min-height:42px;border:0;border-radius:12px;font-weight:1000;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45);background:linear-gradient(135deg,#0ea5e9,#22d3ee);box-shadow:0 3px 0 rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.25);cursor:pointer;text-align:center;text-decoration:none}
+.main .tpc-act-break{background:linear-gradient(135deg,#7c3aed,#db2777)}
+.main .tpc-act-slot{background:linear-gradient(135deg,#16a34a,#4ade80)}
+.main .tpc-act-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#cbd5e1;box-shadow:none}
+.main .tpc-act-open,.main a.tpc-act-open,.main a.tpc-act-open:link,.main a.tpc-act-open:visited{background:linear-gradient(135deg,#f59e0b,#ef4444);line-height:22px}
+.main .tpc-act:active{transform:translateY(1px)}
+.tpc-acts>.tp-reqs{flex:1 1 100%;margin-top:2px}
+/* nut di nhanh khi thieu dieu kien (vd canh gioi) */
+.main a.tp-go,.main a.tp-go:link,.main a.tp-go:visited,.main a.tp-go:hover{display:inline-block;margin:2px 0 0 4px;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:1000;color:#1a1204;background:linear-gradient(135deg,#fbbf24,#f59e0b);text-decoration:none;white-space:nowrap;box-shadow:0 0 8px rgba(251,191,36,.35)}
 @media (min-width:601px){.tpc-wrap{max-width:840px}.tpc-grid{grid-template-columns:repeat(6,1fr)}.tpc-head{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.tpc-head span:last-child{text-align:right}}
 
 /* --- KHAI PHU (.tpo-*) --- */

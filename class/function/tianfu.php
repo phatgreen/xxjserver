@@ -547,8 +547,20 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_player_wallet')) {
 
 if (!function_exists(__NAMESPACE__ . '\\tianfu_row_state')) {
     /** Dong UI: `ok` quyet nut co bam duoc khong; `text` co dau vi hien cho nguoi choi. */
-    function tianfu_row_state($text, $ok){
-        return array('text' => $text, 'ok' => (bool)$ok);
+    function tianfu_row_state($text, $ok, $key = ''){
+        // $key: danh dau dong dac biet de trang in nut di nhanh (vd 'realm' = canh gioi)
+        return array('text' => $text, 'ok' => (bool)$ok, 'key' => $key);
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tianfu_realm_link')) {
+    /** Nut di nhanh khi thieu canh gioi: exp day -> Dot Pha canh gioi, chua day -> Tu Luyen. */
+    function tianfu_realm_link($player, $sid, $encode){
+        $full = intval($player->uexp) >= intval($player->umaxexp);
+        return array(
+            'href'  => $encode->encode($full ? "cmd=tupo&sid=$sid" : "cmd=goxiulian&sid=$sid"),
+            'label' => $full ? 'Đột phá cảnh giới' : 'Đi tu luyện',
+        );
     }
 }
 
@@ -730,7 +742,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_break_rows')) {
                              . number_format($cost['linh_thach'], 0, ',', '.'),
                              $W['uyxb'] >= $cost['linh_thach']),
             tianfu_row_state('Cảnh giới: ' . $W['ulv'] . ' / ' . $cost['ulv_require'],
-                             $W['ulv'] >= $cost['ulv_require']),
+                             $W['ulv'] >= $cost['ulv_require'], 'realm'),
         );
     }
 }
