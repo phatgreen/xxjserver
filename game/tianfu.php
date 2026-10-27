@@ -132,7 +132,7 @@ $tpPostCmd = $encode->encode("cmd=tianfu&grp=$tpView&sid=$sid");
     <div class="tp-head">
         <div class="tp-hrow">
             <span class="tp-title">THIÊN PHÚ</span>
-            <span class="tp-badge" style="border-color:<?= $tpTierColor ?>66;color:<?= $tpTierColor ?>"><i class="tp-badge-ico"><?= $tpQIcon ?></i><?= htmlspecialchars($tpQName) ?> · cấp tối đa <?= $tpLvCap ?></span>
+            <span class="tp-badge" style="border-color:<?= $tpTierColor ?>66;color:<?= $tpTierColor ?>"><i class="tp-badge-ico"><?= $tpQIcon ?></i><?= htmlspecialchars($tpQName) ?><?= $tpMaster ? ' · cấp tối đa ' . $tpLvCap : '' ?></span>
         </div>
     </div>
 
@@ -161,7 +161,7 @@ foreach ($tpGl as $tpKi => $tpGrp):
 <?php if (!$tpMaster): ?>
     <div class="tp-note">Chưa có Chủ Phú — vào <b>Phú Các</b> để lập, hoặc <b>Khai Phú</b> để uống <?= htmlspecialchars($tpPill['name']) ?>.</div>
 <?php elseif (count($tpOpened) < 4): ?>
-    <div class="tp-note dim">Còn <?= 4 - count($tpOpened) ?> Phú Vi chưa mở — cần cấp <?= intval($tpSlots[count($tpOpened)]['ulv']) ?>.</div>
+    <div class="tp-note dim">Còn <?= 4 - count($tpOpened) ?> Ô Kích Hoạt chưa mở — cần cấp <?= intval($tpSlots[count($tpOpened)]['ulv']) ?>.</div>
 <?php endif; ?>
 
     <div class="tp-forge-wrap">
@@ -190,7 +190,7 @@ foreach ($tpSlots as $tpSd):
                 <span class="tp-orb-ball"><i class="tp-emoji"><?= $tpARow ? $tpARow['icon'] : ($tpSOpen ? '＋' : '🔒') ?></i><?php if ($tpARow): ?><em><?= intval($tpARow['lv']) ?></em><?php endif; ?></span>
                 <b class="tp-orb-lab"><?php
                     if ($tpARow) { echo htmlspecialchars($tpARow['short']); }
-                    elseif ($tpSOpen) { echo htmlspecialchars($tpSd['name']); }
+                    elseif ($tpSOpen) { echo $tpSi === 1 ? htmlspecialchars($tpSd['name']) : 'Ô ' . $tpSi . ' trống'; }
                     else { echo 'Cấp ' . intval($tpSd['ulv']); }
                 ?></b>
             </<?= $tpOtag ?>>

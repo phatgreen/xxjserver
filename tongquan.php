@@ -492,10 +492,10 @@ if (is_array($tpAll)) {
 
     tq_sec('nuoi-duong', 'thien-phu', '☯', 'Thiên Phú (18 phú · 10 phẩm · 7 công)',
         count($rowsT5) + count($rowsQ5) + count($rowsG5) + count($rowsM5) + count($rowsS5),
-        'Lớp vận khí & tốc độ: khai Phú Đan nhận ngẫu nhiên 1 trong 18 thiên phú, xếp vào 4 Phú Vị. Thiên phú KHÔNG cộng Công/Thủ/Máu/Bạo/Hút — chỉ can thiệp tỉ lệ và giá.',
+        'Lớp vận khí & tốc độ: khai Phú Đan nhận ngẫu nhiên 1 trong 18 thiên phú, xếp vào 4 Ô Kích Hoạt. Thiên phú KHÔNG cộng Công/Thủ/Máu/Bạo/Hút — chỉ can thiệp tỉ lệ và giá.',
         array('UI: game/tianfu.php (cmd=tianfu) · game/tianfu_collection.php (cmd=tianfu_collection) · game/tianfu_open.php (cmd=tianfu_open)',
             'Số liệu: player_tianfu (sid, tianfu_id, quality, lv, slot) + player_tianfu_log',
-            'Bản sao trong game1: tianfu_id / tianfu_quality / tianfu_lv = Phú Vị 1 (chủ phú); tianfu_power = chiến lực tổng',
+            'Bản sao trong game1: tianfu_id / tianfu_quality / tianfu_lv = Ô Kích Hoạt 1 (chủ phú); tianfu_power = chiến lực tổng',
             'Trần mọi công: ' . tq_n($tpAll['cap_percent']) . '% — cộng dồn từng thiên phú xong mới kẹp một lần',
             'Công "Ngưỡng rơi đồ" NHÂN TIẾP sau Huyết Mạch: 1,15 x 1,30 = +49,5% danh nghĩa; ngưỡng 120 thật tế thành 179 (+49,17%) vì hai lần làm tròn',
             'Công "Đột phá" có trần mềm 99% — bản cũ KHÔNG có trần, đây là thay đổi hành vi',
@@ -505,8 +505,8 @@ if (is_array($tpAll)) {
             . ' Linh Thạch (cộng ' . tq_n($tpLv['linh_thach_per_lv']) . '/cấp). Luyện luôn thành công — chỉ phẩm chất mới cần đột phá.')
         . tq_searchable('tbl-tpq', array('Phẩm', 'Khóa', 'Trần cấp', 'Hệ số', 'Tỉ lệ khai', 'Đột phá lên phẩm kế', 'Cần cảnh giới'), $rowsQ5, '<b>10 phẩm chất:</b>')
         . tq_searchable('tbl-tpg', array('Khóa', 'Công', 'Đơn vị', 'Ý nghĩa'), $rowsG5, '<b>7 công:</b>')
-        . tq_searchable('tbl-tpm', array('Mốc', 'Tổng cấp 4 Phú Vị', 'Nhân chỉ số'), $rowsM5, '<b>Mốc tổng cấp:</b>')
-        . tq_searchable('tbl-tps', array('Phú Vị', 'Tên', 'Mở khi', 'Cảnh giới', 'Ghi chú'), $rowsS5, '<b>4 Phú Vị:</b>'));
+        . tq_searchable('tbl-tpm', array('Mốc', 'Tổng cấp 4 Ô Kích Hoạt', 'Nhân chỉ số'), $rowsM5, '<b>Mốc tổng cấp:</b>')
+        . tq_searchable('tbl-tps', array('Ô Kích Hoạt', 'Tên', 'Mở khi', 'Cảnh giới', 'Ghi chú'), $rowsS5, '<b>4 Ô Kích Hoạt:</b>'));
 } else {
     tq_sec('nuoi-duong', 'thien-phu', '☯', 'Thiên Phú (chưa cài đặt)', 0,
         'class/config/tianfu_config.json chưa tồn tại — Task 1 chưa chạy.',

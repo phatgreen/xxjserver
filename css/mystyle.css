@@ -7586,6 +7586,8 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tp-forge-row .tp-forge-cost{justify-content:flex-start;margin:0;flex:1 1 auto;min-width:0}
 .tp-forge-row form{margin:0;flex:0 0 auto}
 .tp-h3 .tp-attr-cap{font-weight:700;margin-left:6px}
+.tp-hrow{flex-wrap:wrap;align-items:center;row-gap:6px}
+.tp-title{flex:0 0 auto;overflow:visible}
 .tp-cols .tp-col+.tp-col{margin-top:14px}
 .tp-attrs{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
 .tp-attrs .tp-attr{display:block;padding:6px 0;font-size:12px}

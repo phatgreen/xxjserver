@@ -138,6 +138,7 @@ Bốn tab giống hệt khuôn Linh Căn / Huyết Mạch (`game/tianfu.php:290-
 - Chip chủ phú góc trái ảnh (`.tp-stage-chip`) **đã bỏ** vì trùng ô Phú Vi 1.
 - Thanh luyện chủ phú: tên + cấp + %/cấp một dòng; chi phí + nút Nâng Cấp một dòng.
 - 7 cổng: lưới 2 cột (tên trên, giá trị dưới); `trần 30%` ghi 1 lần ở tiêu đề.
+- **Đổi tên hiển thị "Phú Vi" → "Ô Kích Hoạt"** (ô 1 vẫn tên "Chủ Phú"); "tf" → "Điểm Thiên Phú"; "trần Lv" → "cấp tối đa". Tên biến/hàm/cột (`slot`, `tf`) giữ nguyên.
 - CSS thêm cuối khối `.tp-*` (`css/mystyle.css`, mục "2026-10-27"); `game.php` bump `mystyle.css?v=2026102701`.
 - Ảnh: `docs/img/thienphu/tianfu-v2-390.png`, `tianfu-v2-840.png`, `tianfu-v2-empty-390.png`
   (render bằng harness SQLite giả lập, **chưa** chụp trên DB thật).

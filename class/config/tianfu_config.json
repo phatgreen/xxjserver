@@ -68,10 +68,10 @@
     "4": {"total_lv": 500, "bonus_percent": 30, "name": "Nghịch Thiên"}
   },
   "slots": [
-    {"i": 1, "ulv": 0, "name": "Chủ Phú", "hint": "Phú vị chính — tên và phẩm chất của nó hiển thị khắp nơi."},
-    {"i": 2, "ulv": 100, "name": "Phú Vi Hai", "hint": "Mở khi đạt cấp 100."},
-    {"i": 3, "ulv": 200, "name": "Phú Vi Ba", "hint": "Mở khi đạt cấp 200."},
-    {"i": 4, "ulv": 280, "name": "Phú Vi Bốn", "hint": "Mở khi đạt cấp 280."}
+    {"i": 1, "ulv": 0, "name": "Chủ Phú", "hint": "Ô kích hoạt chính — tên và phẩm chất của nó hiển thị khắp nơi."},
+    {"i": 2, "ulv": 100, "name": "Ô Kích Hoạt 2", "hint": "Mở khi đạt cấp 100."},
+    {"i": 3, "ulv": 200, "name": "Ô Kích Hoạt 3", "hint": "Mở khi đạt cấp 200."},
+    {"i": 4, "ulv": 280, "name": "Ô Kích Hoạt 4", "hint": "Mở khi đạt cấp 280."}
   ],
   "cap_percent": 30,
   "open_pill": {"djid": 114, "name": "Khai Phú Đan"},

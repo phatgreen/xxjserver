@@ -776,7 +776,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
         $bad  = array('ok' => false, 'slot' => $slot, 'moved' => array(), 'msg' => '',
                       'mirror' => array());
 
-        if ($slot < 0 || $slot > 4) { $bad['msg'] = 'Phú Vi không hợp lệ.'; return $bad; }
+        if ($slot < 0 || $slot > 4) { $bad['msg'] = 'Ô Kích Hoạt không hợp lệ.'; return $bad; }
         if ($id === 0 && $slot === 0) { $bad['msg'] = 'Không có thay đổi.'; return $bad; }
 
         $O   = tianfu_owned($sid, $dblj);
@@ -792,7 +792,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
                 if (!in_array($slot, tianfu_slot_open($W['ulv']), true)) {
                     $sd = array();
                     foreach (tianfu_slot_defs() as $s) $sd[intval($s['i'])] = intval($s['ulv']);
-                    $bad['msg'] = 'Phú Vi ' . $slot . ' chưa mở — cần cấp ' . $sd[$slot]
+                    $bad['msg'] = 'Ô Kích Hoạt ' . $slot . ' chưa mở — cần cấp ' . $sd[$slot]
                                 . ', đang cấp ' . $W['ulv'] . '.';
                     return $bad;
                 }
@@ -814,7 +814,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
             if ($target === 0) { $bad['msg'] = 'Thiên phú này chưa được kích hoạt.'; return $bad; }
             $plan[$target] = 0;
         } elseif ($id === 0) {                      // xoa o
-            if (!isset($plan[$slot])) { $bad['msg'] = 'Phú Vi này đang trống.'; return $bad; }
+            if (!isset($plan[$slot])) { $bad['msg'] = 'Ô Kích Hoạt này đang trống.'; return $bad; }
             $plan[$slot] = 0;
         } else {
             $prev = isset($plan[$slot]) ? intval($plan[$slot]) : 0;
@@ -840,7 +840,7 @@ if (!function_exists(__NAMESPACE__ . '\\tianfu_slot_set')) {
             $dblj->commit();
         } catch (Exception $e) {
             $dblj->rollBack();
-            $bad['msg'] = 'Thay đổi Phú Vi thất bại, thử lại sau.';
+            $bad['msg'] = 'Thay đổi Ô Kích Hoạt thất bại, thử lại sau.';
             return $bad;
         }
 

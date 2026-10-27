@@ -424,7 +424,7 @@ $html = <<<HTML
         <div class="profile-stat"><span>💥 Bạo kích</span><strong>$player->ubj</strong></div>
         <div class="profile-stat"><span>🩸 Hút máu</span><strong>$player->uxx</strong></div>
         <div class="profile-stat"><span>$tpIcon Chủ phú</span><strong style="color:$tpColor">$tpMaster</strong></div>
-        <div class="profile-stat"><span>🎖 Phú Vị</span><strong>$tpSlots</strong></div>
+        <div class="profile-stat"><span>🎖 Ô Kích Hoạt</span><strong>$tpSlots</strong></div>
     </div>
 
 HTML;
