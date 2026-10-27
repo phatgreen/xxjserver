@@ -85,3 +85,19 @@ Dải cấp 78–91 cũng đang trống giữa Thiên Thủy Cốc và Hoa Quả
 
 1. **Dump bảng bản đồ** (`mid`, bảng khu vực `qy`, bảng NPC nếu có) — cấu trúc + dữ liệu, để thêm khu vực và quái.
 2. **Mốc cấp mục tiêu cho đợt nội dung này** (người chơi mạnh nhất hiện cấp bao nhiêu; muốn đợt này phủ tới cấp/cảnh giới nào).
+
+
+## 7. Cập nhật sau đợt A, B (2026-10-27)
+
+- Đợt A (võ công / công pháp): **xong** — `DOT_A_VOCONG_CONGPHAP.md`.
+- Đợt B (quái tới cấp 500): **xong** — `DOT_B_QUAI_CANH_GIOI.md`.
+
+### Phạm vi cấp
+Game có 74 cảnh giới (tới ~cấp 3.700). Nội dung làm **theo từng làn sóng**, mỗi làn ~500 cấp, vì người chơi thật cao nhất hiện cấp 93:
+làn 1 = cấp 1–500 (đang làm) · làn 2 = 500–1000 · … Công cụ sinh (`tools/gen/`) dùng lại được, chỉ thêm khu/tên mới.
+
+### Bổ sung theo yêu cầu chủ dự án
+| Đợt | Nội dung |
+|---|---|
+| **C. Nhiệm vụ** (mở rộng) | Chính tuyến (tân thủ + phát triển), **nhiệm vụ NPC theo từng bản đồ/khu**, nhiệm vụ ngày/tuần/tháng, nhiệm vụ ẩn, **thưởng trực tuyến / ngoại tuyến** — khảo sát hệ hiện có rồi thiết kế lại theo dải cấp 1–500 |
+| **F. Trang bị** | Hiện có 10 bậc (1/10/30/60/120/200/300/400/600/800) nhưng hở lớn 400→600→800 và không có gì sau 800; xem lại cường hóa / đột phá / bộ / ngũ hành để khớp dải cấp mới |

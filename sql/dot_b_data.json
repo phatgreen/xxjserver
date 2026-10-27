@@ -1,0 +1,655 @@
+{
+ "_note": "Sinh bởi tools/gen/dot_b_build.py — dùng cho sql/migrate_dot_b.php",
+ "regions": [
+  {
+   "qyid": 27,
+   "qyname": "Tây Lương Địa",
+   "new": false,
+   "band": "78–92",
+   "maps": [
+    {
+     "mid": 333,
+     "mname": "Đăng Vân Lộc",
+     "mgid": "200|3",
+     "midinfo": "Đăng Vân Lộc thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    },
+    {
+     "mid": 338,
+     "mname": "Hà Nguyên",
+     "mgid": "201|3",
+     "midinfo": "Hà Nguyên thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    },
+    {
+     "mid": 335,
+     "mname": "Lục La Chướng",
+     "mgid": "202|3",
+     "midinfo": "Lục La Chướng thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    },
+    {
+     "mid": 337,
+     "mname": "Thắng Châu",
+     "mgid": "203|3",
+     "midinfo": "Thắng Châu thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    },
+    {
+     "mid": 340,
+     "mname": "Thạch Thôn",
+     "mgid": "204|3",
+     "midinfo": "Thạch Thôn thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    },
+    {
+     "mid": 339,
+     "mname": "Dương Danh Bách Nạp",
+     "mgid": "205|3",
+     "midinfo": "Dương Danh Bách Nạp thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    },
+    {
+     "mid": 336,
+     "mname": "Thục Sơn Ngoại Thành",
+     "mgid": "206|2,207|1",
+     "midinfo": "Thục Sơn Ngoại Thành thuộc Tây Lương Địa — vùng luyện cấp 78–92."
+    }
+   ]
+  },
+  {
+   "qyid": 28,
+   "qyname": "Hoang Thiên Lý",
+   "new": false,
+   "band": "106–150",
+   "maps": [
+    {
+     "mid": 341,
+     "mname": "Song Khê",
+     "mgid": "208|3",
+     "midinfo": "Song Khê thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 342,
+     "mname": "Thục Sơn Cố Đạo",
+     "mgid": "209|3",
+     "midinfo": "Thục Sơn Cố Đạo thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 343,
+     "mname": "Tỏa Yêu Tháp",
+     "mgid": "210|3",
+     "midinfo": "Tỏa Yêu Tháp thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 345,
+     "mname": "Thạch Trầm Khê Động",
+     "mgid": "211|3",
+     "midinfo": "Thạch Trầm Khê Động thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 347,
+     "mname": "Sào Hồ",
+     "mgid": "212|3",
+     "midinfo": "Sào Hồ thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 346,
+     "mname": "Tử Vân Giá",
+     "mgid": "213|3",
+     "midinfo": "Tử Vân Giá thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 348,
+     "mname": "Bát Công Sơn",
+     "mgid": "214|3",
+     "midinfo": "Bát Công Sơn thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 349,
+     "mname": "Nữ La Nham",
+     "mgid": "215|3",
+     "midinfo": "Nữ La Nham thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 344,
+     "mname": "Bàn Cổ Chi Tâm",
+     "mgid": "216|3",
+     "midinfo": "Bàn Cổ Chi Tâm thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    },
+    {
+     "mid": 350,
+     "mname": "Hoài Nam Vương Lăng",
+     "mgid": "217|2,218|1",
+     "midinfo": "Hoài Nam Vương Lăng thuộc Hoang Thiên Lý — vùng luyện cấp 106–150."
+    }
+   ]
+  },
+  {
+   "qyid": 30,
+   "qyname": "Hồi Đầu Ngạn",
+   "new": false,
+   "band": "152–200",
+   "maps": [
+    {
+     "mid": 351,
+     "mname": "Oản Khâu Sơn",
+     "mgid": "219|3",
+     "midinfo": "Oản Khâu Sơn thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 352,
+     "mname": "Thiên Phật Tháp",
+     "mgid": "220|3",
+     "midinfo": "Thiên Phật Tháp thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 353,
+     "mname": "Tử Vi Đạo",
+     "mgid": "221|3",
+     "midinfo": "Tử Vi Đạo thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 354,
+     "mname": "Bạch Hạo Đạo",
+     "mgid": "222|3",
+     "midinfo": "Bạch Hạo Đạo thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 355,
+     "mname": "Tịch Huyền Đạo",
+     "mgid": "223|3",
+     "midinfo": "Tịch Huyền Đạo thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 356,
+     "mname": "Nguyệt Nha Hà Cốc",
+     "mgid": "224|3",
+     "midinfo": "Nguyệt Nha Hà Cốc thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 358,
+     "mname": "Thanh Phong Giản",
+     "mgid": "225|3",
+     "midinfo": "Thanh Phong Giản thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 357,
+     "mname": "Túy Hoa Ấm",
+     "mgid": "226|3",
+     "midinfo": "Túy Hoa Ấm thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    },
+    {
+     "mid": 359,
+     "mname": "Tiên Hồ Cư",
+     "mgid": "227|2,228|1",
+     "midinfo": "Tiên Hồ Cư thuộc Hồi Đầu Ngạn — vùng luyện cấp 152–200."
+    }
+   ]
+  },
+  {
+   "qyid": 31,
+   "qyname": "Hồng Hoang Cổ Địa",
+   "new": false,
+   "band": "202–250",
+   "maps": [
+    {
+     "mid": 360,
+     "mname": "Viêm Đế Thần Nông Động",
+     "mgid": "229|3",
+     "midinfo": "Viêm Đế Thần Nông Động thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 361,
+     "mname": "Bách Linh Châu",
+     "mgid": "230|3",
+     "midinfo": "Bách Linh Châu thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 362,
+     "mname": "Bất Chu Sơn",
+     "mgid": "231|3",
+     "midinfo": "Bất Chu Sơn thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 363,
+     "mname": "Bàn Long Trấn Trụ",
+     "mgid": "232|3",
+     "midinfo": "Bàn Long Trấn Trụ thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 364,
+     "mname": "Vô Thường Điện",
+     "mgid": "233|3",
+     "midinfo": "Vô Thường Điện thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 365,
+     "mname": "Hoàng Tuyền Quỷ Đạo",
+     "mgid": "234|3",
+     "midinfo": "Hoàng Tuyền Quỷ Đạo thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 366,
+     "mname": "Phong Thần Lăng",
+     "mgid": "235|3",
+     "midinfo": "Phong Thần Lăng thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 367,
+     "mname": "Toàn Mộng",
+     "mgid": "236|3",
+     "midinfo": "Toàn Mộng thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    },
+    {
+     "mid": 368,
+     "mname": "Quỳnh Hoa Phái",
+     "mgid": "237|2,238|1",
+     "midinfo": "Quỳnh Hoa Phái thuộc Hồng Hoang Cổ Địa — vùng luyện cấp 202–250."
+    }
+   ]
+  },
+  {
+   "qyid": 32,
+   "qyname": "Bắc Minh Hải Vực",
+   "new": true,
+   "band": "252–300",
+   "maps": [
+    {
+     "mid": null,
+     "mname": "Bắc Minh Hải Khẩu",
+     "mgid": "239|3",
+     "midinfo": "Bắc Minh Hải Khẩu thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Băng Hải Tiều Thạch",
+     "mgid": "240|3",
+     "midinfo": "Băng Hải Tiều Thạch thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Côn Bằng Sào",
+     "mgid": "241|3",
+     "midinfo": "Côn Bằng Sào thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Hắc Thủy Uyên",
+     "mgid": "242|3",
+     "midinfo": "Hắc Thủy Uyên thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Bắc Minh Long Cung",
+     "mgid": "243|3",
+     "midinfo": "Bắc Minh Long Cung thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Hải Nhãn Tuyền",
+     "mgid": "244|3",
+     "midinfo": "Hải Nhãn Tuyền thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Huyền Băng Đảo",
+     "mgid": "245|3",
+     "midinfo": "Huyền Băng Đảo thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    },
+    {
+     "mid": null,
+     "mname": "Bắc Minh Thâm Uyên",
+     "mgid": "246|2,247|1",
+     "midinfo": "Bắc Minh Thâm Uyên thuộc Bắc Minh Hải Vực — vùng luyện cấp 252–300."
+    }
+   ]
+  },
+  {
+   "qyid": 33,
+   "qyname": "Côn Lôn Tiên Sơn",
+   "new": true,
+   "band": "302–350",
+   "maps": [
+    {
+     "mid": null,
+     "mname": "Côn Lôn Sơn Môn",
+     "mgid": "248|3",
+     "midinfo": "Côn Lôn Sơn Môn thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Ngọc Hư Phong",
+     "mgid": "249|3",
+     "midinfo": "Ngọc Hư Phong thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Dao Trì",
+     "mgid": "250|3",
+     "midinfo": "Dao Trì thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Kỳ Lân Nhai",
+     "mgid": "251|3",
+     "midinfo": "Kỳ Lân Nhai thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Ngọc Châu Phong",
+     "mgid": "252|3",
+     "midinfo": "Ngọc Châu Phong thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Tuyết Liên Cốc",
+     "mgid": "253|3",
+     "midinfo": "Tuyết Liên Cốc thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Thiên Trụ Sơn",
+     "mgid": "254|3",
+     "midinfo": "Thiên Trụ Sơn thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    },
+    {
+     "mid": null,
+     "mname": "Côn Lôn Đỉnh",
+     "mgid": "255|2,256|1",
+     "midinfo": "Côn Lôn Đỉnh thuộc Côn Lôn Tiên Sơn — vùng luyện cấp 302–350."
+    }
+   ]
+  },
+  {
+   "qyid": 34,
+   "qyname": "Vạn Yêu Lâm",
+   "new": true,
+   "band": "352–400",
+   "maps": [
+    {
+     "mid": null,
+     "mname": "Vạn Yêu Lâm Ngoại Vi",
+     "mgid": "257|3",
+     "midinfo": "Vạn Yêu Lâm Ngoại Vi thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Độc Chướng Đầm",
+     "mgid": "258|3",
+     "midinfo": "Độc Chướng Đầm thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Cổ Thụ Yêu Thành",
+     "mgid": "259|3",
+     "midinfo": "Cổ Thụ Yêu Thành thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Huyết Đằng Cốc",
+     "mgid": "260|3",
+     "midinfo": "Huyết Đằng Cốc thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Bách Hoa Yêu Cốc",
+     "mgid": "261|3",
+     "midinfo": "Bách Hoa Yêu Cốc thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Thanh Khâu Hồ Quốc",
+     "mgid": "262|3",
+     "midinfo": "Thanh Khâu Hồ Quốc thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Yêu Hoàng Điện Ngoại",
+     "mgid": "263|3",
+     "midinfo": "Yêu Hoàng Điện Ngoại thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    },
+    {
+     "mid": null,
+     "mname": "Vạn Yêu Lâm Tâm",
+     "mgid": "264|2,265|1",
+     "midinfo": "Vạn Yêu Lâm Tâm thuộc Vạn Yêu Lâm — vùng luyện cấp 352–400."
+    }
+   ]
+  },
+  {
+   "qyid": 35,
+   "qyname": "Cửu U Ma Vực",
+   "new": true,
+   "band": "402–450",
+   "maps": [
+    {
+     "mid": null,
+     "mname": "Ma Vực Nhập Khẩu",
+     "mgid": "266|3",
+     "midinfo": "Ma Vực Nhập Khẩu thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "Hắc Phong Hiệp",
+     "mgid": "267|3",
+     "midinfo": "Hắc Phong Hiệp thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "Huyết Trì",
+     "mgid": "268|3",
+     "midinfo": "Huyết Trì thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "Cốt Hải",
+     "mgid": "269|3",
+     "midinfo": "Cốt Hải thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "Ma Viêm Cốc",
+     "mgid": "270|3",
+     "midinfo": "Ma Viêm Cốc thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "U Minh Phủ",
+     "mgid": "271|3",
+     "midinfo": "U Minh Phủ thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "Thiên Ma Tế Đàn",
+     "mgid": "272|3",
+     "midinfo": "Thiên Ma Tế Đàn thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    },
+    {
+     "mid": null,
+     "mname": "Cửu U Ma Uyên",
+     "mgid": "273|2,274|1",
+     "midinfo": "Cửu U Ma Uyên thuộc Cửu U Ma Vực — vùng luyện cấp 402–450."
+    }
+   ]
+  },
+  {
+   "qyid": 36,
+   "qyname": "Thiên Ngoại Thiên",
+   "new": true,
+   "band": "452–500",
+   "maps": [
+    {
+     "mid": null,
+     "mname": "Thiên Môn",
+     "mgid": "275|3",
+     "midinfo": "Thiên Môn thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Tinh Hà Đạo",
+     "mgid": "276|3",
+     "midinfo": "Tinh Hà Đạo thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Lôi Kiếp Đài",
+     "mgid": "277|3",
+     "midinfo": "Lôi Kiếp Đài thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Tử Vi Tinh Cung",
+     "mgid": "278|3",
+     "midinfo": "Tử Vi Tinh Cung thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Hỗn Độn Hải",
+     "mgid": "279|3",
+     "midinfo": "Hỗn Độn Hải thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Thái Hư Cảnh",
+     "mgid": "280|3",
+     "midinfo": "Thái Hư Cảnh thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Cửu Thiên Huyền Cung",
+     "mgid": "281|3",
+     "midinfo": "Cửu Thiên Huyền Cung thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    },
+    {
+     "mid": null,
+     "mname": "Thiên Ngoại Thiên Đỉnh",
+     "mgid": "282|2,283|1",
+     "midinfo": "Thiên Ngoại Thiên Đỉnh thuộc Thiên Ngoại Thiên — vùng luyện cấp 452–500."
+    }
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "bossname": "Boss·Tây Lương Sa Vương",
+   "bosslv": 92,
+   "bosshp": 194800,
+   "bossgj": 1971,
+   "bossfy": 1000,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "4,9,14,19,29",
+   "bossdj": "1",
+   "region": "Tây Lương Địa",
+   "bossinfo": "Tây Lương Sa Vương — bá chủ Tây Lương Địa, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": 336
+  },
+  {
+   "bossname": "Boss·Hoài Nam Vương",
+   "bosslv": 150,
+   "bosshp": 436700,
+   "bossgj": 4625,
+   "bossfy": 1780,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "5,10,15,20,30",
+   "bossdj": "1",
+   "region": "Hoang Thiên Lý",
+   "bossinfo": "Hoài Nam Vương — bá chủ Hoang Thiên Lý, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": 350
+  },
+  {
+   "bossname": "Boss·Bỉ Ngạn Minh Vương",
+   "bosslv": 200,
+   "bosshp": 702500,
+   "bossgj": 7640,
+   "bossfy": 2499,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "21,46,66,86,101",
+   "bossdj": "1",
+   "region": "Hồi Đầu Ngạn",
+   "bossinfo": "Bỉ Ngạn Minh Vương — bá chủ Hồi Đầu Ngạn, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": 359
+  },
+  {
+   "bossname": "Boss·Cộng Công Tàn Hồn",
+   "bosslv": 250,
+   "bosshp": 1015600,
+   "bossgj": 11278,
+   "bossfy": 3252,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "21,46,66,86,101",
+   "bossdj": "1",
+   "region": "Hồng Hoang Cổ Địa",
+   "bossinfo": "Cộng Công Tàn Hồn — bá chủ Hồng Hoang Cổ Địa, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": 368
+  },
+  {
+   "bossname": "Boss·Bắc Minh Côn Vương",
+   "bosslv": 300,
+   "bosshp": 1372500,
+   "bossgj": 15502,
+   "bossfy": 4033,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "22,47,67,87,102",
+   "bossdj": "1,20",
+   "region": "Bắc Minh Hải Vực",
+   "bossinfo": "Bắc Minh Côn Vương — bá chủ Bắc Minh Hải Vực, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": -1
+  },
+  {
+   "bossname": "Boss·Côn Lôn Kiếm Tôn",
+   "bosslv": 350,
+   "bosshp": 1770600,
+   "bossgj": 20287,
+   "bossfy": 4837,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "22,47,67,87,102",
+   "bossdj": "1,20",
+   "region": "Côn Lôn Tiên Sơn",
+   "bossinfo": "Côn Lôn Kiếm Tôn — bá chủ Côn Lôn Tiên Sơn, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": -1
+  },
+  {
+   "bossname": "Boss·Vạn Yêu Hoàng",
+   "bosslv": 400,
+   "bosshp": 2207600,
+   "bossgj": 25610,
+   "bossfy": 5663,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "23,48,68,88,103",
+   "bossdj": "1,21",
+   "region": "Vạn Yêu Lâm",
+   "bossinfo": "Vạn Yêu Hoàng — bá chủ Vạn Yêu Lâm, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": -1
+  },
+  {
+   "bossname": "Boss·Cửu U Ma Tôn",
+   "bosslv": 450,
+   "bosshp": 2681800,
+   "bossgj": 31454,
+   "bossfy": 6507,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "23,48,68,88,103",
+   "bossdj": "1,21",
+   "region": "Cửu U Ma Vực",
+   "bossinfo": "Cửu U Ma Tôn — bá chủ Cửu U Ma Vực, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": -1
+  },
+  {
+   "bossname": "Boss·Thiên Ngoại Thiên Chủ",
+   "bosslv": 500,
+   "bosshp": 3191700,
+   "bossgj": 37803,
+   "bossfy": 7369,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "23,48,68,88,103",
+   "bossdj": "1,21",
+   "region": "Thiên Ngoại Thiên",
+   "bossinfo": "Thiên Ngoại Thiên Chủ — bá chủ Thiên Ngoại Thiên, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.",
+   "at_mid": -1
+  }
+ ]
+}

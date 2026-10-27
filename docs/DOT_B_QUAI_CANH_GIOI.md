@@ -1,4 +1,4 @@
-# ĐỢT B — Quái theo cảnh giới tới cấp 500 (bản thiết kế chờ duyệt)
+# ĐỢT B — Quái theo cảnh giới tới cấp 500 (ĐÃ LÀM 2026-10-27)
 
 > Lập 2026-10-27. Bảng số sinh bằng `tools/gen/dot_b_design.py`. Thuộc kế hoạch tổng `PLAN_MO_RONG_NOI_DUNG.md`.
 
@@ -205,3 +205,28 @@ Triển khai bằng `sql/migrate_dot_b.php` (chạy lại không trùng): ghi `m
 | V1 | **Danh sách rơi đồ của quái cũ sai bậc**: `gzb` ghi theo mã liên tiếp (vd. quái cấp 100 có `21,22,23,24,25` = Thánh/Tiên/Thần/Đế/Đạo Kiếm, tức vũ khí cấp 200–800, tỉ lệ ~38%; quái cấp 1 rơi Thiên Hoàng Kiếm cấp 120) | Sửa luôn trong đợt B theo cùng quy tắc "bậc ≤ cấp quái" |
 | V2 | **Kinh nghiệm quái tăng tuyến tính** (cấp × 107) trong khi lên cấp cần cấp² × 110 ⇒ số quái phải hạ để lên 1 cấp ≈ bằng cấp: cấp 100 ~100 con, cấp 300 ~310 con, cấp 500 ~510 con | Cho phép quái có `gexp` riêng trong config (code `nowmid.php` dùng nếu có). Quái mới đặt `gexp ≈ 1.1 × cấp²` ⇒ giữ ~100 con/cấp ở mọi dải. Quái cũ giữ nguyên |
 | V3 | Khu mới chưa có ảnh bản đồ khu vực (`dt/ditu/<qyid>.png`) | Tạm dùng `default.png`; bạn bổ sung ảnh sau |
+
+**Quyết định (2026-10-27):** V1 sửa luôn · V2 giữ nguyên (cấp cao phải luyện lâu là đúng thiết kế) · V3 đã vẽ ảnh khu 31–36.
+
+## 6. Đã triển khai
+
+| Hạng mục | File |
+|---|---|
+| 84 quái mới (200–283) + sửa danh sách rơi trang bị của 87 quái cũ theo bậc | `class/config/guaiwu_config.json` |
+| Dữ liệu map/khu/boss | `sql/dot_b_data.json` (sinh từ `tools/gen/dot_b_build.py`) |
+| Migration (idempotent) | `sql/migrate_dot_b.php` |
+| Ảnh sơ đồ khu 31–36 (vẽ từ DB) | `dt/ditu/31.png` … `36.png`, công cụ `tools/gen/draw_region_map.py` |
+| Test dữ liệu | `tests/test_dot_b_data.php` |
+
+Kiểm chứng trên DB thật (cloud): migration chạy 2 lần không trùng (182 map / 21 khu / 13 boss); vào map 333, 369, 376 thấy quái mới
+(exp đúng cấp × 107), boss khu hiện trên map; đánh Bắc Minh Hải Xà cấp 252 bằng thế võ, quái phản kích theo hệ Thủy.
+
+## 7. Cách chạy trên máy bạn / server
+
+```
+cd /d D:\XXJserver\phpstudy_pro\WWW
+git pull
+D:\XXJserver\phpstudy_pro\Extensions\php\php5.6.9nts\php.exe sql\migrate_dot_b.php --dry-run
+D:\XXJserver\phpstudy_pro\Extensions\php\php5.6.9nts\php.exe sql\migrate_dot_b.php --apply
+```
+Nên sao lưu 3 bảng `mid`, `qy`, `boss` trước khi `--apply`. Chạy lại `--apply` an toàn (không tạo trùng).
