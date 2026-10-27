@@ -92,6 +92,7 @@ Dải cấp 78–91 cũng đang trống giữa Thiên Thủy Cốc và Hoa Quả
 - Đợt A (võ công / công pháp): **xong** — `DOT_A_VOCONG_CONGPHAP.md`.
 - Đợt B (quái tới cấp 500): **xong** — `DOT_B_QUAI_CANH_GIOI.md`.
 - Đợt C (nhiệm vụ): **xong** — `DOT_C_NHIEM_VU.md`.
+- Đợt F (trang bị): **thiết kế chờ duyệt** — `DOT_F_TRANG_BI.md`.
 
 ### Phạm vi cấp
 Game có 74 cảnh giới (tới ~cấp 3.700). Nội dung làm **theo từng làn sóng**, mỗi làn ~500 cấp, vì người chơi thật cao nhất hiện cấp 93:
