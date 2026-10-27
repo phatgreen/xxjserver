@@ -163,7 +163,34 @@ if($cmd=='pve' && $guaiwu->sid==''){
         }
     }
 
-    $energyCost = max(1, intval(round($player->umaxstamina * 0.05)));
+    // === THẾ VÕ: Võ Kỹ (thế 1, đánh thường) / Tuyệt Kỹ (thế 2) / Tuyệt Chiêu (thế 3) ===
+    $cbState = \player\combat_state_load($sid, $gid, $dblj);
+    $cbWg = (isset($player->wugong) && intval($player->wugong) > 0) ? \player\wgcx(intval($player->wugong), $sid, $dblj) : false;
+    $cbMoves = \player\combat_wugong_moves($cbWg);
+    $cbMove = isset($cbMoves[1]) ? $cbMoves[1] : null;
+    $cbTier = (isset($canshu) && $canshu == 'usewg' && isset($wgt)) ? intval($wgt) : 1;
+    $energyBase = max(1, intval(round($player->umaxstamina * 0.05)));
+    if ($cbTier > 1) {
+        $cbNote = '';
+        if (!isset($cbMoves[$cbTier])) {
+            $cbNote = 'Chưa trang bị võ công.';
+        } elseif (!$cbMoves[$cbTier]['unlocked']) {
+            $cbNote = $cbMoves[$cbTier]['label'] . ' mở khi võ công đạt cấp ' . $cbMoves[$cbTier]['unlock_lv'] . '.';
+        } elseif (!$cbState['ok']) {
+            $cbNote = 'Chưa khởi tạo dữ liệu thế võ (bảng player_combat_state).';
+        } elseif (\player\combat_move_wait($cbState, $cbTier) > 0) {
+            $cbNote = '«' . $cbMoves[$cbTier]['name'] . '» còn hồi ' . \player\combat_move_wait($cbState, $cbTier) . ' lượt.';
+        } elseif ($player->ustamina < max(1, intval(round($energyBase * $cbMoves[$cbTier]['stamina_mult'])))) {
+            $cbNote = 'Không đủ thể lực để thi triển «' . $cbMoves[$cbTier]['name'] . '».';
+        } else {
+            $cbMove = $cbMoves[$cbTier];
+        }
+        if ($cbNote !== '') {
+            $tishihtml .= "<font color='#9e9e9e'>{$cbNote} Chuyển sang đánh thường.</font><br/>";
+        }
+    }
+
+    $energyCost = $cbMove ? max(1, intval(round($energyBase * $cbMove['stamina_mult']))) : $energyBase;
     if ($player->ustamina < $energyCost) {
         $tishihtml = "<font color='#cc0000'>Thể lực không đủ để tấn công (cần $energyCost).</font><br/>";
         $player->ustamina = max(0, intval($player->ustamina));
@@ -193,12 +220,25 @@ HTML;
         $stmt = $dblj->prepare("UPDATE game1 SET ustamina = :stamina WHERE sid = :sid");
         $stmt->execute(array(':stamina' => $player->ustamina, ':sid' => $sid));
 
+        // Ghi lượt + hồi chiêu của thế vừa dùng.
+        if ($cbState['ok']) {
+            $cbState['turn']++;
+            if ($cbMove && $cbMove['tier'] > 1) {
+                $cbState['cd' . $cbMove['tier']] = $cbState['turn'] + $cbMove['cooldown'] + 1;
+            }
+            \player\combat_state_save($sid, $cbState, $dblj);
+        }
+
         $player->ugj += $jineng->jngj;
         $player->ufy += $jineng->jnfy;
         $player->ubj += $jineng->jnbj;
 
         // Áp dụng penalty đan độc (giảm stats)
         $toxinPenalty = \player\luonden_get_stat_penalty($sid, $dblj);
+        if ($toxinPenalty > 0 && $cbWg && $cbWg->effect_type == 'poison_immune') {
+            $tishihtml .= "<font color='#42a5f5'>Võ công {$cbWg->wgname}: bách độc bất xâm, đan độc không ảnh hưởng</font><br/>";
+            $toxinPenalty = 0;
+        }
         if ($toxinPenalty > 0) {
             $player->ugj = round($player->ugj * (1 - $toxinPenalty / 100));
             $player->ufy = round($player->ufy * (1 - $toxinPenalty / 100));
@@ -251,6 +291,25 @@ HTML;
         $phurt = round($guaiwu->ggj*0.15);
     }
 
+    // Chiêu phản kích của quái theo hệ + bạo kích theo gbj (guaiwu_skill_config.json).
+    $cbMob = \player\combat_mob_move(isset($guaiwu->element) ? $guaiwu->element : 'none');
+    $cbMobCfg = \player\combat_cfg('guaiwu_skill_config.json');
+    if ($cbMob['mult'] != 1.0) {
+        $phurt = round($phurt * $cbMob['mult']);
+    }
+    $cbMobCrit = false;
+    $cbGbj = isset($guaiwu->gbj) ? intval($guaiwu->gbj) : 0;
+    if ($cbGbj > 0 && mt_rand(1, 1000) <= round($cbGbj * floatval($cbMobCfg['rules']['crit_ratio']) * 10)) {
+        $phurt = round($phurt * floatval($cbMobCfg['rules']['crit_mult']));
+        $cbMobCrit = true;
+    }
+    // Thế "guard": giảm sát thương nhận ở lượt này.
+    if ($cbMove && $cbMove['effect'] == 'guard' && $phurt > 0) {
+        $cbGuard = round($phurt * $cbMove['value'] / 100);
+        $phurt = max(1, $phurt - $cbGuard);
+        $tishihtml .= "<font color='#42a5f5'>🛡 «{$cbMove['name']}» hộ thể: chặn {$cbGuard} sát thương</font><br/>";
+    }
+
     // Hiệu ứng võ công: giảm sát thương nhận vào.
     if (($wgEffectType == 'damage_reduce' || $wgEffectType == 'control_reduce_damage') && $wgEffectValue > 0 && $phurt > 0) {
         $wgReduceHurt = ceil($phurt * $wgEffectValue / 100);
@@ -260,7 +319,11 @@ HTML;
 
     $ran = mt_rand(1,200);// Kiểm tra khả năng kích hoạt bạo kích
     if ($player->ubj >= $ran){
-        $player->ugj = round($player->ugj * 1.72);
+        $cbCritMult = floatval(\player\combat_rule('crit_mult', null, 1.72));
+        if ($cbWg && $cbWg->effect_type == 'crit_dmg' && intval($cbWg->effect_value) > 0) {
+            $cbCritMult += intval($cbWg->effect_value) / 100 * \player\combat_passive_scale($cbWg->wgdj);
+        }
+        $player->ugj = round($player->ugj * $cbCritMult);
         $pvebj = 'Bạo kích';
         $tishihtml .= "<font color='#ffeb3b'><b>Bạo kích!</b> Đòn đánh thần tốc gây thêm sát thương</font><br/>";
     }
@@ -338,6 +401,26 @@ HTML;
         }
     }
 
+    // Thế võ: xuyên phòng → hệ số → bạo kích chắc chắn → thiêu đốt.
+    if ($cbMove) {
+        if ($cbMove['effect'] == 'pierce') {
+            $gphurt += round($guaiwuFyForDamage * 0.75 * $cbMove['value'] / 100);
+        }
+        if ($cbMove['mult'] != 1.0) {
+            $gphurt = round($gphurt * $cbMove['mult']);
+        }
+        if ($cbMove['effect'] == 'crit' && $pvebj == '' && mt_rand(1, 100) <= $cbMove['value']) {
+            $gphurt = round($gphurt * floatval(\player\combat_rule('crit_mult', null, 1.72)));
+            $pvebj = 'Bạo kích';
+            $tishihtml .= "<font color='#ffeb3b'><b>Bạo kích!</b> «{$cbMove['name']}» đánh trúng tử huyệt</font><br/>";
+        }
+        if ($cbMove['effect'] == 'burn') {
+            $cbBurn = max(1, round($gphurt * $cbMove['value'] / 100));
+            $gphurt += $cbBurn;
+            $tishihtml .= "<font color='#ff7043'>🔥 Thiêu đốt thêm {$cbBurn} sát thương</font><br/>";
+        }
+    }
+
     // Hiệu ứng võ công: liên kích, gây thêm một phần sát thương công kích.
     if ($wgEffectType == 'combo_hit' && $wgEffectValue > 0 && mt_rand(1,100) <= $wgEffectValue) {
         $wgComboHurt = max(1, round($player->ugj * 0.35));
@@ -352,6 +435,10 @@ HTML;
         $wgLifeSteal = ceil($gphurt * $wgEffectValue / 100);
         $pvexx += $wgLifeSteal;
         $tishihtml .= "<font color='#42a5f5'>Võ công {$wgEffectName}: hút máu thêm +{$wgLifeSteal}</font><br/>";
+    }
+
+    if ($cbMove && $cbMove['effect'] == 'lifesteal') {
+        $pvexx += ceil($gphurt * $cbMove['value'] / 100);
     }
 
     if ($phurt <= 0){
@@ -371,6 +458,27 @@ HTML;
         $tishihtml .= "<font color='#90caf9'>💨 Âm Kiều Mạch (Né Tránh): {$guaiwu->gname} vung trúng khoảng không</font><br/>";
     }
     $phurt = $hmIncoming;
+    $cbStunned = false;
+    if ($phurt > 0 && $cbMove && $cbMove['effect'] == 'stun' && mt_rand(1, 100) <= $cbMove['value']) {
+        $phurt = 0;
+        $cbStunned = true;
+    }
+    // Khinh công (escape): né đòn, mạnh dần theo cấp võ công.
+    if ($phurt > 0 && $cbWg && $cbWg->effect_type == 'escape' && intval($cbWg->effect_value) > 0) {
+        $cbDodge = intval($cbWg->effect_value) * floatval(\player\combat_rule('escape_ratio', null, 0.1)) * \player\combat_passive_scale($cbWg->wgdj);
+        if (mt_rand(1, 1000) <= round($cbDodge * 10)) {
+            $phurt = 0;
+            $tishihtml .= "<font color='#90caf9'>💨 Võ công {$cbWg->wgname}: thân pháp né khỏi đòn của {$guaiwu->gname}</font><br/>";
+        }
+    }
+    // Hồi máu trong lượt: thế "heal" + bị động hp_regen của võ công.
+    $cbHeal = 0;
+    if ($cbMove && $cbMove['effect'] == 'heal') {
+        $cbHeal += round($player->umaxhp * $cbMove['value'] / 100);
+    }
+    if ($cbWg && $cbWg->effect_type == 'hp_regen' && intval($cbWg->effect_value) > 0) {
+        $cbHeal += round($player->umaxhp * intval($cbWg->effect_value) * floatval(\player\combat_rule('hp_regen_ratio', null, 0.25)) / 100 * \player\combat_passive_scale($cbWg->wgdj));
+    }
     if ($phurt < $pvexx){
         $pvexx = $phurt - 7;
 
@@ -394,10 +502,15 @@ HTML;
         $playerToolDesc .= "<b>{$wgEffectName}</b> (võ công)";
     }
     if (isset($canshu) && $canshu == 'usejn' && !empty($jineng->jnname)) {
-        $playerToolDesc .= ($playerToolDesc ? ' + ' : '') . "<b>{$jineng->jnname}</b> (công pháp)";
+        $playerToolDesc .= ($playerToolDesc ? ' + ' : '') . "<b>{$jineng->jnname}</b> (phù lục)";
     }
 
-    $tishihtml .= "<font color='#ffab40'>" . ($playerToolDesc ? "⚔ Dùng {$playerToolDesc}. " : '') . $pveHitDesc[mt_rand(0, count($pveHitDesc) - 1)] . " <b>Gây {$gphurt} sát thương</b> lên {$guaiwu->gname}.</font><br/>";
+    if ($cbMove) {
+        $cbHitText = "{$cbMove['label']} «<b>{$cbMove['name']}</b>»" . ($cbMove['hits'] > 1 ? " ({$cbMove['hits']} đòn)" : '') . ": " . \player\combat_text($cbMove['text'], $guaiwu->gname);
+        $tishihtml .= "<font color='#ffab40'>⚔ {$cbHitText} <b>Gây {$gphurt} sát thương</b>.</font><br/>";
+    } else {
+        $tishihtml .= "<font color='#ffab40'>" . ($playerToolDesc ? "⚔ Dùng {$playerToolDesc}. " : '') . $pveHitDesc[mt_rand(0, count($pveHitDesc) - 1)] . " <b>Gây {$gphurt} sát thương</b> lên {$guaiwu->gname}.</font><br/>";
+    }
     if ($guaiwu->ghp<=0){// Quái vật bị tiêu diệt, bắt đầu xử lý phần thưởng
         $sql = "delete from midguaiwu where id = $gid AND sid='$player->sid'";// Xóa quái vật khỏi bản đồ sau khi bị tiêu diệt
         $dblj->exec($sql);
@@ -555,10 +668,21 @@ HTML;
             "{$guaiwu->gname} vung một cái lật, cánh tay rộn sóng, móng vuốn nhọn như lưỡi dao đâm thẳng vào ngực trước bạn!",
             "{$guaiwu->gname} lao về trước bằng tiếng gầm rền, giẫm xuống mạnh như núi đập, cả khuôn mặt bạn bừng long lẫy!"
         );
-        $tishihtml .= "<font color='#f44336'>👹 {$guaiwu->gname} phản công: " . $bossHitDesc[mt_rand(0, count($bossHitDesc) - 1)] . " <b>Nhận {$pzssh} sát thương</b>.</font><br/>";
+        $cbMobText = isset($cbMob) ? \player\combat_text($cbMob['text'], $guaiwu->gname) : $bossHitDesc[mt_rand(0, count($bossHitDesc) - 1)];
+        $cbMobName = (isset($cbMob) && $cbMob['name'] !== '') ? "«<b>{$cbMob['name']}</b>» " : '';
+        $tishihtml .= "<font color='#f44336'>👹 {$guaiwu->gname} phản công {$cbMobName}" . (!empty($cbMobCrit) ? '<b>(bạo kích)</b> ' : '') . ": " . $cbMobText . " <b>Nhận {$pzssh} sát thương</b>.</font><br/>";
+    } elseif ($guaiwu->ghp > 0 && !empty($cbStunned)) {
+        $tishihtml .= "<font color='#ce93d8'>💫 {$guaiwu->gname} bị «{$cbMove['name']}» khống chế, không thể phản kích!</font><br/>";
     }
 	
-    $sql = "update game1 set uhp = GREATEST(0, uhp - $pzssh) WHERE sid = '$sid'";// Clip HP at 0: umaxhp in DB is the base max, the real max is buffed at runtime
+    $sql = "update game1 set uhp = GREATEST(0, uhp - $pzssh) WHERE sid = '$sid'";
+    if (!empty($cbHeal) && $player->uhp - $pzssh > 0) {
+        $cbHeal = max(0, min($cbHeal, intval($player->umaxhp) - (intval($player->uhp) - $pzssh)));
+        if ($cbHeal > 0) {
+            $sql = "update game1 set uhp = GREATEST(0, uhp - $pzssh) + $cbHeal WHERE sid = '$sid'";
+            $tishihtml .= "<font color='#4CAF50'>💚 Hồi phục {$cbHeal} khí huyết</font><br/>";
+        }
+    }// Clip HP at 0: umaxhp in DB is the base max, the real max is buffed at runtime
 
     $dblj->exec($sql);                                                     // Thực thi câu lệnh cập nhật cơ sở dữ liệu
     $player =  player\getplayer($sid,$dblj);// Tải lại thông tin người chơi sau khi cập nhật HP
@@ -939,6 +1063,48 @@ if ($cwresthtml != '') {
 
 $pvePlayerSafe = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
 
+// Nút Tuyệt Kỹ / Tuyệt Chiêu của võ công đang trang bị (Võ Kỹ = nút Tấn công).
+$cbBtnHtml = '';
+$cbWgV = isset($cbWg) ? $cbWg : ((isset($player->wugong) && intval($player->wugong) > 0) ? \player\wgcx(intval($player->wugong), $sid, $dblj) : false);
+$cbMovesV = \player\combat_wugong_moves($cbWgV);
+if (!empty($cbMovesV)) {
+    $cbStV = isset($cbState) ? $cbState : \player\combat_state_load($sid, $gid, $dblj);
+    $cbBase = max(1, intval(round($player->umaxstamina * 0.05)));
+    $cbBtns = '';
+    foreach (array(2, 3) as $t) {
+        $mv = $cbMovesV[$t];
+        $cost = max(1, intval(round($cbBase * $mv['stamina_mult'])));
+        $wait = \player\combat_move_wait($cbStV, $t);
+        $sub = '';
+        if (!$mv['unlocked']) {
+            $sub = '🔒 Võ công cấp ' . $mv['unlock_lv'];
+        } elseif (!$cbStV['ok']) {
+            $sub = 'Chưa khởi tạo';
+        } elseif ($wait > 0) {
+            $sub = '⏳ Hồi ' . $wait . ' lượt';
+        } elseif ($player->ustamina < $cost) {
+            $sub = 'Thiếu thể lực';
+        }
+        $info = 'x' . $mv['mult'] . ' · ' . $cost . ' thể lực';
+        $eff = \player\combat_effect_text($mv['effect'], $mv['value']);
+        $inner = "<b>{$mv['label']}</b><span>{$mv['name']}</span><small>" . ($sub !== '' ? $sub : $info) . "</small>"
+            . ($eff !== '' ? "<small>{$eff}</small>" : '');
+        if ($sub === '') {
+            $cbUrl = $encode->encode("cmd=pvegj&canshu=usewg&wgt=$t&gid=$gid&sid=$sid&nowmid=$nowmid");
+            $cbBtns .= "<a class=\"pve-move t{$t}\" href=\"?cmd={$cbUrl}\">{$inner}</a>";
+        } else {
+            $cbBtns .= "<span class=\"pve-move t{$t} is-off\">{$inner}</span>";
+        }
+    }
+    $cbBtnHtml = "<div class=\"pve-section-title\">Thế võ · {$cbWgV->wgname} (cấp " . intval($cbWgV->wgdj) . ")</div>"
+        . "<div class=\"pve-move-note\">⚔ Tấn công = Võ Kỹ «{$cbMovesV[1]['name']}»</div>"
+        . "<div class=\"pve-move-box\">{$cbBtns}</div>";
+}
+// Vừa dùng thế võ: tự làm mới bằng đòn thường, không lặp lại thế (tránh tốn thể lực ngoài ý muốn).
+if ($autoRefresh !== '' && isset($canshu) && $canshu == 'usewg') {
+    $autoRefresh = '<meta http-equiv="refresh" content="2;url=?cmd=' . $pgjcmd . '">';
+}
+
 $html = <<<HTML
 
 
@@ -976,6 +1142,8 @@ $html = <<<HTML
         <a class="pve-btn run" href="?cmd=$gonowmid">↩ Bỏ chạy</a>
         <a class="pve-btn attack" href="?cmd=$pgjcmd">⚔ Tấn công</a>
     </div>
+
+    $cbBtnHtml
 
     <div class="pve-section-title">Kỹ năng</div>
     <div class="pve-skill-box">

@@ -240,6 +240,28 @@ $statusClass = ($wgxl_now >= $wgxlmax) ? 'ready' : 'training';
 $wgColorName = wg_color_name($wgys);
 
 $safePlayerName = wg_safe_text($player->uname);
+
+// Thế võ (Võ Kỹ / Tuyệt Kỹ / Tuyệt Chiêu) — class/config/wugong_skill_config.json
+$cbMoveHtml = '';
+$cbMovesP = ($cxwg && $wgid != 0) ? \player\combat_wugong_moves($cxwg) : array();
+foreach ($cbMovesP as $mv) {
+    $eff = \player\combat_effect_text($mv['effect'], $mv['value']);
+    $lock = $mv['unlocked'] ? '' : ' is-lock';
+    $state = $mv['unlocked'] ? 'Đã lĩnh ngộ' : '🔒 Võ công cấp ' . $mv['unlock_lv'];
+    $cd = $mv['cooldown'] > 0 ? ' · hồi ' . $mv['cooldown'] . ' lượt' : '';
+    $cbMoveHtml .= "<div class=\"tcg-wg-move t{$mv['tier']}{$lock}\">"
+        . "<div class=\"tcg-wg-move-head\"><b>{$mv['label']}</b><em>{$state}</em></div>"
+        . "<div class=\"tcg-wg-move-name\">{$mv['name']}" . ($mv['hits'] > 1 ? " <small>({$mv['hits']} đòn)</small>" : '') . "</div>"
+        . "<div class=\"tcg-wg-move-stat\">Sát thương x{$mv['mult']} · thể lực x{$mv['stamina_mult']}{$cd}</div>"
+        . ($eff !== '' ? "<div class=\"tcg-wg-move-eff\">{$eff}</div>" : '')
+        . "<div class=\"tcg-wg-move-text\">" . wg_safe_text(\player\combat_text($mv['text'], 'đối thủ')) . "</div>"
+        . "</div>";
+}
+if ($cbMoveHtml !== '') {
+    $cbMoveHtml = "<div class=\"tcg-wg-moves-card\"><div class=\"tcg-wg-card-title\">Chiêu thức</div>"
+        . "<div class=\"tcg-wg-moves-note\">Nâng cấp võ công để mở thế mới và tăng sát thương. Trong trận: nút Tấn công dùng Võ Kỹ, hai thế còn lại có nút riêng.</div>"
+        . "<div class=\"tcg-wg-moves\">{$cbMoveHtml}</div></div>";
+}
 $safeWgName = wg_safe_text($wgname);
 
 $xlhtml = <<<HTML
@@ -289,6 +311,8 @@ $xlhtml = <<<HTML
         </div>
         <div class="tcg-wg-note">Tu luyện tiêu hao: <b>$xiaohao bí tịch</b> · Cách tăng EXP: <b>Đánh thắng BOSS</b></div>
     </div>
+
+    $cbMoveHtml
 
     <div class="tcg-wg-grid">
         <div class="tcg-wg-info-card">

@@ -7656,3 +7656,31 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .main .tpo-act{width:100%;margin-top:12px;padding:13px;font-size:16px;font-weight:1000;color:#fff;border:0;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444)}
 .tpo-foot{margin-top:10px;font-size:11.5px;color:#9fb3c8;text-align:center;line-height:1.5}
 @media (min-width:601px){.tpo-wrap{max-width:840px}}
+
+/* 2026-10-27 — Thế võ trong trận (pve.php) */
+.pve-move-note{font-size:12px;color:#cbd5e1;margin:-2px 0 6px}
+.pve-move-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0 4px}
+.main a.pve-move,.pve-move{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:64px;padding:7px 6px;border-radius:11px;text-align:center;text-decoration:none;color:#fff!important;border:1px solid rgba(253,224,71,.45);box-shadow:0 6px 14px rgba(0,0,0,.25)}
+.pve-move.t2{background:linear-gradient(135deg,#0e7490,#6d28d9)}
+.pve-move.t3{background:linear-gradient(135deg,#b45309,#be123c)}
+.pve-move b{font-size:11px;letter-spacing:.5px;color:#fde68a}
+.pve-move span{font-size:14px;font-weight:900;line-height:1.25}
+.pve-move small{font-size:11px;color:#e2e8f0;opacity:.9}
+.pve-move.is-off{filter:grayscale(.75);opacity:.6}
+/* Thẻ Chiêu thức trên trang Võ Công (wugong.php) */
+.tcg-wg-moves-card{margin:12px 0;padding:12px;border-radius:14px;border:1px solid rgba(148,163,184,.25);background:rgba(15,23,42,.55)}
+.tcg-wg-moves-note{font-size:12px;color:#94a3b8;margin:4px 0 10px}
+.tcg-wg-moves{display:grid;grid-template-columns:1fr;gap:8px}
+@media (min-width:601px){.tcg-wg-moves{grid-template-columns:repeat(3,1fr)}}
+.tcg-wg-move{padding:10px;border-radius:12px;border:1px solid rgba(253,224,71,.35);background:linear-gradient(160deg,rgba(30,41,59,.9),rgba(15,23,42,.9))}
+.tcg-wg-move.t2{border-color:rgba(103,232,249,.45)}
+.tcg-wg-move.t3{border-color:rgba(251,113,133,.55)}
+.tcg-wg-move.is-lock{opacity:.55;filter:grayscale(.6)}
+.tcg-wg-move-head{display:flex;justify-content:space-between;align-items:center;font-size:11px}
+.tcg-wg-move-head b{color:#fde68a;letter-spacing:.5px}
+.tcg-wg-move-head em{font-style:normal;color:#94a3b8}
+.tcg-wg-move-name{font-size:15px;font-weight:900;color:#fff;margin:3px 0}
+.tcg-wg-move-name small{font-size:11px;color:#cbd5e1;font-weight:600}
+.tcg-wg-move-stat{font-size:12px;color:#7dd3fc}
+.tcg-wg-move-eff{font-size:12px;color:#fca5a5;margin-top:2px}
+.tcg-wg-move-text{font-size:12px;color:#cbd5e1;margin-top:5px;line-height:1.45}

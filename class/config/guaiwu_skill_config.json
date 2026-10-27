@@ -1,0 +1,72 @@
+{
+ "_note": "Chiêu phản kích của quái thường theo hệ. text dùng {mob}.",
+ "rules": {
+  "special_chance": 20,
+  "special_mult": 1.3,
+  "crit_mult": 1.5,
+  "crit_ratio": 0.5
+ },
+ "element": {
+  "none": {
+   "basic": [
+    "{mob} vung móng vuốt cào mạnh vào người ngươi.",
+    "{mob} gầm lên rồi lao tới húc thẳng vào ngực ngươi.",
+    "{mob} quật mạnh một đòn ngang hông ngươi."
+   ],
+   "special": {
+    "name": "Cuồng Bạo Xung Kích",
+    "text": "{mob} hai mắt đỏ ngầu, dồn toàn lực lao tới như núi đổ!"
+   }
+  },
+  "kim": {
+   "basic": [
+    "{mob} vung lợi trảo sắc như kim loại rạch qua vai ngươi.",
+    "{mob} phóng ra mấy mũi kim khí bén nhọn về phía ngươi."
+   ],
+   "special": {
+    "name": "Kim Phong Liệt Trảm",
+    "text": "{mob} ngưng tụ kim khí thành lưỡi đao khổng lồ, chém thẳng xuống đầu ngươi!"
+   }
+  },
+  "moc": {
+   "basic": [
+    "{mob} quất dây gai quấn lấy chân ngươi.",
+    "{mob} phun ra một làn bào tử cay xè vào mặt ngươi."
+   ],
+   "special": {
+    "name": "Vạn Đằng Triền Sát",
+    "text": "{mob} triệu hồi muôn dây leo gai siết chặt lấy toàn thân ngươi!"
+   }
+  },
+  "thuy": {
+   "basic": [
+    "{mob} phun một luồng nước lạnh buốt vào ngực ngươi.",
+    "{mob} quẫy mạnh, sóng nước đập ập vào người ngươi."
+   ],
+   "special": {
+    "name": "Hàn Triều Cuồn Cuộn",
+    "text": "{mob} cuộn lên một con sóng băng giá cao ngất, đổ ập lên người ngươi!"
+   }
+  },
+  "hoa": {
+   "basic": [
+    "{mob} phun ra một ngọn lửa táp vào người ngươi.",
+    "{mob} vung vuốt lửa cào cháy vạt áo ngươi."
+   ],
+   "special": {
+    "name": "Liệt Hỏa Phệ Tâm",
+    "text": "{mob} há miệng phun ra biển lửa đỏ rực, nuốt trọn lấy ngươi!"
+   }
+  },
+  "tho": {
+   "basic": [
+    "{mob} giậm mạnh, đá vụn bắn tung vào người ngươi.",
+    "{mob} vung thân hình nặng nề đè ép về phía ngươi."
+   ],
+   "special": {
+    "name": "Địa Liệt Sơn Băng",
+    "text": "{mob} đập mạnh xuống đất, mặt đất nứt toác, đá tảng ập lên người ngươi!"
+   }
+  }
+ }
+}

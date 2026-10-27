@@ -26,6 +26,7 @@ require_once __DIR__ . '/function/huyetmach_boss.php';
 require_once __DIR__ . '/function/nhiemvu.php';
 require_once __DIR__ . '/function/chatmsg.php';
 require_once __DIR__ . '/function/tianfu.php';
+require_once __DIR__ . '/function/combat.php';
 
 
 class player

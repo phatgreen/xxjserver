@@ -1,6 +1,7 @@
 # KẾ HOẠCH HOÀN THIỆN VÕ CÔNG & CÔNG PHÁP — "Thi triển từng thế võ"
 
-> Ngày lập: 2026-10-27 · Trạng thái: **bản kế hoạch, chờ chủ dự án duyệt** (chưa sửa code).
+> Ngày lập: 2026-10-27 · Trạng thái: **GĐ 0 (phần võ công) + GĐ 1 + GĐ 2 (quái thường) + GĐ 4 (trang Võ Công) đã code** — xem mục 8.
+> ⚠ Mục 3.1 (Nộ Khí) và nút Phòng Thủ **đã bị thay** theo quyết định ở mục 7: dùng **Thể lực** có sẵn, không có nút Phòng Thủ.
 > Mục tiêu người chơi: mỗi lượt đánh quái thấy rõ **mình tung thế võ gì → gây bao nhiêu sát thương →
 > quái/boss phản kích chiêu gì → mình mất bao nhiêu**. Có qua có lại, có lựa chọn.
 
@@ -170,9 +171,42 @@ Thứ tự khuyến nghị: **0 → 1 → 2 → 4 → 3 → 5 → 6**. GĐ 0 nh�
 
 ---
 
-## 7. Cần chủ dự án quyết trước khi code
+## 7. Quyết định đã chốt (2026-10-27)
 
-1. Tài nguyên dùng **Nộ Khí** (đề xuất) hay **Nội Lực** (cột mới, hồi bằng đan → thêm vật phẩm kinh tế)?
-2. GĐ 0 bật hiệu ứng "ngủ" cho người chơi hiện tại: bật luôn, hay giảm số trước khi bật?
-3. Có cần **Phòng Thủ** ở PVE thường không, hay chỉ ở Boss (giữ PVE thường nhanh gọn)?
-4. Văn thi triển: tôi viết hết 30 bộ, hay bạn muốn tự viết một số bộ chủ lực?
+| # | Câu hỏi | Chốt |
+|---|---|---|
+| 1 | Tài nguyên dùng thế | **Thể lực có sẵn** (`ustamina`). Võ Kỹ 5% thể lực tối đa (như cũ), Tuyệt Kỹ x1.5, Tuyệt Chiêu x2 |
+| 2 | Độ mạnh | Tăng dần theo **cấp võ công**; bị động mới bật chỉ 30% ở cấp 0, đủ 100% ở cấp 10. Mọi số trong JSON |
+| 3 | Nút Phòng Thủ | **Bỏ**. Thay bằng thế có hiệu ứng `guard` (giảm sát thương lượt đó) / `stun` (quái mất lượt) |
+| 4 | Văn thế võ | Viết đủ 3 thế × 29 võ công |
+
+Nguyên tắc cân bằng: **sát thương / 1 điểm thể lực** của thế mạnh lúc mới mở < đánh thường
+(Tuyệt Kỹ cấp 5: 1.25/1.5 = 0.83; Tuyệt Chiêu cấp 10: 1.8/2 = 0.9), chỉ vượt khi luyện võ công cao
+(Tuyệt Kỹ trần 1.6/1.5 = 1.07; Tuyệt Chiêu trần 2.6/2 = 1.3, có hồi 4 lượt). ⇒ Thế võ giúp hạ nhanh quái khó / boss,
+**không** làm tăng mạnh số quái hạ được trên 1 thanh thể lực ⇒ không phá nhịp cày.
+
+## 8. Đã triển khai (2026-10-27)
+
+| Hạng mục | File |
+|---|---|
+| Config thế võ (rules + 29 võ công × 3 thế, có văn) | `class/config/wugong_skill_config.json` |
+| Config chiêu phản kích quái theo 6 hệ | `class/config/guaiwu_skill_config.json` |
+| Module thế võ (hệ số, hồi chiêu, trạng thái trận, chiêu quái) | `class/function/combat.php` (nạp ở `class/player.php`) |
+| Bảng `player_combat_state` (tự tạo; SQL dự phòng) | `sql/sql_combat_state.sql` |
+| Trận PVE: nút Tuyệt Kỹ/Tuyệt Chiêu, nhật ký thế võ, quái phản kích có chiêu + bạo kích (`gbj`) | `game/pve.php` |
+| Bật hiệu ứng võ công đang "ngủ": `crit_dmg`, `hp_regen`, `escape` (né), `poison_immune` (miễn đan độc) | `game/pve.php` |
+| Nhãn "(công pháp)" của phù lục → "(phù lục)" | `game/pve.php` |
+| Thẻ **Chiêu thức** trên trang Võ Công | `game/wugong.php`, `css/mystyle.css` |
+| Test thuần (không DB) | `tests/test_combat_moves.php` |
+
+Hiệu ứng thế: `pierce` (xuyên % phòng), `crit` (% chắc chắn bạo kích), `stun` (% quái mất lượt), `guard` (giảm % sát thương lượt này),
+`heal` (% khí huyết tối đa), `lifesteal` (% sát thương), `burn` (thêm % sát thương). `hits` chỉ để hiển thị.
+
+**Chưa làm:** công pháp trong trận (GĐ 0b), Boss/Tháp/Bang (GĐ 3), Cộng Hưởng (mục 9).
+
+## 9. Đề xuất tiếp: Tàng Kinh Các — Cộng Hưởng (tham khảo ý tưởng, không sao chép)
+
+- Mọi võ công/công pháp **đã học** (không chỉ cái đang trang bị) được tính vào bộ sưu tập.
+- Chia **nhóm 3–5 bộ** theo chủ đề (cùng hệ ngũ hành / cùng loại). Đạt mốc số bộ "Viên Mãn" (đạt cấp mốc) trong nhóm ⇒ thưởng chỉ số vĩnh viễn nhỏ.
+- Tạo mục tiêu dài hạn cho bí tịch cũ (hiện học xong bộ mạnh hơn là bỏ bộ cũ).
+- Cần chốt trước: số nhóm, cấp "Viên Mãn", độ lớn thưởng (đề xuất tổng thưởng cả hệ ≤ 5% chỉ số).
