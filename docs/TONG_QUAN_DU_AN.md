@@ -1,6 +1,7 @@
 # TỔNG QUAN DỰ ÁN — Tu Chân Giới (XXJ Server)
 
 > Tài liệu nhập môn: đọc file này trước, rồi mới mở tài liệu chi tiết từng hệ thống.
+> **Mở phiên làm việc mới: đọc `docs/BAN_GIAO_PHIEN.md` trước** (trạng thái mới nhất, việc còn treo, môi trường thử).
 > Cập nhật: 2026-10-27.
 
 ---
