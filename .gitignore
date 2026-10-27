@@ -6,3 +6,4 @@
 runtime/
 cache/
 logs/
+cron/capnhat_code.log
