@@ -15,7 +15,7 @@
     "nsex": "Nam",
     "ninfo": "Thổ Địa cai quản Thâm Cốc, am hiểu mọi biến động trong vùng. Hỏi gì cũng biết, miễn là đủ thành ý.",
     "muban": "zl3.php",
-    "taskid": "39,40",
+    "taskid": "39,40,56,57,58,59,60",
     "mz": "",
     "rwqy": ""
   },
@@ -65,7 +65,7 @@
     "nsex": "Nam",
     "ninfo": "Người đứng đầu thôn, quản lý mọi việc lớn nhỏ, được dân làng kính trọng.",
     "muban": "",
-    "taskid": "13,23,24,28,33,41,42,43,44",
+    "taskid": "13,23,24,28,33,41,42,43,44,45",
     "mz": "奶妈.png",
     "rwqy": ""
   },
@@ -75,7 +75,7 @@
     "nsex": "Nam",
     "ninfo": "Một mình lâu rồi… đúng là có chút cô đơn.",
     "muban": "",
-    "taskid": "24,37,38,46,61,62",
+    "taskid": "24,37,38,46,61,62,47,48,49,50",
     "mz": "",
     "rwqy": ""
   },
@@ -105,7 +105,7 @@
     "nsex": "Nam",
     "ninfo": "Thành chủ Tụ Tiên Thành, tinh thông phù lục và các bí thuật gia trì.",
     "muban": "jndh.php",
-    "taskid": "40",
+    "taskid": "40,45,46",
     "mz": "",
     "rwqy": ""
   },
@@ -215,7 +215,7 @@
     "nsex": "Nam",
     "ninfo": "Người phụ trách môn phái, xử lý các công việc nội bộ.",
     "muban": "",
-    "taskid": "30,51",
+    "taskid": "30,51,50",
     "mz": "",
     "rwqy": ""
   },
@@ -255,7 +255,7 @@
     "nsex": "Nam",
     "ninfo": "Ta là người đứng đắn… đừng nhìn ta bằng ánh mắt nghi ngờ!",
     "muban": "zhuanpan.php",
-    "taskid": "31",
+    "taskid": "31,51,52,53,54,55,56",
     "mz": "",
     "rwqy": ""
   },

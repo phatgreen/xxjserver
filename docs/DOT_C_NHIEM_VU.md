@@ -142,3 +142,19 @@ php5.6 sql\migrate_dot_c.php --apply
 php5.6 tests\test_dot_c.php
 ```
 Bảng `player_online_reward`, `player_offline_reward` tự tạo khi game chạy lần đầu.
+
+## 8. Sửa chuỗi nhiệm vụ NPC tân thủ 41–60 (2026-10-28)
+
+Rà toàn bộ nhiệm vụ NPC (`renwu_config.json`, mã 10–62). Chuỗi gốc của game (23 → 24 → 29 → 34 → … → 40) đúng: loại **Chính**, nối thứ tự.
+Chuỗi 41–60 được thêm sau (báo cáo PRERELEASE "renwu +20") và **hỏng**:
+
+| Lỗi | Nhiệm vụ |
+|---|---|
+| Đặt loại **Ngày** dù có nối thứ tự ⇒ game không kiểm thứ tự, hiện cùng lúc, xóa và làm lại mỗi ngày | 41–60 |
+| Không NPC nào giao (không thể nhận) | 45, 47–50, 52–60 |
+| Tìm NPC #1 không tồn tại | 45, 50, 56, 60 |
+| Quái không tồn tại / map không có quái đó / tên không khớp | 44, 47–49, 53–55, 57–59 |
+
+Đã sửa: cả 20 thành loại **Chính**, đi đúng lộ trình **Tân Thủ Thôn → Tụ Tiên Thành → Ma Hóa Động Quật → Viêm Dương Thành → Thông Thiên Phủ → Vũ Thiên Đô**
+(cấp 1 → 60), mỗi nhiệm vụ có NPC giao/trả đang đặt trên bản đồ, quái và vật phẩm lấy đúng ở map đích, lời dẫn viết lại. Thưởng giữ nguyên.
+Đã chạy thử: trả 41 thì 42 mới mở. Còn 2 nhiệm vụ gốc mồ côi (không NPC giao, không ảnh hưởng): 10 "Nạp Tiền", 14 "Thu tập phong mật".
