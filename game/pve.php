@@ -122,6 +122,9 @@ if($cmd=='pve' && $guaiwu->sid==''){
     // Xử lý lượt tấn công của người chơi
     $hurt = false;
     $ghurt = 0;
+    // Lưu máu trước lượt để client mô phỏng thanh máu tụt dần
+    $pveFromGhp = intval($guaiwu->ghp);
+    $pveFromUhp = intval($player->uhp);
     $jineng = new \player\jineng();
     $lcMods = array();
 
@@ -1069,6 +1072,19 @@ $playerHpPercent = 0;
 if (intval($player->umaxhp) > 0) {
     $playerHpPercent = max(0, min(100, intval($player->uhp / $player->umaxhp * 100)));
 }
+// Giá trị máu đầu lượt (chỉ khác khi vừa đánh) — client chạy từ giá trị này về giá trị hiện tại
+$gwxlFrom = $gwxl;
+$gHpFromText = $guaiwu->ghp;
+if (isset($pveFromGhp) && intval($guaiwu->gmaxhp) > 0) {
+    $gHpFromText = max(0, $pveFromGhp);
+    $gwxlFrom = max(0, min(100, intval($gHpFromText / $guaiwu->gmaxhp * 100)));
+}
+$playerHpFrom = $playerHpPercent;
+$pHpFromText = $player->uhp;
+if (isset($pveFromUhp) && intval($player->umaxhp) > 0) {
+    $pHpFromText = max(0, $pveFromUhp);
+    $playerHpFrom = max(0, min(100, intval($pHpFromText / $player->umaxhp * 100)));
+}
 
 // Chỉ tự động làm mới sau khi người chơi đã bấm Tấn công / dùng kỹ năng.
 // Trang vừa mở trận cmd=pve sẽ không tự refresh nữa.
@@ -1142,8 +1158,8 @@ $html = <<<HTML
             <span>Yêu quái</span>
             <b>$guaiwu->gname [lv:$guaiwu->glv]</b>
         </div>
-        <div class="pve-hpbar"><div class="pve-hpbar-in" style="width:{$gwxl}%"></div></div>
-        <div class="pve-stat-row"><span>Khí huyết</span><b class="hpys">$guaiwu->ghp/$guaiwu->gmaxhp</b><em>$pvebj$ghurt</em></div>
+        <div class="pve-hpbar"><div class="pve-hpbar-in" data-sim="1" data-to="{$gwxl}" style="width:{$gwxlFrom}%"></div></div>
+        <div class="pve-stat-row"><span>Khí huyết</span><b class="hpys" data-sim="1" data-to="$guaiwu->ghp/$guaiwu->gmaxhp">$gHpFromText/$guaiwu->gmaxhp</b><em data-sim="1">$pvebj$ghurt</em></div>
         <div class="pve-stat-row"><span>Tấn công</span><b>$guaiwu->ggj</b></div>
         <div class="pve-stat-row"><span>Phòng ngự</span><b>$guaiwu->gfy</b></div>
     </div>
@@ -1153,8 +1169,8 @@ $html = <<<HTML
             <span>Nhân vật</span>
             <b>$pvePlayerSafe [lv:$player->ulv]</b>
         </div>
-        <div class="pve-hpbar"><div class="pve-hpbar-in player" style="width:{$playerHpPercent}%"></div></div>
-        <div class="pve-stat-row"><span>Khí huyết</span><b class="hpys">$player->uhp/$player->umaxhp</b><em>$phurt$pvexx</em></div>
+        <div class="pve-hpbar"><div class="pve-hpbar-in player" data-sim="2" data-to="{$playerHpPercent}" style="width:{$playerHpFrom}%"></div></div>
+        <div class="pve-stat-row"><span>Khí huyết</span><b class="hpys" data-sim="2" data-to="$player->uhp/$player->umaxhp">$pHpFromText/$player->umaxhp</b><em data-sim="2">$phurt$pvexx</em></div>
         <div class="pve-stat-row"><span>Tấn công</span><b>$player->ugj</b></div>
         <div class="pve-stat-row"><span>Phòng ngự</span><b>$player->ufy</b></div>
     </div>
@@ -1195,6 +1211,28 @@ if ($pveResultHtml !== '') {
         // Đưa popup ra <body>: khung game có backdrop-filter làm position:fixed bị tính theo khung thay vì màn hình
         . '<script>(function(){var p=document.getElementById(\'pve-pop\');if(p&&p.parentNode!==document.body)document.body.appendChild(p);})();</script>';
 }
+// Mô phỏng lượt đánh: nhật ký hiện lần lượt, máu quái tụt ở dòng gây sát thương, máu nhân vật cập nhật ở dòng cuối,
+// xong mới bật popup kết quả. Trận còn tiếp: tổng ≤ ~1.6s để kịp trước lần tự làm mới 2s.
+$html .= <<<'HTML'
+<script>(function(){
+var steps=document.querySelectorAll('.pve-wrap .pve-tip .pve-step'),pop=document.getElementById('pve-pop');
+function sim(g,on){var els=document.querySelectorAll('.pve-wrap [data-sim="'+g+'"]');for(var i=0;i<els.length;i++){var e=els[i];
+ if(e.tagName==='EM'){e.style.opacity=on?1:0;continue;}if(!on)continue;
+ if(e.className.indexOf('pve-hpbar-in')>=0)e.style.width=e.getAttribute('data-to')+'%';else e.textContent=e.getAttribute('data-to');}}
+var n=steps.length;if(!n){sim(1,1);sim(2,1);return;}
+if(pop)pop.className='pve-pop';
+sim(1,0);sim(2,0);
+// Trận kết thúc (có popup, không tự làm mới) thì chạy chậm cho dễ theo dõi
+var gap=pop?450:Math.min(320,Math.floor(1300/n)),hit=Math.floor((n-1)/2);
+for(var h=0;h<n;h++){if(/Gây\s*[\d.,]+\s*sát thương/.test(steps[h].textContent)){hit=h;break;}}
+for(var i=0;i<n;i++){steps[i].style.animation='none';steps[i].style.opacity=0;}
+for(var j=0;j<n;j++)(function(k){setTimeout(function(){
+ steps[k].style.animation='pveStepIn .35s ease-out both';steps[k].style.opacity='';
+ if(k===hit)sim(1,1);
+ if(k===n-1){sim(1,1);sim(2,1);if(pop)setTimeout(function(){pop.className='pve-pop show';},800);}
+},120+k*gap);})(j);
+})();</script>
+HTML;
 echo '<style>.pve-step{display:block;margin:3px 0;padding:1px 0 .5px;color:#f5f5f5;font-size:14px;line-height:1.5;animation:pveStepIn .45s ease-out both}.pve-step:nth-child(1){animation-delay:.05s}.pve-step:nth-child(2){animation-delay:.11s}.pve-step:nth-child(3){animation-delay:.17s}.pve-step:nth-child(4){animation-delay:.23s}.pve-step:nth-child(5){animation-delay:.29s}.pve-step:nth-child(6){animation-delay:.35s}@keyframes pveStepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.pve-result-wrap{margin-top:14px}.pve-alert{margin:10px 0}</style>';
 echo $html;
 /**
