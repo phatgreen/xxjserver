@@ -110,7 +110,7 @@ Bốn tab giống hệt khuôn Linh Căn / Huyết Mạch (`game/tianfu.php:290-
 
 | Màn | Route | File | Nội dung |
 |---|---|---|---|
-| **Thiên Phú** (chủ) | `cmd=tianfu&grp=1..6` | `game/tianfu.php` | Header + tên chủ phú; rail 6 nhóm (mỗi nhóm `x/3` ô đã có); ảnh tôn giả theo nhóm (tỉ lệ 3:4); 7 cổng "Kỹ Năng Kích Hoạt" kèm `trần 30%`; 4 thẻ Phú Vi; bảng mốc tổng Lv |
+| **Thiên Phú** (chủ) | `cmd=tianfu&grp=1..6` | `game/tianfu.php` | Header + tên chủ phú; rail 6 nhóm (mỗi nhóm `x/3` ô đã có); ảnh tôn giả theo nhóm (khung ngang 4:3 mobile / 16:9 desktop) với **4 Phú Vi đặt trên ảnh** (`.tp-orb`); thanh luyện chủ phú ngay dưới ảnh; 7 cổng "Kỹ Năng Kích Hoạt" lưới 2 cột; mốc tổng Lv; Đột Phá |
 | **Phủ Các** (sưu tầm) | `cmd=tianfu_collection&id=1..18` | `game/tianfu_collection.php` | Banner Phủ Các; lưới 18 ô (3 cột mobile / 6 cột desktop); panel chi tiết theo ô đang chọn; nút Nâng Cấp / Đột Phá / gán–tháo Phú Vi |
 | **Khai Phú** (uống đan) | `cmd=tianfu_open` | `game/tianfu_open.php` | Số đan trong túi + số lần đã khai; nút "Khai Mở"; bảng 10 phẩm (danh xưng · trần Lv · tỉ lệ); "Mua đan" |
 | **Nhân Vật** | `cmd=zhuangtai` | `game/zhuangtai.php:426-427` | 2 thẻ: "☯ Chủ phú" (tên + phẩm, màu theo phẩm) và "🎖 Phú Vị" (`đã kích hoạt / 4`) |
@@ -124,11 +124,23 @@ Bốn tab giống hệt khuôn Linh Căn / Huyết Mạch (`game/tianfu.php:290-
 | `.tp-stage` / `.tp-stage-img` | `game/tianfu.php:168-169` | `groups[g].img` → `images/tianfu/nhom-*.jpg` |
 | `.tp-attr` × 7 | `game/tianfu.php:212-215` | `tianfu_bonuses()` `:333`, đơn vị `gates[g].unit` |
 | `.tp-ms-fill` (thanh mốc) | `game/tianfu.php:226` | `tianfu_milestone()` `:290` |
-| `.tp-slot` × 4 | `game/tianfu.php:244-262` | `tianfu_slot_defs()` config `:70-75`, `slots[i].ulv` |
+| `.tp-orb.tp-orb-1..4` (Phú Vi trên ảnh) | `game/tianfu.php` trong `.tp-stage` | `tianfu_slot_defs()` config `:70-75`, `slots[i].ulv`; ô có món → `tianfu_collection&id=` (gỡ/đổi ở đó), ô trống → `tianfu_collection&slot=` |
 | `.tpc-grid` / `.tpc-cell` | `game/tianfu_collection.php:138-161` | `tianfu_owned()` `:223` (1 query cho 18 ô) |
 | `.tpc-detail` | `game/tianfu_collection.php:165-203` | `tianfu_def()` + `tianfu_lvup_rows()` + `tianfu_break_rows()` |
 | `.tpo-table` (10 phẩm) | `game/tianfu_open.php:86` | `qualities` config `:41-50` |
 | `.profile-stat` chủ phú | `game/zhuangtai.php:426` | `$player->tianfu_name/_icon/_color` hydrate `class/player.php:888-896` |
+
+### Cập nhật 2026-10-27 — gọn trang chính (theo khuôn Huyết Mạch)
+
+- Ảnh tôn giả 3:4 cũ quá cao, giữa ảnh trống → đổi sang khung ngang (`aspect-ratio:4/3`, desktop `16/9`).
+- **4 thẻ Phú Vi chuyển thành 4 ô tròn đè trên ảnh** (`.tp-orb`, ô 1-2 trái, 3-4 phải): viền màu phẩm, huy hiệu Lv,
+  ô khóa hiện `Cấp N`. Nút "Bỏ" trên trang chính **đã bỏ** — gỡ Phú Vi làm ở Phú Các (bấm vào ô).
+- Chip chủ phú góc trái ảnh (`.tp-stage-chip`) **đã bỏ** vì trùng ô Phú Vi 1.
+- Thanh luyện chủ phú: tên + cấp + %/cấp một dòng; chi phí + nút Nâng Cấp một dòng.
+- 7 cổng: lưới 2 cột (tên trên, giá trị dưới); `trần 30%` ghi 1 lần ở tiêu đề.
+- CSS thêm cuối khối `.tp-*` (`css/mystyle.css`, mục "2026-10-27"); `game.php` bump `mystyle.css?v=2026102701`.
+- Ảnh: `docs/img/thienphu/tianfu-v2-390.png`, `tianfu-v2-840.png`, `tianfu-v2-empty-390.png`
+  (render bằng harness SQLite giả lập, **chưa** chụp trên DB thật).
 
 **Landmine route**: token `?cmd=` **dùng một lần** (`class/encode.php`) — mọi URL phải `encode()`
 lại ở mỗi lần render, không được lưu chuỗi đã encode. Xem `game/tianfu_collection.php:117-121`.

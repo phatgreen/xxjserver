@@ -169,52 +169,84 @@ foreach ($tpGl as $tpKi => $tpGrp):
             <img class="tp-stage-img" src="./<?= $tpG['img'] ?>?v=<?= $tpImgVer ?>" alt="<?= htmlspecialchars($tpG['name']) ?>">
             <span class="tp-aura" aria-hidden="true"></span>
             <span class="tp-sweep" aria-hidden="true"></span>
-<?php if ($tpMaster && intval($tpMaster['group']) === intval($tpG['id'])): ?>
-            <a class="tp-stage-chip" style="--tp-color:<?= $tpTierColor ?>" href="?cmd=<?= $encode->encode("cmd=tianfu_collection&id=$tpMasterId&sid=$sid") ?>"><i class="tp-emoji"><?= $tpMaster['icon'] ?></i><b><?= htmlspecialchars($tpMaster['short']) ?></b></a>
-<?php endif; ?>
+<?php // Chip chu phu cu da bo: o Phu Vi 1 tren anh da hien chu phu (trung + de len o 1).
+// 4 Phu Vi dat tren anh: o 1-2 ben trai, o 3-4 ben phai. Bam o co mon -> Phu Cac (go/doi o), o trong -> Phu Cac chon cho o do
+foreach ($tpSlots as $tpSd):
+    $tpSi    = intval($tpSd['i']);
+    $tpARow  = isset($tpAct[$tpSi]) ? $tpAct[$tpSi] : false;
+    $tpSOpen = in_array($tpSi, $tpOpened);
+    $tpOcls  = 'tp-orb tp-orb-' . $tpSi . ($tpARow ? ' is-on' : ($tpSOpen ? '' : ' is-locked'));
+    $tpOclr  = $tpARow ? \player\tianfu_quality_color(intval($tpARow['quality'])) : '#7dd3fc';
+    if ($tpARow) {
+        $tpOhref = $encode->encode("cmd=tianfu_collection&id=" . intval($tpARow['id']) . "&sid=$sid");
+    } elseif ($tpSOpen) {
+        $tpOhref = $encode->encode("cmd=tianfu_collection&slot=$tpSi&sid=$sid");
+    } else {
+        $tpOhref = '';
+    }
+    $tpOtag = $tpOhref !== '' ? 'a' : 'span';
+?>
+            <<?= $tpOtag ?> class="<?= $tpOcls ?>" style="--tp-color:<?= $tpOclr ?>"<?= $tpOhref !== '' ? ' href="?cmd=' . $tpOhref . '"' : '' ?> title="<?= htmlspecialchars($tpSd['name']) ?>">
+                <span class="tp-orb-ball"><i class="tp-emoji"><?= $tpARow ? $tpARow['icon'] : ($tpSOpen ? '＋' : '🔒') ?></i><?php if ($tpARow): ?><em><?= intval($tpARow['lv']) ?></em><?php endif; ?></span>
+                <b class="tp-orb-lab"><?php
+                    if ($tpARow) { echo htmlspecialchars($tpARow['short']); }
+                    elseif ($tpSOpen) { echo htmlspecialchars($tpSd['name']); }
+                    else { echo 'Cấp ' . intval($tpSd['ulv']); }
+                ?></b>
+            </<?= $tpOtag ?>>
+<?php endforeach; ?>
         </div>
 
         <div class="tp-forge">
 <?php if ($tpMaster): ?>
-            <div class="tp-forge-name"><i class="tp-emoji"><?= $tpMaster['icon'] ?></i> <?= htmlspecialchars($tpMaster['name']) ?></div>
-            <div class="tp-forge-lv">Cấp <b><?= $tpLv ?></b> / <?= $tpLvCap ?></div>
-            <div class="tp-forge-pct"><?= $tpPerTxt ?> · <?= htmlspecialchars($tpGateName) ?>: <b><?= $tpNowPct ?><?= htmlspecialchars($tpGateUnit) ?></b> <span class="tp-attr-cap">(trần <?= $tpCap ?>%)</span></div>
+            <div class="tp-forge-top">
+                <div class="tp-forge-name"><i class="tp-emoji"><?= $tpMaster['icon'] ?></i> <?= htmlspecialchars($tpMaster['name']) ?> <span class="tp-forge-lv">Cấp <b><?= $tpLv ?></b> / <?= $tpLvCap ?></span></div>
+                <div class="tp-forge-pct"><?= $tpPerTxt ?> · <?= htmlspecialchars($tpGateName) ?>: <b><?= $tpNowPct ?><?= htmlspecialchars($tpGateUnit) ?></b></div>
+            </div>
 <?php if ($tpAtCap): ?>
             <div class="tp-note dim">Trần <?= $tpLvCap ?> cấp — phải <b>Đột Phá</b> phẩm chất mới luyện tiếp được.</div>
 <?php else: ?>
-            <div class="tp-forge-cost">
-                <span class="<?= $tpTfOk ? 'ok' : 'no' ?>"><i class="tp-emoji">🎯</i> Điểm tf <b><?= intval($tpW['tf']) ?>/<?= $tpCostTf ?></b></span>
-                <span class="<?= $tpLtOk ? 'ok' : 'no' ?>"><i class="tp-emoji">💰</i> Linh Thạch <b><?= number_format($tpW['uyxb'], 0, ',', '.') ?>/<?= number_format($tpCostLt, 0, ',', '.') ?></b></span>
+            <div class="tp-forge-row">
+                <div class="tp-forge-cost">
+                    <span class="<?= $tpTfOk ? 'ok' : 'no' ?>"><i class="tp-emoji">🎯</i> Điểm tf <b><?= intval($tpW['tf']) ?>/<?= $tpCostTf ?></b></span>
+                    <span class="<?= $tpLtOk ? 'ok' : 'no' ?>"><i class="tp-emoji">💰</i> Linh Thạch <b><?= number_format($tpW['uyxb'], 0, ',', '.') ?>/<?= number_format($tpCostLt, 0, ',', '.') ?></b></span>
+                </div>
+                <form method="post" action="?cmd=<?= $tpPostCmd ?>">
+                    <input type="hidden" name="tp_action" value="lvup">
+                    <input type="hidden" name="tf_id" value="<?= $tpMasterId ?>">
+                    <button type="submit" class="tp-act tp-act-up<?= $tpCanLvup ? '' : ' is-off' ?>" <?= $tpCanLvup ? '' : 'disabled' ?>>Nâng Cấp</button>
+                </form>
             </div>
-            <form method="post" action="?cmd=<?= $tpPostCmd ?>">
-                <input type="hidden" name="tp_action" value="lvup">
-                <input type="hidden" name="tf_id" value="<?= $tpMasterId ?>">
-                <button type="submit" class="tp-act tp-act-up<?= $tpCanLvup ? '' : ' is-off' ?>" <?= $tpCanLvup ? '' : 'disabled' ?>>Nâng Cấp</button>
-            </form>
 <?php endif; ?>
 <?php else: ?>
-            <div class="tp-forge-name">Chưa lập Chủ Phú</div>
-            <div class="tp-forge-pct">Trong túi có <b><?= $tpPillSum ?></b> <?= htmlspecialchars($tpPill['name']) ?>. Mỗi lần khai mở là một thiên phú; trùng sẽ tăng thêm một phẩm chất.</div>
-            <a class="tp-act tp-act-open" href="?cmd=<?= $tpOpenCmd ?>">Khai Phú</a>
+            <div class="tp-forge-top">
+                <div class="tp-forge-name">Chưa lập Chủ Phú</div>
+                <div class="tp-forge-pct">Trong túi: <b><?= $tpPillSum ?></b> <?= htmlspecialchars($tpPill['name']) ?></div>
+            </div>
+            <div class="tp-forge-row">
+                <div class="tp-forge-cost">Mỗi lần khai mở là một thiên phú; trùng sẽ tăng thêm một phẩm chất.</div>
+                <a class="tp-act tp-act-open" href="?cmd=<?= $tpOpenCmd ?>">Khai Phú</a>
+            </div>
 <?php endif; ?>
         </div>
     </div>
 </div>
 
-<!-- ===== CARD 2: 2 cot — ky nang kich hoat | 4 Phu Vi + Dot Pham ===== -->
+<!-- ===== CARD 2: 2 cot — ky nang kich hoat | Dot Pham (4 Phu Vi da len tren anh) ===== -->
 <div class="tp-card tp-cols">
     <div class="tp-col">
-        <div class="tp-h3">Kỹ Năng Kích Hoạt</div>
+        <div class="tp-h3">Kỹ Năng Kích Hoạt <span class="tp-attr-cap">trần <?= $tpCap ?>%/cổng</span></div>
+        <div class="tp-attrs">
 <?php foreach ($tpGates as $tpGkey => $tpGd):
     $tpVal = floatval($tpB[$tpGkey]);
     $tpVcls = $tpVal <= 0 ? ' is-zero' : ($tpVal >= $tpCap ? ' is-max' : '');
 ?>
         <div class="tp-attr">
             <span class="tp-attr-name"><?= htmlspecialchars($tpGd['name']) ?></span>
-            <b class="tp-attr-val<?= $tpVcls ?>"><?= $tpVal ?><?= $tpGd['unit'] === '%' ? '' : ' ' ?><?= htmlspecialchars($tpGd['unit']) ?></b>
-            <span class="tp-attr-cap">trần <?= $tpCap ?>%</span>
+            <b class="tp-attr-val<?= $tpVcls ?>">+<?= $tpVal ?><?= $tpGd['unit'] === '%' ? '' : ' ' ?><?= htmlspecialchars($tpGd['unit']) ?></b>
         </div>
 <?php endforeach; ?>
+        </div>
         <div class="tp-ms">
             <div class="tp-ms-label"><span><?php
                     if ($tpB['milestone_name'] !== '') {
@@ -236,36 +268,7 @@ foreach ($tpGl as $tpKi => $tpGrp):
     </div>
 
     <div class="tp-col">
-        <div class="tp-h3">4 Phú Vi</div>
-<?php foreach ($tpSlots as $tpSd):
-    $tpSi     = intval($tpSd['i']);
-    $tpARow   = isset($tpAct[$tpSi]) ? $tpAct[$tpSi] : false;
-    $tpSOpen  = in_array($tpSi, $tpOpened);
-    $tpScls   = 'tp-slot' . ($tpARow ? ' is-on' : ($tpSOpen ? '' : ' is-locked'));
-    $tpSColor = $tpARow ? \player\tianfu_quality_color(intval($tpARow['quality'])) : '#7dd3fc';
-?>
-        <div class="<?= $tpScls ?>" style="--tp-color:<?= $tpSColor ?>">
-            <div class="tp-slot-head"><span><?= htmlspecialchars($tpSd['name']) ?></span><b>Ô <?= $tpSi ?></b></div>
-<?php if ($tpARow): ?>
-            <div class="tp-slot-name"><i class="tp-emoji"><?= $tpARow['icon'] ?></i> <?= htmlspecialchars($tpARow['name']) ?></div>
-            <span class="tp-gate"><?= htmlspecialchars(\player\tianfu_gate_name($tpARow['gate'])) ?> · <?= htmlspecialchars(\player\tianfu_quality_name(intval($tpARow['quality']))) ?> · Lv <?= intval($tpARow['lv']) ?></span>
-            <form method="post" action="?cmd=<?= $tpPostCmd ?>">
-                <input type="hidden" name="tp_action" value="slot">
-                <input type="hidden" name="tf_id" value="0">
-                <input type="hidden" name="tf_slot" value="<?= $tpSi ?>">
-                <button type="submit" class="tp-act tp-act-ghost">Bỏ</button>
-            </form>
-<?php elseif ($tpSOpen): ?>
-            <div class="tp-slot-name empty">— trống —</div>
-            <a class="tp-act tp-act-ghost" href="?cmd=<?= $encode->encode("cmd=tianfu_collection&slot=$tpSi&sid=$sid") ?>">Chọn ở Phú Các</a>
-<?php else: ?>
-            <div class="tp-slot-name empty">Chưa mở</div>
-            <div class="tp-reqs"><span class="no">[Khóa]</span> Cần cấp <?= intval($tpSd['ulv']) ?>.</div>
-<?php endif; ?>
-        </div>
-<?php endforeach; ?>
-
-        <div class="tp-h3" style="margin-top:12px">Đột Phá Phẩm Chất</div>
+        <div class="tp-h3">Đột Phá Phẩm Chất</div>
 <?php if (!$tpMaster): ?>
         <div class="tp-reqs">Chưa có Chủ Phú để đột phá.</div>
 <?php elseif ($tpQ >= 10): ?>

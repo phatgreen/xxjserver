@@ -7562,6 +7562,39 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 }
 @media (min-width:601px){.tp-wrap{max-width:840px}.tp-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tp-stage{max-width:520px}}
 
+/* --- 2026-10-27: gon trang chinh — khung anh ngang + 4 Phu Vi dat tren anh (khuon .hm-stage) --- */
+.tp-stage{aspect-ratio:4/3;max-width:none;border-radius:16px 16px 0 0}
+.tp-stage-img{object-position:50% 32%}
+.tp-orb{position:absolute;z-index:4;display:flex;flex-direction:column;align-items:center;gap:3px;width:74px;text-decoration:none;color:#e2e8f0}
+.main a.tp-orb,.main a.tp-orb:link,.main a.tp-orb:visited,.main a.tp-orb:hover{display:flex;margin:0;padding:0;background:none;text-decoration:none;color:#e2e8f0;box-sizing:border-box}
+.tp-orb-1{left:4%;top:20%}
+.tp-orb-2{left:4%;top:58%}
+.tp-orb-3{right:4%;top:20%}
+.tp-orb-4{right:4%;top:58%}
+.tp-orb-ball{position:relative;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;font-size:22px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.22),rgba(4,11,30,.85) 70%);border:2px dashed rgba(125,211,252,.55);box-shadow:0 0 10px rgba(0,0,0,.6)}
+.tp-orb.is-on .tp-orb-ball{border:2px solid var(--tp-color,#7dd3fc);box-shadow:0 0 calc(8px + var(--tp-glow,4px)) var(--tp-color,#7dd3fc)}
+.tp-orb.is-locked .tp-orb-ball{border-color:rgba(148,163,184,.4);filter:grayscale(.8);opacity:.7;font-size:18px}
+.tp-orb-ball em{position:absolute;right:-6px;bottom:-4px;min-width:18px;padding:1px 4px;border-radius:8px;font-style:normal;font-size:10.5px;font-weight:1000;line-height:14px;color:#0b1024;background:var(--tp-color,#7dd3fc)}
+.tp-orb-lab{max-width:74px;padding:1px 6px;border-radius:8px;font-size:11px;font-weight:1000;line-height:1.35;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(4,11,30,.78);color:#e2e8f0}
+.tp-orb.is-locked .tp-orb-lab{color:#94a3b8}
+.tp-forge{text-align:left;padding:10px 12px 12px;border:1px solid var(--tp-tier,#9e9e9e);border-top:0;background:rgba(4,11,30,.92)}
+.tp-forge-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 10px}
+.tp-forge-name{font-size:16px}
+.tp-forge-lv{display:inline;margin:0 0 0 6px;font-size:12.5px}
+.tp-forge-pct{margin-top:0;font-size:12px;color:#6ee7b7}
+.tp-forge-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.tp-forge-row .tp-forge-cost{justify-content:flex-start;margin:0;flex:1 1 auto;min-width:0}
+.tp-forge-row form{margin:0;flex:0 0 auto}
+.tp-h3 .tp-attr-cap{font-weight:700;margin-left:6px}
+.tp-cols .tp-col+.tp-col{margin-top:14px}
+.tp-attrs{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
+.tp-attrs .tp-attr{display:block;padding:6px 0;font-size:12px}
+.tp-attrs .tp-attr-name{display:block;font-size:11.5px;color:#9fb3c8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-attrs .tp-attr-val{display:block;font-size:13.5px}
+.tp-forge-lv,.tp-forge-cost span,.main .tp-act-open{white-space:nowrap}
+.tp-attrs .tp-attr:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
+@media (min-width:601px){.tp-cols .tp-col+.tp-col{margin-top:0}.tp-stage{aspect-ratio:16/9}.tp-orb-1,.tp-orb-2{left:8%}.tp-orb-3,.tp-orb-4{right:8%}.tp-orb{width:84px}.tp-orb-ball{width:56px;height:56px;font-size:26px}.tp-orb-lab{max-width:84px}}
+
 /* --- PHU CAC (.tpc-*) --- */
 .tpc-wrap{max-width:660px;margin:0 auto;padding:10px}
 .tpc-cover{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:0 0 10px;padding:14px 10px;border-radius:14px;border:1px solid rgba(255,215,122,.25);background:url(../images/tianfu/phu-cac.jpg) center 35%/cover no-repeat,linear-gradient(160deg,#171029,#0b1024);color:#ffd77a;font-size:17px;font-weight:1000;letter-spacing:1px;text-shadow:0 1px 8px #000}
