@@ -1143,9 +1143,17 @@ function istupo($sid,$dblj){
 
 	$player = getplayer($sid,$dblj);
     $playernextlv = $player->ulv + 1;
-	
+
+    // Đã đạt cấp tối đa (Vô Ngã Viên Mãn) => không cho đột phá nữa
+    $maxLv = $rangeslv[count($rangeslv) - 1];
+    if ($playernextlv > $maxLv) {
+        return 8;
+    }
+    // Cấp tối đa nằm ở biên trên mảng, dùng khoảng của cảnh giới cuối để tra
+    $lvForRange = min($playernextlv, $maxLv - 1);
+
     for ($i=0;$i < count($rangeslv) - 1;$i++){
-        if ($playernextlv >= $rangeslv[$i] && $playernextlv < $rangeslv[$i+1]){
+        if ($lvForRange >= $rangeslv[$i] && $lvForRange < $rangeslv[$i+1]){
 			// Kiểm tra cảnh giới
             if($player->jingjie != getJingJieHtml($player->ulv + 1)){
                 return 1;//Đột Phá Cảnh Giới
@@ -1224,7 +1232,14 @@ function upplayerlv($sid,$dblj){
     if (\player\luonden_is_level_locked($sid, $dblj)) {
         return false; // Không thể lên cấp
     }
-    
+
+    // Đã đạt cấp tối đa => không trừ tu vi, không lên cấp
+    global $rangeslv;
+    $maxLv = $rangeslv[count($rangeslv) - 1];
+    if ($player->ulv >= $maxLv) {
+        return false;
+    }
+
 if($player->shenfen == 1){
 $zs=1 ;
 }else{$zs=0;}
@@ -1252,9 +1267,11 @@ $ys=1 ;
 		$tffy1    = array($xs, $xs, $xs, $xs, $xs*1.5, $xs*1.5, $xs*1.5, $xs*2, $xs*2, $xs*3, $xs*3, $xs*4, $xs*4, $xs*5, $xs*5);
 		$tfgj1    = array($zs, $zs, $zs, $zs, $zs*1.5, $zs*1.5, $zs*1.5, $zs*2, $zs*2, $zs*3, $zs*3, $zs*4, $zs*4, $zs*5, $zs*5);
         $playernextlv = $player->ulv + 1;
+        // Cấp tối đa nằm ở biên trên mảng, dùng khoảng của cảnh giới cuối để tra
+        $lvForRange = min($playernextlv, $maxLv - 1);
 
         for ($i=0;$i<count($rangeslv)-1;$i++){
-            if ($playernextlv >= $rangeslv[$i] && $playernextlv < $rangeslv[$i+1]){
+            if ($lvForRange >= $rangeslv[$i] && $lvForRange < $rangeslv[$i+1]){
                 // $rangeslv co 87 phan tu (0..4300) trong khi cac bang thuoc tinh chi
                 // co 14-17 phan tu. Tu cap ~750 tro len, $bang[$i] khong ton tai =>
                 // bind NULL => "umaxhp = umaxhp + NULL" set ca cot thanh NULL.
@@ -3093,16 +3110,22 @@ function getJingJieHtml($level, $rangesjj = null, $jingjieColor = null) {
 
     $perJingjieLv = 50;
     $jingjieIndex = floor($level / $perJingjieLv);
+    $innerLv   = $level % 50;
 
-    if (!isset($rangesjj[$jingjieIndex])) {
+    // Mốc chia hết cho 50 hiển thị Viên Mãn của cảnh giới trước (vd 4300 = Vô Ngã Viên Mãn)
+    if (!isset($rangesjj[$innerLv == 0 ? $jingjieIndex - 1 : $jingjieIndex])) {
         return '';
     }
 
-    $baseColor = $jingjieColor[$jingjieIndex];
-    $innerLv   = $level % 50;
+    $baseColor = isset($jingjieColor[$jingjieIndex]) ? $jingjieColor[$jingjieIndex] : '';
 
 	if ($innerLv == 0){
-		$stage = 'Pháp Tắc Hộ Thuẫn Nhập Cảnh - Tỉ Lệ Đột Phá +10%';
+		// Không còn cảnh giới kế tiếp => đỉnh phong, không còn đột phá
+		if (isset($rangesjj[$jingjieIndex])) {
+			$stage = 'Pháp Tắc Hộ Thuẫn Nhập Cảnh - Tỉ Lệ Đột Phá +10%';
+		} else {
+			$stage = 'Đại Đạo Đỉnh Phong';
+		}
         $opacity = 1;
 		
 		return $rangesjj[$jingjieIndex - 1] . 
