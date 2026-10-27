@@ -58,6 +58,7 @@ game.php?cmd=<chuỗi mã hoá>
 | Võ Công / Công Pháp | `class/function/wugong.php`, `congphap.php`, `game/pve.php` | `PLAN_VOCONG_CONGPHAP.md` (kế hoạch thế võ), `DESIGN_CONGPHAP.md` |
 | Kinh tế / cân bằng | — | `ECONOMY_BALANCE.md`, `GAME_BALANCE.md`, `RESOURCE_ECONOMY.md` |
 | Toàn bộ 30 hệ thống | — | `TONGHOP-TINHNANG.md` |
+| Mở rộng nội dung (quái, nhiệm vụ, võ công/công pháp theo cảnh giới) | — | `PLAN_MO_RONG_NOI_DUNG.md` |
 
 ## 5. Quy ước làm việc
 
