@@ -7753,6 +7753,43 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .pve-pop.show{display:flex}
 .pve-hpbar-in[data-sim]{transition:width .5s ease-out!important}
 .pve-stat-row em[data-sim]{transition:opacity .25s}
+/* Popup kết quả: gọn để không phải cuộn, ẩn thanh cuộn */
+.pve-pop-box{scrollbar-width:none}.pve-pop-box::-webkit-scrollbar{display:none}
+.pve-pop-box .pve-result-wrap{padding:0;font-size:14px;line-height:1.5}
+.pve-pop-box .pve-result-head{padding:14px 16px 12px}
+.pve-pop-box .pve-result-icon{width:46px;height:46px;font-size:24px;margin-bottom:6px}
+.pve-pop-box .pve-result-title{font-size:20px}
+.pve-pop-box .pve-result-body{padding:10px 16px}
+.pve-pop-box .pve-result-row{padding:7px 0}
+.pve-pop-box .pve-result-actions{padding:12px 16px 14px}
+/* Màn Chiến Trường (cmd=pvegj) */
+.pva{margin:0 0 12px;padding:14px 12px 10px;border-radius:16px;border:1px solid rgba(125,160,255,.28);background:radial-gradient(ellipse at 50% 0,rgba(139,92,246,.22),transparent 60%),linear-gradient(180deg,rgba(14,22,60,.92),rgba(6,12,36,.95))}
+.pva-field{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.pva-side{position:relative;flex:1;min-width:0;text-align:center}
+.pva-side b{display:block;margin-top:6px;color:#fff;font-size:15px;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pva-side em{display:block;color:#9fb9ef;font-size:12px;font-style:normal;font-weight:800}
+.pva-side small{display:block;margin-top:3px;color:#dbeafe;font-size:12px;font-weight:900}
+.pva-ava{width:76px;height:76px;margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden;border:2px solid rgba(74,222,128,.7);background:rgba(15,23,42,.8);box-shadow:0 0 18px rgba(74,222,128,.35)}
+.pva-ava img{width:100%;height:100%;object-fit:cover}
+.pva-side.mob .pva-ava{border-color:rgba(248,113,113,.8);box-shadow:0 0 18px rgba(248,113,113,.4)}
+.pva-side.el-kim .pva-ava{background:radial-gradient(circle,#fde68a33,#0f172a)}.pva-side.el-moc .pva-ava{background:radial-gradient(circle,#4ade8033,#0f172a)}
+.pva-side.el-thuy .pva-ava{background:radial-gradient(circle,#38bdf833,#0f172a)}.pva-side.el-hoa .pva-ava{background:radial-gradient(circle,#f9731633,#0f172a)}
+.pva-side.el-tho .pva-ava{background:radial-gradient(circle,#a1620733,#0f172a)}
+.pva-hp{height:10px;margin:6px 4px 0;border-radius:999px;overflow:hidden;background:rgba(3,7,18,.85);border:1px solid rgba(255,255,255,.12)}
+.pva-hp i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#ef4444,#f97316,#fde047);transition:width .55s ease-out}
+.pva-hp.player i{background:linear-gradient(90deg,#16a34a,#4ade80,#67e8f9)}
+.pva-vs{align-self:center;margin-top:-30px;color:#fbbf24;font-size:22px;font-weight:1000;font-style:italic;text-shadow:0 0 12px rgba(251,191,36,.7)}
+.pva-side.hit .pva-ava{animation:pvaShake .4s}
+.pva-side.dead .pva-ava{filter:grayscale(1) brightness(.5);transition:filter .6s}
+@keyframes pvaShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.pva-float{position:absolute;left:50%;top:18px;transform:translateX(-50%);font-size:22px;font-weight:1000;pointer-events:none;white-space:nowrap;animation:pvaFloat 1.3s ease-out forwards;text-shadow:0 2px 4px #000}
+.pva-float.dmg{color:#fca5a5}.pva-float.crit{color:#fde047;font-size:28px}.pva-float.heal{color:#4ade80}.pva-float.miss{color:#cbd5e1}
+@keyframes pvaFloat{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}15%{opacity:1;transform:translate(-50%,0) scale(1.15)}100%{opacity:0;transform:translate(-50%,-46px) scale(1)}}
+.pva-banner{min-height:26px;margin:10px 0 6px;text-align:center;color:#fde68a;font-size:17px;font-weight:1000;text-shadow:0 0 12px rgba(251,191,36,.6);opacity:0}
+.pva-banner.on{animation:pvaBanner .5s ease-out forwards}
+@keyframes pvaBanner{0%{opacity:0;transform:scale(1.4);letter-spacing:4px}100%{opacity:1;transform:scale(1);letter-spacing:0}}
+.pva-log-title{margin:4px 0 4px;color:#93c5fd;font-size:12px;font-weight:1000;text-transform:uppercase;letter-spacing:.6px}
+.pva .pve-tip{margin:0}
 .pve-pop-box{position:relative;width:100%;max-width:520px;max-height:calc(100vh - 32px);overflow-y:auto;border-radius:18px;scrollbar-width:thin;scrollbar-color:rgba(125,160,255,.45) transparent}.pve-pop-box::-webkit-scrollbar{width:6px}.pve-pop-box::-webkit-scrollbar-track{background:transparent}.pve-pop-box::-webkit-scrollbar-thumb{background:rgba(125,160,255,.45);border-radius:6px}
 .pve-pop-box .pve-result-wrap{margin-top:0}
 .main a.pve-pop-x,.pve-pop-x{position:sticky;float:right;top:10px;margin:10px 12px -40px 0;z-index:2;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:rgba(51,65,85,.9);color:#fff!important;text-decoration:none;font-weight:900}
