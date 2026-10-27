@@ -55,6 +55,7 @@ game.php?cmd=<chuỗi mã hoá>
 | Nạp Ngũ Hành (trang bị) | `class/function/nap_hanh.php` | `DESIGN_NGUHANH_KICHHOAT.md` |
 | Luyện Đan | `class/function/luonden.php` | `LUONDEN_CHETAO.md`, `PLAN_ALCHEMY_SYSTEM.md` |
 | Tu Luyện | `game/xiulian.php` | `UI_XIULIAN.md` |
+| Võ Công / Công Pháp | `class/function/wugong.php`, `congphap.php`, `game/pve.php` | `PLAN_VOCONG_CONGPHAP.md` (kế hoạch thế võ), `DESIGN_CONGPHAP.md` |
 | Kinh tế / cân bằng | — | `ECONOMY_BALANCE.md`, `GAME_BALANCE.md`, `RESOURCE_ECONOMY.md` |
 | Toàn bộ 30 hệ thống | — | `TONGHOP-TINHNANG.md` |
 
