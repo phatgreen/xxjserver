@@ -102,9 +102,10 @@ $html = <<<HTML
 <style>
 .nv-wrap{max-width:520px;margin:0 auto;padding:10px;font-size:13px;font-family:'Segoe UI',sans-serif}
 .nv-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px;justify-content:center}
-.nv-tab{display:inline-block;padding:7px 14px;border-radius:8px;background:rgba(30,40,70,.7);color:#889;text-decoration:none;font-size:12px;font-weight:700;transition:.15s;border:1px solid transparent}
-.nv-tab:hover{background:rgba(60,80,140,.7);color:#ccd}
-.nv-tab.active{background:rgba(250,204,21,.15);color:#fde68a;border-color:rgba(250,204,21,.4)}
+/* Nền + viền rõ để nút không lẫn vào khung */
+.nv-tab{display:inline-block;padding:7px 14px;border-radius:8px;background:linear-gradient(180deg,rgba(59,84,160,.85),rgba(36,52,110,.9));color:#dbe6ff!important;text-decoration:none;font-size:12px;font-weight:700;transition:.15s;border:1px solid rgba(125,170,255,.45)}
+.nv-tab:hover{background:linear-gradient(180deg,rgba(79,110,200,.9),rgba(50,72,150,.95));color:#fff!important}
+.nv-tab.active{background:rgba(250,204,21,.15);color:#fde68a!important;border-color:rgba(250,204,21,.4)}
 .nv-card{background:rgba(16,24,50,.92);border-radius:14px;border:1px solid rgba(255,255,255,.08);padding:16px;margin-bottom:14px}
 .nv-title{font-size:15px;font-weight:1000;color:#f0e6d3;text-align:center;margin-bottom:12px}
 .nv-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);gap:8px}
@@ -128,8 +129,8 @@ $html = <<<HTML
 .nv-empty{text-align:center;padding:20px;color:#666;font-size:13px}
 .nv-reward-tag{display:inline-block;padding:2px 6px;border-radius:4px;background:rgba(250,204,21,.1);font-size:10px;color:#fde68a;margin-right:4px}
 .nv-nav{text-align:center;margin-top:14px;display:flex;justify-content:center;gap:10px}
-.nv-nav a{display:inline-block;padding:8px 18px;border-radius:8px;background:rgba(60,80,140,.3);color:#88a;text-decoration:none;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.06)}
-.nv-nav a:hover{background:rgba(60,80,140,.6);color:#cce}
+.nv-nav a{display:inline-block;padding:8px 18px;border-radius:8px;background:linear-gradient(180deg,rgba(59,84,160,.85),rgba(36,52,110,.9));color:#dbe6ff!important;text-decoration:none;font-size:12px;font-weight:700;border:1px solid rgba(125,170,255,.45)}
+.nv-nav a:hover{background:linear-gradient(180deg,rgba(79,110,200,.9),rgba(50,72,150,.95));color:#fff!important}
 .nv-achieve-group{margin-bottom:12px}
 .nv-achieve-group:last-child{margin-bottom:0}
 .nv-achieve-cat{font-weight:700;color:#f0e6d3;font-size:13px;margin-bottom:6px}
