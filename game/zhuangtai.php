@@ -367,7 +367,7 @@ $tpSlots  = intval($player->tianfu_bonus['activated_count']) . ' / ' . count(\pl
 $html = <<<HTML
 
 
-<div class="profile-page">
+<div class="profile-page pf-compact">
     $ts
     <div class="profile-tabs">
         <a class="profile-tab$menuNhanVatClass" href="?cmd=$ztcmd">Nhân vật</a>
@@ -395,10 +395,6 @@ $html = <<<HTML
             <div class="profile-power-panel">
                 <span class="profile-power-mark">🔥</span>
                 <span class="profile-power-copy"><em>Chiến lực</em><strong>$chienLucText</strong></span>
-            </div>
-            <div class="profile-meta">
-                <span class="profile-badge">💎 Ma thạch: $player->uczb</span>
-                <span class="profile-badge">💰 Linh thạch: $player->uyxb</span>
             </div>
         </div>
     </div>
@@ -539,12 +535,10 @@ if (!empty($player->thechat_name)) {
 
     $html .= <<<HTML
     <div class="profile-section">
-        <div class="profile-section-title" style="color:{$tcColor}">{$tcIcon} Thể Chất: {$tcName} <span style="font-size:12px;opacity:0.8">{$tcQIcon} {$tcQName}</span></div>
-        <div style="padding:2px 12px;font-size:11px;opacity:0.6">📂 {$tcCategoryName}</div>
+        <div class="profile-section-title" style="color:{$tcColor}">{$tcIcon} Thể Chất: {$tcName} <span style="font-size:12px;opacity:0.8">{$tcQIcon} {$tcQName} · 📂 {$tcCategoryName} · {$tcAIcon} {$tcAName}</span></div>
         <div class="profile-stat-grid">
             {$tcDetails}
         </div>
-        <div style="padding:4px 12px;font-size:11px;opacity:0.7">{$tcAIcon} {$tcAName}</div>
     </div>
 
 HTML;
@@ -614,11 +608,10 @@ if (!empty($player->huyetmach_name)) {
 
     $html .= <<<HTML
     <div class="profile-section">
-        <div class="profile-section-title" style="color:{$hmColor}">{$hmIcon} Huyết Mạch: {$hmName} <span style="font-size:12px;opacity:0.8">{$hmQIcon} {$hmQName}</span></div>
+        <div class="profile-section-title" style="color:{$hmColor}">{$hmIcon} Huyết Mạch: {$hmName} <span style="font-size:12px;opacity:0.8">{$hmQIcon} {$hmQName} · {$hmAIcon} {$hmAName}</span></div>
         <div class="profile-stat-grid">
             {$hmDetails}
         </div>
-        <div style="padding:4px 12px;font-size:11px;opacity:0.7">{$hmAIcon} {$hmAName}</div>
     </div>
 
 HTML;
@@ -674,11 +667,6 @@ HTML;
 }
 
 $html .= <<<HTML
-
-    <div class="profile-bottom">
-        <a class="profile-back" href="game.php?cmd=$gonowmid">← Đại Sảnh</a>
-        <a class="profile-home" href="?cmd=$getbagzbcmd">Túi đồ →</a>
-    </div>
 </div>
 HTML;
 
