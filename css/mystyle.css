@@ -8153,3 +8153,40 @@ body.tcg-bg-body .tb-compact .tb-stats{margin-top:22px;gap:10px;padding:12px 13p
 body.tcg-bg-body .tb-compact .tb-stats .xl-stat{padding:9px 4px}
 }
 
+/* ===== Võ Công gọn (game/wugong.php, .tcg-wg-page.wg-compact) — dùng lại khung .cws-* của Linh Sủng =====
+   Ảnh võ công giữa, 3 thông số mỗi bên, tên + trạng thái + nút dưới; thanh EXP; chiêu thức; thông tin gọn */
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-tabs{margin:0 0 10px!important;padding:5px!important;gap:6px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-tab,body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-tab:visited{min-height:32px!important;height:32px!important;font-size:12.5px!important;padding:0 14px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-stage{min-height:0;padding-top:216px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-figure{top:48px;width:210px;height:158px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-figure img{object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 60% 58% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 60% 58% at 50% 50%,#000 70%,transparent 100%)}
+body.tcg-bg-body .tcg-wg-page.wg-compact .cws-side{width:128px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-small{font-size:12px!important;line-height:1.3}
+body.tcg-bg-body .tcg-wg-page.wg-compact .cws-id{width:calc(100% - 290px)}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-status{font-size:12.5px;font-weight:900;color:#cbd5f5;line-height:1.35}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-status.ready{color:#86efac}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-actions .tcg-wg-btn,body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-actions .tcg-wg-btn:visited{min-width:0!important;height:34px!important;padding:0 14px!important;font-size:13px!important;margin:0!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-bar{margin:10px 0 0;padding:8px 12px;border-radius:12px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-bar .profile-bar-title{font-size:12.5px;margin-bottom:6px;white-space:nowrap}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-moves-card{margin-top:10px!important;padding:10px 12px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-moves-note{display:none!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-moves{margin-top:8px!important;gap:8px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-move{padding:8px 9px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-move-text{font-size:11.5px!important;line-height:1.35!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-move-stat,body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-move-eff{font-size:11.5px!important;margin-top:3px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-info{margin-top:10px!important;padding:10px 12px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-lines .tcg-wg-line{display:flex!important;flex-direction:column!important;gap:3px!important;padding:6px 8px!important;border-radius:10px;background:rgba(255,255,255,.035);border-bottom:0!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-lines .tcg-wg-line span{font-size:11px!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-lines .tcg-wg-line b{font-size:12.5px!important;text-align:left!important}
+body.tcg-bg-body .tcg-wg-page.wg-compact .tcg-wg-desc{margin-top:8px!important;font-size:12px!important}
+.wgs-note{display:none}
+@media(max-width:760px){
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-stage{padding-top:50px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-figure{top:auto;width:210px;height:160px}
+body.tcg-bg-body .tcg-wg-page.wg-compact .cws-id{width:100%}
+body.tcg-bg-body .tcg-wg-page.wg-compact .cws-side{width:100%}
+body.tcg-bg-body .tcg-wg-page.wg-compact .wgs-lines{grid-template-columns:1fr}
+}
+

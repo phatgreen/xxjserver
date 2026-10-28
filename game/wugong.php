@@ -266,79 +266,49 @@ if ($cbMoveHtml !== '') {
 $safeWgName = wg_safe_text($wgname);
 
 $xlhtml = <<<HTML
-<div class="tcg-wg-page">
-    <div class="tcg-wg-hero">
-        <div class="tcg-wg-img-wrap">
-            <img class="tcg-wg-img" src="$imgPath" alt="Vo cong">
-        </div>
-        <div class="tcg-wg-titlebox">
-            <div class="tcg-wg-label">Tu luyện võ học</div>
-            <h1>Võ Công</h1>
-            <p>Đánh BOSS tích lũy kinh nghiệm, khi đầy dùng bí tịch để nâng cấp cảnh giới võ học.</p>
-        </div>
-    </div>
-
+<div class="tcg-wg-page wg-compact">
     <div class="tcg-wg-tabs">
         <a class="tcg-wg-tab active" href="?cmd=$wgxl">Tu luyện võ công</a>
         <a class="tcg-wg-tab" href="?cmd=$wgxx">Bí tịch</a>
         <a class="tcg-wg-tab" href="?cmd=$chcmd">Cộng Hưởng</a>
     </div>
 
-    <div class="tcg-wg-current">
-        <div class="tcg-wg-name-card">
-            <div class="tcg-wg-name-small">Đang tu luyện</div>
-            <div class="tcg-wg-name" style="color:$wgys">$wuwugong$safeWgName</div>
-            <div class="tcg-wg-quality">Phẩm chất: <span style="color:$wgys">$wgColorName</span></div>
+    <div class="cws-stage wgs-stage" style="--cw-q:$wgys">
+        <div class="cws-tag">🥋 Đang tu luyện</div>
+        <div class="cws-side cws-side-left">
+            <div class="cws-stat"><span>📈 Cấp võ công</span><b>$wgdj</b></div>
+            <div class="cws-stat"><span>📖 Bí tịch</span><b>$wgsum</b></div>
+            <div class="cws-stat"><span>🔥 Tiêu hao / cấp</span><b>$xiaohao bí tịch</b></div>
         </div>
-        <div class="tcg-wg-action-box">
-            $xlcz
+        <div class="cws-figure wgs-figure"><img src="$imgPath" alt="Võ công"></div>
+        <div class="cws-side cws-side-right">
+            <div class="cws-stat"><span>✨ Phẩm chất</span><b style="color:$wgys">$wgColorName</b></div>
+            <div class="cws-stat"><span>⚔️ Loại vũ khí</span><b class="wgs-small">$ex0</b></div>
+            <div class="cws-stat"><span>🐉 Tăng EXP</span><b class="wgs-small">Đánh thắng BOSS</b></div>
+        </div>
+        <div class="cws-id">
+            <div class="cws-name" style="color:$wgys;text-shadow:0 0 16px {$wgys}88">$wuwugong$safeWgName</div>
+            <div class="wgs-status $statusClass">$tishi</div>
+            <div class="wgs-actions">$xlcz</div>
         </div>
     </div>
 
-    <div class="tcg-wg-stats">
-        <div class="tcg-wg-stat"><span>Người tu hành</span><strong>$safePlayerName</strong></div>
-        <div class="tcg-wg-stat"><span>Cấp nhân vật</span><strong>$player->ulv</strong></div>
-        <div class="tcg-wg-stat"><span>Đẳng cấp võ công</span><strong>$wgdj</strong></div>
-        <div class="tcg-wg-stat"><span>Bí tịch</span><strong>$wgsum</strong></div>
-    </div>
-
-    <div class="tcg-wg-progress-card">
-        <div class="tcg-wg-progress-head">
-            <span>Kinh nghiệm võ công</span>
-            <strong>$wgxl_now / $wgxlmax</strong>
-        </div>
-        <div class="tcg-wg-progress">
-            <div class="tcg-wg-progress-bar $statusClass" style="width:$progress%"></div>
-            <div class="tcg-wg-progress-text">$progress%</div>
-        </div>
-        <div class="tcg-wg-note">Tu luyện tiêu hao: <b>$xiaohao bí tịch</b> · Cách tăng EXP: <b>Đánh thắng BOSS</b></div>
+    <div class="profile-bar wgs-bar">
+        <div class="profile-bar-title"><span>✨ Kinh nghiệm võ công</span><span>$wgxl_now / $wgxlmax · $progress%</span></div>
+        <div class="profile-bar-track"><div class="profile-bar-fill exp" style="width:$progress%"></div></div>
     </div>
 
     $cbMoveHtml
 
-    <div class="tcg-wg-grid">
-        <div class="tcg-wg-info-card">
-            <div class="tcg-wg-card-title">Thông tin võ công</div>
-            <div class="tcg-wg-line"><span>Loại vũ khí</span><b>$ex0</b></div>
+    <div class="tcg-wg-info-card wgs-info">
+        <div class="tcg-wg-card-title">Thông tin võ công</div>
+        <div class="wgs-lines">
             <div class="tcg-wg-line"><span>Đặc điểm</span><b>$ex1</b></div>
             <div class="tcg-wg-line"><span>Hiệu quả</span><b>$ex2</b></div>
             <div class="tcg-wg-line"><span>Phong cách</span><b>$ex3</b></div>
         </div>
-
-        <div class="tcg-wg-info-card">
-            <div class="tcg-wg-card-title">Trạng thái</div>
-            <div class="tcg-wg-status $statusClass">$tishi</div>
-            <div class="tcg-wg-desc">$shortIntro</div>
-        </div>
-    </div>
-
-    <div class="tcg-wg-alert">
-        <b>Chú ý:</b> Khi kinh nghiệm đầy, nâng cấp sẽ tiêu hao bí tịch. Nếu thiếu bí tịch, có thể mua đúng bí tịch hiện tại với giá 400 Ma thạch/cuốn.
-    </div>
-
-    <div class="tcg-wg-bottom">
-        <a class="tcg-wg-back" href="#" onClick="javascript:history.back(-1);">Trở về trang trước</a>
-        <a class="tcg-wg-home" href="game.php?cmd=$gonowmid">Trở về trò chơi</a>
+        <div class="tcg-wg-desc">$shortIntro</div>
+        <div class="wgs-note">Kinh nghiệm đầy + đủ bí tịch thì nâng cấp; thiếu bí tịch có thể mua đúng cuốn hiện tại giá $buyBookPrice Ma thạch.</div>
     </div>
 </div>
 
