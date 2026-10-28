@@ -189,132 +189,108 @@ if ($craftMsg !== '') {
     $html .= '<div class="ct-notice ' . $msgClass . '">' . $craftMsg . '</div>';
 }
 
-// Hero
-$html .= <<<HTML
-<div class="ct-hero">
-    <div class="ct-hero-bg"><img src="/images/chetao/bg_chetao.png" alt=""></div>
-    <div class="ct-hero-mask"></div>
-    <div class="ct-hero-icon">⚒</div>
-    <div class="ct-hero-text">
-        <div class="ct-hero-kicker">Hệ thống chế tạo</div>
-        <h1 class="ct-hero-title">Chế Tạo</h1>
-        <div class="ct-hero-desc">Rèn vũ khí và trang bị từ nguyên liệu quý hiếm</div>
-        <div class="ct-hero-badge">🔥 Linh căn {$lcName} · {$recipeCount} công thức</div>
-    </div>
-</div>
-HTML;
+// Mặc định chọn công thức đầu tiên để khung giữa luôn có nội dung (vẫn phải bấm CHẾ TẠO + xác nhận)
+if ($selectedRecipe <= 0 || !isset($recipes[$selectedRecipe])) {
+    foreach ($recipes as $rid0 => $r0) { $selectedRecipe = intval($rid0); break; }
+}
 
-// Tabs
+// Tên + màu thành phẩm của 1 công thức
+function ct_recipe_name($recipe, $dblj)
+{
+    $rType = isset($recipe['type']) ? $recipe['type'] : 'equipment';
+    if ($rType === 'equipment') {
+        $zbid = isset($recipe['result_zbid']) ? intval($recipe['result_zbid']) : 0;
+        $zbConfig = \player\getzbkzb($zbid, $dblj);
+        return array(isset($zbConfig->zbname) ? $zbConfig->zbname : 'Trang bị #' . $zbid, isset($zbConfig->zbys) ? $zbConfig->zbys : '#fff');
+    }
+    $djId = isset($recipe['result_daoju_id']) ? intval($recipe['result_daoju_id']) : 0;
+    $djConfig = \player\daoju_config_get($djId);
+    return array(isset($djConfig['djname']) ? $djConfig['djname'] : 'Vật phẩm', '#fde68a');
+}
+
+// Tabs (bỏ nút Nhân Vật — đã có ở hàng tab trên)
 $html .= <<<HTML
 <div class="ct-tabs">
     <a class="ct-tab active" href="?cmd={$chetaoCmd}">⚒ Chế Tạo</a>
     <a class="ct-tab" href="?cmd={$luondenCmd}">🔥 Luyện Đan</a>
-    <a class="ct-tab" href="?cmd={$ztcmd}">👤 Nhân Vật</a>
 </div>
 HTML;
 
-// Recipe list
-$html .= '<div class="ct-list">';
-
-foreach ($recipes as $rid => $recipe) {
+// Khung trung tâm: thành phẩm của công thức đang chọn (giống trang Nhân Vật, dùng lại .cws-*)
+if ($selectedRecipe > 0) {
+    $recipe = $recipes[$selectedRecipe];
     $rType = isset($recipe['type']) ? $recipe['type'] : 'equipment';
     $rLevel = isset($recipe['level_required']) ? intval($recipe['level_required']) : 1;
-    $isOpen = ($selectedRecipe == intval($rid));
-
-    // Lấy tên từ config
-    $rName = 'Vật phẩm';
-    $rColor = '#fff';
+    list($rName, $rColor) = ct_recipe_name($recipe, $dblj);
+    $rDesc = '';
+    $figure = '<div class="ct-fig-icon">💎</div>';
+    $kind = 'Đạo cụ';
+    $right = array();
     if ($rType === 'equipment') {
         $zbid = isset($recipe['result_zbid']) ? intval($recipe['result_zbid']) : 0;
         $zbConfig = \player\getzbkzb($zbid, $dblj);
-        $rName = isset($zbConfig->zbname) ? $zbConfig->zbname : 'Trang bị #' . $zbid;
-        $rColor = isset($zbConfig->zbys) ? $zbConfig->zbys : '#fff';
-    } elseif ($rType === 'special') {
+        $rDesc = isset($zbConfig->zbinfo) ? $zbConfig->zbinfo : '';
+        $slotNames = array(1=>'Vũ khí',2=>'Mũ',3=>'Giáp',4=>'Giày',5=>'Găng',7=>'Dây chuyền',8=>'Nhẫn');
+        $zbtool = isset($zbConfig->zbtool) ? intval($zbConfig->zbtool) : 0;
+        $kind = isset($slotNames[$zbtool]) ? $slotNames[$zbtool] : 'Trang bị';
+        $figure = '<img src="' . \player\zhuangbei_image_path((object) array('zbid' => $zbid)) . '" alt="">';
+        foreach (array('zbgj' => '⚔️ Công', 'zbfy' => '🛡️ Thủ', 'zbhp' => '❤️ Khí huyết', 'zbbj' => '💥 Bạo kích', 'zbxx' => '🩸 Hút máu') as $k => $lb) {
+            if (isset($zbConfig->$k) && $zbConfig->$k > 0 && count($right) < 3) $right[] = array($lb, '+' . $zbConfig->$k);
+        }
+    } else {
         $djId = isset($recipe['result_daoju_id']) ? intval($recipe['result_daoju_id']) : 0;
+        $djAmount = isset($recipe['result_amount']) ? intval($recipe['result_amount']) : 1;
         $djConfig = \player\daoju_config_get($djId);
-        $rName = isset($djConfig['djname']) ? $djConfig['djname'] : 'Vật phẩm';
-        $rColor = '#fde68a';
+        $rDesc = isset($djConfig['djinfo']) ? $djConfig['djinfo'] : '';
+        $right[] = array('📦 Nhận được', $djAmount . ' cái');
+    }
+    $rateText = \player\chetao_success_text($player, $recipe);
+
+    $matHtml = '';
+    $allMat = true;
+    $materials = isset($recipe['materials']) ? $recipe['materials'] : array();
+    foreach ($materials as $mat) {
+        $matId = intval($mat['id']);
+        $matAmount = intval($mat['amount']);
+        $have = isset($inventory[$matId]) ? $inventory[$matId] : 0;
+        $matConfig = \player\daoju_config_get($matId);
+        $matName = isset($matConfig['djname']) ? $matConfig['djname'] : '#' . $matId;
+        if ($have < $matAmount) $allMat = false;
+        $matClass = ($have >= $matAmount) ? 'ct-mat-ok' : 'ct-mat-fail';
+        $matHtml .= "<span class='ct-mat {$matClass}'>{$matName} {$have}/{$matAmount}</span>";
     }
 
-    // Detail
-    $detailHtml = '';
-    if ($isOpen) {
-        $rDesc = '';
-        $resultText = '';
-        if ($rType === 'equipment') {
-            $zbid = isset($recipe['result_zbid']) ? intval($recipe['result_zbid']) : 0;
-            $zbConfig = \player\getzbkzb($zbid, $dblj);
-            $rDesc = isset($zbConfig->zbinfo) ? $zbConfig->zbinfo : '';
-            $slotNames = array(1=>'Vũ khí',2=>'Mũ',3=>'Giáp',4=>'Giày',5=>'Găng',7=>'Dây chuyền',8=>'Nhẫn');
-            $zbtool = isset($zbConfig->zbtool) ? intval($zbConfig->zbtool) : 0;
-            $slotName = isset($slotNames[$zbtool]) ? $slotNames[$zbtool] : 'Trang bị';
-            $zbColor = isset($zbConfig->zbys) ? $zbConfig->zbys : '#fff';
-            $stats = array();
-            if (isset($zbConfig->zbgj) && $zbConfig->zbgj > 0) $stats[] = "ATK +{$zbConfig->zbgj}";
-            if (isset($zbConfig->zbfy) && $zbConfig->zbfy > 0) $stats[] = "DEF +{$zbConfig->zbfy}";
-            if (isset($zbConfig->zbhp) && $zbConfig->zbhp > 0) $stats[] = "HP +{$zbConfig->zbhp}";
-            if (isset($zbConfig->zbbj) && $zbConfig->zbbj > 0) $stats[] = "Crit +{$zbConfig->zbbj}";
-            if (isset($zbConfig->zbxx) && $zbConfig->zbxx > 0) $stats[] = "Hút máu +{$zbConfig->zbxx}";
-            $resultText = "<span style='color:{$zbColor}'>[{$slotName}] {$rName}</span> <span style='font-size:11px;color:#9fcaff'>" . implode(' · ', $stats) . "</span>";
-        } elseif ($rType === 'special') {
-            $djId = isset($recipe['result_daoju_id']) ? intval($recipe['result_daoju_id']) : 0;
-            $djAmount = isset($recipe['result_amount']) ? intval($recipe['result_amount']) : 1;
-            $djConfig = \player\daoju_config_get($djId);
-            $rDesc = isset($djConfig['djinfo']) ? $djConfig['djinfo'] : '';
-            $resultText = "Nhận <b>{$djAmount}x</b> {$rName}";
-        }
-        $rateText = \player\chetao_success_text($player, $recipe);
-        $matHtml = '';
-        $materials = isset($recipe['materials']) ? $recipe['materials'] : array();
-        foreach ($materials as $mat) {
-            $matId = intval($mat['id']);
-            $matAmount = intval($mat['amount']);
-            $have = isset($inventory[$matId]) ? $inventory[$matId] : 0;
-            $matConfig = \player\daoju_config_get($matId);
-            $matName = isset($matConfig['djname']) ? $matConfig['djname'] : '#' . $matId;
-            $matClass = ($have >= $matAmount) ? 'ct-mat-ok' : 'ct-mat-fail';
-            $matHtml .= "<span class='ct-mat {$matClass}'>{$matName} {$have}/{$matAmount}</span>";
-        }
-        $detailHtml = "<div class='ct-recipe-desc'>{$rDesc}</div>
-        <div class='ct-recipe-result'>{$resultText}</div>
-        <div class='ct-recipe-rate'>⚡ Tỷ lệ: {$rateText}</div>
-        <div class='ct-recipe-level'>📊 Yêu cầu: Cấp {$rLevel}</div>
-        <div class='ct-materials'>{$matHtml}</div>";
-    }
-
-    $openClass = $isOpen ? ' open' : '';
-    $href = $isOpen ? '#' : '?cmd=' . $encode->encode("cmd=chetao&recipe_id={$rid}&sid=$sid");
-    $arrow = $isOpen ? '▾' : '▸';
-
-    $html .= <<<HTML
-    <div class="ct-recipe{$openClass}">
-        <a class="ct-recipe-toggle" href="{$href}">
-            <span class="ct-recipe-name" style="color:{$rColor}">{$rName}</span>
-            <span class="ct-recipe-arrow">{$arrow}</span>
-        </a>
-        {$detailHtml}
-    </div>
-HTML;
+    $sideR = '';
+    foreach ($right as $rv) $sideR .= '<div class="cws-stat"><span>' . $rv[0] . '</span><b>' . $rv[1] . '</b></div>';
+    $doCraftCmd = $encode->encode("cmd=do_craft_chetao&recipe_id={$selectedRecipe}&sid=$sid");
+    $lvOk = intval($player->ulv) >= $rLevel;
+    $html .= '<div class="cws-stage ct-stage" style="--cw-q:' . $rColor . '">'
+        . '<div class="cws-tag">⚒ Lò rèn · Linh căn ' . $lcName . '</div>'
+        . '<div class="cws-side cws-side-left">'
+        . '<div class="cws-stat"><span>⚡ Tỷ lệ</span><b class="ct-small">' . $rateText . '</b></div>'
+        . '<div class="cws-stat"><span>📊 Yêu cầu</span><b' . ($lvOk ? '' : ' class="ct-bad"') . '>Cấp ' . $rLevel . '</b></div>'
+        . '<div class="cws-stat"><span>🔖 Loại</span><b>' . $kind . '</b></div>'
+        . '</div>'
+        . '<div class="cws-figure ct-figure">' . $figure . '</div>'
+        . '<div class="cws-side cws-side-right">' . $sideR . '</div>'
+        . '<div class="cws-id">'
+        . '<div class="cws-name" style="color:' . $rColor . ';text-shadow:0 0 16px ' . $rColor . '88">' . $rName . '</div>'
+        . ($rDesc !== '' ? '<div class="ct-desc">' . $rDesc . '</div>' : '')
+        . '<div class="ct-materials">' . $matHtml . '</div>'
+        . '<a class="ct-craft-btn' . ($allMat ? '' : ' warn') . '" href="?cmd=' . $doCraftCmd . '" onclick="return confirm(\'Xác nhận chế tạo?\')">⚒ CHẾ TẠO</a>'
+        . '</div></div>';
 }
 
-$html .= '</div>';
-
-// Craft button
-$doCraftCmd = ($selectedRecipe > 0) ? $encode->encode("cmd=do_craft_chetao&recipe_id={$selectedRecipe}&sid=$sid") : '#';
-$btnClass = ($selectedRecipe > 0) ? 'ct-craft-btn' : 'ct-craft-btn disabled';
-
-$html .= <<<HTML
-<a class="{$btnClass}" href="?cmd={$doCraftCmd}" onclick="return confirm('Xác nhận chế tạo?')">⚒ CHẾ TẠO</a>
-HTML;
-
-// Footer
-$html .= <<<HTML
-<div class="ct-footer">
-    <a class="ct-back" href="#" onclick="history.back();return false;">← Trở về</a>
-    <a class="ct-home" href="?cmd={$nowmidCmd}">🏠 Đại Sảnh</a>
-</div>
-</div>
-HTML;
+// Danh sách công thức: lưới ô, bấm để xem ở khung giữa
+$html .= '<div class="ct-title">Công thức (' . $recipeCount . ')</div><div class="ct-list">';
+foreach ($recipes as $rid => $recipe) {
+    list($rName, $rColor) = ct_recipe_name($recipe, $dblj);
+    $rLevel = isset($recipe['level_required']) ? intval($recipe['level_required']) : 1;
+    $activeClass = ($selectedRecipe == intval($rid)) ? ' active' : '';
+    $href = '?cmd=' . $encode->encode("cmd=chetao&recipe_id={$rid}&sid=$sid");
+    $html .= '<a class="ct-recipe' . $activeClass . '" href="' . $href . '"><span class="ct-recipe-name" style="color:' . $rColor . '">' . $rName . '</span><span class="ct-recipe-level">Cấp ' . $rLevel . '</span></a>';
+}
+$html .= '</div></div>';
 
 echo $html;
 ?>

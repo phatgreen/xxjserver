@@ -2,7 +2,7 @@
 
 > Nhánh `claude/tong-quan-du-an`, commit `3ba1f3e` → `bc74ebe`. Tông Môn có tài liệu riêng: `DESIGN_TONGMON_CANBANG.md`.
 > **Máy chủ:** chỉ cần `cron\capnhat_code.bat` + Ctrl+F5 — trừ Tông Môn phải chạy `sql\migrate_tongmon.php --apply` (đã chạy 2026-10-28).
-> CSS: `css/mystyle.css?v=2026102912`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
+> CSS: `css/mystyle.css?v=2026102917`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
 
 ## 1. Mục tiêu chung
 
@@ -34,6 +34,8 @@
 | Túi Đồ (5 mục) | `game/bag{zb,dj,yp,jn,yd}.php`, `js/bagpop.js` | Banner 1 hàng; **lưới ô** (desktop 5 cột, mobile 3): ảnh/số lượng + tên + phẩm; **bấm ô → bảng nổi** gồm thông tin (trang bị dùng lại nội dung hộp xem nhanh: chỉ số, so sánh, cảnh báo cảnh giới) + nguyên các nút cũ (Trang bị / Phân Giải / Dùng / Bán / Xem / Sử dụng). Trang bị 20 món/trang, Đạo cụ chia trang 20 loại (giữ trang sau khi bán / dùng) |
 | Cửa Hàng | `game/shangdian.php` | Banner thấp 74px; tab Linh/Ma thạch + ô tìm kiếm 1 hàng; **lưới ô** (desktop 5 cột, mobile 3): ảnh + tên đủ 2 dòng + giá gọn (💰 15.000, đơn vị đầy đủ ở title) + nút Mua; 15 món/trang (trước 10); bỏ nút Trở Về / Đại Sảnh; thêm tab Võ Công / Công Pháp (mở Thiên Cơ Các, 2 trang chung hàng 5 tab) |
 | Thiên Cơ Các (Võ Công / Công Pháp) | `game/thiencoccac.php` | Banner thấp giống Cửa Hàng (cảnh giới ghi ở dòng phụ); hàng lọc 1 dòng cuộn ngang; mỗi giai / loại là lưới ô (desktop 4 cột, mobile 2): tên + phẩm/hệ + yêu cầu + giá/nút mua (2 loại tiền xếp dọc); bỏ Trở về / Đại sảnh. Lưu ý: ô không được `display:…!important` vì bộ lọc ẩn bằng `style.display='none'` |
+| Chế Tạo | `game/chetao.php` | Khung `.cws-*`: thành phẩm công thức đang chọn ở giữa (ảnh trang bị / 💎 đạo cụ), trái Tỷ lệ · Yêu cầu cấp · Loại, phải tối đa 3 chỉ số; dưới tên là nguyên liệu + nút CHẾ TẠO (thiếu nguyên liệu thì nút nhạt). Mặc định chọn công thức đầu; 24 công thức dạng lưới ô (desktop 4 cột, mobile 2); bỏ banner, nút Nhân Vật (trùng hàng tab), Trở về / Đại Sảnh |
+| Công Pháp | `game/congphap.php` | Khung `.cws-*`: công pháp đang vận đầu tiên ở giữa, trái Hiệu ứng · Loại, phải Cấp · Kinh nghiệm · Giảm Công/Thủ (hoặc số bộ sở hữu); bộ đang vận khác hiện nhãn dưới tên; danh sách 2 cột; bỏ banner, Trở Về / Đại Sảnh |
 | Tính năng chưa mở | `game/feature_locked.php` | Sửa chữ 2 nút bị lệch (thêm `a.fk-lock-btn:link`) |
 
 ## 4. Lỗi đã sửa kèm

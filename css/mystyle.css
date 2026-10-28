@@ -8277,3 +8277,59 @@ body.tcg-bg-body .tcg-wg-page.bt-compact .tcg-wg-list{grid-template-columns:1fr!
 .tcc-compact .tcg-tcc-tier{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:760px){.tcc-compact .tcg-shop-hero,.tcc-compact .tcg-shop-hero img{height:72px!important;max-height:72px!important}.tcc-compact .tcg-shop-title{gap:2px!important}.tcc-compact .tcg-shop-subtitle{font-size:11px!important;line-height:1.3!important}}
+/* ===== Chế Tạo gọn (game/chetao.php) — khung sân khấu .cws-* (thành phẩm giữa, chỉ số 2 bên), công thức dạng lưới ô ===== */
+body.tcg-bg-body .ct-page{padding:0}
+body.tcg-bg-body .ct-page .ct-tabs{margin-bottom:10px}
+body.tcg-bg-body .ct-page .ct-stage{min-height:0;padding-top:232px}
+body.tcg-bg-body .ct-page .ct-figure{display:flex;align-items:center;justify-content:center;width:150px;height:150px;top:56px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.10),rgba(4,12,32,.2) 62%,transparent 70%)}
+body.tcg-bg-body .ct-page .ct-figure img{width:112px;height:112px;object-fit:contain;-webkit-mask-image:none;mask-image:none;border-radius:0;filter:drop-shadow(0 0 18px var(--cw-q))}
+body.tcg-bg-body .ct-page .ct-fig-icon{font-size:72px;filter:drop-shadow(0 0 18px var(--cw-q))}
+body.tcg-bg-body .ct-page .ct-small{font-size:12px!important;line-height:1.3}
+body.tcg-bg-body .ct-page .ct-bad{color:#fca5a5!important}
+body.tcg-bg-body .ct-page .ct-desc{color:#9fcaff;font-size:12px;line-height:1.4;max-width:420px}
+body.tcg-bg-body .ct-page .ct-materials{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+body.tcg-bg-body .ct-page .ct-craft-btn,body.tcg-bg-body .ct-page a.ct-craft-btn:link,body.tcg-bg-body .ct-page a.ct-craft-btn:visited{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:180px;padding:9px 22px;margin:4px 0 0;font-size:14px}
+body.tcg-bg-body .ct-page .ct-craft-btn.warn{filter:saturate(.55) brightness(.9)}
+body.tcg-bg-body .ct-page .ct-title{margin:12px 0 8px;color:#cfe9ff;font-size:13px;font-weight:1000}
+body.tcg-bg-body .ct-page .ct-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0}
+body.tcg-bg-body .ct-page .ct-recipe,body.tcg-bg-body .ct-page a.ct-recipe:link,body.tcg-bg-body .ct-page a.ct-recipe:visited{display:flex;flex-direction:column;justify-content:center;gap:2px;margin:0;padding:7px 9px;border-radius:12px;text-decoration:none;min-width:0}
+body.tcg-bg-body .ct-page .ct-recipe.active{border-color:rgba(125,211,252,.78);box-shadow:0 0 16px rgba(56,189,248,.30),inset 0 0 12px rgba(255,255,255,.06)}
+body.tcg-bg-body .ct-page .ct-recipe-name{font-size:12.5px;line-height:1.25;white-space:normal;overflow-wrap:anywhere}
+body.tcg-bg-body .ct-page .ct-recipe-level{margin:0;font-size:11px}
+@media(max-width:760px){
+body.tcg-bg-body .ct-page .ct-stage{padding-top:50px}
+body.tcg-bg-body .ct-page .ct-figure{top:auto;width:130px;height:130px}
+body.tcg-bg-body .ct-page .ct-figure img{width:96px;height:96px}
+body.tcg-bg-body .ct-page .ct-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:761px){
+body.tcg-bg-body .ct-page .ct-stage{padding-top:200px}
+body.tcg-bg-body .ct-page .ct-figure{top:52px;width:136px;height:136px}
+body.tcg-bg-body .ct-page .ct-figure img{width:100px;height:100px}
+body.tcg-bg-body .ct-page .ct-title{margin:10px 0 6px}
+body.tcg-bg-body .ct-page .ct-list{gap:6px}
+body.tcg-bg-body .ct-page .ct-recipe,body.tcg-bg-body .ct-page a.ct-recipe:link,body.tcg-bg-body .ct-page a.ct-recipe:visited{padding:5px 8px}
+}
+/* ===== Công Pháp gọn (game/congphap.php .cp-compact) — khung sân khấu .cws-*: công pháp đang vận giữa, danh sách 2 cột ===== */
+body.tcg-bg-body .cp-compact .cp-tabs{margin-bottom:10px!important}
+body.tcg-bg-body .cp-compact .cp-stage{min-height:0;padding-top:212px}
+body.tcg-bg-body .cp-compact .cp-figure{top:52px;width:150px;height:150px}
+body.tcg-bg-body .cp-compact .cp-figure img{object-fit:contain;-webkit-mask-image:none;mask-image:none;border-radius:50%}
+body.tcg-bg-body .cp-compact .cp-small{font-size:12.5px!important;line-height:1.3}
+body.tcg-bg-body .cp-compact .cp-bad{color:#fca5a5!important;font-size:13px!important}
+body.tcg-bg-body .cp-compact .cp-title{margin:12px 0 8px;color:#cfe9ff;font-size:13px;font-weight:1000}
+body.tcg-bg-body .cp-compact .cp-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+body.tcg-bg-body .cp-compact .cp-card{margin:0!important;padding:9px 10px!important;min-width:0!important}
+@media(max-width:760px){
+body.tcg-bg-body .cp-compact .cp-stage{padding-top:50px}
+body.tcg-bg-body .cp-compact .cp-figure{top:auto;width:130px;height:130px}
+body.tcg-bg-body .cp-compact .cp-list{grid-template-columns:1fr!important}
+}
+body.tcg-bg-body .cp-compact .cp-stage{min-height:318px}
+body.tcg-bg-body .cp-compact .cp-card{grid-template-columns:1fr!important;gap:8px!important;align-content:start!important}
+body.tcg-bg-body .cp-compact .cp-card-info{flex:1 1 auto!important}
+body.tcg-bg-body .cp-compact .cp-name-row{flex-wrap:wrap!important;gap:4px 8px!important}
+body.tcg-bg-body .cp-compact .cp-name-row .cp-name{flex:0 1 auto!important;font-size:15px!important}
+body.tcg-bg-body .cp-compact .cp-meta{font-size:12px!important;gap:4px!important}
+body.tcg-bg-body .cp-compact .cp-actions{justify-content:flex-end!important}
+@media(max-width:760px){body.tcg-bg-body .cp-compact .cp-stage{min-height:0}}

@@ -232,22 +232,52 @@ if ($penaltyAtkDisplay > 0 || $penaltyDefDisplay > 0) {
     </div>';
 }
 
+// Khung trung tâm: công pháp đang vận đầu tiên (giống trang Nhân Vật, dùng lại .cws-*); các bộ khác hiện dạng nhãn dưới tên
+$cpOwned = !empty($allCp) ? count($allCp) : 0;
+if (!empty($equippedCp)) {
+    $mainCp = $equippedCp[0];
+    $mCpid = intval($mainCp->cpid);
+    $mFull = \player\congphap_cx($mCpid, $sid, $dblj);
+    if ($mFull) $mainCp = $mFull;
+    $mColor = isset($mainCp->cpys) ? wg_safe_text($mainCp->cpys) : '#f9c508';
+    $mDj = isset($mainCp->cpdj) ? intval($mainCp->cpdj) : 1;
+    $mMaxLv = isset($mainCp->max_level) ? intval($mainCp->max_level) : 10;
+    $mType = isset($mainCp->effect_type) ? $mainCp->effect_type : '';
+    $mVal = \player\combat_cp_effective($mType, \player\congphap_real_value($mainCp, $mDj));
+    $mExp = isset($mainCp->cpexp) ? intval($mainCp->cpexp) : 0;
+    $mExpMax = max(1, isset($mainCp->cpexpmax) ? intval($mainCp->cpexpmax) : 100);
+    $mPct = ($mDj >= $mMaxLv) ? 'Tối đa' : min(100, round($mExp * 100 / $mExpMax)) . '%';
+    $mImg = './images/congphap/' . min(12, max(1, $mCpid)) . '.svg';
+    $otherBadges = '';
+    for ($ei = 1; $ei < count($equippedCp); $ei++) {
+        $otherBadges .= '<span class="cws-badge" style="color:' . wg_safe_text($equippedCp[$ei]->cpys) . '">' . wg_safe_text($equippedCp[$ei]->cpname) . '</span>';
+    }
+    $penaltyStat = ($penaltyAtkDisplay > 0 || $penaltyDefDisplay > 0)
+        ? '<div class="cws-stat"><span>⚠ Giảm Công / Thủ</span><b class="cp-bad">-' . $penaltyAtkDisplay . '% / -' . $penaltyDefDisplay . '%</b></div>'
+        : '<div class="cws-stat"><span>📚 Sở hữu</span><b>' . $cpOwned . ' bộ</b></div>';
+    $stageHtml = '<div class="cws-stage cp-stage" style="--cw-q:' . $mColor . '">'
+        . '<div class="cws-tag">☯ Đang vận công ' . $equipCount . '/' . $maxEquip . '</div>'
+        . '<div class="cws-side cws-side-left">'
+        . '<div class="cws-stat"><span>✨ Hiệu ứng</span><b class="cp-small" style="color:#86efac">+' . number_format($mVal, 1) . '% ' . \player\congphap_effect_name($mType) . '</b></div>'
+        . '<div class="cws-stat"><span>🔖 Loại</span><b>' . wg_safe_text($mainCp->cpsort) . '</b></div>'
+        . '</div>'
+        . '<div class="cws-figure cp-figure"><img src="' . $mImg . '" alt=""></div>'
+        . '<div class="cws-side cws-side-right">'
+        . '<div class="cws-stat"><span>📈 Cấp</span><b>' . $mDj . ' / ' . $mMaxLv . '</b></div>'
+        . '<div class="cws-stat"><span>⚡ Kinh nghiệm</span><b>' . $mPct . '</b></div>'
+        . $penaltyStat
+        . '</div>'
+        . '<div class="cws-id"><div class="cws-name" style="color:' . $mColor . ';text-shadow:0 0 16px ' . $mColor . '88">' . wg_safe_text($mainCp->cpname) . '</div>'
+        . ($otherBadges !== '' ? '<div class="cws-meta">' . $otherBadges . '</div>' : '')
+        . '</div></div>';
+} else {
+    $stageHtml = '<div class="cws-stage cws-empty cp-stage"><div class="cws-tag">☯ Vận công 0/' . $maxEquip . '</div>'
+        . '<div class="cws-figure cp-figure"><img src="./images/congphap/1.svg" alt=""></div>'
+        . '<div class="cws-id"><div class="cws-name">Chưa vận công pháp nào — chọn "Vận công" ở danh sách bên dưới</div></div></div>';
+}
+
 $cwhtml = <<<HTML
-<div class="cp-page">
-    <div class="tcg-wg-hero">
-        <div class="tcg-wg-imgbox">
-            <img src="./images/congphap/1.svg" alt="Công Pháp">
-        </div>
-        <div class="tcg-wg-hero-info">
-            <div class="tcg-wg-kicker">Phương pháp tu luyện bị động</div>
-            <h2>Công Pháp</h2>
-            <p>Pháp môn tu luyện bị động, tăng tốc hấp thu linh khí, bạo kích, phòng ngự và nhiều hiệu ứng quý giá khác.</p>
-            <div class="tcg-wg-current">
-                <span>Vận Công ($equipCount/$maxEquip)</span>
-                <b>$equipText</b>
-            </div>
-        </div>
-    </div>
+<div class="cp-page cp-compact">
 
     <div class="cp-tabs">
         <a href="?cmd=$xiuliancmd">Ngồi Thiền</a>
@@ -255,19 +285,15 @@ $cwhtml = <<<HTML
         <a href="?cmd=$chcmd">Cộng Hưởng</a>
     </div>
 
-    $penaltyHtml
+    $stageHtml
 
+    <div class="cp-title">Công pháp sở hữu ($cpOwned)</div>
     <div class="cp-list">
         $cwnamehtml
     </div>
 
     $tssb
     $tscg
-
-    <div class="cp-footer">
-        <a class="cp-footer-btn" href="#" onclick="history.back();return false;">Trở Về</a>
-        <a class="cp-footer-btn primary" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 
 <style>
