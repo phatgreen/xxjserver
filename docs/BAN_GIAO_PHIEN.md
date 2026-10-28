@@ -57,7 +57,6 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Quái cũ cấp ≤ 105 | Chưa cân lại theo đường sức mạnh mới (vẫn dễ: quái cần 50–180 đòn hạ người) |
 | Lệch múi giờ PHP–MySQL trên máy chủ | Không ảnh hưởng game hiện tại; nên đặt cùng `date.timezone` |
 | Thư mục `images/other` | Ảnh tham khảo game khác — chủ dự án sẽ xóa sau |
-
 | **Chờ duyệt / làm tiếp (2026-10-28)** | UI-2/UI-3 bố cục mới (`UI_DON_GIAN_HOA_MOBILE.md`) · KT-0: lên PHP 7.4 64-bit + BIGINT, EXP quái cấp > 500, đan/sự kiện cộng đột phá (`KHUNG_TONG_500_4300.md`, còn câu hỏi K2/K5/K6) · làn 500→4300 · 12 màu cảnh giới thiếu |
 
 ## 4. Bản đồ code nhanh (phần đã đụng tới)
