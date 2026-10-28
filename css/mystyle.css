@@ -8143,25 +8143,13 @@ body.tcg-bg-body .tb-compact .tb-stats{margin-top:10px}
 .tb-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 
-/* Trang Bị giãn cho thoáng (desktop còn dư chiều cao): ô / ảnh / chân dung / bảng chỉ số lớn hơn */
+/* Trang Bị desktop: giữ nguyên cỡ ô / ảnh, chỉ giãn KHOẢNG CÁCH (ô cố định 84px, lưới căn giữa) */
 @media(min-width:761px){
-.tb-stage{grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr);gap:12px;padding:20px 14px}
-.tb-side-title{margin-bottom:12px;font-size:14px}
-.tb-grid{gap:10px}
-.tb-slot{gap:6px;padding:13px 6px 11px;border-radius:14px}
-body.tcg-bg-body .tb-compact .tb-thumb,body.tcg-bg-body .tb-compact a.tb-thumb:link,body.tcg-bg-body .tb-compact a.tb-thumb:visited{width:72px;height:72px;border-radius:13px}
-.tb-thumb img{max-width:64px;max-height:64px}
-.tb-name{font-size:12.5px}
-body.tcg-bg-body .tb-compact a.tb-x,body.tcg-bg-body .tb-compact a.tb-x:link,body.tcg-bg-body .tb-compact a.tb-x:visited{width:20px;height:20px;font-size:14px}
-.tb-center{gap:12px;padding-top:10px}
-.tb-figure{width:184px;height:184px}
-.tb-pname{font-size:20px}
-.tb-power b{font-size:19px}
-body.tcg-bg-body .tb-compact a.tb-quick{min-height:38px;padding:0 20px;font-size:14px}
-.tb-hint{font-size:11.5px}
-body.tcg-bg-body .tb-compact .tb-stats{margin-top:16px;gap:10px;padding:12px 13px}
-body.tcg-bg-body .tb-compact .tb-stats .xl-stat{padding:11px 4px}
-body.tcg-bg-body .tb-compact .tb-stats .xl-stat span{font-size:12.5px}
-body.tcg-bg-body .tb-compact .tb-stats .xl-stat b{font-size:18px}
+.tb-stage{gap:18px;padding:26px 16px}
+.tb-side-title{margin-bottom:16px}
+.tb-grid{grid-template-columns:repeat(2,84px);justify-content:center;gap:24px 16px}
+.tb-center{gap:14px;padding-top:14px}
+body.tcg-bg-body .tb-compact .tb-stats{margin-top:22px;gap:10px;padding:12px 13px}
+body.tcg-bg-body .tb-compact .tb-stats .xl-stat{padding:9px 4px}
 }
 
