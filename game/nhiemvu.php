@@ -103,9 +103,11 @@ $nvClaimBtn = function ($q, $tbl, $tabName) use ($encode, $sid) {
 };
 
 $tabHtml = '';
+$tabDots = \player\nav_quest_tab_dots($sid, intval($player->ulv), $dblj); // tab có thưởng chưa nhận
 foreach ($tabDefs as $tk => $tl) {
     $tc = $encode->encode("cmd=nhiemvu&tab=$tk&sid=$sid");
-    $tabHtml .= '<a class="nv-tab' . ($tab === $tk ? ' active' : '') . '" href="?cmd=' . $tc . '">' . $tl . '</a>';
+    $dot = !empty($tabDots[$tk]) ? '<i class="nav-dot"></i>' : '';
+    $tabHtml .= '<a class="nv-tab' . ($tab === $tk ? ' active' : '') . '" href="?cmd=' . $tc . '">' . $tl . $dot . '</a>';
 }
 
 $html = <<<HTML
@@ -113,8 +115,9 @@ $html = <<<HTML
 .nv-wrap{max-width:520px;margin:0 auto;padding:10px;font-size:13px;font-family:'Segoe UI',sans-serif}
 .nv-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px;justify-content:center}
 /* Nền + viền rõ để nút không lẫn vào khung */
-.nv-tab{display:inline-block;padding:7px 14px;border-radius:8px;background:linear-gradient(180deg,rgba(59,84,160,.85),rgba(36,52,110,.9));color:#dbe6ff!important;text-decoration:none;font-size:12px;font-weight:700;transition:.15s;border:1px solid rgba(125,170,255,.45)}
+.nv-tab{position:relative;display:inline-block;padding:7px 14px;border-radius:8px;background:linear-gradient(180deg,rgba(59,84,160,.85),rgba(36,52,110,.9));color:#dbe6ff!important;text-decoration:none;font-size:12px;font-weight:700;transition:.15s;border:1px solid rgba(125,170,255,.45)}
 .nv-tab:hover{background:linear-gradient(180deg,rgba(79,110,200,.9),rgba(50,72,150,.95));color:#fff!important}
+.nv-tab .nav-dot{top:-4px;left:auto;right:-4px}
 .nv-tab.active{background:rgba(250,204,21,.15);color:#fde68a!important;border-color:rgba(250,204,21,.4)}
 .nv-card{background:rgba(16,24,50,.92);border-radius:14px;border:1px solid rgba(255,255,255,.08);padding:16px;margin-bottom:14px}
 .nv-title{font-size:15px;font-weight:1000;color:#f0e6d3;text-align:center;margin-bottom:12px}
@@ -403,14 +406,15 @@ elseif ($tab === 'main') {
     if (empty($mainQuests)) {
         $html .= '<div class="nv-empty">Chưa có nhiệm vụ chính tuyến.</div>';
     } else {
-        // Chỉ mở chương đang làm; chương đã xong / chưa tới thu gọn (bấm tiêu đề để xem)
+        // Chỉ mở chương đang làm; chương đã xong ẩn hẳn; chương chưa tới thu gọn (bấm tiêu đề để xem)
         $curFound = false;
-        $doneHtml = ''; $doneN = 0; $lockN = 0;
+        $lockN = 0;
         foreach ($mainQuests as $ch) {
             $ch['quests'] = \player\nhiemvu_apply_reward_list($ch['quests'], 'main', \player\nhiemvu_main_ref_level($ch, $player->ulv));
             $chDone = 0;
             foreach ($ch['quests'] as $cq) if ($cq['status'] == 2) $chDone++;
             $chAll = count($ch['quests']);
+            if ($chDone >= $chAll) continue;
             $isCur = (!$curFound && $chDone < $chAll);
             if ($isCur) $curFound = true;
             $chTag = $chDone >= $chAll ? '✅ Hoàn thành' : ($isCur ? '⏳ Đang làm ' . $chDone . '/' . $chAll : '🔒 Chưa mở');
@@ -456,12 +460,7 @@ elseif ($tab === 'main') {
                 </div>';
             }
             $html .= '</details>';
-            // Chương đã xong gom vào 1 khối thu gọn
-            if ($chDone >= $chAll) { $doneHtml .= $html; $doneN++; $html = $chOut; }
-            else { $html = $chOut . $html; }
-        }
-        if ($doneN > 0) {
-            $html .= '<details class="nv-achieve-group nv-ch"><summary class="nv-achieve-cat" style="color:#4CAF50">✅ Đã hoàn thành ' . $doneN . ' chương</summary>' . $doneHtml . '</details>';
+            $html = $chOut . $html;
         }
         if ($lockN > 1) {
             $html .= '<div class="nv-desc" style="text-align:center;margin-top:6px">… còn ' . ($lockN - 1) . ' chương mở theo cấp</div>';

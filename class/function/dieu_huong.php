@@ -113,7 +113,8 @@ if (!function_exists(__NAMESPACE__ . '\\nav_tab_for_cmd')) {
 if (!function_exists(__NAMESPACE__ . '\\nav_quest_dot')) {
     // Chấm đỏ tab Nhiệm Vụ: còn nhiệm vụ ngày / tuần / tháng đã xong mà chưa nhận thưởng (1 truy vấn theo khóa chính sid).
     function nav_quest_dot($sid, $dblj){
-        $sql = "SELECT 1 FROM player_nhiemvu_daily WHERE sid = ? AND reset_date = ? AND completed = 1 AND claimed = 0"
+        // quest_id 'daily_bonus' là dòng đánh dấu đã nhận thưởng ngày (ghi completed = 1, claimed giữ 0) — không phải nhiệm vụ chờ nhận
+        $sql = "SELECT 1 FROM player_nhiemvu_daily WHERE sid = ? AND reset_date = ? AND completed = 1 AND claimed = 0 AND quest_id <> 'daily_bonus'"
             . " UNION ALL SELECT 1 FROM player_nhiemvu_weekly WHERE sid = ? AND week_number = ? AND completed = 1 AND claimed = 0"
             . " UNION ALL SELECT 1 FROM player_nhiemvu_monthly WHERE sid = ? AND month = ? AND completed = 1 AND claimed = 0 LIMIT 1";
         try {
@@ -125,6 +126,28 @@ if (!function_exists(__NAMESPACE__ . '\\nav_quest_dot')) {
         } catch (\Exception $e) {
             return false;
         }
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nav_quest_tab_dots')) {
+    // Chấm đỏ từng tab trong trang Nhiệm Vụ — cùng nguồn với nav_quest_dot() để người chơi tìm được chỗ nhận thưởng.
+    function nav_quest_tab_dots($sid, $lv, $dblj){
+        $dots = array('daily' => false, 'weekly' => false, 'monthly' => false, 'canhgioi' => false);
+        $checks = array(
+            'daily'   => array("SELECT 1 FROM player_nhiemvu_daily WHERE sid = ? AND reset_date = ? AND completed = 1 AND claimed = 0 AND quest_id <> 'daily_bonus' LIMIT 1", date('Y-m-d')),
+            'weekly'  => array("SELECT 1 FROM player_nhiemvu_weekly WHERE sid = ? AND week_number = ? AND completed = 1 AND claimed = 0 LIMIT 1", nhiemvu_current_week_num()),
+            'monthly' => array("SELECT 1 FROM player_nhiemvu_monthly WHERE sid = ? AND month = ? AND completed = 1 AND claimed = 0 LIMIT 1", nhiemvu_current_month()),
+        );
+        try {
+            foreach ($checks as $k => $c) {
+                $stmt = $dblj->prepare($c[0]);
+                $stmt->execute(array($sid, $c[1]));
+                $dots[$k] = (bool)$stmt->fetchColumn();
+            }
+            $dots['canhgioi'] = nhiemvu_realm_has_claimable($sid, $lv, $dblj);
+        } catch (\Exception $e) {
+        }
+        return $dots;
     }
 }
 
