@@ -23,7 +23,7 @@ if (!function_exists(__NAMESPACE__ . '\\nav_tabs_config')) {
             'hanhtau' => array(
                 'item' => array('gomid', '🗺', 'Hành Tẩu'),
                 'cmds' => array('gomid', 'pve', 'pvegj', 'pvb', 'pvbgj', 'taopao', 'boss', 'npc', 'qydt', 'allmap',
-                    'phoban', 'toayeuthap', 'vandinhdai', 'hammo', 'shangdian', 'thiencoccac', 'fangshi', 'quydoi',
+                    'phoban', 'toayeuthap', 'vandinhdai', 'hammo', 'sauthu', 'shangdian', 'thiencoccac', 'fangshi', 'quydoi',
                     'club', 'clublist', 'clubboss_fight', 'im', 'liaotian', 'paihang', 'duihuan', 'getplayerinfo', 'pvp'),
             ),
             'nhanvat' => array(
@@ -41,12 +41,9 @@ if (!function_exists(__NAMESPACE__ . '\\nav_tabs_config')) {
                 ),
             ),
             'linhsung' => array(
+                // Không có tab con: Sào Thú vào từ Phó Bản (thuộc tab Hành Tẩu)
                 'item' => array('chongwu', '🐾', 'Linh Sủng'),
-                'cmds' => array('chongwu', 'sauthu'),
-                'sub' => array(
-                    array(array('chongwu', '🐾', 'Linh Sủng'), array('chongwu')),
-                    array(array('sauthu', '🐉', 'Sào Thú'), array('sauthu')),
-                ),
+                'cmds' => array('chongwu'),
             ),
             'nhiemvu' => array(
                 'item' => array('nhiemvu', '📜', 'Nhiệm Vụ'),
