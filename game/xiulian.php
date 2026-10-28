@@ -301,13 +301,15 @@ $realm_label = xl_realm_label($player->jingjie);
 
         <div class="xl-rail xl-rail-left">
             <?php foreach ($rail_left as $item): ?>
-            <a class="xl-node" href="<?= $nav[$item[0]] ?>"><i><?= $item[1] ?></i><b><?= $item[2] ?></b></a>
+            <?php $lk = \player\feature_lock_mark($player, $item[0]); ?>
+            <a class="xl-node<?= $lk[0] ?>" href="<?= $nav[$item[0]] ?>"><i><?= $item[1] ?></i><b><?= $item[2] ?></b><?= $lk[1] ?></a>
             <?php endforeach; ?>
         </div>
 
         <div class="xl-rail xl-rail-right">
             <?php foreach ($rail_right as $item): ?>
-            <a class="xl-node" href="<?= $nav[$item[0]] ?>"><i><?= $item[1] ?></i><b><?= $item[2] ?></b></a>
+            <?php $lk = \player\feature_lock_mark($player, $item[0]); ?>
+            <a class="xl-node<?= $lk[0] ?>" href="<?= $nav[$item[0]] ?>"><i><?= $item[1] ?></i><b><?= $item[2] ?></b><?= $lk[1] ?></a>
             <?php endforeach; ?>
         </div>
 
@@ -373,7 +375,8 @@ $realm_label = xl_realm_label($player->jingjie);
     <div class="xl-action">
         <div class="xl-action-side xl-action-side-left">
             <?php foreach ($chips_left as $chip): ?>
-            <a class="xl-side-btn<?= isset($chip[3]) ? $chip[3] : '' ?>" href="<?= $nav[$chip[0]] ?>"><i><?= $chip[1] ?></i><b><?= $chip[2] ?></b></a>
+            <?php $lk = \player\feature_lock_mark($player, $chip[0]); ?>
+            <a class="xl-side-btn<?= isset($chip[3]) ? $chip[3] : '' ?><?= $lk[0] ?>" href="<?= $nav[$chip[0]] ?>"><i><?= $chip[1] ?></i><b><?= $chip[2] ?></b><?= $lk[1] ?></a>
             <?php endforeach; ?>
         </div>
 
@@ -390,7 +393,8 @@ $realm_label = xl_realm_label($player->jingjie);
 
         <div class="xl-action-side xl-action-side-right">
             <?php foreach ($chips_right as $chip): ?>
-            <a class="xl-side-btn<?= isset($chip[3]) ? $chip[3] : '' ?>" href="<?= $nav[$chip[0]] ?>"><i><?= $chip[1] ?></i><b><?= $chip[2] ?></b></a>
+            <?php $lk = \player\feature_lock_mark($player, $chip[0]); ?>
+            <a class="xl-side-btn<?= isset($chip[3]) ? $chip[3] : '' ?><?= $lk[0] ?>" href="<?= $nav[$chip[0]] ?>"><i><?= $chip[1] ?></i><b><?= $chip[2] ?></b><?= $lk[1] ?></a>
             <?php endforeach; ?>
         </div>
     </div>
@@ -419,10 +423,10 @@ $realm_label = xl_realm_label($player->jingjie);
     <nav class="xl-tabbar">
         <a class="on" href="<?= $nav['goxiulian'] ?>"><i>🧘</i><b>Tu Luyện</b></a>
         <a href="<?= $nav['zhuangtai'] ?>"><i>👤</i><b>Nhân Vật</b></a>
-        <a href="<?= $nav['allmap'] ?>"><i>🗺</i><b>Bản Đồ</b></a>
-        <a href="<?= $nav['club'] ?>"><i>🏯</i><b>Tông Môn</b></a>
+        <?php $lk = \player\feature_lock_mark($player, 'allmap'); ?><a class="<?= trim($lk[0]) ?>" href="<?= $nav['allmap'] ?>"><i>🗺</i><b>Bản Đồ</b><?= $lk[1] ?></a>
+        <?php $lk = \player\feature_lock_mark($player, 'club'); ?><a class="<?= trim($lk[0]) ?>" href="<?= $nav['club'] ?>"><i>🏯</i><b>Tông Môn</b><?= $lk[1] ?></a>
         <a href="<?= $nav['nhiemvu'] ?>"><i>📜</i><b>Nhiệm Vụ</b></a>
-        <a href="<?= $nav['shangdian'] ?>"><i>🛒</i><b>Cửa Hàng</b></a>
+        <?php $lk = \player\feature_lock_mark($player, 'shangdian'); ?><a class="<?= trim($lk[0]) ?>" href="<?= $nav['shangdian'] ?>"><i>🛒</i><b>Cửa Hàng</b><?= $lk[1] ?></a>
     </nav>
 </div>
 

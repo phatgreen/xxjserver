@@ -1,4 +1,4 @@
-# MỞ KHÓA TÍNH NĂNG THEO CẤP / CẢNH GIỚI (MK-1 ĐÃ LÀM 2026-10-28)
+# MỞ KHÓA TÍNH NĂNG THEO CẤP / CẢNH GIỚI (MK-1 + MK-2 ĐÃ LÀM 2026-10-28)
 
 > Lập 2026-10-28. Đi cùng `docs/UI_DON_GIAN_HOA_MOBILE.md` (bố cục) và chính tuyến `class/config/nhiemvu_main_config.json`.
 
@@ -125,7 +125,15 @@ Kiểm chứng thật (server thử): cấp 1 vào Luyện Đan / Chế Tạo / 
 cấp 25 ⇒ Luyện Đan, Chế Tạo, chat mở, Tông Môn vẫn khóa. Test cũ C / D / F / Thiên Phú trang: ALL PASS
 (`test_linhcan_pages` lỗi 29 mục **cả trên code gốc** — lỗi có sẵn của bài test, không do MK-1).
 
-Bảng `player_feature` (đánh dấu đã xem popup) chuyển sang **MK-2** (nơi dùng tới).
+## 5c. Kết quả MK-2 (ĐÃ LÀM 2026-10-28)
+
+| Phần | File | Ghi chú |
+|---|---|---|
+| Nút chưa mở | `feature_lock_mark()`; `game/xiulian.php` (10 nút tròn, 3 nút cạnh quả cầu, thanh dưới), `game/nowmid.php` (6 nút lớn + lưới 15 nút), thanh trên `game.php` (Sự Kiện, Cộng Đồng) | **Vẫn hiển thị đầy đủ** (theo chủ dự án), mờ + nhãn "🔒 cấp"; bấm vào ra trang 🔒 |
+| Popup "Tính năng mới" | `feature_new_popup()` gọi ở cuối `game.php` (sau khi trang chạy ⇒ đột phá xong hiện ngay) | Lưu mốc đã báo trong **session** thay cho bảng `player_feature`: không thêm truy vấn/cột DB, không cần migrate. Lần đầu thấy nhân vật trong phiên chỉ ghi mốc (không bắn hàng loạt khi đăng nhập); mốc chỉ tăng (tụt cấp rồi lên lại không báo lần 2); nhảy nhiều mốc ⇒ 1 popup gộp |
+
+Kiểm chứng thật: cấp 7→8 (đột phá thật) ⇒ popup "Linh Sủng" ngay trang kết quả; tải lại không hiện; nhảy 8→15 ⇒ gộp "Võ Công, Thiên Cơ Các, Luyện Đan";
+tụt 14 rồi lên lại 15 ⇒ không báo lại. Chụp Tu Luyện ở cấp 1 / 8 / 15 / 30 / 101 thấy các nút mở dần. 10 bộ test ALL PASS.
 
 ## 6. Cần chủ dự án quyết
 

@@ -94,3 +94,61 @@ if (!function_exists(__NAMESPACE__ . '\\feature_next_locked')) {
         return array_slice($list, 0, $n);
     }
 }
+
+if (!function_exists(__NAMESPACE__ . '\\feature_lock_mark')) {
+    // Đánh dấu nút dẫn tới lệnh $cmd: chưa mở -> array(' is-locked', '<em class="fk-badge">🔒 cấp</em>'), đã mở -> array('', '').
+    // Nút vẫn hiển thị đầy đủ; bấm vào sẽ ra trang 🔒 (router chặn).
+    function feature_lock_mark($player, $cmd){
+        $f = feature_lock_for_cmd($player, $cmd);
+        if (!$f) return array('', '');
+        return array(' is-locked', '<em class="fk-badge">🔒 ' . intval($f['level']) . '</em>');
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\feature_opened_between')) {
+    // Tính năng mở trong khoảng cấp ($fromLv, $toLv] — dùng cho popup "Tính năng mới".
+    function feature_opened_between($fromLv, $toLv){
+        $list = array();
+        foreach (feature_unlock_config() as $f) {
+            if ($f['level'] > intval($fromLv) && $f['level'] <= intval($toLv)) $list[] = $f;
+        }
+        usort($list, function($a, $b){ return $a['level'] - $b['level']; });
+        return $list;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\feature_new_popup')) {
+    /**
+     * Popup "Tính năng mới" khi cấp vừa vượt mốc mở. Lưu cấp đã báo trong session (không thêm truy vấn / cột DB):
+     * lần đầu thấy nhân vật trong phiên chỉ ghi mốc (không bắn popup hàng loạt khi đăng nhập).
+     */
+    function feature_new_popup($player, $sid, $encode){
+        if (!isset($player->ulv)) return '';
+        $lv = intval($player->ulv);
+        $key = 'fk_seen_lv_' . $sid;
+        if (!isset($_SESSION[$key])) {
+            $_SESSION[$key] = $lv;
+            return '';
+        }
+        $from = intval($_SESSION[$key]);
+        if ($lv <= $from) return ''; // mốc chỉ tăng: tụt cấp (đột phá thất bại) rồi lên lại không báo lần nữa
+        $_SESSION[$key] = $lv;
+        $list = feature_opened_between($from, $lv);
+        if (empty($list)) return '';
+
+        $rows = '';
+        foreach ($list as $f) {
+            $rows .= '<div class="fk-new-item"><i>' . htmlspecialchars(isset($f['icon']) ? $f['icon'] : '✨', ENT_QUOTES, 'UTF-8') . '</i><div><b>'
+                   . htmlspecialchars($f['name'], ENT_QUOTES, 'UTF-8') . '</b><span>'
+                   . htmlspecialchars(isset($f['desc']) ? $f['desc'] : '', ENT_QUOTES, 'UTF-8') . '</span></div></div>';
+        }
+        $first = $list[0];
+        $go = '?cmd=' . $encode->encode('cmd=' . $first['cmds'][0] . '&sid=' . $sid);
+        return '<div class="fk-new" id="fkNewPopup"><div class="fk-new-card">'
+             . '<div class="fk-new-kicker">Cơ duyên đã tới</div><div class="fk-new-title">✨ Tính năng mới</div>'
+             . $rows
+             . '<div class="fk-new-actions"><a class="fk-lock-btn" href="' . $go . '">Đi xem ' . htmlspecialchars($first['name'], ENT_QUOTES, 'UTF-8') . '</a>'
+             . '<button type="button" class="fk-lock-btn alt" onclick="var e=document.getElementById(\'fkNewPopup\');if(e){e.parentNode.removeChild(e);}">Để sau</button></div>'
+             . '</div></div>';
+    }
+}

@@ -525,7 +525,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102805">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102807">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
@@ -557,6 +557,8 @@ $tcg_event_href = '#';
 $tcg_guide_href = '#';
 $tcg_comm_href = '#';
 $tcg_active_nav = 'home';
+$tcg_lk_event = array('', '');
+$tcg_lk_comm = array('', '');
 if (isset($sid) && isset($player) && is_object($player)) {
     if (isset($player->uname) && $player->uname != '') {
         $tcg_header_name = $player->uname;
@@ -580,6 +582,9 @@ if (isset($sid) && isset($player) && is_object($player)) {
     $tcg_event_href = '?cmd='.$encode->encode('cmd=allmap&sid='.$sid);
     $tcg_guide_href = '?cmd='.$encode->encode('cmd=gamnol&sid='.$sid);
     $tcg_comm_href = '?cmd='.$encode->encode('cmd=club&sid='.$sid);
+    // Nhãn 🔒: Sự Kiện -> allmap (Dịch Chuyển), Cộng Đồng -> club (Tông Môn)
+    $tcg_lk_event = \player\feature_lock_mark($player, 'allmap');
+    $tcg_lk_comm = \player\feature_lock_mark($player, 'club');
 }
 switch ($cmd) {
     case 'taskguide':
@@ -604,9 +609,9 @@ switch ($cmd) {
     <nav class="tcg-nav">
         <a class="<?php echo $tcg_active_nav === 'home' ? 'active' : ''; ?>" href="<?php echo $tcg_home_href; ?>"><span class="nav-ico">🏠</span> Trang Chủ</a>
         <a class="<?php echo $tcg_active_nav === 'news' ? 'active' : ''; ?>" href="<?php echo $tcg_news_href; ?>"><span class="nav-ico">📰</span> Tin Tức</a>
-        <a class="<?php echo $tcg_active_nav === 'event' ? 'active' : ''; ?>" href="<?php echo $tcg_event_href; ?>"><span class="nav-ico">🎁</span> Sự Kiện</a>
+        <a class="<?php echo ($tcg_active_nav === 'event' ? 'active' : '') . $tcg_lk_event[0]; ?>" href="<?php echo $tcg_event_href; ?>"><span class="nav-ico">🎁</span> Sự Kiện<?php echo $tcg_lk_event[1]; ?></a>
         <a class="<?php echo $tcg_active_nav === 'guide' ? 'active' : ''; ?>" href="<?php echo $tcg_guide_href; ?>"><span class="nav-ico">📖</span> Cẩm Nang</a>
-        <a class="<?php echo $tcg_active_nav === 'comm' ? 'active' : ''; ?>" href="<?php echo $tcg_comm_href; ?>"><span class="nav-ico">💬</span> Cộng Đồng</a>
+        <a class="<?php echo ($tcg_active_nav === 'comm' ? 'active' : '') . $tcg_lk_comm[0]; ?>" href="<?php echo $tcg_comm_href; ?>"><span class="nav-ico">💬</span> Cộng Đồng<?php echo $tcg_lk_comm[1]; ?></a>
     </nav>
     <div class="tcg-userbox">
         <div class="tcg-avatar">
@@ -663,5 +668,11 @@ switch ($cmd) {
         </footer>
     </div>
 </div>
+<?php
+// Popup "Tính năng mới" (đặt sau khi trang chạy xong: vừa đột phá lên cấp mở tính năng là hiện ngay)
+if (isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($player->ulv)) {
+    echo \player\feature_new_popup(\player\getplayer($sid, $dblj), $sid, $encode);
+}
+?>
 </body>
 </html>
