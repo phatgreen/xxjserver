@@ -97,8 +97,10 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_slot_id')) {
     function nhiemvu_slot_id($slot){
         if ($slot === 'any' || $slot === '' || $slot === null) return 0;
         if (is_numeric($slot)) return intval($slot);
-        $map = array('weapon' => 1, 'hat' => 2, 'armor' => 3, 'shoes' => 4,
-                     'gloves' => 5, 'necklace' => 7, 'ring' => 8);
+        // Theo bảng chuẩn zhuangbei_tool_names() (class/function/zhuangbei.php). Game không có ô giày => 'shoes' không còn.
+        $map = array('weapon' => 1, 'shield' => 2, 'hat' => 3, 'helmet' => 3, 'armor' => 4, 'gloves' => 5,
+                     'ring' => 6, 'belt' => 7, 'waist' => 7, 'cloak' => 8, 'talisman' => 9, 'eye' => 10,
+                     'necklace' => 11, 'shoulder' => 12, 'sash' => 13, 'pendant' => 14, 'mount' => 15, 'treasure' => 16);
         $k = strtolower($slot);
         return isset($map[$k]) ? $map[$k] : -1;
     }
