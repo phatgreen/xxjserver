@@ -230,7 +230,7 @@ if ($selectedRecipe > 0) {
         $zbid = isset($recipe['result_zbid']) ? intval($recipe['result_zbid']) : 0;
         $zbConfig = \player\getzbkzb($zbid, $dblj);
         $rDesc = isset($zbConfig->zbinfo) ? $zbConfig->zbinfo : '';
-        $slotNames = array(1=>'Vũ khí',2=>'Mũ',3=>'Giáp',4=>'Giày',5=>'Găng',7=>'Dây chuyền',8=>'Nhẫn');
+        $slotNames = \player\zhuangbei_tool_names();   // bảng tên ô chuẩn (7 = Yêu Đai, 8 = Phi Phong …)
         $zbtool = isset($zbConfig->zbtool) ? intval($zbConfig->zbtool) : 0;
         $kind = isset($slotNames[$zbtool]) ? $slotNames[$zbtool] : 'Trang bị';
         $figure = '<img src="' . \player\zhuangbei_image_path((object) array('zbid' => $zbid)) . '" alt="">';

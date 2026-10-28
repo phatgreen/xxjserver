@@ -828,8 +828,7 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_target')) {
 if (!function_exists(__NAMESPACE__ . '\\nhiemvu_main_goal_text')) {
     function nhiemvu_main_goal_text($quest){
         $q = $quest;
-        $slotNames = array(1 => 'Vũ khí', 2 => 'Mũ', 3 => 'Giáp', 4 => 'Giày',
-                           5 => 'Găng', 7 => 'Dây chuyền', 8 => 'Nhẫn');
+        $slotNames = zhuangbei_tool_names();   // bảng tên ô chuẩn (class/function/zhuangbei.php)
         switch ($q['type']) {
             case 'dialogue':
                 return 'Mở bảng Nhiệm Vụ để nghe chỉ dẫn';
