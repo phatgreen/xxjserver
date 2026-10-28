@@ -380,21 +380,34 @@ $html = <<<HTML
         <a class="profile-tab$menuDoiTenClass" href="?cmd=$gm">Đổi tên</a>
     </div>
 
-    <div class="profile-hero">
-        <div class="profile-avatar">
-            <img src="./$ztAvatar" alt="avatar">
-            <span class="profile-vip-badge"><img src="$vipImg" alt="VIP $vipLevel"></span>
+    <div class="pf-stage">
+        <div class="pf-stage-sky"></div>
+        <div class="pf-power"><span>Chiến lực</span><b>$chienLucText</b></div>
+
+        <div class="pf-side pf-side-left">
+            <div class="profile-stat"><span>⚔️ Công kích</span><strong>$player->ugj</strong></div>
+            <div class="profile-stat"><span>🛡 Phòng ngự</span><strong>$player->ufy</strong></div>
+            <div class="profile-stat"><span>💥 Bạo kích</span><strong>$player->ubj</strong></div>
         </div>
-        <div class="profile-hero-info">
-            <h1 class="profile-name">*** $ztPlayerSafe ***</h1>
+
+        <div class="pf-figure">
+            <div class="pf-figure-ring"></div>
+            <img class="pf-figure-art" src="./$ztAvatar" alt="avatar">
+            <span class="pf-vip"><img src="$vipImg" alt="VIP $vipLevel"></span>
+        </div>
+
+        <div class="pf-side pf-side-right">
+            <div class="profile-stat"><span>🩸 Hút máu</span><strong>$player->uxx</strong></div>
+            <div class="profile-stat"><span>$tpIcon Chủ phú</span><strong style="color:$tpColor">$tpMaster</strong></div>
+            <div class="profile-stat"><span>🎖 Ô Kích Hoạt</span><strong>$tpSlots</strong></div>
+        </div>
+
+        <div class="pf-id">
+            <h1 class="profile-name">$ztPlayerSafe</h1>
             <div class="profile-meta">
                 <span class="profile-badge realm">✦ $player->jingjie $player->cengci</span>
                 <span class="profile-badge">🎖️ $sf</span>
                 <span class="profile-badge">Cấp $player->ulv</span>
-            </div>
-            <div class="profile-power-panel">
-                <span class="profile-power-mark">🔥</span>
-                <span class="profile-power-copy"><em>Chiến lực</em><strong>$chienLucText</strong></span>
             </div>
         </div>
     </div>
@@ -412,15 +425,6 @@ $html = <<<HTML
             <div class="profile-bar-title"><span>✨ Tu vi</span><span>$player->uexp / $player->umaxexp</span></div>
             <div class="profile-bar-track"><div class="profile-bar-fill exp" style="width:$expPercent%"></div></div>
         </div>
-    </div>
-
-    <div class="profile-stat-grid">
-        <div class="profile-stat"><span>⚔️ Công kích</span><strong>$player->ugj</strong></div>
-        <div class="profile-stat"><span>🛡 Phòng ngự</span><strong>$player->ufy</strong></div>
-        <div class="profile-stat"><span>💥 Bạo kích</span><strong>$player->ubj</strong></div>
-        <div class="profile-stat"><span>🩸 Hút máu</span><strong>$player->uxx</strong></div>
-        <div class="profile-stat"><span>$tpIcon Chủ phú</span><strong style="color:$tpColor">$tpMaster</strong></div>
-        <div class="profile-stat"><span>🎖 Ô Kích Hoạt</span><strong>$tpSlots</strong></div>
     </div>
 
 HTML;
