@@ -8116,6 +8116,10 @@ body.tcg-bg-body .tb-compact a.tb-x,body.tcg-bg-body .tb-compact a.tb-x:link,bod
 .tb-badge{padding:2px 9px;border-radius:999px;border:1px solid rgba(125,211,252,.35);background:rgba(4,12,32,.6);color:#dbeafe;font-size:12px;font-weight:900}
 body.tcg-bg-body .tb-compact a.tb-quick,body.tcg-bg-body .tb-compact a.tb-quick:link,body.tcg-bg-body .tb-compact a.tb-quick:visited{display:inline-flex;align-items:center;justify-content:center;min-height:34px;margin:0;padding:0 16px;border-radius:11px;border:1px solid rgba(253,186,116,.6);background:linear-gradient(180deg,#f59e0b,#c2410c);color:#fff!important;font-size:13px;font-weight:1000;text-decoration:none}
 .tb-hint{font-size:10.5px;line-height:1.35;color:#94a3b8}
+.tb-power{display:flex;align-items:center;gap:8px;padding:4px 14px;border-radius:999px;border:1px solid rgba(255,205,110,.42);background:linear-gradient(180deg,rgba(72,38,6,.78),rgba(38,18,2,.78));box-shadow:0 0 18px rgba(255,170,60,.18);white-space:nowrap}
+.tb-power span{font-size:12px;font-weight:900;color:#ffcf86}
+.tb-power b{font-size:17px;font-weight:1000;color:#fff;text-shadow:0 0 12px rgba(255,180,70,.75)}
+body.tcg-bg-body .tb-compact .tb-stats{margin-top:10px}
 @media(max-width:760px){
 .tb-stage{grid-template-columns:1fr;padding:10px}
 .tb-center{order:-1}

@@ -176,6 +176,7 @@ $equipGroups = player\zhuangbei_equip_groups();
 
 $equipCards = array();
 $wornCount = 0;
+$qhTotal = 0; // tổng cấp cường hóa các món đang mặc
 for($i=1;$i<=16;$i++){
 
     $slotName    = $toolNames[$i];
@@ -186,6 +187,7 @@ for($i=1;$i<=16;$i++){
         $wornCount++;
         $icon = tcg_zb_image_with_version_tb(tcg_zb_image_path_tb($zhuangbei, $defaultIcon));
         $qh     = intval($zhuangbei->qianghua);
+        $qhTotal += $qh;
         $qhHtml = $qh > 0 ? ' <span class="equip-qh">+' . $qh . '</span>' : '';
         $tipAttr    = \player\itemtip_attr_for($zhuangbei, $player, $dblj);
         $detailHref = '?cmd=' . $encode->encode("cmd=chakanzb&zbnowid=" . $player->{"tool$i"} . "&uid=" . $player->uid . "&sid=$sid");
@@ -226,19 +228,34 @@ foreach ($equipGroups as $groupName => $groupSlots) {
 $tbVip = intval($player->vip) > 0 ? intval($player->vip) : 0;
 $tbAvatar = \player\player_avatar_img(isset($player->usex) ? $player->usex : 1);
 $tbName = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
+// Chiến lực + bảng thuộc tính (cùng kiểu trang Tu Luyện, dùng lại .xl-stats); số gọn bằng tcg_num_short() của game.php
+$tbPower = tcg_num_short(\player\combat_power($player));
+$tbStats = '<div class="xl-stats tb-stats">'
+    . '<div class="xl-stat"><span>Tấn Công</span><b>' . tcg_num_short($player->ugj) . '</b></div>'
+    . '<div class="xl-stat"><span>Phòng Thủ</span><b>' . tcg_num_short($player->ufy) . '</b></div>'
+    . '<div class="xl-stat"><span>Khí Huyết</span><b>' . tcg_num_short($player->umaxhp) . '</b></div>'
+    . '<div class="xl-stat"><span>Bạo Kích</span><b>' . htmlspecialchars($player->ubj, ENT_QUOTES, 'UTF-8') . '</b></div>'
+    . '<div class="xl-stat"><span>Hút Máu</span><b>' . htmlspecialchars($player->uxx, ENT_QUOTES, 'UTF-8') . '</b></div>'
+    . '<div class="xl-stat"><span>Đột phá</span><b class="xl-plus">+' . intval($player->tuposjs) . '%</b></div>'
+    . '<div class="xl-stat"><span>Tu luyện</span><b class="xl-plus">+' . intval($player->tupoexp) . '%</b></div>'
+    . '<div class="xl-stat"><span>Cường hóa</span><b>+' . $qhTotal . '</b></div>'
+    . '<div class="xl-stat"><span>Đã mặc</span><b>' . $wornCount . ' / 16</b></div>'
+    . '</div>';
 
 $html = '<div class="profile-page tb-compact">'
     . '<div class="tb-stage">'
     . '<div class="tb-side tb-side-left">' . $zbSides[0] . '</div>'
     . '<div class="tb-center">'
+    . '<div class="tb-power"><span>Chiến Lực</span><b>' . $tbPower . '</b></div>'
     . '<div class="tb-figure"><div class="pf-figure-ring"></div><img class="tb-figure-art" src="./' . $tbAvatar . '" alt="avatar"></div>'
     . '<div class="tb-pname">' . $tbName . '</div>'
-    . '<div class="tb-meta"><span class="tb-badge">Cấp ' . intval($player->ulv) . '</span><span class="tb-badge">Đã mặc ' . $wornCount . '/16</span></div>'
+    . '<div class="tb-meta"><span class="tb-badge">Cấp ' . intval($player->ulv) . '</span></div>'
     . '<a class="tb-quick" href="?cmd=' . $quickEquipCmd . '">⚡ Trang bị nhanh</a>'
     . '<div class="tb-hint">Chỉ mặc được trang bị có yêu cầu cảnh giới không vượt quá cấp hiện tại</div>'
     . '</div>'
     . '<div class="tb-side tb-side-right">' . (isset($zbSides[1]) ? $zbSides[1] : '') . '</div>'
     . '</div>'
+    . $tbStats
     . $ts
     . '</div>';
 
