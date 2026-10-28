@@ -8481,5 +8481,5 @@ body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
 .hm-cols > .hm-transform{grid-column:1/-1}
 @media(min-width:761px){.tp-stage{aspect-ratio:2/1!important}}
 @media(min-width:761px){.tp-wrap .tp-card{margin-bottom:8px!important}.tp-wrap .tp-viewline{margin:4px 0 2px!important}}
-/* Thông báo Cơ Duyên: dời xuống đáy màn hình (đúng ý "cuối trang" trong nhiemvu.php) — trước top:12px đè lên thanh trên / hàng tab */
-.cd-toast{top:auto!important;bottom:16px!important;cursor:pointer}
+/* Thông báo Cơ Duyên: giữa màn hình lệch lên trên (~28%) — trước top:12px đè lên thanh trên / hàng tab; bấm để đóng */
+.cd-toast{top:28%!important;bottom:auto!important;cursor:pointer}
