@@ -37,7 +37,8 @@ $amount = isset($_GET['amount']) ? trim($_GET['amount']) : '';
 $orderId = isset($_GET['order_id']) ? trim($_GET['order_id']) : '';
 $key = isset($_GET['key']) ? $_GET['key'] : '';
 
-if (!is_numeric($amount) || floatval($amount) <= 0 || floatval($amount) > 100000) {
+// amount = số tiền VNĐ; 1.000 VNĐ = 1.000 Ma thạch (chủ dự án 2026-10-28). Trần 1 đơn 10.000.000 VNĐ.
+if (!is_numeric($amount) || floatval($amount) <= 0 || floatval($amount) > 10000000) {
     pay_denied("amount khong hop le");
 }
 if ($uid === '' || $orderId === '' || !preg_match('/^[0-9A-Za-z._-]{1,64}$/', $orderId)) {
@@ -78,6 +79,6 @@ fflush($fp);
 flock($fp, LOCK_UN);
 fclose($fp);
 
-$lt = intval($amount * 10);
+$lt = intval($amount);   // bỏ ×10 (chỉ dùng lúc thử)
 \player\changeczb(1, $lt, $player->sid, $dblj);
 echo "Nap thanh cong " . $lt;
