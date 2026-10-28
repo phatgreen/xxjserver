@@ -7,8 +7,6 @@
                 {"id": "1.2", "name": "Bắt Đầu Tu Luyện", "type": "kill", "target_monster_min": 1, "target_monster_max": 5, "target_count": 10, "exp": 100, "lt": 50, "mt": 0},
                 {"id": "1.3", "name": "Tích Luỹ Kinh Nghiệm", "type": "kill", "target_monster_min": 5, "target_monster_max": 10, "target_count": 20, "exp": 200, "lt": 100, "mt": 0},
                 {"id": "1.4", "name": "Tìm Nguyên Liệu", "type": "collect_item", "item_id": 30, "item_count": 5, "exp": 300, "lt": 150, "mt": 0},
-                {"id": "1.5", "name": "Lần Đầu Luyện Đan", "type": "alchemy_count", "recipe_id": 0, "count": 1, "exp": 500, "lt": 200, "mt": 0},
-                {"id": "1.6", "name": "Rèn Tay Chế Tạo", "type": "craft_count", "count": 1, "exp": 800, "lt": 300, "mt": 0},
                 {"id": "1.7", "name": "Đột Phá Đầu Tiên", "type": "breakthrough", "target_level": 10, "exp": 1000, "lt": 500, "mt": 0}
             ]
         },
@@ -26,6 +24,7 @@
         {
             "id": 3, "name": "Tu Luyện", "level_range": [25, 50], "est_days": 10,
             "quests": [
+                {"id": "1.6", "name": "Rèn Tay Chế Tạo", "type": "craft_count", "count": 1, "exp": 800, "lt": 300, "mt": 0},
                 {"id": "3.1", "name": "Tìm Nguyên Liệu Hiếm", "type": "collect_multiple", "items": [{"id": 31, "count": 20}, {"id": 32, "count": 10}], "exp": 2000, "lt": 0, "mt": 0},
                 {"id": "3.2", "name": "Luyện Đan Trung Bình", "type": "alchemy_count", "count": 5, "exp": 3000, "lt": 1000, "mt": 0},
                 {"id": "3.3", "name": "Chế Tạo Trang Bị Vàng", "type": "craft_rarity", "rarity": "yellow", "count": 1, "exp": 4000, "lt": 1500, "mt": 0},

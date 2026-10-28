@@ -247,7 +247,9 @@ switch ($cmd){
 		if(isset($ltlx,$ltmsg)){
 			$player = player\getplayer($sid,$dblj);
 			if(!$player->uname) break;
-			
+			// Tán Gẫu chưa mở theo cấp: không ghi tin (chốt chặn chung bên dưới sẽ hiện trang 🔒)
+			if (\player\feature_lock_for_cmd($player, 'sendliaotian')) break;
+
 			// chống XSS
 			$ltmsg = htmlspecialchars($ltmsg);
 
@@ -495,6 +497,20 @@ if (!isset($sid) || $sid==''){
 	$stmt->execute(array($nowdate, $sid));
 	// Thưởng trực tuyến: cộng thời gian hoạt động trong ngày
 	\player\online_reward_tick($sid, $dblj);
+
+	/*
+	| Mở tính năng theo cấp (class/config/feature_unlock.json): lệnh thuộc tính năng chưa mở
+	| -> trang 🔒 (gọi thẳng URL cũng không vào được). Chỉ chặn lệnh khai báo trong config.
+	*/
+	$featureLocked = \player\feature_lock_for_cmd($player, $cmd);
+	if ($featureLocked) {
+		if ($isAjaxEarly) {
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode(array('ok' => false, 'msg' => $featureLocked['name'] . ' mở ở cấp ' . $featureLocked['level'] . '.'));
+			exit();
+		}
+		$ym = 'game/feature_locked.php';
+	}
 }
 
 ?>
@@ -509,7 +525,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102804">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102805">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>

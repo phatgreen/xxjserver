@@ -199,7 +199,13 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_daily_get')) {
         $today = date('Y-m-d');
         $config = nhiemvu_daily_config();
         $pool = isset($config['daily_quest_pool']) ? $config['daily_quest_pool'] : array();
+        // Bỏ nhiệm vụ cần tính năng chưa mở theo cấp (vd Chế Tạo cấp 25) — tránh nhận nhiệm vụ không làm được
+        $lv = nhiemvu_player_level($sid, $dblj);
+        $pool = array_values(array_filter($pool, function($q) use ($lv) {
+            return feature_quest_type_open($lv, $q['type']);
+        }));
         $count = min(intval(isset($config['daily_count']) ? $config['daily_count'] : 5), count($pool));
+        if ($count <= 0) return array();
 
         $stmt = $dblj->prepare("SELECT * FROM player_nhiemvu_daily WHERE sid = ? AND reset_date = ?");
         $stmt->execute(array($sid, $today));
@@ -264,6 +270,18 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_daily_update')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_complete_all_target')) {
+    // Mục tiêu 'complete_all' = min(target cấu hình, số nhiệm vụ cùng kỳ đang làm được ở cấp $lv)
+    // (nhiệm vụ cần tính năng chưa mở bị ẩn nên không được tính vào mục tiêu).
+    function nhiemvu_complete_all_target($q, $quests, $lv){
+        $open = 0;
+        foreach ($quests as $s) {
+            if ($s['type'] !== 'complete_all' && feature_quest_type_open($lv, $s['type'])) $open++;
+        }
+        return max(1, min(intval($q['target']), $open));
+    }
+}
+
 // ─── Weekly Quests ─────────────────────────────────────────────
 
 if (!function_exists(__NAMESPACE__ . '\\nhiemvu_weekly_get')) {
@@ -285,9 +303,12 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_weekly_get')) {
         $rowMap = array();
         foreach ($rows as $r) $rowMap[$r['quest_id']] = $r;
 
+        $lv = nhiemvu_player_level($sid, $dblj);
         foreach ($quests as $q) {
             $r = isset($rowMap[$q['id']]) ? $rowMap[$q['id']] : null;
             if (!$r) continue;
+            if (!feature_quest_type_open($lv, $q['type'])) continue; // cần tính năng chưa mở theo cấp
+            if ($q['type'] === 'complete_all') $q['target'] = nhiemvu_complete_all_target($q, $quests, $lv);
             $q['progress']  = intval($r['progress']);
             $q['completed'] = intval($r['completed']);
             $q['claimed']   = isset($r['claimed']) ? intval($r['claimed']) : 0;
@@ -342,9 +363,12 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_monthly_get')) {
         $rowMap = array();
         foreach ($rows as $r) $rowMap[$r['quest_id']] = $r;
 
+        $lv = nhiemvu_player_level($sid, $dblj);
         foreach ($quests as $q) {
             $r = isset($rowMap[$q['id']]) ? $rowMap[$q['id']] : null;
             if (!$r) continue;
+            if (!feature_quest_type_open($lv, $q['type'])) continue; // cần tính năng chưa mở theo cấp
+            if ($q['type'] === 'complete_all') $q['target'] = nhiemvu_complete_all_target($q, $quests, $lv);
             $q['progress']  = intval($r['progress']);
             $q['completed'] = intval($r['completed']);
             $q['claimed']   = isset($r['claimed']) ? intval($r['claimed']) : 0;
@@ -912,9 +936,10 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_complete_all_sync')) {
         $quests = isset($config[$poolKey]) ? $config[$poolKey] : array();
         $targets = array();
         $siblings = array();
+        $lv = nhiemvu_player_level($sid, $dblj);
         foreach ($quests as $q) {
             if ($q['type'] === 'complete_all') $targets[] = $q;
-            else $siblings[] = $q['id'];
+            elseif (feature_quest_type_open($lv, $q['type'])) $siblings[] = $q['id'];
         }
         if (empty($targets) || empty($siblings)) return false;
 
@@ -930,7 +955,7 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_complete_all_sync')) {
         }
 
         foreach ($targets as $q) {
-            $target = max(1, intval($q['target']));
+            $target = nhiemvu_complete_all_target($q, $quests, $lv);
             $progress = min($done, $target);
             $completed = $done >= $target ? 1 : 0;
             $up = $dblj->prepare("UPDATE $table SET progress = ?, completed = GREATEST(completed, ?)

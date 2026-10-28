@@ -29,6 +29,7 @@ require_once __DIR__ . '/function/tianfu.php';
 require_once __DIR__ . '/function/combat.php';
 require_once __DIR__ . '/function/conghuong.php';
 require_once __DIR__ . '/function/online_reward.php';
+require_once __DIR__ . '/function/feature_unlock.php';
 
 
 class player

@@ -1,4 +1,4 @@
-# MỞ KHÓA TÍNH NĂNG THEO CẤP / CẢNH GIỚI (CHỜ DUYỆT)
+# MỞ KHÓA TÍNH NĂNG THEO CẤP / CẢNH GIỚI (MK-1 ĐÃ LÀM 2026-10-28)
 
 > Lập 2026-10-28. Đi cùng `docs/UI_DON_GIAN_HOA_MOBILE.md` (bố cục) và chính tuyến `class/config/nhiemvu_main_config.json`.
 
@@ -36,7 +36,8 @@ Nhịp dựa trên `est_days` của chính tuyến: chương 1 (cấp 1–10) ~2
 | **60** | Phó Bản: Hầm Mỏ, Sào Thú | Linh Sủng đã có vài chục cấp | Vào Sào Thú 1 lần *(loại mới)* |
 | **75** | Thiên Phú | Khai Phú Đan 50.000 LT — đủ tiền ở cấp này | Khai Phú 1 lần *(loại mới)* |
 | **80** | Vấn Đỉnh Đài (PvP) | Đã đủ hệ để so tài | Đấu 1 trận *(loại mới)* |
-| **101** | Huyết Mạch, Cộng Hưởng *(vào cảnh giới 3)* | **Khớp** bậc Huyết Mạch đầu `realm_min_level 100` | Thức tỉnh Huyết Mạch *(loại mới)* |
+| **90** | Cộng Hưởng | Chính tuyến chương 7 (cấp 92–106) có bước 7.3 "Cộng Hưởng Sơ Thành" ⇒ phải mở trước 92 | (bước 7.3 chính tuyến) |
+| **101** | Huyết Mạch *(vào cảnh giới 3)* | **Khớp** bậc Huyết Mạch đầu `realm_min_level 100` | Thức tỉnh Huyết Mạch *(loại mới)* |
 | **120** | Thể Chất | Trước mốc thức tỉnh 150 (`thechat_awakening_config`) | Luyện hóa 1 lần *(loại mới)* |
 
 > Các con số là đề xuất; nằm trong config nên đổi không cần sửa code.
@@ -106,6 +107,25 @@ Mọi menu (thanh dưới, hàng Tiên Đồ, ☰ — xem `UI_DON_GIAN_HOA_MOBIL
 | **MK-3** | Chương Cơ Duyên + 11 loại nhiệm vụ mới + sửa chương 1–3 | Chạy chuỗi nhiệm vụ cấp 1→30 trên server thử; `audit_renwu.py` |
 
 Sau MK-2 làm tiếp UI-2/UI-3 (bố cục mới) để menu mới dùng sẵn hệ mở khóa.
+
+## 5b. Kết quả MK-1 (ĐÃ LÀM 2026-10-28)
+
+| Phần | File | Ghi chú |
+|---|---|---|
+| Cấu hình 24 tính năng | `class/config/feature_unlock.json` | Lịch mục 3; Cộng Hưởng chuyển sang **cấp 90** (xem bảng) |
+| Hàm | `class/function/feature_unlock.php` (nạp trong `class/player.php`) | `feature_is_open`, `feature_lock_for_cmd`, `feature_quest_type_open`, `feature_next_locked` |
+| Chặn router | `game.php` (sau khi nạp nhân vật) + chặn riêng `sendliaotian` (ghi DB trong `switch`) | Lệnh AJAX bị khóa trả JSON `{ok:false,msg}` |
+| Trang 🔒 | `game/feature_locked.php` + CSS `.fk-lock` | Tên, cấp mở, còn bao nhiêu cấp, mô tả, nút Tu Luyện / Đại Sảnh |
+| Chính tuyến | `nhiemvu_main_config.json` | Bỏ 1.5 (trùng 2.2 Luyện Đan); chuyển 1.6 Chế Tạo lên đầu chương 3 — **sửa luôn lỗi kẹt chính tuyến có sẵn** (1.6 cần cấp 25 nằm ở chương cấp 1–10). Giữ nguyên mã bước để không lệch tiến độ đã lưu |
+| Nhiệm vụ ngày | `nhiemvu_daily_get` | Không bốc nhiệm vụ cần tính năng chưa mở (Luyện Đan < 15, Chế Tạo < 25, PvP < 80) — trước đây cấp 10–24 có thể nhận "Chế Tạo Mỗi Ngày" không làm được |
+| Tuần / tháng | `nhiemvu_weekly_get`, `nhiemvu_monthly_get`, `nhiemvu_complete_all_sync` | Ẩn nhiệm vụ chưa mở; "Tổng Hợp" = min(mục tiêu, số nhiệm vụ đang làm được) — trước đây cấp < 25 **không thể** hoàn thành Tổng Hợp tuần |
+| Test | `tests/test_mo_khoa.php` | ALL PASS (cấu hình khớp router, lệnh lõi không bị khóa, chặn/mở theo cấp, chính tuyến, nhiệm vụ ngày/tuần/tháng) |
+
+Kiểm chứng thật (server thử): cấp 1 vào Luyện Đan / Chế Tạo / Linh Sủng / Thiên Cơ Các / Tông Môn ⇒ trang 🔒 đúng cấp; cấp 1 gửi chat ⇒ không ghi;
+cấp 25 ⇒ Luyện Đan, Chế Tạo, chat mở, Tông Môn vẫn khóa. Test cũ C / D / F / Thiên Phú trang: ALL PASS
+(`test_linhcan_pages` lỗi 29 mục **cả trên code gốc** — lỗi có sẵn của bài test, không do MK-1).
+
+Bảng `player_feature` (đánh dấu đã xem popup) chuyển sang **MK-2** (nơi dùng tới).
 
 ## 6. Cần chủ dự án quyết
 

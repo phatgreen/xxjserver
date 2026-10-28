@@ -1,0 +1,29 @@
+{
+    "_note": "Mở tính năng theo cấp — docs/MO_KHOA_TINH_NANG.md. cmds = lệnh router game.php thuộc tính năng (chỉ chặn lệnh có ở đây). quest_types = loại nhiệm vụ ngày/tuần/tháng cần tính năng này (ẩn khi chưa mở). Tính năng cấp 1 không khai báo.",
+    "features": {
+        "shangdian":  {"name": "Cửa Hàng",          "icon": "🛒", "level": 3,   "cmds": ["shangdian"], "desc": "Mua dược phẩm, đạo cụ và trang bị bằng Linh Thạch / Ma Thạch."},
+        "allmap":     {"name": "Dịch Chuyển",       "icon": "🌐", "level": 5,   "cmds": ["allmap"], "desc": "Chọn địa vực trên bản đồ thế giới để dịch chuyển tới."},
+        "chongwu":    {"name": "Linh Sủng",         "icon": "🐾", "level": 8,   "cmds": ["chongwu"], "desc": "Thu phục linh sủng cùng chiến đấu, nuôi dưỡng để mạnh lên."},
+        "wugong":     {"name": "Võ Công",           "icon": "🥋", "level": 10,  "cmds": ["wgxiulian", "wgxl", "jswg", "xxwg"], "desc": "Tu luyện võ công, lĩnh ngộ thế võ để ra đòn mạnh hơn."},
+        "thiencoccac":{"name": "Thiên Cơ Các",      "icon": "📚", "level": 10,  "cmds": ["thiencoccac"], "desc": "Nơi cầu bí tịch võ công và công pháp."},
+        "luonden":    {"name": "Luyện Đan",         "icon": "🔥", "level": 15,  "cmds": ["luonden", "do_craft_luonden", "use_detox_pill"], "quest_types": ["alchemy", "alchemy_count"], "desc": "Luyện đan dược từ nguyên liệu đánh quái rơi ra."},
+        "liaotian":   {"name": "Tán Gẫu",           "icon": "💬", "level": 20,  "cmds": ["liaotian", "sendliaotian"], "desc": "Trò chuyện với đạo hữu toàn server."},
+        "haohuu":     {"name": "Hảo Hữu",           "icon": "👥", "level": 20,  "cmds": ["im"], "desc": "Kết giao hảo hữu, nhắn tin riêng."},
+        "giaodich":   {"name": "Giao Dịch",         "icon": "🤝", "level": 20,  "cmds": ["fangshi"], "desc": "Phường thị — mua bán vật phẩm với người chơi khác."},
+        "xephang":    {"name": "Xếp Hạng",          "icon": "🏆", "level": 20,  "cmds": ["paihang"], "desc": "Bảng xếp hạng chiến lực, cấp độ, tài phú."},
+        "quydoi":     {"name": "Quy Đổi",           "icon": "💱", "level": 20,  "cmds": ["quydoi"], "desc": "Đổi Linh Thạch và Ma Thạch."},
+        "chetao":     {"name": "Chế Tạo",           "icon": "⚒", "level": 25,  "cmds": ["chetao", "do_craft_chetao"], "quest_types": ["craft", "craft_count", "craft_rarity"], "desc": "Rèn trang bị từ nguyên liệu."},
+        "tongmon":    {"name": "Tông Môn",          "icon": "🏯", "level": 30,  "cmds": ["club", "clublist", "clubboss_fight"], "desc": "Gia nhập hoặc khai lập tông môn, cùng đạo hữu đánh boss tông môn."},
+        "phoban":     {"name": "Phó Bản",           "icon": "📋", "level": 30,  "cmds": ["phoban"], "desc": "Các thử thách: Tỏa Yêu Tháp, Hầm Mỏ, Sào Thú, Vấn Đỉnh Đài."},
+        "toayeuthap": {"name": "Tỏa Yêu Tháp",      "icon": "🗼", "level": 30,  "cmds": ["toayeuthap"], "desc": "Leo tháp diệt yêu, càng lên cao càng khó."},
+        "congphap":   {"name": "Công Pháp",         "icon": "📜", "level": 40,  "cmds": ["gocp"], "desc": "Vận công pháp để tăng chỉ số và hiệu ứng đặc biệt."},
+        "linhcan":    {"name": "Linh Căn",          "icon": "🌱", "level": 51,  "cmds": ["linhcan", "linhcan_wash", "linhcan_quest", "linhcan_boss"], "desc": "Khai mở và tẩy luyện linh căn ngũ hành."},
+        "hammo":      {"name": "Hầm Mỏ",            "icon": "⛏", "level": 60,  "cmds": ["hammo"], "desc": "Khai thác linh khoáng."},
+        "sauthu":     {"name": "Sào Thú",           "icon": "🐉", "level": 60,  "cmds": ["sauthu"], "desc": "Phó bản săn yêu thú cùng linh sủng."},
+        "tianfu":     {"name": "Thiên Phú",         "icon": "🌟", "level": 75,  "cmds": ["tianfu", "tianfu_collection", "tianfu_open"], "desc": "Khai mở thiên phú bẩm sinh bằng Khai Phú Đan."},
+        "vandinhdai": {"name": "Vấn Đỉnh Đài",      "icon": "⚔", "level": 80,  "cmds": ["vandinhdai"], "quest_types": ["pvp"], "desc": "Tỷ võ với người chơi khác, tranh hạng."},
+        "conghuong":  {"name": "Cộng Hưởng",        "icon": "🔮", "level": 90,  "cmds": ["conghuong"], "quest_types": ["conghuong"], "desc": "Tàng Kinh Các — nhiều bộ võ công Viên Mãn cộng hưởng tăng chỉ số."},
+        "huyetmach":  {"name": "Huyết Mạch",        "icon": "🩸", "level": 101, "cmds": ["huyetmach", "huyetmach_transform", "huyetmach_boss", "huyetmach_upgrade"], "desc": "Thức tỉnh huyết mạch thượng cổ."},
+        "thechat":    {"name": "Thể Chất",          "icon": "🧘", "level": 120, "cmds": ["thechat", "thechat_upgrade"], "desc": "Luyện hóa nhục thân, rèn thể chất."}
+    }
+}
