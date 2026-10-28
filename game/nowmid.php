@@ -540,7 +540,7 @@ $lukouhtmlView = trim($lukouhtml) != ''
 
 // Tiên Đồ (UI-3): lối vào tính năng xếp theo nhóm, chưa mở thì 🔒 — class/function/dieu_huong.php.
 // Tu Luyện / Nhân Vật (Thông Tin, Trang Bị, Túi Đồ, Võ Công, Chế Tạo) / Linh Sủng / Nhiệm Vụ đã ở thanh dưới.
-$tiendoHtml = \player\nav_tiendo_html($player, $sid, $encode, array('thamhiem', 'giaothuong', 'ketgiao', 'khac'));
+$tiendoHtml = \player\nav_tiendo_html($player, $sid, $encode, array('thamhiem', 'giaothuong', 'ketgiao'));
 $nowhtml = <<<HTML
 <div class="tcg-title">$clmid->mname</div>
 <div class="tcg-badges">

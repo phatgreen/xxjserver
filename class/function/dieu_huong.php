@@ -68,9 +68,10 @@ if (!function_exists(__NAMESPACE__ . '\\nav_tiendo_groups')) {
                 array('gocp', '📜', 'Công Pháp'), array('linhcan', '🌱', 'Linh Căn'), array('thechat', '🧎', 'Thể Chất'),
                 array('huyetmach', '🩸', 'Huyết Mạch'), array('tianfu', '🌟', 'Thiên Phú'), array('luonden', '🔥', 'Luyện Đan'),
             )),
-            'thamhiem' => array('⚔ Thám Hiểm', array(
-                // Tỏa Yêu Tháp / Vấn Đỉnh Đài / Hầm Mỏ / Sào Thú nằm trong Phó Bản
+            // Gộp Thám Hiểm + Khác thành 1 hàng 4 nút (Đại Sảnh còn 3 hàng). Tỏa Yêu Tháp / Vấn Đỉnh Đài / Hầm Mỏ / Sào Thú nằm trong Phó Bản
+            'thamhiem' => array('⚔ Thám Hiểm · Tiện Ích', array(
                 array('qydt', '🗺', 'Bản Đồ'), array('phoban', '📋', 'Phó Bản'),
+                array('duihuan', '🎁', 'Giftcode'), array('index.php', '↪', 'Rời Khỏi'),
             )),
             'giaothuong' => array('💰 Giao Thương', array(
                 array('shangdian&canshu=gogoumai', '🛒', 'Cửa Hàng'), array('thiencoccac&tab=wg', '📚', 'Thiên Cơ Các'),
@@ -79,9 +80,6 @@ if (!function_exists(__NAMESPACE__ . '\\nav_tiendo_groups')) {
             'ketgiao' => array('🏯 Kết Giao', array(
                 array('club', '🏯', 'Tông Môn'), array('im', '👥', 'Hảo Hữu'),
                 array('liaotian&ltlx=all', '💬', 'Tán Gẫu'), array('paihang', '🏆', 'Xếp Hạng'),
-            )),
-            'khac' => array('✦ Khác', array(
-                array('duihuan', '🎁', 'Giftcode'), array('index.php', '↪', 'Rời Khỏi'),
             )),
         );
     }
