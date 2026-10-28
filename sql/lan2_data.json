@@ -562,7 +562,7 @@
    "bossfy": 8278,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "197,200,202,203,205",
+   "bosszb": "204,205,206,207,209,210",
    "bossdj": "1,22",
    "qyid": 37,
    "bossinfo": "Linh Khư Cổ Long — bá chủ Linh Khư Cổ Mạch, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -575,7 +575,7 @@
    "bossfy": 9208,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "24,49,69,89,104",
+   "bosszb": "94,104,109,114,129,215",
    "bossdj": "1",
    "qyid": 38,
    "bossinfo": "Tụ Thần Phong Chủ — bá chủ Tụ Thần Phong, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -588,7 +588,7 @@
    "bossfy": 10159,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "24,49,69,89,104",
+   "bosszb": "94,104,109,114,129,215",
    "bossdj": "1,23",
    "qyid": 39,
    "bossinfo": "Thái Hư Huyễn Ma — bá chủ Thái Hư Huyễn Cảnh, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -601,7 +601,7 @@
    "bossfy": 11129,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "24,49,69,89,104",
+   "bosszb": "94,104,109,114,129,215",
    "bossdj": "1,25",
    "qyid": 40,
    "bossinfo": "Bất Chu Sơn Thần — bá chủ Bất Chu Thiên Trụ, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -614,7 +614,7 @@
    "bossfy": 12119,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "24,49,69,89,104",
+   "bosszb": "94,104,109,114,129,215",
    "bossdj": "1",
    "qyid": 41,
    "bossinfo": "Thiên Trì Thủy Mẫu — bá chủ Đạo Nguyên Thiên Trì, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -627,7 +627,7 @@
    "bossfy": 13127,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "25,50,70,90,105",
+   "bosszb": "95,105,110,115,125,130",
    "bossdj": "1,24",
    "qyid": 42,
    "bossinfo": "Hư Không Thôn Thiên Thú — bá chủ Hư Không Loạn Lưu, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -640,7 +640,7 @@
    "bossfy": 14154,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "25,50,70,90,105",
+   "bosszb": "95,105,110,115,125,130",
    "bossdj": "1,26",
    "qyid": 43,
    "bossinfo": "Tu La Chiến Thần — bá chủ Tu La Chiến Trường, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -653,7 +653,7 @@
    "bossfy": 15198,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "25,50,70,90,105",
+   "bosszb": "95,105,110,115,125,130",
    "bossdj": "1",
    "qyid": 44,
    "bossinfo": "Cửu Thiên Lôi Tổ — bá chủ Lôi Kiếp Uyên, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -666,7 +666,7 @@
    "bossfy": 16259,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "25,50,70,90,105",
+   "bosszb": "95,105,110,115,125,130",
    "bossdj": "1",
    "qyid": 45,
    "bossinfo": "Thần Mộ Thủ Lăng Nhân — bá chủ Thượng Cổ Thần Mộ, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
@@ -679,7 +679,7 @@
    "bossfy": 17338,
    "bossbj": 15,
    "bossxx": 10,
-   "bosszb": "216,219,221,222,224",
+   "bosszb": "223,224,225,226,228,229",
    "bossdj": "1",
    "qyid": 46,
    "bossinfo": "Thiên Cung Thánh Chủ — bá chủ Thánh Vực Thiên Cung, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."

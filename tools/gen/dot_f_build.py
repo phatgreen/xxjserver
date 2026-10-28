@@ -40,10 +40,16 @@ CULT_SLOTS = (8, 13, 14)     # Phi Phong · Linh Đai · Linh Bội -> tupoexp (
 BREAK_PCT = {1: 0, 10: 1, 30: 1, 60: 2, 120: 2, 200: 3, 300: 3, 400: 4, 500: 4, 600: 5, 800: 5, 1000: 6, 1250: 6, 1500: 7, 2000: 7, 2500: 8, 3000: 8, 3500: 9, 4000: 9}
 CULT_PCT = {1: 1, 10: 2, 30: 2, 60: 4, 120: 4, 200: 6, 300: 6, 400: 8, 500: 8, 600: 10, 800: 10, 1000: 12, 1250: 12, 1500: 14, 2000: 14, 2500: 16, 3000: 16, 3500: 18, 4000: 18}
 
+# 9 ô thường (không thuộc 2 nhóm trên) từ bậc 60: cộng cả đột phá lẫn tu luyện, số nguyên, nhỏ hơn ô quý (chủ dự án 2026-10-28)
+NORMAL_MIN_TIER = 60
+def normal_pct(p):
+    return max(1, p // 3)
+
 def apply_mystic(v):
     s, T = v['zbtool'], v['zblv']
-    v['tuposjs'] = BREAK_PCT[T] if s in BREAK_SLOTS else 0
-    v['tupoexp'] = CULT_PCT[T] if s in CULT_SLOTS else 0
+    normal = s not in BREAK_SLOTS and s not in CULT_SLOTS and T >= NORMAL_MIN_TIER
+    v['tuposjs'] = BREAK_PCT[T] if s in BREAK_SLOTS else (normal_pct(BREAK_PCT[T]) if normal else 0)
+    v['tupoexp'] = CULT_PCT[T] if s in CULT_SLOTS else (normal_pct(CULT_PCT[T]) if normal else 0)
 
 # ─── Đường chỉ số gốc nhân vật (game/tupo.php + upplayerlv sau đợt F) ───
 GJ = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 25, 30, 35, 40, 45, 50, 55]

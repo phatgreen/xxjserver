@@ -12,11 +12,11 @@
     }
 ,
     "4": {
-        "zbname": "Địa Liệt Sơn Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 4,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Liệt Sơn Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 1,"tupoexp": 1,"zbid": 4,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "5": {
-        "zbname": "Thiên Hoàng Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 5,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Hoàng Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 1,"tupoexp": 1,"zbid": 5,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "6": {
@@ -32,11 +32,11 @@
     }
 ,
     "9": {
-        "zbname": "Địa Chiêm Điểm Giáp","zbinfo": "Trang bị bậc Địa, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 136,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 9,"zbhp": 381,"zblv": 60,"zbtool": 4,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Chiêm Điểm Giáp","zbinfo": "Trang bị bậc Địa, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 136,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 9,"zbhp": 381,"zblv": 60,"zbtool": 4,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "10": {
-        "zbname": "Thiên Huyền Vũ Y","zbinfo": "Trang bị bậc Thiên, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 488,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 10,"zbhp": 1024,"zblv": 120,"zbtool": 4,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Huyền Vũ Y","zbinfo": "Trang bị bậc Thiên, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 488,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 10,"zbhp": 1024,"zblv": 120,"zbtool": 4,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "11": {
@@ -52,11 +52,11 @@
     }
 ,
     "14": {
-        "zbname": "Địa Liêm Giác Giới","zbinfo": "Trang bị bậc Địa, gắn vào ô Giới Chỉ.","zbgj": 66,"zbfy": 0,"zbbj": 7,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 14,"zbhp": 0,"zblv": 60,"zbtool": 6,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Liêm Giác Giới","zbinfo": "Trang bị bậc Địa, gắn vào ô Giới Chỉ.","zbgj": 66,"zbfy": 0,"zbbj": 7,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 14,"zbhp": 0,"zblv": 60,"zbtool": 6,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "15": {
-        "zbname": "Thiên Trấn Phái Giới","zbinfo": "Trang bị bậc Thiên, gắn vào ô Giới Chỉ.","zbgj": 238,"zbfy": 0,"zbbj": 11,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 15,"zbhp": 0,"zblv": 120,"zbtool": 6,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Trấn Phái Giới","zbinfo": "Trang bị bậc Thiên, gắn vào ô Giới Chỉ.","zbgj": 238,"zbfy": 0,"zbbj": 11,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 15,"zbhp": 0,"zblv": 120,"zbtool": 6,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "16": {
@@ -80,23 +80,23 @@
     }
 ,
     "21": {
-        "zbname": "Thánh Lan Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 0,"tupoexp": 0,"zbid": 21,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Lan Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 1,"tupoexp": 2,"zbid": 21,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "22": {
-        "zbname": "Tiên Đức Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 0,"tupoexp": 0,"zbid": 22,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Đức Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 1,"tupoexp": 2,"zbid": 22,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "23": {
-        "zbname": "Thần Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 23,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 2,"zbid": 23,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "24": {
-        "zbname": "Đế Huyết Điểm Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 24,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Huyết Điểm Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 24,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "25": {
-        "zbname": "Đạo Hoàng Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 25,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Hoàng Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 25,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "26": {
@@ -148,15 +148,15 @@
     }
 ,
     "38": {
-        "zbname": "Thánh Quan","zbinfo": "Trang bị bậc Thánh, gắn vào ô Thiên Quan.","zbgj": 266,"zbfy": 359,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 38,"zbhp": 709,"zblv": 200,"zbtool": 3,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Quan","zbinfo": "Trang bị bậc Thánh, gắn vào ô Thiên Quan.","zbgj": 266,"zbfy": 359,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 38,"zbhp": 709,"zblv": 200,"zbtool": 3,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "39": {
-        "zbname": "Thần Quan","zbinfo": "Trang bị bậc Thần, gắn vào ô Thiên Quan.","zbgj": 1029,"zbfy": 1385,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 39,"zbhp": 2680,"zblv": 400,"zbtool": 3,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Quan","zbinfo": "Trang bị bậc Thần, gắn vào ô Thiên Quan.","zbgj": 1029,"zbfy": 1385,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 39,"zbhp": 2680,"zblv": 400,"zbtool": 3,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "40": {
-        "zbname": "Đạo Quan","zbinfo": "Trang bị bậc Đạo, gắn vào ô Thiên Quan.","zbgj": 4165,"zbfy": 5574,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 40,"zbhp": 11578,"zblv": 800,"zbtool": 3,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Quan","zbinfo": "Trang bị bậc Đạo, gắn vào ô Thiên Quan.","zbgj": 4165,"zbfy": 5574,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 40,"zbhp": 11578,"zblv": 800,"zbtool": 3,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "41": {
@@ -168,35 +168,35 @@
     }
 ,
     "43": {
-        "zbname": "Thánh Thiên Thuẫn","zbinfo": "Trang bị bậc Thánh, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 947,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 43,"zbhp": 1412,"zblv": 200,"zbtool": 2,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Thiên Thuẫn","zbinfo": "Trang bị bậc Thánh, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 947,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 43,"zbhp": 1412,"zblv": 200,"zbtool": 2,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "44": {
-        "zbname": "Thần Thiên Thuẫn","zbinfo": "Trang bị bậc Thần, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 3660,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 44,"zbhp": 5338,"zblv": 400,"zbtool": 2,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Thiên Thuẫn","zbinfo": "Trang bị bậc Thần, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 3660,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 44,"zbhp": 5338,"zblv": 400,"zbtool": 2,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "45": {
-        "zbname": "Đạo Thiên Thuẫn","zbinfo": "Trang bị bậc Đạo, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 14726,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 45,"zbhp": 23064,"zblv": 800,"zbtool": 2,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Thiên Thuẫn","zbinfo": "Trang bị bậc Đạo, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 14726,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 45,"zbhp": 23064,"zblv": 800,"zbtool": 2,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "46": {
-        "zbname": "Thánh Lan Giáp","zbinfo": "Trang bị bậc Thánh, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 1292,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 46,"zbhp": 2544,"zblv": 200,"zbtool": 4,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Lan Giáp","zbinfo": "Trang bị bậc Thánh, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 1292,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 46,"zbhp": 2544,"zblv": 200,"zbtool": 4,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "47": {
-        "zbname": "Tiên Thanh Liên Giáp","zbinfo": "Trang bị bậc Tiên, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 2842,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 47,"zbhp": 5417,"zblv": 300,"zbtool": 4,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Thanh Liên Giáp","zbinfo": "Trang bị bậc Tiên, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 2842,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 47,"zbhp": 5417,"zblv": 300,"zbtool": 4,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "48": {
-        "zbname": "Thần Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thần, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 4994,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 48,"zbhp": 9618,"zblv": 400,"zbtool": 4,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thần, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 4994,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 48,"zbhp": 9618,"zblv": 400,"zbtool": 4,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "49": {
-        "zbname": "Đế Phệ Hồn Giáp","zbinfo": "Trang bị bậc Đế, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 11243,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 49,"zbhp": 22521,"zblv": 600,"zbtool": 4,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Phệ Hồn Giáp","zbinfo": "Trang bị bậc Đế, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 11243,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 49,"zbhp": 22521,"zblv": 600,"zbtool": 4,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "50": {
-        "zbname": "Đạo Trấn Sơn Giáp","zbinfo": "Trang bị bậc Đạo, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 20093,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 50,"zbhp": 41556,"zblv": 800,"zbtool": 4,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Trấn Sơn Giáp","zbinfo": "Trang bị bậc Đạo, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 20093,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 50,"zbhp": 41556,"zblv": 800,"zbtool": 4,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "51": {
@@ -232,11 +232,11 @@
     }
 ,
     "59": {
-        "zbname": "Địa Vai Khôi","zbinfo": "Trang bị bậc Địa, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 86,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 59,"zbhp": 254,"zblv": 60,"zbtool": 12,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Vai Khôi","zbinfo": "Trang bị bậc Địa, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 86,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 59,"zbhp": 254,"zblv": 60,"zbtool": 12,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "60": {
-        "zbname": "Thiên Vai Khôi","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 309,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 60,"zbhp": 683,"zblv": 120,"zbtool": 12,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Vai Khôi","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 309,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 60,"zbhp": 683,"zblv": 120,"zbtool": 12,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "61": {
@@ -252,31 +252,31 @@
     }
 ,
     "64": {
-        "zbname": "Địa Bào","zbinfo": "Trang bị bậc Địa, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 136,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 64,"zbhp": 381,"zblv": 60,"zbtool": 4,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Bào","zbinfo": "Trang bị bậc Địa, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 136,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 64,"zbhp": 381,"zblv": 60,"zbtool": 4,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "65": {
-        "zbname": "Thiên Bào","zbinfo": "Trang bị bậc Thiên, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 488,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 65,"zbhp": 1024,"zblv": 120,"zbtool": 4,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Bào","zbinfo": "Trang bị bậc Thiên, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 488,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 65,"zbhp": 1024,"zblv": 120,"zbtool": 4,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "66": {
-        "zbname": "Thánh Giới Chỉ","zbinfo": "Trang bị bậc Thánh, gắn vào ô Giới Chỉ.","zbgj": 630,"zbfy": 0,"zbbj": 14,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 66,"zbhp": 0,"zblv": 200,"zbtool": 6,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Giới Chỉ","zbinfo": "Trang bị bậc Thánh, gắn vào ô Giới Chỉ.","zbgj": 630,"zbfy": 0,"zbbj": 14,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 66,"zbhp": 0,"zblv": 200,"zbtool": 6,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "67": {
-        "zbname": "Tiên Giới Chỉ","zbinfo": "Trang bị bậc Tiên, gắn vào ô Giới Chỉ.","zbgj": 1387,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 67,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Giới Chỉ","zbinfo": "Trang bị bậc Tiên, gắn vào ô Giới Chỉ.","zbgj": 1387,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 67,"zbhp": 0,"zblv": 300,"zbtool": 6,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "68": {
-        "zbname": "Thần Giới Chỉ","zbinfo": "Trang bị bậc Thần, gắn vào ô Giới Chỉ.","zbgj": 2439,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 68,"zbhp": 0,"zblv": 400,"zbtool": 6,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Giới Chỉ","zbinfo": "Trang bị bậc Thần, gắn vào ô Giới Chỉ.","zbgj": 2439,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 68,"zbhp": 0,"zblv": 400,"zbtool": 6,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "69": {
-        "zbname": "Đế Giới Chỉ","zbinfo": "Trang bị bậc Đế, gắn vào ô Giới Chỉ.","zbgj": 5509,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 69,"zbhp": 0,"zblv": 600,"zbtool": 6,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Giới Chỉ","zbinfo": "Trang bị bậc Đế, gắn vào ô Giới Chỉ.","zbgj": 5509,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 69,"zbhp": 0,"zblv": 600,"zbtool": 6,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "70": {
-        "zbname": "Đạo Giới Chỉ","zbinfo": "Trang bị bậc Đạo, gắn vào ô Giới Chỉ.","zbgj": 9873,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 70,"zbhp": 0,"zblv": 800,"zbtool": 6,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Giới Chỉ","zbinfo": "Trang bị bậc Đạo, gắn vào ô Giới Chỉ.","zbgj": 9873,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 70,"zbhp": 0,"zblv": 800,"zbtool": 6,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "71": {
@@ -288,15 +288,15 @@
     }
 ,
     "73": {
-        "zbname": "Thánh Hộ Thủ","zbinfo": "Trang bị bậc Thánh, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 819,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 73,"zbhp": 1698,"zblv": 200,"zbtool": 5,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Hộ Thủ","zbinfo": "Trang bị bậc Thánh, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 819,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 73,"zbhp": 1698,"zblv": 200,"zbtool": 5,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "74": {
-        "zbname": "Thần Hộ Thủ","zbinfo": "Trang bị bậc Thần, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 3164,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 74,"zbhp": 6418,"zblv": 400,"zbtool": 5,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Hộ Thủ","zbinfo": "Trang bị bậc Thần, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 3164,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 74,"zbhp": 6418,"zblv": 400,"zbtool": 5,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "75": {
-        "zbname": "Đạo Hộ Thủ","zbinfo": "Trang bị bậc Đạo, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 12730,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 75,"zbhp": 27732,"zblv": 800,"zbtool": 5,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Hộ Thủ","zbinfo": "Trang bị bậc Đạo, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 12730,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 75,"zbhp": 27732,"zblv": 800,"zbtool": 5,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "76": {
@@ -312,11 +312,11 @@
     }
 ,
     "79": {
-        "zbname": "Địa Đai","zbinfo": "Trang bị bậc Địa, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 38,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 79,"zbhp": 127,"zblv": 60,"zbtool": 7,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Đai","zbinfo": "Trang bị bậc Địa, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 38,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 79,"zbhp": 127,"zblv": 60,"zbtool": 7,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "80": {
-        "zbname": "Thiên Đai","zbinfo": "Trang bị bậc Thiên, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 135,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 80,"zbhp": 341,"zblv": 120,"zbtool": 7,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Đai","zbinfo": "Trang bị bậc Thiên, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 135,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 80,"zbhp": 341,"zblv": 120,"zbtool": 7,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "81": {
@@ -340,23 +340,23 @@
     }
 ,
     "86": {
-        "zbname": "Thánh Yêu Đai","zbinfo": "Trang bị bậc Thánh, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 359,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 86,"zbhp": 846,"zblv": 200,"zbtool": 7,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Yêu Đai","zbinfo": "Trang bị bậc Thánh, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 359,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 86,"zbhp": 846,"zblv": 200,"zbtool": 7,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "87": {
-        "zbname": "Tiên Yêu Đai","zbinfo": "Trang bị bậc Tiên, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 788,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 87,"zbhp": 1802,"zblv": 300,"zbtool": 7,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Yêu Đai","zbinfo": "Trang bị bậc Tiên, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 788,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 87,"zbhp": 1802,"zblv": 300,"zbtool": 7,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "88": {
-        "zbname": "Thần Yêu Đai","zbinfo": "Trang bị bậc Thần, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 1385,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 88,"zbhp": 3200,"zblv": 400,"zbtool": 7,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Yêu Đai","zbinfo": "Trang bị bậc Thần, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 1385,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 88,"zbhp": 3200,"zblv": 400,"zbtool": 7,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "89": {
-        "zbname": "Đế Yêu Đai","zbinfo": "Trang bị bậc Đế, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 89,"zbhp": 7493,"zblv": 600,"zbtool": 7,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Yêu Đai","zbinfo": "Trang bị bậc Đế, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 89,"zbhp": 7493,"zblv": 600,"zbtool": 7,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "90": {
-        "zbname": "Đạo Yêu Đai","zbinfo": "Trang bị bậc Đạo, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 5574,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 90,"zbhp": 13827,"zblv": 800,"zbtool": 7,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Yêu Đai","zbinfo": "Trang bị bậc Đạo, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 5574,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 90,"zbhp": 13827,"zblv": 800,"zbtool": 7,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "91": {
@@ -392,11 +392,11 @@
     }
 ,
     "99": {
-        "zbname": "Địa Tọa Kỵ","zbinfo": "Trang bị bậc Địa, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 38,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 99,"zbhp": 339,"zblv": 60,"zbtool": 15,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Tọa Kỵ","zbinfo": "Trang bị bậc Địa, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 38,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 99,"zbhp": 339,"zblv": 60,"zbtool": 15,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "100": {
-        "zbname": "Thiên Tọa Kỵ","zbinfo": "Trang bị bậc Thiên, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 135,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 100,"zbhp": 911,"zblv": 120,"zbtool": 15,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Tọa Kỵ","zbinfo": "Trang bị bậc Thiên, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 135,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 100,"zbhp": 911,"zblv": 120,"zbtool": 15,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "101": {
@@ -460,23 +460,23 @@
     }
 ,
     "116": {
-        "zbname": "Thánh Vai Khôi","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 819,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 116,"zbhp": 1698,"zblv": 200,"zbtool": 12,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Vai Khôi","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 819,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 116,"zbhp": 1698,"zblv": 200,"zbtool": 12,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "117": {
-        "zbname": "Tiên Vai Khôi","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 1801,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 117,"zbhp": 3615,"zblv": 300,"zbtool": 12,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Vai Khôi","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 1801,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 117,"zbhp": 3615,"zblv": 300,"zbtool": 12,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "118": {
-        "zbname": "Thần Vai Khôi","zbinfo": "Trang bị bậc Thần, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 3164,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 118,"zbhp": 6418,"zblv": 400,"zbtool": 12,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Vai Khôi","zbinfo": "Trang bị bậc Thần, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 3164,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 118,"zbhp": 6418,"zblv": 400,"zbtool": 12,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "119": {
-        "zbname": "Đế Vai Khôi","zbinfo": "Trang bị bậc Đế, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 7123,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 119,"zbhp": 15029,"zblv": 600,"zbtool": 12,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Vai Khôi","zbinfo": "Trang bị bậc Đế, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 7123,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 119,"zbhp": 15029,"zblv": 600,"zbtool": 12,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "120": {
-        "zbname": "Đạo Vai Khôi","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 12730,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 120,"zbhp": 27732,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Vai Khôi","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 12730,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 120,"zbhp": 27732,"zblv": 800,"zbtool": 12,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "121": {
@@ -520,23 +520,23 @@
     }
 ,
     "131": {
-        "zbname": "Thánh Tọa Kỵ","zbinfo": "Trang bị bậc Thánh, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 359,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 131,"zbhp": 2264,"zblv": 200,"zbtool": 15,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Tọa Kỵ","zbinfo": "Trang bị bậc Thánh, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 359,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 131,"zbhp": 2264,"zblv": 200,"zbtool": 15,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "132": {
-        "zbname": "Tiên Tọa Kỵ","zbinfo": "Trang bị bậc Tiên, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 788,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 132,"zbhp": 4820,"zblv": 300,"zbtool": 15,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Tọa Kỵ","zbinfo": "Trang bị bậc Tiên, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 788,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 132,"zbhp": 4820,"zblv": 300,"zbtool": 15,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "133": {
-        "zbname": "Thần Tọa Kỵ","zbinfo": "Trang bị bậc Thần, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 1385,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 133,"zbhp": 8558,"zblv": 400,"zbtool": 15,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Tọa Kỵ","zbinfo": "Trang bị bậc Thần, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 1385,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 133,"zbhp": 8558,"zblv": 400,"zbtool": 15,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "134": {
-        "zbname": "Đế Tọa Kỵ","zbinfo": "Trang bị bậc Đế, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 134,"zbhp": 20040,"zblv": 600,"zbtool": 15,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Tọa Kỵ","zbinfo": "Trang bị bậc Đế, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 134,"zbhp": 20040,"zblv": 600,"zbtool": 15,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "135": {
-        "zbname": "Đạo Tọa Kỵ","zbinfo": "Trang bị bậc Đạo, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 5574,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 135,"zbhp": 36979,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Tọa Kỵ","zbinfo": "Trang bị bậc Đạo, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 5574,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 135,"zbhp": 36979,"zblv": 800,"zbtool": 15,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "136": {
@@ -552,31 +552,31 @@
     }
 ,
     "139": {
-        "zbname": "Địa Liêu Nguyên Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 139,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Liêu Nguyên Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 1,"tupoexp": 1,"zbid": 139,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "140": {
-        "zbname": "Thiên Trấn Sơn Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 140,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Trấn Sơn Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 1,"tupoexp": 1,"zbid": 140,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "141": {
-        "zbname": "Thánh Huyền Vũ Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 0,"tupoexp": 0,"zbid": 141,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Huyền Vũ Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 1,"tupoexp": 2,"zbid": 141,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "142": {
-        "zbname": "Tiên Thương Thiên Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 0,"tupoexp": 0,"zbid": 142,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Thương Thiên Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 1,"tupoexp": 2,"zbid": 142,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "143": {
-        "zbname": "Thần Quy Nguyên Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 143,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Quy Nguyên Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 2,"zbid": 143,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "144": {
-        "zbname": "Đế Phạt Tà Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 144,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Phạt Tà Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 144,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "145": {
-        "zbname": "Đạo Anh Linh Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 145,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Anh Linh Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 145,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "146": {
@@ -592,31 +592,31 @@
     }
 ,
     "149": {
-        "zbname": "Địa Tuyệt Diệt Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 149,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Tuyệt Diệt Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 1,"tupoexp": 1,"zbid": 149,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "150": {
-        "zbname": "Thiên Vô Cực Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 150,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Vô Cực Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 1,"tupoexp": 1,"zbid": 150,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "151": {
-        "zbname": "Thánh Đồ Long Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 0,"tupoexp": 0,"zbid": 151,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Đồ Long Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 1,"tupoexp": 2,"zbid": 151,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "152": {
-        "zbname": "Tiên Hồi Xuân Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 0,"tupoexp": 0,"zbid": 152,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Hồi Xuân Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 1,"tupoexp": 2,"zbid": 152,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "153": {
-        "zbname": "Thần Thôn Thiên Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 153,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Thôn Thiên Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 2,"zbid": 153,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "154": {
-        "zbname": "Đế Phệ Hồn Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 154,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Phệ Hồn Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 154,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "155": {
-        "zbname": "Đạo Khai Thiên Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 155,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Khai Thiên Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 155,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "156": {
@@ -632,31 +632,31 @@
     }
 ,
     "159": {
-        "zbname": "Địa Quang Chi Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 159,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Quang Chi Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 1,"tupoexp": 1,"zbid": 159,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "160": {
-        "zbname": "Thiên Phong Chi Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 160,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Phong Chi Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 1,"tupoexp": 1,"zbid": 160,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "161": {
-        "zbname": "Thánh Phách Huyết Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 0,"tupoexp": 0,"zbid": 161,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Phách Huyết Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 1,"tupoexp": 2,"zbid": 161,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "162": {
-        "zbname": "Tiên Sinh Uy Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 0,"tupoexp": 0,"zbid": 162,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Sinh Uy Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 1,"tupoexp": 2,"zbid": 162,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "163": {
-        "zbname": "Thần Tuyệt Tình Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 163,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Tuyệt Tình Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 2,"zbid": 163,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "164": {
-        "zbname": "Đế Liệt Hỏa Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 164,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Liệt Hỏa Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 164,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "165": {
-        "zbname": "Đạo Huyền Vi Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 165,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Huyền Vi Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 165,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "166": {
@@ -672,31 +672,31 @@
     }
 ,
     "169": {
-        "zbname": "Địa Ngục Tiên Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 169,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Ngục Tiên Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 1,"tupoexp": 1,"zbid": 169,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "170": {
-        "zbname": "Thiên Vô Tận Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 170,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Vô Tận Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 1,"tupoexp": 1,"zbid": 170,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "171": {
-        "zbname": "Thánh Tuyệt Thiên Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 0,"tupoexp": 0,"zbid": 171,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
+        "zbname": "Thánh Tuyệt Thiên Kiếm","zbinfo": "Trang bị bậc Thánh, gắn vào ô Vũ Khí.","zbgj": 2089,"zbfy": 0,"zbbj": 38,"zbxx": 19,"tuposjs": 1,"tupoexp": 2,"zbid": 171,"zbhp": 0,"zblv": 200,"zbtool": 1,"zbys": "#ffeb3b","taozhuang": 6,"element": "none","rarity": 6,"rarity_name": "Thanh","realm_require": 200
     }
 ,
     "172": {
-        "zbname": "Tiên Thanh Vân Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 0,"tupoexp": 0,"zbid": 172,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Thanh Vân Kiếm","zbinfo": "Trang bị bậc Tiên, gắn vào ô Vũ Khí.","zbgj": 4599,"zbfy": 0,"zbbj": 48,"zbxx": 24,"tuposjs": 1,"tupoexp": 2,"zbid": 172,"zbhp": 0,"zblv": 300,"zbtool": 1,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "173": {
-        "zbname": "Thần Kim Liên Hoa Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 173,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
+        "zbname": "Thần Kim Liên Hoa Kiếm","zbinfo": "Trang bị bậc Thần, gắn vào ô Vũ Khí.","zbgj": 8086,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 2,"zbid": 173,"zbhp": 0,"zblv": 400,"zbtool": 1,"zbys": "#f44336","taozhuang": 8,"element": "none","rarity": 8,"rarity_name": "Than","realm_require": 400
     }
 ,
     "174": {
-        "zbname": "Đế Kim Chú Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 174,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Kim Chú Kiếm","zbinfo": "Trang bị bậc Đế, gắn vào ô Vũ Khí.","zbgj": 18265,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 174,"zbhp": 0,"zblv": 600,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "175": {
-        "zbname": "Đạo Vạn Nhật Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 175,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
+        "zbname": "Đạo Vạn Nhật Kiếm","zbinfo": "Trang bị bậc Đạo, gắn vào ô Vũ Khí.","zbgj": 32733,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 3,"zbid": 175,"zbhp": 0,"zblv": 800,"zbtool": 1,"zbys": "#d4af37","taozhuang": 10,"element": "none","rarity": 10,"rarity_name": "Dao","realm_require": 800
     }
 ,
     "176": {
@@ -712,11 +712,11 @@
     }
 ,
     "179": {
-        "zbname": "Địa Phục Diệt Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 0,"tupoexp": 0,"zbid": 179,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Phục Diệt Kiếm","zbinfo": "Trang bị bậc Địa, gắn vào ô Vũ Khí.","zbgj": 219,"zbfy": 0,"zbbj": 19,"zbxx": 9,"tuposjs": 1,"tupoexp": 1,"zbid": 179,"zbhp": 0,"zblv": 60,"zbtool": 1,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "180": {
-        "zbname": "Thiên Phượng Hoàng Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 0,"tupoexp": 0,"zbid": 180,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Phượng Hoàng Kiếm","zbinfo": "Trang bị bậc Thiên, gắn vào ô Vũ Khí.","zbgj": 788,"zbfy": 0,"zbbj": 28,"zbxx": 14,"tuposjs": 1,"tupoexp": 1,"zbid": 180,"zbhp": 0,"zblv": 120,"zbtool": 1,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "181": {
@@ -736,15 +736,15 @@
     }
 ,
     "185": {
-        "zbname": "Địa Thiên Thuẫn","zbinfo": "Trang bị bậc Địa, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 99,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 185,"zbhp": 211,"zblv": 60,"zbtool": 2,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Thiên Thuẫn","zbinfo": "Trang bị bậc Địa, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 99,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 185,"zbhp": 211,"zblv": 60,"zbtool": 2,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "186": {
-        "zbname": "Địa Quan","zbinfo": "Trang bị bậc Địa, gắn vào ô Thiên Quan.","zbgj": 28,"zbfy": 38,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 186,"zbhp": 106,"zblv": 60,"zbtool": 3,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Quan","zbinfo": "Trang bị bậc Địa, gắn vào ô Thiên Quan.","zbgj": 28,"zbfy": 38,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 186,"zbhp": 106,"zblv": 60,"zbtool": 3,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "187": {
-        "zbname": "Địa Hộ Thủ","zbinfo": "Trang bị bậc Địa, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 86,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 187,"zbhp": 254,"zblv": 60,"zbtool": 5,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
+        "zbname": "Địa Hộ Thủ","zbinfo": "Trang bị bậc Địa, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 86,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 187,"zbhp": 254,"zblv": 60,"zbtool": 5,"zbys": "#795548","taozhuang": 4,"element": "none","rarity": 4,"rarity_name": "Dia","realm_require": 60
     }
 ,
     "188": {
@@ -752,15 +752,15 @@
     }
 ,
     "189": {
-        "zbname": "Thiên Thiên Thuẫn","zbinfo": "Trang bị bậc Thiên, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 358,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 189,"zbhp": 568,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Thiên Thuẫn","zbinfo": "Trang bị bậc Thiên, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 358,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 189,"zbhp": 568,"zblv": 120,"zbtool": 2,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "190": {
-        "zbname": "Thiên Quan","zbinfo": "Trang bị bậc Thiên, gắn vào ô Thiên Quan.","zbgj": 100,"zbfy": 135,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 190,"zbhp": 285,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Quan","zbinfo": "Trang bị bậc Thiên, gắn vào ô Thiên Quan.","zbgj": 100,"zbfy": 135,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 190,"zbhp": 285,"zblv": 120,"zbtool": 3,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "191": {
-        "zbname": "Thiên Hộ Thủ","zbinfo": "Trang bị bậc Thiên, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 309,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 191,"zbhp": 683,"zblv": 120,"zbtool": 5,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
+        "zbname": "Thiên Hộ Thủ","zbinfo": "Trang bị bậc Thiên, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 309,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 1,"zbid": 191,"zbhp": 683,"zblv": 120,"zbtool": 5,"zbys": "#ff9800","taozhuang": 5,"element": "none","rarity": 5,"rarity_name": "Thien","realm_require": 120
     }
 ,
     "192": {
@@ -768,15 +768,15 @@
     }
 ,
     "193": {
-        "zbname": "Tiên Thiên Thuẫn","zbinfo": "Trang bị bậc Tiên, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 2083,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 193,"zbhp": 3007,"zblv": 300,"zbtool": 2,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Thiên Thuẫn","zbinfo": "Trang bị bậc Tiên, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 2083,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 193,"zbhp": 3007,"zblv": 300,"zbtool": 2,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "194": {
-        "zbname": "Tiên Quan","zbinfo": "Trang bị bậc Tiên, gắn vào ô Thiên Quan.","zbgj": 585,"zbfy": 788,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 194,"zbhp": 1509,"zblv": 300,"zbtool": 3,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Quan","zbinfo": "Trang bị bậc Tiên, gắn vào ô Thiên Quan.","zbgj": 585,"zbfy": 788,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 194,"zbhp": 1509,"zblv": 300,"zbtool": 3,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "195": {
-        "zbname": "Tiên Hộ Thủ","zbinfo": "Trang bị bậc Tiên, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 1801,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 195,"zbhp": 3615,"zblv": 300,"zbtool": 5,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
+        "zbname": "Tiên Hộ Thủ","zbinfo": "Trang bị bậc Tiên, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 1801,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 195,"zbhp": 3615,"zblv": 300,"zbtool": 5,"zbys": "#e040fb","taozhuang": 7,"element": "none","rarity": 7,"rarity_name": "Tien","realm_require": 300
     }
 ,
     "196": {
@@ -784,31 +784,31 @@
     }
 ,
     "197": {
-        "zbname": "Hồng Mông Lam Tinh Kiếm","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Vũ Khí.","zbgj": 12632,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 197,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Lam Tinh Kiếm","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Vũ Khí.","zbgj": 12632,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 1,"tupoexp": 2,"zbid": 197,"zbhp": 0,"zblv": 500,"zbtool": 1,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "198": {
-        "zbname": "Hồng Mông Thiên Thuẫn","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 5709,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 198,"zbhp": 8478,"zblv": 500,"zbtool": 2,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Thiên Thuẫn","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 5709,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 198,"zbhp": 8478,"zblv": 500,"zbtool": 2,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "199": {
-        "zbname": "Hồng Mông Quan","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Thiên Quan.","zbgj": 1607,"zbfy": 2161,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 199,"zbhp": 4256,"zblv": 500,"zbtool": 3,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Quan","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Thiên Quan.","zbgj": 1607,"zbfy": 2161,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 199,"zbhp": 4256,"zblv": 500,"zbtool": 3,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "200": {
-        "zbname": "Hồng Mông Huyền Vũ Giáp","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 7790,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 200,"zbhp": 15276,"zblv": 500,"zbtool": 4,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Huyền Vũ Giáp","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 7790,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 200,"zbhp": 15276,"zblv": 500,"zbtool": 4,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "201": {
-        "zbname": "Hồng Mông Hộ Thủ","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 4935,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 201,"zbhp": 10194,"zblv": 500,"zbtool": 5,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Hộ Thủ","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 4935,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 201,"zbhp": 10194,"zblv": 500,"zbtool": 5,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "202": {
-        "zbname": "Hồng Mông Giới Chỉ","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Giới Chỉ.","zbgj": 3810,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 202,"zbhp": 0,"zblv": 500,"zbtool": 6,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Giới Chỉ","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Giới Chỉ.","zbgj": 3810,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 202,"zbhp": 0,"zblv": 500,"zbtool": 6,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "203": {
-        "zbname": "Hồng Mông Yêu Đai","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 2161,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 203,"zbhp": 5083,"zblv": 500,"zbtool": 7,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Yêu Đai","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 2161,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 203,"zbhp": 5083,"zblv": 500,"zbtool": 7,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "204": {
@@ -828,7 +828,7 @@
     }
 ,
     "208": {
-        "zbname": "Hồng Mông Vai Khôi","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 4935,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 208,"zbhp": 10194,"zblv": 500,"zbtool": 12,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Vai Khôi","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 4935,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 208,"zbhp": 10194,"zblv": 500,"zbtool": 12,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "209": {
@@ -840,19 +840,19 @@
     }
 ,
     "211": {
-        "zbname": "Hồng Mông Tọa Kỵ","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 2161,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 211,"zbhp": 13593,"zblv": 500,"zbtool": 15,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
+        "zbname": "Hồng Mông Tọa Kỵ","zbinfo": "Trang bị bậc Hồng Mông, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 2161,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 2,"zbid": 211,"zbhp": 13593,"zblv": 500,"zbtool": 15,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 500
     }
 ,
     "212": {
-        "zbname": "Đế Thiên Thuẫn","zbinfo": "Trang bị bậc Đế, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 8240,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 212,"zbhp": 12500,"zblv": 600,"zbtool": 2,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Thiên Thuẫn","zbinfo": "Trang bị bậc Đế, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 8240,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 212,"zbhp": 12500,"zblv": 600,"zbtool": 2,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "213": {
-        "zbname": "Đế Quan","zbinfo": "Trang bị bậc Đế, gắn vào ô Thiên Quan.","zbgj": 2324,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 213,"zbhp": 6275,"zblv": 600,"zbtool": 3,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Quan","zbinfo": "Trang bị bậc Đế, gắn vào ô Thiên Quan.","zbgj": 2324,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 213,"zbhp": 6275,"zblv": 600,"zbtool": 3,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "214": {
-        "zbname": "Đế Hộ Thủ","zbinfo": "Trang bị bậc Đế, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 7123,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 214,"zbhp": 15029,"zblv": 600,"zbtool": 5,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
+        "zbname": "Đế Hộ Thủ","zbinfo": "Trang bị bậc Đế, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 7123,"zbbj": 0,"zbxx": 0,"tuposjs": 1,"tupoexp": 3,"zbid": 214,"zbhp": 15029,"zblv": 600,"zbtool": 5,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
 ,
     "215": {
@@ -860,31 +860,31 @@
     }
 ,
     "216": {
-        "zbname": "Hỗn Độn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Vũ Khí.","zbgj": 50839,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 216,"zbhp": 0,"zblv": 1000,"zbtool": 1,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Vũ Khí.","zbgj": 50839,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 2,"tupoexp": 4,"zbid": 216,"zbhp": 0,"zblv": 1000,"zbtool": 1,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "217": {
-        "zbname": "Hỗn Độn Thiên Thuẫn","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 22877,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 217,"zbhp": 35591,"zblv": 1000,"zbtool": 2,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Thiên Thuẫn","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 22877,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 217,"zbhp": 35591,"zblv": 1000,"zbtool": 2,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "218": {
-        "zbname": "Hỗn Độn Quan","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Thiên Quan.","zbgj": 6469,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 218,"zbhp": 17866,"zblv": 1000,"zbtool": 3,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Quan","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Thiên Quan.","zbgj": 6469,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 218,"zbhp": 17866,"zblv": 1000,"zbtool": 3,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "219": {
-        "zbname": "Hỗn Độn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 31215,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 219,"zbhp": 64127,"zblv": 1000,"zbtool": 4,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 31215,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 219,"zbhp": 64127,"zblv": 1000,"zbtool": 4,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "220": {
-        "zbname": "Hỗn Độn Hộ Thủ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 19777,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 220,"zbhp": 42793,"zblv": 1000,"zbtool": 5,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Hộ Thủ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 19777,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 220,"zbhp": 42793,"zblv": 1000,"zbtool": 5,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "221": {
-        "zbname": "Hỗn Độn Giới Chỉ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Giới Chỉ.","zbgj": 15334,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 221,"zbhp": 0,"zblv": 1000,"zbtool": 6,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Giới Chỉ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Giới Chỉ.","zbgj": 15334,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 221,"zbhp": 0,"zblv": 1000,"zbtool": 6,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "222": {
-        "zbname": "Hỗn Độn Yêu Đai","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 222,"zbhp": 21336,"zblv": 1000,"zbtool": 7,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Yêu Đai","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 222,"zbhp": 21336,"zblv": 1000,"zbtool": 7,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "223": {
@@ -904,7 +904,7 @@
     }
 ,
     "227": {
-        "zbname": "Hỗn Độn Vai Khôi","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 19777,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 227,"zbhp": 42793,"zblv": 1000,"zbtool": 12,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Vai Khôi","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 19777,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 227,"zbhp": 42793,"zblv": 1000,"zbtool": 12,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "228": {
@@ -916,35 +916,35 @@
     }
 ,
     "230": {
-        "zbname": "Hỗn Độn Tọa Kỵ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 230,"zbhp": 57063,"zblv": 1000,"zbtool": 15,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+        "zbname": "Hỗn Độn Tọa Kỵ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 230,"zbhp": 57063,"zblv": 1000,"zbtool": 15,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
     }
 ,
     "231": {
-        "zbname": "Thái Hư Hỗn Độn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Vũ Khí.","zbgj": 78360,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 231,"zbhp": 0,"zblv": 1250,"zbtool": 1,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Vũ Khí.","zbgj": 78360,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 2,"tupoexp": 4,"zbid": 231,"zbhp": 0,"zblv": 1250,"zbtool": 1,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "232": {
-        "zbname": "Thái Hư Hỗn Độn Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 35324,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 232,"zbhp": 53502,"zblv": 1250,"zbtool": 2,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 35324,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 232,"zbhp": 53502,"zblv": 1250,"zbtool": 2,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "233": {
-        "zbname": "Thái Hư Hỗn Độn Quan","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Thiên Quan.","zbgj": 9971,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 233,"zbhp": 26857,"zblv": 1250,"zbtool": 3,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Quan","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Thiên Quan.","zbgj": 9971,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 233,"zbhp": 26857,"zblv": 1250,"zbtool": 3,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "234": {
-        "zbname": "Thái Hư Hỗn Độn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 48199,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 234,"zbhp": 96397,"zblv": 1250,"zbtool": 4,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 48199,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 234,"zbhp": 96397,"zblv": 1250,"zbtool": 4,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "235": {
-        "zbname": "Thái Hư Hỗn Độn Hộ Thủ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 30537,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 235,"zbhp": 64329,"zblv": 1250,"zbtool": 5,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Hộ Thủ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 30537,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 235,"zbhp": 64329,"zblv": 1250,"zbtool": 5,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "236": {
-        "zbname": "Thái Hư Hỗn Độn Giới Chỉ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Giới Chỉ.","zbgj": 23634,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 236,"zbhp": 0,"zblv": 1250,"zbtool": 6,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Giới Chỉ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Giới Chỉ.","zbgj": 23634,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 236,"zbhp": 0,"zblv": 1250,"zbtool": 6,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "237": {
-        "zbname": "Thái Hư Hỗn Độn Yêu Đai","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 237,"zbhp": 32073,"zblv": 1250,"zbtool": 7,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Yêu Đai","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 237,"zbhp": 32073,"zblv": 1250,"zbtool": 7,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "238": {
@@ -964,7 +964,7 @@
     }
 ,
     "242": {
-        "zbname": "Thái Hư Hỗn Độn Vai Khôi","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 30537,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 242,"zbhp": 64329,"zblv": 1250,"zbtool": 12,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Vai Khôi","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 30537,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 242,"zbhp": 64329,"zblv": 1250,"zbtool": 12,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "243": {
@@ -976,35 +976,35 @@
     }
 ,
     "245": {
-        "zbname": "Thái Hư Hỗn Độn Tọa Kỵ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 245,"zbhp": 85778,"zblv": 1250,"zbtool": 15,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+        "zbname": "Thái Hư Hỗn Độn Tọa Kỵ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 245,"zbhp": 85778,"zblv": 1250,"zbtool": 15,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
     }
 ,
     "246": {
-        "zbname": "Thái Sơ Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Vũ Khí.","zbgj": 111311,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 246,"zbhp": 0,"zblv": 1500,"zbtool": 1,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Vũ Khí.","zbgj": 111311,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 2,"tupoexp": 4,"zbid": 246,"zbhp": 0,"zblv": 1500,"zbtool": 1,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "247": {
-        "zbname": "Thái Sơ Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 50279,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 247,"zbhp": 73915,"zblv": 1500,"zbtool": 2,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 50279,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 247,"zbhp": 73915,"zblv": 1500,"zbtool": 2,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "248": {
-        "zbname": "Thái Sơ Quan","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Thiên Quan.","zbgj": 14164,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 248,"zbhp": 37104,"zblv": 1500,"zbtool": 3,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Quan","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Thiên Quan.","zbgj": 14164,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 248,"zbhp": 37104,"zblv": 1500,"zbtool": 3,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "249": {
-        "zbname": "Thái Sơ Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 68605,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 249,"zbhp": 133177,"zblv": 1500,"zbtool": 4,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 68605,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 249,"zbhp": 133177,"zblv": 1500,"zbtool": 4,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "250": {
-        "zbname": "Thái Sơ Hộ Thủ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 43465,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 250,"zbhp": 88873,"zblv": 1500,"zbtool": 5,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Hộ Thủ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 43465,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 250,"zbhp": 88873,"zblv": 1500,"zbtool": 5,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "251": {
-        "zbname": "Thái Sơ Giới Chỉ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Giới Chỉ.","zbgj": 33572,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 251,"zbhp": 0,"zblv": 1500,"zbtool": 6,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Giới Chỉ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Giới Chỉ.","zbgj": 33572,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 251,"zbhp": 0,"zblv": 1500,"zbtool": 6,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "252": {
-        "zbname": "Thái Sơ Yêu Đai","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 252,"zbhp": 44311,"zblv": 1500,"zbtool": 7,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Yêu Đai","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 252,"zbhp": 44311,"zblv": 1500,"zbtool": 7,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "253": {
@@ -1024,7 +1024,7 @@
     }
 ,
     "257": {
-        "zbname": "Thái Sơ Vai Khôi","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 43465,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 257,"zbhp": 88873,"zblv": 1500,"zbtool": 12,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Vai Khôi","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 43465,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 257,"zbhp": 88873,"zblv": 1500,"zbtool": 12,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "258": {
@@ -1036,35 +1036,35 @@
     }
 ,
     "260": {
-        "zbname": "Thái Sơ Tọa Kỵ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 260,"zbhp": 118506,"zblv": 1500,"zbtool": 15,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
+        "zbname": "Thái Sơ Tọa Kỵ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 260,"zbhp": 118506,"zblv": 1500,"zbtool": 15,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
 ,
     "261": {
-        "zbname": "Thái Sơ Hồng Hoang Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Vũ Khí.","zbgj": 193502,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 261,"zbhp": 0,"zblv": 2000,"zbtool": 1,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Vũ Khí.","zbgj": 193502,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 2,"tupoexp": 4,"zbid": 261,"zbhp": 0,"zblv": 2000,"zbtool": 1,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "262": {
-        "zbname": "Thái Sơ Hồng Hoang Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 87715,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 262,"zbhp": 122248,"zblv": 2000,"zbtool": 2,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 87715,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 262,"zbhp": 122248,"zblv": 2000,"zbtool": 2,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "263": {
-        "zbname": "Thái Sơ Hồng Hoang Quan","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Thiên Quan.","zbgj": 24622,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 263,"zbhp": 61367,"zblv": 2000,"zbtool": 3,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Quan","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Thiên Quan.","zbgj": 24622,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 263,"zbhp": 61367,"zblv": 2000,"zbtool": 3,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "264": {
-        "zbname": "Thái Sơ Hồng Hoang Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 119686,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 264,"zbhp": 220262,"zblv": 2000,"zbtool": 4,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 119686,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 264,"zbhp": 220262,"zblv": 2000,"zbtool": 4,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "265": {
-        "zbname": "Thái Sơ Hồng Hoang Hộ Thủ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 75828,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 265,"zbhp": 146987,"zblv": 2000,"zbtool": 5,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Hộ Thủ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 75828,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 265,"zbhp": 146987,"zblv": 2000,"zbtool": 5,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "266": {
-        "zbname": "Thái Sơ Hồng Hoang Giới Chỉ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Giới Chỉ.","zbgj": 58362,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 266,"zbhp": 0,"zblv": 2000,"zbtool": 6,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Giới Chỉ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Giới Chỉ.","zbgj": 58362,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 266,"zbhp": 0,"zblv": 2000,"zbtool": 6,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "267": {
-        "zbname": "Thái Sơ Hồng Hoang Yêu Đai","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 267,"zbhp": 73286,"zblv": 2000,"zbtool": 7,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Yêu Đai","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 267,"zbhp": 73286,"zblv": 2000,"zbtool": 7,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "268": {
@@ -1084,7 +1084,7 @@
     }
 ,
     "272": {
-        "zbname": "Thái Sơ Hồng Hoang Vai Khôi","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 75828,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 272,"zbhp": 146987,"zblv": 2000,"zbtool": 12,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Vai Khôi","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 75828,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 272,"zbhp": 146987,"zblv": 2000,"zbtool": 12,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "273": {
@@ -1096,35 +1096,35 @@
     }
 ,
     "275": {
-        "zbname": "Thái Sơ Hồng Hoang Tọa Kỵ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 275,"zbhp": 195999,"zblv": 2000,"zbtool": 15,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+        "zbname": "Thái Sơ Hồng Hoang Tọa Kỵ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 4,"zbid": 275,"zbhp": 195999,"zblv": 2000,"zbtool": 15,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
     }
 ,
     "276": {
-        "zbname": "Vĩnh Hằng Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Vũ Khí.","zbgj": 297415,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 276,"zbhp": 0,"zblv": 2500,"zbtool": 1,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Vũ Khí.","zbgj": 297415,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 2,"tupoexp": 5,"zbid": 276,"zbhp": 0,"zblv": 2500,"zbtool": 1,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "277": {
-        "zbname": "Vĩnh Hằng Thiên Thuẫn","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 135185,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 277,"zbhp": 180592,"zblv": 2500,"zbtool": 2,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Thiên Thuẫn","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 135185,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 277,"zbhp": 180592,"zblv": 2500,"zbtool": 2,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "278": {
-        "zbname": "Vĩnh Hằng Quan","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Thiên Quan.","zbgj": 37844,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 278,"zbhp": 90654,"zblv": 2500,"zbtool": 3,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Quan","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Thiên Quan.","zbgj": 37844,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 278,"zbhp": 90654,"zblv": 2500,"zbtool": 3,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "279": {
-        "zbname": "Vĩnh Hằng Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 184457,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 279,"zbhp": 325383,"zblv": 2500,"zbtool": 4,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 184457,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 279,"zbhp": 325383,"zblv": 2500,"zbtool": 4,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "280": {
-        "zbname": "Vĩnh Hằng Hộ Thủ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 116865,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 280,"zbhp": 217137,"zblv": 2500,"zbtool": 5,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Hộ Thủ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 116865,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 280,"zbhp": 217137,"zblv": 2500,"zbtool": 5,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "281": {
-        "zbname": "Vĩnh Hằng Giới Chỉ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Giới Chỉ.","zbgj": 89703,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 281,"zbhp": 0,"zblv": 2500,"zbtool": 6,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Giới Chỉ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Giới Chỉ.","zbgj": 89703,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 281,"zbhp": 0,"zblv": 2500,"zbtool": 6,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "282": {
-        "zbname": "Vĩnh Hằng Yêu Đai","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 282,"zbhp": 108261,"zblv": 2500,"zbtool": 7,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Yêu Đai","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 282,"zbhp": 108261,"zblv": 2500,"zbtool": 7,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "283": {
@@ -1144,7 +1144,7 @@
     }
 ,
     "287": {
-        "zbname": "Vĩnh Hằng Vai Khôi","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 116865,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 287,"zbhp": 217137,"zblv": 2500,"zbtool": 12,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Vai Khôi","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 116865,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 287,"zbhp": 217137,"zblv": 2500,"zbtool": 12,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "288": {
@@ -1156,35 +1156,35 @@
     }
 ,
     "290": {
-        "zbname": "Vĩnh Hằng Tọa Kỵ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 290,"zbhp": 289540,"zblv": 2500,"zbtool": 15,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
+        "zbname": "Vĩnh Hằng Tọa Kỵ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 290,"zbhp": 289540,"zblv": 2500,"zbtool": 15,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
 ,
     "291": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Vũ Khí.","zbgj": 423049,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 291,"zbhp": 0,"zblv": 3000,"zbtool": 1,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Vũ Khí.","zbgj": 423049,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 2,"tupoexp": 5,"zbid": 291,"zbhp": 0,"zblv": 3000,"zbtool": 1,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "292": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Thiên Thuẫn","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 192689,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 292,"zbhp": 248945,"zblv": 3000,"zbtool": 2,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Thiên Thuẫn","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 192689,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 292,"zbhp": 248945,"zblv": 3000,"zbtool": 2,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "293": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Quan","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Thiên Quan.","zbgj": 53831,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 293,"zbhp": 124966,"zblv": 3000,"zbtool": 3,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Quan","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Thiên Quan.","zbgj": 53831,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 293,"zbhp": 124966,"zblv": 3000,"zbtool": 3,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "294": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 262920,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 294,"zbhp": 448539,"zblv": 3000,"zbtool": 4,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 262920,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 294,"zbhp": 448539,"zblv": 3000,"zbtool": 4,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "295": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Hộ Thủ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 166575,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 295,"zbhp": 299323,"zblv": 3000,"zbtool": 5,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Hộ Thủ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 166575,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 295,"zbhp": 299323,"zblv": 3000,"zbtool": 5,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "296": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Giới Chỉ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Giới Chỉ.","zbgj": 127595,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 296,"zbhp": 0,"zblv": 3000,"zbtool": 6,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Giới Chỉ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Giới Chỉ.","zbgj": 127595,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 296,"zbhp": 0,"zblv": 3000,"zbtool": 6,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "297": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Yêu Đai","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 297,"zbhp": 149238,"zblv": 3000,"zbtool": 7,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Yêu Đai","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 297,"zbhp": 149238,"zblv": 3000,"zbtool": 7,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "298": {
@@ -1204,7 +1204,7 @@
     }
 ,
     "302": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Vai Khôi","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 166575,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 302,"zbhp": 299323,"zblv": 3000,"zbtool": 12,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Vai Khôi","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 166575,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 302,"zbhp": 299323,"zblv": 3000,"zbtool": 12,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "303": {
@@ -1216,35 +1216,35 @@
     }
 ,
     "305": {
-        "zbname": "Vạn Cổ Vĩnh Hằng Tọa Kỵ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 305,"zbhp": 399130,"zblv": 3000,"zbtool": 15,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+        "zbname": "Vạn Cổ Vĩnh Hằng Tọa Kỵ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 2,"tupoexp": 5,"zbid": 305,"zbhp": 399130,"zblv": 3000,"zbtool": 15,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
     }
 ,
     "306": {
-        "zbname": "Chí Tôn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Vũ Khí.","zbgj": 570404,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 306,"zbhp": 0,"zblv": 3500,"zbtool": 1,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Vũ Khí.","zbgj": 570404,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 3,"tupoexp": 6,"zbid": 306,"zbhp": 0,"zblv": 3500,"zbtool": 1,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "307": {
-        "zbname": "Chí Tôn Thiên Thuẫn","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 260226,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 307,"zbhp": 327308,"zblv": 3500,"zbtool": 2,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Thiên Thuẫn","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 260226,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 307,"zbhp": 327308,"zblv": 3500,"zbtool": 2,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "308": {
-        "zbname": "Chí Tôn Quan","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Thiên Quan.","zbgj": 72581,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 308,"zbhp": 164303,"zblv": 3500,"zbtool": 3,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Quan","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Thiên Quan.","zbgj": 72581,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 308,"zbhp": 164303,"zblv": 3500,"zbtool": 3,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "309": {
-        "zbname": "Chí Tôn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 355073,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 309,"zbhp": 589731,"zblv": 3500,"zbtool": 4,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 355073,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 309,"zbhp": 589731,"zblv": 3500,"zbtool": 4,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "310": {
-        "zbname": "Chí Tôn Hộ Thủ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 224960,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 310,"zbhp": 393544,"zblv": 3500,"zbtool": 5,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Hộ Thủ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 224960,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 310,"zbhp": 393544,"zblv": 3500,"zbtool": 5,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "311": {
-        "zbname": "Chí Tôn Giới Chỉ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Giới Chỉ.","zbgj": 172039,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 311,"zbhp": 0,"zblv": 3500,"zbtool": 6,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Giới Chỉ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Giới Chỉ.","zbgj": 172039,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 311,"zbhp": 0,"zblv": 3500,"zbtool": 6,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "312": {
-        "zbname": "Chí Tôn Yêu Đai","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 312,"zbhp": 196215,"zblv": 3500,"zbtool": 7,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Yêu Đai","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 312,"zbhp": 196215,"zblv": 3500,"zbtool": 7,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "313": {
@@ -1264,7 +1264,7 @@
     }
 ,
     "317": {
-        "zbname": "Chí Tôn Vai Khôi","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 224960,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 317,"zbhp": 393544,"zblv": 3500,"zbtool": 12,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Vai Khôi","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 224960,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 317,"zbhp": 393544,"zblv": 3500,"zbtool": 12,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "318": {
@@ -1276,35 +1276,35 @@
     }
 ,
     "320": {
-        "zbname": "Chí Tôn Tọa Kỵ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 320,"zbhp": 524768,"zblv": 3500,"zbtool": 15,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
+        "zbname": "Chí Tôn Tọa Kỵ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 320,"zbhp": 524768,"zblv": 3500,"zbtool": 15,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
 ,
     "321": {
-        "zbname": "Vô Thượng Chí Tôn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Vũ Khí.","zbgj": 739480,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 321,"zbhp": 0,"zblv": 4000,"zbtool": 1,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Vũ Khí.","zbgj": 739480,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 3,"tupoexp": 6,"zbid": 321,"zbhp": 0,"zblv": 4000,"zbtool": 1,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "322": {
-        "zbname": "Vô Thượng Chí Tôn Thiên Thuẫn","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 337797,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 322,"zbhp": 415681,"zblv": 4000,"zbtool": 2,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Thiên Thuẫn","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 337797,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 322,"zbhp": 415681,"zblv": 4000,"zbtool": 2,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "323": {
-        "zbname": "Vô Thượng Chí Tôn Quan","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Thiên Quan.","zbgj": 94095,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 323,"zbhp": 208665,"zblv": 4000,"zbtool": 3,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Quan","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Thiên Quan.","zbgj": 94095,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 323,"zbhp": 208665,"zblv": 4000,"zbtool": 3,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "324": {
-        "zbname": "Vô Thượng Chí Tôn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 460917,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 324,"zbhp": 748958,"zblv": 4000,"zbtool": 4,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 460917,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 324,"zbhp": 748958,"zblv": 4000,"zbtool": 4,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "325": {
-        "zbname": "Vô Thượng Chí Tôn Hộ Thủ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 292018,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 325,"zbhp": 499801,"zblv": 4000,"zbtool": 5,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Hộ Thủ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 292018,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 325,"zbhp": 499801,"zblv": 4000,"zbtool": 5,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "326": {
-        "zbname": "Vô Thượng Chí Tôn Giới Chỉ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Giới Chỉ.","zbgj": 223033,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 326,"zbhp": 0,"zblv": 4000,"zbtool": 6,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Giới Chỉ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Giới Chỉ.","zbgj": 223033,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 326,"zbhp": 0,"zblv": 4000,"zbtool": 6,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "327": {
-        "zbname": "Vô Thượng Chí Tôn Yêu Đai","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 327,"zbhp": 249193,"zblv": 4000,"zbtool": 7,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Yêu Đai","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 327,"zbhp": 249193,"zblv": 4000,"zbtool": 7,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "328": {
@@ -1324,7 +1324,7 @@
     }
 ,
     "332": {
-        "zbname": "Vô Thượng Chí Tôn Vai Khôi","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 292018,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 332,"zbhp": 499801,"zblv": 4000,"zbtool": 12,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Vai Khôi","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 292018,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 332,"zbhp": 499801,"zblv": 4000,"zbtool": 12,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 ,
     "333": {
@@ -1336,6 +1336,6 @@
     }
 ,
     "335": {
-        "zbname": "Vô Thượng Chí Tôn Tọa Kỵ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 335,"zbhp": 666455,"zblv": 4000,"zbtool": 15,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+        "zbname": "Vô Thượng Chí Tôn Tọa Kỵ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 3,"tupoexp": 6,"zbid": 335,"zbhp": 666455,"zblv": 4000,"zbtool": 15,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
     }
 }
