@@ -377,6 +377,8 @@ function tcg_shop_render_daoju($daojuList, $encode, $sid, $page, $pageSize, $isM
 }
 
 // ---- TRANG BỊ (thường = Linh thạch, cao = Ma thạch) ----
+// Tiệm chỉ bán trang bị bậc thấp cho người mới; bậc cao phải đánh quái / boss / chế tạo (chủ dự án 2026-10-28)
+if (!defined('TCG_SHOP_ZB_MAX_LV')) define('TCG_SHOP_ZB_MAX_LV', 30);
 if ((isset($canshu3) && $canshu3 == 'gogoumai3') || (isset($canshu31) && $canshu31 == 'gogoumai3ma')) {
     $currentTab = 'zhuang';
     $money = (isset($canshu31) && $canshu31 == 'gogoumai3ma') ? 'ma' : 'linh';
@@ -385,7 +387,7 @@ if ((isset($canshu3) && $canshu3 == 'gogoumai3') || (isset($canshu31) && $canshu
 
     if (isset($zbid) && isset($buy)) {
         $zb = \player\getzbkzb($zbid, $dblj);
-        if ($zb) {
+        if ($zb && intval($zb->zblv) <= TCG_SHOP_ZB_MAX_LV) {
             $rarity = intval($zb->rarity);
             if ($isMagic) {
                 $price = ($rarity - 3) * 50 + 200;
@@ -410,7 +412,7 @@ if ((isset($canshu3) && $canshu3 == 'gogoumai3') || (isset($canshu31) && $canshu
 
     if (isset($zbid) && isset($pay) && !isset($buy)) {
         $zb = \player\getzbkzb($zbid, $dblj);
-        if ($zb) {
+        if ($zb && intval($zb->zblv) <= TCG_SHOP_ZB_MAX_LV) {
             $rarity = intval($zb->rarity);
             if ($isMagic) {
                 $price = ($rarity - 3) * 50 + 200;
@@ -432,6 +434,7 @@ if ((isset($canshu3) && $canshu3 == 'gogoumai3') || (isset($canshu31) && $canshu
     $zbList = tcg_shop_filter_kw($zbList, 'zbname');
     $filtered = array();
     foreach ($zbList as $zb) {
+        if (intval($zb['zblv']) > TCG_SHOP_ZB_MAX_LV) continue;
         $filtered[] = $zb;
     }
     $itemHtml = tcg_shop_render_zhuang($filtered, $encode, $sid, $page, $pageSize, $isMagic, $canKey);
