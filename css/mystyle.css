@@ -8505,3 +8505,14 @@ body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
 }
 .mid-compact .mid-center .tcg-title:before,.mid-compact .mid-center .tcg-title:after,.mid-compact .mid-center .tcg-title::before,.mid-compact .mid-center .tcg-title::after{content:none!important;display:none!important}
 @media(min-width:761px){.mid-compact .mid-center .tcg-title{white-space:nowrap!important}}
+/* Hành Tẩu: 12 nút Tiên Đồ gọn — desktop biểu tượng cạnh chữ, nút thấp (đỡ thanh cuộn); mobile chỉ thấp lại */
+.mid-compact .tcg-tiendo{margin:10px 0 0}
+.mid-compact .td-group+.td-group{margin-top:6px}
+.mid-compact .td-title{margin:0 2px 4px;font-size:12px}
+@media(min-width:761px){
+.mid-compact .td-item,.mid-compact a.td-item:link,.mid-compact a.td-item:visited{flex-direction:row!important;gap:6px!important;min-height:36px!important;padding:4px 6px!important}
+.mid-compact .td-item i{font-size:16px}
+.mid-compact .td-item b{font-size:12.5px;white-space:nowrap}
+}
+@media(max-width:760px){.mid-compact .td-item,.mid-compact a.td-item:link,.mid-compact a.td-item:visited{min-height:46px!important}}
+@media(min-width:761px){.mid-compact .td-item,.mid-compact a.td-item:link,.mid-compact a.td-item:visited{justify-content:center!important}.mid-compact .td-item b{width:auto!important}}
