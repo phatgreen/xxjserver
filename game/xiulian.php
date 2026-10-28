@@ -110,7 +110,7 @@ $tpts = ($player->uexp >= $player->umaxexp && $player->umaxexp > 0)
     ? '<a href="?cmd=' . $tupoCmd . '" style="color:#ff9800;font-weight:800">💥 Đột Phá Cảnh Giới</a>'
     : '';
 $base_exp_per_sec = round($player->ulv * $vip_bonus * $exp_multiplier * min(1.3, 1 + $cp_absorb / 100) * min(1.3, 1 + $lc_absorb / 100) * min(1.3, 1 + $lc_exp_bonus / 100) * min(1.5, 1 + $tc_exp_bonus / 100), 4); // linh khí gốc mỗi giây
-$equip_bonus_percent = max(0, floatval($player->tupoexp));
+$equip_bonus_percent = min(30, max(0, floatval($player->tupoexp))); // trần 30% như các buff tu luyện khác
 $exp_per_sec = round($base_exp_per_sec * (1 + $equip_bonus_percent / 100) * (1 + $tp_exp_bonus / 100), 4); // linh khí thực nhận mỗi giây (Thiên Phú nhân NGOÀI chuỗi min() — Task 11 [CHOT])
 $base_exp_per_min = round($base_exp_per_sec * 60, 2);
 $exp_per_min = round($exp_per_sec * 60, 2);

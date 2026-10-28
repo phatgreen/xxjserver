@@ -33,6 +33,17 @@ SLOT_NAME = {1: 'Vũ Khí', 2: 'Thiên Thuẫn', 3: 'Thiên Quan', 4: 'Giáp Bà
              9: 'Linh Phù', 10: 'Ngọc Nhãn', 11: 'Cổ Ngọc', 12: 'Vai Khôi', 13: 'Linh Đai', 14: 'Linh Bội', 15: 'Tọa Kỵ'}
 NEW_ID0 = 181
 
+# Chỉ số huyền theo ô (mỗi món chỉ mang 1 loại) — cân 2026-10-28, xem docs/KHUNG_TONG_500_4300.md mục 4
+BREAK_SLOTS = (9, 10, 11)    # Linh Phù · Ngọc Nhãn · Cổ Ngọc  -> tuposjs (tỉ lệ đột phá +%)
+CULT_SLOTS = (8, 13, 14)     # Phi Phong · Linh Đai · Linh Bội -> tupoexp (tốc độ tu luyện +%)
+BREAK_PCT = {1: 0, 10: 1, 30: 1, 60: 2, 120: 2, 200: 3, 300: 3, 400: 4, 500: 4, 600: 5, 800: 5}
+CULT_PCT = {1: 1, 10: 2, 30: 2, 60: 4, 120: 4, 200: 6, 300: 6, 400: 8, 500: 8, 600: 10, 800: 10}
+
+def apply_mystic(v):
+    s, T = v['zbtool'], v['zblv']
+    v['tuposjs'] = BREAK_PCT[T] if s in BREAK_SLOTS else 0
+    v['tupoexp'] = CULT_PCT[T] if s in CULT_SLOTS else 0
+
 # ─── Đường chỉ số gốc nhân vật (game/tupo.php + upplayerlv sau đợt F) ───
 GJ = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 25, 30, 35, 40, 45, 50, 55]
 HP = [30, 50, 70, 90, 110, 130, 170, 210, 250, 300, 350, 400, 450, 500, 550]
@@ -105,6 +116,7 @@ def build_items():
                 v[st] = int(round(prof[v['zbtool']][st] * tgt[T][st]))
         r = RARITY[T]
         v.update({'rarity': r, 'rarity_name': RNAME[r], 'zbys': RCOLOR[r]})
+        apply_mystic(v)
         out[k] = v
     nid = NEW_ID0
     added = []
@@ -123,6 +135,7 @@ def build_items():
                  'zbhp': int(round(prof[s]['zbhp'] * tgt[T]['zbhp'])), 'zblv': T, 'zbtool': s, 'zbys': RCOLOR[r],
                  'taozhuang': SET_OF[T] if T in SET_OF else list(have.values())[0]['taozhuang'],
                  'element': 'none', 'rarity': r, 'rarity_name': RNAME[r], 'realm_require': T}
+            apply_mystic(v)
             out[str(nid)] = v
             added.append(v)
             nid += 1

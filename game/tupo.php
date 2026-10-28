@@ -121,7 +121,25 @@ $psjs = $player->ulv % 50 == 0 ? 10 : 0;
 $baseRate = 75;
 $levelPenalty = $player->ulv * 0.6;
 $realmPenalty = $player->jingjieValue * 3;
-$rate = min(99, max(5, intval($baseRate - $levelPenalty - $realmPenalty + $psjs + $zbsjs + $tpBreak)));
+// Cấp > 93: công thức cũ âm quá sâu (cấp 500 = -258%) khiến mọi khoản cộng vô tác dụng.
+// Gốc (Cơ bản - Cấp độ - Cảnh giới) bám mốc dưới, nội suy tuyến tính; chia phần trừ 90% Cấp độ / 10% Cảnh giới.
+// Xem docs/KHUNG_TONG_500_4300.md mục 4.
+if ($player->ulv > 93) {
+    $tpPts = array(93 => 13.2, 100 => 10, 500 => -20, 1000 => -40, 2000 => -70, 4300 => -110);
+    $tpTarget = -110;
+    $tpPrevL = null;
+    foreach ($tpPts as $tpL => $tpV) {
+        if ($tpPrevL !== null && $player->ulv <= $tpL) {
+            $tpTarget = $tpPts[$tpPrevL] + ($tpV - $tpPts[$tpPrevL]) * ($player->ulv - $tpPrevL) / ($tpL - $tpPrevL);
+            break;
+        }
+        $tpPrevL = $tpL;
+    }
+    $tpPenalty = $baseRate - $tpTarget;
+    $levelPenalty = round($tpPenalty * 0.9, 1);
+    $realmPenalty = round($tpPenalty - $levelPenalty, 1);
+}
+$rate =min(99, max(5, intval($baseRate - $levelPenalty - $realmPenalty + $psjs + $zbsjs + $tpBreak)));
 
 // Giảm tỷ lệ đột phá do đan độc (>1000 toxin = -1% mỗi 100 điểm)
 $toxinEffects = \player\luonden_apply_toxin_effects($sid, $dblj);

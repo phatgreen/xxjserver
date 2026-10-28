@@ -97,6 +97,10 @@ Nguồn cộng (thiết kế cùng):
 | **Đan** (mới) | 7 Đột Phá Đan có sẵn (Trúc Cơ → Đại Thừa) + đan mới cho cảnh giới cao; uống trước khi đột phá, mất khi thử | **K2** |
 | **Sự kiện** (mới) | cuối tuần / sự kiện server, cấu hình theo khung giờ | **K2** |
 
+**ĐÃ LÀM 2026-10-28 (chủ dự án duyệt):** công thức gốc mới trong `game/tupo.php` (cấp ≤ 93 giữ nguyên, nội suy theo mốc trên, chia 90% Cấp độ / 10% Cảnh giới);
+trang bị: ô Linh Phù / Ngọc Nhãn / Cổ Ngọc mang **tỉ lệ đột phá** +0→5%/món (đủ 3 món bậc 600–800 = +15%), ô Phi Phong / Linh Đai / Linh Bội mang
+**tốc độ tu luyện** +1→10%/món (trần 30% ở `game/xiulian.php`) — sinh bằng `tools/gen/dot_f_build.py` (`BREAK_PCT`, `CULT_PCT`).
+
 Sàn cuối cùng giữ **5%** (hoặc 1% — **K3**). Phí Linh Thạch giữ công thức cũ (`cấp×(cấp+1)`, đại cảnh giới `cấp²×3`) — với BIGINT không còn lo tràn ví.
 
 ## 4b. Bí Cảnh Luyện Cấp (map luyện cấp cho người chơi cấp cao)
