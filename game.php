@@ -85,8 +85,9 @@ $_SESSION["post_sep"] = $current_time;
 |--------------------------------------------------------------------------
 */
 
-// Phân tích query string thành biến
-parse_str($Dcmd);
+// Phân tích query string thành biến (dạng 2 tham số: parse_str 1 tham số bị deprecated từ PHP 7.2, bỏ ở PHP 8)
+parse_str($Dcmd, $__cmdVars);
+extract($__cmdVars);
 // Nếu không có cmd thì quay về index
 if (!isset($cmd)){
 	header("refresh:1;url=index.php");
@@ -111,7 +112,8 @@ if (in_array($cmd, $needEncode)) {
 $Dcmd = $encode->decode($cmd);
 
 // Parse lại biến
-parse_str($Dcmd);
+parse_str($Dcmd, $__cmdVars);
+extract($__cmdVars);
 
 
 

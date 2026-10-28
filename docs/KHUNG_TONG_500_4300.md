@@ -228,7 +228,7 @@ Làn mới = viết 1 file `spec/lanN.json` (tên) → `build.py N` → `migrate
 
 | Đợt | Nội dung | Phụ thuộc |
 |---|---|---|
-| **KT-0** Nền kỹ thuật | PHP 7.4 64-bit + BIGINT (test toàn bộ trên cloud trước) · EXP quái cấp > 500 · công thức đột phá mới + mục Đan / Sự kiện + `tuposjs` trang bị · 12 màu + sửa tên cảnh giới · tách file quái theo làn · bộ công cụ `tools/gen/lan/` | — |
+| **KT-0** Nền kỹ thuật | **ĐÃ LÀM 2026-10-28** (`DEPLOY_KT0_PHP74.md`): tương thích PHP 7.4 + BIGINT 17 cột · EXP quái cấp > 500 · công thức đột phá mới + `tuposjs` trang bị · đủ 86 màu (sửa lệch từ cấp 2900) + sửa tên. **Còn:** mục Đan / Sự kiện (chờ K2) · tên trùng "Thánh Nhân" 3851 (chờ K6) · tách file quái theo làn + `tools/gen/lan/` (làm đầu L2, khi có dữ liệu) | — |
 | **L2** 500–1000 | 10 khu (tên đã đề xuất ở `LAN2_CAP_500_1000.md`), Tàn Quyển boss mới | KT-0 |
 | **L3** 1000–1500 | 10 khu, bậc đồ 1000/1250 (Hỗn Độn), 5 võ công + 4 công pháp | L2 |
 | **L4** 1500–2000 | 10 khu, bậc 1500 | L3 |

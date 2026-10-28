@@ -59,8 +59,8 @@ $rangesjj = array(
 
 		'<font color="#FFD700" style="text-shadow:0px 0px 5px #FF6F00">Chuẩn </font><font color="#FF6F00" style="text-shadow:0px 0px 5px #FFD700">Tiên Đế </font>',
 		'<font color="#FFC107" style="text-shadow:0px 0px 8px #FF6F00">Tiên </font><font color="#FF6F00" style="text-shadow:0px 0px 8px #FFC107">Đế </font>',
-		'<font color="#FFB300" style="text-shadow:0px 0px 10px #FF6F00">Vô Thượng </font><font color="#FF6F00" style="text-shadow:0px 0px 10px #FFB300"> Tiên Đế </font>',
-		'<font color="#FF8F00" style="text-shadow:0px 0px 12px #E65100">Bất Hủ </font><font color="#E65100" style="text-shadow:0px 0px 12px #FF8F00"> Tiên Đế </font>',
+		'<font color="#FFB300" style="text-shadow:0px 0px 10px #FF6F00">Vô Thượng </font><font color="#FF6F00" style="text-shadow:0px 0px 10px #FFB300">Tiên Đế </font>',
+		'<font color="#FF8F00" style="text-shadow:0px 0px 12px #E65100">Bất Hủ </font><font color="#E65100" style="text-shadow:0px 0px 12px #FF8F00">Tiên Đế </font>',
 
 		// Thần Giới (Hồng Hoang) - Đỏ đậm -> Đen huyền bí - 10
 		'<font color="#FF5252" style="text-shadow:1px 1px 2px #000000">Luyện </font><font color="#FF1744" style="text-shadow:1px 1px 2px #000000">Thần </font>',
@@ -72,11 +72,11 @@ $rangesjj = array(
 		'<font color="#2B0000" style="text-shadow:1px 1px 2px #FF0000">Đế </font><font color="#000000" style="text-shadow:1px 1px 2px #FF0000">Chủ </font>',
 		'<font color="#000000" style="text-shadow:0px 0px 5px #FF0000">Chủ </font><font color="#000000" style="text-shadow:0px 0px 10px #FF0000">Tể </font>',
 
-		'<font color="#FF1744" style="text-shadow:1px 1px 5px #000000">Đại </font><font color="#880E4F" style="text-shadow:1px 1px 10px #000000"> Chủ Tể </font>',
+		'<font color="#FF1744" style="text-shadow:1px 1px 5px #000000">Đại </font><font color="#880E4F" style="text-shadow:1px 1px 10px #000000">Chủ Tể </font>',
 		'<font color="#5E35B1" style="text-shadow:0px 0px 10px #8E24AA">Luân </font><font color="#212121" style="text-shadow:0px 0px 15px #EA80FC">Hồi </font>',
 
 		// Thiên Đạo (Dải màu Sáng Thế: Vàng -> Trắng -> Tím Hư Không) - 19
-		'<font color="#FFEB3B" style="text-shadow:0px 0px 5px #FDD835">Sáng </font><font color="#FBC02D" style="text-shadow:0px 0px 5px #F57F17">Thê </font>',
+		'<font color="#FFEB3B" style="text-shadow:0px 0px 5px #FDD835">Sáng </font><font color="#FBC02D" style="text-shadow:0px 0px 5px #F57F17">Thế </font>',
 		// Chu Thiên I - V (Vàng Kim rực rỡ)
 		'<font color="#FFF176" style="text-shadow:0px 0px 3px #FFEE58">Chu </font><font color="#FFEE58" style="text-shadow:0px 0px 3px #FBC02D">Thiên I </font>',
 		'<font color="#FFF176" style="text-shadow:0px 0px 3px #FFEE58">Chu </font><font color="#FFEE58" style="text-shadow:0px 0px 3px #FBC02D">Thiên II </font>',

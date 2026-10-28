@@ -72,9 +72,22 @@ $jingjieColor = array(
 
     // Nhóm 8: Thiên Đạo & Sáng Thế (Bạch kim -> Tím hư không)
     '#FFEB3B', // Sáng Thế
-    '#FFF176', // Chu Thiên I-V
-    '#FFFFFF', // Chu Thiên VI-X
-    '#E1BEE7', // Chu Thiên XI-XV
+    // Chu Thiên: mỗi tầng 1 ô (trước gộp 3 dòng cho 15 tầng ⇒ lệch màu từ cấp 2900, thiếu 12 màu cuối)
+    '#FFF176', // Chu Thiên I
+    '#FFF176', // Chu Thiên II
+    '#FFF176', // Chu Thiên III
+    '#FFF176', // Chu Thiên IV
+    '#FFF176', // Chu Thiên V
+    '#FFFFFF', // Chu Thiên VI
+    '#FFFFFF', // Chu Thiên VII
+    '#FFFFFF', // Chu Thiên VIII
+    '#FFFFFF', // Chu Thiên IX
+    '#FFFFFF', // Chu Thiên X
+    '#E1BEE7', // Chu Thiên XI
+    '#E1BEE7', // Chu Thiên XII
+    '#E1BEE7', // Chu Thiên XIII
+    '#E1BEE7', // Chu Thiên XIV
+    '#E1BEE7', // Chu Thiên XV
     '#FFD700', // Thần Mệnh
     '#B3E5FC', // Sáng Thế Chủ Tể Thần
     '#E1F5FE', // Sáng Thế Thần Mệnh

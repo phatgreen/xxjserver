@@ -89,3 +89,23 @@ if (!function_exists(__NAMESPACE__ . '\\get_guaiwu_config_list')) {
         return array_values(guaiwu_config_all());
     }
 }
+
+if (!function_exists(__NAMESPACE__ . '\\guaiwu_exp')) {
+    /**
+     * EXP một quái khi sinh ra map (docs/KHUNG_TONG_500_4300.md mục 3, KT-0).
+     * Cấp ≤ 500: cấp × (106–108) như cũ. Cấp > 500: 110 × cấp² ÷ KILLS (EXP lên cấp chia số quái mỗi cấp),
+     * giữ dao động (106–108)/107 ⇒ khoảng 400 quái cùng cấp/cấp thay vì tăng tuyến tính tới ~4.400.
+     * Tính bằng float rồi round(): đúng cả trên PHP 32-bit (giá trị lớn nhất ~5 triệu).
+     */
+    function guaiwu_exp($glv, $sjexp = null){
+        $kills = 400;
+        $glv = intval($glv);
+        if ($sjexp === null) {
+            $sjexp = mt_rand(6, 8) + 100;
+        }
+        if ($glv <= 500) {
+            return round($glv * $sjexp, 0);
+        }
+        return round(110.0 * $glv * $glv / $kills * $sjexp / 107, 0);
+    }
+}

@@ -180,8 +180,8 @@ if ($second > $clmid->ms  && $cxallguaiwu<= 3 && $clmid->mgid!=''){//刷新怪�
         $gwinfo = explode("|",$itemgw);
         $guaiwu = \player\getyguaiwu($gwinfo[0],$dblj);
         $guaiwu->gyid = $gwinfo[0];
-        $sjexp = mt_rand(6,8) + 100;//原有加成0.5，我改成100..
-        $guaiwu->gexp = round($guaiwu->glv * $sjexp,0);
+        // EXP quái: class/function/guaiwu.php guaiwu_exp() (cấp > 500 theo khung KT-0)
+        $guaiwu->gexp = \player\guaiwu_exp($guaiwu->glv);
         for ($n=0;$n<$gwinfo[1];$n++){
             $sql = "insert into midguaiwu(mid,gname,glv,ghp,ggj,gfy,gbj,gxx,gexp,gyid,gmaxhp) 
                     values('$player->nowmid',
