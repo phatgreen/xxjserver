@@ -531,7 +531,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102811">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102812">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
@@ -631,8 +631,8 @@ switch ($cmd) {
             <div class="tcg-username"><?php echo htmlspecialchars($tcg_header_name, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="tcg-userid"><?php echo htmlspecialchars($tcg_header_id, ENT_QUOTES, 'UTF-8'); ?></div>
         </div>
-        <div class="tcg-money tcg-linh"><span>💰</span><b><i class="tcg-num-full"><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_linh); ?></i></b></div>
-        <div class="tcg-diamond"><span>💎</span><b><i class="tcg-num-full"><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_ma); ?></i></b></div>
+        <div class="tcg-money tcg-linh"><span>💰</span><b><i class="tcg-num-full" id="yxb_val"><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_linh); ?></i></b></div>
+        <div class="tcg-diamond"><span>💎</span><b><i class="tcg-num-full" id="czb_val"><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_ma); ?></i></b></div>
     </div>
 </header>
 <div class="tcg-page">
@@ -666,25 +666,11 @@ switch ($cmd) {
                     window.location.reload();
                 }
             });
-
-            function changetime(){
-                var ary = Array("Chủ Nhật","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7");
-                var Timehtml = document.getElementById('CurrentTime');
-                if (!Timehtml) return;
-                var date = new Date();
-                Timehtml.innerHTML = '' + date.toLocaleString() + ' ' + ary[date.getDay()];
-            }
-            window.onload = function(){
-                changetime();
-                setInterval(changetime,1000);
-            }
             </script>
-            <div id="CurrentTime"><?php echo date('Y-m-d H:i:s') ?></div>
         </footer>
     </div>
-</div>
 <?php
-// Thanh dưới cố định 5 tab; chấm đỏ: Tu Luyện khi đột phá được, Nhiệm Vụ khi có thưởng chưa nhận
+// Thanh dưới 5 tab nằm cuối trang (không cố định để không che nội dung); chấm đỏ: Tu Luyện khi đột phá được, Nhiệm Vụ khi có thưởng chưa nhận
 if ($tcg_has_nav) {
     echo \player\nav_bottom_html($player, $sid, $encode, $cmd, array(
         'tuluyen' => $tpts != '',
@@ -692,6 +678,7 @@ if ($tcg_has_nav) {
     ));
 }
 ?>
+</div>
 <?php
 // Popup "Tính năng mới" (đặt sau khi trang chạy xong: vừa đột phá lên cấp mở tính năng là hiện ngay)
 if (isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($player->ulv)) {

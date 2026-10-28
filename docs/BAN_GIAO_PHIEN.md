@@ -48,6 +48,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Lộ Trình Cảnh Giới | Tab Nhiệm Vụ → Cảnh Giới: 429 mốc (đột phá đại cảnh giới + Sơ/Trung/Hậu kỳ/Viên Mãn), thưởng tu vi + LT (đột phá thêm MT = 10 lần hạ boss), nhận 1 lần (mã CG+cấp trong `player_nhiemvu_achievements`), chấm đỏ nút Nhiệm Vụ — không cần migrate | `class/config/canhgioi_reward.json`, `tests/test_canhgioi.php` |
 | Thể lực + MT boss | Thể lực tối đa 100 + 1/cấp (`stamina_cap`, cột `umaxstamina` giữ gốc 100), hồi 1 điểm/phút (`stamina_interval_sec`); mỗi đòn: thường 1 (boss 0), Tuyệt Kỹ 3→10 / Tuyệt Chiêu 6→20 theo phẩm võ công, bí kíp 3, Linh Căn 5/8/12 — `wugong_skill_config.json`. Boss: MT chặn khi chênh ≥ 35 cấp như LT — không cần migrate | `tests/test_stamina.php`, `tests/test_combat_moves.php` |
 | Nguồn trang bị | Thương Điếm chỉ bán bậc <= 30; bậc >= 60: quái rơi 9 ô thường (chia 3 nhóm quái/bậc), boss rơi 6 ô quý (tu luyện 8/13/14, đột phá 9/10/11) → săn đem lên Phường Thị. Ô thường bậc >= 60 cộng đột phá / tu luyện = max(1, ô quý // 3). Chạy `tools/gen/drop_cover_build.py` SAU mọi bộ sinh khác; DB: `sql/migrate_drop_cover.php --apply` | `tests/test_drop_cover.php` |
+| Tu Luyện gọn 1 màn hình | Cảnh giới + thanh tiến độ vào đáy khung nhân vật (bỏ chip LT/MT trùng thanh trên — số trên thanh trên `#yxb_val`/`#czb_val` cập nhật live), chỉ số 5 cột × 2 hàng, bỏ đồng hồ `#CurrentTime` cuối trang, **thanh dưới 5 tab không còn `fixed`** (nằm cuối `.tcg-page`, không che nội dung) — không cần migrate | `game/xiulian.php`, `game.php`, `css/mystyle.css` |
 | Làn 3 (cấp 1001–1500) | Đồ bậc 1000/1250 phẩm Hỗn Độn (30 món, bộ 11, 4 công thức), 10 khu / 80 map id 2001–2080 / 170 quái / 10 boss, chương 24–33, 10 NPC, Tàn Quyển 5%, 5 võ công Tuyệt Thế CG 25. Quái + boss **khó dần theo cấp** (áp cả làn 2). Đan đột phá không tác dụng từ Độ Kiếp — `sql/migrate_lan3.php` + `migrate_lan3_c.php` | `LAN3_CAP_1000_1500.md` mục 0 |
 | Làn 2 (L2-B, C, D) | 10 khu cấp 501–1000, 80 map (id 1001–1080), 170 quái, 10 boss, ảnh khu, chương 14–23, 10 NPC, Tàn Quyển boss mới — `sql/migrate_lan2.php` + `migrate_lan2_c.php` | `LAN2_CAP_500_1000.md` mục 0 |
 | KT-0 nền kỹ thuật | Tương thích PHP 7.4/8, BIGINT 17 cột (`sql/migrate_kt0_bigint.php`), EXP quái > 500, đủ 86 màu cảnh giới, sửa tên (K6), Đột Phá Đan + sự kiện cuối tuần (K2), cron tự chọn PHP | `DEPLOY_KT0_PHP74.md` |
@@ -83,7 +84,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Nhiệm vụ | `class/function/nhiemvu.php`, `class/function/online_reward.php`, `game/nhiemvu.php`, `game/task.php`, `npc/npc.php`, `game/taskguide.php`; móc ở `nowmid.php`, `pve.php`, `boss.php`, `thiencoccac.php`, `conghuong.php`, `tupo.php` |
 | Trang bị | `class/function/zhuangbei.php`, `class/function/taozhuang.php`, `upzbsx` trong `player.php`, `game/zbinfo.php`, `game/taozhuang.php` |
 | Bản đồ | `game/nowmid.php` (Đại Sảnh), bảng `mid` (`mgid` quái, `mnpc` NPC, `midboss`), `qy` khu vực |
-| CSS | `css/mystyle.css` — **tăng số `?v=` trong `game.php` mỗi khi sửa** (hiện `2026102803`) |
+| CSS | `css/mystyle.css` — **tăng số `?v=` trong `game.php` mỗi khi sửa** (hiện `2026102812`) |
 
 ## 5. Môi trường thử trên cloud (container mới mỗi phiên)
 
