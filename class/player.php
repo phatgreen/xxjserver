@@ -740,6 +740,11 @@ function getplayer($sid,$dblj){
         if ($chRes['bonus']['def'] > 0) $player->ufy = intval($player->ufy * (100 + $chRes['bonus']['def']) / 100);
         if ($chRes['bonus']['hp'] > 0) $player->umaxhp = intval($player->umaxhp * (100 + $chRes['bonus']['hp']) / 100);
     }
+    // Tông Môn: % Công / Phòng / Khí huyết theo cấp tông môn; % EXP tu luyện dùng ở game/xiulian.php
+    $player->club_bonus = club_player_bonus($player->sid, $dblj);
+    if ($player->club_bonus['atk'] > 0) $player->ugj = intval($player->ugj * (100 + $player->club_bonus['atk']) / 100);
+    if ($player->club_bonus['def'] > 0) $player->ufy = intval($player->ufy * (100 + $player->club_bonus['def']) / 100);
+    if ($player->club_bonus['hp'] > 0) $player->umaxhp = intval($player->umaxhp * (100 + $player->club_bonus['hp']) / 100);
 
     // ===== BUFF LINH CĂN (Passive) =====
     // Linh căn buff thuộc tính + pet bonus, áp dụng SAU congphap.
@@ -2895,6 +2900,45 @@ function getclub($clubid,$dblj){
     }
 
     return false;
+}
+
+/**
+ * Lợi ích tông môn theo cấp (docs/DESIGN_TONGMON_CANBANG.md mục 3.2).
+ * Cấp => [max thành viên, HP%, ATK%, DEF%, EXP tu luyện%] — % là phần cộng thêm.
+ */
+function club_benefits_table(){
+    return array(
+        1  => array(8,  1, 0.5, 0.5, 1),
+        2  => array(11, 2, 1,   1,   2),
+        3  => array(14, 3, 1.5, 1.5, 3),
+        4  => array(17, 4, 2,   2,   4),
+        5  => array(20, 5, 2.5, 2.5, 5),
+        6  => array(25, 6, 3,   3,   6),
+        7  => array(30, 7, 3.5, 3.5, 7),
+        8  => array(35, 8, 4,   4,   8),
+        9  => array(40, 9, 4.5, 4.5, 9),
+        10 => array(50, 10, 5,  5,   10),
+    );
+}
+
+/**
+ * % lợi ích tông môn của nhân vật; chưa vào tông môn / đang chờ duyệt (uclv = 0) => toàn 0.
+ * @return array('lv','hp','atk','def','exp')
+ */
+function club_player_bonus($sid, $dblj){
+    $bonus = array('lv' => 0, 'hp' => 0, 'atk' => 0, 'def' => 0, 'exp' => 0);
+    $stmt = $dblj->prepare("SELECT c.clublv FROM clubplayer cp JOIN club c ON c.clubid = cp.clubid WHERE cp.sid = ? AND cp.uclv > 0 LIMIT 1");
+    $stmt->execute(array($sid));
+    $lv = intval($stmt->fetchColumn());
+    if ($lv <= 0) return $bonus;
+    $table = club_benefits_table();
+    $row = isset($table[$lv]) ? $table[$lv] : $table[max(array_keys($table))];
+    $bonus['lv'] = $lv;
+    $bonus['hp'] = $row[1];
+    $bonus['atk'] = $row[2];
+    $bonus['def'] = $row[3];
+    $bonus['exp'] = $row[4];
+    return $bonus;
 }
 
 function getclub_all($dblj){

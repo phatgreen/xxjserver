@@ -103,6 +103,7 @@ $lc_absorb = isset($player->linhcan_absorb) ? floatval($player->linhcan_absorb) 
 $lc_exp_bonus = isset($player->linhcan_exp_bonus) ? floatval($player->linhcan_exp_bonus) : 0;
 $tc_exp_bonus = isset($player->thechat_passive_exp) ? floatval($player->thechat_passive_exp) : 0;
 $tp_exp_bonus = isset($player->tianfu_bonus['exp_cultivate']) ? floatval($player->tianfu_bonus['exp_cultivate']) : 0;
+$club_exp_bonus = isset($player->club_bonus['exp']) ? floatval($player->club_bonus['exp']) : 0; // Tông Môn: +1%/cấp, tối đa +10%
 
 // Breakthrough prompt
 $tupoCmd = $encode->encode("cmd=tupo&sid=$sid");
@@ -111,7 +112,7 @@ $tpts = ($player->uexp >= $player->umaxexp && $player->umaxexp > 0)
     : '';
 $base_exp_per_sec = round($player->ulv * $vip_bonus * $exp_multiplier * min(1.3, 1 + $cp_absorb / 100) * min(1.3, 1 + $lc_absorb / 100) * min(1.3, 1 + $lc_exp_bonus / 100) * min(1.5, 1 + $tc_exp_bonus / 100), 4); // linh khí gốc mỗi giây
 $equip_bonus_percent = min(30, max(0, floatval($player->tupoexp))); // trần 30% như các buff tu luyện khác
-$exp_per_sec = round($base_exp_per_sec * (1 + $equip_bonus_percent / 100) * (1 + $tp_exp_bonus / 100), 4); // linh khí thực nhận mỗi giây (Thiên Phú nhân NGOÀI chuỗi min() — Task 11 [CHOT])
+$exp_per_sec = round($base_exp_per_sec * (1 + $equip_bonus_percent / 100) * (1 + $tp_exp_bonus / 100) * (1 + $club_exp_bonus / 100), 4); // linh khí thực nhận mỗi giây (Thiên Phú nhân NGOÀI chuỗi min() — Task 11 [CHOT])
 $base_exp_per_min = round($base_exp_per_sec * 60, 2);
 $exp_per_min = round($exp_per_sec * 60, 2);
 $base_exp_rate_text = xl_rate_text($base_exp_per_sec);
@@ -205,10 +206,10 @@ if ($cmd == 'endxiulian' && $player->sfxl > 0) {
         \player\changeexp($sid, $dblj, $gain_exp);
         \player\changeplayersx('sfxl', 0, $sid, $dblj);
 
-        // ===== Cộng EXP tông môn (5% tu vi nhận được) =====
+        // ===== Cộng EXP tông môn (1% tu vi nhận được — docs/DESIGN_TONGMON_CANBANG.md mục 3.3) =====
         $clubPlayer = \player\getclubplayer_once($sid, $dblj);
         if ($clubPlayer && intval($clubPlayer->uclv) > 0) {
-            $clubExpGain = intval($gain_exp * 0.05);
+            $clubExpGain = intval($gain_exp * 0.01);
             if ($clubExpGain > 0) {
                 $stmt = $dblj->prepare("UPDATE club SET clubexp = clubexp + ? WHERE clubid = ?");
                 $stmt->execute(array($clubExpGain, intval($clubPlayer->clubid)));

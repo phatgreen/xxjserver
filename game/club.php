@@ -15,42 +15,31 @@ require_once __DIR__ . '/../class/function/club_treasury.php';
 
 /* === CONFIG NÂNG CẤP TÔNG MÔN (thủ công từng cấp) === */
 $club_upgrade_config = [
-    //  Cấp => [LT cần, MT cần, EXP cần]
-    1  => [300000,  30000,   10000],
-    2  => [500000,  50000,   25000],
-    3  => [700000,  70000,   50000],
-    4  => [1000000, 100000,  100000],
-    5  => [2000000, 200000,  160000],
-    6  => [3000000, 300000,  240000],
-    7  => [5000000, 500000,  360000],
-    8  => [7000000, 700000,  500000],
-    9  => [10000000, 1000000,  700000],
+    //  Cấp => [LT cần, MT cần, EXP cần] — docs/DESIGN_TONGMON_CANBANG.md mục 3.3
+    //  (tông môn 10 người chơi vừa phải: cấp 5 sau ~1 tháng, cấp 10 sau ~5–6 tháng)
+    1  => [1000000,   2000,    50000],
+    2  => [2000000,   4000,    150000],
+    3  => [3500000,   6000,    400000],
+    4  => [5500000,   9000,    1000000],
+    5  => [8000000,   13000,   2000000],
+    6  => [11000000,  18000,   4000000],
+    7  => [15000000,  24000,   7000000],
+    8  => [20000000,  32000,   11000000],
+    9  => [27000000,  42000,   16000000],
 ];
 $club_max_level = 10;
 
 /* === CONFIG LỢI ÍCH TÔNG MÔN theo cấp === */
-$club_benefits_config = [
-    //  Cấp => [max thành viên, HP%, ATK%, DEF%, EXP%] — mọi cột % là phần cộng thêm (5 = +5%)
-    //  Lưu ý: HP/ATK/DEF/EXP hiện CHỈ hiển thị, chưa áp vào chỉ số (xem docs/DESIGN_TONGMON_CANBANG.md)
-    1  => [8,   2,  1,  1,   5],
-    2  => [11,  4,  2,  2,  10],
-    3  => [14,  6,  3,  3,  15],
-    4  => [17,  8,  4,  4,  20],
-    5  => [20, 10,  5,  5,  25],
-    6  => [25, 12,  6,  6,  30],
-    7  => [30, 14,  7,  7,  35],
-    8  => [35, 16,  8,  8,  40],
-    9  => [40, 18,  9,  9,  45],
-    10 => [50, 20, 10, 10,  50],
-];
+$club_benefits_config = \player\club_benefits_table(); // dùng chung với getplayer() (class/player.php)
 
 /* === CONFIG KIẾM EXP TÔNG MÔN === */
 $club_exp_config = [
     'donate_rate_lt'    => 0.10,   // Quyên góp LT: 10% số tiền donate
     'donate_rate_mt'    => 1.0,    // Quyên góp MT: 1 MT = 1 EXP
     'donate_min_lt'     => 10,     // Tối thiểu 10 Linh Thạch
-    'meditate_rate'     => 0.05,   // Tu luyện: 5% EXP nhận được
+    'meditate_rate'     => 0.01,   // Tu luyện: 1% EXP nhận được (game/xiulian.php)
     'online_per_hour'   => 50,     // Online: 50 EXP/giờ (mỗi thành viên)
+    'online_max_hours'  => 24,     // Trần giờ mỗi lần nhận online
     'quest_base'        => 100,    // Nhiệm vụ cơ bản: 100 EXP
     'quest_daily_max'   => 5,      // Số nhiệm vụ tông môn/ngày
     'boss_base'         => 500,    // Boss tông môn: 500 EXP cơ bản
@@ -796,8 +785,17 @@ HTML;
             }
             $myClubId = intval($clubplayer->clubid);
             $now = time();
-            $lastClaimKey = 'club_online_' . $sid;
-            $lastClaim = isset($_SESSION[$lastClaimKey]) ? intval($_SESSION[$lastClaimKey]) : 0;
+            // Mốc nhận lưu DB (session cũ: lần đầu = 0 => cộng ~25 triệu EXP; đăng nhập lại là nhận lại được)
+            $stOnline = $dblj->prepare("SELECT online_claim_at FROM clubplayer WHERE sid = ? AND clubid = ? LIMIT 1");
+            $stOnline->execute(array($sid, $myClubId));
+            $lastClaim = intval($stOnline->fetchColumn());
+            if ($lastClaim <= 0) {
+                $stOnline = $dblj->prepare("UPDATE clubplayer SET online_claim_at = ? WHERE sid = ? AND clubid = ?");
+                $stOnline->execute(array($now, $sid, $myClubId));
+                if ($isAjax) ajaxJson(false, 'Bắt đầu tính giờ online, quay lại sau 1 giờ để nhận');
+                echo '<div class="tcg-club-notice">Bắt đầu tính giờ online, quay lại sau 1 giờ để nhận</div>';
+                break;
+            }
             $hoursPassed = ($now - $lastClaim) / 3600;
 
             if ($hoursPassed < 1) {
@@ -807,10 +805,17 @@ HTML;
                 break;
             }
 
-            $hours = floor($hoursPassed);
+            $hours = min($club_exp_config['online_max_hours'], floor($hoursPassed));
+            // Chỉ người cập nhật được mốc mới cộng EXP (2 lần bấm cùng lúc không nhận đôi)
+            $stOnline = $dblj->prepare("UPDATE clubplayer SET online_claim_at = ? WHERE sid = ? AND clubid = ? AND online_claim_at = ?");
+            $stOnline->execute(array($now, $sid, $myClubId, $lastClaim));
+            if ($stOnline->rowCount() < 1) {
+                if ($isAjax) ajaxJson(false, 'Vừa nhận rồi');
+                echo '<div class="tcg-club-notice">Vừa nhận rồi</div>';
+                break;
+            }
             $onlineExp = $hours * $club_exp_config['online_per_hour'];
             club_add_exp($myClubId, $onlineExp, $dblj);
-            $_SESSION[$lastClaimKey] = $now;
 
             /* Hook quest: online */
             \player\club_quest_update($sid, 'online', intval($hours), $dblj);
@@ -1007,9 +1012,10 @@ HTML;
             }
             $myClubId = intval($clubplayer->clubid);
             $today = date('Y-m-d');
-            $bossKey = 'club_boss_' . $myClubId . '_' . $today;
-
-            if (isset($_SESSION[$bossKey]) && $_SESSION[$bossKey] > 0) {
+            // Khóa 1 lần/ngày cho cả tông môn trong DB (session cũ: mỗi lần đăng nhập lại bấm thêm được)
+            $stBoss = $dblj->prepare("UPDATE club SET boss_date = ? WHERE clubid = ? AND boss_date <> ?");
+            $stBoss->execute(array($today, $myClubId, $today));
+            if ($stBoss->rowCount() < 1) {
                 if ($isAjax) ajaxJson(false, 'Boss tông môn đã bị tiêu diệt hôm nay');
                 echo '<div class="tcg-club-notice">Boss tông môn đã bị tiêu diệt hôm nay</div>';
                 break;
@@ -1021,7 +1027,6 @@ HTML;
 
             $bossExp = $club_exp_config['boss_base'] + ($memberCount * $club_exp_config['boss_per_player']);
             club_add_exp($myClubId, $bossExp, $dblj);
-            $_SESSION[$bossKey] = 1;
 
             if ($isAjax) ajaxJson(true, "Boss tông môn bị tiêu diệt! +$bossExp EXP tông môn ($memberCount thành viên tham gia)");
             echo '<div class="tcg-club-notice success">Boss tông môn bị tiêu diệt! +'.$bossExp.' EXP tông môn ('.$memberCount.' thành viên tham gia)</div>';
@@ -1305,10 +1310,10 @@ HTML;
         <div class="tcg-club-benefits">
             <div class="tcg-club-benefit">💰 Quyên góp LT: 10 LT = 1 EXP cá nhân + 1 EXP tông môn</div>
             <div class="tcg-club-benefit">💰 Quyên góp MT: 1 MT = 1 EXP cá nhân + 1 EXP tông môn</div>
-            <div class="tcg-club-benefit">🧘 Tu luyện: +5% EXP nhận được</div>
-            <div class="tcg-club-benefit">⏰ Online: +50 EXP/giờ (mỗi thành viên)</div>
+            <div class="tcg-club-benefit">🧘 Tu luyện: +1% tu vi nhận được</div>
+            <div class="tcg-club-benefit">⏰ Online: +50 EXP/giờ (mỗi thành viên, tối đa 24 giờ/lần nhận)</div>
             <div class="tcg-club-benefit">📋 Nhiệm vụ: +100~500 EXP/ngày</div>
-            <div class="tcg-club-benefit">🐉 Boss: +500 + (50 × số thành viên) EXP/ngày</div>
+            <div class="tcg-club-benefit">🐉 Boss: +500 + (50 × số thành viên) EXP/ngày (1 lần/ngày cho cả tông môn)</div>
         </div>
     </div>
 

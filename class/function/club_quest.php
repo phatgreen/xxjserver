@@ -285,9 +285,10 @@ function club_quest_check_completion($sid, $dblj) {
     if ($total <= 0) return array('done' => false, 'claimed' => 0, 'total' => 0, 'bonus_exp' => $bonusExp);
     if ($claimed < $total) return array('done' => false, 'claimed' => $claimed, 'total' => $total, 'bonus_exp' => $bonusExp);
 
-    /* Kiểm tra đã nhận bonus chưa (dùng session) */
-    $bonusKey = 'club_quest_bonus_' . $sid . '_' . $today;
-    if (isset($_SESSION[$bonusKey]) && $_SESSION[$bonusKey] == 1) {
+    /* Kiểm tra đã nhận bonus chưa (lưu DB clubplayer.quest_bonus_date; session cũ đăng nhập lại là nhận lại được) */
+    $stB = $dblj->prepare("SELECT quest_bonus_date FROM clubplayer WHERE sid = ? LIMIT 1");
+    $stB->execute(array($sid));
+    if ((string)$stB->fetchColumn() === $today) {
         return array('done' => true, 'claimed_bonus' => true, 'claimed' => $claimed, 'total' => $total, 'bonus_exp' => $bonusExp);
     }
 
@@ -302,14 +303,19 @@ function club_quest_claim_completion($sid, $clubid, $dblj) {
         return array('ok' => false, 'msg' => 'Đã nhận thưởng hoàn thành hôm nay');
     }
 
+    /* Đánh dấu đã nhận trước khi cộng: 2 lần bấm cùng lúc chỉ 1 lần cập nhật được */
+    $today = date('Y-m-d');
+    $mark = $dblj->prepare("UPDATE clubplayer SET quest_bonus_date = ? WHERE sid = ? AND quest_bonus_date <> ?");
+    $mark->execute(array($today, $sid, $today));
+    if ($mark->rowCount() < 1) {
+        return array('ok' => false, 'msg' => 'Đã nhận thưởng hoàn thành hôm nay');
+    }
+
     $bonusExp = intval($info['bonus_exp']);
     if ($bonusExp > 0 && $clubid > 0) {
         $upd = $dblj->prepare("UPDATE club SET clubexp = clubexp + ? WHERE clubid = ?");
         $upd->execute(array($bonusExp, $clubid));
     }
-
-    $bonusKey = 'club_quest_bonus_' . $sid . '_' . date('Y-m-d');
-    $_SESSION[$bonusKey] = 1;
 
     return array('ok' => true, 'msg' => 'Hoàn thành tất cả! +' . $bonusExp . ' EXP Tông Môn', 'bonus_exp' => $bonusExp);
 }

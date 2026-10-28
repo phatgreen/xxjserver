@@ -61,7 +61,8 @@ def pet_need(lv):
 def ch_cost(q): return (3 * q + 1) * 50 + round(q / 2) * round(q / 3) * 2 * round(q / 4) + 1
 def ch_p(q): return max(0.001, (1 - q / 35) * min(1, (31 - q) / 30))
 
-def sim(days, online_h, seed=1, hunt=True):
+def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0):
+    # marks: ngày ghi số liệu; cult_bonus: % EXP tu luyện cộng thêm (Tông Môn)
     random.seed(seed)
     owned = dict((s, 0) for s in range(1, 16))   # bậc trang bị đang mặc theo ô
     def gb():
@@ -117,7 +118,7 @@ def sim(days, online_h, seed=1, hunt=True):
     def cult_tick(minutes, wd, allow_lt=True):
         nonlocal lt
         per_min = math.ceil(L ** 1.15 / 5)
-        mult = 1 + gc() / 100
+        mult = (1 + gc() / 100) * (1 + cult_bonus / 100)
         if exp >= need(L): try_tupo(wd)
         if exp >= need(L): return
         if allow_lt and lt >= per_min * minutes * 3 + tupo_cost(L) * 3:
@@ -256,7 +257,7 @@ def sim(days, online_h, seed=1, hunt=True):
             if L >= chL and chL > ch_done: add_exp(need(L) * 0.9, 'e_quest'); add_lt(10 * chL * 6 * (1 + L / 100), 'lt_quest'); ch_done = chL
         try_tupo(wd)
         features()
-        if day + 1 in (1, 3, 7, 14, 30):
+        if day + 1 in marks:
             cpq = 0; x = F['cp']; nd = 100
             while cpq < 10 and x >= nd: x -= nd; cpq += 1; nd *= 1.3
             out[day + 1] = dict(L=L, lt=int(lt), mt=int(mt), rate=rate(L, 0, gb()), gb=gb() if hunt else 3 * tier(L, BREAK_PCT), gc=gc(), cur_t=tkey(L), cur_n=sum(1 for s_ in owned if owned[s_] >= tkey(L)) if hunt else 15, spec_n=sum(1 for s_ in SPECIAL_BREAK + SPECIAL_CULT if owned[s_] >= 60) if hunt else 6, lc=min(F['lc']), lc_stage=F['lc_stage'], tf_lv=F['tf_lv'], tf_q=F['tf_q'] + 1 if F['tf_open'] else 0,
@@ -264,7 +265,40 @@ def sim(days, online_h, seed=1, hunt=True):
                                 **{k: int(v) for k, v in S.items()})
     return out
 
+# ---- Tông Môn (docs/DESIGN_TONGMON_CANBANG.md) — chi phí nâng cấp + nguồn EXP lấy từ game/club.php ----
+CLUB_UP = {1: (1000000, 2000, 50000), 2: (2000000, 4000, 150000), 3: (3500000, 6000, 400000), 4: (5500000, 9000, 1000000),
+           5: (8000000, 13000, 2000000), 6: (11000000, 18000, 4000000), 7: (15000000, 24000, 7000000), 8: (20000000, 32000, 11000000),
+           9: (27000000, 42000, 16000000)}
+CLUB_QUEST_AVG, CLUB_QUEST_N = 427, 5      # trung bình reward_exp bảng club_quest_config, 4–6 nhiệm vụ/ngày
+def club_sim(mix, days, give_lt=0.2, give_mt=0.3, meditate=0.01, seed=1):
+    # mix: danh sách giờ online mỗi thành viên. Thành viên góp give_lt LT + give_mt MT thu được mỗi ngày (giả định: góp
+    # không làm chậm lên cấp của họ — lạc quan). EXP tông môn/ngày = meditate × tu vi tu luyện + nhiệm vụ + online 24h×50
+    # + boss (500 + 50×N) + quyên góp (10 LT / 1 MT = 1 EXP).
+    runs = [sim(days, h, seed=seed + i, hunt=True, marks=tuple(range(1, days + 1))) for i, h in enumerate(mix)]
+    n = len(mix); lv, lt, mt, ex = 1, 0.0, 0.0, 0.0; prev = [dict(lt_in=0, mt=0, e_cult=0) for _ in mix]; at = {}
+    for d in range(1, days + 1):
+        for i, r in enumerate(runs):
+            x = r[d]; m_in = x['mt_boss'] + x['mt_quest']
+            dlt, dmt, dcu = x['lt_in'] - prev[i]['lt_in'], m_in - prev[i]['mt'], x['e_cult'] - prev[i]['e_cult']
+            prev[i] = dict(lt_in=x['lt_in'], mt=m_in, e_cult=x['e_cult'])
+            lt += dlt * give_lt; mt += dmt * give_mt
+            ex += dcu * meditate + CLUB_QUEST_AVG * CLUB_QUEST_N + 24 * 50 + dlt * give_lt * 0.1 + dmt * give_mt
+        ex += 500 + 50 * n
+        while lv < 10 and lt >= CLUB_UP[lv][0] and mt >= CLUB_UP[lv][1] and ex >= CLUB_UP[lv][2]:
+            lt -= CLUB_UP[lv][0]; mt -= CLUB_UP[lv][1]; ex -= CLUB_UP[lv][2]; lv += 1; at[lv] = d
+    return lv, at
+
 if __name__ == '__main__':
+    import sys
+    if '--tongmon' in sys.argv:
+        # 10 thành viên: 3 nhẹ 2h, 5 vừa 5h, 2 cày 10h; 180 ngày
+        mix = [2, 2, 2, 5, 5, 5, 5, 5, 10, 10]
+        lv, at = club_sim(mix, 180)
+        print('Tong mon 10 nguoi (3x2h, 5x5h, 2x10h), gop 20%% LT + 30%% MT: cap %d sau 180 ngay; ngay dat cap: %s' % (lv, at))
+        for b in (0, 5, 10):
+            rs = [sim(30, 5, seed=x, hunt=True, cult_bonus=b) for x in range(10)]
+            print('Vua 5h, EXP tu luyen +%2d%%: cap ngay 30 = %.1f' % (b, sum(r[30]['L'] for r in rs) / len(rs)))
+        sys.exit(0)
     for name, h in (('Nhe 2h', 2), ('Vua 5h', 5), ('Cay 10h', 10)):
         for hunt in (False, True):
             res = [sim(30, h, seed=x, hunt=hunt) for x in range(30)]
