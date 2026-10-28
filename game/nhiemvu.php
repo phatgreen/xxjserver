@@ -35,6 +35,9 @@ if ($action === 'claim_daily') {
             ? '<div class="nv-success">'.$r['msg'].'</div>'
             : '<div class="nv-error">'.$r['msg'].'</div>';
     }
+} elseif ($action === 'claim_realm_all') {
+    $r = \player\nhiemvu_realm_claim_all($sid, $dblj);
+    $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . $r['msg'] . '</div>';
 } elseif ($action === 'claim_realm') {
     $rid = isset($rid) && $rid !== '' ? $rid : (isset($_GET['rid']) ? $_GET['rid'] : '');
     if ($rid) {
@@ -271,9 +274,14 @@ elseif ($tab === 'achievements') {
     } else {
         foreach ($achieves as $group) {
             $cat = $group['cat'];
-            $html .= '<div class="nv-achieve-group">
-                <div class="nv-achieve-cat">'.$cat['icon'].' '.$cat['name'].' <small>'.$cat['description'].'</small></div>';
-            foreach ($group['tiers'] as $t) {
+            // Mỗi nhóm chỉ hiện 1 dòng: bậc đầu tiên chưa nhận (nhận hết -> bậc cuối) để trang không dài
+            $nTier = count($group['tiers']);
+            $show = $group['tiers'][$nTier - 1];
+            $tierNo = $nTier;
+            foreach ($group['tiers'] as $ti => $tt) {
+                if (!$tt['claimed']) { $show = $tt; $tierNo = $ti + 1; break; }
+            }
+            foreach (array($show) as $t) {
                 $done = $t['claimed'];
                 $reach = intval($t['progress']) >= intval($t['target']);
                 $pct = $t['target'] > 0 ? min(100, intval($t['progress']*100/$t['target'])) : 0;
@@ -289,7 +297,7 @@ elseif ($tab === 'achievements') {
                 }
                 $html .= '<div class="nv-item">
                     <div class="nv-info">
-                        <div class="nv-name" style="font-size:12px">'.$t['name'].'</div>
+                        <div class="nv-name" style="font-size:12px">'.$cat['icon'].' '.$t['name'].' <small style="color:#888;font-weight:400">· bậc '.$tierNo.'/'.$nTier.'</small></div>
                         <div class="nv-desc">'.number_format($t['exp']).' EXP | '.number_format($t['lt']).' LT'.($t['mt']>0?' | '.$t['mt'].' MT':'').'</div>
                     </div>
                     <div class="nv-bar-wrap" style="width:80px">
@@ -299,7 +307,6 @@ elseif ($tab === 'achievements') {
                     <div>'.$btnHtml.'</div>
                 </div>';
             }
-            $html .= '</div>';
         }
     }
     $html .= '</div>';
@@ -460,9 +467,18 @@ if ($tab === 'canhgioi') {
             . ($m['major'] ? '⚡ ' : '') . $m['name'] . '</div><div class="nv-desc">Cấp ' . $m['lv'] . ' — ' . implode(' | ', $rw)
             . '</div></div><div>' . $btn . '</div></div>';
     };
-    foreach ($rg['claimable'] as $m) {
+    $rgN = count($rg['claimable']);
+    if ($rgN > 1) {
+        $ra = $encode->encode("cmd=nhiemvu&action=claim_realm_all&tab=canhgioi&sid=$sid");
+        $html .= '<div class="nv-claim-all-wrap" style="padding:4px 0 8px"><a class="nv-btn nv-btn-claim" href="?cmd=' . $ra . '">Nhận tất cả (' . $rgN . ' mốc)</a></div>';
+    }
+    // Chỉ hiện 5 mốc chờ nhận gần nhất, phần còn lại gộp 1 dòng
+    foreach (array_slice($rg['claimable'], 0, 5) as $m) {
         $rc = $encode->encode("cmd=nhiemvu&action=claim_realm&rid={$m['id']}&tab=canhgioi&sid=$sid");
         $html .= $rgRow($m, '<a class="nv-btn nv-btn-claim" href="?cmd=' . $rc . '">Nhận</a>');
+    }
+    if ($rgN > 5) {
+        $html .= '<div class="nv-desc" style="text-align:center;padding:6px 0">… còn ' . ($rgN - 5) . ' mốc chờ nhận</div>';
     }
     foreach ($rg['upcoming'] as $m) {
         $html .= $rgRow($m, '<span class="nv-btn nv-btn-lock">🔒</span>');

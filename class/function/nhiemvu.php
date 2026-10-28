@@ -608,6 +608,26 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_claim')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_claim_all')) {
+    // Nhận mọi mốc đã đạt chưa nhận; cộng dồn thưởng để báo 1 dòng
+    function nhiemvu_realm_claim_all($sid, $dblj){
+        $g = nhiemvu_realm_get($sid, nhiemvu_player_level($sid, $dblj), $dblj);
+        $n = 0; $sum = array('exp' => 0, 'lt' => 0, 'mt' => 0);
+        foreach ($g['claimable'] as $m) {
+            $r = nhiemvu_realm_claim($sid, $m['id'], $dblj);
+            if (!$r['ok']) continue;
+            $n++;
+            foreach ($sum as $k => $v) $sum[$k] += $m[$k];
+        }
+        if ($n == 0) return array('ok' => false, 'msg' => 'Không có mốc nào để nhận.');
+        $parts = array();
+        if ($sum['exp'] > 0) $parts[] = '+' . number_format($sum['exp']) . ' EXP';
+        if ($sum['lt'] > 0)  $parts[] = '+' . number_format($sum['lt']) . ' LT';
+        if ($sum['mt'] > 0)  $parts[] = '+' . number_format($sum['mt']) . ' MT';
+        return array('ok' => true, 'msg' => 'Nhận ' . $n . ' mốc cảnh giới: ' . implode(', ', $parts));
+    }
+}
+
 // ─── Hidden Quests ─────────────────────────────────────────────
 
 if (!function_exists(__NAMESPACE__ . '\\nhiemvu_hidden_get_all')) {
