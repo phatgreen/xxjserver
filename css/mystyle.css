@@ -8420,3 +8420,5 @@ body.tcg-bg-body .zb-compact .zb-action-section{padding:8px 12px!important}
 body.tcg-bg-body .zb-compact .cws-stat .zb-lb-sm{font-size:9.5px!important}
 /* Nút Kích hoạt Ngũ Hành: rule chung a:link{display:inline-block} (gamecss.css) làm chữ dính mép trên => khai báo kèm :link/:visited */
 .nh-btn,a.nh-btn:link,a.nh-btn:visited{display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1.2!important;margin:0!important}
+body.tcg-bg-body .zb-compact .nh-btn,body.tcg-bg-body .zb-compact a.nh-btn:link,body.tcg-bg-body .zb-compact a.nh-btn:visited{height:30px!important;min-height:0!important;min-width:0!important;max-width:100%!important;font-size:12px!important}
+body.tcg-bg-body .zb-compact .nh-row{overflow:hidden!important;padding-bottom:7px!important}
