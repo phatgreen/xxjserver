@@ -58,6 +58,11 @@ if ($hmCanFight && intval($player->uhp) <= 0) {
 }
 ?>
 <div class="hm-wrap hm-fx<?= max(0, min(4, intval($player->huyetmach_awaken_stage))) ?>" style="--hm-tier:<?= \player\huyetmach_awaken_color(intval($player->huyetmach_awaken_stage)) ?>">
+<!-- Thanh tab đầu trang (giống Linh Căn); bỏ tab Nhân Vật — đã có ở thanh trên -->
+<nav class="hm-tabbar">
+    <a href="?cmd=<?= $hmcmd ?>"><i>🩸</i><b>Huyết Mạch</b></a>
+    <a class="on" href="?cmd=<?= $encode->encode("cmd=huyetmach_boss&sid=$sid") ?>"><i>👹</i><b>Boss Mạch Huyết</b></a>
+</nav>
 <div class="hm-card">
     <div class="hm-hrow">
         <span class="hm-title">BOSS MẠCH HUYẾT</span>
@@ -86,8 +91,4 @@ if ($hmCanFight && intval($player->uhp) <= 0) {
     <div class="hm-node-desc"><?= $battleLog ?></div>
 </div>
 <?php endif; ?>
-<nav class="hm-tabbar">
-    <a href="?cmd=<?= $hmcmd ?>"><i>🩸</i><b>Mạch Huyết</b></a>
-    <a class="on" href="?cmd=<?= $ztcmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-</nav>
 </div>

@@ -8452,3 +8452,32 @@ body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
 }
 .lc-compact .lc-attr-row,.lc-compact .lc-reqs-row{font-size:12.5px}
 .lc-compact .lc-ms,.lc-compact .lc-skillcard{font-size:12px}
+/* ===== Thể Chất / Huyết Mạch / Thiên Phú gọn — thanh tab lên đầu (giống Linh Căn), sửa khung Biến Thân ===== */
+.nb-wrap > .nb-tabbar,.hm-wrap > .hm-tabbar,.tp-wrap > .tp-tabbar,.tpc-wrap > .tp-tabbar,.tpo-wrap > .tp-tabbar{margin:0 0 10px!important}
+/* Biến Thân: trạng thái dài (nowrap) từng ép tên xuống từng chữ => cho xuống hàng riêng */
+.hm-transform{flex-wrap:wrap}
+.hm-transform-state{white-space:normal;flex:1 1 100%;margin-left:30px;font-size:12px}
+@media(min-width:761px){
+/* Desktop: thanh tab đầu trang dạng 1 hàng (biểu tượng cạnh chữ) để trang vừa 1 màn hình; mobile giữ kiểu xếp dọc */
+.lc-tabbar a,.lc-tabbar a:link,.lc-tabbar a:visited,.nb-tabbar a,.nb-tabbar a:link,.nb-tabbar a:visited,.hm-tabbar a,.hm-tabbar a:link,.hm-tabbar a:visited,.tp-tabbar a,.tp-tabbar a:link,.tp-tabbar a:visited{flex-direction:row!important;gap:6px!important;min-height:36px!important;padding:4px 12px!important}
+.lc-tabbar a i,.nb-tabbar a i,.hm-tabbar a i,.tp-tabbar a i{width:auto!important;height:20px!important;line-height:20px!important;font-size:16px!important}
+.lc-tabbar,.nb-tabbar,.hm-tabbar,.tp-tabbar{padding:5px 6px!important}
+}
+/* Biến Thân: biểu tượng | tên + trạng thái | nút, 1 khối */
+.hm-transform{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;column-gap:10px;row-gap:2px;align-items:center}
+.hm-transform-ico{grid-row:1/3}
+.hm-transform-state{grid-column:2;margin:0!important;flex:none}
+.hm-transform .hm-act-transform{grid-column:3;grid-row:1/3;margin:0!important;width:auto!important;padding:8px 14px!important;white-space:nowrap}
+/* Thiên Phú: cột kỹ năng rộng hơn, 3 ô / hàng; hàng chọn phẩm thấp lại */
+@media(min-width:761px){
+.tp-cols{grid-template-columns:3fr 2fr!important}
+.tp-attrs{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.tp-tier{padding:5px 4px!important;gap:1px!important}
+}
+@media(min-width:761px){
+.hm-transform{font-size:12px!important}
+}
+/* Huyết Mạch: Biến Thân trải hết chiều ngang dưới 2 cột (trước nằm trong cột hẹp => 3 dòng) */
+.hm-cols > .hm-transform{grid-column:1/-1}
+@media(min-width:761px){.tp-stage{aspect-ratio:2/1!important}}
+@media(min-width:761px){.tp-wrap .tp-card{margin-bottom:8px!important}.tp-wrap .tp-viewline{margin:4px 0 2px!important}}

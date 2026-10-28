@@ -56,6 +56,12 @@ $tpoZtCmd   = $encode->encode("cmd=zhuangtai&sid=$sid");
 $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
 ?>
 <div class="tpo-wrap">
+<!-- Thanh tab đầu trang (giống Linh Căn); bỏ tab Nhân Vật — đã có ở thanh trên -->
+<nav class="tp-tabbar">
+    <a href="?cmd=<?= $tpoMainCmd ?>"><i class="tp-emoji">🌟</i><b>Thiên Phú</b></a>
+    <a href="?cmd=<?= $tpoColCmd ?>"><i class="tp-emoji">🗄</i><b>Phú Các</b></a>
+    <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_open&sid=$sid") ?>"><i class="tp-emoji">⚗</i><b>Mở Thiên Phú</b></a>
+</nav>
 <?php if ($tpoMsg !== ''): ?>
     <div class="tp-msg <?= $tpoMsgOk ? 'ok' : 'bad' ?>"><?= htmlspecialchars($tpoMsg) ?></div>
 <?php endif; ?>
@@ -106,10 +112,4 @@ $tpoShopCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
     </div>
 
 <!-- ===== TABBAR 4 NUT (nut thu 3 dang .on) ===== -->
-<nav class="tp-tabbar">
-    <a href="?cmd=<?= $tpoMainCmd ?>"><i class="tp-emoji">🌟</i><b>Thiên Phú</b></a>
-    <a href="?cmd=<?= $tpoColCmd ?>"><i class="tp-emoji">🗄</i><b>Phú Các</b></a>
-    <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_open&sid=$sid") ?>"><i class="tp-emoji">⚗</i><b>Mở Thiên Phú</b></a>
-    <a href="?cmd=<?= $tpoZtCmd ?>"><i class="tp-emoji">👤</i><b>Nhân Vật</b></a>
-</nav>
 </div>

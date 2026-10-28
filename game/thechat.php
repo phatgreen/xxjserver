@@ -170,6 +170,13 @@ $nbNodePerLvTxt = number_format(floatval($nbNodeDef['per_lv']), $nbNodeDec);
 $nbNodeCurTxt = number_format(floatval($nbNodeDef['per_lv']) * $nbNodeLv * (1 + floatval($nbBody['milestone_percent']) / 100), $nbNodeDec);
 ?>
 <div class="nb-wrap <?= $nbFx ?>" style="--nb-tier:<?= $nbTierColor ?>">
+<!-- Thanh tab đầu trang (giống Linh Căn); bỏ tab Nhân Vật — đã có ở thanh trên -->
+<nav class="nb-tabbar">
+    <a class="on" href="?cmd=<?= $encode->encode("cmd=thechat&sid=$sid") ?>"><i>🧎</i><b>Thể Chất</b></a>
+<?php if ($nbPhysiqueId > 0): ?>
+    <a href="?cmd=<?= $upcmd ?>"><i>🔼</i><b>Nâng Phẩm Chất</b></a>
+<?php endif; ?>
+</nav>
 <?php if ($nbMsg !== ''): ?>
     <div class="nb-msg <?= $nbMsgOk ? 'ok' : 'err' ?>"><?= htmlspecialchars($nbMsg) ?></div>
 <?php endif; ?>
@@ -318,10 +325,4 @@ $nbNodeCurTxt = number_format(floatval($nbNodeDef['per_lv']) * $nbNodeLv * (1 + 
     </div>
 </div>
 
-<nav class="nb-tabbar">
-<?php if ($nbPhysiqueId > 0): ?>
-    <a href="?cmd=<?= $upcmd ?>"><i>🔼</i><b>Nâng Phẩm Chất</b></a>
-<?php endif; ?>
-    <a class="on" href="?cmd=<?= $ztcmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-</nav>
 </div>

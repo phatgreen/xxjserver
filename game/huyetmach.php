@@ -156,12 +156,20 @@ if ($hmBloodId > 0 && $hmStage >= 3) {
             . '<span class="hm-transform-ico">' . $hmTf['icon'] . '</span>'
             . '<span><span class="hm-transform-name">' . htmlspecialchars($hmTf['name']) . '</span>'
             . ' · ' . intval($hmTf['cooldown_minutes']) . ' phút CD · ' . intval($hmTf['hp_cost_percent']) . '% HP</span>'
-            . '<span class="hm-transform-state ' . $hmTfCls . '">' . $hmTfTxt . '</span></div>'
-            . '<a class="hm-act hm-act-transform" href="?cmd=' . $tfcmd . '">Mở Biến Thân</a>';
+            . '<span class="hm-transform-state ' . $hmTfCls . '">' . $hmTfTxt . '</span>'
+            . '<a class="hm-act hm-act-transform" href="?cmd=' . $tfcmd . '">Mở Biến Thân</a></div>';
     }
 }
 ?>
 <div class="hm-wrap <?= $hmFx . $hmDao ?>" style="--hm-tier:<?= $hmTierColor ?>;--hm-color:<?= $player->huyetmach_color ?>">
+<!-- Thanh tab đầu trang (giống Linh Căn); bỏ tab Nhân Vật — đã có ở thanh trên -->
+<nav class="hm-tabbar">
+    <a class="on" href="?cmd=<?= $encode->encode("cmd=huyetmach&sid=$sid") ?>"><i>🩸</i><b>Huyết Mạch</b></a>
+<?php if ($hmBloodId > 0): ?>
+    <a href="?cmd=<?= $upcmd ?>"><i>🔼</i><b>Nâng Phẩm Chất</b></a>
+    <a href="?cmd=<?= $bosscmd ?>"><i>👹</i><b>Boss Mạch Huyết</b></a>
+<?php endif; ?>
+</nav>
 <?php if ($hmMsg !== ''): ?>
     <div class="hm-msg <?= $hmMsgOk ? 'ok' : 'err' ?>"><?= htmlspecialchars($hmMsg) ?></div>
 <?php endif; ?>
@@ -303,25 +311,15 @@ if ($hmBloodId > 0 && $hmStage >= 3) {
             <input type="hidden" name="hm_action" value="break">
             <button type="submit" class="hm-act hm-act-break<?= $hmReady ? '' : ' is-off' ?>" <?= $hmReady ? '' : 'disabled' ?>>Thức Tỉnh</button>
         </form>
-        <?= $hmTfHtml ?>
 <?php else: ?>
         <div class="hm-gate">
             <span><?= $hmTierIcon ?> <?= htmlspecialchars($hmTierName) ?></span>
             <span class="hm-gate-cap">trần <?= $hmCap ?></span>
         </div>
         <div class="hm-node-desc">Huyết thống đã đạt cực hạn của giống loài.</div>
-        <?= $hmTfHtml ?>
 <?php endif; ?>
     </div>
+    <?= $hmTfHtml ?>
 </div>
 
-<nav class="hm-tabbar">
-<?php if ($hmBloodId > 0): ?>
-    <a href="?cmd=<?= $upcmd ?>"><i>🔼</i><b>Nâng Phẩm Chất</b></a>
-<?php endif; ?>
-<?php if ($hmBloodId > 0): ?>
-    <a href="?cmd=<?= $bosscmd ?>"><i>👹</i><b>Boss Mạch Huyết</b></a>
-<?php endif; ?>
-    <a class="on" href="?cmd=<?= $ztcmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-</nav>
 </div>

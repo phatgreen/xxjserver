@@ -121,6 +121,12 @@ $tpcOpenPageCmd = $encode->encode("cmd=tianfu_open&sid=$sid");
 $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
 ?>
 <div class="tpc-wrap tp-fx<?= $tpcFx ?>">
+<!-- Thanh tab đầu trang (giống Linh Căn); bỏ tab Nhân Vật — đã có ở thanh trên -->
+<nav class="tp-tabbar">
+    <a href="?cmd=<?= $tpcMainCmd ?>"><i class="tp-emoji">🌟</i><b>Thiên Phú</b></a>
+    <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_collection&id=$tpcSel&sid=$sid") ?>"><i class="tp-emoji">🗄</i><b>Phú Các</b></a>
+    <a href="?cmd=<?= $tpcOpenPageCmd ?>"><i class="tp-emoji">⚗</i><b>Mở Thiên Phú</b></a>
+</nav>
 <?php if ($tpcMsg !== ''): ?>
     <div class="tp-msg <?= $tpcMsgOk ? 'ok' : 'bad' ?>"><?= htmlspecialchars($tpcMsg) ?></div>
 <?php endif; ?>
@@ -256,10 +262,4 @@ $tpcZtCmd      = $encode->encode("cmd=zhuangtai&sid=$sid");
     </div>
 
 <!-- ===== TABBAR 4 NUT (nut thu 2 dang .on) ===== -->
-<nav class="tp-tabbar">
-    <a href="?cmd=<?= $tpcMainCmd ?>"><i class="tp-emoji">🌟</i><b>Thiên Phú</b></a>
-    <a class="on" href="?cmd=<?= $encode->encode("cmd=tianfu_collection&id=$tpcSel&sid=$sid") ?>"><i class="tp-emoji">🗄</i><b>Phú Các</b></a>
-    <a href="?cmd=<?= $tpcOpenPageCmd ?>"><i class="tp-emoji">⚗</i><b>Mở Thiên Phú</b></a>
-    <a href="?cmd=<?= $tpcZtCmd ?>"><i class="tp-emoji">👤</i><b>Nhân Vật</b></a>
-</nav>
 </div>

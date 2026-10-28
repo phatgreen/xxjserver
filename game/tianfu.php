@@ -123,6 +123,12 @@ $tpPostCmd = $encode->encode("cmd=tianfu&grp=$tpView&sid=$sid");
 
 ?>
 <div class="tp-wrap tp-fx<?= $tpFx ?>" style="--tp-tier:<?= $tpTierColor ?>;--tp-color:<?= $tpG['color'] ?>">
+<!-- Thanh tab đầu trang (giống Linh Căn); bỏ tab Nhân Vật — đã có ở thanh trên -->
+<nav class="tp-tabbar">
+    <a class="on" href="?cmd=<?= $tpSelfCmd ?>"><i>🌟</i><b>Thiên Phú</b></a>
+    <a href="?cmd=<?= $tpCollCmd ?>"><i>🗄</i><b>Phú Các</b></a>
+    <a href="?cmd=<?= $tpOpenCmd ?>"><i>⚗</i><b>Mở Thiên Phú</b></a>
+</nav>
 <?php if ($tpMsg !== ''): ?>
     <div class="tp-msg <?= $tpMsgOk ? 'ok' : 'bad' ?>"><?= htmlspecialchars($tpMsg) ?></div>
 <?php endif; ?>
@@ -294,10 +300,4 @@ foreach ($tpSlots as $tpSd):
     </div>
 </div>
 
-<nav class="tp-tabbar">
-    <a class="on" href="?cmd=<?= $tpSelfCmd ?>"><i>🌟</i><b>Thiên Phú</b></a>
-    <a href="?cmd=<?= $tpCollCmd ?>"><i>🗄</i><b>Phú Các</b></a>
-    <a href="?cmd=<?= $tpOpenCmd ?>"><i>⚗</i><b>Mở Thiên Phú</b></a>
-    <a href="?cmd=<?= $tpZtCmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-</nav>
 </div>
