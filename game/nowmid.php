@@ -81,20 +81,6 @@ if ($clmid->ispvp){
     $pvphtml = '<span class="tcg-badge pvp">【 PVP 】</span>';
 }
 
-$hpPercent = 0;
-if (intval($player->umaxhp) > 0) {
-    $hpPercent = min(100, max(0, intval(round($player->uhp * 100 / $player->umaxhp))));
-}
-
-$expPercent = 0;
-if (intval($player->umaxexp) > 0) {
-    $expPercent = min(100, max(0, intval(round($player->uexp * 100 / $player->umaxexp))));
-}
-
-$energyValue = isset($player->ustamina) ? intval($player->ustamina) : 100;
-$energyMax = isset($player->umaxstamina) ? intval($player->umaxstamina) : 100;
-$energyPercent = $energyMax > 0 ? min(100, max(0, intval(round($energyValue * 100 / $energyMax)))) : 0;
-
 $ztcmd = $encode->encode("cmd=zhuangtai&sid=$sid");
 $trangbicmd = $encode->encode("cmd=trangbi&sid=$sid");
 $goliaotian = $encode->encode("cmd=liaotian&ltlx=all&sid=$sid");
@@ -559,23 +545,6 @@ $nvMapNoticeHtml
         📣 $newsLine
 
     </marquee>
-</div>
-
-<div class="tcg-status-panel">
-    <div class="tcg-profile-bars">
-        <div class="tcg-profile-bar-card">
-            <div class="tcg-profile-bar-head"><span>❤️ Khí huyết</span><b>$player->uhp / $player->umaxhp</b></div>
-            <div class="tcg-profile-bar"><i style="width:{$hpPercent}%"></i></div>
-        </div>
-        <div class="tcg-profile-bar-card">
-            <div class="tcg-profile-bar-head"><span>⚡ Thể lực</span><b>$energyValue / $energyMax</b></div>
-            <div class="tcg-profile-bar energy"><i style="width:{$energyPercent}%"></i></div>
-        </div>
-        <div class="tcg-profile-bar-card full-width">
-            <div class="tcg-profile-bar-head"><span>✨ Tu vi</span><b>$player->uexp / $player->umaxexp</b></div>
-            <div class="tcg-profile-bar exp"><i style="width:{$expPercent}%"></i></div>
-        </div>
-    </div>
 </div>
 
 <div class="tcg-section">
