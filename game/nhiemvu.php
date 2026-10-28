@@ -372,7 +372,11 @@ elseif ($tab === 'main') {
         $html .= '<div class="nv-card"><div class="nv-title">🌟 Cơ Duyên <small style="font-size:12px;color:#94a3b8">' . $cdDone . '/' . count($cdList) . ' — hướng dẫn tính năng mới mở</small></div>';
         // Chưa xong lên trước
         usort($cdList, function($a, $b){ return ($a['status'] == 2) - ($b['status'] == 2); });
+        $cdShown = 0;
         foreach ($cdList as $q) {
+            // Chỉ hiện 3 việc chưa xong, phần còn lại gom vào "Xem thêm" để trang không dài
+            if ($cdShown == 3) $html .= '<details class="nv-ch"><summary class="nv-desc">Xem thêm ' . (count($cdList) - 3) . ' cơ duyên (gồm đã xong)</summary>';
+            $cdShown++;
             $rw = \player\nhiemvu_reward($q, 'main', $player->ulv);
             $rwTxt = array();
             if ($rw['exp'] > 0) $rwTxt[] = number_format($rw['exp']) . ' tu vi';
@@ -387,6 +391,7 @@ elseif ($tab === 'main') {
                 <div class="nv-bar-wrap" style="width:80px"><span class="nv-num">' . ($done ? 'Xong' : min($q['progress'], $q['target']) . '/' . $q['target']) . '</span></div>
             </div>';
         }
+        if ($cdShown > 3) $html .= '</details>';
         if (!empty($cdNext)) {
             $html .= '<div class="nv-desc" style="text-align:center;margin-top:8px">Cơ duyên kế tiếp: 🔒 ' . htmlspecialchars($cdNext[0]['name'], ENT_QUOTES, 'UTF-8') . ' — mở ở cấp ' . intval($cdNext[0]['level']) . '</div>';
         }
@@ -400,6 +405,7 @@ elseif ($tab === 'main') {
     } else {
         // Chỉ mở chương đang làm; chương đã xong / chưa tới thu gọn (bấm tiêu đề để xem)
         $curFound = false;
+        $doneHtml = ''; $doneN = 0; $lockN = 0;
         foreach ($mainQuests as $ch) {
             $ch['quests'] = \player\nhiemvu_apply_reward_list($ch['quests'], 'main', \player\nhiemvu_main_ref_level($ch, $player->ulv));
             $chDone = 0;
@@ -408,6 +414,9 @@ elseif ($tab === 'main') {
             $isCur = (!$curFound && $chDone < $chAll);
             if ($isCur) $curFound = true;
             $chTag = $chDone >= $chAll ? '✅ Hoàn thành' : ($isCur ? '⏳ Đang làm ' . $chDone . '/' . $chAll : '🔒 Chưa mở');
+            // Chương chưa tới: chỉ hiện 1 chương kế tiếp, còn lại đếm
+            if ($chDone < $chAll && !$isCur && ++$lockN > 1) continue;
+            $chOut = $html; $html = '';
             $html .= '<details class="nv-achieve-group nv-ch"' . ($isCur ? ' open' : '') . '>
                 <summary class="nv-achieve-cat" style="color:#facc15">CH'.$ch['id'].': '.$ch['name'].' <small>Cấp '.$ch['level_range'][0].'-'.$ch['level_range'][1].' · '.$chTag.'</small></summary>';
             foreach ($ch['quests'] as $q) {
@@ -447,6 +456,15 @@ elseif ($tab === 'main') {
                 </div>';
             }
             $html .= '</details>';
+            // Chương đã xong gom vào 1 khối thu gọn
+            if ($chDone >= $chAll) { $doneHtml .= $html; $doneN++; $html = $chOut; }
+            else { $html = $chOut . $html; }
+        }
+        if ($doneN > 0) {
+            $html .= '<details class="nv-achieve-group nv-ch"><summary class="nv-achieve-cat" style="color:#4CAF50">✅ Đã hoàn thành ' . $doneN . ' chương</summary>' . $doneHtml . '</details>';
+        }
+        if ($lockN > 1) {
+            $html .= '<div class="nv-desc" style="text-align:center;margin-top:6px">… còn ' . ($lockN - 1) . ' chương mở theo cấp</div>';
         }
     }
     $html .= '</div>';

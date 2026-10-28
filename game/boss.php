@@ -553,6 +553,9 @@ HTML;
 		
 		$sjczb = mt_rand(1,5);
 		$sj = $sjczb+ round($boss->bosslv /10);
+        if ($lvc >= 35) {
+            $sj = 0;// Ma thạch chặn theo chênh lệch cấp như linh thạch (không quét boss cấp thấp lấy MT)
+        }
         $ret = \player\changeyxb(1,$yxb,$sid,$dblj);//选择1方案（加钱），改变数量=yxb，id，关闭数据库；
 		$ret1 = \player\changeczb(1,$sj,$sid,$dblj);//魔石增加
         if ($ret){
