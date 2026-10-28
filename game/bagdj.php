@@ -172,7 +172,7 @@ if ($tishi != '') {
 }
 
 $bagdjhtml =<<<HTML
-<div class="bag-page">
+<div class="bag-page bag-compact">
     <div class="bag-hero">
         <div>
             <div class="bag-label">TÚI ĐẠO CỤ</div>
@@ -194,10 +194,6 @@ $bagdjhtml =<<<HTML
         <a class="bag-tab" href="?cmd=$getbagydcmd">Đan dược</a>
     </div>
 
-    <div class="bag-daoju-summary">
-        <div class="bag-daoju-stat"><span>Số loại đang có</span><strong>$totalKind</strong></div>
-        <div class="bag-daoju-stat"><span>Tổng số lượng</span><strong>$totalNum</strong></div>
-    </div>
 
     $noticeHtml
 
@@ -205,10 +201,6 @@ $bagdjhtml =<<<HTML
         $djhtml
     </div>
 
-    <div class="bag-bottom">
-        <a class="bag-back" href="#" onClick="javascript:history.back(-1);">Trở về</a>
-        <a class="bag-home" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 $danPopup
 HTML;

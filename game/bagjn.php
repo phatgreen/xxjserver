@@ -56,7 +56,7 @@ HTML;
 }
 
 $bagjnhtml = <<<HTML
-<div class="bag-page bag-jineng-page">
+<div class="bag-page bag-jineng-page bag-compact">
     <div class="bag-hero jineng">
         <div>
             <div class="bag-label">Tàng Kỹ Các</div>
@@ -78,25 +78,11 @@ $bagjnhtml = <<<HTML
         <a class="bag-tab" href="?cmd=$getbagydcmd">Đan dược</a>
     </div>
 
-    <div class="bag-daoju-summary bag-jn-summary">
-        <div class="bag-daoju-stat">
-            <span>Loại kỹ năng</span>
-            <strong>$totalJn</strong>
-        </div>
-        <div class="bag-daoju-stat">
-            <span>Tổng quyển</span>
-            <strong>$totalCount</strong>
-        </div>
-    </div>
 
     <div class="bag-list">
         $alljn
     </div>
 
-    <div class="bag-bottom">
-        <a class="bag-back" href="#" onClick="javascript:history.back(-1);">Trở Về</a>
-        <a class="bag-home" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 HTML;
 

@@ -53,7 +53,7 @@ HTML;
 }
 
 $bagyphtml = <<<HTML
-<div class="bag-page bag-yp-page">
+<div class="bag-page bag-yp-page bag-compact">
     <div class="bag-hero yaopin">
         <div>
             <div class="bag-label">Túi đồ</div>
@@ -75,25 +75,11 @@ $bagyphtml = <<<HTML
         <a class="bag-tab" href="?cmd=$getbagydcmd">Đan dược</a>
     </div>
 
-    <div class="bag-daoju-summary bag-yp-summary">
-        <div class="bag-daoju-stat">
-            <span>Dược phẩm khả dụng</span>
-            <strong>$totalYp</strong>
-        </div>
-        <div class="bag-daoju-stat">
-            <span>Tổng số lượng</span>
-            <strong>$totalStack</strong>
-        </div>
-    </div>
 
     <div class="bag-list">
         $allyp
     </div>
 
-    <div class="bag-bottom">
-        <a class="bag-back" href="#" onClick="javascript:history.back(-1);">Trở Về</a>
-        <a class="bag-home" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 HTML;
 

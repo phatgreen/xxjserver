@@ -278,7 +278,7 @@ if ($tishi != '') {
 }
 
 $toolhtml =<<<HTML
-<div class="bag-page">
+<div class="bag-page bag-compact">
     <div class="bag-hero">
         <div class="bag-hero-bg"><img src="/images/bg/bag.png" alt=""></div>
         <div class="bag-hero-mask"></div>
@@ -312,10 +312,6 @@ $toolhtml =<<<HTML
 
     $fanye
 
-    <div class="bag-bottom">
-        <a class="bag-back" href="#" onClick="javascript:history.back(-1);">Trở về</a>
-        <a class="bag-home" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 HTML;
 

@@ -71,7 +71,7 @@ HTML;
 }
 
 $bagydhtml = <<<HTML
-<div class="bag-page bag-yd-page">
+<div class="bag-page bag-yd-page bag-compact">
     <div class="bag-hero yaodan">
         <div>
             <div class="bag-label">Hiệu thuốc</div>
@@ -101,25 +101,11 @@ $bagydhtml = <<<HTML
         <a class="bag-tab" href="?cmd=$chetaoCmd">⚒ Chế tạo</a>
     </div>
 
-    <div class="bag-daoju-summary bag-yd-summary">
-        <div class="bag-daoju-stat">
-            <span>Đan dược khả dụng</span>
-            <strong>$totalYd</strong>
-        </div>
-        <div class="bag-daoju-stat">
-            <span>Tổng số lượng</span>
-            <strong>$totalStack</strong>
-        </div>
-    </div>
 
     <div class="bag-list">
         $allyd
     </div>
 
-    <div class="bag-bottom">
-        <a class="bag-back" href="#" onClick="javascript:history.back(-1);">Trở Về</a>
-        <a class="bag-home" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 HTML;
 
