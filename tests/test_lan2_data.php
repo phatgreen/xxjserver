@@ -91,6 +91,50 @@ if (intval($have) === 0) {
     tassert('Q2 có ảnh sơ đồ dt/ditu/37–46.png', count(array_filter(range(37, 46), function($q){ return is_file(__DIR__ . "/../dt/ditu/$q.png"); })), 10);
 }
 
+// ── Q4. Nhiệm vụ (L2-C): chương 14–23 trỏ đúng khu / quái / boss / đan; 10 NPC, nhiệm vụ trỏ quái + map làn 2 ──
+$mc = \player\nhiemvu_main_config();
+$chs = array(); foreach ($mc['chapters'] as $c) if ($c['id'] >= 14) $chs[$c['id']] = $c;
+tassert('Q4 chương 14–23', array_keys($chs), range(14, 23));
+$bossNames = array(); foreach ($data['bosses'] as $b) $bossNames[] = $b['bossname'];
+$bad = array();
+foreach ($chs as $cid => $c) {
+    $k = $cid - 14;
+    if ($c['level_range'] !== array(500 + 50 * $k, 550 + 50 * $k)) $bad[] = "$cid:range";
+    foreach ($c['quests'] as $q) {
+        if ($q['type'] === 'reach_region' && $q['region'] !== 37 + $k) $bad[] = $q['id'];
+        if ($q['type'] === 'kill_monster') foreach ($q['monster_ids'] as $m) if (!isset($gw[(string)$m]) || intval($gw[(string)$m]['glv']) <= 500 + 50 * $k) $bad[] = $q['id'];
+        if ($q['type'] === 'kill_boss_name' && !in_array($q['boss_names'][0], $bossNames, true)) $bad[] = $q['id'];
+        if ($q['type'] === 'collect_item') {
+            // vật phẩm phải rơi từ quái của chính khu
+            $drops = false;
+            foreach ($ids as $id) { $g = $gw[(string)$id]; if (intval($g['glv']) > 500 + 50 * $k && intval($g['glv']) <= 550 + 50 * $k && in_array((string)$q['item_id'], explode(',', $g['gdj']), true)) $drops = true; }
+            if (!$drops) $bad[] = $q['id'];
+        }
+        if ($q['type'] === 'breakthrough' && $q['target_level'] !== 550 + 50 * $k) $bad[] = $q['id'];
+    }
+}
+tassert('Q4 mọi bước chương 14–23 trỏ đúng khu / quái / boss / vật phẩm rơi trong khu', $bad, array());
+$npcs = json_decode(file_get_contents(__DIR__ . '/../class/config/npc_config.json'), true);
+$rws = json_decode(file_get_contents(__DIR__ . '/../class/config/renwu_config.json'), true);
+$mapIds = array(); foreach ($data['regions'] as $r) foreach ($r['maps'] as $m) $mapIds[] = intval($m['mid']);
+$bad = array();
+for ($nid = 49; $nid <= 58; $nid++) {
+    if (!isset($npcs[(string)$nid])) { $bad[] = "npc$nid"; continue; }
+    foreach (explode(',', $npcs[(string)$nid]['taskid']) as $rid) {
+        $rw = isset($rws[$rid]) ? $rws[$rid] : null;
+        if (!$rw || !isset($gw[$rw['rwyq']]) || intval($gw[$rw['rwyq']]['id']) < 300 || !in_array(intval($rw['rwqy']), $mapIds, true)) $bad[] = "rw$rid";
+    }
+}
+tassert('Q4 10 NPC (49–58), 30 nhiệm vụ trỏ quái làn 2 + map Truyền tống làn 2', $bad, array());
+if (intval($have) > 0) {
+    $placed = 0;
+    foreach (json_decode(file_get_contents(__DIR__ . '/../sql/lan2_c_data.json'), true)['npcs'] as $n) {
+        $mn = $db->query("SELECT mnpc FROM mid WHERE mid = " . intval($n['mid']))->fetchColumn();
+        if (in_array((string)$n['nid'], explode(',', $mn), true)) $placed++;
+    }
+    tassert('Q4 DB: 10 NPC đã đặt ở map cửa vào khu (sau migrate_lan2_c.php)', $placed, 10);
+}
+
 // ── Q3. EXP quái làn 2 ≈ 400 quái cùng cấp mỗi cấp ──
 tassert('Q3 EXP quái cấp 502 = 110 × 502² ÷ 400', \player\guaiwu_exp(502, 107), round(110.0 * 502 * 502 / 400));
 

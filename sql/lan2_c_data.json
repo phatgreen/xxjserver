@@ -1,0 +1,247 @@
+{
+ "_note": "Sinh bởi tools/gen/lan2_c_build.py — dùng cho sql/migrate_lan2_c.php",
+ "npcs": [
+  {
+   "nid": 49,
+   "qyid": 37,
+   "nname": "Cổ Mạch Khám Dư Sư",
+   "mid": 1001
+  },
+  {
+   "nid": 50,
+   "qyid": 38,
+   "nname": "Thủ Đăng Lão Ni",
+   "mid": 1009
+  },
+  {
+   "nid": 51,
+   "qyid": 39,
+   "nname": "Mộng Điệp Tiên Tử",
+   "mid": 1017
+  },
+  {
+   "nid": 52,
+   "qyid": 40,
+   "nname": "Cự Linh Hậu Duệ",
+   "mid": 1025
+  },
+  {
+   "nid": 53,
+   "qyid": 41,
+   "nname": "Thiên Trì Tẩy Kiếm Nhân",
+   "mid": 1033
+  },
+  {
+   "nid": 54,
+   "qyid": 42,
+   "nname": "Hư Không Lữ Khách",
+   "mid": 1041
+  },
+  {
+   "nid": 55,
+   "qyid": 43,
+   "nname": "Tàn Binh Lão Tướng",
+   "mid": 1049
+  },
+  {
+   "nid": 56,
+   "qyid": 44,
+   "nname": "Độ Kiếp Tán Nhân",
+   "mid": 1057
+  },
+  {
+   "nid": 57,
+   "qyid": 45,
+   "nname": "Thần Mộ Tế Ti",
+   "mid": 1065
+  },
+  {
+   "nid": 58,
+   "qyid": 46,
+   "nname": "Thiên Cung Tiếp Dẫn Tiên Quan",
+   "mid": 1073
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 97,
+   "mid": 1001,
+   "mname": "Cổ Mạch Nhập Khẩu",
+   "qyid": 37
+  },
+  {
+   "rwid": 98,
+   "mid": 1005,
+   "mname": "Long Cốt Nhai",
+   "qyid": 37
+  },
+  {
+   "rwid": 99,
+   "mid": 1008,
+   "mname": "Cổ Mạch Long Trì",
+   "qyid": 37
+  },
+  {
+   "rwid": 100,
+   "mid": 1009,
+   "mname": "Phong Cước Trấn",
+   "qyid": 38
+  },
+  {
+   "rwid": 101,
+   "mid": 1013,
+   "mname": "Thanh Vân Sạn Đạo",
+   "qyid": 38
+  },
+  {
+   "rwid": 102,
+   "mid": 1016,
+   "mname": "Tụ Thần Điện",
+   "qyid": 38
+  },
+  {
+   "rwid": 103,
+   "mid": 1017,
+   "mname": "Huyễn Cảnh Môn",
+   "qyid": 39
+  },
+  {
+   "rwid": 104,
+   "mid": 1021,
+   "mname": "Phù Sinh Mộng Trạch",
+   "qyid": 39
+  },
+  {
+   "rwid": 105,
+   "mid": 1024,
+   "mname": "Huyễn Cảnh Trung Tâm",
+   "qyid": 39
+  },
+  {
+   "rwid": 106,
+   "mid": 1025,
+   "mname": "Chu Sơn Cổ Đạo",
+   "qyid": 40
+  },
+  {
+   "rwid": 107,
+   "mid": 1029,
+   "mname": "Phá Thiên Phong",
+   "qyid": 40
+  },
+  {
+   "rwid": 108,
+   "mid": 1032,
+   "mname": "Bất Chu Đỉnh",
+   "qyid": 40
+  },
+  {
+   "rwid": 109,
+   "mid": 1033,
+   "mname": "Thiên Trì Bắc Ngạn",
+   "qyid": 41
+  },
+  {
+   "rwid": 110,
+   "mid": 1037,
+   "mname": "Hàn Băng Thủy Cung",
+   "qyid": 41
+  },
+  {
+   "rwid": 111,
+   "mid": 1040,
+   "mname": "Thiên Trì Tâm",
+   "qyid": 41
+  },
+  {
+   "rwid": 112,
+   "mid": 1041,
+   "mname": "Không Gian Liệt Khẩu",
+   "qyid": 42
+  },
+  {
+   "rwid": 113,
+   "mid": 1045,
+   "mname": "Vẫn Thạch Hải",
+   "qyid": 42
+  },
+  {
+   "rwid": 114,
+   "mid": 1048,
+   "mname": "Hư Không Thâm Xứ",
+   "qyid": 42
+  },
+  {
+   "rwid": 115,
+   "mid": 1049,
+   "mname": "Tu La Doanh Trại",
+   "qyid": 43
+  },
+  {
+   "rwid": 116,
+   "mid": 1053,
+   "mname": "Tàn Kiếm Trủng",
+   "qyid": 43
+  },
+  {
+   "rwid": 117,
+   "mid": 1056,
+   "mname": "Tu La Chiến Điện",
+   "qyid": 43
+  },
+  {
+   "rwid": 118,
+   "mid": 1057,
+   "mname": "Lôi Vân Nhai",
+   "qyid": 44
+  },
+  {
+   "rwid": 119,
+   "mid": 1061,
+   "mname": "Thiên Phạt Đài",
+   "qyid": 44
+  },
+  {
+   "rwid": 120,
+   "mid": 1064,
+   "mname": "Cửu Thiên Lôi Đàn",
+   "qyid": 44
+  },
+  {
+   "rwid": 121,
+   "mid": 1065,
+   "mname": "Thần Mộ Lăng Môn",
+   "qyid": 45
+  },
+  {
+   "rwid": 122,
+   "mid": 1069,
+   "mname": "Âm Binh Mộ Huyệt",
+   "qyid": 45
+  },
+  {
+   "rwid": 123,
+   "mid": 1072,
+   "mname": "Thần Mộ Chủ Lăng",
+   "qyid": 45
+  },
+  {
+   "rwid": 124,
+   "mid": 1073,
+   "mname": "Nam Thiên Môn",
+   "qyid": 46
+  },
+  {
+   "rwid": 125,
+   "mid": 1077,
+   "mname": "Thánh Quang Hành Lang",
+   "qyid": 46
+  },
+  {
+   "rwid": 126,
+   "mid": 1080,
+   "mname": "Thiên Cung Chính Điện",
+   "qyid": 46
+  }
+ ]
+}

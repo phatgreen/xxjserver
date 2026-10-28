@@ -35,14 +35,15 @@ cleanup();
 
 // ── D1. Dữ liệu ──────────────────────────────────────────────
 $main = \player\nhiemvu_main_config();
-tassert('D1 13 chuong', count($main['chapters']), 13);
+// Đếm trong phạm vi đợt C (chương 1–13); chương 14+ của làn 2 có test riêng tests/test_lan2_data.php (vòng kiểm tra dưới vẫn chạy cho mọi chương)
+tassert('D1 13 chuong', count(array_filter($main['chapters'], function($c){ return $c['id'] <= 13; })), 13);
 $newQ = 0; $bad = array();
 $qyIds = array(); foreach ($db->query("SELECT qyid FROM qy") as $r) $qyIds[intval($r['qyid'])] = 1;
 $bossNames = array(); foreach ($db->query("SELECT bossname FROM boss") as $r) $bossNames[trim(strip_tags($r['bossname']))] = 1;
 foreach ($main['chapters'] as $ch) {
     if ($ch['id'] < 4) continue;
     foreach ($ch['quests'] as $q) {
-        $newQ++;
+        if ($ch['id'] <= 13) $newQ++;
         if ($q['type'] === 'reach_region' && !isset($qyIds[$q['region']])) $bad[] = $q['id'] . ' khu';
         if ($q['type'] === 'kill_boss_name') foreach ($q['boss_names'] as $b) if (!isset($bossNames[$b])) $bad[] = $q['id'] . ' boss';
         if ($q['type'] === 'kill_monster') foreach ($q['monster_ids'] as $g) if (!\player\guaiwu_config_get($g)) $bad[] = $q['id'] . ' quai';

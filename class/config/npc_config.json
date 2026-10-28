@@ -348,5 +348,105 @@
     "taskid": "94,95,96",
     "mz": "",
     "rwqy": ""
+  },
+  "49": {
+    "id": 49,
+    "nname": "Cổ Mạch Khám Dư Sư",
+    "nsex": "Nam",
+    "ninfo": "Thầy khám dư cả đời dò long mạch, biết rõ chỗ linh khí Linh Khư cuộn trào và chỗ yêu vật ẩn mình.",
+    "muban": "",
+    "taskid": "97,98,99",
+    "mz": "",
+    "rwqy": ""
+  },
+  "50": {
+    "id": 50,
+    "nname": "Thủ Đăng Lão Ni",
+    "nsex": "Nữ",
+    "ninfo": "Lão ni giữ ngọn thần đăng trên Tụ Thần Phong suốt ba trăm năm, đèn chưa từng tắt một đêm.",
+    "muban": "",
+    "taskid": "100,101,102",
+    "mz": "",
+    "rwqy": ""
+  },
+  "51": {
+    "id": 51,
+    "nname": "Mộng Điệp Tiên Tử",
+    "nsex": "Nữ",
+    "ninfo": "Tiên tử hóa thân từ cánh bướm trong mộng, dẫn người lạc lối ra khỏi Thái Hư Huyễn Cảnh.",
+    "muban": "",
+    "taskid": "103,104,105",
+    "mz": "",
+    "rwqy": ""
+  },
+  "52": {
+    "id": 52,
+    "nname": "Cự Linh Hậu Duệ",
+    "nsex": "Nam",
+    "ninfo": "Hậu duệ tộc Cự Linh từng chống trời ở Bất Chu, thân cao chín thước, giọng như sấm rền.",
+    "muban": "",
+    "taskid": "106,107,108",
+    "mz": "",
+    "rwqy": ""
+  },
+  "53": {
+    "id": 53,
+    "nname": "Thiên Trì Tẩy Kiếm Nhân",
+    "nsex": "Nam",
+    "ninfo": "Kiếm khách ngày ngày rửa kiếm bên Thiên Trì, nói nước trì có thể gột sạch sát khí trong kiếm.",
+    "muban": "",
+    "taskid": "109,110,111",
+    "mz": "",
+    "rwqy": ""
+  },
+  "54": {
+    "id": 54,
+    "nname": "Hư Không Lữ Khách",
+    "nsex": "Nam",
+    "ninfo": "Lữ khách lạc giữa loạn lưu không gian, đã đi qua trăm thế giới mà chưa tìm được đường về.",
+    "muban": "",
+    "taskid": "112,113,114",
+    "mz": "",
+    "rwqy": ""
+  },
+  "55": {
+    "id": 55,
+    "nname": "Tàn Binh Lão Tướng",
+    "nsex": "Nam",
+    "ninfo": "Lão tướng sống sót duy nhất của một đạo quân Tu La, vẫn đứng gác doanh trại đã đổ nát.",
+    "muban": "",
+    "taskid": "115,116,117",
+    "mz": "",
+    "rwqy": ""
+  },
+  "56": {
+    "id": 56,
+    "nname": "Độ Kiếp Tán Nhân",
+    "nsex": "Nam",
+    "ninfo": "Tán nhân từng chín lần độ kiếp thất bại, nay ở lại Lôi Kiếp Uyên chỉ đường cho kẻ đến sau.",
+    "muban": "",
+    "taskid": "118,119,120",
+    "mz": "",
+    "rwqy": ""
+  },
+  "57": {
+    "id": 57,
+    "nname": "Thần Mộ Tế Ti",
+    "nsex": "Nữ",
+    "ninfo": "Nữ tế ti canh giữ lăng mộ cổ thần, hiểu tiếng của âm binh và những lời nguyền trên bia đá.",
+    "muban": "",
+    "taskid": "121,122,123",
+    "mz": "",
+    "rwqy": ""
+  },
+  "58": {
+    "id": 58,
+    "nname": "Thiên Cung Tiếp Dẫn Tiên Quan",
+    "nsex": "Nam",
+    "ninfo": "Tiên quan trực Nam Thiên Môn, chỉ mở cổng Thiên Cung cho người đủ đạo hạnh thánh giả.",
+    "muban": "",
+    "taskid": "124,125,126",
+    "mz": "",
+    "rwqy": ""
   }
 }
