@@ -2,7 +2,7 @@
 
 > Nhánh `claude/tong-quan-du-an`, commit `3ba1f3e` → `bc74ebe`. Tông Môn có tài liệu riêng: `DESIGN_TONGMON_CANBANG.md`.
 > **Máy chủ:** chỉ cần `cron\capnhat_code.bat` + Ctrl+F5 — trừ Tông Môn phải chạy `sql\migrate_tongmon.php --apply` (đã chạy 2026-10-28).
-> CSS: `css/mystyle.css?v=2026102938`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
+> CSS: `css/mystyle.css?v=2026102954`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
 
 ## 1. Mục tiêu chung
 
@@ -41,6 +41,7 @@
 | Linh Căn | `game/linhcan.php`, `linhcan_quest.php`, `linhcan_boss.php` | Thanh tab 3 trang lên đầu (cùng vị trí), bỏ tab Nhân Vật; trang Luyện Căn: vòng Ngũ Hành giữa (300px) + nút Luyện/Đột phá, Thuộc tính Kích Hoạt trái, Đột Phá + kỹ năng phải (mobile: vòng trên, 2 cột dưới) |
 | Thể Chất / Huyết Mạch / Thiên Phú | `game/thechat.php`, `huyetmach.php`, `huyetmach_boss.php`, `tianfu.php`, `tianfu_collection.php`, `tianfu_open.php` | Thanh tab lên đầu (trang chính có tab riêng thay cho tab Nhân Vật đang "on"), bỏ tab Nhân Vật; desktop: tab 1 hàng (biểu tượng cạnh chữ, cả Linh Căn) — mobile giữ kiểu xếp dọc. Huyết Mạch: khung Biến Thân sửa vỡ chữ (trạng thái `nowrap` ép tên thành cột) và trải ngang dưới 2 cột kèm nút. Thiên Phú desktop: ảnh 2:1, ô kỹ năng 3 cột. Desktop: Thể Chất 771px, Huyết Mạch 873px (trước 1.031), Thiên Phú 880px (trước 976) |
 | Hành Tẩu (Đại Sảnh) | `game/nowmid.php` | Khung la bàn `.mid-stage`: tên khu vực + an toàn/PVP + tên nhân vật ở giữa, Bắc/Nam/Tây/Đông đặt đúng hướng (hướng không có lối để trống); bỏ dòng chữ chạy (trùng dòng Hệ thống đầu khung chat); quái / boss / NPC, chat, Tiên Đồ giữ nguyên dưới khung |
+| Đợt cuối (CSS, desktop) | `qydt` Bản Đồ, `vandinhdai`, `sauthu`, `paihang`, `tupo`, `taskguide`, `taozhuang`, `otherzhuangtai` | Bỏ cặp Trở Về / Đại Sảnh ở 13 trang (`.qydt-bottom`, `.rank-bottom`, `.break-bottom`, `.news-task-bottom`, `.tz-actions`, `.tcg-club-rank-bottom`, `.allmap-bottom`, `.im-bottom`, `.tcg-chat-bottom`, `.gift-bottom`, `.tcg-market-bottom`, `.event-bottom`, `.tcg-profile-bottom`; GIỮ `.tcg-club-bottom` vì trang con Tông Môn dùng để về trang chính). Banner thấp + mô tả 1 dòng; Bản Đồ: ảnh 180px (bỏ `min-height:260px`), bỏ nhãn "Khu N" lặp, sửa mũi tên đè chữ; Sào Thú: thẻ 1 hàng 2 cột (`sauthu.php` sửa padding inline 32→16px); Xếp Hạng 2 cột; Vấn Đỉnh Đài: bỏ `min-height:350px` banner, đối thủ 1 dòng, ẩn nút Đại Sảnh (giữ Làm mới); Xem nhân vật khác: trang bị 3 cột. Tất cả ≤ 880px |
 | Tính năng chưa mở | `game/feature_locked.php` | Sửa chữ 2 nút bị lệch (thêm `a.fk-lock-btn:link`) |
 
 ## 4. Lỗi đã sửa kèm

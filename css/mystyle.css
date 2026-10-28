@@ -8511,3 +8511,144 @@ body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
 .mid-compact .td-title{margin:0 2px 5px}
 .mid-compact .td-item,.mid-compact a.td-item:link,.mid-compact a.td-item:visited{min-height:50px!important;padding:5px 3px!important}
 .mid-compact .td-item i{font-size:18px}
+/* ===== Làm gọn đợt cuối (2026-10-29): bỏ cặp nút Trở Về / Đại Sảnh (thanh trên + thanh dưới đã có) ở các trang còn lại ===== */
+body.tcg-bg-body .qydt-bottom,body.tcg-bg-body .rank-bottom,body.tcg-bg-body .break-bottom,body.tcg-bg-body .news-task-bottom,body.tcg-bg-body .tz-actions,body.tcg-bg-body .tcg-club-rank-bottom,body.tcg-bg-body .allmap-bottom,body.tcg-bg-body .im-bottom,body.tcg-bg-body .tcg-chat-bottom,body.tcg-bg-body .gift-bottom,body.tcg-bg-body .tcg-market-bottom,body.tcg-bg-body .event-bottom{display:none!important}
+@media(min-width:761px){
+/* Bản Đồ khu vực: banner thấp, địa điểm 3 cột */
+body.tcg-bg-body .qydt-hero{padding:12px 14px!important;gap:12px!important;min-height:0!important}
+body.tcg-bg-body .qydt-hero h1,body.tcg-bg-body .qydt-hero h2,body.tcg-bg-body .qydt-copy h1{font-size:26px!important;line-height:1.15!important;margin:2px 0 6px!important}
+body.tcg-bg-body .qydt-map-frame{max-height:200px!important}
+body.tcg-bg-body .qydt-section{margin-top:10px!important;padding:10px 12px!important}
+body.tcg-bg-body .qydt-place-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+body.tcg-bg-body .qydt-place-grid > *{padding:7px 10px!important;min-height:0!important}
+/* Sào Thú: 10 phó bản 2 cột */
+body.tcg-bg-body .sth-map-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+body.tcg-bg-body .sth-map-card{margin:0!important;padding:8px 10px!important;min-width:0!important}
+body.tcg-bg-body .sth-hero{min-height:0!important;padding:14px 16px!important}
+/* Xếp Hạng: 10 dòng 2 cột */
+body.tcg-bg-body .rank-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+body.tcg-bg-body .rank-list > *{margin:0!important;min-width:0!important}
+body.tcg-bg-body .rank-hero{min-height:0!important;padding:12px 16px!important}
+/* Vấn Đỉnh Đài: banner thấp, dòng đối thủ / bảng xếp hạng gọn */
+body.tcg-bg-body .vdd-hero{min-height:0!important;padding:14px 16px!important}
+body.tcg-bg-body .vdd-row{padding:6px 8px!important;min-height:0!important}
+/* Đột Phá / Bảng Nhiệm Vụ / Thần Trang: banner thấp */
+body.tcg-bg-body .news-task-hero{min-height:0!important;padding:14px 16px!important}
+body.tcg-bg-body .tz-hero{padding:12px 14px!important}
+}
+@media(min-width:761px){
+/* Bản Đồ: ảnh bản đồ thấp lại, ô lối đi 1 hàng */
+body.tcg-bg-body .qydt-map-frame{max-height:170px!important;overflow:hidden!important}
+body.tcg-bg-body .qydt-map-frame img{max-height:170px!important;width:100%!important;object-fit:contain!important}
+body.tcg-bg-body .qydt-copy p{font-size:12px!important;margin:0 0 6px!important}
+body.tcg-bg-body .qydt-route{min-height:0!important;padding:8px 10px!important}
+/* Vấn Đỉnh Đài: banner + 2 cột gọn */
+body.tcg-bg-body .vdd-banner-hero{min-height:0!important}
+body.tcg-bg-body .vdd-hero-content{padding:12px 16px!important;gap:6px!important}
+body.tcg-bg-body .vdd-hero-content h1{font-size:26px!important;margin:0!important}
+body.tcg-bg-body .vdd-hero-content p{font-size:12px!important;margin:0!important}
+body.tcg-bg-body .vdd-stats{margin:4px 0 0!important}
+body.tcg-bg-body .vdd-stat{padding:6px 10px!important;min-height:0!important}
+body.tcg-bg-body .vdd-layout{align-items:start!important}
+body.tcg-bg-body .vdd-row{padding:5px 8px!important;gap:6px!important}
+body.tcg-bg-body .vdd-round{padding:3px 6px!important;min-height:0!important;line-height:1.3!important}
+/* Sào Thú: banner thấp, 2 nút phó bản cạnh nhau */
+body.tcg-bg-body .sth-hero-content{padding:12px 16px!important}
+body.tcg-bg-body .sth-hero-content h1{font-size:26px!important;margin:0!important}
+body.tcg-bg-body .sth-hero-content p{font-size:12px!important;margin:2px 0 6px!important}
+body.tcg-bg-body .sth-stat{padding:6px 10px!important;min-height:0!important}
+body.tcg-bg-body .sth-map-card{display:flex!important;flex-direction:column!important;gap:6px!important}
+body.tcg-bg-body .sth-map-btns{display:flex!important;flex-direction:row!important;gap:6px!important;margin:0!important}
+body.tcg-bg-body .sth-map-btns > *{flex:1 1 0!important;margin:0!important;min-width:0!important;padding:6px 4px!important;font-size:12px!important}
+/* Đột Phá: khung ảnh thấp lại */
+body.tcg-bg-body .break-art{min-height:0!important;padding:12px 14px!important;gap:12px!important}
+body.tcg-bg-body .break-art-stage{max-height:160px!important;max-width:160px!important}
+body.tcg-bg-body .break-art-info .break-title{font-size:28px!important;margin:0!important}
+body.tcg-bg-body .break-art-info .break-sub,body.tcg-bg-body .break-art-meta p{font-size:12px!important;margin:2px 0!important}
+body.tcg-bg-body .break-art-meta b{font-size:16px!important;line-height:1.3!important}
+/* Bảng Nhiệm Vụ: banner thấp */
+body.tcg-bg-body .news-task-banner-hero{min-height:0!important}
+body.tcg-bg-body .news-task-hero-content{padding:12px 16px!important;gap:6px!important}
+body.tcg-bg-body .news-task-hero-content h1{font-size:26px!important;margin:0!important}
+body.tcg-bg-body .news-task-hero-content p{font-size:12px!important;margin:0!important}
+/* Thần Trang: banner + dòng trang bị gọn */
+body.tcg-bg-body .tz-total-card,body.tcg-bg-body .tz-rank-card{min-height:0!important;padding:8px 12px!important}
+body.tcg-bg-body .tz-equip-row{min-height:0!important;padding:6px 10px!important}
+}
+@media(min-width:761px){
+body.tcg-bg-body .vdd-hero-content{min-height:0!important}
+body.tcg-bg-body .vdd-floor-mark,body.tcg-bg-body .news-task-mark,body.tcg-bg-body .news-task-ribbon{min-height:0!important;height:28px!important;margin-bottom:4px!important}
+body.tcg-bg-body .news-task-badges{margin:0 0 4px!important}
+body.tcg-bg-body .news-task-stats{margin-top:6px!important}
+}
+@media(min-width:761px){
+body.tcg-bg-body .vdd-top-row{padding:3px 0!important;font-size:13px!important}
+/* Đoạn mô tả trên banner: 1 dòng (thừa thì …) */
+body.tcg-bg-body .vdd-hero-content p,body.tcg-bg-body .sth-hero-content p,body.tcg-bg-body .news-task-hero-content p,body.tcg-bg-body .qydt-copy p{display:-webkit-box!important;-webkit-line-clamp:1!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+body.tcg-bg-body .qydt-copy h1{font-size:24px!important;margin:0 0 4px!important}
+body.tcg-bg-body .sth-stats,body.tcg-bg-body .news-task-stats{margin-top:6px!important}
+body.tcg-bg-body .news-task-grid{gap:8px!important}
+}
+@media(min-width:761px){
+/* Bản Đồ: bỏ dòng "Khu N" lặp trong từng ô (banner đã ghi khu); mũi tròn lối đi không đè chữ */
+body.tcg-bg-body .qydt-section .qydt-place span{display:none!important}
+body.tcg-bg-body .qydt-route{position:relative!important;padding-right:38px!important}
+body.tcg-bg-body .qydt-route i{position:absolute!important;right:8px!important;top:50%!important;transform:translateY(-50%)!important;margin:0!important}
+body.tcg-bg-body .qydt-map-frame{max-height:166px!important}
+/* Sào Thú: thẻ 1 hàng — số | thông tin | 2 nút dọc */
+body.tcg-bg-body .sth-map-card{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:8px!important;text-align:left!important}
+body.tcg-bg-body .sth-map-num{width:26px!important;height:26px!important;font-size:13px!important;margin:0!important}
+body.tcg-bg-body .sth-map-info{min-width:0!important;text-align:left!important}
+body.tcg-bg-body .sth-map-info > *{text-align:left!important;margin:0!important}
+body.tcg-bg-body .sth-map-req{font-size:10.5px!important}
+body.tcg-bg-body .sth-map-btns{flex-direction:column!important;width:112px!important}
+body.tcg-bg-body .sth-map-btns > *{flex:0 0 auto!important;padding:4px!important;font-size:11px!important;text-align:center!important}
+/* Bảng Nhiệm Vụ: tiêu đề + mô tả banner gọn */
+body.tcg-bg-body .news-task-title{font-size:26px!important;margin:0!important;line-height:1.15!important}
+body.tcg-bg-body .news-task-subtitle{font-size:12px!important;margin:2px 0 0!important;display:-webkit-box!important;-webkit-line-clamp:1!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+/* Vấn Đỉnh Đài: thông tin đối thủ 1 dòng */
+body.tcg-bg-body .vdd-row span{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:11.5px!important;margin-top:1px!important}
+body.tcg-bg-body .vdd-row > div{min-width:0!important}
+}
+@media(min-width:761px){
+body.tcg-bg-body .vdd-actions .vdd-btn.home:first-child{display:none!important}
+body.tcg-bg-body .vdd-actions{margin-top:8px!important}
+body.tcg-bg-body .vdd-hero-content .vdd-notice{margin-top:6px!important;padding:6px 10px!important}
+body.tcg-bg-body .vdd-panel{padding:10px 12px!important}
+body.tcg-bg-body .sth-panel{padding:10px 12px!important}
+body.tcg-bg-body .sth-map-card{padding:6px 8px!important}
+body.tcg-bg-body .sth-stat{padding:4px 10px!important}
+body.tcg-bg-body .break-card{padding:12px 14px!important}
+body.tcg-bg-body .news-task-kicker{display:none!important}
+body.tcg-bg-body .news-task-card{padding:8px 12px!important}
+body.tcg-bg-body .news-task-section{padding:10px 12px!important}
+body.tcg-bg-body .tz-tabs a{min-height:32px!important;padding:4px 10px!important}
+body.tcg-bg-body .tz-tabs{padding:5px!important}
+body.tcg-bg-body .tz-legend{padding:6px 10px!important}
+}
+@media(min-width:761px){
+body.tcg-bg-body .vdd-top-row{padding:2px 0!important;font-size:12px!important;line-height:1.3!important}
+body.tcg-bg-body .tz-hero-title{font-size:22px!important;line-height:1.2!important}
+body.tcg-bg-body .tz-equip-row{padding:4px 10px!important}
+body.tcg-bg-body .news-task-filters{margin:6px 0!important}
+body.tcg-bg-body .news-task-grid{gap:6px!important}
+}
+@media(min-width:761px){
+body.tcg-bg-body .qydt-copy h1{font-size:22px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body.tcg-bg-body .qydt-meta{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
+body.tcg-bg-body .qydt-meta > *{margin:0!important}
+body.tcg-bg-body .qydt-map-frame,body.tcg-bg-body .qydt-map-frame img{max-height:none!important}
+body.tcg-bg-body .qydt-hero{align-items:center!important}
+}
+@media(min-width:761px){
+body.tcg-bg-body .qydt-map-frame{height:180px!important;max-height:180px!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+body.tcg-bg-body .qydt-map-frame img{height:100%!important;max-height:100%!important;width:auto!important;max-width:100%!important;object-fit:contain!important}
+}
+@media(min-width:761px){body.tcg-bg-body .qydt-map-frame{min-height:0!important}}
+body.tcg-bg-body .tcg-profile-bottom{display:none!important}
+@media(min-width:761px){
+body.tcg-bg-body .tcg-profile-stat{padding:7px 10px!important;min-height:0!important}
+body.tcg-bg-body .tcg-profile-bar-card{padding:8px 10px!important}
+body.tcg-bg-body .tcg-profile-section{margin-top:8px!important}
+}
+@media(min-width:761px){body.tcg-bg-body .tcg-profile-equip-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-height:280px!important;gap:7px!important}}

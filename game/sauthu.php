@@ -329,7 +329,7 @@ $capturesText = intval($state['total_captures']);
 
 $html = <<<HTML
 <div class="sth-page">
-    <section class="sth-hero" style="background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('./images/bg/phobansanyeuthu.png') center/cover no-repeat!important;padding:32px 18px!important;position:relative!important">
+    <section class="sth-hero" style="background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('./images/bg/phobansanyeuthu.png') center/cover no-repeat!important;padding:16px 18px!important;position:relative!important">
         <div class="tyt-pk-ribbon" onclick="document.getElementById('sth-guide-modal').classList.add('show')" style="cursor:pointer">HƯỚNG DẪN</div>
         <div class="sth-hero-content" style="line-height: 1.5;position:relative!important;z-index:2!important">
             <div class="sth-kicker" style="text-shadow:0 1px 6px rgba(0,0,0,.7)!important">Phó bản săn yêu thú</div>
