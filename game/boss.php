@@ -213,7 +213,13 @@ HTML;
             $tishihtml = "<font color='#cc0000'>⚠ " . $lcCan['msg'] . "</font><br/>";
         } elseif (!\player\linhcan_skill_check_cooldown($sid, $lcskill['id'], $dblj)) {
             $tishihtml = "<font color='#cc0000'>Kỹ năng còn hồi chiêu " . \player\linhcan_skill_cooldown_text($sid, $lcskill['id'], $dblj) . "</font><br/>";
+        } elseif ($player->ustamina < \player\combat_rule('stamina_lc_skill', $lcStage, 5)) {
+            $tishihtml = "<font color='#cc0000'>Không đủ thể lực để thi triển kỹ năng Linh Căn (cần " . intval(\player\combat_rule('stamina_lc_skill', $lcStage, 5)) . ").</font><br/>";
         } else {
+            // Kỹ năng Linh Căn tốn thể lực theo bậc (wugong_skill_config.json stamina_lc_skill)
+            $player->ustamina = max(0, intval($player->ustamina) - intval(\player\combat_rule('stamina_lc_skill', $lcStage, 5)));
+            $stmt = $dblj->prepare("UPDATE game1 SET ustamina = :stamina WHERE sid = :sid");
+            $stmt->execute(array(':stamina' => $player->ustamina, ':sid' => $sid));
             $lcMods = \player\linhcan_skill_combat_mods($lcskill);
             $newHp = max(1, intval($player->uhp) - intval($lcCan['mp_cost']));
             \player\changeplayersx('uhp', $newHp, $sid, $dblj);
@@ -249,7 +255,7 @@ HTML;
     $cbMoves = \player\combat_wugong_moves($cbWg);
     $cbPick = \player\combat_pick_move($cbMoves, $cbState,
         (isset($canshu) && $canshu == 'usewg' && isset($wgt)) ? intval($wgt) : 1,
-        intval($player->ustamina), max(1, intval(round($player->umaxstamina * 0.05))), true);
+        intval($player->ustamina), 1, true);
     $cbMove = $cbPick['move'];
     if ($cbPick['note'] !== '') {
         $tishihtml .= "<font color='#9e9e9e'>{$cbPick['note']} Chuyển sang đánh thường.</font><br/>";
@@ -1039,10 +1045,9 @@ $cbWgV = isset($cbWg) ? $cbWg : ((isset($player->wugong) && intval($player->wugo
 $cbMovesV = \player\combat_wugong_moves($cbWgV);
 if (!empty($cbMovesV) && $boss->bosshp > 0) {
     $cbStV = isset($cbState) ? $cbState : \player\combat_state_load($sid, -intval($bossid), $dblj);
-    $cbBase = max(1, intval(round($player->umaxstamina * 0.05)));
     foreach (array(2, 3) as $t) {
         $mv = $cbMovesV[$t];
-        $cost = max(1, intval(round($cbBase * $mv['stamina_mult'])));
+        $cost = $mv['stamina_cost'];
         $wait = \player\combat_move_wait($cbStV, $t);
         $sub = '';
         if (!$mv['unlocked']) $sub = '🔒 Võ công cấp ' . $mv['unlock_lv'];

@@ -13,8 +13,8 @@ $root = dirname(__DIR__);
 require_once $root . '/pdo.php';
 require_once $root . '/class/player.php'; // dùng chung hàm \player\settle_stamina
 
-// Mỗi 5 phút hồi 1 điểm — chu kỳ gốc; Thiên Phú công 6 rút theo từng nhân vật
-$interval = 300;
+// Mỗi phút hồi 1 điểm — chu kỳ gốc; Thiên Phú công 6 rút theo từng nhân vật
+$interval = \player\stamina_interval_sec();
 
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) {
@@ -32,9 +32,9 @@ $errors   = 0;
 try {
     // Chỉ xử lý nhân vật chưa đầy Thể lực
     $rows = $dblj->query(
-        "SELECT sid, ustamina, umaxstamina, stamina_time
+        "SELECT sid, ulv, ustamina, umaxstamina, stamina_time
          FROM game1
-         WHERE ustamina < umaxstamina"
+         WHERE ustamina < umaxstamina + ulv - 1"
     );
 
     if ($rows === false) {
@@ -50,7 +50,7 @@ try {
     foreach ($rows->fetchAll(PDO::FETCH_ASSOC) as $row) {
         $settle = \player\settle_stamina(
             $row['ustamina'],
-            $row['umaxstamina'],
+            \player\stamina_cap($row['umaxstamina'], $row['ulv']),
             $row['stamina_time'],
             $nowTs,
             $interval,
@@ -68,7 +68,7 @@ try {
             $row['sid']
         ));
 
-        if ($settle['value'] >= intval($row['umaxstamina'])) {
+        if ($settle['value'] >= \player\stamina_cap($row['umaxstamina'], $row['ulv'])) {
             $full++;
         }
         $updated++;

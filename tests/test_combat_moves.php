@@ -53,7 +53,13 @@ tassert('C2 chan tran Tuyet Ky 1.6', $mv[2]['mult'], 1.6);
 tassert('C2 chan tran Tuyet Chieu 2.6', $mv[3]['mult'], 2.6);
 $wg->rarity = 'than_cong'; $mv = \player\combat_wugong_moves($wg);
 tassert('C2 than cong +0.15', $mv[3]['mult'], 2.75);
-tassert('C2 the luc x2 cho Tuyet Chieu', $mv[3]['stamina_mult'], 2.0);
+// Thể lực theo thế + phẩm (wugong_skill_config.json stamina_cost / stamina_per_rank / stamina_rank)
+tassert('C2 the luc than cong (hang 4): Vo Ky 1, Tuyet Ky 3+4, Tuyet Chieu 6+8', array($mv[1]['stamina_cost'], $mv[2]['stamina_cost'], $mv[3]['stamina_cost']), array(1, 7, 14));
+$wg->rarity = 'nhap_mon'; $mv = \player\combat_wugong_moves($wg);
+tassert('C2 the luc nhap mon: 1 / 3 / 6', array($mv[1]['stamina_cost'], $mv[2]['stamina_cost'], $mv[3]['stamina_cost']), array(1, 3, 6));
+$wg->rarity = 'dai_dao'; $mv = \player\combat_wugong_moves($wg);
+tassert('C2 the luc dai dao: 1 / 10 / 20', array($mv[1]['stamina_cost'], $mv[2]['stamina_cost'], $mv[3]['stamina_cost']), array(1, 10, 20));
+tassert('C2 ky nang bi kip 3, Linh Can bac 2/3/4 = 5/8/12', array(intval(\player\combat_rule('stamina_skill')), \player\combat_rule('stamina_lc_skill', 2), \player\combat_rule('stamina_lc_skill', 3), \player\combat_rule('stamina_lc_skill', 4)), array(3, 5, 8, 12));
 
 // ===== C3: hồi chiêu theo lượt =====
 // Dùng Tuyệt Chiêu (cd 4) ở lượt 3 => cd3 = 3 + 4 + 1 = 8; lượt 4..7 chờ, lượt 8 dùng được.
@@ -102,12 +108,12 @@ $wg->wgid = 2; $wg->rarity = 'nhap_mon'; $wg->wgdj = 12;
 $mvs = \player\combat_wugong_moves($wg);
 $st = array('ok' => true, 'turn' => 0, 'cd2' => 0, 'cd3' => 0, 'flag' => 0);
 $pk = \player\combat_pick_move($mvs, $st, 3, 100, 5, true);
-tassert('C7 Tuyet Chieu hop le: ton 10 the luc', array($pk['move']['tier'], $pk['cost'], $pk['note']), array(3, 10, ''));
+tassert('C7 Tuyet Chieu nhap mon hop le: ton 6 the luc', array($pk['move']['tier'], $pk['cost'], $pk['note']), array(3, 6, ''));
 $pk = \player\combat_pick_move($mvs, $st, 1, 100, 5, true);
 tassert('C7 Boss: don thuong mien phi', $pk['cost'], 0);
 $pk = \player\combat_pick_move($mvs, $st, 1, 100, 5, false);
-tassert('C7 PVE: don thuong ton 5', $pk['cost'], 5);
-$pk = \player\combat_pick_move($mvs, $st, 3, 9, 5, true);
+tassert('C7 PVE: don thuong ton 1', $pk['cost'], 1);
+$pk = \player\combat_pick_move($mvs, $st, 3, 5, 5, true);
 tassert('C7 thieu the luc -> ve Vo Ky', array($pk['move']['tier'], $pk['cost']), array(1, 0));
 $st['cd3'] = 5;
 $pk = \player\combat_pick_move($mvs, $st, 3, 100, 5, true);

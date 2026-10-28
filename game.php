@@ -455,7 +455,7 @@ if (!isset($sid) || $sid==''){
 	$nowdate = date('Y-m-d H:i:s');
 
 	/*
-	| Thể lực tự hồi: mỗi 5 phút hồi 1 điểm (Thiên Phú công 6 có thể rút còn 210 giây), không vượt quá giới hạn.
+	| Thể lực tự hồi: mỗi phút hồi 1 điểm (Thiên Phú công 6 rút ngắn, sàn 30 giây), không vượt quá giới hạn (100 + 1 mỗi cấp).
 	| Dùng hàm chuẩn settle_stamina để thống nhất công thức với mọi nơi khác
 	| (bao gồm cron tùy chọn). Không ghi nếu không có bước hồi nào.
 	*/
@@ -465,7 +465,7 @@ if (!isset($sid) || $sid==''){
 		isset($player->umaxstamina) ? $player->umaxstamina : 0,
 		isset($player->stamina_time) ? $player->stamina_time : null,
 		$nowTs,
-		300,
+		\player\stamina_interval_sec(),
 		isset($player->tianfu_bonus['stamina']) ? floatval($player->tianfu_bonus['stamina']) : 0
 	);
 	if ($settle['steps'] > 0) {

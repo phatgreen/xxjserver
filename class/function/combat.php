@@ -49,11 +49,20 @@ if (!function_exists(__NAMESPACE__ . '\\combat_move_mult')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\combat_stamina_cost')) {
+    // Thể lực 1 đòn: cố định theo thế + thêm theo phẩm võ công (đánh thường 1, Tuyệt Kỹ 3→10, Tuyệt Chiêu 6→20)
+    function combat_stamina_cost($tier, $rarity){
+        $rank = array_search($rarity, (array)combat_rule('stamina_rank', null, array()), true);
+        $rank = ($rank === false) ? 0 : intval($rank);
+        return max(1, intval(combat_rule('stamina_cost', $tier, 1)) + intval(combat_rule('stamina_per_rank', $tier, 0)) * $rank);
+    }
+}
+
 if (!function_exists(__NAMESPACE__ . '\\combat_wugong_moves')) {
     /**
      * 3 thế của võ công đang trang bị. $wg = object từ wgcx() (cần wgid, wgdj, wgname, rarity).
      * Trả array(1 => move, 2 => move, 3 => move); move có: tier, label, name, effect, value, hits,
-     * text, mult, unlock_lv, unlocked, cooldown, stamina_mult.
+     * text, mult, unlock_lv, unlocked, cooldown, stamina_cost.
      */
     function combat_wugong_moves($wg){
         $out = array();
@@ -79,7 +88,7 @@ if (!function_exists(__NAMESPACE__ . '\\combat_wugong_moves')) {
                 'unlock_lv' => $unlock,
                 'unlocked' => $wgdj >= $unlock,
                 'cooldown' => intval(combat_rule('cooldown', $t, 0)),
-                'stamina_mult' => floatval(combat_rule('stamina_mult', $t, 1)),
+                'stamina_cost' => combat_stamina_cost($t, $rarity),
             );
         }
         return $out;
@@ -250,7 +259,7 @@ if (!function_exists(__NAMESPACE__ . '\\combat_cp_effective')) {
 if (!function_exists(__NAMESPACE__ . '\\combat_pick_move')) {
     /**
      * Chọn thế được dùng ở lượt này. $tier = thế người chơi bấm; không đủ điều kiện => về Võ Kỹ.
-     * $base = thể lực của 1 đòn thường; $freeTier1 = true khi đòn thường không tốn thể lực (Boss).
+     * $base: không còn dùng (thể lực lấy từ stamina_cost của thế), giữ tham số cho tương thích; $freeTier1 = true khi đòn thường không tốn thể lực (Boss).
      * Trả array('move' => array|null, 'cost' => thể lực cần trừ, 'note' => lý do bị đổi về Võ Kỹ).
      */
     function combat_pick_move($moves, $st, $tier, $stamina, $base, $freeTier1){
@@ -266,7 +275,7 @@ if (!function_exists(__NAMESPACE__ . '\\combat_pick_move')) {
                 $note = 'Chưa khởi tạo dữ liệu thế võ (bảng player_combat_state).';
             } elseif (combat_move_wait($st, $tier) > 0) {
                 $note = '«' . $moves[$tier]['name'] . '» còn hồi ' . combat_move_wait($st, $tier) . ' lượt.';
-            } elseif (intval($stamina) < max(1, intval(round($base * $moves[$tier]['stamina_mult'])))) {
+            } elseif (intval($stamina) < $moves[$tier]['stamina_cost']) {
                 $note = 'Không đủ thể lực để thi triển «' . $moves[$tier]['name'] . '».';
             } else {
                 $move = $moves[$tier];
@@ -274,7 +283,7 @@ if (!function_exists(__NAMESPACE__ . '\\combat_pick_move')) {
         }
         $cost = 0;
         if ($move && ($move['tier'] > 1 || !$freeTier1)) {
-            $cost = max(1, intval(round($base * $move['stamina_mult'])));
+            $cost = $move['stamina_cost'];
         }
         return array('move' => $move, 'cost' => $cost, 'note' => $note);
     }

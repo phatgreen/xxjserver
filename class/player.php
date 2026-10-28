@@ -338,7 +338,7 @@ function game1_update_allowed_columns(){
 /*
 | Hồi Thể lực theo thời gian thực — NƠI DUY NHẤT chứa công thức.
 |
-| Mỗi 5 phút hồi 1 điểm. `ustamina` là giá trị gốc tại mốc `stamina_time`.
+| Mỗi phút hồi 1 điểm (stamina_interval_sec). `ustamina` là giá trị gốc tại mốc `stamina_time`.
 | Thien Phu cong 6 co the rut chu ky (san 30 giay) — truyen $staminaPct, xem tianfu_stamina_interval().
 | Hàm này tính Thể lực "sống" (live) dựa trên thời gian trôi qua, có thể:
 |   - chỉ đọc (không ghi DB) để hiển thị nhanh mọi nơi,
@@ -351,7 +351,17 @@ function game1_update_allowed_columns(){
 | KHÔNG phụ thuộc cron/task nền -> chạy được trên mọi hệ điều hành,
 | offline vẫn hồi vì thời gian luôn trôi.
 */
-function settle_stamina($ustamina, $umaxstamina, $stamina_time, $nowTs = null, $intervalSec = 300, $staminaPct = 0)
+// Chu kỳ hồi 1 điểm thể lực (giây) — dùng chung cho game.php và cron
+function stamina_interval_sec(){
+    return 60;
+}
+
+// Thể lực tối đa thực = cột umaxstamina (gốc 100) + 1 mỗi cấp trên cấp 1. SQL tương ứng: umaxstamina + ulv - 1
+function stamina_cap($umaxstamina, $ulv){
+    return intval($umaxstamina) + max(0, intval($ulv) - 1);
+}
+
+function settle_stamina($ustamina, $umaxstamina, $stamina_time, $nowTs = null, $intervalSec = 60, $staminaPct = 0)
 {
     $nowTs = ($nowTs === null) ? time() : intval($nowTs);
     if (function_exists(__NAMESPACE__ . '\tianfu_stamina_interval')) {
@@ -588,6 +598,7 @@ function getplayer($sid,$dblj){
     }
 
     hydrate_object_from_row($player, $row);
+    $player->umaxstamina = stamina_cap($player->umaxstamina, $player->ulv);
     $player->tuposjs = 0;
     $player->tupoexp = 0;
 

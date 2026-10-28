@@ -107,7 +107,7 @@ if (!function_exists(__NAMESPACE__ . '\\online_reward_claim')) {
         if ($m['lt'] > 0) { changeyxb(1, $m['lt'], $sid, $dblj); $parts[] = '+' . number_format($m['lt']) . ' linh thạch'; }
         if ($m['mt'] > 0) { changeczb(1, $m['mt'], $sid, $dblj); $parts[] = '+' . $m['mt'] . ' ma thạch'; }
         if ($m['stamina'] > 0) {
-            $st = $dblj->prepare("UPDATE game1 SET ustamina = LEAST(umaxstamina, ustamina + ?) WHERE sid = ?");
+            $st = $dblj->prepare("UPDATE game1 SET ustamina = LEAST(umaxstamina + ulv - 1, ustamina + ?) WHERE sid = ?");
             $st->execute(array($m['stamina'], $sid));
             player_cache_clear($sid);
             $parts[] = '+' . $m['stamina'] . ' thể lực';

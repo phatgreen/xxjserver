@@ -127,11 +127,14 @@ if($cmd=='pve' && $guaiwu->sid==''){
     $pveFromUhp = intval($player->uhp);
     $jineng = new \player\jineng();
     $lcMods = array();
+    $pveSkillStamina = 0;
 
     if (isset($canshu)){
         switch ($canshu){
             case 'usejn':
-                $ret = \player\delejnsum($jnid,1,$sid,$dblj);
+                $jnStamina = intval(\player\combat_rule('stamina_skill', null, 3));
+                $ret = ($player->ustamina >= $jnStamina) ? \player\delejnsum($jnid,1,$sid,$dblj) : false;
+                if ($ret) $pveSkillStamina = $jnStamina;
                 if ($ret){
                     $jineng = \player\getplayerjineng($jnid,$sid,$dblj);
                     $tishihtml = "<font color='#4CAF50'><b>⚡ Tung chiêu</b>: <b>$jineng->jnname</b>!</font><br/>";
@@ -154,7 +157,10 @@ if($cmd=='pve' && $guaiwu->sid==''){
                 } elseif (!\player\linhcan_skill_check_cooldown($sid, $lcskill['id'], $dblj)) {
                     $lcCd = \player\linhcan_skill_cooldown_text($sid, $lcskill['id'], $dblj);
                     $tishihtml = "<font color='#cc0000'>Kỹ năng còn hồi chiêu " . $lcCd . "</font><br/>";
+                } elseif ($player->ustamina < \player\combat_rule('stamina_lc_skill', $lcStage, 5)) {
+                    $tishihtml = "<font color='#cc0000'>Không đủ thể lực để thi triển kỹ năng Linh Căn (cần " . intval(\player\combat_rule('stamina_lc_skill', $lcStage, 5)) . ").</font><br/>";
                 } else {
+                    $pveSkillStamina = intval(\player\combat_rule('stamina_lc_skill', $lcStage, 5));
                     $lcMods = \player\linhcan_skill_combat_mods($lcskill);
                     $newHp = max(1, intval($player->uhp) - intval($lcCan['mp_cost']));
                     \player\changeplayersx('uhp', $newHp, $sid, $dblj);
@@ -172,7 +178,7 @@ if($cmd=='pve' && $guaiwu->sid==''){
     $cbMoves = \player\combat_wugong_moves($cbWg);
     $cbMove = isset($cbMoves[1]) ? $cbMoves[1] : null;
     $cbTier = (isset($canshu) && $canshu == 'usewg' && isset($wgt)) ? intval($wgt) : 1;
-    $energyBase = max(1, intval(round($player->umaxstamina * 0.05)));
+    $energyBase = 1; // không còn dùng: thể lực mỗi đòn lấy từ stamina_cost của thế (combat_stamina_cost)
     if ($cbTier > 1) {
         $cbNote = '';
         if (!isset($cbMoves[$cbTier])) {
@@ -183,7 +189,7 @@ if($cmd=='pve' && $guaiwu->sid==''){
             $cbNote = 'Chưa khởi tạo dữ liệu thế võ (bảng player_combat_state).';
         } elseif (\player\combat_move_wait($cbState, $cbTier) > 0) {
             $cbNote = '«' . $cbMoves[$cbTier]['name'] . '» còn hồi ' . \player\combat_move_wait($cbState, $cbTier) . ' lượt.';
-        } elseif ($player->ustamina < max(1, intval(round($energyBase * $cbMoves[$cbTier]['stamina_mult'])))) {
+        } elseif ($player->ustamina < $cbMoves[$cbTier]['stamina_cost']) {
             $cbNote = 'Không đủ thể lực để thi triển «' . $cbMoves[$cbTier]['name'] . '».';
         } else {
             $cbMove = $cbMoves[$cbTier];
@@ -193,7 +199,9 @@ if($cmd=='pve' && $guaiwu->sid==''){
         }
     }
 
-    $energyCost = $cbMove ? max(1, intval(round($energyBase * $cbMove['stamina_mult']))) : $energyBase;
+    $energyCost = $cbMove ? $cbMove['stamina_cost'] : 1;
+    // Kỹ năng bí kíp / Linh Căn: lượt này tốn theo kỹ năng (đã kiểm đủ thể lực trước khi dùng)
+    if (!empty($pveSkillStamina)) $energyCost = max($energyCost, intval($pveSkillStamina));
     if ($player->ustamina < $energyCost) {
         $tishihtml = "<font color='#cc0000'>Thể lực không đủ để tấn công (cần $energyCost).</font><br/>";
         $player->ustamina = max(0, intval($player->ustamina));
@@ -1115,11 +1123,10 @@ $cbWgV = isset($cbWg) ? $cbWg : ((isset($player->wugong) && intval($player->wugo
 $cbMovesV = \player\combat_wugong_moves($cbWgV);
 if (!empty($cbMovesV)) {
     $cbStV = isset($cbState) ? $cbState : \player\combat_state_load($sid, $gid, $dblj);
-    $cbBase = max(1, intval(round($player->umaxstamina * 0.05)));
     $cbBtns = '';
     foreach (array(2, 3) as $t) {
         $mv = $cbMovesV[$t];
-        $cost = max(1, intval(round($cbBase * $mv['stamina_mult'])));
+        $cost = $mv['stamina_cost'];
         $wait = \player\combat_move_wait($cbStV, $t);
         $sub = '';
         if (!$mv['unlocked']) {

@@ -253,7 +253,7 @@ foreach ($cbMovesP as $mv) {
     $cbMoveHtml .= "<div class=\"tcg-wg-move t{$mv['tier']}{$lock}\">"
         . "<div class=\"tcg-wg-move-head\"><b>{$mv['label']}</b><em>{$state}</em></div>"
         . "<div class=\"tcg-wg-move-name\">{$mv['name']}" . ($mv['hits'] > 1 ? " <small>({$mv['hits']} đòn)</small>" : '') . "</div>"
-        . "<div class=\"tcg-wg-move-stat\">Sát thương x{$mv['mult']} · thể lực x{$mv['stamina_mult']}{$cd}</div>"
+        . "<div class=\"tcg-wg-move-stat\">Sát thương x{$mv['mult']} · {$mv['stamina_cost']} thể lực{$cd}</div>"
         . ($eff !== '' ? "<div class=\"tcg-wg-move-eff\">{$eff}</div>" : '')
         . "<div class=\"tcg-wg-move-text\">" . wg_safe_text(\player\combat_text($mv['text'], 'đối thủ')) . "</div>"
         . "</div>";
