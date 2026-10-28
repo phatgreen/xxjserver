@@ -1,0 +1,9 @@
+{
+    "_note": "Lộ Trình Cảnh Giới (chủ dự án 2026-10-28): mỗi đại cảnh giới (50 cấp) có 5 mốc — đột phá vào (tầng 1, từ cảnh giới thứ 2), Sơ kỳ (tầng 10), Trung kỳ (20), Hậu kỳ (30), Viên Mãn (40). Thưởng tính theo cấp của mốc: tu vi = exp_pct % thanh cấp ((cấp+1)^2 x 110); linh thạch = lt_per_lv x cấp x (1 + cấp / lt_level_div); ma thạch = mt_boss_mult x (cấp/10 + 3) (= số lần hạ boss cùng cấp, game/boss.php). Đã nhận lưu ở player_nhiemvu_achievements, mã CG + cấp.",
+    "max_level": 4300,
+    "lt_level_div": 100,
+    "major": {"exp_pct": 15, "lt_per_lv": 10, "mt_boss_mult": 10},
+    "minor": {"exp_pct": 5,  "lt_per_lv": 2,  "mt_boss_mult": 0},
+    "stages": {"1": "Đột Phá", "10": "Sơ kỳ", "20": "Trung kỳ", "30": "Hậu kỳ", "40": "Viên Mãn"},
+    "show_upcoming": 2
+}

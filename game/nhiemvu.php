@@ -35,6 +35,12 @@ if ($action === 'claim_daily') {
             ? '<div class="nv-success">'.$r['msg'].'</div>'
             : '<div class="nv-error">'.$r['msg'].'</div>';
     }
+} elseif ($action === 'claim_realm') {
+    $rid = isset($rid) && $rid !== '' ? $rid : (isset($_GET['rid']) ? $_GET['rid'] : '');
+    if ($rid) {
+        $r = \player\nhiemvu_realm_claim($sid, $rid, $dblj);
+        $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . $r['msg'] . '</div>';
+    }
 }
 
 $ztcmd = $encode->encode("cmd=zhuangtai&sid=$sid");
@@ -47,6 +53,7 @@ $tabDefs = array(
     'achievements' => 'Thành Tựu',
     'hidden'       => 'Ẩn',
     'main'         => 'Chính Tuyến',
+    'canhgioi'     => 'Cảnh Giới',
     'online'       => 'Trực Tuyến',
 );
 $nvUnitVi = array(
@@ -434,6 +441,34 @@ elseif ($tab === 'main') {
             }
             $html .= '</details>';
         }
+    }
+    $html .= '</div>';
+}
+
+// ─── Lộ Trình Cảnh Giới ────────────────────────────────────────
+if ($tab === 'canhgioi') {
+    $rg = \player\nhiemvu_realm_get($sid, intval($player->ulv), $dblj);
+    $html .= '<div class="nv-card"><div class="nv-title">⛰ Lộ Trình Cảnh Giới</div>';
+    $html .= '<div class="nv-desc" style="text-align:center;margin-bottom:8px">Mỗi lần đột phá đại cảnh giới, đạt Sơ kỳ, Trung kỳ, Hậu kỳ, Viên Mãn đều được thưởng. Đã nhận <b style="color:#fde68a">'
+        . $rg['claimed'] . '/' . $rg['total'] . '</b> mốc.</div>';
+    $rgRow = function ($m, $btn) {
+        $rw = array();
+        if ($m['exp'] > 0) $rw[] = number_format($m['exp']) . ' EXP';
+        if ($m['lt'] > 0)  $rw[] = number_format($m['lt']) . ' LT';
+        if ($m['mt'] > 0)  $rw[] = number_format($m['mt']) . ' MT';
+        return '<div class="nv-item"><div class="nv-info"><div class="nv-name"' . ($m['major'] ? ' style="color:#fde68a"' : '') . '>'
+            . ($m['major'] ? '⚡ ' : '') . $m['name'] . '</div><div class="nv-desc">Cấp ' . $m['lv'] . ' — ' . implode(' | ', $rw)
+            . '</div></div><div>' . $btn . '</div></div>';
+    };
+    foreach ($rg['claimable'] as $m) {
+        $rc = $encode->encode("cmd=nhiemvu&action=claim_realm&rid={$m['id']}&tab=canhgioi&sid=$sid");
+        $html .= $rgRow($m, '<a class="nv-btn nv-btn-claim" href="?cmd=' . $rc . '">Nhận</a>');
+    }
+    foreach ($rg['upcoming'] as $m) {
+        $html .= $rgRow($m, '<span class="nv-btn nv-btn-lock">🔒</span>');
+    }
+    if (empty($rg['claimable']) && empty($rg['upcoming'])) {
+        $html .= '<div class="nv-empty">Đã nhận hết thưởng cảnh giới.</div>';
     }
     $html .= '</div>';
 }

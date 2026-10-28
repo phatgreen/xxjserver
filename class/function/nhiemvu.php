@@ -482,6 +482,132 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_achievement_claim')) {
     }
 }
 
+// ─── Lộ Trình Cảnh Giới (config/canhgioi_reward.json) ─────────
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_config')) {
+    function nhiemvu_realm_config(){
+        static $cache = null;
+        if ($cache !== null) return $cache;
+        $json = @file_get_contents(__DIR__ . '/../config/canhgioi_reward.json');
+        $cache = $json ? json_decode($json, true) : array();
+        if (!is_array($cache)) $cache = array();
+        return $cache;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_milestones')) {
+    // Toàn bộ mốc theo thứ tự cấp: id = CG + cấp; major = mốc đột phá vào đại cảnh giới.
+    function nhiemvu_realm_milestones(){
+        static $list = null;
+        if ($list !== null) return $list;
+        global $rangesjj;
+        $cfg = nhiemvu_realm_config();
+        $maxLv = isset($cfg['max_level']) ? intval($cfg['max_level']) : 4300;
+        $stages = isset($cfg['stages']) ? $cfg['stages'] : array();
+        $list = array();
+        for ($r = 0; $r * 50 < $maxLv; $r++) {
+            $realm = isset($rangesjj[$r]) ? trim(preg_replace('/\s+/u', ' ', strip_tags($rangesjj[$r]))) : ('Cảnh giới ' . ($r + 1));
+            foreach ($stages as $inner => $stageName) {
+                $inner = intval($inner);
+                if ($inner == 1 && $r == 0) continue;   // cảnh giới đầu không có đột phá vào
+                $lv = $r * 50 + $inner;
+                if ($lv >= $maxLv) continue;
+                $major = ($inner == 1);
+                $list[] = array(
+                    'id'    => 'CG' . $lv,
+                    'lv'    => $lv,
+                    'major' => $major,
+                    'name'  => $major ? 'Đột Phá ' . $realm : $realm . ' ' . $stageName,
+                );
+            }
+        }
+        return $list;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_reward')) {
+    function nhiemvu_realm_reward($m){
+        $cfg = nhiemvu_realm_config();
+        $k = $m['major'] ? 'major' : 'minor';
+        $r = isset($cfg[$k]) ? $cfg[$k] : array();
+        $lv = intval($m['lv']);
+        $div = isset($cfg['lt_level_div']) ? max(1, intval($cfg['lt_level_div'])) : 100;
+        $pct = isset($r['exp_pct']) ? floatval($r['exp_pct']) : 0;
+        $ltK = isset($r['lt_per_lv']) ? floatval($r['lt_per_lv']) : 0;
+        $mtK = isset($r['mt_boss_mult']) ? floatval($r['mt_boss_mult']) : 0;
+        return array(
+            'exp' => intval(floor(nhiemvu_level_need($lv) * $pct / 100)),
+            'lt'  => intval(round($ltK * $lv * (1 + $lv / $div))),
+            'mt'  => intval(round($mtK * ($lv / 10 + 3))),
+        );
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_claimed')) {
+    // Tập mã mốc đã nhận (mảng id => true)
+    function nhiemvu_realm_claimed($sid, $dblj){
+        $stmt = $dblj->prepare("SELECT achievement_id FROM player_nhiemvu_achievements WHERE sid = ? AND achievement_id LIKE 'CG%'");
+        $stmt->execute(array($sid));
+        $set = array();
+        foreach ($stmt->fetchAll(\PDO::FETCH_COLUMN) as $id) $set[$id] = true;
+        return $set;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_get')) {
+    // claimable: mốc đã đạt chưa nhận; upcoming: vài mốc sắp tới. Thưởng đã tính sẵn.
+    function nhiemvu_realm_get($sid, $lv, $dblj){
+        $cfg = nhiemvu_realm_config();
+        $show = isset($cfg['show_upcoming']) ? intval($cfg['show_upcoming']) : 2;
+        $claimed = nhiemvu_realm_claimed($sid, $dblj);
+        $out = array('claimable' => array(), 'upcoming' => array(), 'claimed' => count($claimed), 'total' => 0);
+        foreach (nhiemvu_realm_milestones() as $m) {
+            $out['total']++;
+            if (isset($claimed[$m['id']])) continue;
+            if ($m['lv'] <= $lv) {
+                $out['claimable'][] = $m + nhiemvu_realm_reward($m);
+            } elseif (count($out['upcoming']) < $show) {
+                $out['upcoming'][] = $m + nhiemvu_realm_reward($m);
+            }
+        }
+        return $out;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_has_claimable')) {
+    function nhiemvu_realm_has_claimable($sid, $lv, $dblj){
+        $claimed = nhiemvu_realm_claimed($sid, $dblj);
+        foreach (nhiemvu_realm_milestones() as $m) {
+            if ($m['lv'] > $lv) break;
+            if (!isset($claimed[$m['id']])) return true;
+        }
+        return false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_realm_claim')) {
+    function nhiemvu_realm_claim($sid, $id, $dblj){
+        $m = null;
+        foreach (nhiemvu_realm_milestones() as $x) {
+            if ($x['id'] === $id) { $m = $x; break; }
+        }
+        if (!$m) return array('ok' => false, 'msg' => 'Không tìm thấy mốc cảnh giới.');
+        $lv = nhiemvu_player_level($sid, $dblj);
+        if ($lv < $m['lv']) return array('ok' => false, 'msg' => 'Chưa đạt cảnh giới này.');
+        // Khóa chính (sid, achievement_id): chỉ lần ghi đầu tiên được thưởng — bấm 2 lần cùng lúc cũng không nhận đôi
+        $stmt = $dblj->prepare("INSERT IGNORE INTO player_nhiemvu_achievements (sid, achievement_id, progress, claimed) VALUES (?, ?, ?, 1)");
+        $stmt->execute(array($sid, $m['id'], $lv));
+        if ($stmt->rowCount() < 1) return array('ok' => false, 'msg' => 'Đã nhận thưởng rồi.');
+        $r = nhiemvu_realm_reward($m);
+        nhiemvu_grant_reward($sid, $r['exp'], $r['lt'], $r['mt'], $dblj);
+        $parts = array();
+        if ($r['exp'] > 0) $parts[] = '+' . number_format($r['exp']) . ' EXP';
+        if ($r['lt'] > 0)  $parts[] = '+' . number_format($r['lt']) . ' LT';
+        if ($r['mt'] > 0)  $parts[] = '+' . number_format($r['mt']) . ' MT';
+        return array('ok' => true, 'msg' => 'Nhận thưởng "' . $m['name'] . '": ' . implode(', ', $parts));
+    }
+}
+
 // ─── Hidden Quests ─────────────────────────────────────────────
 
 if (!function_exists(__NAMESPACE__ . '\\nhiemvu_hidden_get_all')) {

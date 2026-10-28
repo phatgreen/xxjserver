@@ -119,7 +119,9 @@ if (!function_exists(__NAMESPACE__ . '\\nav_quest_dot')) {
         try {
             $stmt = $dblj->prepare($sql);
             $stmt->execute(array($sid, date('Y-m-d'), $sid, nhiemvu_current_week_num(), $sid, nhiemvu_current_month()));
-            return (bool)$stmt->fetchColumn();
+            if ($stmt->fetchColumn()) return true;
+            // Lộ Trình Cảnh Giới: có mốc đã đạt chưa nhận
+            return nhiemvu_realm_has_claimable($sid, nhiemvu_player_level($sid, $dblj), $dblj);
         } catch (\Exception $e) {
             return false;
         }
