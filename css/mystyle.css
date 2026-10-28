@@ -8207,3 +8207,42 @@ body.tcg-bg-body .tcg-wg-page.bt-compact .tcg-wg-mini-btn,body.tcg-bg-body .tcg-
 body.tcg-bg-body .tcg-wg-page.bt-compact .tcg-wg-list{grid-template-columns:1fr!important}
 }
 
+/* ===== Cửa Hàng gọn (game/shangdian.php .shop-compact) — banner thấp, thanh lọc 1 hàng, lưới ô vật phẩm ===== */
+.shop-compact .tcg-shop-hero{margin-bottom:10px!important;height:74px!important}
+.shop-compact .tcg-shop-hero img{height:74px!important;max-height:74px!important;object-position:center 40%!important}
+.shop-compact .tcg-shop-hero:after{background:linear-gradient(90deg,rgba(7,14,44,.88) 0%,rgba(7,14,44,.55) 55%,transparent)!important}
+.shop-compact .tcg-shop-title{top:50%!important;bottom:auto!important;left:16px!important;right:16px!important;transform:translateY(-50%)!important;display:flex!important;align-items:baseline!important;flex-wrap:wrap!important;gap:4px 14px!important;font-size:22px!important}
+.shop-compact .tcg-shop-subtitle{margin:0!important;font-size:12px!important}
+.shop-compact .tcg-shop-tabs{margin-bottom:10px!important}
+.shop-compact .shop-bar{display:flex!important;align-items:stretch!important;gap:10px!important;margin:0 0 10px!important}
+.shop-compact .shop-bar .tcg-shop-subtabs{flex:0 0 300px!important;margin:0!important;padding:5px!important;gap:6px!important}
+.shop-compact .shop-bar .tcg-shop-subtab{min-height:34px!important}
+.shop-compact .shop-bar .tcg-shop-search{flex:1 1 auto!important;min-width:0!important;margin:0!important;padding:5px 8px!important}
+.shop-compact .tcg-shop-search-input,.shop-compact .tcg-shop-search-btn,.shop-compact .tcg-shop-search-clear{height:34px!important}
+.shop-compact .tcg-shop-list{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important;margin-top:0!important}
+.shop-compact .tcg-shop-item{grid-template-columns:1fr!important;justify-items:center!important;align-content:start!important;gap:6px!important;min-height:0!important;padding:10px 8px!important;text-align:center!important}
+.shop-compact .tcg-shop-icon{width:52px!important;height:52px!important}
+.shop-compact .tcg-shop-icon img{width:42px!important;height:42px!important}
+.shop-compact .tcg-shop-info{width:100%!important;align-items:center!important;gap:6px!important}
+.shop-compact .tcg-shop-title-line{justify-content:center!important;margin:0!important;min-height:36px!important}
+.shop-compact .tcg-shop-index{display:none!important}
+.shop-compact .tcg-shop-name,.shop-compact .tcg-shop-name:visited{flex:0 1 auto!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:14px!important;line-height:1.25!important;text-align:center!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;min-height:0!important}
+.shop-compact .tcg-shop-price{max-width:100%!important;font-size:12px!important;white-space:nowrap!important}
+.shop-compact .tcg-shop-buy,.shop-compact a.tcg-shop-buy:link,.shop-compact a.tcg-shop-buy:visited{width:100%!important;height:30px!important;margin:0!important}
+.shop-compact .tcg-shop-pager{margin:10px 0 0!important}
+@media(max-width:760px){
+.shop-compact .tcg-shop-hero,.shop-compact .tcg-shop-hero img{height:64px!important;max-height:64px!important}
+.shop-compact .tcg-shop-title{font-size:19px!important}
+.shop-compact .tcg-shop-subtitle{display:none!important}
+.shop-compact .shop-bar{flex-direction:column!important;gap:8px!important}
+.shop-compact .shop-bar .tcg-shop-subtabs{flex:0 0 auto!important}
+.shop-compact .tcg-shop-list{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.shop-compact .tcg-shop-item{padding:8px 6px!important}
+.shop-compact .tcg-shop-icon{width:44px!important;height:44px!important}
+.shop-compact .tcg-shop-icon img{width:36px!important;height:36px!important}
+.shop-compact .tcg-shop-name,.shop-compact .tcg-shop-name:visited{font-size:13px!important}
+.shop-compact .tcg-shop-price{font-size:11px!important;padding:2px 6px!important}
+}
+.shop-compact .shop-bar .tcg-shop-subtabs{flex-basis:330px!important}
+.shop-compact .shop-bar .tcg-shop-subtab{white-space:nowrap!important;padding:0 10px!important;font-size:13px!important}
+@media(max-width:760px){.shop-compact .shop-bar .tcg-shop-subtabs{flex-basis:auto!important}}

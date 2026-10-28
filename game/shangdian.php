@@ -16,7 +16,7 @@ $noticeHtml = '';
 $itemHtml = '';
 $paymentModalHtml = '';
 $page = isset($p) ? max(1, intval($p)) : 1;
-$pageSize = 10;
+$pageSize = 15;   // lưới 5 cột (desktop) / 3 cột (mobile)
 $pagerHtml = '';
 
 $kw = isset($kw) ? trim($kw) : '';
@@ -102,6 +102,8 @@ function tcg_shop_item_html($index, $name, $color, $price, $unitName, $infoCmd, 
     $safeName = tcg_shop_text($name);
     $safeUnit = tcg_shop_text($unitName);
     $iconHtml = $img != '' ? '<img src="'.$img.'" alt="">' : $icon;
+    // Ô vật phẩm hẹp: chỉ ghi biểu tượng tiền + số (1.000), đơn vị đầy đủ để ở title
+    $priceText = is_numeric($price) ? number_format($price, 0, ',', '.') : tcg_shop_text($price);
 
     return <<<HTML
 <div class="tcg-shop-item">
@@ -111,7 +113,7 @@ function tcg_shop_item_html($index, $name, $color, $price, $unitName, $infoCmd, 
             <span class="tcg-shop-index">[$index]</span>
             <a class="tcg-shop-name"{$tipAttr} href="?cmd=$infoCmd" style="color:$color!important">$safeName</a>
         </div>
-        <div class="tcg-shop-price $priceClass">$price $safeUnit</div>
+        <div class="tcg-shop-price $priceClass" title="$price $safeUnit">$icon $priceText</div>
     </div>
     <a class="tcg-shop-buy" href="?cmd=$payCmd">Mua</a>
 </div>
@@ -547,7 +549,7 @@ $searchAction = preg_replace('/[?&]kw=[^&]*/', '', $searchAction);
 $kwClear = $kw != '' ? '<a class="tcg-shop-search-clear" href="'.htmlspecialchars($searchAction, ENT_QUOTES, 'UTF-8').'">Xóa</a>' : '';
 
 $gnhtml = <<<HTML
-<div class="tcg-shop-page">
+<div class="tcg-shop-page shop-compact">
     <div class="tcg-shop-hero">
         <img src="./images/bg/shop.png" alt="Shop">
         <div class="tcg-shop-title">
@@ -564,6 +566,7 @@ $gnhtml = <<<HTML
         <a class="tcg-shop-tab" href="?cmd=$shopCongphap">Công Pháp</a>
     </div>
 
+    <div class="shop-bar">
     $danSub$daojuSub$zhuangSub
 
     <form class="tcg-shop-search" id="tcgShopSearchForm" method="get" action="$searchAction" onsubmit="return tcgShopSearch();">
@@ -572,6 +575,7 @@ $gnhtml = <<<HTML
         <button type="submit" class="tcg-shop-search-btn">Tìm</button>
         $kwClear
     </form>
+    </div>
 
     $noticeHtml
 
@@ -582,11 +586,6 @@ $gnhtml = <<<HTML
     $pagerHtml
 
     $paymentModalHtml
-
-    <div class="tcg-shop-bottom">
-        <a class="tcg-shop-back" href="#" onClick="javascript:history.back(-1);">Trở Về</a>
-        <a class="tcg-shop-home" href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="./chajian/tishikuang/style/dialog.css">
