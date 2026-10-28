@@ -292,6 +292,9 @@ $realm_label = xl_realm_label($player->jingjie);
             <span>Chiến Lực</span><b><?= xl_num($chien_luc) ?></b>
         </div>
 
+        <?php /* Tiên Đồ — hệ tu thân, 3 nút mỗi bên khung nhân vật (Trang Bị / Võ Công / Bí Tịch / Chế Tạo nằm ở tab Nhân Vật) */ ?>
+        <?= \player\nav_tiendo_html($player, $sid, $encode, array('tuthan')) ?>
+
         <div class="xl-realm">
             <div class="xl-realm-name"><?= $realm_label['main'] ?> <span><?= $player->cengci ?></span></div>
             <?php if ($realm_label['note'] != ''): ?>
@@ -378,8 +381,6 @@ $realm_label = xl_realm_label($player->jingjie);
         </div>
     </div>
 
-    <?php /* Tiên Đồ — hệ tu thân (thay 2 cột nút tròn; Trang Bị / Võ Công / Bí Tịch / Chế Tạo nằm ở tab Nhân Vật) */ ?>
-    <?= \player\nav_tiendo_html($player, $sid, $encode, array('tuthan')) ?>
 </div>
 
 <script>
