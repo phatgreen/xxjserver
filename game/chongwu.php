@@ -79,20 +79,64 @@ if (!function_exists('cw_safe_hp')) {
     }
 }
 
-if (!function_exists('cw_nav_html')) {
-    function cw_nav_html($ztcmd, $cwtab, $sz, $gm)
+if (!function_exists('cw_stage_html')) {
+    /**
+     * Khung sân khấu sủng vật (giống khung nhân vật trang Nhân Vật): ảnh linh thú ở giữa, 3 chỉ số mỗi bên,
+     * tên + phẩm + cấp + nút thao tác bên dưới. $chongwu = null => khung trống (chưa xuất chiến).
+     */
+    function cw_stage_html($chongwu, $tag, $actionsHtml, $emptyText = '')
     {
-        return '
-        <div class="cw-tabs">
-            <a href="?cmd='.$ztcmd.'">Nhân vật</a>
-            <a href="?cmd='.$cwtab.'" class="active">Sủng vật</a>
-            <a href="?cmd='.$sz.'">Thần trang</a>
-            <a href="?cmd='.$gm.'">Đổi tên</a>
-        </div>
-        <div class="cw-divider"></div>';
+        if (!$chongwu) {
+            return '<div class="cws-stage cws-empty">'
+                . '<div class="cws-tag">' . $tag . '</div>'
+                . '<div class="cws-figure"><img src="./images/sungvat/san_khau_linh_thu.jpg" alt="Linh thú"></div>'
+                . '<div class="cws-id"><div class="cws-name">' . $emptyText . '</div>'
+                . '<div class="cws-actions">' . $actionsHtml . '</div></div></div>';
+        }
+        $q = cw_quality_info($chongwu->cwpz);
+        $c = $q['color'];
+        $growth = intval($chongwu->cwpz) * 10;
+        return '<div class="cws-stage" style="--cw-q:' . $c . '">'
+            . '<div class="cws-tag">' . $tag . '</div>'
+            . '<div class="cws-side cws-side-left">'
+            . '<div class="cws-stat"><span>❤️ Khí huyết</span><b>' . intval($chongwu->cwmaxhp) . '</b></div>'
+            . '<div class="cws-stat"><span>⚔️ Công</span><b>' . intval($chongwu->cwgj) . '</b></div>'
+            . '<div class="cws-stat"><span>🛡 Phòng</span><b>' . intval($chongwu->cwfy) . '</b></div>'
+            . '</div>'
+            . '<div class="cws-figure"><img src="./images/sungvat/san_khau_linh_thu.jpg" alt="Linh thú"></div>'
+            . '<div class="cws-side cws-side-right">'
+            . '<div class="cws-stat"><span>💥 Bạo kích</span><b>' . cw_e($chongwu->cwbj) . '</b></div>'
+            . '<div class="cws-stat"><span>🩸 Né / Hút máu</span><b>' . cw_e($chongwu->cwxx) . '</b></div>'
+            . '<div class="cws-stat"><span>📈 Tăng trưởng</span><b>+' . $growth . '%</b></div>'
+            . '</div>'
+            . '<div class="cws-id">'
+            . '<div class="cws-name" style="color:' . $c . ';text-shadow:0 0 16px ' . $c . '88">' . cw_e($chongwu->cwname) . '</div>'
+            . '<div class="cws-meta"><span class="cws-badge" style="border-color:' . $c . ';color:' . $c . '">' . $q['name'] . '</span>'
+            . '<span class="cws-star" style="color:' . $c . '">' . $q['star'] . '</span>'
+            . '<span class="cws-badge">Cấp ' . intval($chongwu->cwlv) . '</span></div>'
+            . '<div class="cws-actions">' . $actionsHtml . '</div>'
+            . '</div></div>';
     }
 }
 
+if (!function_exists('cw_bars_html')) {
+    // Thanh Kinh nghiệm + Khí huyết sủng vật (dùng lớp .profile-bar chung với trang Nhân Vật)
+    function cw_bars_html($chongwu)
+    {
+        $hpMax = max(1, intval($chongwu->cwmaxhp));
+        $hpNow = cw_safe_hp($chongwu->cwhp, $hpMax);
+        $hpPct = min(100, intval($hpNow * 100 / $hpMax));
+        $expMax = max(1, intval($chongwu->cwmaxexp));
+        $expPct = min(100, max(0, intval(intval($chongwu->cwexp) * 100 / $expMax)));
+        $hpLabel = $hpNow <= 0 ? '💀 Trọng thương' : '❤️ Khí huyết';
+        return '<div class="profile-bars cws-bars">'
+            . '<div class="profile-bar"><div class="profile-bar-title"><span>' . $hpLabel . '</span><span>' . $hpNow . ' / ' . $hpMax . '</span></div>'
+            . '<div class="profile-bar-track"><div class="profile-bar-fill" style="width:' . $hpPct . '%"></div></div></div>'
+            . '<div class="profile-bar"><div class="profile-bar-title"><span>✨ Kinh nghiệm</span><span>' . intval($chongwu->cwexp) . ' / ' . $expMax . '</span></div>'
+            . '<div class="profile-bar-track"><div class="profile-bar-fill exp" style="width:' . $expPct . '%"></div></div></div>'
+            . '</div>';
+    }
+}
 
 if (!function_exists('cw_is_mobile')) {
     function cw_is_mobile()
@@ -225,93 +269,25 @@ if (isset($canshu)) {
             $hpPercent = min(100, max(0, intval($hpNow / $hpMax * 100)));
             $hpNowStatus = ($hpNow <= 0) ? '<font color="#cc0000">Trọng thương</font>' : '<font color="#008000">Khỏe mạnh</font>';
 
-            $nav = cw_nav_html($ztcmd, $cwtab, $sz, $gm);
-            $expBar = cw_exp_bar($chongwu->cwexp, $chongwu->cwmaxexp);
-
-            $petAvatarStyle = 'background:linear-gradient(135deg,' . $q['color'] . '88,' . $q['color'] . '44)';
-            $petAvatarBorder = 'border-color:' . $q['color'];
-            $hpColor = $hpNow <= 0 ? '#ef4444' : '#4ade80';
-            $hpIcon = $hpNow <= 0 ? '💀' : '❤️';
+            if (intval($cwid) == intval($player->cw)) {
+                $sh = $encode->encode("cmd=chongwu&canshu=shouhui&cwid=$cwid&sid=$sid");
+                $detailActs = '<a class="cw-mini-btn" href="?cmd=' . $sh . '">Thu hồi</a>';
+                $detailTag = '⚔ Đang xuất chiến';
+            } else {
+                $cz = $encode->encode("cmd=chongwu&canshu=chuzhan&cwid=$cwid&sid=$sid");
+                $detailActs = '<a class="cw-mini-btn green" href="?cmd=' . $cz . '">Xuất chiến</a>';
+                $detailTag = '🐾 Chi tiết sủng vật';
+            }
+            $detailActs .= '<a class="cw-mini-btn" href="?cmd=' . $cwcmd . '">← Danh sách</a>';
+            $stageHtml = cw_stage_html($chongwu, $detailTag, $detailActs);
+            $barsHtml = cw_bars_html($chongwu);
 
             $cwhtml = <<<HTML
-<div class="cw-wrap">
-    $nav
+<div class="cw-wrap cw-compact">
+    $stageHtml
+    $barsHtml
 
-    <div class="cw-detail-card">
-        <div class="cw-detail-head" style="border-bottom-color:{$q['color']}44">
-            <div class="cw-head-left">
-                <div class="cw-pet-avatar {$qClass}" style="{$petAvatarStyle};{$petAvatarBorder}">
-                    <span>🐾</span>
-                </div>
-            </div>
-            <div class="cw-head-right">
-                <div class="cw-head-title-row">
-                    <div class="cw-name" style="color:{$q['color']};text-shadow:0 0 18px {$q['color']}88">{$chongwu->cwname}</div>
-                    <span class="cw-quality-badge" style="background:{$q['color']}22;border-color:{$q['color']};color:{$q['color']}">{$q['name']}</span>
-                </div>
-                <div class="cw-head-stars {$qClass}">{$q['star']}</div>
-                <div class="cw-head-meta">
-                    <span class="cw-head-level">Cấp <b>{$chongwu->cwlv}</b></span>
-                    <span class="cw-head-hp" style="color:{$hpColor}">{$hpIcon} {$hpNow}/{$hpMax}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="cw-section-title"><span>▶</span> Thông tin cơ bản</div>
-        <div class="cw-info-grid">
-            <div class="cw-info-item">
-                <span class="cw-info-label">Cấp độ</span>
-                <span class="cw-info-value">{$chongwu->cwlv}</span>
-            </div>
-            <div class="cw-info-item">
-                <span class="cw-info-label">Kinh nghiệm</span>
-                <span class="cw-info-value">{$chongwu->cwexp}/{$chongwu->cwmaxexp}</span>
-            </div>
-        </div>
-        $expBar
-        <div class="cw-info-grid">
-            <div class="cw-info-item">
-                <span class="cw-info-label">HP hiện tại</span>
-                <span class="cw-info-value" style="color:{$hpColor}">{$hpNow}/{$hpMax} ({$hpPercent}%)</span>
-            </div>
-            <div class="cw-info-item">
-                <span class="cw-info-label">Trạng thái</span>
-                <span class="cw-info-value">{$hpNowStatus}</span>
-            </div>
-        </div>
-
-        <div class="cw-divider-line"></div>
-
-        <div class="cw-section-title"><span>▶</span> Thuộc tính chiến đấu</div>
-        <div class="cw-stat-grid">
-            <div class="cw-stat" style="border-color:{$q['color']}44;background:{$q['color']}11">
-                <span>HP</span>
-                <b style="color:{$q['color']}">{$chongwu->cwmaxhp}</b>
-            </div>
-            <div class="cw-stat" style="border-color:{$q['color']}44;background:{$q['color']}11">
-                <span>Công</span>
-                <b style="color:{$q['color']}">{$chongwu->cwgj}</b>
-            </div>
-            <div class="cw-stat" style="border-color:{$q['color']}44;background:{$q['color']}11">
-                <span>Phòng</span>
-                <b style="color:{$q['color']}">{$chongwu->cwfy}</b>
-            </div>
-            <div class="cw-stat" style="border-color:{$q['color']}44;background:{$q['color']}11">
-                <span>Bạo kích</span>
-                <b style="color:{$q['color']}">{$chongwu->cwbj}</b>
-            </div>
-            <div class="cw-stat" style="border-color:{$q['color']}44;background:{$q['color']}11">
-                <span>Né / Hút máu</span>
-                <b style="color:{$q['color']}">{$chongwu->cwxx}</b>
-            </div>
-            <div class="cw-stat" style="border-color:{$q['color']}44;background:{$q['color']}11">
-                <span>Tăng trưởng</span>
-                <b style="color:{$q['color']}">+{$bonusPercent}%</b>
-            </div>
-        </div>
-
-        <div class="cw-divider-line"></div>
-
+    <div class="cw-detail-card cws-up">
         <div class="cw-section-title"><span>▶</span> Tăng khi lên cấp</div>
         <div class="cw-up-grid">
             <div class="cw-up-item">
@@ -334,15 +310,10 @@ if (isset($canshu)) {
             Phẩm chất <b class="{$qClass}" style="color:{$q['color']}">[{$q['name']}]</b> khi lên cấp tăng thêm <b style="color:{$q['color']}">{$bonusPercent}%</b>.
         </div>
     </div>
-
-    <div class="cw-actions">
-        <a href="#" onClick="javascript:history.back(-1);">← Trở Về</a>
-        <a href="game.php?cmd=$gonowmid">Đại Sảnh →</a>
-    </div>
 </div>
 HTML;
             echo $cwhtml;
-            exit();
+            return; // dừng file này nhưng để game.php vẽ tiếp thanh dưới (exit() làm mất thanh dưới)
             break;
     }
 }
@@ -454,15 +425,24 @@ if ($pagePets) {
     $cwnamehtml = '<div class="cw-empty">Hiện tại không có sủng vật.</div>';
 }
 
-$nav = cw_nav_html($ztcmd, $cwtab, $sz, $gm);
+// Khung trung tâm: sủng vật đang xuất chiến
+$fightPet = intval($player->cw) > 0 ? \player\getchongwu(intval($player->cw), $dblj) : null;
+if ($fightPet && isset($fightPet->cwname) && $fightPet->cwname !== null) {
+    $fcInfo = $encode->encode("cmd=chongwu&cwid=" . intval($player->cw) . "&canshu=cwinfo&sid=$sid");
+    $fcBack = $encode->encode("cmd=chongwu&canshu=shouhui&cwid=" . intval($player->cw) . "&sid=$sid");
+    $stageHtml = cw_stage_html($fightPet, '⚔ Đang xuất chiến',
+        '<a class="cw-mini-btn green" href="?cmd=' . $fcInfo . '">Chi tiết</a><a class="cw-mini-btn" href="?cmd=' . $fcBack . '">Thu hồi</a>')
+        . cw_bars_html($fightPet);
+} else {
+    $stageHtml = cw_stage_html(null, '🐾 Linh Sủng',
+        '<a class="cw-mini-btn green" href="?cmd=' . $chouqucmd . '">🐉 Sào Thú</a>',
+        $totalPet > 0 ? 'Chưa có sủng vật xuất chiến — chọn ở danh sách bên dưới' : 'Chưa có sủng vật — đến Sào Thú để thu phục');
+}
 
 $cwhtml = <<<HTML
-<div class="cw-wrap">
-    $nav
-    <div class="cw-banner">
-        <div class="cw-banner-icon">🐾</div>
-    </div>
-    <div class="cw-section-title">Danh sách sủng vật</div>
+<div class="cw-wrap cw-compact">
+    $stageHtml
+    <div class="cw-section-title">Danh sách sủng vật ($totalPet)</div>
     <div class="cw-pet-grid">
         $cwnamehtml
     </div>
@@ -470,10 +450,6 @@ $cwhtml = <<<HTML
     $tssb
     $tscg
     $qr
-    <div class="cw-actions">
-        <a href="#" onClick="javascript:history.back(-1);">Trở Về</a>
-        <a href="game.php?cmd=$gonowmid">Đại Sảnh</a>
-    </div>
 </div>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0" />
