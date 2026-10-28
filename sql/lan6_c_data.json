@@ -1,0 +1,247 @@
+{
+ "_note": "Sinh bởi tools/gen/lan6_c_build.py — dùng cho sql/migrate_lan6_c.php",
+ "npcs": [
+  {
+   "nid": 89,
+   "qyid": 77,
+   "nname": "Lĩnh Vực Tuần Thần Sứ",
+   "mid": 5001
+  },
+  {
+   "nid": 90,
+   "qyid": 78,
+   "nname": "Thiên Cung Chấp Sự Thần Quan",
+   "mid": 5009
+  },
+  {
+   "nid": 91,
+   "qyid": 79,
+   "nname": "Cổ Thành Thủ Môn Lão Tướng",
+   "mid": 5017
+  },
+  {
+   "nid": 92,
+   "qyid": 80,
+   "nname": "Thần Sơn Dẫn Lộ Đạo Đồng",
+   "mid": 5025
+  },
+  {
+   "nid": 93,
+   "qyid": 81,
+   "nname": "Chủ Tể Vực Truyền Lệnh Sứ",
+   "mid": 5033
+  },
+  {
+   "nid": 94,
+   "qyid": 82,
+   "nname": "Minh Hà Bãi Đò Lão Nhân",
+   "mid": 5041
+  },
+  {
+   "nid": 95,
+   "qyid": 83,
+   "nname": "Hồng Lô Thủ Hỏa Thần Nữ",
+   "mid": 5049
+  },
+  {
+   "nid": 96,
+   "qyid": 84,
+   "nname": "Tinh Hải Quan Tinh Lão Nhân",
+   "mid": 5057
+  },
+  {
+   "nid": 97,
+   "qyid": 85,
+   "nname": "Thần Cung Chưởng Tinh Sứ",
+   "mid": 5065
+  },
+  {
+   "nid": 98,
+   "qyid": 86,
+   "nname": "Tinh Khung Thủ Môn Thần Tướng",
+   "mid": 5073
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 217,
+   "mid": 5001,
+   "mname": "Lĩnh Vực Biên Quan",
+   "qyid": 77
+  },
+  {
+   "rwid": 218,
+   "mid": 5005,
+   "mname": "Thiết Bích Hùng Quan",
+   "qyid": 77
+  },
+  {
+   "rwid": 219,
+   "mid": 5008,
+   "mname": "Thần Vương Ngự Điện",
+   "qyid": 77
+  },
+  {
+   "rwid": 220,
+   "mid": 5009,
+   "mname": "Thiên Cung Kim Kiều",
+   "qyid": 78
+  },
+  {
+   "rwid": 221,
+   "mid": 5013,
+   "mname": "Thần Đế Thư Khố",
+   "qyid": 78
+  },
+  {
+   "rwid": 222,
+   "mid": 5016,
+   "mname": "Thần Đế Ngự Tọa Điện",
+   "qyid": 78
+  },
+  {
+   "rwid": 223,
+   "mid": 5017,
+   "mname": "Cổ Thành Phế Môn",
+   "qyid": 79
+  },
+  {
+   "rwid": 224,
+   "mid": 5021,
+   "mname": "Cổ Thành Tường Thành",
+   "qyid": 79
+  },
+  {
+   "rwid": 225,
+   "mid": 5024,
+   "mname": "Đế Chủ Tàn Điện",
+   "qyid": 79
+  },
+  {
+   "rwid": 226,
+   "mid": 5025,
+   "mname": "Thần Sơn Cước Lộ",
+   "qyid": 80
+  },
+  {
+   "rwid": 227,
+   "mid": 5029,
+   "mname": "Sơn Thần Miếu",
+   "qyid": 80
+  },
+  {
+   "rwid": 228,
+   "mid": 5032,
+   "mname": "Chủ Tể Phong Đỉnh",
+   "qyid": 80
+  },
+  {
+   "rwid": 229,
+   "mid": 5033,
+   "mname": "Chủ Tể Vực Môn",
+   "qyid": 81
+  },
+  {
+   "rwid": 230,
+   "mid": 5037,
+   "mname": "Vực Ngoại Hư Không",
+   "qyid": 81
+  },
+  {
+   "rwid": 231,
+   "mid": 5040,
+   "mname": "Đại Chủ Tể Pháp Đàn",
+   "qyid": 81
+  },
+  {
+   "rwid": 232,
+   "mid": 5041,
+   "mname": "Minh Hà Bến Đò",
+   "qyid": 82
+  },
+  {
+   "rwid": 233,
+   "mid": 5045,
+   "mname": "Mạnh Bà Đình",
+   "qyid": 82
+  },
+  {
+   "rwid": 234,
+   "mid": 5048,
+   "mname": "Luân Hồi Đại Điện",
+   "qyid": 82
+  },
+  {
+   "rwid": 235,
+   "mid": 5049,
+   "mname": "Hồng Lô Khai Thiên Môn",
+   "qyid": 83
+  },
+  {
+   "rwid": 236,
+   "mid": 5053,
+   "mname": "Thái Dương Chân Hỏa Trì",
+   "qyid": 83
+  },
+  {
+   "rwid": 237,
+   "mid": 5056,
+   "mname": "Sáng Thế Lô Tâm",
+   "qyid": 83
+  },
+  {
+   "rwid": 238,
+   "mid": 5057,
+   "mname": "Tinh Hải Bờ Cát",
+   "qyid": 84
+  },
+  {
+   "rwid": 239,
+   "mid": 5061,
+   "mname": "Bích Lạc Hải Uyên",
+   "qyid": 84
+  },
+  {
+   "rwid": 240,
+   "mid": 5064,
+   "mname": "Tinh Hải Trung Tâm",
+   "qyid": 84
+  },
+  {
+   "rwid": 241,
+   "mid": 5065,
+   "mname": "Thần Cung Tinh Môn",
+   "qyid": 85
+  },
+  {
+   "rwid": 242,
+   "mid": 5069,
+   "mname": "Thiên Xu Các",
+   "qyid": 85
+  },
+  {
+   "rwid": 243,
+   "mid": 5072,
+   "mname": "Tinh Đấu Chủ Điện",
+   "qyid": 85
+  },
+  {
+   "rwid": 244,
+   "mid": 5073,
+   "mname": "Tinh Khung Ngoại Hoàn",
+   "qyid": 86
+  },
+  {
+   "rwid": 245,
+   "mid": 5077,
+   "mname": "Chu Thiên Đại Trận",
+   "qyid": 86
+  },
+  {
+   "rwid": 246,
+   "mid": 5080,
+   "mname": "Tinh Khung Chí Cao Điện",
+   "qyid": 86
+  }
+ ]
+}

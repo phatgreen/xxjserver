@@ -748,5 +748,105 @@
     "taskid": "214,215,216",
     "mz": "",
     "rwqy": ""
+  },
+  "89": {
+    "id": 89,
+    "nname": "Lĩnh Vực Tuần Thần Sứ",
+    "nsex": "Nam",
+    "ninfo": "Thần sứ tuần tra Thần Vương Lĩnh Vực, bước chân đi qua đâu kim giáp cự nhân cũng cúi đầu.",
+    "muban": "",
+    "taskid": "217,218,219",
+    "mz": "",
+    "rwqy": ""
+  },
+  "90": {
+    "id": 90,
+    "nname": "Thiên Cung Chấp Sự Thần Quan",
+    "nsex": "Nữ",
+    "ninfo": "Thần quan chấp sự của Thần Đế Thiên Cung, giữ sổ ghi tên mọi kẻ được phép bước qua kim kiều.",
+    "muban": "",
+    "taskid": "220,221,222",
+    "mz": "",
+    "rwqy": ""
+  },
+  "91": {
+    "id": 91,
+    "nname": "Cổ Thành Thủ Môn Lão Tướng",
+    "nsex": "Nam",
+    "ninfo": "Lão tướng canh cổng Đế Chủ Cổ Thành, đã giữ cửa thành từ khi đế chủ còn sống đến nay.",
+    "muban": "",
+    "taskid": "223,224,225",
+    "mz": "",
+    "rwqy": ""
+  },
+  "92": {
+    "id": 92,
+    "nname": "Thần Sơn Dẫn Lộ Đạo Đồng",
+    "nsex": "Nam",
+    "ninfo": "Đạo đồng dẫn đường lên Chủ Tể Thần Sơn, tuổi trẻ nhưng thuộc từng khe đá vách núi.",
+    "muban": "",
+    "taskid": "226,227,228",
+    "mz": "",
+    "rwqy": ""
+  },
+  "93": {
+    "id": 93,
+    "nname": "Chủ Tể Vực Truyền Lệnh Sứ",
+    "nsex": "Nam",
+    "ninfo": "Sứ giả truyền lệnh trong Đại Chủ Tể Vực, lời nói ra mang theo một phần pháp tắc thiên đạo.",
+    "muban": "",
+    "taskid": "229,230,231",
+    "mz": "",
+    "rwqy": ""
+  },
+  "94": {
+    "id": 94,
+    "nname": "Minh Hà Bãi Đò Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Ông lão chèo đò trên Luân Hồi Minh Hà, đã đưa vô số linh hồn qua sông mà chưa từng quay đầu.",
+    "muban": "",
+    "taskid": "232,233,234",
+    "mz": "",
+    "rwqy": ""
+  },
+  "95": {
+    "id": 95,
+    "nname": "Hồng Lô Thủ Hỏa Thần Nữ",
+    "nsex": "Nữ",
+    "ninfo": "Thần nữ giữ lửa Sáng Thế Hồng Lô, ngọn lửa trong tay nàng từng thắp sáng cả một phương thế giới.",
+    "muban": "",
+    "taskid": "235,236,237",
+    "mz": "",
+    "rwqy": ""
+  },
+  "96": {
+    "id": 96,
+    "nname": "Tinh Hải Quan Tinh Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Lão nhân ngồi bên bờ Tinh Hải Chu Thiên, đếm sóng sao mà đoán vận mệnh chúng sinh.",
+    "muban": "",
+    "taskid": "238,239,240",
+    "mz": "",
+    "rwqy": ""
+  },
+  "97": {
+    "id": 97,
+    "nname": "Thần Cung Chưởng Tinh Sứ",
+    "nsex": "Nữ",
+    "ninfo": "Sứ giả nắm giữ tinh bàn của Tinh Đấu Thần Cung, một tay xoay chuyển hai mươi tám vì tinh tú.",
+    "muban": "",
+    "taskid": "241,242,243",
+    "mz": "",
+    "rwqy": ""
+  },
+  "98": {
+    "id": 98,
+    "nname": "Tinh Khung Thủ Môn Thần Tướng",
+    "nsex": "Nam",
+    "ninfo": "Thần tướng canh giữ cửa Chu Thiên Tinh Khung, sát khí canh kim trên người lạnh buốt như sương.",
+    "muban": "",
+    "taskid": "244,245,246",
+    "mz": "",
+    "rwqy": ""
   }
 }
