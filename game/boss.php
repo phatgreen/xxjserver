@@ -645,9 +645,10 @@ HTML;
         // Đợt D: Tiên Đạo Tàn Quyển — lượt rơi riêng theo cấp boss, mỗi lần 1 quyển, không cộng may mắn
         $tdCfg = \player\tiendao_config();
         $tdPct = isset($tdCfg['drop_pct'][strval(intval($boss->bosslv))]) ? intval($tdCfg['drop_pct'][strval(intval($boss->bosslv))]) : 0;
-        if ($tdPct > 0 && intval($tdCfg['djid']) > 0 && mt_rand(1, 100) <= $tdPct) {
-            \player\adddj($sid, intval($tdCfg['djid']), 1, $dblj);
-            $tdDj = \player\getdaoju(intval($tdCfg['djid']), $dblj);
+        $tdDropId = \player\tiendao_drop_djid($boss->bosslv);   // làn 5+: boss rơi quyển riêng (Hỗn Nguyên Tàn Quyển)
+        if ($tdPct > 0 && $tdDropId > 0 && mt_rand(1, 100) <= $tdPct) {
+            \player\adddj($sid, $tdDropId, 1, $dblj);
+            $tdDj = \player\getdaoju($tdDropId, $dblj);
             $tdName = $tdDj ? $tdDj->djname : 'Tiên Đạo Tàn Quyển';
             $huode .= "Nhận được: <font color='#facc15'><b>$tdName x1</b></font><br>";
             $stmt = $dblj->prepare("insert into ggliaotian(name,msg,uid) values(?,?,?)");

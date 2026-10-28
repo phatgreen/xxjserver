@@ -481,6 +481,116 @@
                 {"id": "43.5", "name": "Hạ Tiên Tôn Trấn Sơn Thần Thú", "type": "kill_boss_name", "boss_names": ["Boss·Tiên Tôn Trấn Sơn Thần Thú"], "target_count": 1, "exp": 0, "lt": 19500, "mt": 0, "exp_pct": 25},
                 {"id": "43.6", "name": "Đột Phá Cấp 2000", "type": "breakthrough", "target_level": 2000, "exp": 0, "lt": 19500, "mt": 0, "exp_pct": 25}
             ]
+        },
+        {
+            "id": 44, "name": "Tiên Vương Cương Vực", "level_range": [2000, 2050],
+            "quests": [
+                {"id": "44.1", "name": "Đặt Chân Tiên Vương Cương Vực", "type": "reach_region", "region": 67, "exp": 0, "lt": 20000, "mt": 0, "exp_pct": 5},
+                {"id": "44.2", "name": "Thanh Tẩy Tiên Vương Cương Vực", "type": "kill", "target_monster_min": 2001, "target_monster_max": 2050, "target_count": 300, "exp": 0, "lt": 20000, "mt": 0, "exp_pct": 12},
+                {"id": "44.3", "name": "Trảm Cương Vực Thiết Kỵ Thống Lĩnh", "type": "kill_monster", "monster_ids": [826], "target_count": 50, "exp": 0, "lt": 20000, "mt": 0, "exp_pct": 12},
+                {"id": "44.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 20000, "mt": 0, "exp_pct": 10},
+                {"id": "44.5", "name": "Hạ Tiên Vương Chiến Tượng", "type": "kill_boss_name", "boss_names": ["Boss·Tiên Vương Chiến Tượng"], "target_count": 1, "exp": 0, "lt": 20000, "mt": 0, "exp_pct": 25},
+                {"id": "44.6", "name": "Đột Phá Cấp 2050", "type": "breakthrough", "target_level": 2050, "exp": 0, "lt": 20000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 45, "name": "Vô Thượng Tiên Đình", "level_range": [2050, 2100],
+            "quests": [
+                {"id": "45.1", "name": "Đặt Chân Vô Thượng Tiên Đình", "type": "reach_region", "region": 68, "exp": 0, "lt": 20500, "mt": 0, "exp_pct": 5},
+                {"id": "45.2", "name": "Thanh Tẩy Vô Thượng Tiên Đình", "type": "kill", "target_monster_min": 2051, "target_monster_max": 2100, "target_count": 300, "exp": 0, "lt": 20500, "mt": 0, "exp_pct": 12},
+                {"id": "45.3", "name": "Trảm Tiên Đình Thiên Binh Thống Lĩnh", "type": "kill_monster", "monster_ids": [843], "target_count": 50, "exp": 0, "lt": 20500, "mt": 0, "exp_pct": 12},
+                {"id": "45.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 20500, "mt": 0, "exp_pct": 10},
+                {"id": "45.5", "name": "Hạ Vô Thượng Thiên Tướng", "type": "kill_boss_name", "boss_names": ["Boss·Vô Thượng Thiên Tướng"], "target_count": 1, "exp": 0, "lt": 20500, "mt": 0, "exp_pct": 25},
+                {"id": "45.6", "name": "Đột Phá Cấp 2100", "type": "breakthrough", "target_level": 2100, "exp": 0, "lt": 20500, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 46, "name": "Chuẩn Đế Tiên Lộ", "level_range": [2100, 2150],
+            "quests": [
+                {"id": "46.1", "name": "Đặt Chân Chuẩn Đế Tiên Lộ", "type": "reach_region", "region": 69, "exp": 0, "lt": 21000, "mt": 0, "exp_pct": 5},
+                {"id": "46.2", "name": "Thanh Tẩy Chuẩn Đế Tiên Lộ", "type": "kill", "target_monster_min": 2101, "target_monster_max": 2150, "target_count": 300, "exp": 0, "lt": 21000, "mt": 0, "exp_pct": 12},
+                {"id": "46.3", "name": "Trảm Tiên Lộ Hỏa Ô Vương", "type": "kill_monster", "monster_ids": [860], "target_count": 50, "exp": 0, "lt": 21000, "mt": 0, "exp_pct": 12},
+                {"id": "46.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 21000, "mt": 0, "exp_pct": 10},
+                {"id": "46.5", "name": "Hạ Chuẩn Đế Kim Ô", "type": "kill_boss_name", "boss_names": ["Boss·Chuẩn Đế Kim Ô"], "target_count": 1, "exp": 0, "lt": 21000, "mt": 0, "exp_pct": 25},
+                {"id": "46.6", "name": "Đột Phá Cấp 2150", "type": "breakthrough", "target_level": 2150, "exp": 0, "lt": 21000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 47, "name": "Tiên Đế Hoàng Thành", "level_range": [2150, 2200],
+            "quests": [
+                {"id": "47.1", "name": "Đặt Chân Tiên Đế Hoàng Thành", "type": "reach_region", "region": 70, "exp": 0, "lt": 21500, "mt": 0, "exp_pct": 5},
+                {"id": "47.2", "name": "Thanh Tẩy Tiên Đế Hoàng Thành", "type": "kill", "target_monster_min": 2151, "target_monster_max": 2200, "target_count": 300, "exp": 0, "lt": 21500, "mt": 0, "exp_pct": 12},
+                {"id": "47.3", "name": "Trảm Hoàng Thành Ngự Tiền Đới Đao", "type": "kill_monster", "monster_ids": [877], "target_count": 50, "exp": 0, "lt": 21500, "mt": 0, "exp_pct": 12},
+                {"id": "47.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 21500, "mt": 0, "exp_pct": 10},
+                {"id": "47.5", "name": "Hạ Tiên Đế Cấm Vệ Thống Lĩnh", "type": "kill_boss_name", "boss_names": ["Boss·Tiên Đế Cấm Vệ Thống Lĩnh"], "target_count": 1, "exp": 0, "lt": 21500, "mt": 0, "exp_pct": 25},
+                {"id": "47.6", "name": "Đột Phá Cấp 2200", "type": "breakthrough", "target_level": 2200, "exp": 0, "lt": 21500, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 48, "name": "Vô Thượng Đế Khư", "level_range": [2200, 2250],
+            "quests": [
+                {"id": "48.1", "name": "Đặt Chân Vô Thượng Đế Khư", "type": "reach_region", "region": 71, "exp": 0, "lt": 22000, "mt": 0, "exp_pct": 5},
+                {"id": "48.2", "name": "Thanh Tẩy Vô Thượng Đế Khư", "type": "kill", "target_monster_min": 2201, "target_monster_max": 2250, "target_count": 300, "exp": 0, "lt": 22000, "mt": 0, "exp_pct": 12},
+                {"id": "48.3", "name": "Trảm Đế Khư Ma Tướng", "type": "kill_monster", "monster_ids": [894], "target_count": 50, "exp": 0, "lt": 22000, "mt": 0, "exp_pct": 12},
+                {"id": "48.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 22000, "mt": 0, "exp_pct": 10},
+                {"id": "48.5", "name": "Hạ Đế Khư Cổ Ma", "type": "kill_boss_name", "boss_names": ["Boss·Đế Khư Cổ Ma"], "target_count": 1, "exp": 0, "lt": 22000, "mt": 0, "exp_pct": 25},
+                {"id": "48.6", "name": "Đột Phá Cấp 2250", "type": "breakthrough", "target_level": 2250, "exp": 0, "lt": 22000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 49, "name": "Bất Hủ Tiên Mộ", "level_range": [2250, 2300],
+            "quests": [
+                {"id": "49.1", "name": "Đặt Chân Bất Hủ Tiên Mộ", "type": "reach_region", "region": 72, "exp": 0, "lt": 22500, "mt": 0, "exp_pct": 5},
+                {"id": "49.2", "name": "Thanh Tẩy Bất Hủ Tiên Mộ", "type": "kill", "target_monster_min": 2251, "target_monster_max": 2300, "target_count": 300, "exp": 0, "lt": 22500, "mt": 0, "exp_pct": 12},
+                {"id": "49.3", "name": "Trảm Tiên Mộ Thi Vương", "type": "kill_monster", "monster_ids": [911], "target_count": 50, "exp": 0, "lt": 22500, "mt": 0, "exp_pct": 12},
+                {"id": "49.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 22500, "mt": 0, "exp_pct": 10},
+                {"id": "49.5", "name": "Hạ Bất Hủ Thi Đế", "type": "kill_boss_name", "boss_names": ["Boss·Bất Hủ Thi Đế"], "target_count": 1, "exp": 0, "lt": 22500, "mt": 0, "exp_pct": 25},
+                {"id": "49.6", "name": "Đột Phá Cấp 2300", "type": "breakthrough", "target_level": 2300, "exp": 0, "lt": 22500, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 50, "name": "Luyện Thần Lô", "level_range": [2300, 2350],
+            "quests": [
+                {"id": "50.1", "name": "Đặt Chân Luyện Thần Lô", "type": "reach_region", "region": 73, "exp": 0, "lt": 23000, "mt": 0, "exp_pct": 5},
+                {"id": "50.2", "name": "Thanh Tẩy Luyện Thần Lô", "type": "kill", "target_monster_min": 2301, "target_monster_max": 2350, "target_count": 300, "exp": 0, "lt": 23000, "mt": 0, "exp_pct": 12},
+                {"id": "50.3", "name": "Trảm Thần Lô Hỏa Tinh Vương", "type": "kill_monster", "monster_ids": [928], "target_count": 50, "exp": 0, "lt": 23000, "mt": 0, "exp_pct": 12},
+                {"id": "50.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 23000, "mt": 0, "exp_pct": 10},
+                {"id": "50.5", "name": "Hạ Luyện Thần Hỏa Linh", "type": "kill_boss_name", "boss_names": ["Boss·Luyện Thần Hỏa Linh"], "target_count": 1, "exp": 0, "lt": 23000, "mt": 0, "exp_pct": 25},
+                {"id": "50.6", "name": "Đột Phá Cấp 2350", "type": "breakthrough", "target_level": 2350, "exp": 0, "lt": 23000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 51, "name": "Nhập Thần Thiên Môn", "level_range": [2350, 2400],
+            "quests": [
+                {"id": "51.1", "name": "Đặt Chân Nhập Thần Thiên Môn", "type": "reach_region", "region": 74, "exp": 0, "lt": 23500, "mt": 0, "exp_pct": 5},
+                {"id": "51.2", "name": "Thanh Tẩy Nhập Thần Thiên Môn", "type": "kill", "target_monster_min": 2351, "target_monster_max": 2400, "target_count": 300, "exp": 0, "lt": 23500, "mt": 0, "exp_pct": 12},
+                {"id": "51.3", "name": "Trảm Thiên Môn Thủ Quan Thần Tướng", "type": "kill_monster", "monster_ids": [945], "target_count": 50, "exp": 0, "lt": 23500, "mt": 0, "exp_pct": 12},
+                {"id": "51.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 23500, "mt": 0, "exp_pct": 10},
+                {"id": "51.5", "name": "Hạ Thiên Môn Thần Thú", "type": "kill_boss_name", "boss_names": ["Boss·Thiên Môn Thần Thú"], "target_count": 1, "exp": 0, "lt": 23500, "mt": 0, "exp_pct": 25},
+                {"id": "51.6", "name": "Đột Phá Cấp 2400", "type": "breakthrough", "target_level": 2400, "exp": 0, "lt": 23500, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 52, "name": "Thần Đạo Thánh Vực", "level_range": [2400, 2450],
+            "quests": [
+                {"id": "52.1", "name": "Đặt Chân Thần Đạo Thánh Vực", "type": "reach_region", "region": 75, "exp": 0, "lt": 24000, "mt": 0, "exp_pct": 5},
+                {"id": "52.2", "name": "Thanh Tẩy Thần Đạo Thánh Vực", "type": "kill", "target_monster_min": 2401, "target_monster_max": 2450, "target_count": 300, "exp": 0, "lt": 24000, "mt": 0, "exp_pct": 12},
+                {"id": "52.3", "name": "Trảm Thánh Vực Pháp Tướng Hộ Vệ", "type": "kill_monster", "monster_ids": [962], "target_count": 50, "exp": 0, "lt": 24000, "mt": 0, "exp_pct": 12},
+                {"id": "52.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 24000, "mt": 0, "exp_pct": 10},
+                {"id": "52.5", "name": "Hạ Thần Đạo Pháp Tướng", "type": "kill_boss_name", "boss_names": ["Boss·Thần Đạo Pháp Tướng"], "target_count": 1, "exp": 0, "lt": 24000, "mt": 0, "exp_pct": 25},
+                {"id": "52.6", "name": "Đột Phá Cấp 2450", "type": "breakthrough", "target_level": 2450, "exp": 0, "lt": 24000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 53, "name": "Thần Tôn Thần Điện", "level_range": [2450, 2500],
+            "quests": [
+                {"id": "53.1", "name": "Đặt Chân Thần Tôn Thần Điện", "type": "reach_region", "region": 76, "exp": 0, "lt": 24500, "mt": 0, "exp_pct": 5},
+                {"id": "53.2", "name": "Thanh Tẩy Thần Tôn Thần Điện", "type": "kill", "target_monster_min": 2451, "target_monster_max": 2500, "target_count": 300, "exp": 0, "lt": 24500, "mt": 0, "exp_pct": 12},
+                {"id": "53.3", "name": "Trảm Thần Điện Long Vệ", "type": "kill_monster", "monster_ids": [979], "target_count": 50, "exp": 0, "lt": 24500, "mt": 0, "exp_pct": 12},
+                {"id": "53.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 24500, "mt": 0, "exp_pct": 10},
+                {"id": "53.5", "name": "Hạ Thần Tôn Hộ Điện Thần Long", "type": "kill_boss_name", "boss_names": ["Boss·Thần Tôn Hộ Điện Thần Long"], "target_count": 1, "exp": 0, "lt": 24500, "mt": 0, "exp_pct": 25},
+                {"id": "53.6", "name": "Đột Phá Cấp 2500", "type": "breakthrough", "target_level": 2500, "exp": 0, "lt": 24500, "mt": 0, "exp_pct": 25}
+            ]
         }
     ]
 }

@@ -21,9 +21,9 @@ from khung_tong_design import qh_at
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CFG = os.path.join(ROOT, 'class', 'config')
-BASE = base_curve(2000)
+BASE = base_curve(2500)
 ZB = json.load(open(os.path.join(CFG, 'zhuangbei_config.json'), encoding='utf-8'))
-GEAR_TIERS = (500, 600, 800, 1000, 1250, 1500)   # 1000/1250: làn 3 · 1500: làn 4 (chỉ dùng khi cấp ≥ bậc ⇒ làn trước không đổi)
+GEAR_TIERS = (500, 600, 800, 1000, 1250, 1500, 2000)   # 1000/1250: làn 3 · 1500: làn 4 · 2000: làn 5 (chỉ dùng khi cấp ≥ bậc ⇒ làn trước không đổi)
 HITS_TO_KILL_PLAYER = 45
 MON_HP_MULT_B = 1.4            # đợt F nhân máu quái đợt B
 GYID_START = 300               # mã quái làn 2: 300…

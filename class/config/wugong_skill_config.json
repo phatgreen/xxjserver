@@ -44,7 +44,8 @@
       "thuong_thua": 0.1,
       "than_cong": 0.15,
       "ha_thua": 0.02,
-      "tien_dao": 0.2
+      "tien_dao": 0.2,
+      "hon_nguyen": 0.25
     },
     "crit_mult": 1.72,
     "passive_scale": {
@@ -1893,6 +1894,162 @@
         "value": 88,
         "hits": 5,
         "text": "Ngũ hành hợp nhất thành một đạo tiên quang, xuyên thẳng qua {mob}!"
+      }
+    ],
+    "81": [
+      {
+        "tier": 1,
+        "name": "Hỗn Nguyên Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kiếm khí hỗn độn xé toạc hư không, chém thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phân Âm Định Dương",
+        "effect": "pierce",
+        "value": 67,
+        "hits": 3,
+        "text": "Kiếm quang tách đôi âm dương, chém xuyên mọi tầng phòng ngự của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Khai Thiên Nhất Kiếm",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 1,
+        "text": "Một kiếm tách trời đất, {mob} chỉ còn biết đứng nhìn kiếm quang ập tới!"
+      }
+    ],
+    "82": [
+      {
+        "tier": 1,
+        "name": "Vạn Sinh Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang sinh khí hồng hoang đánh trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hỗn Nguyên Tục Mệnh",
+        "effect": "heal",
+        "value": 18,
+        "hits": 1,
+        "text": "Sinh khí hỗn nguyên tràn vào kinh mạch, vết thương liền lại trước mắt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Sinh Quy Nhất",
+        "effect": "heal",
+        "value": 34,
+        "hits": 3,
+        "text": "Sinh khí vạn vật hội tụ về một thân, vừa trói chặt {mob} vừa hồi phục toàn thân!"
+      }
+    ],
+    "83": [
+      {
+        "tier": 1,
+        "name": "Thái Hư Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân ảnh lóe ra từ hư không, một chỉ điểm thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thái Hư Ảo Ảnh",
+        "effect": "guard",
+        "value": 90,
+        "hits": 3,
+        "text": "Thân thể hòa vào thái hư, {mob} đánh vào đâu cũng chỉ trúng khoảng không!"
+      },
+      {
+        "tier": 3,
+        "name": "Hỗn Nguyên Phong Hư",
+        "effect": "stun",
+        "value": 90,
+        "hits": 4,
+        "text": "Hư không cuộn lại thành lồng, khóa chặt {mob} giữa thái hư!"
+      }
+    ],
+    "84": [
+      {
+        "tier": 1,
+        "name": "Diệt Thế Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền mang lửa hỗn độn đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hỗn Độn Phần Thiên",
+        "effect": "burn",
+        "value": 55,
+        "hits": 3,
+        "text": "Lửa hỗn độn bén vào thần hồn {mob}, thiêu đốt từ trong ra ngoài!"
+      },
+      {
+        "tier": 3,
+        "name": "Diệt Thế Hỏa Kiếp",
+        "effect": "crit",
+        "value": 116,
+        "hits": 1,
+        "text": "Hỏa kiếp diệt thế giáng xuống, nuốt trọn {mob} trong biển lửa hỗn nguyên!"
+      }
+    ],
+    "85": [
+      {
+        "tier": 1,
+        "name": "Bàn Thạch Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền nặng như bàn thạch hồng hoang nện xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hỗn Nguyên Hộ Thân",
+        "effect": "guard",
+        "value": 90,
+        "hits": 1,
+        "text": "Thân thể hóa bàn thạch, đòn của {mob} chỉ làm rơi vài hạt bụi!"
+      },
+      {
+        "tier": 3,
+        "name": "Bàn Thạch Trấn Thế",
+        "effect": "stun",
+        "value": 85,
+        "hits": 2,
+        "text": "Bàn thạch hỗn nguyên đè xuống, {mob} bị trấn chặt không cựa nổi!"
+      }
+    ],
+    "86": [
+      {
+        "tier": 1,
+        "name": "Tạo Hóa Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang sức tạo hóa đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hỗn Nguyên Hấp Tinh",
+        "effect": "lifesteal",
+        "value": 36,
+        "hits": 3,
+        "text": "Tạo hóa xoay chuyển, rút tinh khí của {mob} về thân ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Tạo Hóa Quy Nguyên",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 5,
+        "text": "Ngũ hành hỗn nguyên hợp nhất thành một đạo quang, xuyên thẳng qua {mob}!"
       }
     ]
   }

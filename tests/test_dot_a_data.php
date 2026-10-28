@@ -21,7 +21,7 @@ $cp = \player\congphap_config_all();
 $ids = array(); $bad = array(); $budget = array();
 $okWgEff = array('pierce_def', 'crit_dmg', 'damage_reduce', 'escape', 'hp_regen', 'exp_bonus', 'drop_bonus',
     'combo_hit', 'steal_reward', 'counter_lifesteal', 'control_reduce_damage', 'poison_immune', '');
-$rarOrder = array('nhap_mon' => 0, 'ha_thua' => 1, 'trung_cap' => 2, 'thuong_thua' => 3, 'than_cong' => 4, 'tien_dao' => 5);
+$rarOrder = array('nhap_mon' => 0, 'ha_thua' => 1, 'trung_cap' => 2, 'thuong_thua' => 3, 'than_cong' => 4, 'tien_dao' => 5, 'hon_nguyen' => 6);
 foreach ($wg as $key => $w) {
     $id = intval($w['wgid']);
     if ($id <= 0) continue;
@@ -41,6 +41,7 @@ foreach ($wg as $key => $w) {
 tassert('W1 60 vo cong (29 cu + 30 moi + "khong co")', count(array_filter($wg, function($w){ return intval($w['wgid']) < 70; })), 60);
 tassert('W1 lan 3: 5 bo Tuyet The CG 25 (wgid 70–74, 1 bo / he)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 70 && intval($w['wgid']) <= 74 && $w['rarity'] === 'than_cong' && intval($w['realm_require']) === 25; })), 5);
 tassert('W1 lan 4: 6 bo Tien Dao CG 36 (wgid 75–80, 1 bo / he + Ngu Hanh)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 75 && intval($w['wgid']) <= 80 && $w['rarity'] === 'tien_dao' && intval($w['realm_require']) === 36; })), 6);
+tassert('W1 lan 5: 6 bo Hon Nguyen CG 42 (wgid 81–86, 1 bo / he + Ngu Hanh)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 81 && intval($w['wgid']) <= 86 && $w['rarity'] === 'hon_nguyen' && intval($w['realm_require']) === 42; })), 6);
 tassert('W1 wgid khong trung', count($ids), count(array_unique($ids)));
 tassert('W1 moi bo hop le (id, phẩm, hiệu ứng, mô tả, 3 thế)', $bad, array());
 // Ngân sách trung bình tăng dần theo phẩm
@@ -48,10 +49,10 @@ $avg = array();
 foreach ($rarOrder as $r => $i) $avg[$i] = isset($budget[$r]) ? array_sum($budget[$r]) / count($budget[$r]) : 0;
 ksort($avg);
 $inc = true; for ($i = 1; $i < count($avg); $i++) if ($avg[$i] <= $avg[$i - 1]) $inc = false;
-tassert('W2 chi so trung binh tang dan theo 6 pham', $inc, true);
+tassert('W2 chi so trung binh tang dan theo 7 pham', $inc, true);
 // Tiên Đạo không bán
-$tdSell = 0; foreach ($wg as $w) if ($w['rarity'] === 'tien_dao' && (intval($w['price_linhthong']) > 0 || intval($w['price_masthach']) > 0)) $tdSell++;
-tassert('W3 Tien Dao khong ban o Thien Co Cac', $tdSell, 0);
+$tdSell = 0; foreach ($wg as $w) if (($w['rarity'] === 'tien_dao' || $w['rarity'] === 'hon_nguyen') && (intval($w['price_linhthong']) > 0 || intval($w['price_masthach']) > 0)) $tdSell++;
+tassert('W3 Tien Dao / Hon Nguyen khong ban o Thien Co Cac', $tdSell, 0);
 
 // ===== Công pháp =====
 $cbad = array(); $cids = array();
@@ -61,18 +62,22 @@ foreach ($cp as $key => $c) {
     $id = intval($c['cpid']); $cids[] = $id;
     if ((string)$id !== (string)$key) $cbad[] = "$id: key != cpid";
     if (!in_array($c['effect_type'], $okCpEff, true)) $cbad[] = "$id: effect {$c['effect_type']}";
-    if (intval($c['tier']) < 1 || intval($c['tier']) > 7 || intval($c['subtier']) < 1 || intval($c['subtier']) > 4) $cbad[] = "$id: giai/pham";
+    if (intval($c['tier']) < 1 || intval($c['tier']) > 8 || intval($c['subtier']) < 1 || intval($c['subtier']) > 4) $cbad[] = "$id: giai/pham";
     if (floatval($c['effect_value_max']) <= floatval($c['effect_value'])) $cbad[] = "$id: max <= base";
     if (count(explode('|', $c['cpinfo'])) !== 3) $cbad[] = "$id: cpinfo";
     if (intval($c['price_linhthong']) <= 0 && intval($c['price_masthach']) <= 0) $cbad[] = "$id: khong co gia";
 }
-tassert('C1 56 cong phap', count($cp), 56);
+// Đợt A: cpid 1–56; làn 5 thêm 4 bộ Đế Giai cpid 57–60 (tools/gen/lan5_a_build.py)
+tassert('C1 60 cong phap', count($cp), 60);
 tassert('C1 cpid khong trung', count($cids), count(array_unique($cids)));
 tassert('C1 moi bo hop le', $cbad, array());
 // Mỗi giai có 8 bộ
 $perGiai = array(); foreach ($cp as $c) { $g = intval($c['tier']); $perGiai[$g] = isset($perGiai[$g]) ? $perGiai[$g] + 1 : 1; }
 ksort($perGiai);
-tassert('C2 moi giai 8 bo', array_values($perGiai), array(8, 8, 8, 8, 8, 8, 8));
+tassert('C2 giai 1–7 moi giai 8 bo, giai 8 (Đế Giai) 4 bo', array_values($perGiai), array(8, 8, 8, 8, 8, 8, 8, 4));
+$de = array(); foreach ($cp as $c) if (intval($c['tier']) === 8) $de[] = intval($c['realm_require']);
+sort($de);
+tassert('C2 De Giai yeu cau CG 45, 45, 48, 48', $de, array(45, 45, 48, 48));
 
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

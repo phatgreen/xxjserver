@@ -26,6 +26,15 @@ TIENDAO_WGID = [64, 65, 66, 67, 68]
 # Làn 4 (docs/LAN4_CAP_1500_2000.md mục 4): 6 bộ Tiên Đạo CG 36 (wgid 75–80, tools/gen/lan4_a_build.py) đổi 15 quyển / bộ
 TIENDAO_WGID += [75, 76, 77, 78, 79, 80]
 NEED_BY_WGID = {wid: 15 for wid in range(75, 81)}
+# Làn 5 (docs/LAN5_CAP_2000_2500.md, phương án A): 6 bộ Hỗn Nguyên CG 42 (wgid 81–86, lan5_a_build.py) đổi bằng
+# HỖN NGUYÊN Tàn Quyển (djid 116) 10 quyển / bộ; boss làn 5 (2050–2500) rơi Hỗn Nguyên Tàn Quyển 5% thay Tiên Đạo.
+HN_DJID, HN_NEED = 116, 10
+HN_WGID = list(range(81, 87))
+TIENDAO_WGID += HN_WGID
+NEED_BY_WGID.update({wid: HN_NEED for wid in HN_WGID})
+DJID_BY_WGID = {wid: HN_DJID for wid in HN_WGID}
+DROP_PCT.update({lv: 5 for lv in range(2050, 2501, 50)})
+DROP_DJID_BY_LV = {lv: HN_DJID for lv in range(2050, 2501, 50)}
 
 # ---- Cấu hình đổi / rơi ----
 save('tiendao_config.json', {
@@ -34,12 +43,14 @@ save('tiendao_config.json', {
     'need': NEED,
     'wgid': TIENDAO_WGID,
     'need_by_wgid': {str(k): v for k, v in sorted(NEED_BY_WGID.items())},
+    'djid_by_wgid': {str(k): v for k, v in sorted(DJID_BY_WGID.items())},
+    'drop_djid_by_lv': {str(k): v for k, v in sorted(DROP_DJID_BY_LV.items())},
     'drop_pct': {str(k): v for k, v in sorted(DROP_PCT.items())},
 }, indent=2)
 
 # ---- Đạo cụ ----
 # Chèn dạng văn bản để giữ nguyên định dạng các khối viết tay khác trong file.
-item = {
+items = [{
     'djname': 'Tiên Đạo Tàn Quyển',
     'djzl': str(DJID),
     'djinfo': 'Tàn trang bí tịch Tiên Đạo, rơi từ Boss khu vực cấp 400 trở lên. '
@@ -48,13 +59,25 @@ item = {
     'djyxb': 0,      # bán cho tiệm không được tiền
     'djjg': 0,
     'no_shop': 1,    # Thương Điếm không bày bán
-}
+}, {
+    'djname': 'Hỗn Nguyên Tàn Quyển',
+    'djzl': str(HN_DJID),
+    'djinfo': 'Tàn trang bí tịch Hỗn Nguyên, rơi từ Boss khu vực cấp 2050 trở lên. '
+              'Gom đủ %d quyển đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42).' % HN_NEED,
+    'djid': HN_DJID,
+    'djyxb': 0,
+    'djjg': 0,
+    'no_shop': 1,
+}]
 path = os.path.join(CFG, 'daoju_config.json')
 text = open(path, encoding='utf-8').read()
-# Xóa khối cũ (nếu đã chạy trước đó) rồi chèn lại trước dấu } cuối file
-text = re.sub(r',\s*"%d": \{.*?\n    \}(?=\s*\}\s*$)' % DJID, '', text, flags=re.S)
-block = json.dumps(item, ensure_ascii=False, indent=4).replace('\n', '\n    ')
-text = re.sub(r'\s*\}\s*$', ',\n    "%d": %s\n}\n' % (DJID, block), text, count=1)
-json.loads(text)  # kiểm tra JSON hợp lệ trước khi ghi
+# Xóa các khối cũ (nếu đã chạy trước đó, ở bất kỳ vị trí nào) rồi chèn lại theo thứ tự trước dấu } cuối file
+for it in items:
+    text = re.sub(r',\s*"%d": \{.*?\n    \}(?=\s*(,|\}\s*$))' % it['djid'], '', text, flags=re.S)
+for it in items:
+    block = json.dumps(it, ensure_ascii=False, indent=4).replace('\n', '\n    ')
+    text = re.sub(r'\s*\}\s*$', ',\n    "%d": %s\n}\n' % (it['djid'], block), text, count=1)
+d = json.loads(text)  # kiểm tra JSON hợp lệ trước khi ghi
+assert text.count('"%d": {' % DJID) == 1 and text.count('"%d": {' % HN_DJID) == 1
 open(path, 'w', encoding='utf-8').write(text)
-print('OK: tiendao_config.json + daoju %d' % DJID)
+print('OK: tiendao_config.json + daoju %d, %d' % (DJID, HN_DJID))

@@ -275,6 +275,28 @@ if (!function_exists(__NAMESPACE__ . '\\tiendao_config')) {
     }
 }
 
+// Loại Tàn Quyển (djid) dùng để đổi võ công $wgid: làn 5 trở đi có quyển riêng (djid_by_wgid), mặc định Tiên Đạo Tàn Quyển.
+if (!function_exists(__NAMESPACE__ . '\\tiendao_djid_for')) {
+    function tiendao_djid_for($wgid){
+        $cfg = tiendao_config();
+        if (isset($cfg['djid_by_wgid'][(string)intval($wgid)])) {
+            return intval($cfg['djid_by_wgid'][(string)intval($wgid)]);
+        }
+        return intval($cfg['djid']);
+    }
+}
+
+// Loại Tàn Quyển boss cấp $bosslv rơi ra (drop_djid_by_lv), mặc định Tiên Đạo Tàn Quyển.
+if (!function_exists(__NAMESPACE__ . '\\tiendao_drop_djid')) {
+    function tiendao_drop_djid($bosslv){
+        $cfg = tiendao_config();
+        if (isset($cfg['drop_djid_by_lv'][(string)intval($bosslv)])) {
+            return intval($cfg['drop_djid_by_lv'][(string)intval($bosslv)]);
+        }
+        return intval($cfg['djid']);
+    }
+}
+
 // Số Tàn Quyển cần để đổi võ công $wgid; 0 = bộ này không đổi bằng Tàn Quyển.
 if (!function_exists(__NAMESPACE__ . '\\tiendao_need')) {
     function tiendao_need($wgid){

@@ -1,0 +1,247 @@
+{
+ "_note": "Sinh bởi tools/gen/lan5_c_build.py — dùng cho sql/migrate_lan5_c.php",
+ "npcs": [
+  {
+   "nid": 79,
+   "qyid": 67,
+   "nname": "Cương Vực Tuần Biên Tướng",
+   "mid": 4001
+  },
+  {
+   "nid": 80,
+   "qyid": 68,
+   "nname": "Tiên Đình Truyền Chỉ Quan",
+   "mid": 4009
+  },
+  {
+   "nid": 81,
+   "qyid": 69,
+   "nname": "Tiên Lộ Hộ Đạo Nhân",
+   "mid": 4017
+  },
+  {
+   "nid": 82,
+   "qyid": 70,
+   "nname": "Hoàng Thành Lễ Quan",
+   "mid": 4025
+  },
+  {
+   "nid": 83,
+   "qyid": 71,
+   "nname": "Đế Khư Khảo Cổ Lão Nhân",
+   "mid": 4033
+  },
+  {
+   "nid": 84,
+   "qyid": 72,
+   "nname": "Tiên Mộ Thủ Linh Nhân",
+   "mid": 4041
+  },
+  {
+   "nid": 85,
+   "qyid": 73,
+   "nname": "Thần Lô Khống Hỏa Sư",
+   "mid": 4049
+  },
+  {
+   "nid": 86,
+   "qyid": 74,
+   "nname": "Thiên Môn Tiếp Dẫn Thần Sứ",
+   "mid": 4057
+  },
+  {
+   "nid": 87,
+   "qyid": 75,
+   "nname": "Thánh Vực Truyền Đạo Thần Quan",
+   "mid": 4065
+  },
+  {
+   "nid": 88,
+   "qyid": 76,
+   "nname": "Thần Điện Thủ Ấn Thần Quan",
+   "mid": 4073
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 187,
+   "mid": 4001,
+   "mname": "Cương Vực Biên Ải",
+   "qyid": 67
+  },
+  {
+   "rwid": 188,
+   "mid": 4005,
+   "mname": "Chiến Tượng Doanh",
+   "qyid": 67
+  },
+  {
+   "rwid": 189,
+   "mid": 4008,
+   "mname": "Tiên Vương Điểm Tướng Đài",
+   "qyid": 67
+  },
+  {
+   "rwid": 190,
+   "mid": 4009,
+   "mname": "Tiên Đình Ngoại Môn",
+   "qyid": 68
+  },
+  {
+   "rwid": 191,
+   "mid": 4013,
+   "mname": "Thông Minh Điện",
+   "qyid": 68
+  },
+  {
+   "rwid": 192,
+   "mid": 4016,
+   "mname": "Vô Thượng Tiên Điện",
+   "qyid": 68
+  },
+  {
+   "rwid": 193,
+   "mid": 4017,
+   "mname": "Tiên Lộ Khởi Nguyên",
+   "qyid": 69
+  },
+  {
+   "rwid": 194,
+   "mid": 4021,
+   "mname": "Liệt Nhật Bình Nguyên",
+   "qyid": 69
+  },
+  {
+   "rwid": 195,
+   "mid": 4024,
+   "mname": "Chuẩn Đế Đăng Thiên Thê",
+   "qyid": 69
+  },
+  {
+   "rwid": 196,
+   "mid": 4025,
+   "mname": "Hoàng Thành Ngoại Quách",
+   "qyid": 70
+  },
+  {
+   "rwid": 197,
+   "mid": 4029,
+   "mname": "Kim Loan Điện Tiền",
+   "qyid": 70
+  },
+  {
+   "rwid": 198,
+   "mid": 4032,
+   "mname": "Tiên Đế Kim Loan Điện",
+   "qyid": 70
+  },
+  {
+   "rwid": 199,
+   "mid": 4033,
+   "mname": "Đế Khư Tàn Môn",
+   "qyid": 71
+  },
+  {
+   "rwid": 200,
+   "mid": 4037,
+   "mname": "Đế Cốt Lâm",
+   "qyid": 71
+  },
+  {
+   "rwid": 201,
+   "mid": 4040,
+   "mname": "Cổ Ma Trấn Áp Điện",
+   "qyid": 71
+  },
+  {
+   "rwid": 202,
+   "mid": 4041,
+   "mname": "Tiên Mộ Thần Đạo",
+   "qyid": 72
+  },
+  {
+   "rwid": 203,
+   "mid": 4045,
+   "mname": "Bất Hủ Quan Tài Điện",
+   "qyid": 72
+  },
+  {
+   "rwid": 204,
+   "mid": 4048,
+   "mname": "Bất Hủ Đế Lăng",
+   "qyid": 72
+  },
+  {
+   "rwid": 205,
+   "mid": 4049,
+   "mname": "Thần Lô Khẩu",
+   "qyid": 73
+  },
+  {
+   "rwid": 206,
+   "mid": 4053,
+   "mname": "Đan Hỏa Hành Lang",
+   "qyid": 73
+  },
+  {
+   "rwid": 207,
+   "mid": 4056,
+   "mname": "Luyện Thần Hỏa Điện",
+   "qyid": 73
+  },
+  {
+   "rwid": 208,
+   "mid": 4057,
+   "mname": "Thiên Môn Vân Bộ",
+   "qyid": 74
+  },
+  {
+   "rwid": 209,
+   "mid": 4061,
+   "mname": "Thần Thú Viên",
+   "qyid": 74
+  },
+  {
+   "rwid": 210,
+   "mid": 4064,
+   "mname": "Nhập Thần Chính Môn",
+   "qyid": 74
+  },
+  {
+   "rwid": 211,
+   "mid": 4065,
+   "mname": "Thánh Vực Ngoại Hoàn",
+   "qyid": 75
+  },
+  {
+   "rwid": 212,
+   "mid": 4069,
+   "mname": "Thần Đạo Giảng Đàn",
+   "qyid": 75
+  },
+  {
+   "rwid": 213,
+   "mid": 4072,
+   "mname": "Thần Đạo Thánh Đài",
+   "qyid": 75
+  },
+  {
+   "rwid": 214,
+   "mid": 4073,
+   "mname": "Thần Điện Bậc Thềm",
+   "qyid": 76
+  },
+  {
+   "rwid": 215,
+   "mid": 4077,
+   "mname": "Long Mạch Thần Trì",
+   "qyid": 76
+  },
+  {
+   "rwid": 216,
+   "mid": 4080,
+   "mname": "Thần Tôn Chính Điện",
+   "qyid": 76
+  }
+ ]
+}

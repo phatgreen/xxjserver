@@ -648,5 +648,105 @@
     "taskid": "184,185,186",
     "mz": "",
     "rwqy": ""
+  },
+  "79": {
+    "id": 79,
+    "nname": "Cương Vực Tuần Biên Tướng",
+    "nsex": "Nam",
+    "ninfo": "Tướng tuần biên của Tiên Vương Cương Vực, giáp trụ phủ đầy bụi chiến trường ngàn năm.",
+    "muban": "",
+    "taskid": "187,188,189",
+    "mz": "",
+    "rwqy": ""
+  },
+  "80": {
+    "id": 80,
+    "nname": "Tiên Đình Truyền Chỉ Quan",
+    "nsex": "Nam",
+    "ninfo": "Quan truyền chỉ của Vô Thượng Tiên Đình, mỗi đạo thánh chỉ ông đọc đều chấn động tam giới.",
+    "muban": "",
+    "taskid": "190,191,192",
+    "mz": "",
+    "rwqy": ""
+  },
+  "81": {
+    "id": 81,
+    "nname": "Tiên Lộ Hộ Đạo Nhân",
+    "nsex": "Nam",
+    "ninfo": "Người hộ đạo trên Chuẩn Đế Tiên Lộ, đã tiễn vô số thiên kiêu leo lên rồi ngã xuống.",
+    "muban": "",
+    "taskid": "193,194,195",
+    "mz": "",
+    "rwqy": ""
+  },
+  "82": {
+    "id": 82,
+    "nname": "Hoàng Thành Lễ Quan",
+    "nsex": "Nam",
+    "ninfo": "Lễ quan của Tiên Đế Hoàng Thành, thuộc làu mọi quy củ triều nghi tiên giới.",
+    "muban": "",
+    "taskid": "196,197,198",
+    "mz": "",
+    "rwqy": ""
+  },
+  "83": {
+    "id": 83,
+    "nname": "Đế Khư Khảo Cổ Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Lão nhân cả đời đào bới Vô Thượng Đế Khư, tìm dấu vết các đời đế giả đã vẫn lạc.",
+    "muban": "",
+    "taskid": "199,200,201",
+    "mz": "",
+    "rwqy": ""
+  },
+  "84": {
+    "id": 84,
+    "nname": "Tiên Mộ Thủ Linh Nhân",
+    "nsex": "Nữ",
+    "ninfo": "Người giữ linh vị trong Bất Hủ Tiên Mộ, hát khúc an hồn cho những tiên đế không chịu yên nghỉ.",
+    "muban": "",
+    "taskid": "202,203,204",
+    "mz": "",
+    "rwqy": ""
+  },
+  "85": {
+    "id": 85,
+    "nname": "Thần Lô Khống Hỏa Sư",
+    "nsex": "Nam",
+    "ninfo": "Hỏa sư điều khiển ngọn lửa của Luyện Thần Lô, một niệm có thể khiến lò bùng hay tắt.",
+    "muban": "",
+    "taskid": "205,206,207",
+    "mz": "",
+    "rwqy": ""
+  },
+  "86": {
+    "id": 86,
+    "nname": "Thiên Môn Tiếp Dẫn Thần Sứ",
+    "nsex": "Nữ",
+    "ninfo": "Thần sứ đứng trước Nhập Thần Thiên Môn, chỉ dẫn người phá cảnh tiên bước vào thần đạo.",
+    "muban": "",
+    "taskid": "208,209,210",
+    "mz": "",
+    "rwqy": ""
+  },
+  "87": {
+    "id": 87,
+    "nname": "Thánh Vực Truyền Đạo Thần Quan",
+    "nsex": "Nam",
+    "ninfo": "Thần quan truyền giảng thần đạo ở Thánh Vực, đạo văn trên người ông tự phát sáng.",
+    "muban": "",
+    "taskid": "211,212,213",
+    "mz": "",
+    "rwqy": ""
+  },
+  "88": {
+    "id": 88,
+    "nname": "Thần Điện Thủ Ấn Thần Quan",
+    "nsex": "Nam",
+    "ninfo": "Thần quan giữ ấn của Thần Tôn Thần Điện, chỉ trao ấn cho người hạ được thần long hộ điện.",
+    "muban": "",
+    "taskid": "214,215,216",
+    "mz": "",
+    "rwqy": ""
   }
 }

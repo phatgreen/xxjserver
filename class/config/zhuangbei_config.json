@@ -1038,4 +1038,64 @@
     "260": {
         "zbname": "Thái Sơ Tọa Kỵ","zbinfo": "Trang bị bậc Thái Sơ, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 19031,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 260,"zbhp": 118506,"zblv": 1500,"zbtool": 15,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 1500
     }
+,
+    "261": {
+        "zbname": "Thái Sơ Hồng Hoang Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Vũ Khí.","zbgj": 193502,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 261,"zbhp": 0,"zblv": 2000,"zbtool": 1,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "262": {
+        "zbname": "Thái Sơ Hồng Hoang Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 87715,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 262,"zbhp": 122248,"zblv": 2000,"zbtool": 2,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "263": {
+        "zbname": "Thái Sơ Hồng Hoang Quan","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Thiên Quan.","zbgj": 24622,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 263,"zbhp": 61367,"zblv": 2000,"zbtool": 3,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "264": {
+        "zbname": "Thái Sơ Hồng Hoang Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 119686,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 264,"zbhp": 220262,"zblv": 2000,"zbtool": 4,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "265": {
+        "zbname": "Thái Sơ Hồng Hoang Hộ Thủ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 75828,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 265,"zbhp": 146987,"zblv": 2000,"zbtool": 5,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "266": {
+        "zbname": "Thái Sơ Hồng Hoang Giới Chỉ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Giới Chỉ.","zbgj": 58362,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 266,"zbhp": 0,"zblv": 2000,"zbtool": 6,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "267": {
+        "zbname": "Thái Sơ Hồng Hoang Yêu Đai","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 267,"zbhp": 73286,"zblv": 2000,"zbtool": 7,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "268": {
+        "zbname": "Thái Sơ Hồng Hoang Phi Phong","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Phi Phong.","zbgj": 0,"zbfy": 54514,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 14,"zbid": 268,"zbhp": 122248,"zblv": 2000,"zbtool": 8,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "269": {
+        "zbname": "Thái Sơ Hồng Hoang Linh Phù","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Linh Phù.","zbgj": 33740,"zbfy": 0,"zbbj": 0,"zbxx": 11,"tuposjs": 7,"tupoexp": 0,"zbid": 269,"zbhp": 36647,"zblv": 2000,"zbtool": 9,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "270": {
+        "zbname": "Thái Sơ Hồng Hoang Ngọc Nhãn","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Ngọc Nhãn.","zbgj": 48428,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 7,"tupoexp": 0,"zbid": 270,"zbhp": 24283,"zblv": 2000,"zbtool": 10,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "271": {
+        "zbname": "Thái Sơ Hồng Hoang Cổ Ngọc","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Cổ Ngọc.","zbgj": 48428,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 7,"tupoexp": 0,"zbid": 271,"zbhp": 24283,"zblv": 2000,"zbtool": 11,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "272": {
+        "zbname": "Thái Sơ Hồng Hoang Vai Khôi","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 75828,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 272,"zbhp": 146987,"zblv": 2000,"zbtool": 12,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "273": {
+        "zbname": "Thái Sơ Hồng Hoang Ngọc Đai","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Linh Đai.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 14,"zbid": 273,"zbhp": 73286,"zblv": 2000,"zbtool": 13,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "274": {
+        "zbname": "Thái Sơ Hồng Hoang Linh Bội","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Linh Bội.","zbgj": 38347,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 0,"tupoexp": 14,"zbid": 274,"zbhp": 24283,"zblv": 2000,"zbtool": 14,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
+,
+    "275": {
+        "zbname": "Thái Sơ Hồng Hoang Tọa Kỵ","zbinfo": "Trang bị bậc Thái Sơ Hồng Hoang, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 33201,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 275,"zbhp": 195999,"zblv": 2000,"zbtool": 15,"zbys": "#26c6da","taozhuang": 12,"element": "none","rarity": 12,"rarity_name": "ThaiSo","realm_require": 2000
+    }
 }

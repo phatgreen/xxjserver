@@ -34,6 +34,7 @@ $giaiNames = array(
     5 => 'Tiên Giai',
     6 => 'Thần Giai',
     7 => 'Thánh Giai',
+    8 => 'Đế Giai',     // làn 5 (docs/LAN5_CAP_2000_2500.md)
 );
 $phamNames = array(
     1 => 'Sơ Phẩm',
@@ -49,6 +50,7 @@ $giaiCss = array(
     5 => 'tien',
     6 => 'than',
     7 => 'thanh',
+    8 => 'de',      // làn 5
 );
 $giaiCurrency = array(
     1 => 'Linh Thạch',
@@ -58,6 +60,7 @@ $giaiCurrency = array(
     5 => 'Ma Thạch',
     6 => 'Ma Thạch',
     7 => 'Ma Thạch',
+    8 => 'Ma Thạch',
 );
 
 function tcc_full_name($giai, $pham) {
@@ -94,6 +97,7 @@ $wgRarityNames = array(
     'thuong_thua'=> 'Thượng Thừa',
     'than_cong'  => 'Tuyệt Thế',
     'tien_dao'   => 'Tiên Đạo',
+    'hon_nguyen' => 'Hỗn Nguyên',   // làn 5
 );
 $wgRarityCss = array(
     'nhap_mon'   => 'wrar-nhap',
@@ -102,6 +106,7 @@ $wgRarityCss = array(
     'thuong_thua'=> 'wrar-thuong',
     'than_cong'  => 'wrar-than',
     'tien_dao'   => 'wrar-tien',
+    'hon_nguyen' => 'wrar-hn',
 );
 $elementNames = array(
     'kim'  => 'Kim',
@@ -165,10 +170,11 @@ if ($canshu != '') {
             // Đợt D: võ công Tiên Đạo đổi bằng Tiên Đạo Tàn Quyển thay vì tiền
             $tdNeed = \player\tiendao_need(intval($buy_id));
             if ($tdNeed > 0) {
-                $tdCfg = \player\tiendao_config();
-                if (!\player\deledjsum(intval($tdCfg['djid']), $tdNeed, $sid, $dblj)) {
-                    $tdRow = \player\getplayerdaoju($sid, intval($tdCfg['djid']), $dblj);
-                    $tssb = wg_popup_html('error', 'Không đủ Tiên Đạo Tàn Quyển! (cần ' . $tdNeed . ', đang có ' . ($tdRow ? intval($tdRow->djsum) : 0) . ')');
+                $tdDjid = \player\tiendao_djid_for(intval($buy_id));   // làn 5+: có bộ đổi bằng quyển riêng
+                if (!\player\deledjsum($tdDjid, $tdNeed, $sid, $dblj)) {
+                    $tdRow = \player\getplayerdaoju($sid, $tdDjid, $dblj);
+                    $tdDjCfg = \player\daoju_config_get($tdDjid);
+                    $tssb = wg_popup_html('error', 'Không đủ ' . ($tdDjCfg ? $tdDjCfg['djname'] : 'Tàn Quyển') . '! (cần ' . $tdNeed . ', đang có ' . ($tdRow ? intval($tdRow->djsum) : 0) . ')');
                     break;
                 }
             } elseif ($priceLT > 0) {
@@ -261,9 +267,9 @@ $itemsHtml = '';
 if ($currentTab === 'wg') {
     $grouped = array();
     // Đợt D: số Tiên Đạo Tàn Quyển đang có (hiện cạnh giá đổi)
-    $tdCfgList = \player\tiendao_config();
-    $tdRowList = intval($tdCfgList['djid']) > 0 ? \player\getplayerdaoju($sid, intval($tdCfgList['djid']), $dblj) : false;
-    $tdHave = $tdRowList ? intval($tdRowList->djsum) : 0;
+    // Số quyển đang có theo từng loại Tàn Quyển (Tiên Đạo, Hỗn Nguyên …) — đọc 1 lần mỗi loại
+    $tdHaveBy = array();
+    $tdNameBy = array();
     foreach ($wgCfgAll as $key => $cfg) {
         if (intval($cfg['id']) <= 0) continue;
         $cat = isset($cfg['category']) ? $cfg['category'] : 'noi_cong';
@@ -274,6 +280,15 @@ if ($currentTab === 'wg') {
         $trainMult = isset($cfg['training_time_mult']) ? floatval($cfg['training_time_mult']) : 1.0;
         $tdNeed = \player\tiendao_need(isset($cfg['wgid']) ? $cfg['wgid'] : 0);
         if ($priceLT <= 0 && $priceMT <= 0 && $tdNeed <= 0) continue;
+        if ($tdNeed > 0) {
+            $tdD = \player\tiendao_djid_for(isset($cfg['wgid']) ? $cfg['wgid'] : 0);
+            if (!isset($tdHaveBy[$tdD])) {
+                $tdR = \player\getplayerdaoju($sid, $tdD, $dblj);
+                $tdHaveBy[$tdD] = $tdR ? intval($tdR->djsum) : 0;
+                $tdC = \player\daoju_config_get($tdD);
+                $tdNameBy[$tdD] = $tdC ? $tdC['djname'] : 'Tàn Quyển';
+            }
+        }
         if (!isset($grouped[$cat])) $grouped[$cat] = array();
         $grouped[$cat][] = array(
             'key' => $key,
@@ -283,6 +298,7 @@ if ($currentTab === 'wg') {
             'price_lt' => $priceLT,
             'price_mt' => $priceMT,
             'td_need' => $tdNeed,
+            'td_djid' => $tdNeed > 0 ? \player\tiendao_djid_for(isset($cfg['wgid']) ? $cfg['wgid'] : 0) : 0,
             'train_mult' => $trainMult,
         );
     }
@@ -290,7 +306,7 @@ if ($currentTab === 'wg') {
     foreach ($wgCatOrder as $cat) {
         if (!isset($grouped[$cat]) || count($grouped[$cat]) == 0) continue;
         $items = $grouped[$cat];
-        $rarityOrder = array('nhap_mon', 'ha_thua', 'trung_cap', 'thuong_thua', 'than_cong', 'tien_dao');
+        $rarityOrder = array('nhap_mon', 'ha_thua', 'trung_cap', 'thuong_thua', 'than_cong', 'tien_dao', 'hon_nguyen');
         usort($items, function($a, $b) use ($rarityOrder) {
             $ai = array_search($a['rarity'], $rarityOrder);
             $bi = array_search($b['rarity'], $rarityOrder);
@@ -329,7 +345,7 @@ if ($currentTab === 'wg') {
             $priceTextPlain = '';
             if ($item['td_need'] > 0) {
                 $priceText = '<span class="tcg-tcc-price mt">' . $item['td_need'] . ' Quyển</span>';
-                $priceTextPlain = $item['td_need'] . ' Tiên Đạo Tàn Quyển';
+                $priceTextPlain = $item['td_need'] . ' ' . $tdNameBy[$item['td_djid']];
             } elseif ($priceLT > 0) {
                 $priceText = '<span class="tcg-tcc-price lt">' . number_format($priceLT) . ' LT</span>';
                 $priceTextPlain = number_format($priceLT) . ' Linh thạch';
@@ -362,7 +378,7 @@ if ($currentTab === 'wg') {
                 $itemsHtml .= '<span class="tcg-tcc-train">' . $trainText . '</span>';
             }
             $itemsHtml .= '</div>';
-            $itemsHtml .= '<div class="tcg-tcc-item-sub">Yêu cầu: ' . $reqName . ($item['td_need'] > 0 ? ' · Đang có ' . $tdHave . ' Tàn Quyển' : '') . '</div>';
+            $itemsHtml .= '<div class="tcg-tcc-item-sub">Yêu cầu: ' . $reqName . ($item['td_need'] > 0 ? ' · Đang có ' . $tdHaveBy[$item['td_djid']] . ' ' . wg_safe_text($tdNameBy[$item['td_djid']]) : '') . '</div>';
             $itemsHtml .= '</div>';
             $itemsHtml .= '<div class="tcg-tcc-item-right">';
             $itemsHtml .= $priceText;
@@ -667,6 +683,11 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     background: linear-gradient(135deg, rgba(255,215,0,.18), rgba(255,215,0,.06));
     border: 1px solid rgba(255,215,0,.35);
 }
+/* Làn 5: Đế Giai */
+.tcg-tcc-tier-de {
+    background: linear-gradient(135deg, rgba(192,132,252,.22), rgba(192,132,252,.06));
+    border: 1px solid rgba(192,132,252,.45);
+}
 .tcg-tcc-wcat.tcg-tcc-tier-head { justify-content: flex-start; }
 .wcat-khinh {
     background: linear-gradient(135deg, rgba(56,189,248,.15), rgba(56,189,248,.05));
@@ -715,6 +736,13 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     color: #ff7a59;
     border: 1px solid rgba(255,49,0,.40);
     text-shadow: 0 0 8px rgba(255,49,0,.35);
+}
+/* Làn 5: phẩm Hỗn Nguyên (trên Tiên Đạo) */
+.wrar-hn {
+    background: rgba(168,85,247,.20);
+    color: #e9d5ff;
+    border: 1px solid rgba(192,132,252,.55);
+    text-shadow: 0 0 10px rgba(192,132,252,.6);
 }
 .wrar-trung {
     background: rgba(16,191,97,.18);

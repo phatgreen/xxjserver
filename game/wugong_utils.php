@@ -20,6 +20,7 @@ if (!function_exists('wg_color_name')) {
             '#10bf61' => 'Linh',
             '#f9c508' => 'Hoàng Kim',
             '#ff3100' => 'Đỏ',
+            '#c084fc' => 'Tử',   // Hỗn Nguyên (làn 5)
         );
         return isset($map[$color]) ? $map[$color] : 'Không rõ';
     }

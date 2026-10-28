@@ -28,7 +28,13 @@ tassert('D1 lan 2: 550–700 = 5%, 750–900 = 6%, 950–1000 = 7%', array_slice
 // Làn 3: 10 boss 1050–1500 rơi 5% (docs/LAN3_CAP_1000_1500.md mục 6)
 tassert('D1 lan 3: 1050–1500 = 5%', array_slice($cfg['drop_pct'], 13, 10, true), array_fill_keys(range(1050, 1500, 50), 5));
 // Làn 4: boss 1550–2000 5%; 6 bộ Tiên Đạo CG 36 (wgid 75–80) đổi 15 quyển, bộ CG 30 giữ 10 (docs/LAN4_CAP_1500_2000.md)
-tassert('D1 lan 4: 1550–2000 = 5%', array_slice($cfg['drop_pct'], 23, null, true), array_fill_keys(range(1550, 2000, 50), 5));
+tassert('D1 lan 4: 1550–2000 = 5%', array_slice($cfg['drop_pct'], 23, 10, true), array_fill_keys(range(1550, 2000, 50), 5));
+// Làn 5: boss 2050–2500 5%, rơi Hỗn Nguyên Tàn Quyển (116); 6 bộ Hỗn Nguyên (wgid 81–86) đổi 10 quyển 116 (docs/LAN5_CAP_2000_2500.md)
+tassert('D1 lan 5: 2050–2500 = 5%', array_slice($cfg['drop_pct'], 33, null, true), array_fill_keys(range(2050, 2500, 50), 5));
+tassert('D1 lan 5: boss 2000 roi 115, 2050 / 2500 roi 116', array(\player\tiendao_drop_djid(2000), \player\tiendao_drop_djid(2050), \player\tiendao_drop_djid(2500)), array(115, 116, 116));
+tassert('D1 lan 5: Hon Nguyen doi 10 quyen 116, Tien Dao van dung 115', array(\player\tiendao_need(81), \player\tiendao_djid_for(81), \player\tiendao_djid_for(86), \player\tiendao_djid_for(75), \player\tiendao_djid_for(64)), array(10, 116, 116, 115, 115));
+$dj116 = \player\daoju_config_get(116);
+tassert('D1 lan 5: dao cu 116 khong ban, ban lai 0', array($dj116 ? $dj116['djname'] : false, intval($dj116['no_shop']), intval($dj116['djyxb'])), array('Hỗn Nguyên Tàn Quyển', 1, 0));
 tassert('D1 lan 4: Tien Dao CG 36 can 15 quyen, CG 30 van 10', array(\player\tiendao_need(75), \player\tiendao_need(80), \player\tiendao_need(64)), array(15, 15, 10));
 
 // ── D2. Đạo cụ: có trong config, không bán ở Thương Điếm, bán lại 0 tiền ──

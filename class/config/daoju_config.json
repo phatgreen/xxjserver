@@ -671,5 +671,14 @@
         "djyxb": 0,
         "djjg": 0,
         "no_shop": 1
+    },
+    "116": {
+        "djname": "Hỗn Nguyên Tàn Quyển",
+        "djzl": "116",
+        "djinfo": "Tàn trang bí tịch Hỗn Nguyên, rơi từ Boss khu vực cấp 2050 trở lên. Gom đủ 10 quyển đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42).",
+        "djid": 116,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1
     }
 }
