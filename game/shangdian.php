@@ -8,6 +8,8 @@ $shopDaoju    = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=$sid");
 $shopDaojuMa  = $encode->encode("cmd=shangdian&canshu21=gogoumai2ma&sid=$sid");
 $shopZhuang   = $encode->encode("cmd=shangdian&canshu3=gogoumai3&sid=$sid");
 $shopZhuangMa = $encode->encode("cmd=shangdian&canshu31=gogoumai3ma&sid=$sid");
+$shopWugong   = $encode->encode("cmd=thiencoccac&tab=wg&sid=$sid");   // Võ Công / Công Pháp bán ở Thiên Cơ Các
+$shopCongphap = $encode->encode("cmd=thiencoccac&tab=cp&sid=$sid");
 
 $currentTab = 'linh';
 $noticeHtml = '';
@@ -558,6 +560,8 @@ $gnhtml = <<<HTML
         <a class="tcg-shop-tab$danActive" href="?cmd=$shangdian">Đan Dược</a>
         <a class="tcg-shop-tab$daojuActive" href="?cmd=$shopDaoju">Đạo Cụ</a>
         <a class="tcg-shop-tab$zhuangActive" href="?cmd=$shopZhuang">Trang Bị</a>
+        <a class="tcg-shop-tab" href="?cmd=$shopWugong">Võ Công</a>
+        <a class="tcg-shop-tab" href="?cmd=$shopCongphap">Công Pháp</a>
     </div>
 
     $danSub$daojuSub$zhuangSub

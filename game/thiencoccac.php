@@ -286,6 +286,10 @@ $cpCfgAll = \player\congphap_config_all();
 
 $tabWgCmd = $encode->encode("cmd=thiencoccac&tab=wg&sid=" . $sid);
 $tabCpCmd = $encode->encode("cmd=thiencoccac&tab=cp&sid=" . $sid);
+// 3 tab Cửa Hàng (game/shangdian.php) — dùng chung hàng tab với Cửa Hàng
+$tabDanCmd = $encode->encode("cmd=shangdian&canshu=gogoumai&sid=" . $sid);
+$tabDjCmd = $encode->encode("cmd=shangdian&canshu2=gogoumai2&sid=" . $sid);
+$tabZbCmd = $encode->encode("cmd=shangdian&canshu3=gogoumai3&sid=" . $sid);
 
 $itemsHtml = '';
 
@@ -590,9 +594,12 @@ $html = <<<HTML
         </div>
     </div>
 
-    <div class="tcg-tcc-tabs">
-        <a class="tcg-tcc-tab {$tabWgActive}" href="?cmd={$tabWgCmd}">⚔ Võ Công</a>
-        <a class="tcg-tcc-tab {$tabCpActive}" href="?cmd={$tabCpCmd}">📖 Công Pháp</a>
+    <div class="tcg-shop-tabs">
+        <a class="tcg-shop-tab" href="?cmd={$tabDanCmd}">Đan Dược</a>
+        <a class="tcg-shop-tab" href="?cmd={$tabDjCmd}">Đạo Cụ</a>
+        <a class="tcg-shop-tab" href="?cmd={$tabZbCmd}">Trang Bị</a>
+        <a class="tcg-shop-tab{$tabWgActive}" href="?cmd={$tabWgCmd}">Võ Công</a>
+        <a class="tcg-shop-tab{$tabCpActive}" href="?cmd={$tabCpCmd}">Công Pháp</a>
     </div>
 
     {$tssb}
