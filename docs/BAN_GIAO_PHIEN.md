@@ -24,6 +24,7 @@
 | Giao diện chiến đấu | `pve.php` / `boss.php`: màn **Chiến Trường** mô phỏng từng đòn (`js/battle_sim.js` dùng chung), kết quả thắng/thua dạng **popup** (đưa ra `<body>` vì khung có backdrop-filter), báo tử vong ngay lượt bị hạ | — |
 | Nhiệm vụ (đợt C) | Thưởng theo % thanh cấp (`nhiemvu_reward_rules.json`), chính tuyến 13 chương (cấp 1–500), 9 NPC khu mới (mã 40–48, NV 70–96), tab **Trực Tuyến** + **Bế Quan** (thưởng offline), NPC hiện ở Đại Sảnh, chính tuyến thu gọn theo chương; sửa chuỗi NPC tân thủ 41–60 (sai loại, không NPC giao, mục tiêu sai) | `DOT_C_NHIEM_VU.md` |
 | Trang bị (đợt F) | **Đột phá cộng số cố định** (bản cũ lũy tiến 1%/5% ⇒ máu vô hạn), 215 món đủ 15 ô ở 11 bậc + bậc 500 "Hồng Mông", phẩm chất theo bậc, cường hóa +8% chỉ số gốc, Thần Trang 15 món, chế tạo đúng cấp, cân lại quái/boss đợt B | `DOT_F_TRANG_BI.md` |
+| Kinh tế + thể lực + trang bị (đợt G, 2026-10-28) | Lộ Trình Cảnh Giới, trang Nhiệm Vụ gọn, MT boss chặn chênh ≥ 35, thể lực 100+cấp / hồi 1 phút / trừ theo thế, tiệm chỉ bán đồ bậc ≤ 30, đủ 15 ô có nguồn rơi (quái thường / boss quý), mô phỏng kinh tế `tools/sim/econ_sim.py` — **đã triển khai máy chủ thật** | `DOT_G_KINH_TE_THE_LUC_TRANG_BI.md` |
 | Sửa lỗi kèm | Đường dẫn config `__DIR__ . '../../config'` thiếu `/` (renwu/daoju/yaodan/wugong — hỏng trên Linux); Thiên Cơ Các mua sách / tên cảnh giới; công pháp vận nhiều bộ | — |
 
 **Máy chủ chủ dự án đã chạy xong (2026-10-28):** `migrate_dot_b.php --apply`, `migrate_dot_c.php --apply`, `migrate_dot_f.php --apply`;
