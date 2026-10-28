@@ -21,9 +21,9 @@ from khung_tong_design import qh_at
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CFG = os.path.join(ROOT, 'class', 'config')
-BASE = base_curve(1000)
+BASE = base_curve(1500)
 ZB = json.load(open(os.path.join(CFG, 'zhuangbei_config.json'), encoding='utf-8'))
-GEAR_TIERS = (500, 600, 800)
+GEAR_TIERS = (500, 600, 800, 1000, 1250)   # 1000/1250: làn 3 (chỉ dùng khi cấp ≥ bậc ⇒ làn 2 không đổi)
 HITS_TO_KILL_PLAYER = 45
 MON_HP_MULT_B = 1.4            # đợt F nhân máu quái đợt B
 GYID_START = 300               # mã quái làn 2: 300…
@@ -53,6 +53,13 @@ HITS = _hits_at_500()
 def mob_hits(L):
     t = max(0.0, (L - 500) / 1000.0)
     return HITS + 2.0 * t, max(20.0, HITS_TO_KILL_PLAYER - 15.0 * t)
+
+def atk_for_hits(L, hits):
+    # Công cần để hạ nhân vật chuẩn trong `hits` đòn, theo đúng công thức sát thương max(15% công, công − 0,75 × thủ).
+    # Vùng sàn 15% (công thấp hơn ~0,88 × thủ người) cho cùng kết quả công thức cũ ph / hits / 0,15.
+    pg, pf, ph = player(L)
+    d = ph / hits
+    return d / 0.15 if d <= 0.15 * 0.75 * pf / 0.85 else d + 0.75 * pf
 
 def thuong_stats(L):
     pg, pf, ph = player(L)
@@ -129,10 +136,12 @@ def prefix(mname, rname=''):
     w = mname.split()
     return ' '.join(w[-2:]) if w[:2] == rname.split()[:2] else ' '.join(w[:2])
 
-def monsters():
-    out, gid, used = [], GYID_START, set()
-    for k, (rname, els, maps, boss, tinh) in enumerate(REGIONS):
-        lv0 = 502 + 50 * k
+def monsters(regions=None, gyid_start=GYID_START, qy_start=QY_START, lv_start=500, used=None):
+    # Tham số để làn sau dùng lại (lan3_design.py); mặc định = làn 2. used: tên đã dùng ở làn trước (tránh trùng)
+    regions = REGIONS if regions is None else regions
+    out, gid, used = [], gyid_start, set(used or ())
+    for k, (rname, els, maps, boss, tinh) in enumerate(regions):
+        lv0 = lv_start + 2 + 50 * k
         for i, mname in enumerate(maps):
             pair = ROT[i % 3]
             for j, arch in enumerate(pair):
@@ -146,13 +155,13 @@ def monsters():
                         name = '%s %s' % (prefix(mname, rname), o); break
                 assert name, (mname, arch, el)
                 used.add(name)
-                out.append(dict(id=gid, name=name, element=el, arch=arch, lv=lv, count=cnt, region=rname, qy=QY_START + k,
+                out.append(dict(id=gid, name=name, element=el, arch=arch, lv=lv, count=cnt, region=rname, qy=qy_start + k,
                                 mi=i, mname=mname)); gid += 1
             if i == 7:
                 lv = lv0 + 46
                 assert tinh not in used
                 used.add(tinh)
-                out.append(dict(id=gid, name=tinh, element=els[0], arch='tinh', lv=lv, count=1, region=rname, qy=QY_START + k,
+                out.append(dict(id=gid, name=tinh, element=els[0], arch='tinh', lv=lv, count=1, region=rname, qy=qy_start + k,
                                 mi=i, mname=mname)); gid += 1
     for m in out:
         a = ARCH[m['arch']]
@@ -167,14 +176,16 @@ def boss_mult(L):
     t = max(0.0, (L - 500) / 1000.0)
     return 12 + 4 * t, 1.6 + 0.2 * t, 1.3 + 0.1 * t
 
-def bosses():
+def bosses(regions=None, qy_start=QY_START, lv_start=500):
+    regions = REGIONS if regions is None else regions
     out = []
-    for k, (rname, els, maps, (bname, bel), tinh) in enumerate(REGIONS):
-        lv = 550 + 50 * k
+    for k, (rname, els, maps, (bname, bel), tinh) in enumerate(regions):
+        lv = lv_start + 50 + 50 * k
         hp, gj, fy = thuong_stats(lv)
         mh, mg, mf = boss_mult(lv)
-        out.append(dict(name='Boss·' + bname, element=bel, lv=lv, region=rname, qy=QY_START + k,
-                        hp=int(round(hp * mh, -2)), gj=int(round(gj * mg)), fy=int(round(fy * mf)),
+        bgj = max(base_stats(lv)[1] * mg, atk_for_hits(lv, mob_hits(lv)[1] / mg))   # boss hạ người nhanh hơn quái Thường mg lần
+        out.append(dict(name='Boss·' + bname, element=bel, lv=lv, region=rname, qy=qy_start + k,
+                        hp=int(round(hp * mh, -2)), gj=int(round(bgj)), fy=int(round(fy * mf)),
                         bj=15, xx=10, zb=zb_for(lv), dj=dj_for(lv)))
     return out
 

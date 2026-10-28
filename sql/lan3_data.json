@@ -1,0 +1,688 @@
+{
+ "_note": "Sinh bởi tools/gen/lan3_build.py — dùng cho sql/migrate_lan3.php",
+ "entry_from_mid": 1080,
+ "regions": [
+  {
+   "qyid": 47,
+   "qyname": "Vạn Thánh Sơn Mạch",
+   "band": "1001–1050",
+   "maps": [
+    {
+     "mid": 2001,
+     "mname": "Thánh Sơn Cước Lộ",
+     "mgid": "470|2,471|2",
+     "midinfo": "Thánh Sơn Cước Lộ thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2002,
+     "mname": "Vạn Thánh Bi Lâm",
+     "mgid": "472|2,473|2",
+     "midinfo": "Vạn Thánh Bi Lâm thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2003,
+     "mname": "Thánh Tích Cổ Đạo",
+     "mgid": "474|2,475|2",
+     "midinfo": "Thánh Tích Cổ Đạo thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2004,
+     "mname": "Quần Thánh Phong",
+     "mgid": "476|2,477|2",
+     "midinfo": "Quần Thánh Phong thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2005,
+     "mname": "Thánh Huyết Khe",
+     "mgid": "478|2,479|2",
+     "midinfo": "Thánh Huyết Khe thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2006,
+     "mname": "Thánh Cốt Nhai",
+     "mgid": "480|2,481|2",
+     "midinfo": "Thánh Cốt Nhai thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2007,
+     "mname": "Sơn Mạch Linh Khẩu",
+     "mgid": "482|2,483|2",
+     "midinfo": "Sơn Mạch Linh Khẩu thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    },
+    {
+     "mid": 2008,
+     "mname": "Vạn Thánh Đỉnh",
+     "mgid": "484|2,485|1,486|1",
+     "midinfo": "Vạn Thánh Đỉnh thuộc Vạn Thánh Sơn Mạch — vùng luyện cấp 1001–1050."
+    }
+   ]
+  },
+  {
+   "qyid": 48,
+   "qyname": "Thánh Vương Cổ Thành",
+   "band": "1051–1100",
+   "maps": [
+    {
+     "mid": 2009,
+     "mname": "Cổ Thành Ngoại Quách",
+     "mgid": "487|2,488|2",
+     "midinfo": "Cổ Thành Ngoại Quách thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2010,
+     "mname": "Phế Đô Trường Nhai",
+     "mgid": "489|2,490|2",
+     "midinfo": "Phế Đô Trường Nhai thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2011,
+     "mname": "Thánh Vương Phủ Khố",
+     "mgid": "491|2,492|2",
+     "midinfo": "Thánh Vương Phủ Khố thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2012,
+     "mname": "Cấm Vệ Doanh",
+     "mgid": "493|2,494|2",
+     "midinfo": "Cấm Vệ Doanh thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2013,
+     "mname": "Hoàng Thành Lâu",
+     "mgid": "495|2,496|2",
+     "midinfo": "Hoàng Thành Lâu thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2014,
+     "mname": "Cổ Thành Thủy Đạo",
+     "mgid": "497|2,498|2",
+     "midinfo": "Cổ Thành Thủy Đạo thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2015,
+     "mname": "Vương Tọa Tiền Điện",
+     "mgid": "499|2,500|2",
+     "midinfo": "Vương Tọa Tiền Điện thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    },
+    {
+     "mid": 2016,
+     "mname": "Thánh Vương Điện",
+     "mgid": "501|2,502|1,503|1",
+     "midinfo": "Thánh Vương Điện thuộc Thánh Vương Cổ Thành — vùng luyện cấp 1051–1100."
+    }
+   ]
+  },
+  {
+   "qyid": 49,
+   "qyname": "Phong Thánh Đài",
+   "band": "1101–1150",
+   "maps": [
+    {
+     "mid": 2017,
+     "mname": "Đài Hạ Quảng Trường",
+     "mgid": "504|2,505|2",
+     "midinfo": "Đài Hạ Quảng Trường thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2018,
+     "mname": "Vấn Đạo Giai",
+     "mgid": "506|2,507|2",
+     "midinfo": "Vấn Đạo Giai thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2019,
+     "mname": "Phong Thánh Bi",
+     "mgid": "508|2,509|2",
+     "midinfo": "Phong Thánh Bi thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2020,
+     "mname": "Thiên Hỏa Tế Đàn",
+     "mgid": "510|2,511|2",
+     "midinfo": "Thiên Hỏa Tế Đàn thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2021,
+     "mname": "Kim Quang Hành Lang",
+     "mgid": "512|2,513|2",
+     "midinfo": "Kim Quang Hành Lang thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2022,
+     "mname": "Thánh Ấn Các",
+     "mgid": "514|2,515|2",
+     "midinfo": "Thánh Ấn Các thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2023,
+     "mname": "Thiên Lôi Pháp Trận",
+     "mgid": "516|2,517|2",
+     "midinfo": "Thiên Lôi Pháp Trận thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    },
+    {
+     "mid": 2024,
+     "mname": "Phong Thánh Đài Đỉnh",
+     "mgid": "518|2,519|1,520|1",
+     "midinfo": "Phong Thánh Đài Đỉnh thuộc Phong Thánh Đài — vùng luyện cấp 1101–1150."
+    }
+   ]
+  },
+  {
+   "qyid": 50,
+   "qyname": "Chuẩn Đế Chiến Khư",
+   "band": "1151–1200",
+   "maps": [
+    {
+     "mid": 2025,
+     "mname": "Chiến Khư Biên Hoang",
+     "mgid": "521|2,522|2",
+     "midinfo": "Chiến Khư Biên Hoang thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2026,
+     "mname": "Đoạn Kích Nguyên",
+     "mgid": "523|2,524|2",
+     "midinfo": "Đoạn Kích Nguyên thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2027,
+     "mname": "Đế Huyết Sa Mạc",
+     "mgid": "525|2,526|2",
+     "midinfo": "Đế Huyết Sa Mạc thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2028,
+     "mname": "Tàn Giáp Khâu",
+     "mgid": "527|2,528|2",
+     "midinfo": "Tàn Giáp Khâu thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2029,
+     "mname": "Vạn Cốt Hố",
+     "mgid": "529|2,530|2",
+     "midinfo": "Vạn Cốt Hố thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2030,
+     "mname": "Chiến Hồn Lĩnh",
+     "mgid": "531|2,532|2",
+     "midinfo": "Chiến Hồn Lĩnh thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2031,
+     "mname": "Đế Binh Trủng",
+     "mgid": "533|2,534|2",
+     "midinfo": "Đế Binh Trủng thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    },
+    {
+     "mid": 2032,
+     "mname": "Chuẩn Đế Chiến Đài",
+     "mgid": "535|2,536|1,537|1",
+     "midinfo": "Chuẩn Đế Chiến Đài thuộc Chuẩn Đế Chiến Khư — vùng luyện cấp 1151–1200."
+    }
+   ]
+  },
+  {
+   "qyid": 51,
+   "qyname": "Đế Lăng Hoang Nguyên",
+   "band": "1201–1250",
+   "maps": [
+    {
+     "mid": 2033,
+     "mname": "Hoang Nguyên Phong Sa",
+     "mgid": "538|2,539|2",
+     "midinfo": "Hoang Nguyên Phong Sa thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2034,
+     "mname": "Thạch Mã Đạo",
+     "mgid": "540|2,541|2",
+     "midinfo": "Thạch Mã Đạo thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2035,
+     "mname": "Táng Đế Bình Nguyên",
+     "mgid": "542|2,543|2",
+     "midinfo": "Táng Đế Bình Nguyên thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2036,
+     "mname": "Đế Lăng Ngoại Viên",
+     "mgid": "544|2,545|2",
+     "midinfo": "Đế Lăng Ngoại Viên thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2037,
+     "mname": "Hoàng Thổ Mộ Đạo",
+     "mgid": "546|2,547|2",
+     "midinfo": "Hoàng Thổ Mộ Đạo thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2038,
+     "mname": "Kim Quan Điện",
+     "mgid": "548|2,549|2",
+     "midinfo": "Kim Quan Điện thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2039,
+     "mname": "Đế Lăng Địa Cung",
+     "mgid": "550|2,551|2",
+     "midinfo": "Đế Lăng Địa Cung thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    },
+    {
+     "mid": 2040,
+     "mname": "Cổ Đế Chủ Mộ",
+     "mgid": "552|2,553|1,554|1",
+     "midinfo": "Cổ Đế Chủ Mộ thuộc Đế Lăng Hoang Nguyên — vùng luyện cấp 1201–1250."
+    }
+   ]
+  },
+  {
+   "qyid": 52,
+   "qyname": "Phi Thăng Thiên Lộ",
+   "band": "1251–1300",
+   "maps": [
+    {
+     "mid": 2041,
+     "mname": "Thiên Lộ Khởi Điểm",
+     "mgid": "555|2,556|2",
+     "midinfo": "Thiên Lộ Khởi Điểm thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2042,
+     "mname": "Vân Thê Bậc",
+     "mgid": "557|2,558|2",
+     "midinfo": "Vân Thê Bậc thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2043,
+     "mname": "Cương Phong Tầng",
+     "mgid": "559|2,560|2",
+     "midinfo": "Cương Phong Tầng thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2044,
+     "mname": "Lôi Vân Hải",
+     "mgid": "561|2,562|2",
+     "midinfo": "Lôi Vân Hải thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2045,
+     "mname": "Tiếp Dẫn Quang Trụ",
+     "mgid": "563|2,564|2",
+     "midinfo": "Tiếp Dẫn Quang Trụ thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2046,
+     "mname": "Thiên Lộ Trạm Dịch",
+     "mgid": "565|2,566|2",
+     "midinfo": "Thiên Lộ Trạm Dịch thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2047,
+     "mname": "Phi Thăng Đài",
+     "mgid": "567|2,568|2",
+     "midinfo": "Phi Thăng Đài thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    },
+    {
+     "mid": 2048,
+     "mname": "Thiên Lộ Tận Đầu",
+     "mgid": "569|2,570|1,571|1",
+     "midinfo": "Thiên Lộ Tận Đầu thuộc Phi Thăng Thiên Lộ — vùng luyện cấp 1251–1300."
+    }
+   ]
+  },
+  {
+   "qyid": 53,
+   "qyname": "Tiên Nhân Động Phủ",
+   "band": "1301–1350",
+   "maps": [
+    {
+     "mid": 2049,
+     "mname": "Động Phủ Thạch Môn",
+     "mgid": "572|2,573|2",
+     "midinfo": "Động Phủ Thạch Môn thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2050,
+     "mname": "Linh Dược Viên",
+     "mgid": "574|2,575|2",
+     "midinfo": "Linh Dược Viên thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2051,
+     "mname": "Đan Phòng Phế Tích",
+     "mgid": "576|2,577|2",
+     "midinfo": "Đan Phòng Phế Tích thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2052,
+     "mname": "Khôi Lỗi Trận",
+     "mgid": "578|2,579|2",
+     "midinfo": "Khôi Lỗi Trận thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2053,
+     "mname": "Linh Tuyền Trì",
+     "mgid": "580|2,581|2",
+     "midinfo": "Linh Tuyền Trì thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2054,
+     "mname": "Tàng Thư Thạch Thất",
+     "mgid": "582|2,583|2",
+     "midinfo": "Tàng Thư Thạch Thất thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2055,
+     "mname": "Luyện Khí Thất",
+     "mgid": "584|2,585|2",
+     "midinfo": "Luyện Khí Thất thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    },
+    {
+     "mid": 2056,
+     "mname": "Động Phủ Chủ Điện",
+     "mgid": "586|2,587|1,588|1",
+     "midinfo": "Động Phủ Chủ Điện thuộc Tiên Nhân Động Phủ — vùng luyện cấp 1301–1350."
+    }
+   ]
+  },
+  {
+   "qyid": 54,
+   "qyname": "Tán Tiên Hải Đảo",
+   "band": "1351–1400",
+   "maps": [
+    {
+     "mid": 2057,
+     "mname": "Hải Đảo Sa Ngạn",
+     "mgid": "589|2,590|2",
+     "midinfo": "Hải Đảo Sa Ngạn thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2058,
+     "mname": "San Hô Thạch Lâm",
+     "mgid": "591|2,592|2",
+     "midinfo": "San Hô Thạch Lâm thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2059,
+     "mname": "Tán Tiên Thảo Lư",
+     "mgid": "593|2,594|2",
+     "midinfo": "Tán Tiên Thảo Lư thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2060,
+     "mname": "Triều Âm Động",
+     "mgid": "595|2,596|2",
+     "midinfo": "Triều Âm Động thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2061,
+     "mname": "Kình Cốt Loan",
+     "mgid": "597|2,598|2",
+     "midinfo": "Kình Cốt Loan thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2062,
+     "mname": "Hải Thị Thận Lâu",
+     "mgid": "599|2,600|2",
+     "midinfo": "Hải Thị Thận Lâu thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2063,
+     "mname": "Kiếp Vân Tiêu",
+     "mgid": "601|2,602|2",
+     "midinfo": "Kiếp Vân Tiêu thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    },
+    {
+     "mid": 2064,
+     "mname": "Tán Tiên Độ Kiếp Đài",
+     "mgid": "603|2,604|1,605|1",
+     "midinfo": "Tán Tiên Độ Kiếp Đài thuộc Tán Tiên Hải Đảo — vùng luyện cấp 1351–1400."
+    }
+   ]
+  },
+  {
+   "qyid": 55,
+   "qyname": "Tiên Môn Ngoại Vực",
+   "band": "1401–1450",
+   "maps": [
+    {
+     "mid": 2065,
+     "mname": "Tiên Môn Sơn Đạo",
+     "mgid": "606|2,607|2",
+     "midinfo": "Tiên Môn Sơn Đạo thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2066,
+     "mname": "Ngoại Môn Diễn Võ Trường",
+     "mgid": "608|2,609|2",
+     "midinfo": "Ngoại Môn Diễn Võ Trường thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2067,
+     "mname": "Tạp Dịch Viện",
+     "mgid": "610|2,611|2",
+     "midinfo": "Tạp Dịch Viện thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2068,
+     "mname": "Linh Điền",
+     "mgid": "612|2,613|2",
+     "midinfo": "Linh Điền thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2069,
+     "mname": "Thí Luyện Tháp Hạ",
+     "mgid": "614|2,615|2",
+     "midinfo": "Thí Luyện Tháp Hạ thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2070,
+     "mname": "Tiên Hạc Nhai",
+     "mgid": "616|2,617|2",
+     "midinfo": "Tiên Hạc Nhai thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2071,
+     "mname": "Tiên Môn Bài Lâu",
+     "mgid": "618|2,619|2",
+     "midinfo": "Tiên Môn Bài Lâu thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    },
+    {
+     "mid": 2072,
+     "mname": "Nội Môn Quan Ải",
+     "mgid": "620|2,621|1,622|1",
+     "midinfo": "Nội Môn Quan Ải thuộc Tiên Môn Ngoại Vực — vùng luyện cấp 1401–1450."
+    }
+   ]
+  },
+  {
+   "qyid": 56,
+   "qyname": "Địa Tiên Linh Giới",
+   "band": "1451–1500",
+   "maps": [
+    {
+     "mid": 2073,
+     "mname": "Linh Giới Môn Hộ",
+     "mgid": "623|2,624|2",
+     "midinfo": "Linh Giới Môn Hộ thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2074,
+     "mname": "Vạn Linh Thảo Nguyên",
+     "mgid": "625|2,626|2",
+     "midinfo": "Vạn Linh Thảo Nguyên thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2075,
+     "mname": "Linh Mạch Địa Huyệt",
+     "mgid": "627|2,628|2",
+     "midinfo": "Linh Mạch Địa Huyệt thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2076,
+     "mname": "Thụ Hải Mê Cung",
+     "mgid": "629|2,630|2",
+     "midinfo": "Thụ Hải Mê Cung thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2077,
+     "mname": "Địa Tiên Linh Điền",
+     "mgid": "631|2,632|2",
+     "midinfo": "Địa Tiên Linh Điền thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2078,
+     "mname": "Linh Khí Hồ",
+     "mgid": "633|2,634|2",
+     "midinfo": "Linh Khí Hồ thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2079,
+     "mname": "Mẫu Thụ Căn Hệ",
+     "mgid": "635|2,636|2",
+     "midinfo": "Mẫu Thụ Căn Hệ thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    },
+    {
+     "mid": 2080,
+     "mname": "Mẫu Thụ Hạ",
+     "mgid": "637|2,638|1,639|1",
+     "midinfo": "Mẫu Thụ Hạ thuộc Địa Tiên Linh Giới — vùng luyện cấp 1451–1500."
+    }
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "bossname": "Boss·Vạn Thánh Sơn Quân",
+   "bosslv": 1050,
+   "bosshp": 31162100,
+   "bossgj": 476806,
+   "bossfy": 18434,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "216,219,221,222,224",
+   "bossdj": "1",
+   "qyid": 47,
+   "bossinfo": "Vạn Thánh Sơn Quân — bá chủ Vạn Thánh Sơn Mạch, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thánh Vương Tàn Hồn",
+   "bosslv": 1100,
+   "bosshp": 34531500,
+   "bossgj": 522107,
+   "bossfy": 19546,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "216,219,221,222,224",
+   "bossdj": "1",
+   "qyid": 48,
+   "bossinfo": "Thánh Vương Tàn Hồn — bá chủ Thánh Vương Cổ Thành, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thánh Nhân Pháp Tướng",
+   "bosslv": 1150,
+   "bosshp": 37492200,
+   "bossgj": 560709,
+   "bossfy": 20674,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "216,219,221,222,224",
+   "bossdj": "1",
+   "qyid": 49,
+   "bossinfo": "Thánh Nhân Pháp Tướng — bá chủ Phong Thánh Đài, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Chuẩn Đế Thi Vương",
+   "bosslv": 1200,
+   "bosshp": 40666300,
+   "bossgj": 601978,
+   "bossfy": 21819,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "216,219,221,222,224",
+   "bossdj": "1",
+   "qyid": 50,
+   "bossinfo": "Chuẩn Đế Thi Vương — bá chủ Chuẩn Đế Chiến Khư, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Cổ Đế Thủ Lăng Thú",
+   "bosslv": 1250,
+   "bosshp": 53766100,
+   "bossgj": 777542,
+   "bossfy": 22979,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "231,234,236,237,239",
+   "bossdj": "1",
+   "qyid": 51,
+   "bossinfo": "Cổ Đế Thủ Lăng Thú — bá chủ Đế Lăng Hoang Nguyên, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tiếp Dẫn Kim Long",
+   "bosslv": 1300,
+   "bosshp": 58844200,
+   "bossgj": 832616,
+   "bossfy": 24155,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "231,234,236,237,239",
+   "bossdj": "1",
+   "qyid": 52,
+   "bossinfo": "Tiếp Dẫn Kim Long — bá chủ Phi Thăng Thiên Lộ, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Động Phủ Khôi Lỗi Tiên",
+   "bosslv": 1350,
+   "bosshp": 63090100,
+   "bossgj": 867856,
+   "bossfy": 25346,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "231,234,236,237,239",
+   "bossdj": "1",
+   "qyid": 53,
+   "bossinfo": "Động Phủ Khôi Lỗi Tiên — bá chủ Tiên Nhân Động Phủ, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tán Tiên Kiếp Ma",
+   "bosslv": 1400,
+   "bosshp": 67598300,
+   "bossgj": 904597,
+   "bossfy": 26553,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "231,234,236,237,239",
+   "bossdj": "1",
+   "qyid": 54,
+   "bossinfo": "Tán Tiên Kiếp Ma — bá chủ Tán Tiên Hải Đảo, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tiên Môn Trấn Thủ",
+   "bosslv": 1450,
+   "bosshp": 73612500,
+   "bossgj": 958674,
+   "bossfy": 27775,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "231,234,236,237,239",
+   "bossdj": "1",
+   "qyid": 55,
+   "bossinfo": "Tiên Môn Trấn Thủ — bá chủ Tiên Môn Ngoại Vực, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Địa Tiên Mẫu Thụ",
+   "bosslv": 1500,
+   "bosshp": 78718200,
+   "bossgj": 998627,
+   "bossfy": 29013,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "231,234,236,237,239",
+   "bossdj": "1",
+   "qyid": 56,
+   "bossinfo": "Địa Tiên Mẫu Thụ — bá chủ Địa Tiên Linh Giới, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  }
+ ]
+}

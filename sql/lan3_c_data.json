@@ -1,0 +1,247 @@
+{
+ "_note": "Sinh bởi tools/gen/lan3_c_build.py — dùng cho sql/migrate_lan3_c.php",
+ "npcs": [
+  {
+   "nid": 59,
+   "qyid": 47,
+   "nname": "Sơn Mạch Hái Thuốc Lão Nhân",
+   "mid": 2001
+  },
+  {
+   "nid": 60,
+   "qyid": 48,
+   "nname": "Cổ Thành Thủ Môn Tướng",
+   "mid": 2009
+  },
+  {
+   "nid": 61,
+   "qyid": 49,
+   "nname": "Phong Thánh Đài Chấp Sự",
+   "mid": 2017
+  },
+  {
+   "nid": 62,
+   "qyid": 50,
+   "nname": "Chiến Khư Nhặt Kiếm Nhân",
+   "mid": 2025
+  },
+  {
+   "nid": 63,
+   "qyid": 51,
+   "nname": "Đế Lăng Thủ Mộ Lão Bộc",
+   "mid": 2033
+  },
+  {
+   "nid": 64,
+   "qyid": 52,
+   "nname": "Thiên Lộ Tiếp Dẫn Đồng Tử",
+   "mid": 2041
+  },
+  {
+   "nid": 65,
+   "qyid": 53,
+   "nname": "Động Phủ Khí Linh",
+   "mid": 2049
+  },
+  {
+   "nid": 66,
+   "qyid": 54,
+   "nname": "Hải Đảo Tán Tiên",
+   "mid": 2057
+  },
+  {
+   "nid": 67,
+   "qyid": 55,
+   "nname": "Tiên Môn Tạp Dịch",
+   "mid": 2065
+  },
+  {
+   "nid": 68,
+   "qyid": 56,
+   "nname": "Linh Giới Thổ Địa",
+   "mid": 2073
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 127,
+   "mid": 2001,
+   "mname": "Thánh Sơn Cước Lộ",
+   "qyid": 47
+  },
+  {
+   "rwid": 128,
+   "mid": 2005,
+   "mname": "Thánh Huyết Khe",
+   "qyid": 47
+  },
+  {
+   "rwid": 129,
+   "mid": 2008,
+   "mname": "Vạn Thánh Đỉnh",
+   "qyid": 47
+  },
+  {
+   "rwid": 130,
+   "mid": 2009,
+   "mname": "Cổ Thành Ngoại Quách",
+   "qyid": 48
+  },
+  {
+   "rwid": 131,
+   "mid": 2013,
+   "mname": "Hoàng Thành Lâu",
+   "qyid": 48
+  },
+  {
+   "rwid": 132,
+   "mid": 2016,
+   "mname": "Thánh Vương Điện",
+   "qyid": 48
+  },
+  {
+   "rwid": 133,
+   "mid": 2017,
+   "mname": "Đài Hạ Quảng Trường",
+   "qyid": 49
+  },
+  {
+   "rwid": 134,
+   "mid": 2021,
+   "mname": "Kim Quang Hành Lang",
+   "qyid": 49
+  },
+  {
+   "rwid": 135,
+   "mid": 2024,
+   "mname": "Phong Thánh Đài Đỉnh",
+   "qyid": 49
+  },
+  {
+   "rwid": 136,
+   "mid": 2025,
+   "mname": "Chiến Khư Biên Hoang",
+   "qyid": 50
+  },
+  {
+   "rwid": 137,
+   "mid": 2029,
+   "mname": "Vạn Cốt Hố",
+   "qyid": 50
+  },
+  {
+   "rwid": 138,
+   "mid": 2032,
+   "mname": "Chuẩn Đế Chiến Đài",
+   "qyid": 50
+  },
+  {
+   "rwid": 139,
+   "mid": 2033,
+   "mname": "Hoang Nguyên Phong Sa",
+   "qyid": 51
+  },
+  {
+   "rwid": 140,
+   "mid": 2037,
+   "mname": "Hoàng Thổ Mộ Đạo",
+   "qyid": 51
+  },
+  {
+   "rwid": 141,
+   "mid": 2040,
+   "mname": "Cổ Đế Chủ Mộ",
+   "qyid": 51
+  },
+  {
+   "rwid": 142,
+   "mid": 2041,
+   "mname": "Thiên Lộ Khởi Điểm",
+   "qyid": 52
+  },
+  {
+   "rwid": 143,
+   "mid": 2045,
+   "mname": "Tiếp Dẫn Quang Trụ",
+   "qyid": 52
+  },
+  {
+   "rwid": 144,
+   "mid": 2048,
+   "mname": "Thiên Lộ Tận Đầu",
+   "qyid": 52
+  },
+  {
+   "rwid": 145,
+   "mid": 2049,
+   "mname": "Động Phủ Thạch Môn",
+   "qyid": 53
+  },
+  {
+   "rwid": 146,
+   "mid": 2053,
+   "mname": "Linh Tuyền Trì",
+   "qyid": 53
+  },
+  {
+   "rwid": 147,
+   "mid": 2056,
+   "mname": "Động Phủ Chủ Điện",
+   "qyid": 53
+  },
+  {
+   "rwid": 148,
+   "mid": 2057,
+   "mname": "Hải Đảo Sa Ngạn",
+   "qyid": 54
+  },
+  {
+   "rwid": 149,
+   "mid": 2061,
+   "mname": "Kình Cốt Loan",
+   "qyid": 54
+  },
+  {
+   "rwid": 150,
+   "mid": 2064,
+   "mname": "Tán Tiên Độ Kiếp Đài",
+   "qyid": 54
+  },
+  {
+   "rwid": 151,
+   "mid": 2065,
+   "mname": "Tiên Môn Sơn Đạo",
+   "qyid": 55
+  },
+  {
+   "rwid": 152,
+   "mid": 2069,
+   "mname": "Thí Luyện Tháp Hạ",
+   "qyid": 55
+  },
+  {
+   "rwid": 153,
+   "mid": 2072,
+   "mname": "Nội Môn Quan Ải",
+   "qyid": 55
+  },
+  {
+   "rwid": 154,
+   "mid": 2073,
+   "mname": "Linh Giới Môn Hộ",
+   "qyid": 56
+  },
+  {
+   "rwid": 155,
+   "mid": 2077,
+   "mname": "Địa Tiên Linh Điền",
+   "qyid": 56
+  },
+  {
+   "rwid": 156,
+   "mid": 2080,
+   "mname": "Mẫu Thụ Hạ",
+   "qyid": 56
+  }
+ ]
+}

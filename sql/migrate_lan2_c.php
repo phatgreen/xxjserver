@@ -18,15 +18,17 @@ $APPLY = in_array('--apply', $argv, true);
 $DRY   = in_array('--dry-run', $argv, true);
 if ($APPLY === $DRY) { echo "DUNG: chon dung mot co --dry-run hoac --apply\n"; exit(2); }
 
-$data = json_decode(file_get_contents(__DIR__ . '/lan2_c_data.json'), true);
-if (!is_array($data)) { echo "Khong doc duoc sql/lan2_c_data.json\n"; exit(2); }
+// Làn sau dùng lại: sql/migrate_lan3_c.php đặt $LAN_C_DATA_FILE rồi require file này
+if (!isset($LAN_C_DATA_FILE)) $LAN_C_DATA_FILE = __DIR__ . '/lan2_c_data.json';
+$data = json_decode(file_get_contents($LAN_C_DATA_FILE), true);
+if (!is_array($data)) { echo "Khong doc duoc $LAN_C_DATA_FILE\n"; exit(2); }
 
 $warn = 0;
 foreach ($data['npcs'] as $n) {
     $st = $dblj->prepare("SELECT q.mid, m.mnpc FROM qy q JOIN mid m ON m.mid = q.mid WHERE q.qyid = ?");
     $st->execute(array(intval($n['qyid'])));
     $row = $st->fetch(PDO::FETCH_ASSOC);
-    if (!$row) { echo "LOI: khu {$n['qyid']} chua co cua vao — hay chay sql/migrate_lan2.php --apply truoc\n"; exit(1); }
+    if (!$row) { echo "LOI: khu {$n['qyid']} chua co cua vao — hay chay sql/migrate_lan2.php (hoac lan3) --apply truoc\n"; exit(1); }
     $ids = array_filter(array_map('trim', explode(',', $row['mnpc'])), 'strlen');
     if (in_array((string)$n['nid'], $ids, true)) {
         echo "[npc] {$n['nname']} (#{$n['nid']}) da o map {$row['mid']} — bo qua\n";

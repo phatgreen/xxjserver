@@ -15,15 +15,18 @@ L2 = json.load(open(os.path.join(ROOT, 'sql', 'lan2_data.json'), encoding='utf-8
 PILLS = json.load(open(os.path.join(CFG, 'tupo_bonus_config.json'), encoding='utf-8'))['pill']['items']
 DJ = json.load(open(os.path.join(CFG, 'daoju_config.json'), encoding='utf-8'))
 CH0 = 14
+# Tham số làn (lan3_c_build.py gán lại các biến này rồi gọi build_main / build_npc)
+LV0 = 500          # cấp đầu làn
+OUT_DATA = 'lan2_c_data.json'
 
 def pill_of_region(k):
-    realm = 10 + k                     # khu k = cảnh giới floor(cấp/50) = 10 + k (Nguyên Anh … Thánh Giả)
+    realm = LV0 // 50 + k              # khu k = cảnh giới floor(cấp/50) (làn 2: 10 + k = Nguyên Anh … Thánh Giả)
     for dj, r in PILLS.items():
         if int(r) == realm: return int(dj)
     return None
 
 def chapter(k, r):
-    cid, lo, hi = CH0 + k, 500 + 50 * k, 550 + 50 * k
+    cid, lo, hi = CH0 + k, LV0 + 50 * k, LV0 + 50 + 50 * k
     qy, name = r['qyid'], r['qyname']
     last = r['maps'][-1]['mgid'].split(',')
     elite = int(last[-1].split('|')[0])
@@ -44,10 +47,13 @@ def chapter(k, r):
 def build_main():
     p = os.path.join(CFG, 'nhiemvu_main_config.json')
     d = json.load(open(p, encoding='utf-8'))
-    d['chapters'] = [c for c in d['chapters'] if c['id'] < CH0] + [chapter(k, r) for k, r in enumerate(L2['regions'])]
+    # Chỉ thay đúng dải chương của làn này (giữ chương làn khác, kể cả làn sau)
+    mine = [chapter(k, r) for k, r in enumerate(L2['regions'])]
+    ids = set(c['id'] for c in mine)
+    d['chapters'] = sorted([c for c in d['chapters'] if c['id'] not in ids] + mine, key=lambda c: c['id'])
     with open(p, 'w', encoding='utf-8') as f:
         f.write(dump_main(d))
-    return sum(len(c['quests']) for c in d['chapters'] if c['id'] >= CH0)
+    return sum(len(c['quests']) for c in mine)
 
 # (tên NPC, giới tính, giới thiệu) theo thứ tự khu 37–46
 NPCS = [
@@ -68,7 +74,7 @@ def npc_data():
     """Như đợt C: chuỗi 1 (quái map đầu, 30 con) → chuỗi 2 (quái map giữa, 40 con) + hằng ngày (Tinh Anh map cuối, 20 con)."""
     npcs, rws, place = {}, {}, []
     for i, ((nname, sex, info), r) in enumerate(zip(NPCS, L2['regions'])):
-        lo = 500 + 50 * i
+        lo = LV0 + 50 * i
         maps = r['maps']
         picks = [(maps[0], 0, 30, 'chain'), (maps[len(maps) // 2], 0, 40, 'chain'), (maps[-1], -1, 20, 'daily')]
         ids = []
@@ -101,11 +107,11 @@ def build_npc():
         with open(p, 'w', encoding='utf-8') as f:
             json.dump(d, f, ensure_ascii=False, indent=2)
             f.write('\n')
-    out = {'_note': 'Sinh bởi tools/gen/lan2_c_build.py — dùng cho sql/migrate_lan2_c.php',
+    out = {'_note': 'Sinh bởi tools/gen/%s_build.py — dùng cho sql/migrate_%s.php' % (OUT_DATA[:-10], OUT_DATA[:-10]),
            'npcs': [{'nid': NPC_ID0 + i, 'qyid': r['qyid'], 'nname': n[0], 'mid': r['maps'][0]['mid']}
                     for i, (n, r) in enumerate(zip(NPCS, L2['regions']))],
            'task_maps': place}
-    with open(os.path.join(ROOT, 'sql', 'lan2_c_data.json'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(ROOT, 'sql', OUT_DATA), 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
         f.write('\n')
     return len(npcs), len(rws)

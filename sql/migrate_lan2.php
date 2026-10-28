@@ -21,8 +21,10 @@ $APPLY = in_array('--apply', $argv, true);
 $DRY   = in_array('--dry-run', $argv, true);
 if ($APPLY === $DRY) { echo "DUNG: chon dung mot co --dry-run hoac --apply\n"; exit(2); }
 
-$data = json_decode(file_get_contents(__DIR__ . '/lan2_data.json'), true);
-if (!is_array($data)) { echo "Khong doc duoc sql/lan2_data.json\n"; exit(2); }
+// Làn sau dùng lại script này: sql/migrate_lan3.php đặt $LAN_DATA_FILE rồi require file này
+if (!isset($LAN_DATA_FILE)) $LAN_DATA_FILE = __DIR__ . '/lan2_data.json';
+$data = json_decode(file_get_contents($LAN_DATA_FILE), true);
+if (!is_array($data)) { echo "Khong doc duoc $LAN_DATA_FILE\n"; exit(2); }
 
 function say($s) { echo $s . "\n"; }
 function q1($sql, $args) {
@@ -40,7 +42,7 @@ function run($sql, $args) {
 // ---- Kiểm tra cửa vào ----
 $entry = intval($data['entry_from_mid']);
 $down = q1("SELECT mdown FROM mid WHERE mid = ?", array($entry));
-if ($down === false) { echo "LOI: khong co map cua vao $entry (chay migrate_dot_b.php truoc)\n"; exit(1); }
+if ($down === false) { echo "LOI: khong co map cua vao $entry (chay migrate cua lan truoc truoc)\n"; exit(1); }
 
 $regionMaps = array();
 foreach ($data['regions'] as $r) {

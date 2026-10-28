@@ -448,5 +448,105 @@
     "taskid": "124,125,126",
     "mz": "",
     "rwqy": ""
+  },
+  "59": {
+    "id": 59,
+    "nname": "Sơn Mạch Hái Thuốc Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Lão nhân hái thuốc cả đời trong Vạn Thánh Sơn Mạch, biết từng khe núi nơi linh dược mọc và yêu thú rình rập.",
+    "muban": "",
+    "taskid": "127,128,129",
+    "mz": "",
+    "rwqy": ""
+  },
+  "60": {
+    "id": 60,
+    "nname": "Cổ Thành Thủ Môn Tướng",
+    "nsex": "Nam",
+    "ninfo": "Tướng giữ cổng Thánh Vương Cổ Thành, thành đã đổ nát vạn năm mà hắn vẫn chưa rời vị trí.",
+    "muban": "",
+    "taskid": "130,131,132",
+    "mz": "",
+    "rwqy": ""
+  },
+  "61": {
+    "id": 61,
+    "nname": "Phong Thánh Đài Chấp Sự",
+    "nsex": "Nữ",
+    "ninfo": "Nữ chấp sự ghi danh người lên Phong Thánh Đài, chỉ người vượt khảo nghiệm mới được khắc tên lên bia.",
+    "muban": "",
+    "taskid": "133,134,135",
+    "mz": "",
+    "rwqy": ""
+  },
+  "62": {
+    "id": 62,
+    "nname": "Chiến Khư Nhặt Kiếm Nhân",
+    "nsex": "Nam",
+    "ninfo": "Kẻ lang thang nhặt binh khí tàn trên Chuẩn Đế Chiến Khư, nghe được tiếng kiếm khóc của đế binh.",
+    "muban": "",
+    "taskid": "136,137,138",
+    "mz": "",
+    "rwqy": ""
+  },
+  "63": {
+    "id": 63,
+    "nname": "Đế Lăng Thủ Mộ Lão Bộc",
+    "nsex": "Nam",
+    "ninfo": "Lão bộc trung thành canh mộ cổ đế, sống nhờ một tia đế khí còn sót lại trong lăng.",
+    "muban": "",
+    "taskid": "139,140,141",
+    "mz": "",
+    "rwqy": ""
+  },
+  "64": {
+    "id": 64,
+    "nname": "Thiên Lộ Tiếp Dẫn Đồng Tử",
+    "nsex": "Nam",
+    "ninfo": "Đồng tử cầm đèn dẫn đường trên Phi Thăng Thiên Lộ, nụ cười không đổi suốt ngàn năm.",
+    "muban": "",
+    "taskid": "142,143,144",
+    "mz": "",
+    "rwqy": ""
+  },
+  "65": {
+    "id": 65,
+    "nname": "Động Phủ Khí Linh",
+    "nsex": "Nữ",
+    "ninfo": "Khí linh của động phủ tiên nhân đã tọa hóa, vẫn tận tụy chờ người kế thừa xứng đáng.",
+    "muban": "",
+    "taskid": "145,146,147",
+    "mz": "",
+    "rwqy": ""
+  },
+  "66": {
+    "id": 66,
+    "nname": "Hải Đảo Tán Tiên",
+    "nsex": "Nam",
+    "ninfo": "Tán tiên ẩn cư trên hải đảo, mỗi trăm năm lại phải đối mặt một lần thiên kiếp tán tiên.",
+    "muban": "",
+    "taskid": "148,149,150",
+    "mz": "",
+    "rwqy": ""
+  },
+  "67": {
+    "id": 67,
+    "nname": "Tiên Môn Tạp Dịch",
+    "nsex": "Nam",
+    "ninfo": "Đệ tử tạp dịch ngoại môn, chuyện lớn nhỏ trong Tiên Môn Ngoại Vực không gì hắn không biết.",
+    "muban": "",
+    "taskid": "151,152,153",
+    "mz": "",
+    "rwqy": ""
+  },
+  "68": {
+    "id": 68,
+    "nname": "Linh Giới Thổ Địa",
+    "nsex": "Nam",
+    "ninfo": "Thổ địa cai quản Địa Tiên Linh Giới, gốc rễ Mẫu Thụ đi tới đâu ông đều cảm nhận được.",
+    "muban": "",
+    "taskid": "154,155,156",
+    "mz": "",
+    "rwqy": ""
   }
 }
