@@ -63,6 +63,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 
 | Việc | Ghi chú |
 |---|---|
+| **Tông Môn — chờ duyệt** | Lợi ích chỉ hiển thị (chưa áp), lỗi online/boss cộng EXP vô hạn (clubid 20 có 24,8 tr EXP), chi phí MT không khớp thu nhập — `DESIGN_TONGMON_CANBANG.md` |
 | **Đợt D** — nguồn võ công Tiên Đạo | Hiện chỉ Thiên Cơ Các bán; dự kiến rơi từ boss khu vực |
 | **Ô 16 Bảo Vật** | Chưa có món nào; cần thiết kế hiệu ứng riêng (đã thống nhất làm sau) |
 | **Làn nội dung cấp 500–1000** | Game có 74 cảnh giới (~cấp 3.700); làm theo làn ~500 cấp, dùng lại `tools/gen/` |
