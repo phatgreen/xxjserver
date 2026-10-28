@@ -1,0 +1,688 @@
+{
+ "_note": "Sinh bởi tools/gen/lan7_build.py — dùng cho sql/migrate_lan7.php",
+ "entry_from_mid": 5080,
+ "regions": [
+  {
+   "qyid": 87,
+   "qyname": "Kim Tinh Thiên Lộ",
+   "band": "3001–3050",
+   "maps": [
+    {
+     "mid": 6001,
+     "mname": "Dẫn Tinh Khởi Điểm",
+     "mgid": "1150|2,1151|2",
+     "midinfo": "Dẫn Tinh Khởi Điểm thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6002,
+     "mname": "Kim Tinh Thạch Đạo",
+     "mgid": "1152|2,1153|2",
+     "midinfo": "Kim Tinh Thạch Đạo thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6003,
+     "mname": "Thôn Nhật Hãm Khanh",
+     "mgid": "1154|2,1155|2",
+     "midinfo": "Thôn Nhật Hãm Khanh thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6004,
+     "mname": "Lưu Tinh Vẫn Địa",
+     "mgid": "1156|2,1157|2",
+     "midinfo": "Lưu Tinh Vẫn Địa thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6005,
+     "mname": "Lưu Quang Hành Lang",
+     "mgid": "1158|2,1159|2",
+     "midinfo": "Lưu Quang Hành Lang thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6006,
+     "mname": "Tinh Thiết Khoáng Mạch",
+     "mgid": "1160|2,1161|2",
+     "midinfo": "Tinh Thiết Khoáng Mạch thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6007,
+     "mname": "Nhật Thực Hắc Cốc",
+     "mgid": "1162|2,1163|2",
+     "midinfo": "Nhật Thực Hắc Cốc thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    },
+    {
+     "mid": 6008,
+     "mname": "Nhật Diệu Thiên Môn",
+     "mgid": "1164|2,1165|1,1166|1",
+     "midinfo": "Nhật Diệu Thiên Môn thuộc Kim Tinh Thiên Lộ — vùng luyện cấp 3001–3050."
+    }
+   ]
+  },
+  {
+   "qyid": 88,
+   "qyname": "Tử Vi Đế Tinh Viên",
+   "band": "3051–3100",
+   "maps": [
+    {
+     "mid": 6009,
+     "mname": "Tử Vi Viên Môn",
+     "mgid": "1167|2,1168|2",
+     "midinfo": "Tử Vi Viên Môn thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6010,
+     "mname": "Đế Tinh Hoa Viên",
+     "mgid": "1169|2,1170|2",
+     "midinfo": "Đế Tinh Hoa Viên thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6011,
+     "mname": "Thiên Thị Trường Nhai",
+     "mgid": "1171|2,1172|2",
+     "midinfo": "Thiên Thị Trường Nhai thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6012,
+     "mname": "Đế Ảnh Tinh Các",
+     "mgid": "1173|2,1174|2",
+     "midinfo": "Đế Ảnh Tinh Các thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6013,
+     "mname": "Tử Khí Đông Lai Lâu",
+     "mgid": "1175|2,1176|2",
+     "midinfo": "Tử Khí Đông Lai Lâu thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6014,
+     "mname": "Bắc Cực Tinh Đài",
+     "mgid": "1177|2,1178|2",
+     "midinfo": "Bắc Cực Tinh Đài thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6015,
+     "mname": "Thái Vi Hành Lang",
+     "mgid": "1179|2,1180|2",
+     "midinfo": "Thái Vi Hành Lang thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    },
+    {
+     "mid": 6016,
+     "mname": "Tử Vi Tinh Quân Điện",
+     "mgid": "1181|2,1182|1,1183|1",
+     "midinfo": "Tử Vi Tinh Quân Điện thuộc Tử Vi Đế Tinh Viên — vùng luyện cấp 3051–3100."
+    }
+   ]
+  },
+  {
+   "qyid": 89,
+   "qyname": "Băng Tinh Bạch Nguyên",
+   "band": "3101–3150",
+   "maps": [
+    {
+     "mid": 6017,
+     "mname": "Bạch Nguyên Tuyết Lộ",
+     "mgid": "1184|2,1185|2",
+     "midinfo": "Bạch Nguyên Tuyết Lộ thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6018,
+     "mname": "Băng Tinh Lâm",
+     "mgid": "1186|2,1187|2",
+     "midinfo": "Băng Tinh Lâm thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6019,
+     "mname": "Hàn Sương Hồ",
+     "mgid": "1188|2,1189|2",
+     "midinfo": "Hàn Sương Hồ thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6020,
+     "mname": "Bạch Phượng Sào",
+     "mgid": "1190|2,1191|2",
+     "midinfo": "Bạch Phượng Sào thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6021,
+     "mname": "Vĩnh Đông Băng Xuyên",
+     "mgid": "1192|2,1193|2",
+     "midinfo": "Vĩnh Đông Băng Xuyên thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6022,
+     "mname": "Tuyết Ảnh Hẻm Núi",
+     "mgid": "1194|2,1195|2",
+     "midinfo": "Tuyết Ảnh Hẻm Núi thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6023,
+     "mname": "Băng Phách Tinh Động",
+     "mgid": "1196|2,1197|2",
+     "midinfo": "Băng Phách Tinh Động thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    },
+    {
+     "mid": 6024,
+     "mname": "Hàn Phách Băng Điện",
+     "mgid": "1198|2,1199|1,1200|1",
+     "midinfo": "Hàn Phách Băng Điện thuộc Băng Tinh Bạch Nguyên — vùng luyện cấp 3101–3150."
+    }
+   ]
+  },
+  {
+   "qyid": 90,
+   "qyname": "Thái Âm Nguyệt Cung",
+   "band": "3151–3200",
+   "maps": [
+    {
+     "mid": 6025,
+     "mname": "Nguyệt Cung Ngân Kiều",
+     "mgid": "1201|2,1202|2",
+     "midinfo": "Nguyệt Cung Ngân Kiều thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6026,
+     "mname": "Quế Thụ Lâm",
+     "mgid": "1203|2,1204|2",
+     "midinfo": "Quế Thụ Lâm thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6027,
+     "mname": "Ngọc Thố Đảo Dược Đài",
+     "mgid": "1205|2,1206|2",
+     "midinfo": "Ngọc Thố Đảo Dược Đài thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6028,
+     "mname": "Quảng Hàn Hành Lang",
+     "mgid": "1207|2,1208|2",
+     "midinfo": "Quảng Hàn Hành Lang thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6029,
+     "mname": "Nguyệt Lộ Linh Tuyền",
+     "mgid": "1209|2,1210|2",
+     "midinfo": "Nguyệt Lộ Linh Tuyền thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6030,
+     "mname": "Nguyệt Hoa Viên",
+     "mgid": "1211|2,1212|2",
+     "midinfo": "Nguyệt Hoa Viên thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6031,
+     "mname": "Hằng Nga Vọng Nguyệt Lâu",
+     "mgid": "1213|2,1214|2",
+     "midinfo": "Hằng Nga Vọng Nguyệt Lâu thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    },
+    {
+     "mid": 6032,
+     "mname": "Thái Âm Nguyệt Điện",
+     "mgid": "1215|2,1216|1,1217|1",
+     "midinfo": "Thái Âm Nguyệt Điện thuộc Thái Âm Nguyệt Cung — vùng luyện cấp 3151–3200."
+    }
+   ]
+  },
+  {
+   "qyid": 91,
+   "qyname": "Liệt Nhật Kim Ô Cốc",
+   "band": "3201–3250",
+   "maps": [
+    {
+     "mid": 6033,
+     "mname": "Xích Dương Cốc Khẩu",
+     "mgid": "1218|2,1219|2",
+     "midinfo": "Xích Dương Cốc Khẩu thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6034,
+     "mname": "Phù Mộc Thần Thụ",
+     "mgid": "1220|2,1221|2",
+     "midinfo": "Phù Mộc Thần Thụ thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6035,
+     "mname": "Thang Cốc Nhiệt Tuyền",
+     "mgid": "1222|2,1223|2",
+     "midinfo": "Thang Cốc Nhiệt Tuyền thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6036,
+     "mname": "Liệt Dương Sa Mạc",
+     "mgid": "1224|2,1225|2",
+     "midinfo": "Liệt Dương Sa Mạc thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6037,
+     "mname": "Xích Viêm Thạch Lâm",
+     "mgid": "1226|2,1227|2",
+     "midinfo": "Xích Viêm Thạch Lâm thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6038,
+     "mname": "Dực Hỏa Thần Sào",
+     "mgid": "1228|2,1229|2",
+     "midinfo": "Dực Hỏa Thần Sào thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6039,
+     "mname": "Thập Nhật Tế Đàn",
+     "mgid": "1230|2,1231|2",
+     "midinfo": "Thập Nhật Tế Đàn thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    },
+    {
+     "mid": 6040,
+     "mname": "Đại Nhật Thần Điện",
+     "mgid": "1232|2,1233|1,1234|1",
+     "midinfo": "Đại Nhật Thần Điện thuộc Liệt Nhật Kim Ô Cốc — vùng luyện cấp 3201–3250."
+    }
+   ]
+  },
+  {
+   "qyid": 92,
+   "qyname": "Bắc Đẩu Thất Tinh Đài",
+   "band": "3251–3300",
+   "maps": [
+    {
+     "mid": 6041,
+     "mname": "Thất Tinh Đài Hạ",
+     "mgid": "1235|2,1236|2",
+     "midinfo": "Thất Tinh Đài Hạ thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6042,
+     "mname": "Xu Tinh Thạch Giai",
+     "mgid": "1237|2,1238|2",
+     "midinfo": "Xu Tinh Thạch Giai thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6043,
+     "mname": "Thiên Toàn Thạch Trụ",
+     "mgid": "1239|2,1240|2",
+     "midinfo": "Thiên Toàn Thạch Trụ thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6044,
+     "mname": "Thiên Cơ Trận Nhãn",
+     "mgid": "1241|2,1242|2",
+     "midinfo": "Thiên Cơ Trận Nhãn thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6045,
+     "mname": "Thiên Quyền Đài",
+     "mgid": "1243|2,1244|2",
+     "midinfo": "Thiên Quyền Đài thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6046,
+     "mname": "Ngọc Hành Lầu",
+     "mgid": "1245|2,1246|2",
+     "midinfo": "Ngọc Hành Lầu thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6047,
+     "mname": "Khai Dương Tháp",
+     "mgid": "1247|2,1248|2",
+     "midinfo": "Khai Dương Tháp thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    },
+    {
+     "mid": 6048,
+     "mname": "Phá Quân Tinh Đài",
+     "mgid": "1249|2,1250|1,1251|1",
+     "midinfo": "Phá Quân Tinh Đài thuộc Bắc Đẩu Thất Tinh Đài — vùng luyện cấp 3251–3300."
+    }
+   ]
+  },
+  {
+   "qyid": 93,
+   "qyname": "Nhị Thập Bát Tú Lộ",
+   "band": "3301–3350",
+   "maps": [
+    {
+     "mid": 6049,
+     "mname": "Bát Tú Lộ Khẩu",
+     "mgid": "1252|2,1253|2",
+     "midinfo": "Bát Tú Lộ Khẩu thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6050,
+     "mname": "Giác Tú Lâm",
+     "mgid": "1254|2,1255|2",
+     "midinfo": "Giác Tú Lâm thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6051,
+     "mname": "Cang Tú Sơn Đạo",
+     "mgid": "1256|2,1257|2",
+     "midinfo": "Cang Tú Sơn Đạo thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6052,
+     "mname": "Đê Tú Hồ",
+     "mgid": "1258|2,1259|2",
+     "midinfo": "Đê Tú Hồ thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6053,
+     "mname": "Phòng Tú Thạch Ốc",
+     "mgid": "1260|2,1261|2",
+     "midinfo": "Phòng Tú Thạch Ốc thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6054,
+     "mname": "Tâm Tú Đài",
+     "mgid": "1262|2,1263|2",
+     "midinfo": "Tâm Tú Đài thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6055,
+     "mname": "Vĩ Tú Hẻm",
+     "mgid": "1264|2,1265|2",
+     "midinfo": "Vĩ Tú Hẻm thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    },
+    {
+     "mid": 6056,
+     "mname": "Thanh Long Tú Điện",
+     "mgid": "1266|2,1267|1,1268|1",
+     "midinfo": "Thanh Long Tú Điện thuộc Nhị Thập Bát Tú Lộ — vùng luyện cấp 3301–3350."
+    }
+   ]
+  },
+  {
+   "qyid": 94,
+   "qyname": "Tử Khí Tinh Vân",
+   "band": "3351–3400",
+   "maps": [
+    {
+     "mid": 6057,
+     "mname": "Tinh Vân Ngoại Duyên",
+     "mgid": "1269|2,1270|2",
+     "midinfo": "Tinh Vân Ngoại Duyên thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6058,
+     "mname": "Tử Vụ Mê Lộ",
+     "mgid": "1271|2,1272|2",
+     "midinfo": "Tử Vụ Mê Lộ thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6059,
+     "mname": "Tinh Trần Hải",
+     "mgid": "1273|2,1274|2",
+     "midinfo": "Tinh Trần Hải thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6060,
+     "mname": "Cự Mãng Thoát Xác Động",
+     "mgid": "1275|2,1276|2",
+     "midinfo": "Cự Mãng Thoát Xác Động thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6061,
+     "mname": "Huyễn Quang Tinh Đảo",
+     "mgid": "1277|2,1278|2",
+     "midinfo": "Huyễn Quang Tinh Đảo thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6062,
+     "mname": "Tử Khí Lốc Xoáy",
+     "mgid": "1279|2,1280|2",
+     "midinfo": "Tử Khí Lốc Xoáy thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6063,
+     "mname": "Huyễn Vân Tâm Nhãn",
+     "mgid": "1281|2,1282|2",
+     "midinfo": "Huyễn Vân Tâm Nhãn thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    },
+    {
+     "mid": 6064,
+     "mname": "Tử Khí Tinh Vân Hạch",
+     "mgid": "1283|2,1284|1,1285|1",
+     "midinfo": "Tử Khí Tinh Vân Hạch thuộc Tử Khí Tinh Vân — vùng luyện cấp 3351–3400."
+    }
+   ]
+  },
+  {
+   "qyid": 95,
+   "qyname": "Hư Không Tinh Nhãn",
+   "band": "3401–3450",
+   "maps": [
+    {
+     "mid": 6065,
+     "mname": "Tinh Nhãn Biên Giới",
+     "mgid": "1286|2,1287|2",
+     "midinfo": "Tinh Nhãn Biên Giới thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6066,
+     "mname": "Hắc Ám Tinh Hà",
+     "mgid": "1288|2,1289|2",
+     "midinfo": "Hắc Ám Tinh Hà thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6067,
+     "mname": "Thôn Tinh Huyệt",
+     "mgid": "1290|2,1291|2",
+     "midinfo": "Thôn Tinh Huyệt thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6068,
+     "mname": "Tử Tinh Mộ Địa",
+     "mgid": "1292|2,1293|2",
+     "midinfo": "Tử Tinh Mộ Địa thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6069,
+     "mname": "Hư Không Liệt Phùng",
+     "mgid": "1294|2,1295|2",
+     "midinfo": "Hư Không Liệt Phùng thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6070,
+     "mname": "Ma Tinh Tế Đàn",
+     "mgid": "1296|2,1297|2",
+     "midinfo": "Ma Tinh Tế Đàn thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6071,
+     "mname": "Thôn Phệ Lốc Xoáy",
+     "mgid": "1298|2,1299|2",
+     "midinfo": "Thôn Phệ Lốc Xoáy thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    },
+    {
+     "mid": 6072,
+     "mname": "Hư Không Tinh Nhãn Tâm",
+     "mgid": "1300|2,1301|1,1302|1",
+     "midinfo": "Hư Không Tinh Nhãn Tâm thuộc Hư Không Tinh Nhãn — vùng luyện cấp 3401–3450."
+    }
+   ]
+  },
+  {
+   "qyid": 96,
+   "qyname": "Chu Thiên Tinh Đấu Trận",
+   "band": "3451–3500",
+   "maps": [
+    {
+     "mid": 6073,
+     "mname": "Trận Ngoại Sơn Môn",
+     "mgid": "1303|2,1304|2",
+     "midinfo": "Trận Ngoại Sơn Môn thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6074,
+     "mname": "Chu Thiên Trận Kỳ",
+     "mgid": "1305|2,1306|2",
+     "midinfo": "Chu Thiên Trận Kỳ thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6075,
+     "mname": "Tinh Đấu Trận Lộ",
+     "mgid": "1307|2,1308|2",
+     "midinfo": "Tinh Đấu Trận Lộ thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6076,
+     "mname": "Tứ Tượng Trận Nhãn",
+     "mgid": "1309|2,1310|2",
+     "midinfo": "Tứ Tượng Trận Nhãn thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6077,
+     "mname": "Cửu Cung Bát Quái Đài",
+     "mgid": "1311|2,1312|2",
+     "midinfo": "Cửu Cung Bát Quái Đài thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6078,
+     "mname": "Trận Linh Hành Lang",
+     "mgid": "1313|2,1314|2",
+     "midinfo": "Trận Linh Hành Lang thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6079,
+     "mname": "Vạn Tinh Quy Vị Đài",
+     "mgid": "1315|2,1316|2",
+     "midinfo": "Vạn Tinh Quy Vị Đài thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    },
+    {
+     "mid": 6080,
+     "mname": "Trận Tâm Chí Cao Đài",
+     "mgid": "1317|2,1318|1,1319|1",
+     "midinfo": "Trận Tâm Chí Cao Đài thuộc Chu Thiên Tinh Đấu Trận — vùng luyện cấp 3451–3500."
+    }
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "bossname": "Boss·Kim Tinh Thôn Nhật Thú",
+   "bosslv": 3050,
+   "bosshp": 905609100,
+   "bossgj": 5754834,
+   "bossfy": 74452,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 87,
+   "bossinfo": "Kim Tinh Thôn Nhật Thú — bá chủ Kim Tinh Thiên Lộ, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tử Vi Tinh Quân Hư Ảnh",
+   "bosslv": 3100,
+   "bosshp": 936796900,
+   "bossgj": 5837517,
+   "bossfy": 76138,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 88,
+   "bossinfo": "Tử Vi Tinh Quân Hư Ảnh — bá chủ Tử Vi Đế Tinh Viên, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Băng Tinh Bạch Phượng",
+   "bosslv": 3150,
+   "bosshp": 968882100,
+   "bossgj": 5921515,
+   "bossfy": 77838,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 89,
+   "bossinfo": "Băng Tinh Bạch Phượng — bá chủ Băng Tinh Bạch Nguyên, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thái Âm Ngọc Thố Thần Thú",
+   "bosslv": 3200,
+   "bosshp": 1017701900,
+   "bossgj": 6101023,
+   "bossfy": 79551,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 90,
+   "bossinfo": "Thái Âm Ngọc Thố Thần Thú — bá chủ Thái Âm Nguyệt Cung, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Liệt Nhật Kim Ô",
+   "bosslv": 3250,
+   "bosshp": 1051959500,
+   "bossgj": 6187765,
+   "bossfy": 81278,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 91,
+   "bossinfo": "Liệt Nhật Kim Ô — bá chủ Liệt Nhật Kim Ô Cốc, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thất Tinh Phá Quân Thần Tướng",
+   "bosslv": 3300,
+   "bosshp": 1087177700,
+   "bossgj": 6275832,
+   "bossfy": 83018,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 92,
+   "bossinfo": "Thất Tinh Phá Quân Thần Tướng — bá chủ Bắc Đẩu Thất Tinh Đài, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thanh Long Tú Tinh Thần Thú",
+   "bosslv": 3350,
+   "bosshp": 1140157300,
+   "bossgj": 6459727,
+   "bossfy": 84772,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 93,
+   "bossinfo": "Thanh Long Tú Tinh Thần Thú — bá chủ Nhị Thập Bát Tú Lộ, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tinh Vân Tử Khí Cự Mãng",
+   "bosslv": 3400,
+   "bosshp": 1177685500,
+   "bossgj": 6550556,
+   "bossfy": 86539,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 94,
+   "bossinfo": "Tinh Vân Tử Khí Cự Mãng — bá chủ Tử Khí Tinh Vân, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thôn Tinh Ma Chủ",
+   "bosslv": 3450,
+   "bosshp": 1216239400,
+   "bossgj": 6642718,
+   "bossfy": 88320,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 95,
+   "bossinfo": "Thôn Tinh Ma Chủ — bá chủ Hư Không Tinh Nhãn, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tinh Đấu Đại Trận Trận Linh",
+   "bosslv": 3500,
+   "bosshp": 1255840300,
+   "bossgj": 6736218,
+   "bossfy": 90114,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "291,294,296,297,299",
+   "bossdj": "1",
+   "qyid": 96,
+   "bossinfo": "Tinh Đấu Đại Trận Trận Linh — bá chủ Chu Thiên Tinh Đấu Trận, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  }
+ ]
+}

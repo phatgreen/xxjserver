@@ -2207,6 +2207,162 @@
         "hits": 5,
         "text": "Vạn tượng hợp nhất thành một đạo tinh quang, xuyên thẳng qua {mob}!"
       }
+    ],
+    "93": [
+      {
+        "tier": 1,
+        "name": "Thất Tinh Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Bảy đạo kiếm khí theo vị trí Bắc Đẩu lao thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phá Quân Tinh Mang",
+        "effect": "pierce",
+        "value": 81,
+        "hits": 3,
+        "text": "Tinh mang Phá Quân xuyên qua hộ thể, phòng ngự của {mob} vỡ vụn!"
+      },
+      {
+        "tier": 3,
+        "name": "Bắc Đẩu Liên Hoàn Trảm",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 1,
+        "text": "Bảy ngôi sao cùng rơi xuống thành bảy kiếm, {mob} không còn đường lui!"
+      }
+    ],
+    "94": [
+      {
+        "tier": 1,
+        "name": "Nguyệt Hoa Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang ánh trăng lạnh lẽo đánh trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thái Âm Hồi Sinh",
+        "effect": "heal",
+        "value": 22,
+        "hits": 1,
+        "text": "Ánh trăng phủ khắp thân, thương thế lành lại ngay trước mắt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Nguyệt Mãn Trường Sinh",
+        "effect": "heal",
+        "value": 41,
+        "hits": 3,
+        "text": "Trăng tròn giữa trời, vừa giam chặt {mob} vừa hồi phục toàn thân!"
+      }
+    ],
+    "95": [
+      {
+        "tier": 1,
+        "name": "Tinh Vân Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một chỉ từ giữa màn sương sao điểm thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Vạn Huyễn Tinh Ảnh",
+        "effect": "guard",
+        "value": 90,
+        "hits": 3,
+        "text": "Vạn huyễn ảnh cùng hiện, {mob} đánh vào ảnh nào cũng trượt!"
+      },
+      {
+        "tier": 3,
+        "name": "Tinh Vân Khốn Tỏa",
+        "effect": "stun",
+        "value": 90,
+        "hits": 4,
+        "text": "Tinh vân cuộn lại thành kén, giam chặt {mob} giữa màn sương tím!"
+      }
+    ],
+    "96": [
+      {
+        "tier": 1,
+        "name": "Kim Ô Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền mang lửa mặt trời đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Liệt Nhật Phần Thân",
+        "effect": "burn",
+        "value": 67,
+        "hits": 3,
+        "text": "Lửa Kim Ô bén vào thân {mob}, cháy mãi không tắt!"
+      },
+      {
+        "tier": 3,
+        "name": "Thập Nhật Đồng Thiên",
+        "effect": "crit",
+        "value": 141,
+        "hits": 1,
+        "text": "Mười mặt trời cùng hiện trên trời, thiêu rụi mọi thứ quanh {mob}!"
+      }
+    ],
+    "97": [
+      {
+        "tier": 1,
+        "name": "Tử Vi Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền mang uy đế tinh nện xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đế Tinh Hộ Thể",
+        "effect": "guard",
+        "value": 90,
+        "hits": 1,
+        "text": "Tử khí đế tinh bao quanh thân, đòn của {mob} chỉ để lại vết xước!"
+      },
+      {
+        "tier": 3,
+        "name": "Tử Vi Trấn Tinh",
+        "effect": "stun",
+        "value": 90,
+        "hits": 2,
+        "text": "Uy áp đế tinh đè xuống, {mob} quỳ rạp không đứng dậy nổi!"
+      }
+    ],
+    "98": [
+      {
+        "tier": 1,
+        "name": "Bát Tú Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang ánh sáng hai mươi tám tú đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Tú Tinh Hấp Nguyên",
+        "effect": "lifesteal",
+        "value": 44,
+        "hits": 3,
+        "text": "Hai mươi tám tú xoay chuyển, rút tinh khí của {mob} về thân ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Tứ Tượng Quy Nguyên",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 5,
+        "text": "Tứ tượng hợp nhất thành một đạo tinh quang, xuyên thẳng qua {mob}!"
+      }
     ]
   }
 }

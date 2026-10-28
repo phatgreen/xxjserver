@@ -43,6 +43,14 @@ NEED_BY_WGID.update({wid: 15 for wid in HN2_WGID})
 DJID_BY_WGID.update({wid: HN_DJID for wid in HN2_WGID})
 DROP_PCT.update({lv: 5 for lv in range(2550, 3001, 50)})
 DROP_DJID_BY_LV.update({lv: HN_DJID for lv in range(2550, 3001, 50)})
+# Làn 7 (docs/LAN7_CAP_3000_3500.md mục 4, phương án B): 6 bộ Hỗn Nguyên CG 65 (wgid 93–98, lan7_a_build.py) đổi 20 quyển 116 / bộ
+# (bộ CG 55 giữ 15, CG 42 giữ 10); boss làn 7 (3050–3500) rơi Hỗn Nguyên Tàn Quyển 5%.
+HN3_WGID = list(range(93, 99))
+TIENDAO_WGID += HN3_WGID
+NEED_BY_WGID.update({wid: 20 for wid in HN3_WGID})
+DJID_BY_WGID.update({wid: HN_DJID for wid in HN3_WGID})
+DROP_PCT.update({lv: 5 for lv in range(3050, 3501, 50)})
+DROP_DJID_BY_LV.update({lv: HN_DJID for lv in range(3050, 3501, 50)})
 
 # ---- Cấu hình đổi / rơi ----
 save('tiendao_config.json', {

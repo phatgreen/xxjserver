@@ -1158,4 +1158,64 @@
     "290": {
         "zbname": "Vĩnh Hằng Tọa Kỵ","zbinfo": "Trang bị bậc Vĩnh Hằng, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 51169,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 290,"zbhp": 289540,"zblv": 2500,"zbtool": 15,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 2500
     }
+,
+    "291": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Vũ Khí.","zbgj": 423049,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 291,"zbhp": 0,"zblv": 3000,"zbtool": 1,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "292": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Thiên Thuẫn","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 192689,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 292,"zbhp": 248945,"zblv": 3000,"zbtool": 2,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "293": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Quan","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Thiên Quan.","zbgj": 53831,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 293,"zbhp": 124966,"zblv": 3000,"zbtool": 3,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "294": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 262920,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 294,"zbhp": 448539,"zblv": 3000,"zbtool": 4,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "295": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Hộ Thủ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 166575,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 295,"zbhp": 299323,"zblv": 3000,"zbtool": 5,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "296": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Giới Chỉ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Giới Chỉ.","zbgj": 127595,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 296,"zbhp": 0,"zblv": 3000,"zbtool": 6,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "297": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Yêu Đai","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 297,"zbhp": 149238,"zblv": 3000,"zbtool": 7,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "298": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Phi Phong","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Phi Phong.","zbgj": 0,"zbfy": 119755,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 16,"zbid": 298,"zbhp": 248945,"zblv": 3000,"zbtool": 8,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "299": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Linh Phù","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Linh Phù.","zbgj": 73765,"zbfy": 0,"zbbj": 0,"zbxx": 11,"tuposjs": 8,"tupoexp": 0,"zbid": 299,"zbhp": 74628,"zblv": 3000,"zbtool": 9,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "300": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Ngọc Nhãn","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Ngọc Nhãn.","zbgj": 105876,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 8,"tupoexp": 0,"zbid": 300,"zbhp": 49450,"zblv": 3000,"zbtool": 10,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "301": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Cổ Ngọc","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Cổ Ngọc.","zbgj": 105876,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 8,"tupoexp": 0,"zbid": 301,"zbhp": 49450,"zblv": 3000,"zbtool": 11,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "302": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Vai Khôi","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 166575,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 302,"zbhp": 299323,"zblv": 3000,"zbtool": 12,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "303": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Ngọc Đai","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Linh Đai.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 16,"zbid": 303,"zbhp": 149238,"zblv": 3000,"zbtool": 13,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "304": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Linh Bội","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Linh Bội.","zbgj": 83837,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 0,"tupoexp": 16,"zbid": 304,"zbhp": 49450,"zblv": 3000,"zbtool": 14,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
+,
+    "305": {
+        "zbname": "Vạn Cổ Vĩnh Hằng Tọa Kỵ","zbinfo": "Trang bị bậc Vạn Cổ Vĩnh Hằng, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 72934,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 305,"zbhp": 399130,"zblv": 3000,"zbtool": 15,"zbys": "#ffb300","taozhuang": 13,"element": "none","rarity": 13,"rarity_name": "VinhHang","realm_require": 3000
+    }
 }

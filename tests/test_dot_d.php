@@ -32,9 +32,13 @@ tassert('D1 lan 4: 1550–2000 = 5%', array_slice($cfg['drop_pct'], 23, 10, true
 // Làn 5: boss 2050–2500 5%, rơi Hỗn Nguyên Tàn Quyển (116); 6 bộ Hỗn Nguyên (wgid 81–86) đổi 10 quyển 116 (docs/LAN5_CAP_2000_2500.md)
 tassert('D1 lan 5: 2050–2500 = 5%', array_slice($cfg['drop_pct'], 33, 10, true), array_fill_keys(range(2050, 2500, 50), 5));
 // Làn 6: boss 2550–3000 5% rơi 116; 6 bộ Hỗn Nguyên CG 55 (wgid 87–92) đổi 15 quyển 116, bộ CG 42 giữ 10 (docs/LAN6_CAP_2500_3000.md)
-tassert('D1 lan 6: 2550–3000 = 5%', array_slice($cfg['drop_pct'], 43, null, true), array_fill_keys(range(2550, 3000, 50), 5));
+tassert('D1 lan 6: 2550–3000 = 5%', array_slice($cfg['drop_pct'], 43, 10, true), array_fill_keys(range(2550, 3000, 50), 5));
 tassert('D1 lan 6: boss 2550 / 3000 roi 116', array(\player\tiendao_drop_djid(2550), \player\tiendao_drop_djid(3000)), array(116, 116));
 tassert('D1 lan 6: Hon Nguyen CG 55 doi 15 quyen 116, CG 42 van 10', array(\player\tiendao_need(87), \player\tiendao_need(92), \player\tiendao_djid_for(87), \player\tiendao_need(81)), array(15, 15, 116, 10));
+// Làn 7: boss 3050–3500 5% rơi 116; 6 bộ Hỗn Nguyên CG 65 (wgid 93–98) đổi 20 quyển 116 (docs/LAN7_CAP_3000_3500.md)
+tassert('D1 lan 7: 3050–3500 = 5%', array_slice($cfg['drop_pct'], 53, null, true), array_fill_keys(range(3050, 3500, 50), 5));
+tassert('D1 lan 7: boss 3050 / 3500 roi 116', array(\player\tiendao_drop_djid(3050), \player\tiendao_drop_djid(3500)), array(116, 116));
+tassert('D1 lan 7: Hon Nguyen CG 65 doi 20 quyen 116, CG 55 van 15', array(\player\tiendao_need(93), \player\tiendao_need(98), \player\tiendao_djid_for(98), \player\tiendao_need(87)), array(20, 20, 116, 15));
 tassert('D1 lan 5: boss 2000 roi 115, 2050 / 2500 roi 116', array(\player\tiendao_drop_djid(2000), \player\tiendao_drop_djid(2050), \player\tiendao_drop_djid(2500)), array(115, 116, 116));
 tassert('D1 lan 5: Hon Nguyen doi 10 quyen 116, Tien Dao van dung 115', array(\player\tiendao_need(81), \player\tiendao_djid_for(81), \player\tiendao_djid_for(86), \player\tiendao_djid_for(75), \player\tiendao_djid_for(64)), array(10, 116, 116, 115, 115));
 $dj116 = \player\daoju_config_get(116);

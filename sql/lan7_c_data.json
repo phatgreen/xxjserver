@@ -1,0 +1,247 @@
+{
+ "_note": "Sinh bởi tools/gen/lan7_c_build.py — dùng cho sql/migrate_lan7_c.php",
+ "npcs": [
+  {
+   "nid": 99,
+   "qyid": 87,
+   "nname": "Thiên Lộ Dẫn Tinh Sứ",
+   "mid": 6001
+  },
+  {
+   "nid": 100,
+   "qyid": 88,
+   "nname": "Tử Vi Viên Thủ Tinh Lão Nhân",
+   "mid": 6009
+  },
+  {
+   "nid": 101,
+   "qyid": 89,
+   "nname": "Bạch Nguyên Tuần Tinh Thần Nữ",
+   "mid": 6017
+  },
+  {
+   "nid": 102,
+   "qyid": 90,
+   "nname": "Nguyệt Cung Chưởng Đăng Tiên Nữ",
+   "mid": 6025
+  },
+  {
+   "nid": 103,
+   "qyid": 91,
+   "nname": "Kim Ô Cốc Thủ Hỏa Lão Tướng",
+   "mid": 6033
+  },
+  {
+   "nid": 104,
+   "qyid": 92,
+   "nname": "Thất Tinh Đài Quan Tinh Đạo Đồng",
+   "mid": 6041
+  },
+  {
+   "nid": 105,
+   "qyid": 93,
+   "nname": "Bát Tú Lộ Truyền Tin Sứ",
+   "mid": 6049
+  },
+  {
+   "nid": 106,
+   "qyid": 94,
+   "nname": "Tinh Vân Lạc Lối Thần Quan",
+   "mid": 6057
+  },
+  {
+   "nid": 107,
+   "qyid": 95,
+   "nname": "Tinh Nhãn Thủ Vọng Lão Nhân",
+   "mid": 6065
+  },
+  {
+   "nid": 108,
+   "qyid": 96,
+   "nname": "Đại Trận Thủ Trận Thần Tướng",
+   "mid": 6073
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 247,
+   "mid": 6001,
+   "mname": "Dẫn Tinh Khởi Điểm",
+   "qyid": 87
+  },
+  {
+   "rwid": 248,
+   "mid": 6005,
+   "mname": "Lưu Quang Hành Lang",
+   "qyid": 87
+  },
+  {
+   "rwid": 249,
+   "mid": 6008,
+   "mname": "Nhật Diệu Thiên Môn",
+   "qyid": 87
+  },
+  {
+   "rwid": 250,
+   "mid": 6009,
+   "mname": "Tử Vi Viên Môn",
+   "qyid": 88
+  },
+  {
+   "rwid": 251,
+   "mid": 6013,
+   "mname": "Tử Khí Đông Lai Lâu",
+   "qyid": 88
+  },
+  {
+   "rwid": 252,
+   "mid": 6016,
+   "mname": "Tử Vi Tinh Quân Điện",
+   "qyid": 88
+  },
+  {
+   "rwid": 253,
+   "mid": 6017,
+   "mname": "Bạch Nguyên Tuyết Lộ",
+   "qyid": 89
+  },
+  {
+   "rwid": 254,
+   "mid": 6021,
+   "mname": "Vĩnh Đông Băng Xuyên",
+   "qyid": 89
+  },
+  {
+   "rwid": 255,
+   "mid": 6024,
+   "mname": "Hàn Phách Băng Điện",
+   "qyid": 89
+  },
+  {
+   "rwid": 256,
+   "mid": 6025,
+   "mname": "Nguyệt Cung Ngân Kiều",
+   "qyid": 90
+  },
+  {
+   "rwid": 257,
+   "mid": 6029,
+   "mname": "Nguyệt Lộ Linh Tuyền",
+   "qyid": 90
+  },
+  {
+   "rwid": 258,
+   "mid": 6032,
+   "mname": "Thái Âm Nguyệt Điện",
+   "qyid": 90
+  },
+  {
+   "rwid": 259,
+   "mid": 6033,
+   "mname": "Xích Dương Cốc Khẩu",
+   "qyid": 91
+  },
+  {
+   "rwid": 260,
+   "mid": 6037,
+   "mname": "Xích Viêm Thạch Lâm",
+   "qyid": 91
+  },
+  {
+   "rwid": 261,
+   "mid": 6040,
+   "mname": "Đại Nhật Thần Điện",
+   "qyid": 91
+  },
+  {
+   "rwid": 262,
+   "mid": 6041,
+   "mname": "Thất Tinh Đài Hạ",
+   "qyid": 92
+  },
+  {
+   "rwid": 263,
+   "mid": 6045,
+   "mname": "Thiên Quyền Đài",
+   "qyid": 92
+  },
+  {
+   "rwid": 264,
+   "mid": 6048,
+   "mname": "Phá Quân Tinh Đài",
+   "qyid": 92
+  },
+  {
+   "rwid": 265,
+   "mid": 6049,
+   "mname": "Bát Tú Lộ Khẩu",
+   "qyid": 93
+  },
+  {
+   "rwid": 266,
+   "mid": 6053,
+   "mname": "Phòng Tú Thạch Ốc",
+   "qyid": 93
+  },
+  {
+   "rwid": 267,
+   "mid": 6056,
+   "mname": "Thanh Long Tú Điện",
+   "qyid": 93
+  },
+  {
+   "rwid": 268,
+   "mid": 6057,
+   "mname": "Tinh Vân Ngoại Duyên",
+   "qyid": 94
+  },
+  {
+   "rwid": 269,
+   "mid": 6061,
+   "mname": "Huyễn Quang Tinh Đảo",
+   "qyid": 94
+  },
+  {
+   "rwid": 270,
+   "mid": 6064,
+   "mname": "Tử Khí Tinh Vân Hạch",
+   "qyid": 94
+  },
+  {
+   "rwid": 271,
+   "mid": 6065,
+   "mname": "Tinh Nhãn Biên Giới",
+   "qyid": 95
+  },
+  {
+   "rwid": 272,
+   "mid": 6069,
+   "mname": "Hư Không Liệt Phùng",
+   "qyid": 95
+  },
+  {
+   "rwid": 273,
+   "mid": 6072,
+   "mname": "Hư Không Tinh Nhãn Tâm",
+   "qyid": 95
+  },
+  {
+   "rwid": 274,
+   "mid": 6073,
+   "mname": "Trận Ngoại Sơn Môn",
+   "qyid": 96
+  },
+  {
+   "rwid": 275,
+   "mid": 6077,
+   "mname": "Cửu Cung Bát Quái Đài",
+   "qyid": 96
+  },
+  {
+   "rwid": 276,
+   "mid": 6080,
+   "mname": "Trận Tâm Chí Cao Đài",
+   "qyid": 96
+  }
+ ]
+}

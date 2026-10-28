@@ -35,6 +35,7 @@ $giaiNames = array(
     6 => 'Thần Giai',
     7 => 'Thánh Giai',
     8 => 'Đế Giai',     // làn 5 (docs/LAN5_CAP_2000_2500.md)
+    9 => 'Đạo Giai',    // làn 7 (docs/LAN7_CAP_3000_3500.md)
 );
 $phamNames = array(
     1 => 'Sơ Phẩm',
@@ -51,6 +52,7 @@ $giaiCss = array(
     6 => 'than',
     7 => 'thanh',
     8 => 'de',      // làn 5
+    9 => 'dao',     // làn 7
 );
 $giaiCurrency = array(
     1 => 'Linh Thạch',
@@ -61,6 +63,7 @@ $giaiCurrency = array(
     6 => 'Ma Thạch',
     7 => 'Ma Thạch',
     8 => 'Ma Thạch',
+    9 => 'Ma Thạch',
 );
 
 function tcc_full_name($giai, $pham) {
@@ -687,6 +690,11 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
 .tcg-tcc-tier-de {
     background: linear-gradient(135deg, rgba(192,132,252,.22), rgba(192,132,252,.06));
     border: 1px solid rgba(192,132,252,.45);
+}
+/* Làn 7: Đạo Giai */
+.tcg-tcc-tier-dao {
+    background: linear-gradient(135deg, rgba(255,179,0,.22), rgba(255,179,0,.06));
+    border: 1px solid rgba(255,179,0,.45);
 }
 .tcg-tcc-wcat.tcg-tcc-tier-head { justify-content: flex-start; }
 .wcat-khinh {
