@@ -3,6 +3,8 @@
     "pill": {
         "per_pill": 5,
         "max_pills": 3,
+        "_no_pill_note": "Từ cảnh giới no_pill_from_realm (17 = Độ Kiếp, cấp 850) trở đi đan dược không còn tác dụng với đột phá (chủ dự án chốt 2026-10-28) — không thêm đan cho các cảnh giới này.",
+        "no_pill_from_realm": 17,
         "items": {"20": 7, "21": 8, "22": 10, "23": 12, "24": 15, "25": 13, "26": 16}
     },
     "event": {

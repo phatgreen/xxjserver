@@ -9,7 +9,8 @@ Chỉ số quái (tính ngược từ nhân vật chuẩn đợt F, nối liền
   - Máu   = HITS × (công nhân vật chuẩn − 0,75 × thủ quái)    HITS đo ở cấp 500 từ quái hiện có ⇒ nhịp đòn không đổi tới 1000
   - Công  = max(đường đợt B, máu nhân vật chuẩn ÷ 45 ÷ 0,15)  (như đợt F: ~45 đòn quái Thường hạ nhân vật chuẩn)
   Nhân vật chuẩn = chỉ số gốc (base_curve) + đủ bộ đồ bậc ≤ cấp (500/600/800) cường hóa theo khung (qh_at), chưa buff %.
-Boss: máu ×12, công ×1,6, thủ ×1,3 so quái Thường cùng cấp.
+Quái Thường khó dần (mob_hits): 3,5 → 5,5 đòn hạ quái, 45 → 30 đòn quái hạ người (cấp 500 → 1500).
+Boss: hệ số so quái Thường cùng cấp tăng dần (boss_mult): ×12/×1,6/×1,3 ở cấp 500 → ×16/×1,8/×1,4 ở cấp 1500.
 Chạy: python3 tools/gen/lan2_design.py  -> in bảng kiểm tra.
 """
 import json, os, sys
@@ -47,11 +48,18 @@ def _hits_at_500():
     return hp_old / (pg - 0.75 * base_stats(500)[2])
 HITS = _hits_at_500()
 
+# Quái khó dần theo cấp (chủ dự án 2026-10-28): từ cấp 500 (nhịp quái hiện có: 3,5 đòn hạ quái / 45 đòn quái hạ người)
+# tăng đều tới cấp 1500: 5,5 đòn / 30 đòn (quá 1500 tiếp tục cùng nhịp, tối thiểu 20 đòn).
+def mob_hits(L):
+    t = max(0.0, (L - 500) / 1000.0)
+    return HITS + 2.0 * t, max(20.0, HITS_TO_KILL_PLAYER - 15.0 * t)
+
 def thuong_stats(L):
     pg, pf, ph = player(L)
+    hp_hits, kill_hits = mob_hits(L)
     fy = base_stats(L)[2]
-    hp = HITS * (pg - 0.75 * fy)
-    gj = max(base_stats(L)[1], ph / HITS_TO_KILL_PLAYER / 0.15)
+    hp = hp_hits * (pg - 0.75 * fy)
+    gj = max(base_stats(L)[1], ph / kill_hits / 0.15)
     return hp, gj, fy
 
 # Trang bị rơi: 5 món (Vũ Khí, Giáp Bào, Giới Chỉ, Yêu Đai, Linh Phù) của bậc ≤ cấp quái — như đợt F build_drops
@@ -153,13 +161,20 @@ def monsters():
                  gbj=a[4], gxx=a[5], dljv=a[6], gzb=zb_for(m['lv']), gdj=dj_for(m['lv']), djjv=5, gyp='2', ypjv=15)
     return out
 
+# Boss khó dần theo cấp (chủ dự án 2026-10-28): cấp 500 giữ ×12 máu / ×1,6 công / ×1,3 thủ như đợt B,
+# tăng đều tới cấp 1500: ×16 / ×1,8 / ×1,4 — cộng thêm phần quái Thường đã khó dần (mob_hits) nên hệ số tăng nhẹ.
+def boss_mult(L):
+    t = max(0.0, (L - 500) / 1000.0)
+    return 12 + 4 * t, 1.6 + 0.2 * t, 1.3 + 0.1 * t
+
 def bosses():
     out = []
     for k, (rname, els, maps, (bname, bel), tinh) in enumerate(REGIONS):
         lv = 550 + 50 * k
         hp, gj, fy = thuong_stats(lv)
+        mh, mg, mf = boss_mult(lv)
         out.append(dict(name='Boss·' + bname, element=bel, lv=lv, region=rname, qy=QY_START + k,
-                        hp=int(round(hp * 12, -2)), gj=int(round(gj * 1.6)), fy=int(round(fy * 1.3)),
+                        hp=int(round(hp * mh, -2)), gj=int(round(gj * mg)), fy=int(round(fy * mf)),
                         bj=15, xx=10, zb=zb_for(lv), dj=dj_for(lv)))
     return out
 
@@ -178,5 +193,7 @@ if __name__ == '__main__':
     ms = monsters()
     print('\nQuái: %d loại (mã %d–%d)' % (len(ms), ms[0]['id'], ms[-1]['id']))
     for b in bosses():
+        bh, bg = hits(b['lv'], b['hp'], b['gj'], b['fy'])
+        print('  đòn hạ boss %.0f · boss hạ người %.0f đòn' % (bh, bg))
         print('%s cấp %d máu %s công %s thủ %s rơi %s / %s' % (b['name'], b['lv'], format(b['hp'], ','), format(b['gj'], ','),
               format(b['fy'], ','), b['zb'], b['dj']))

@@ -349,7 +349,9 @@ if ($tupo != 8) {
         }
         $danHtml .= '</div><div class="break-dan-note">Đan mất dù thành công hay thất bại.</div></div>';
     } else {
-        $danHtml = '<div class="break-dan"><div class="break-dan-note">Cảnh giới này chưa có Đột Phá Đan.</div></div>';
+        $danHtml = '<div class="break-dan"><div class="break-dan-note">'
+            . (\player\tupo_pill_no_effect($player->ulv) ? 'Từ Độ Kiếp trở đi, đan dược không còn tác dụng với đột phá — chỉ dựa vào đạo hạnh.' : 'Cảnh giới này chưa có Đột Phá Đan.')
+            . '</div></div>';
     }
     if ($evBonus > 0) {
         $danHtml .= '<div class="break-event">🎉 Sự kiện ' . htmlspecialchars($evName, ENT_QUOTES, 'UTF-8') . ': +' . $evBonus . '% tỉ lệ đột phá</div>';

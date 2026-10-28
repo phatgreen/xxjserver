@@ -129,8 +129,9 @@ foreach ($data['bosses'] as $b) {
     } else {
         $bid = intval($bid);
         say("[boss] cap nhat {$b['bossname']} (id $bid) theo du lieu moi");
-        run("UPDATE boss SET bossinfo = ?, bosslv = ?, bossmaxhp = ?, bossgj = ?, bossfy = ?, bossbj = ?, bossxx = ?, bosszb = ?, bossdj = ? WHERE bossid = ?",
-            array($b['bossinfo'], $b['bosslv'], $b['bosshp'], $b['bossgj'], $b['bossfy'], $b['bossbj'], $b['bossxx'], $b['bosszb'], $b['bossdj'], $bid));
+        // bosshp gán TRƯỚC bossmaxhp (MySQL tính trái sang phải): boss đang đầy máu nhận luôn máu mới, đang bị đánh thì giữ nguyên
+        run("UPDATE boss SET bosshp = IF(bosshp >= bossmaxhp, ?, bosshp), bossinfo = ?, bosslv = ?, bossmaxhp = ?, bossgj = ?, bossfy = ?, bossbj = ?, bossxx = ?, bosszb = ?, bossdj = ? WHERE bossid = ?",
+            array($b['bosshp'], $b['bossinfo'], $b['bosslv'], $b['bosshp'], $b['bossgj'], $b['bossfy'], $b['bossbj'], $b['bossxx'], $b['bosszb'], $b['bossdj'], $bid));
     }
     say("[boss] map $at midboss = $bid, ms = 600");
     run("UPDATE mid SET midboss = ?, ms = '600' WHERE mid = ?", array($bid, $at));

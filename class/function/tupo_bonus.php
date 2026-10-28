@@ -23,6 +23,7 @@ if (!function_exists(__NAMESPACE__ . '\\tupo_pill_for_level')) {
     function tupo_pill_for_level($lv){
         $cfg = tupo_bonus_config();
         if (empty($cfg['pill']['items'])) return false;
+        if (tupo_pill_no_effect($lv)) return false;
         $realm = (int)floor(max(0, intval($lv)) / 50);
         foreach ($cfg['pill']['items'] as $djid => $r) {
             if (intval($r) === $realm) {
@@ -36,6 +37,15 @@ if (!function_exists(__NAMESPACE__ . '\\tupo_pill_for_level')) {
             }
         }
         return false;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\tupo_pill_no_effect')) {
+    // Từ Độ Kiếp (cảnh giới no_pill_from_realm) trở đi đan dược không còn tác dụng với đột phá.
+    function tupo_pill_no_effect($lv){
+        $cfg = tupo_bonus_config();
+        $from = isset($cfg['pill']['no_pill_from_realm']) ? intval($cfg['pill']['no_pill_from_realm']) : 0;
+        return $from > 0 && (int)floor(max(0, intval($lv)) / 50) >= $from;
     }
 }
 
