@@ -20,7 +20,12 @@ DROP_PCT = {400: 3, 450: 4, 500: 5}   # % rơi theo cấp boss khu vực
 DROP_PCT.update({lv: (5 if lv <= 700 else 6 if lv <= 900 else 7) for lv in range(550, 1001, 50)})
 # Làn 3 (docs/LAN3_CAP_1000_1500.md mục 6, chủ dự án: rơi vừa phải): boss 1050–1500 5%
 DROP_PCT.update({lv: 5 for lv in range(1050, 1501, 50)})
+# Làn 4: boss 1550–2000 5%
+DROP_PCT.update({lv: 5 for lv in range(1550, 2001, 50)})
 TIENDAO_WGID = [64, 65, 66, 67, 68]
+# Làn 4 (docs/LAN4_CAP_1500_2000.md mục 4): 6 bộ Tiên Đạo CG 36 (wgid 75–80, tools/gen/lan4_a_build.py) đổi 15 quyển / bộ
+TIENDAO_WGID += [75, 76, 77, 78, 79, 80]
+NEED_BY_WGID = {wid: 15 for wid in range(75, 81)}
 
 # ---- Cấu hình đổi / rơi ----
 save('tiendao_config.json', {
@@ -28,6 +33,7 @@ save('tiendao_config.json', {
     'djid': DJID,
     'need': NEED,
     'wgid': TIENDAO_WGID,
+    'need_by_wgid': {str(k): v for k, v in sorted(NEED_BY_WGID.items())},
     'drop_pct': {str(k): v for k, v in sorted(DROP_PCT.items())},
 }, indent=2)
 

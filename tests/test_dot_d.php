@@ -26,7 +26,10 @@ tassert('D1 ti le 400/450/500 = 3/4/5%', array_slice($cfg['drop_pct'], 0, 3, tru
 tassert('D1 lan 2: 550–700 = 5%, 750–900 = 6%, 950–1000 = 7%', array_slice($cfg['drop_pct'], 3, 10, true),
     array('550' => 5, '600' => 5, '650' => 5, '700' => 5, '750' => 6, '800' => 6, '850' => 6, '900' => 6, '950' => 7, '1000' => 7));
 // Làn 3: 10 boss 1050–1500 rơi 5% (docs/LAN3_CAP_1000_1500.md mục 6)
-tassert('D1 lan 3: 1050–1500 = 5%', array_slice($cfg['drop_pct'], 13, null, true), array_fill_keys(range(1050, 1500, 50), 5));
+tassert('D1 lan 3: 1050–1500 = 5%', array_slice($cfg['drop_pct'], 13, 10, true), array_fill_keys(range(1050, 1500, 50), 5));
+// Làn 4: boss 1550–2000 5%; 6 bộ Tiên Đạo CG 36 (wgid 75–80) đổi 15 quyển, bộ CG 30 giữ 10 (docs/LAN4_CAP_1500_2000.md)
+tassert('D1 lan 4: 1550–2000 = 5%', array_slice($cfg['drop_pct'], 23, null, true), array_fill_keys(range(1550, 2000, 50), 5));
+tassert('D1 lan 4: Tien Dao CG 36 can 15 quyen, CG 30 van 10', array(\player\tiendao_need(75), \player\tiendao_need(80), \player\tiendao_need(64)), array(15, 15, 10));
 
 // ── D2. Đạo cụ: có trong config, không bán ở Thương Điếm, bán lại 0 tiền ──
 $dj = \player\daoju_config_get(115);

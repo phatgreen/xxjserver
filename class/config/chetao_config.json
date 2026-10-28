@@ -140,6 +140,30 @@
       ],
       "base_success_rate": 70,
       "level_required": 1250
+    },
+    "13": {
+      "id": 13,
+      "type": "equipment",
+      "result_zbid": 252,
+      "materials": [
+        {"id": 1, "amount": 8},
+        {"id": 36, "amount": 6},
+        {"id": 37, "amount": 3}
+      ],
+      "base_success_rate": 65,
+      "level_required": 1500
+    },
+    "14": {
+      "id": 14,
+      "type": "equipment",
+      "result_zbid": 253,
+      "materials": [
+        {"id": 1, "amount": 8},
+        {"id": 33, "amount": 6},
+        {"id": 37, "amount": 3}
+      ],
+      "base_success_rate": 65,
+      "level_required": 1500
     }
   }
 }

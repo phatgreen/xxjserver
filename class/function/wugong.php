@@ -282,6 +282,10 @@ if (!function_exists(__NAMESPACE__ . '\\tiendao_need')) {
         if (intval($cfg['djid']) <= 0 || !in_array(intval($wgid), array_map('intval', $cfg['wgid']), true)) {
             return 0;
         }
+        // Bộ có số riêng (vd Tiên Đạo CG 36 của làn 4 cần 15) — không có thì dùng số chung
+        if (isset($cfg['need_by_wgid'][(string)intval($wgid)])) {
+            return intval($cfg['need_by_wgid'][(string)intval($wgid)]);
+        }
         return intval($cfg['need']);
     }
 }

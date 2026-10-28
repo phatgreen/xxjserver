@@ -548,5 +548,105 @@
     "taskid": "154,155,156",
     "mz": "",
     "rwqy": ""
+  },
+  "69": {
+    "id": 69,
+    "nname": "Linh Vực Dẫn Lộ Tiên Đồng",
+    "nsex": "Nam",
+    "ninfo": "Tiên đồng dẫn đường cho người mới đặt chân vào Tiên Thiên Linh Vực, nơi linh khí đặc tới mức hóa sương.",
+    "muban": "",
+    "taskid": "157,158,159",
+    "mz": "",
+    "rwqy": ""
+  },
+  "70": {
+    "id": 70,
+    "nname": "Vân Hải Độ Thuyền Tiên Ông",
+    "nsex": "Nam",
+    "ninfo": "Lão tiên ông chèo thuyền mây qua Thiên Tiên Vân Hải, chỉ chở người có duyên.",
+    "muban": "",
+    "taskid": "160,161,162",
+    "mz": "",
+    "rwqy": ""
+  },
+  "71": {
+    "id": 71,
+    "nname": "Đạo Trường Giảng Kinh Chân Nhân",
+    "nsex": "Nam",
+    "ninfo": "Chân nhân giảng kinh mỗi sớm ở Chân Tiên Đạo Trường, một câu đạo ngữ đủ khai mở trăm năm tu vi.",
+    "muban": "",
+    "taskid": "163,164,165",
+    "mz": "",
+    "rwqy": ""
+  },
+  "72": {
+    "id": 72,
+    "nname": "Bí Cảnh Thủ Trận Tiên Cơ",
+    "nsex": "Nữ",
+    "ninfo": "Tiên cơ trấn giữ mê trận Huyền Tiên Bí Cảnh, biết lối ra của từng tầng huyễn cảnh.",
+    "muban": "",
+    "taskid": "166,167,168",
+    "mz": "",
+    "rwqy": ""
+  },
+  "73": {
+    "id": 73,
+    "nname": "Thánh Địa Hộ Pháp Kim Cương",
+    "nsex": "Nam",
+    "ninfo": "Kim cương hộ pháp canh cổng Kim Tiên Thánh Địa, thân như đúc bằng vàng ròng.",
+    "muban": "",
+    "taskid": "169,170,171",
+    "mz": "",
+    "rwqy": ""
+  },
+  "74": {
+    "id": 74,
+    "nname": "Tinh Cung Quan Tinh Sứ",
+    "nsex": "Nữ",
+    "ninfo": "Sứ giả quan sát tinh tú ở Thái Ất Tinh Cung, đọc vận mệnh người tu qua từng vì sao.",
+    "muban": "",
+    "taskid": "172,173,174",
+    "mz": "",
+    "rwqy": ""
+  },
+  "75": {
+    "id": 75,
+    "nname": "Đại La Thiên Môn Thủ Vệ",
+    "nsex": "Nam",
+    "ninfo": "Thủ vệ cổng Đại La Thiên, chỉ người có pháp thân bất diệt mới được hắn cho qua.",
+    "muban": "",
+    "taskid": "175,176,177",
+    "mz": "",
+    "rwqy": ""
+  },
+  "76": {
+    "id": 76,
+    "nname": "Huyền Khung Tuần Thiên Sứ",
+    "nsex": "Nam",
+    "ninfo": "Sứ giả tuần tra Cửu Thiên Huyền Khung, cưỡi gió cương phong đi khắp chín tầng trời.",
+    "muban": "",
+    "taskid": "178,179,180",
+    "mz": "",
+    "rwqy": ""
+  },
+  "77": {
+    "id": 77,
+    "nname": "Tiên Quân Điện Chưởng Ấn Quan",
+    "nsex": "Nam",
+    "ninfo": "Quan giữ ấn của Tiên Quân Điện, mọi chiếu lệnh tiên giới đều qua tay ông.",
+    "muban": "",
+    "taskid": "181,182,183",
+    "mz": "",
+    "rwqy": ""
+  },
+  "78": {
+    "id": 78,
+    "nname": "Thánh Sơn Thủ Sơn Tiên Lão",
+    "nsex": "Nam",
+    "ninfo": "Tiên lão giữ núi Tiên Tôn Thánh Sơn, đã ngồi dưới gốc linh thụ đếm mây vạn năm.",
+    "muban": "",
+    "taskid": "184,185,186",
+    "mz": "",
+    "rwqy": ""
   }
 }

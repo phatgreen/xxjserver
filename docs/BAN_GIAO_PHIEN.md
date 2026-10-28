@@ -38,6 +38,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Boss | Chặn hạ lại boss trước thời gian hồi sinh (`mid.ms`), mốc hồi ghi đúng map boss | `DOT_D_…` mục 6 |
 | Đột phá + trang bị | Gốc từ cấp 94 theo mốc (500: −20%, 4300: −110%); ô Linh Phù/Ngọc Nhãn/Cổ Ngọc +đột phá, Phi Phong/Linh Đai/Linh Bội +tu luyện (trần 30%) | `KHUNG_TONG_500_4300.md` mục 4 |
 | UI-1 mobile | Thanh trên 1 hàng (217→133px), số tiền gọn, vùng chạm ≥32px, chữ ≥11px | `UI_DON_GIAN_HOA_MOBILE.md` mục 3.1 |
+| Làn 4 (cấp 1501–2000) | Đồ bậc 1500 phẩm Thái Sơ (15 món, bộ 12, 2 công thức), 10 khu / 80 map id 3001–3080 / 170 quái / 10 boss, chương 34–43, 10 NPC, Tàn Quyển 5%, 6 võ công Tiên Đạo CG 36 đổi 15 quyển; công pháp CG 32–40 đã có sẵn — `sql/migrate_lan4.php` + `migrate_lan4_c.php` | `LAN4_CAP_1500_2000.md` mục 0 |
 | Làn 3 (cấp 1001–1500) | Đồ bậc 1000/1250 phẩm Hỗn Độn (30 món, bộ 11, 4 công thức), 10 khu / 80 map id 2001–2080 / 170 quái / 10 boss, chương 24–33, 10 NPC, Tàn Quyển 5%, 5 võ công Tuyệt Thế CG 25. Quái + boss **khó dần theo cấp** (áp cả làn 2). Đan đột phá không tác dụng từ Độ Kiếp — `sql/migrate_lan3.php` + `migrate_lan3_c.php` | `LAN3_CAP_1000_1500.md` mục 0 |
 | Làn 2 (L2-B, C, D) | 10 khu cấp 501–1000, 80 map (id 1001–1080), 170 quái, 10 boss, ảnh khu, chương 14–23, 10 NPC, Tàn Quyển boss mới — `sql/migrate_lan2.php` + `migrate_lan2_c.php` | `LAN2_CAP_500_1000.md` mục 0 |
 | KT-0 nền kỹ thuật | Tương thích PHP 7.4/8, BIGINT 17 cột (`sql/migrate_kt0_bigint.php`), EXP quái > 500, đủ 86 màu cảnh giới, sửa tên (K6), Đột Phá Đan + sự kiện cuối tuần (K2), cron tự chọn PHP | `DEPLOY_KT0_PHP74.md` |
@@ -61,7 +62,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Quái cũ cấp ≤ 105 | Chưa cân lại theo đường sức mạnh mới (vẫn dễ: quái cần 50–180 đòn hạ người) |
 | Lệch múi giờ PHP–MySQL trên máy chủ | Không ảnh hưởng game hiện tại; nên đặt cùng `date.timezone` |
 | Thư mục `images/other` | Ảnh tham khảo game khác — chủ dự án sẽ xóa sau |
-| **Chờ duyệt / làm tiếp (2026-10-28)** | Chủ dự án chuyển máy sang PHP 7.4 x64 theo `DEPLOY_KT0_PHP74.md` · làn 4+ (1500–2000: bậc đồ 1500 phẩm Thái Sơ) |
+| **Chờ duyệt / làm tiếp (2026-10-28)** | Chủ dự án chuyển máy sang PHP 7.4 x64 theo `DEPLOY_KT0_PHP74.md` · làn 5+ (2000–2500: bậc đồ 2000 Thái Sơ, võ công Hỗn Nguyên CG 42, công pháp CG 43 đã có) |
 
 ## 4. Bản đồ code nhanh (phần đã đụng tới)
 

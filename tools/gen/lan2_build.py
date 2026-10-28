@@ -54,7 +54,7 @@ def build_data(ms=None, bs=None, regions_src=None, qy_start=QY_START, mid_base=M
            'bossinfo': '%s — bá chủ %s, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn.' % (b['name'].replace('Boss·', ''), b['region'])}
           for b in (bosses() if bs is None else bs)]
     out = {'_note': 'Sinh bởi tools/gen/%s — dùng cho sql/migrate_%s' % (
-               'lan2_build.py' if out_name == 'lan2_data.json' else 'lan3_build.py', out_name.replace('_data.json', '.php')),
+               out_name.replace('_data.json', '_build.py'), out_name.replace('_data.json', '.php')),
            'entry_from_mid': entry_from_mid, 'regions': regions, 'bosses': bs}
     with open(os.path.join(ROOT, 'sql', out_name), 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
