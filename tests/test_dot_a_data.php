@@ -37,7 +37,9 @@ foreach ($wg as $key => $w) {
     if (count($mv) !== 3) $bad[] = "$id: khong du 3 the";
     foreach ($mv as $m) if (strpos($m['text'], '{mob}') === false) $bad[] = "$id: van the thieu {mob}";
 }
-tassert('W1 60 vo cong (29 cu + 30 moi + "khong co")', count($wg), 60);
+// Đếm trong phạm vi đợt A (wgid < 70); 5 bộ CG 25 của làn 3 (70–74, tools/gen/lan3_a_build.py) vẫn qua vòng kiểm tra trên
+tassert('W1 60 vo cong (29 cu + 30 moi + "khong co")', count(array_filter($wg, function($w){ return intval($w['wgid']) < 70; })), 60);
+tassert('W1 lan 3: 5 bo Tuyet The CG 25 (wgid 70–74, 1 bo / he)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 70 && intval($w['wgid']) <= 74 && $w['rarity'] === 'than_cong' && intval($w['realm_require']) === 25; })), 5);
 tassert('W1 wgid khong trung', count($ids), count(array_unique($ids)));
 tassert('W1 moi bo hop le (id, phẩm, hiệu ứng, mô tả, 3 thế)', $bad, array());
 // Ngân sách trung bình tăng dần theo phẩm

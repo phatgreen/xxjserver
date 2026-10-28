@@ -1608,6 +1608,136 @@
         "hits": 5,
         "text": "Năm đòn dung hợp vạn pháp, mọi phòng hộ của {mob} tan rã về hư vô!"
       }
+    ],
+    "70": [
+      {
+        "tier": 1,
+        "name": "Phá Quân Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một đạo kiếm khí vàng rực xé gió lao thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đế Uy Liệt Trận",
+        "effect": "pierce",
+        "value": 48,
+        "hits": 4,
+        "text": "Kiếm khí hóa thành đế uy, liên tiếp xé nát thế trận phòng thủ của {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Thiên Đế Nhất Kiếm",
+        "effect": "pierce",
+        "value": 79,
+        "hits": 5,
+        "text": "Đế giả chỉ cần một kiếm — kiếm quang xuyên thủng trời đất, chém thẳng vào {mob}!"
+      }
+    ],
+    "71": [
+      {
+        "tier": 1,
+        "name": "Vạn Mộc Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực xanh biếc như rễ cây đâm xuyên mặt đất, quật trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Hồi Xuân Tục Mạch",
+        "effect": "heal",
+        "value": 13,
+        "hits": 1,
+        "text": "Sinh khí vạn mộc rót vào kinh mạch, vết thương liền lại ngay trước mắt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Mộc Triều Tông",
+        "effect": "heal",
+        "value": 24,
+        "hits": 2,
+        "text": "Cả khu rừng hướng về ngươi, rễ cây trói chặt {mob} và tuôn sinh lực vào thân ngươi!"
+      }
+    ],
+    "72": [
+      {
+        "tier": 1,
+        "name": "Bích Hải Thích",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Thân hình lướt trên sóng biếc, một chỉ điểm thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Triều Sinh Huyễn Ảnh",
+        "effect": "guard",
+        "value": 68,
+        "hits": 3,
+        "text": "Thủy triều dâng lên, bóng người tan vào sóng, {mob} đánh vào khoảng không!"
+      },
+      {
+        "tier": 3,
+        "name": "Thương Hải Phong Tỏa",
+        "effect": "stun",
+        "value": 71,
+        "hits": 4,
+        "text": "Biển biếc cuộn trào thành tường nước, khóa chặt {mob} giữa vạn tầng sóng!"
+      }
+    ],
+    "73": [
+      {
+        "tier": 1,
+        "name": "Liệt Diễm Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một chưởng lửa đỏ rực đánh thẳng vào ngực {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Phần Thiên Hỏa Võng",
+        "effect": "burn",
+        "value": 38,
+        "hits": 2,
+        "text": "Lưới lửa giăng kín bầu trời rồi sập xuống, thiêu đốt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Liệt Diễm Phần Thiên",
+        "effect": "crit",
+        "value": 88,
+        "hits": 1,
+        "text": "Hỏa khí bùng nổ thành mặt trời thứ hai, nuốt trọn {mob} trong biển lửa!"
+      }
+    ],
+    "74": [
+      {
+        "tier": 1,
+        "name": "Thái Sơn Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền nặng như núi giáng thẳng xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Sơn Nhạc Hộ Thân",
+        "effect": "guard",
+        "value": 73,
+        "hits": 1,
+        "text": "Thổ khí ngưng thành núi đá bao quanh, đòn của {mob} chỉ làm rơi vài hạt bụi!"
+      },
+      {
+        "tier": 3,
+        "name": "Thái Sơn Áp Đỉnh",
+        "effect": "stun",
+        "value": 63,
+        "hits": 2,
+        "text": "Bóng núi Thái khổng lồ ập xuống, {mob} bị đè chặt không cựa nổi!"
+      }
     ]
   }
 }
