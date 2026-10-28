@@ -22,7 +22,8 @@ foreach ($gw as $k => $g) {
     if ((string)$k !== (string)$g['id']) $bad[] = "key $k != id {$g['id']}";
     if (strpos($g['gname'], "'") !== false || strpos($g['gname'], '"') !== false) $bad[] = "{$g['id']} ten co dau nhay";
 }
-tassert('Q1 171 quai (87 cu + 84 moi)', count($gw), 171);
+// Chỉ đếm quái tới hết đợt B (mã < 300); làn 2 (mã 300+) có test riêng tests/test_lan2_data.php
+tassert('Q1 171 quai (87 cu + 84 moi)', count(array_filter(array_keys($gw), function($k){ return intval($k) < 300; })), 171);
 tassert('Q1 id khong trung, ten an toan', array($bad, count($ids) === count(array_unique($ids))), array(array(), true));
 
 // Q2: mọi trang bị rơi đều có bậc ≤ cấp quái
@@ -56,7 +57,7 @@ tassert('Q3 map chi dung quai co that', $miss, array());
 tassert('Q3 cap quai tang dan theo duong di', $order, array());
 
 // Q4: phủ đủ dải 78 → 500, không hở quá 6 cấp
-$lvs = array(); foreach ($gw as $g) if (intval($g['id']) >= 200) $lvs[] = intval($g['glv']);
+$lvs = array(); foreach ($gw as $g) if (intval($g['id']) >= 200 && intval($g['id']) < 300) $lvs[] = intval($g['glv']);
 sort($lvs);
 // Khoảng hở tính trên toàn bộ quái (cũ + mới) — dải 92–105 do Hoa Quả Sơn có sẵn đảm nhận
 $all = array(); foreach ($gw as $g) if (intval($g['glv']) >= 78) $all[] = intval($g['glv']);

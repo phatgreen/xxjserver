@@ -21,7 +21,10 @@ function tassert($name, $got, $exp) {
 $cfg = \player\tiendao_config();
 tassert('D1 djid = 115', intval($cfg['djid']), 115);
 tassert('D1 can 10 quyen', intval($cfg['need']), 10);
-tassert('D1 ti le 400/450/500 = 3/4/5%', $cfg['drop_pct'], array('400' => 3, '450' => 4, '500' => 5));
+tassert('D1 ti le 400/450/500 = 3/4/5%', array_slice($cfg['drop_pct'], 0, 3, true), array('400' => 3, '450' => 4, '500' => 5));
+// Làn 2: 10 boss 550–1000 (docs/LAN2_CAP_500_1000.md L6)
+tassert('D1 lan 2: 550–700 = 5%, 750–900 = 6%, 950–1000 = 7%', array_slice($cfg['drop_pct'], 3, null, true),
+    array('550' => 5, '600' => 5, '650' => 5, '700' => 5, '750' => 6, '800' => 6, '850' => 6, '900' => 6, '950' => 7, '1000' => 7));
 
 // ── D2. Đạo cụ: có trong config, không bán ở Thương Điếm, bán lại 0 tiền ──
 $dj = \player\daoju_config_get(115);

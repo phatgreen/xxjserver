@@ -16,6 +16,8 @@ def save(n, d, indent=4):
 DJID = 115          # Tiên Đạo Tàn Quyển
 NEED = 10           # số quyển đổi 1 bộ
 DROP_PCT = {400: 3, 450: 4, 500: 5}   # % rơi theo cấp boss khu vực
+# Làn 2 (docs/LAN2_CAP_500_1000.md L6): boss 550–700 5%, 750–900 6%, 950–1000 7%
+DROP_PCT.update({lv: (5 if lv <= 700 else 6 if lv <= 900 else 7) for lv in range(550, 1001, 50)})
 TIENDAO_WGID = [64, 65, 66, 67, 68]
 
 # ---- Cấu hình đổi / rơi ----
