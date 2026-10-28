@@ -2,7 +2,7 @@
 
 > Nhánh `claude/tong-quan-du-an`, commit `3ba1f3e` → `bc74ebe`. Tông Môn có tài liệu riêng: `DESIGN_TONGMON_CANBANG.md`.
 > **Máy chủ:** chỉ cần `cron\capnhat_code.bat` + Ctrl+F5 — trừ Tông Môn phải chạy `sql\migrate_tongmon.php --apply` (đã chạy 2026-10-28).
-> CSS: `css/mystyle.css?v=2026102934`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
+> CSS: `css/mystyle.css?v=2026102938`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
 
 ## 1. Mục tiêu chung
 
@@ -40,6 +40,7 @@
 | Chi tiết trang bị | `game/zbinfo.php` | Khung `.cws-*`: ảnh giữa, trái Công · Thủ · HP, phải Bạo kích · Hút máu · Đột phá/Tu luyện; dưới tên: nhãn phẩm/hệ + cấp + yêu cầu cảnh giới + mô tả; thao tác 1 hàng (bỏ tiêu đề); Cường hóa 2 cột + 5 nút 1 hàng; Ngũ Hành 5 ô ngang (mobile 2); bỏ Trở Về / Đại Sảnh |
 | Linh Căn | `game/linhcan.php`, `linhcan_quest.php`, `linhcan_boss.php` | Thanh tab 3 trang lên đầu (cùng vị trí), bỏ tab Nhân Vật; trang Luyện Căn: vòng Ngũ Hành giữa (300px) + nút Luyện/Đột phá, Thuộc tính Kích Hoạt trái, Đột Phá + kỹ năng phải (mobile: vòng trên, 2 cột dưới) |
 | Thể Chất / Huyết Mạch / Thiên Phú | `game/thechat.php`, `huyetmach.php`, `huyetmach_boss.php`, `tianfu.php`, `tianfu_collection.php`, `tianfu_open.php` | Thanh tab lên đầu (trang chính có tab riêng thay cho tab Nhân Vật đang "on"), bỏ tab Nhân Vật; desktop: tab 1 hàng (biểu tượng cạnh chữ, cả Linh Căn) — mobile giữ kiểu xếp dọc. Huyết Mạch: khung Biến Thân sửa vỡ chữ (trạng thái `nowrap` ép tên thành cột) và trải ngang dưới 2 cột kèm nút. Thiên Phú desktop: ảnh 2:1, ô kỹ năng 3 cột. Desktop: Thể Chất 771px, Huyết Mạch 873px (trước 1.031), Thiên Phú 880px (trước 976) |
+| Hành Tẩu (Đại Sảnh) | `game/nowmid.php` | Khung la bàn `.mid-stage`: tên khu vực + an toàn/PVP + tên nhân vật ở giữa, Bắc/Nam/Tây/Đông đặt đúng hướng (hướng không có lối để trống); bỏ dòng chữ chạy (trùng dòng Hệ thống đầu khung chat); quái / boss / NPC, chat, Tiên Đồ giữ nguyên dưới khung |
 | Tính năng chưa mở | `game/feature_locked.php` | Sửa chữ 2 nút bị lệch (thêm `a.fk-lock-btn:link`) |
 
 ## 4. Lỗi đã sửa kèm

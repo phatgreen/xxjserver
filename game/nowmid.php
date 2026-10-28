@@ -527,25 +527,28 @@ $lukouhtmlView = trim($lukouhtml) != ''
 // Tiên Đồ (UI-3): lối vào tính năng xếp theo nhóm, chưa mở thì 🔒 — class/function/dieu_huong.php.
 // Tu Luyện / Nhân Vật (Thông Tin, Trang Bị, Túi Đồ, Võ Công, Chế Tạo) / Linh Sủng / Nhiệm Vụ đã ở thanh dưới.
 $tiendoHtml = \player\nav_tiendo_html($player, $sid, $encode, array('thamhiem', 'giaothuong', 'ketgiao'));
+
+// Khung la bàn (giống trang Nhân Vật: khu vực ở giữa, 4 lối đi theo đúng hướng; hướng không có lối để trống)
+$midDir = function ($m, $lj, $cls, $label, $arrow) {
+    if ($m->mname == '') return '<span class="mid-dir ' . $cls . ' is-empty"></span>';
+    return '<a class="mid-dir ' . $cls . '" href="?cmd=' . $lj . '"><span class="mid-dir-lb">' . $arrow . ' ' . $label . '</span>'
+        . '<b>' . $m->mname . '</b></a>';
+};
+$midCompass = '<div class="mid-stage">'
+    . '<div class="mid-compass">'
+    . $midDir($upmid, $upmidlj, 'n', 'Bắc', '↑')
+    . $midDir($leftmid, $leftmidlj, 'w', 'Tây', '←')
+    . '<div class="mid-center"><div class="mid-pin">📍</div><div class="tcg-title">' . $clmid->mname . '</div>'
+    . '<div class="tcg-badges">' . $pvphtml . '</div>'
+    . '<a class="tcg-char-badge" href="?cmd=' . $clubcmd . '">【 ' . $myclubnamehtml . ' 】 ' . $myunamehtml . '</a></div>'
+    . $midDir($rightmid, $rightmidlj, 'e', 'Đông', '→')
+    . $midDir($downmid, $downmidlj, 's', 'Nam', '↓')
+    . '</div></div>';
 $nowhtml = <<<HTML
-<div class="tcg-title">$clmid->mname</div>
-<div class="tcg-badges">
-    <!-- <span class="tcg-badge server">【 $clmid->mname 】</span> !-->
-    $pvphtml
-</div>
+<div class="mid-compact">
 $nvMapNoticeHtml
 
-<div class="tcg-marquee">
-    <marquee behavior="scroll"
-             direction="left"
-             scrollamount="3"
-             onmouseover="this.stop();"
-             onmouseout="this.start();">
-
-        📣 $newsLine
-
-    </marquee>
-</div>
+$midCompass
 
 <div class="tcg-section">
     <div class="tcg-entity-grid">
@@ -556,20 +559,13 @@ $nvMapNoticeHtml
     $djsView
 </div>
 
-<div class="tcg-section tcg-directions">
-    $lukouhtmlView
-</div>
-
-<div class="tcg-character">
-    <a class="tcg-char-badge" href="?cmd=$clubcmd">【 $myclubnamehtml 】 $myunamehtml</a>
-</div>
-
 <div class="tcg-section tcg-chat">
     <div><span class="system"><span class="sys-icon">📣</span> 【Hệ thống】:</span> $newsLine</div>
     $lthtml
 </div>
 
 $tiendoHtml
+</div>
 HTML;
 echo $nowhtml;
 ?>

@@ -8483,3 +8483,25 @@ body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
 @media(min-width:761px){.tp-wrap .tp-card{margin-bottom:8px!important}.tp-wrap .tp-viewline{margin:4px 0 2px!important}}
 /* Thông báo Cơ Duyên: giữa màn hình lệch lên trên (~28%) — trước top:12px đè lên thanh trên / hàng tab; bấm để đóng */
 .cd-toast{top:28%!important;bottom:auto!important;cursor:pointer}
+/* ===== Hành Tẩu gọn (game/nowmid.php .mid-compact) — khung la bàn: khu vực giữa, Bắc/Nam/Tây/Đông đúng hướng ===== */
+.mid-compact .mid-stage{position:relative;margin:0 0 10px;padding:12px;border-radius:20px;border:1px solid rgba(125,211,252,.28);box-shadow:0 18px 40px rgba(0,0,0,.32),0 0 40px rgba(56,189,248,.12) inset;background:radial-gradient(ellipse at 50% 50%,rgba(45,140,205,.35),transparent 62%),linear-gradient(180deg,#04091c 0%,#0a1c3e 50%,#123c66 100%)}
+.mid-compact .mid-compass{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);grid-template-areas:". n ." "w c e" ". s .";gap:8px;align-items:center}
+.mid-compact .mid-dir.n{grid-area:n}.mid-compact .mid-dir.s{grid-area:s}.mid-compact .mid-dir.w{grid-area:w}.mid-compact .mid-dir.e{grid-area:e}
+.mid-compact .mid-center{grid-area:c;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;text-align:center}
+.mid-compact .mid-pin{font-size:30px;line-height:1;filter:drop-shadow(0 0 12px rgba(56,189,248,.7))}
+.mid-compact .mid-center .tcg-title{margin:0!important;font-size:24px!important;line-height:1.2!important}
+.mid-compact .mid-center .tcg-badges{margin:0!important}
+.mid-compact .mid-center .tcg-char-badge,.mid-compact .mid-center a.tcg-char-badge:link,.mid-compact .mid-center a.tcg-char-badge:visited{margin:2px 0 0!important;font-size:13px!important;padding:5px 12px!important}
+.mid-compact .mid-dir,.mid-compact a.mid-dir:link,.mid-compact a.mid-dir:visited{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;margin:0;padding:6px 8px;border-radius:14px;border:1px solid rgba(125,211,252,.35);background:linear-gradient(180deg,rgba(20,42,86,.85),rgba(8,20,48,.9));color:#eaf6ff;text-decoration:none;text-align:center;min-width:0}
+.mid-compact a.mid-dir:hover{border-color:rgba(125,211,252,.8);box-shadow:0 0 16px rgba(56,189,248,.3)}
+.mid-compact .mid-dir.is-empty{visibility:hidden;min-height:0;padding:0;border:0}
+.mid-compact .mid-dir-lb{font-size:11px;font-weight:900;color:#7dd3fc}
+.mid-compact .mid-dir.w .mid-dir-lb{color:#4ade80}.mid-compact .mid-dir.e .mid-dir-lb{color:#fb923c}
+.mid-compact .mid-dir b{font-size:13px;font-weight:1000;line-height:1.25;overflow-wrap:anywhere}
+@media(max-width:760px){
+.mid-compact .mid-compass{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:6px}
+.mid-compact .mid-center .tcg-title{font-size:19px!important}
+.mid-compact .mid-dir b{font-size:12px}
+}
+.mid-compact .mid-center .tcg-title:before,.mid-compact .mid-center .tcg-title:after,.mid-compact .mid-center .tcg-title::before,.mid-compact .mid-center .tcg-title::after{content:none!important;display:none!important}
+@media(min-width:761px){.mid-compact .mid-center .tcg-title{white-space:nowrap!important}}
