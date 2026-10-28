@@ -698,6 +698,10 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     border: 1px solid rgba(148,163,184,.30);
 }
 .tcg-tcc-filter { display:flex; gap:6px; overflow-x:auto; padding:2px 0 10px; margin-bottom:4px; -webkit-overflow-scrolling:touch; }
+/* Ẩn thanh cuộn ngang mặc định; desktop: chip tự xuống dòng, mobile: vuốt ngang (mờ mép phải ở css/mystyle.css UI-1) */
+.tcg-tcc-filter { scrollbar-width:none; }
+.tcg-tcc-filter::-webkit-scrollbar { display:none; }
+@media (min-width:761px) { .tcg-tcc-filter { flex-wrap:wrap; overflow-x:visible; } }
 .main a.tcg-tcc-chip, .tcg-tcc-chip { flex:0 0 auto; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:900; white-space:nowrap; text-decoration:none; color:#cbd5e1 !important; background:rgba(30,41,59,.85); border:1px solid rgba(148,163,184,.35); }
 .main a.tcg-tcc-chip.on, .tcg-tcc-chip.on { color:#1e1b4b !important; background:linear-gradient(135deg,#fde68a,#f59e0b); border-color:#fde68a; }
 .tcg-tcc-empty { text-align:center; color:#94a3b8; padding:20px 0; }

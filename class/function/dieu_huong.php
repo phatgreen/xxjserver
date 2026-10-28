@@ -69,8 +69,8 @@ if (!function_exists(__NAMESPACE__ . '\\nav_tiendo_groups')) {
                 array('huyetmach', '🩸', 'Huyết Mạch'), array('tianfu', '🌟', 'Thiên Phú'), array('luonden', '🔥', 'Luyện Đan'),
             )),
             'thamhiem' => array('⚔ Thám Hiểm', array(
+                // Tỏa Yêu Tháp / Vấn Đỉnh Đài / Hầm Mỏ / Sào Thú nằm trong Phó Bản
                 array('qydt', '🗺', 'Bản Đồ'), array('phoban', '📋', 'Phó Bản'),
-                array('toayeuthap', '🗼', 'Tỏa Yêu Tháp'), array('vandinhdai', '⚔', 'Vấn Đỉnh Đài'),
             )),
             'giaothuong' => array('💰 Giao Thương', array(
                 array('shangdian&canshu=gogoumai', '🛒', 'Cửa Hàng'), array('thiencoccac&tab=wg', '📚', 'Thiên Cơ Các'),

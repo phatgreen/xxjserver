@@ -329,7 +329,8 @@ $capturesText = intval($state['total_captures']);
 
 $html = <<<HTML
 <div class="sth-page">
-    <section class="sth-hero" style="background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('./images/bg/phobansanyeuthu.png') center/cover no-repeat!important;padding:32px 18px!important">
+    <section class="sth-hero" style="background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('./images/bg/phobansanyeuthu.png') center/cover no-repeat!important;padding:32px 18px!important;position:relative!important">
+        <div class="tyt-pk-ribbon" onclick="document.getElementById('sth-guide-modal').classList.add('show')" style="cursor:pointer">HƯỚNG DẪN</div>
         <div class="sth-hero-content" style="line-height: 1.5;position:relative!important;z-index:2!important">
             <div class="sth-kicker" style="text-shadow:0 1px 6px rgba(0,0,0,.7)!important">Phó bản săn yêu thú</div>
             <h1 style="text-shadow:0 2px 10px rgba(0,0,0,.8)!important">Sào Thủ</h1>
@@ -355,16 +356,28 @@ $html = <<<HTML
 
         $battleHtml
 
-        <section class="sth-panel" style="grid-column: 1 / -1;">
-            <div class="sth-kicker">Hướng dẫn</div>
-            <h2>Luật chơi</h2>
-            <div class="sth-info-grid">
+    </div>
+</div>
+
+<!-- Hướng dẫn: popup mở từ nút góc banner (cùng kiểu "Thưởng Tầng" của Tỏa Yêu Tháp) -->
+<div id="sth-guide-modal" class="vdd-reward-overlay" onclick="if(event.target===this)this.classList.remove('show')">
+    <div class="vdd-reward-popup" style="align-self:flex-start">
+        <div class="vdd-reward-popup-head">
+            <div class="vdd-reward-popup-icon">📜</div>
+            <h3>Luật chơi</h3>
+            <p>Thu phục yêu thú ở Sào Thú</p>
+        </div>
+        <div class="vdd-reward-popup-list">
+            <div class="sth-info-grid" style="padding:10px 0">
                 <div><span>Điều kiện</span><b>Có Bùa Thu Phục + đủ Ma Thạch</b></div>
                 <div><span>Tỷ lệ thu phục</span><b>80% -> 5% (tăng cao = khó hơn)</b></div>
                 <div><span>Thưởng</span><b>Tu vi + Linh thạch</b></div>
                 <div><span>Giới hạn</span><b>Không giới hạn lượt chơi</b></div>
             </div>
-        </section>
+        </div>
+        <div class="vdd-reward-popup-foot">
+            <a class="vdd-reward-popup-close" href="javascript:void(0)" onclick="document.getElementById('sth-guide-modal').classList.remove('show')">Đóng</a>
+        </div>
     </div>
 </div>
 
