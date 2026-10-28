@@ -858,4 +858,124 @@
     "215": {
         "zbname": "Đế Ngọc Đai","zbinfo": "Trang bị bậc Đế, gắn vào ô Linh Đai.","zbgj": 0,"zbfy": 3119,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 10,"zbid": 215,"zbhp": 7493,"zblv": 600,"zbtool": 13,"zbys": "#b71c1c","taozhuang": 9,"element": "none","rarity": 9,"rarity_name": "De","realm_require": 600
     }
+,
+    "216": {
+        "zbname": "Hỗn Độn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Vũ Khí.","zbgj": 50839,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 216,"zbhp": 0,"zblv": 1000,"zbtool": 1,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "217": {
+        "zbname": "Hỗn Độn Thiên Thuẫn","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 22877,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 217,"zbhp": 35591,"zblv": 1000,"zbtool": 2,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "218": {
+        "zbname": "Hỗn Độn Quan","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Thiên Quan.","zbgj": 6469,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 218,"zbhp": 17866,"zblv": 1000,"zbtool": 3,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "219": {
+        "zbname": "Hỗn Độn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 31215,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 219,"zbhp": 64127,"zblv": 1000,"zbtool": 4,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "220": {
+        "zbname": "Hỗn Độn Hộ Thủ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 19777,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 220,"zbhp": 42793,"zblv": 1000,"zbtool": 5,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "221": {
+        "zbname": "Hỗn Độn Giới Chỉ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Giới Chỉ.","zbgj": 15334,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 221,"zbhp": 0,"zblv": 1000,"zbtool": 6,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "222": {
+        "zbname": "Hỗn Độn Yêu Đai","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 222,"zbhp": 21336,"zblv": 1000,"zbtool": 7,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "223": {
+        "zbname": "Hỗn Độn Phi Phong","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Phi Phong.","zbgj": 0,"zbfy": 14218,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 12,"zbid": 223,"zbhp": 35591,"zblv": 1000,"zbtool": 8,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "224": {
+        "zbname": "Hỗn Độn Linh Phù","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Linh Phù.","zbgj": 8865,"zbfy": 0,"zbbj": 0,"zbxx": 11,"tuposjs": 6,"tupoexp": 0,"zbid": 224,"zbhp": 10669,"zblv": 1000,"zbtool": 9,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "225": {
+        "zbname": "Hỗn Độn Ngọc Nhãn","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Ngọc Nhãn.","zbgj": 12724,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 6,"tupoexp": 0,"zbid": 225,"zbhp": 7070,"zblv": 1000,"zbtool": 10,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "226": {
+        "zbname": "Hỗn Độn Cổ Ngọc","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Cổ Ngọc.","zbgj": 12724,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 6,"tupoexp": 0,"zbid": 226,"zbhp": 7070,"zblv": 1000,"zbtool": 11,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "227": {
+        "zbname": "Hỗn Độn Vai Khôi","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 19777,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 227,"zbhp": 42793,"zblv": 1000,"zbtool": 12,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "228": {
+        "zbname": "Hỗn Độn Ngọc Đai","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Linh Đai.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 12,"zbid": 228,"zbhp": 21336,"zblv": 1000,"zbtool": 13,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "229": {
+        "zbname": "Hỗn Độn Linh Bội","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Linh Bội.","zbgj": 10075,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 0,"tupoexp": 12,"zbid": 229,"zbhp": 7070,"zblv": 1000,"zbtool": 14,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "230": {
+        "zbname": "Hỗn Độn Tọa Kỵ","zbinfo": "Trang bị bậc Hỗn Độn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 8659,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 230,"zbhp": 57063,"zblv": 1000,"zbtool": 15,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1000
+    }
+,
+    "231": {
+        "zbname": "Thái Hư Hỗn Độn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Vũ Khí.","zbgj": 78360,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 231,"zbhp": 0,"zblv": 1250,"zbtool": 1,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "232": {
+        "zbname": "Thái Hư Hỗn Độn Thiên Thuẫn","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 35324,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 232,"zbhp": 53502,"zblv": 1250,"zbtool": 2,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "233": {
+        "zbname": "Thái Hư Hỗn Độn Quan","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Thiên Quan.","zbgj": 9971,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 233,"zbhp": 26857,"zblv": 1250,"zbtool": 3,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "234": {
+        "zbname": "Thái Hư Hỗn Độn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 48199,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 234,"zbhp": 96397,"zblv": 1250,"zbtool": 4,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "235": {
+        "zbname": "Thái Hư Hỗn Độn Hộ Thủ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 30537,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 235,"zbhp": 64329,"zblv": 1250,"zbtool": 5,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "236": {
+        "zbname": "Thái Hư Hỗn Độn Giới Chỉ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Giới Chỉ.","zbgj": 23634,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 236,"zbhp": 0,"zblv": 1250,"zbtool": 6,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "237": {
+        "zbname": "Thái Hư Hỗn Độn Yêu Đai","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 237,"zbhp": 32073,"zblv": 1250,"zbtool": 7,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "238": {
+        "zbname": "Thái Hư Hỗn Độn Phi Phong","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Phi Phong.","zbgj": 0,"zbfy": 21954,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 12,"zbid": 238,"zbhp": 53502,"zblv": 1250,"zbtool": 8,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "239": {
+        "zbname": "Thái Hư Hỗn Độn Linh Phù","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Linh Phù.","zbgj": 13663,"zbfy": 0,"zbbj": 0,"zbxx": 11,"tuposjs": 6,"tupoexp": 0,"zbid": 239,"zbhp": 16039,"zblv": 1250,"zbtool": 9,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "240": {
+        "zbname": "Thái Hư Hỗn Độn Ngọc Nhãn","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Ngọc Nhãn.","zbgj": 19611,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 6,"tupoexp": 0,"zbid": 240,"zbhp": 10628,"zblv": 1250,"zbtool": 10,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "241": {
+        "zbname": "Thái Hư Hỗn Độn Cổ Ngọc","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Cổ Ngọc.","zbgj": 19611,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 6,"tupoexp": 0,"zbid": 241,"zbhp": 10628,"zblv": 1250,"zbtool": 11,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "242": {
+        "zbname": "Thái Hư Hỗn Độn Vai Khôi","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 30537,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 242,"zbhp": 64329,"zblv": 1250,"zbtool": 12,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "243": {
+        "zbname": "Thái Hư Hỗn Độn Ngọc Đai","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Linh Đai.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 12,"zbid": 243,"zbhp": 32073,"zblv": 1250,"zbtool": 13,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "244": {
+        "zbname": "Thái Hư Hỗn Độn Linh Bội","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Linh Bội.","zbgj": 15529,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 0,"tupoexp": 12,"zbid": 244,"zbhp": 10628,"zblv": 1250,"zbtool": 14,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
+,
+    "245": {
+        "zbname": "Thái Hư Hỗn Độn Tọa Kỵ","zbinfo": "Trang bị bậc Thái Hư Hỗn Độn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 13370,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 245,"zbhp": 85778,"zblv": 1250,"zbtool": 15,"zbys": "#7e57c2","taozhuang": 11,"element": "none","rarity": 11,"rarity_name": "HonDon","realm_require": 1250
+    }
 }

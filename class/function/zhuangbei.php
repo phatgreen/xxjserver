@@ -129,7 +129,8 @@ function zhuangbei_rarity_map(){
         7 => array('name' => 'Tiên',  'color' => '#e040fb', 'mult' => 2.8),
         8 => array('name' => 'Thần',  'color' => '#f44336', 'mult' => 3.5),
         9 => array('name' => 'Đế',    'color' => '#b71c1c', 'mult' => 5.0),
-        10 => array('name' => 'Đạo',  'color' => '#d4af37', 'mult' => 8.0)
+        10 => array('name' => 'Đạo',  'color' => '#d4af37', 'mult' => 8.0),
+        11 => array('name' => 'Hỗn Độn', 'color' => '#7e57c2', 'mult' => 12.0)   // làn 3: bậc 1000 / 1250
     );
 }
 
