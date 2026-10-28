@@ -535,7 +535,7 @@ if (!isset($sid) || $sid==''){
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
-    <script src="js/itemtip.js?v=2026100402"></script>
+    <script src="js/itemtip.js?v=2026102901"></script>
 </head>
 <?php
 // Khung điều hướng UI-2 (class/function/dieu_huong.php): chỉ khi đã có nhân vật

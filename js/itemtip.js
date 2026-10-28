@@ -123,8 +123,12 @@
         b.style.visibility = 'hidden';
         b.style.display = 'block';
         var r = el.getBoundingClientRect();
-        var bw = b.offsetWidth;
-        var bh = b.offsetHeight;
+        // body có zoom (.75 khi màn >= 1024px, css/mystyle.css): rect tính theo px màn hình, còn left/top của hộp
+        // (nằm trong body) bị nhân thêm zoom => đo hệ số thực trên chính hộp, tính theo px màn hình rồi chia lại.
+        var k = b.offsetWidth > 0 ? (b.getBoundingClientRect().width / b.offsetWidth) : 1;
+        if (!(k > 0)) k = 1;
+        var bw = b.offsetWidth * k;
+        var bh = b.offsetHeight * k;
         var vw = window.innerWidth;
         var vh = window.innerHeight;
 
@@ -137,8 +141,8 @@
             top = r.top - bh - GAP;
             if (top < 8) top = 8;
         }
-        b.style.left = Math.round(left) + 'px';
-        b.style.top = Math.round(top) + 'px';
+        b.style.left = Math.round(left / k) + 'px';
+        b.style.top = Math.round(top / k) + 'px';
         b.style.visibility = 'visible';
     }
 
