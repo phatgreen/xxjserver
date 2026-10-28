@@ -150,7 +150,7 @@ if (!function_exists('cw_page_url')) {
     function cw_page_url($encode, $sid, $page, $perPage)
     {
         $page = max(1, intval($page));
-        $perPage = (intval($perPage) == 5) ? 5 : 10;
+        $perPage = (intval($perPage) == 5) ? 5 : 6;
         return '?cmd='.$encode->encode("cmd=chongwu&cwpage=$page&cwper=$perPage&sid=$sid");
     }
 }
@@ -160,7 +160,7 @@ if (!function_exists('cw_pagination_html')) {
     {
         $page = max(1, intval($page));
         $totalPage = max(1, intval($totalPage));
-        $perPage = (intval($perPage) == 5) ? 5 : 10;
+        $perPage = (intval($perPage) == 5) ? 5 : 6;
 
         $html  = '<div class="cw-pagination">';
 
@@ -355,14 +355,14 @@ if (!empty($allcw) && intval($player->cw) > 0) {
 $isMobile = cw_is_mobile();
 
 // Ưu tiên cwper do link/JS truyền vào để xử lý đúng theo kích thước màn hình thực tế.
-// Mobile: 5 con/trang. Máy tính: 5 hàng x 2 cột = 10 con/trang.
+// Mobile: 5 con/trang. Máy tính: 3 hàng x 2 cột = 6 con/trang (vừa 1 màn hình).
 $cwperReq = isset($cwper) ? intval($cwper) : (isset($_GET['cwper']) ? intval($_GET['cwper']) : 0);
 if ($cwperReq == 5) {
     $perPage = 5;
-} elseif ($cwperReq == 10) {
-    $perPage = 10;
+} elseif ($cwperReq == 6) {
+    $perPage = 6;
 } else {
-    $perPage = $isMobile ? 5 : 10;
+    $perPage = $isMobile ? 5 : 6;
 }
 
 $page     = isset($cwpage) ? intval($cwpage) : (isset($_GET['cwpage']) ? intval($_GET['cwpage']) : 1);
@@ -381,9 +381,9 @@ $pagehtml   = cw_pagination_html($encode, $sid, $page, $totalPage, $totalPet, $p
 
 // JS đổi chế độ phân trang theo viewport thật. Tránh trường hợp mobile vẫn bị server nhận là desktop.
 $mobilePage = min(max(1, intval(ceil($startIndex / 5) + 1)), max(1, intval(ceil($totalPet / 5))));
-$desktopPage = min(max(1, intval(ceil($startIndex / 10) + 1)), max(1, intval(ceil($totalPet / 10))));
+$desktopPage = min(max(1, intval(ceil($startIndex / 6) + 1)), max(1, intval(ceil($totalPet / 6))));
 $mobileViewUrl  = '?cmd='.$encode->encode("cmd=chongwu&cwpage=$mobilePage&cwper=5&sid=$sid");
-$desktopViewUrl = '?cmd='.$encode->encode("cmd=chongwu&cwpage=$desktopPage&cwper=10&sid=$sid");
+$desktopViewUrl = '?cmd='.$encode->encode("cmd=chongwu&cwpage=$desktopPage&cwper=6&sid=$sid");
 
 if ($pagePets) {
     foreach ($pagePets as $cw) {
@@ -458,7 +458,7 @@ $cwhtml = <<<HTML
 <script type="text/javascript" src="./chajian/tishikuang/javascript/dialog.min.js"></script>
 <script type="text/javascript">
 (function(){
-    var desired = (window.innerWidth && window.innerWidth <= 760) ? 5 : 10;
+    var desired = (window.innerWidth && window.innerWidth <= 760) ? 5 : 6;
     var current = {$perPage};
     if (desired !== current) {
         window.location.href = (desired === 5) ? '{$mobileViewUrl}' : '{$desktopViewUrl}';
