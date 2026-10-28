@@ -7865,7 +7865,7 @@ button.fk-lock-btn{cursor:pointer;font-size:14px;font-family:inherit}
 .cd-toast div+div{margin-top:4px}
 /* ===== UI-2 / UI-3 (2026-10-28) — khung điều hướng mới, xem docs/UI_DON_GIAN_HOA_MOBILE.md mục 4 =====
    Thanh dưới cố định 5 tab (mọi trang), tab con (Nhân Vật / Linh Sủng / Nhiệm Vụ), nhóm "Tiên Đồ". HTML: class/function/dieu_huong.php */
-.tcg-bottom-nav{position:relative;z-index:1;flex:0 0 auto;margin:auto auto 0;box-sizing:border-box;width:min(660px,100vw);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border:1px solid rgba(125,211,252,.25);border-bottom:0;border-radius:16px 16px 0 0;background:linear-gradient(180deg,rgba(9,22,52,.97),rgba(4,11,30,.99));box-shadow:0 -8px 24px rgba(0,0,0,.45)}
+.tcg-bottom-nav{position:relative;z-index:1;flex:0 0 auto;margin:10px auto 0;box-sizing:border-box;width:min(660px,calc(100vw - 16px));display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border:1px solid rgba(125,211,252,.25);border-radius:16px;background:linear-gradient(180deg,rgba(9,22,52,.97),rgba(4,11,30,.99));box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .bn-tab,.bn-tab:link,.bn-tab:visited,.sn-tab,.sn-tab:link,.sn-tab:visited,.td-item,.td-item:link,.td-item:visited{position:relative;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;text-decoration:none;border-radius:12px;border:1px solid transparent;color:#94b8dd!important}
 .bn-tab{min-height:52px;padding:5px 2px}
 .bn-tab i,.sn-tab i,.td-item i{display:block;font-style:normal;line-height:1;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
@@ -7875,9 +7875,10 @@ button.fk-lock-btn{cursor:pointer;font-size:14px;font-family:inherit}
 .bn-tab.on i{filter:none}
 .bn-tab:hover,.sn-tab:hover,.td-item:hover{color:#fff!important}
 .nav-dot{position:absolute;top:5px;left:calc(50% + 8px);width:9px;height:9px;border-radius:50%;background:#ef4444;border:1px solid #fff;box-shadow:0 0 6px rgba(239,68,68,.8);pointer-events:none}
-/* Thanh dưới nằm cuối trang (margin-top:auto đẩy xuống đáy khi nội dung ngắn) — bỏ phần chừa 80px cho bản fixed cũ */
-body.tcg-bg-body.has-bn .tcg-page{padding-bottom:0!important}
-body.tcg-bg-body.has-bn .tcg-footer{margin:0!important}
+/* Thanh dưới nằm ngay sau khung nội dung (không fixed) — bỏ phần chừa 80px cho bản fixed cũ */
+body.tcg-bg-body.has-bn .tcg-page{padding-bottom:calc(12px + env(safe-area-inset-bottom))!important}
+/* Khung footer cũ (gamecss .footer có nền + padding) chỉ còn chứa script sau khi bỏ đồng hồ -> ẩn để không thành vạch mờ */
+body.tcg-bg-body .footer.tcg-footer{display:none!important}
 /* Tab con */
 .tcg-sub-nav{box-sizing:border-box;width:100%;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;margin:0 0 12px;padding:5px;border-radius:14px;border:1px solid rgba(125,211,252,.2);background:rgba(4,11,30,.55)}
 .sn-tab{min-height:46px;padding:4px 2px}
