@@ -675,8 +675,17 @@
     "116": {
         "djname": "Hỗn Nguyên Tàn Quyển",
         "djzl": "116",
-        "djinfo": "Tàn trang bí tịch Hỗn Nguyên, rơi từ Boss khu vực cấp 2050 trở lên. Gom đủ 10 quyển đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42).",
+        "djinfo": "Tàn trang bí tịch Hỗn Nguyên, rơi từ Boss khu vực cấp 2050 trở lên. Gom đủ 10–30 quyển (tùy bộ) đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42 trở lên).",
         "djid": 116,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1
+    },
+    "117": {
+        "djname": "Đại Đạo Tàn Quyển",
+        "djzl": "117",
+        "djinfo": "Tàn trang bí tịch Đại Đạo, rơi rất hiếm từ Boss khu vực cấp 3550 trở lên. Gom đủ 40 quyển đổi 1 bộ võ công Đại Đạo tại Thiên Cơ Các (cần cảnh giới thứ 72).",
+        "djid": 117,
         "djyxb": 0,
         "djjg": 0,
         "no_shop": 1

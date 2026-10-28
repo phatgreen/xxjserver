@@ -18,8 +18,8 @@
     "tier": 1,
     "subtier": 1,
     "training_time_mult": 1.0,
-    "price_linhthong": 800,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "2": {
     "cpid": 2,
@@ -40,8 +40,8 @@
     "tier": 1,
     "subtier": 2,
     "training_time_mult": 1.0,
-    "price_linhthong": 1000,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "3": {
     "cpid": 3,
@@ -62,8 +62,8 @@
     "tier": 1,
     "subtier": 3,
     "training_time_mult": 1.0,
-    "price_linhthong": 1200,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "4": {
     "cpid": 4,
@@ -84,8 +84,8 @@
     "tier": 1,
     "subtier": 4,
     "training_time_mult": 1.0,
-    "price_linhthong": 1000,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "5": {
     "cpid": 5,
@@ -106,8 +106,8 @@
     "tier": 2,
     "subtier": 1,
     "training_time_mult": 1.5,
-    "price_linhthong": 2000,
-    "price_masthach": 0
+    "price_linhthong": 174000,
+    "price_masthach": 58000
   },
   "6": {
     "cpid": 6,
@@ -128,8 +128,8 @@
     "tier": 2,
     "subtier": 2,
     "training_time_mult": 1.5,
-    "price_linhthong": 2500,
-    "price_masthach": 0
+    "price_linhthong": 174000,
+    "price_masthach": 58000
   },
   "7": {
     "cpid": 7,
@@ -150,8 +150,8 @@
     "tier": 2,
     "subtier": 3,
     "training_time_mult": 1.5,
-    "price_linhthong": 3000,
-    "price_masthach": 0
+    "price_linhthong": 174000,
+    "price_masthach": 58000
   },
   "8": {
     "cpid": 8,
@@ -172,8 +172,8 @@
     "tier": 2,
     "subtier": 4,
     "training_time_mult": 1.5,
-    "price_linhthong": 2500,
-    "price_masthach": 0
+    "price_linhthong": 300000,
+    "price_masthach": 100000
   },
   "9": {
     "cpid": 9,
@@ -194,8 +194,8 @@
     "tier": 3,
     "subtier": 1,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 800
+    "price_linhthong": 450000,
+    "price_masthach": 150000
   },
   "10": {
     "cpid": 10,
@@ -216,8 +216,8 @@
     "tier": 3,
     "subtier": 2,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 1000
+    "price_linhthong": 510000,
+    "price_masthach": 170000
   },
   "11": {
     "cpid": 11,
@@ -238,8 +238,8 @@
     "tier": 3,
     "subtier": 3,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 1000
+    "price_linhthong": 510000,
+    "price_masthach": 170000
   },
   "12": {
     "cpid": 12,
@@ -260,8 +260,8 @@
     "tier": 3,
     "subtier": 4,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 1200
+    "price_linhthong": 660000,
+    "price_masthach": 220000
   },
   "13": {
     "cpid": 13,
@@ -283,7 +283,7 @@
     "subtier": 1,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 2000
+    "price_masthach": 260000
   },
   "14": {
     "cpid": 14,
@@ -305,7 +305,7 @@
     "subtier": 2,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 2500
+    "price_masthach": 310000
   },
   "15": {
     "cpid": 15,
@@ -327,7 +327,7 @@
     "subtier": 3,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 3000
+    "price_masthach": 350000
   },
   "16": {
     "cpid": 16,
@@ -349,7 +349,7 @@
     "subtier": 4,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 3500
+    "price_masthach": 400000
   },
   "17": {
     "cpid": 17,
@@ -371,7 +371,7 @@
     "subtier": 1,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 15000
+    "price_masthach": 400000
   },
   "18": {
     "cpid": 18,
@@ -393,7 +393,7 @@
     "subtier": 2,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 18000
+    "price_masthach": 440000
   },
   "19": {
     "cpid": 19,
@@ -415,7 +415,7 @@
     "subtier": 3,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 20000
+    "price_masthach": 490000
   },
   "20": {
     "cpid": 20,
@@ -437,7 +437,7 @@
     "subtier": 4,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 25000
+    "price_masthach": 530000
   },
   "21": {
     "cpid": 21,
@@ -459,7 +459,7 @@
     "subtier": 1,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 35000
+    "price_masthach": 550000
   },
   "22": {
     "cpid": 22,
@@ -481,7 +481,7 @@
     "subtier": 2,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 40000
+    "price_masthach": 620000
   },
   "23": {
     "cpid": 23,
@@ -503,7 +503,7 @@
     "subtier": 3,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 50000
+    "price_masthach": 670000
   },
   "24": {
     "cpid": 24,
@@ -525,7 +525,7 @@
     "subtier": 4,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 60000
+    "price_masthach": 710000
   },
   "25": {
     "cpid": 25,
@@ -547,7 +547,7 @@
     "subtier": 1,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 70000
+    "price_masthach": 780000
   },
   "26": {
     "cpid": 26,
@@ -569,7 +569,7 @@
     "subtier": 2,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 85000
+    "price_masthach": 850000
   },
   "27": {
     "cpid": 27,
@@ -591,7 +591,7 @@
     "subtier": 3,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 100000
+    "price_masthach": 890000
   },
   "28": {
     "cpid": 28,
@@ -613,7 +613,7 @@
     "subtier": 4,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 120000
+    "price_masthach": 960000
   },
   "29": {
     "cpid": 29,
@@ -634,8 +634,8 @@
     "tier": 1,
     "subtier": 1,
     "training_time_mult": 1.0,
-    "price_linhthong": 1000,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "30": {
     "cpid": 30,
@@ -656,8 +656,8 @@
     "tier": 1,
     "subtier": 2,
     "training_time_mult": 1.0,
-    "price_linhthong": 1000,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "31": {
     "cpid": 31,
@@ -678,8 +678,8 @@
     "tier": 1,
     "subtier": 3,
     "training_time_mult": 1.0,
-    "price_linhthong": 1200,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "32": {
     "cpid": 32,
@@ -700,8 +700,8 @@
     "tier": 1,
     "subtier": 4,
     "training_time_mult": 1.0,
-    "price_linhthong": 1200,
-    "price_masthach": 0
+    "price_linhthong": 42000,
+    "price_masthach": 14000
   },
   "33": {
     "cpid": 33,
@@ -722,8 +722,8 @@
     "tier": 2,
     "subtier": 1,
     "training_time_mult": 1.5,
-    "price_linhthong": 2200,
-    "price_masthach": 0
+    "price_linhthong": 174000,
+    "price_masthach": 58000
   },
   "34": {
     "cpid": 34,
@@ -744,8 +744,8 @@
     "tier": 2,
     "subtier": 2,
     "training_time_mult": 1.5,
-    "price_linhthong": 2500,
-    "price_masthach": 0
+    "price_linhthong": 174000,
+    "price_masthach": 58000
   },
   "35": {
     "cpid": 35,
@@ -766,8 +766,8 @@
     "tier": 2,
     "subtier": 3,
     "training_time_mult": 1.5,
-    "price_linhthong": 2800,
-    "price_masthach": 0
+    "price_linhthong": 243000,
+    "price_masthach": 81000
   },
   "36": {
     "cpid": 36,
@@ -788,8 +788,8 @@
     "tier": 2,
     "subtier": 4,
     "training_time_mult": 1.5,
-    "price_linhthong": 2800,
-    "price_masthach": 0
+    "price_linhthong": 300000,
+    "price_masthach": 100000
   },
   "37": {
     "cpid": 37,
@@ -810,8 +810,8 @@
     "tier": 3,
     "subtier": 1,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 900
+    "price_linhthong": 450000,
+    "price_masthach": 150000
   },
   "38": {
     "cpid": 38,
@@ -832,8 +832,8 @@
     "tier": 3,
     "subtier": 2,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 1000
+    "price_linhthong": 510000,
+    "price_masthach": 170000
   },
   "39": {
     "cpid": 39,
@@ -854,8 +854,8 @@
     "tier": 3,
     "subtier": 3,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 1100
+    "price_linhthong": 570000,
+    "price_masthach": 190000
   },
   "40": {
     "cpid": 40,
@@ -876,8 +876,8 @@
     "tier": 3,
     "subtier": 4,
     "training_time_mult": 2.5,
-    "price_linhthong": 0,
-    "price_masthach": 1200
+    "price_linhthong": 660000,
+    "price_masthach": 220000
   },
   "41": {
     "cpid": 41,
@@ -899,7 +899,7 @@
     "subtier": 1,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 2200
+    "price_masthach": 260000
   },
   "42": {
     "cpid": 42,
@@ -921,7 +921,7 @@
     "subtier": 2,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 2600
+    "price_masthach": 310000
   },
   "43": {
     "cpid": 43,
@@ -943,7 +943,7 @@
     "subtier": 3,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 3000
+    "price_masthach": 350000
   },
   "44": {
     "cpid": 44,
@@ -965,7 +965,7 @@
     "subtier": 4,
     "training_time_mult": 4.0,
     "price_linhthong": 0,
-    "price_masthach": 3500
+    "price_masthach": 400000
   },
   "45": {
     "cpid": 45,
@@ -987,7 +987,7 @@
     "subtier": 1,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 16000
+    "price_masthach": 400000
   },
   "46": {
     "cpid": 46,
@@ -1009,7 +1009,7 @@
     "subtier": 2,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 19000
+    "price_masthach": 440000
   },
   "47": {
     "cpid": 47,
@@ -1031,7 +1031,7 @@
     "subtier": 3,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 21000
+    "price_masthach": 490000
   },
   "48": {
     "cpid": 48,
@@ -1053,7 +1053,7 @@
     "subtier": 4,
     "training_time_mult": 7.0,
     "price_linhthong": 0,
-    "price_masthach": 24000
+    "price_masthach": 530000
   },
   "49": {
     "cpid": 49,
@@ -1075,7 +1075,7 @@
     "subtier": 1,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 38000
+    "price_masthach": 550000
   },
   "50": {
     "cpid": 50,
@@ -1097,7 +1097,7 @@
     "subtier": 2,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 42000
+    "price_masthach": 620000
   },
   "51": {
     "cpid": 51,
@@ -1119,7 +1119,7 @@
     "subtier": 3,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 48000
+    "price_masthach": 670000
   },
   "52": {
     "cpid": 52,
@@ -1141,7 +1141,7 @@
     "subtier": 4,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 55000
+    "price_masthach": 710000
   },
   "53": {
     "cpid": 53,
@@ -1163,7 +1163,7 @@
     "subtier": 1,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 75000
+    "price_masthach": 780000
   },
   "54": {
     "cpid": 54,
@@ -1185,7 +1185,7 @@
     "subtier": 2,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 90000
+    "price_masthach": 850000
   },
   "55": {
     "cpid": 55,
@@ -1207,7 +1207,7 @@
     "subtier": 3,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 105000
+    "price_masthach": 890000
   },
   "56": {
     "cpid": 56,
@@ -1229,7 +1229,7 @@
     "subtier": 4,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 125000
+    "price_masthach": 960000
   },
   "57": {
     "cpid": 57,
@@ -1251,7 +1251,7 @@
     "subtier": 1,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 150000
+    "price_masthach": 1000000
   },
   "58": {
     "cpid": 58,
@@ -1273,7 +1273,7 @@
     "subtier": 1,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 150000
+    "price_masthach": 1000000
   },
   "59": {
     "cpid": 59,
@@ -1295,7 +1295,7 @@
     "subtier": 2,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 180000
+    "price_masthach": 1340000
   },
   "60": {
     "cpid": 60,
@@ -1317,7 +1317,7 @@
     "subtier": 2,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 180000
+    "price_masthach": 1340000
   },
   "61": {
     "cpid": 61,
@@ -1339,7 +1339,7 @@
     "subtier": 3,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 200000
+    "price_masthach": 1740000
   },
   "62": {
     "cpid": 62,
@@ -1361,7 +1361,7 @@
     "subtier": 3,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 200000
+    "price_masthach": 1740000
   },
   "63": {
     "cpid": 63,
@@ -1383,7 +1383,7 @@
     "subtier": 4,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 240000
+    "price_masthach": 2550000
   },
   "64": {
     "cpid": 64,
@@ -1405,7 +1405,7 @@
     "subtier": 4,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 240000
+    "price_masthach": 2550000
   },
   "65": {
     "cpid": 65,
@@ -1427,7 +1427,7 @@
     "subtier": 1,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 280000
+    "price_masthach": 4160000
   },
   "66": {
     "cpid": 66,
@@ -1449,7 +1449,7 @@
     "subtier": 1,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 280000
+    "price_masthach": 4160000
   },
   "67": {
     "cpid": 67,
@@ -1471,7 +1471,7 @@
     "subtier": 2,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 330000
+    "price_masthach": 5990000
   },
   "68": {
     "cpid": 68,
@@ -1493,6 +1493,182 @@
     "subtier": 2,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 330000
+    "price_masthach": 5990000
+  },
+  "69": {
+    "cpid": 69,
+    "cpname": "Thần Mệnh Phá Đạo Quyết",
+    "cpys": "#C0C0C0",
+    "cpsort": "Sát Pháp",
+    "cpinfo": "Thần mệnh phá đạo|Tăng % công kích|Thần Mệnh Phá Đạo Quyết viết lại thần mệnh bằng sát ý, một đòn đủ phá vỡ đạo tắc của đối thủ.",
+    "element": "kim",
+    "effect_type": "atk_bonus",
+    "effect_value": 20,
+    "effect_value_max": 80,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 74,
+    "tier_require": 0,
+    "quality": 5,
+    "tier": 9,
+    "subtier": 3,
+    "training_time_mult": 60.0,
+    "price_linhthong": 0,
+    "price_masthach": 8280000
+  },
+  "70": {
+    "cpid": 70,
+    "cpname": "Sáng Thế Thánh Giáp Kinh",
+    "cpys": "#8B4513",
+    "cpsort": "Hộ Thể",
+    "cpinfo": "Thánh giáp sáng thế|Tăng % phòng ngự|Sáng Thế Thánh Giáp Kinh ngưng lực sáng thế thành giáp trụ vô hình, đao kiếm chém vào chỉ tóe lửa.",
+    "element": "tho",
+    "effect_type": "def_bonus",
+    "effect_value": 20,
+    "effect_value_max": 80,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 74,
+    "tier_require": 0,
+    "quality": 5,
+    "tier": 9,
+    "subtier": 3,
+    "training_time_mult": 60.0,
+    "price_linhthong": 0,
+    "price_masthach": 8280000
+  },
+  "71": {
+    "cpid": 71,
+    "cpname": "Hỗn Độn Diệt Thánh Công",
+    "cpys": "#FF4500",
+    "cpsort": "Sát Pháp",
+    "cpinfo": "Hỗn độn diệt thánh|Tăng % sát thương bạo kích|Hỗn Độn Diệt Thánh Công dồn lực hỗn độn vào một điểm, đòn bạo kích đủ đánh vỡ cả thánh thể.",
+    "element": "hoa",
+    "effect_type": "crit_dmg",
+    "effect_value": 16,
+    "effect_value_max": 70,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 78,
+    "tier_require": 0,
+    "quality": 5,
+    "tier": 9,
+    "subtier": 4,
+    "training_time_mult": 60.0,
+    "price_linhthong": 0,
+    "price_masthach": 10480000
+  },
+  "72": {
+    "cpid": 72,
+    "cpname": "Thánh Nhân Bất Hoại Quyết",
+    "cpys": "#1E90FF",
+    "cpsort": "Hộ Thể",
+    "cpinfo": "Thánh nhân bất hoại|Giảm % sát thương nhận vào|Thánh Nhân Bất Hoại Quyết dẫn sát thương tan vào đạo tắc trời đất, đòn đánh tới chỉ còn lại một phần nhỏ.",
+    "element": "thuy",
+    "effect_type": "dmg_reduce",
+    "effect_value": 16,
+    "effect_value_max": 60,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 78,
+    "tier_require": 0,
+    "quality": 5,
+    "tier": 9,
+    "subtier": 4,
+    "training_time_mult": 60.0,
+    "price_linhthong": 0,
+    "price_masthach": 10480000
+  },
+  "73": {
+    "cpid": 73,
+    "cpname": "Phàm Thể Luyện Lực Quyết",
+    "cpys": "#C0C0C0",
+    "cpsort": "Sát Pháp",
+    "cpinfo": "Luyện lực phàm thể|Tăng % công kích|Phàm Thể Luyện Lực Quyết là khẩu quyết rèn sức mà người phàm nào cũng học được, giúp mỗi đòn đánh nặng thêm đôi phần.",
+    "element": "kim",
+    "effect_type": "atk_bonus",
+    "effect_value": 2,
+    "effect_value_max": 10,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 0,
+    "tier_require": 0,
+    "quality": 1,
+    "tier": 0,
+    "subtier": 1,
+    "training_time_mult": 1.0,
+    "price_linhthong": 3000,
+    "price_masthach": 1000
+  },
+  "74": {
+    "cpid": 74,
+    "cpname": "Phàm Thể Hộ Thân Kinh",
+    "cpys": "#8B4513",
+    "cpsort": "Hộ Thể",
+    "cpinfo": "Hộ thân phàm thể|Tăng % phòng ngự|Phàm Thể Hộ Thân Kinh dạy cách vận khí bảo vệ thân thể, là bài học đầu tiên của người mới bước vào tu luyện.",
+    "element": "tho",
+    "effect_type": "def_bonus",
+    "effect_value": 2,
+    "effect_value_max": 10,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 0,
+    "tier_require": 0,
+    "quality": 1,
+    "tier": 0,
+    "subtier": 2,
+    "training_time_mult": 1.0,
+    "price_linhthong": 3000,
+    "price_masthach": 1000
+  },
+  "75": {
+    "cpid": 75,
+    "cpname": "Dưỡng Khí Tĩnh Tâm Pháp",
+    "cpys": "#228B22",
+    "cpsort": "Nội Công",
+    "cpinfo": "Dưỡng khí tĩnh tâm|Hồi % khí huyết mỗi lượt|Dưỡng Khí Tĩnh Tâm Pháp giúp tâm bình khí hòa, thương nhẹ tự lành dần trong lúc giao chiến.",
+    "element": "moc",
+    "effect_type": "hp_regen",
+    "effect_value": 1,
+    "effect_value_max": 8,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 0,
+    "tier_require": 0,
+    "quality": 1,
+    "tier": 0,
+    "subtier": 3,
+    "training_time_mult": 1.0,
+    "price_linhthong": 3000,
+    "price_masthach": 1000
+  },
+  "76": {
+    "cpid": 76,
+    "cpname": "Nạp Khí Nhập Môn Thuật",
+    "cpys": "#FFD700",
+    "cpsort": "Tâm Pháp",
+    "cpinfo": "Nạp khí nhập môn|Tăng tốc độ hấp thu linh khí|Nạp Khí Nhập Môn Thuật là cách hít thở thu nạp linh khí đơn giản nhất, nền móng cho mọi công pháp về sau.",
+    "element": "all",
+    "effect_type": "absorb_speed",
+    "effect_value": 3,
+    "effect_value_max": 15,
+    "penalty_atk_percent": 0,
+    "penalty_def_percent": 0,
+    "max_level": 10,
+    "realm_require": 0,
+    "tier_require": 0,
+    "quality": 1,
+    "tier": 0,
+    "subtier": 4,
+    "training_time_mult": 1.0,
+    "price_linhthong": 3000,
+    "price_masthach": 1000
   }
 }

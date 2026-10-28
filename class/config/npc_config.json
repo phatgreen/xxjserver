@@ -948,5 +948,105 @@
     "taskid": "274,275,276",
     "mz": "",
     "rwqy": ""
+  },
+  "109": {
+    "id": 109,
+    "nname": "Ngân Hà Độ Tinh Sứ",
+    "nsex": "Nam",
+    "ninfo": "Sứ giả chèo thuyền sao ở Ngân Hà Tận Đầu, đưa người qua chỗ dòng ngân hà đổ xuống hư không.",
+    "muban": "",
+    "taskid": "277,278,279",
+    "mz": "",
+    "rwqy": ""
+  },
+  "110": {
+    "id": 110,
+    "nname": "Viên Mãn Đài Thủ Tọa Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Lão nhân ngồi giữ bậc đài Chu Thiên Viên Mãn, đã thấy vô số người tu chu thiên đến rồi đi.",
+    "muban": "",
+    "taskid": "280,281,282",
+    "mz": "",
+    "rwqy": ""
+  },
+  "111": {
+    "id": 111,
+    "nname": "Thiên Thư Các Thủ Thư Thần Nữ",
+    "nsex": "Nữ",
+    "ninfo": "Thần nữ giữ sách trong Thần Mệnh Thiên Thư Các, từng trang sách nàng lật đều ghi một số mệnh.",
+    "muban": "",
+    "taskid": "283,284,285",
+    "mz": "",
+    "rwqy": ""
+  },
+  "112": {
+    "id": 112,
+    "nname": "Thần Quốc Biên Cảnh Sứ Giả",
+    "nsex": "Nam",
+    "ninfo": "Sứ giả canh biên giới Sáng Thế Thần Quốc, chỉ cho kẻ đủ tư cách bước vào thần quốc.",
+    "muban": "",
+    "taskid": "286,287,288",
+    "mz": "",
+    "rwqy": ""
+  },
+  "113": {
+    "id": 113,
+    "nname": "Trường Hà Lái Đò Thần Nhân",
+    "nsex": "Nam",
+    "ninfo": "Thần nhân lái đò trên Vận Mệnh Trường Hà, đưa người ngược dòng quá khứ hay xuôi về tương lai.",
+    "muban": "",
+    "taskid": "289,290,291",
+    "mz": "",
+    "rwqy": ""
+  },
+  "114": {
+    "id": 114,
+    "nname": "Thánh Lộ Dẫn Đường Đạo Đồng",
+    "nsex": "Nam",
+    "ninfo": "Đạo đồng dẫn đường trên Nhập Thánh Lộ, tuổi nhỏ nhưng đã nhìn thấu tâm ma của người qua đường.",
+    "muban": "",
+    "taskid": "292,293,294",
+    "mz": "",
+    "rwqy": ""
+  },
+  "115": {
+    "id": 115,
+    "nname": "Thí Luyện Tháp Thủ Tháp Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Lão nhân giữ cửa Chuẩn Thánh Thí Luyện Tháp, ghi tên từng người vượt qua mỗi tầng tháp.",
+    "muban": "",
+    "taskid": "295,296,297",
+    "mz": "",
+    "rwqy": ""
+  },
+  "116": {
+    "id": 116,
+    "nname": "Thánh Cảnh Hỗn Độn Đạo Nhân",
+    "nsex": "Nam",
+    "ninfo": "Đạo nhân sống giữa Hỗn Độn Thánh Cảnh, thân hình mờ ảo như hòa vào màn hỗn mang.",
+    "muban": "",
+    "taskid": "298,299,300",
+    "mz": "",
+    "rwqy": ""
+  },
+  "117": {
+    "id": 117,
+    "nname": "Thánh Vực Thủ Vọng Sứ",
+    "nsex": "Nữ",
+    "ninfo": "Sứ giả canh gác Hư Vô Thánh Vực, đôi mắt nhìn xuyên qua hư vô thấy được ma thánh ẩn mình.",
+    "muban": "",
+    "taskid": "301,302,303",
+    "mz": "",
+    "rwqy": ""
+  },
+  "118": {
+    "id": 118,
+    "nname": "Thánh Điện Thủ Môn Thánh Tướng",
+    "nsex": "Nam",
+    "ninfo": "Thánh tướng trấn giữ cửa Vô Thượng Thánh Điện, kim giáp trên người phát ra thánh quang chói lòa.",
+    "muban": "",
+    "taskid": "304,305,306",
+    "mz": "",
+    "rwqy": ""
   }
 }

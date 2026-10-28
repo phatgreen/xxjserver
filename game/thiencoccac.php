@@ -3,6 +3,7 @@ if (!isset($cmd)) $cmd = '';
 if (!isset($canshu)) $canshu = '';
 if (!isset($buy_type)) $buy_type = '';
 if (!isset($buy_id)) $buy_id = 0;
+if (!isset($tien)) $tien = '';   // công pháp bán cả 2 loại tiền: 'lt' = trả Linh thạch, còn lại trả Ma thạch
 
 require_once __DIR__ . '/wugong_utils.php';
 require_once __DIR__ . '/../class/function/wugong.php';
@@ -27,6 +28,7 @@ $rangesjjClean[0] = isset($rangesjjClean[1]) ? $rangesjjClean[1] : 'Nhập Môn'
 $playerRealmName = isset($rangesjjClean[$jj]) ? $rangesjjClean[$jj] : 'Nhập Môn';
 
 $giaiNames = array(
+    0 => 'Phàm Giai',   // nhập môn (chủ dự án 2026-10-28)
     1 => 'Hoàng Giai',
     2 => 'Huyền Giai',
     3 => 'Địa Giai',
@@ -44,6 +46,7 @@ $phamNames = array(
     4 => 'Thượng Phẩm',
 );
 $giaiCss = array(
+    0 => 'pham',
     1 => 'hoang',
     2 => 'huyen',
     3 => 'dia',
@@ -55,9 +58,10 @@ $giaiCss = array(
     9 => 'dao',     // làn 7
 );
 $giaiCurrency = array(
-    1 => 'Linh Thạch',
-    2 => 'Linh Thạch',
-    3 => 'Ma Thạch',
+    0 => 'Linh Thạch / Ma Thạch',   // giai 0–3: mua bằng 1 trong 2 (Linh thạch = 3 × Ma thạch)
+    1 => 'Linh Thạch / Ma Thạch',
+    2 => 'Linh Thạch / Ma Thạch',
+    3 => 'Linh Thạch / Ma Thạch',
     4 => 'Ma Thạch',
     5 => 'Ma Thạch',
     6 => 'Ma Thạch',
@@ -101,6 +105,7 @@ $wgRarityNames = array(
     'than_cong'  => 'Tuyệt Thế',
     'tien_dao'   => 'Tiên Đạo',
     'hon_nguyen' => 'Hỗn Nguyên',   // làn 5
+    'dai_dao'    => 'Đại Đạo',      // làn 8
 );
 $wgRarityCss = array(
     'nhap_mon'   => 'wrar-nhap',
@@ -110,6 +115,7 @@ $wgRarityCss = array(
     'than_cong'  => 'wrar-than',
     'tien_dao'   => 'wrar-tien',
     'hon_nguyen' => 'wrar-hn',
+    'dai_dao'    => 'wrar-dd',
 );
 $elementNames = array(
     'kim'  => 'Kim',
@@ -225,6 +231,10 @@ if ($canshu != '') {
                 break;
             }
 
+            // Bán cả 2 loại tiền (giai 0–3): trả theo $tien, mặc định Ma thạch
+            if ($priceLT > 0 && $priceMT > 0) {
+                if ($tien === 'lt') $priceMT = 0; else $priceLT = 0;
+            }
             if ($priceLT > 0) {
                 if (intval($player->uyxb) < $priceLT) {
                     $tssb = wg_popup_html('error', 'Không đủ Linh thạch! (cần ' . number_format($priceLT) . ')');
@@ -309,7 +319,7 @@ if ($currentTab === 'wg') {
     foreach ($wgCatOrder as $cat) {
         if (!isset($grouped[$cat]) || count($grouped[$cat]) == 0) continue;
         $items = $grouped[$cat];
-        $rarityOrder = array('nhap_mon', 'ha_thua', 'trung_cap', 'thuong_thua', 'than_cong', 'tien_dao', 'hon_nguyen');
+        $rarityOrder = array('nhap_mon', 'ha_thua', 'trung_cap', 'thuong_thua', 'than_cong', 'tien_dao', 'hon_nguyen', 'dai_dao');
         usort($items, function($a, $b) use ($rarityOrder) {
             $ai = array_search($a['rarity'], $rarityOrder);
             $bi = array_search($b['rarity'], $rarityOrder);
@@ -457,10 +467,13 @@ if ($currentTab === 'wg') {
             $trainText = tcc_training_text($trainMult);
 
             $buyCmd = $encode->encode("cmd=thiencoccac&canshu=buy_cp&buy_type=cp&buy_id=" . $cfg['cpid'] . "&tab=cp&sid=" . $sid);
+            $isDual = ($priceLT > 0 && $priceMT > 0);
 
             $priceText = '';
             $priceTextPlain = '';
-            if ($priceLT > 0) {
+            if ($isDual) {
+                $priceText = '';   // 2 nút mua, mỗi nút ghi giá riêng
+            } elseif ($priceLT > 0) {
                 $priceText = '<span class="tcg-tcc-price lt">' . number_format($priceLT) . ' LT</span>';
                 $priceTextPlain = number_format($priceLT) . ' Linh thạch';
             } else {
@@ -500,7 +513,17 @@ if ($currentTab === 'wg') {
                 'type' => 'info',
             );
             $cpConfirmJson = htmlspecialchars(json_encode($cpConfirmOpts, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
-            if ($canBuy) {
+            if ($canBuy && $isDual) {
+                $itemsHtml .= '<div class="tcg-tcc-dual">';
+                foreach (array('mt' => array($priceMT, 'Ma thạch', 'MT'), 'lt' => array($priceLT, 'Linh thạch', 'LT')) as $tk => $tv) {
+                    $dualCmd = $encode->encode("cmd=thiencoccac&canshu=buy_cp&buy_type=cp&buy_id=" . $cfg['cpid'] . "&tien=" . $tk . "&tab=cp&sid=" . $sid);
+                    $dualOpts = $cpConfirmOpts;
+                    $dualOpts['msg'] = 'Mua ' . $cpname . ' với ' . number_format($tv[0]) . ' ' . $tv[1] . '?';
+                    $dualJson = htmlspecialchars(json_encode($dualOpts, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
+                    $itemsHtml .= '<a class="tcg-tcc-buy-btn ' . $tk . '" href="?cmd=' . $dualCmd . '" onclick="return false;" data-wg-click=\'' . $dualJson . '\'>' . number_format($tv[0]) . ' ' . $tv[2] . '</a>';
+                }
+                $itemsHtml .= '</div>';
+            } elseif ($canBuy) {
                 $itemsHtml .= '<a class="tcg-tcc-buy-btn" href="?cmd=' . $buyCmd . '" onclick="return false;" data-wg-click=\'' . $cpConfirmJson . '\'>Mua</a>';
             } else {
                 $itemsHtml .= '<span class="tcg-tcc-lock">🔒</span>';
@@ -691,6 +714,11 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     background: linear-gradient(135deg, rgba(192,132,252,.22), rgba(192,132,252,.06));
     border: 1px solid rgba(192,132,252,.45);
 }
+/* Phàm Giai (nhập môn) */
+.tcg-tcc-tier-pham {
+    background: linear-gradient(135deg, rgba(158,158,158,.15), rgba(158,158,158,.05));
+    border: 1px solid rgba(158,158,158,.30);
+}
 /* Làn 7: Đạo Giai */
 .tcg-tcc-tier-dao {
     background: linear-gradient(135deg, rgba(255,179,0,.22), rgba(255,179,0,.06));
@@ -744,6 +772,13 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     color: #ff7a59;
     border: 1px solid rgba(255,49,0,.40);
     text-shadow: 0 0 8px rgba(255,49,0,.35);
+}
+/* Làn 8: phẩm Đại Đạo (trên Hỗn Nguyên) */
+.wrar-dd {
+    background: rgba(253,224,71,.18);
+    color: #fef08a;
+    border: 1px solid rgba(253,224,71,.55);
+    text-shadow: 0 0 10px rgba(253,224,71,.6);
 }
 /* Làn 5: phẩm Hỗn Nguyên (trên Tiên Đạo) */
 .wrar-hn {
@@ -881,6 +916,10 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
 }
 .tcg-tcc-price.lt { color: #38bdf8; }
 .tcg-tcc-price.mt { color: #a78bfa; }
+/* Giai 0–3: 2 nút mua (Ma thạch / Linh thạch) xếp dọc */
+.tcg-tcc-dual { display: flex; flex-direction: column; gap: 4px; }
+.tcg-tcc-dual .tcg-tcc-buy-btn { padding: 4px 10px; font-size: 11px; text-align: center; white-space: nowrap; }
+.tcg-tcc-dual .tcg-tcc-buy-btn.lt { background: linear-gradient(135deg, #0ea5e9, #38bdf8); box-shadow: 0 0 10px rgba(56,189,248,.25); }
 .tcg-tcc-buy-btn {
     display: inline-block;
     padding: 5px 14px;

@@ -45,7 +45,8 @@
       "than_cong": 0.15,
       "ha_thua": 0.02,
       "tien_dao": 0.2,
-      "hon_nguyen": 0.25
+      "hon_nguyen": 0.25,
+      "dai_dao": 0.3
     },
     "crit_mult": 1.72,
     "passive_scale": {
@@ -2362,6 +2363,162 @@
         "value": 95,
         "hits": 5,
         "text": "Tứ tượng hợp nhất thành một đạo tinh quang, xuyên thẳng qua {mob}!"
+      }
+    ],
+    "99": [
+      {
+        "tier": 1,
+        "name": "Tru Tiên Kiếm Khí",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Kiếm khí đại đạo xé gió lao thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đoạn Đạo Nhất Kiếm",
+        "effect": "pierce",
+        "value": 89,
+        "hits": 3,
+        "text": "Một kiếm chém đứt đạo tắc hộ thân, phòng ngự của {mob} tan thành hư vô!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Đạo Quy Kiếm",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 1,
+        "text": "Vạn đạo tắc hóa thành vạn thanh kiếm cùng chém xuống, {mob} không còn chỗ dung thân!"
+      }
+    ],
+    "100": [
+      {
+        "tier": 1,
+        "name": "Trường Xuân Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang sinh cơ vạn mộc đánh trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Vạn Mộc Hồi Xuân",
+        "effect": "heal",
+        "value": 24,
+        "hits": 1,
+        "text": "Sinh cơ vạn mộc tràn vào kinh mạch, thương thế lành lại ngay trước mắt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Đạo Thể Trường Xuân",
+        "effect": "heal",
+        "value": 45,
+        "hits": 3,
+        "text": "Đạo thể hóa thành cổ thụ vạn năm, vừa trói chặt {mob} vừa hồi phục toàn thân!"
+      }
+    ],
+    "101": [
+      {
+        "tier": 1,
+        "name": "Vô Cực Thủy Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một chỉ mềm như nước mà sắc như kim điểm thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thủy Ảnh Vô Hình",
+        "effect": "guard",
+        "value": 90,
+        "hits": 3,
+        "text": "Thân hình tan như nước, {mob} đánh tới chỉ trúng gợn sóng!"
+      },
+      {
+        "tier": 3,
+        "name": "Vô Cực Thủy Lao",
+        "effect": "stun",
+        "value": 90,
+        "hits": 4,
+        "text": "Nước vô cực cuộn thành ngục, giam chặt {mob} không lối thoát!"
+      }
+    ],
+    "102": [
+      {
+        "tier": 1,
+        "name": "Phần Thánh Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền mang đạo hỏa đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đạo Hỏa Thiêu Thần",
+        "effect": "burn",
+        "value": 74,
+        "hits": 3,
+        "text": "Đạo hỏa bén vào thần hồn {mob}, cháy mãi không tắt!"
+      },
+      {
+        "tier": 3,
+        "name": "Phần Thánh Diệt Thiên",
+        "effect": "crit",
+        "value": 155,
+        "hits": 1,
+        "text": "Biển đạo hỏa cuộn trào, thiêu rụi cả bầu trời quanh {mob}!"
+      }
+    ],
+    "103": [
+      {
+        "tier": 1,
+        "name": "Thánh Thể Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền nặng như đại địa nện xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Bất Hoại Thánh Thân",
+        "effect": "guard",
+        "value": 90,
+        "hits": 1,
+        "text": "Thánh thể phát sáng, đòn của {mob} chỉ để lại vết xước!"
+      },
+      {
+        "tier": 3,
+        "name": "Đại Đạo Trấn Thế",
+        "effect": "stun",
+        "value": 90,
+        "hits": 2,
+        "text": "Uy áp đại đạo đè xuống, {mob} quỳ rạp không đứng dậy nổi!"
+      }
+    ],
+    "104": [
+      {
+        "tier": 1,
+        "name": "Quy Nhất Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang khí tức đại đạo đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Đại Đạo Hấp Nguyên",
+        "effect": "lifesteal",
+        "value": 48,
+        "hits": 3,
+        "text": "Đại đạo xoay chuyển, rút tinh khí của {mob} về thân ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Vạn Đạo Quy Nhất",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 5,
+        "text": "Vạn đạo hợp thành một đạo quang, xuyên thẳng qua {mob}!"
       }
     ]
   }

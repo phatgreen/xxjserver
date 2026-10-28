@@ -39,18 +39,28 @@ DROP_DJID_BY_LV = {lv: HN_DJID for lv in range(2050, 2501, 50)}
 # boss làn 6 (2550–3000) rơi Hỗn Nguyên Tàn Quyển 5%.
 HN2_WGID = list(range(87, 93))
 TIENDAO_WGID += HN2_WGID
-NEED_BY_WGID.update({wid: 15 for wid in HN2_WGID})
+NEED_BY_WGID.update({wid: 20 for wid in HN2_WGID})   # chủ dự án 2026-10-28: 15 → 20 (hiếm dần theo làn)
 DJID_BY_WGID.update({wid: HN_DJID for wid in HN2_WGID})
-DROP_PCT.update({lv: 5 for lv in range(2550, 3001, 50)})
+DROP_PCT.update({lv: 4 for lv in range(2550, 3001, 50)})   # 5% → 4%
 DROP_DJID_BY_LV.update({lv: HN_DJID for lv in range(2550, 3001, 50)})
 # Làn 7 (docs/LAN7_CAP_3000_3500.md mục 4, phương án B): 6 bộ Hỗn Nguyên CG 65 (wgid 93–98, lan7_a_build.py) đổi 20 quyển 116 / bộ
 # (bộ CG 55 giữ 15, CG 42 giữ 10); boss làn 7 (3050–3500) rơi Hỗn Nguyên Tàn Quyển 5%.
 HN3_WGID = list(range(93, 99))
 TIENDAO_WGID += HN3_WGID
-NEED_BY_WGID.update({wid: 20 for wid in HN3_WGID})
+NEED_BY_WGID.update({wid: 30 for wid in HN3_WGID})   # 20 → 30
 DJID_BY_WGID.update({wid: HN_DJID for wid in HN3_WGID})
-DROP_PCT.update({lv: 5 for lv in range(3050, 3501, 50)})
+DROP_PCT.update({lv: 3 for lv in range(3050, 3501, 50)})   # 5% → 3%
 DROP_DJID_BY_LV.update({lv: HN_DJID for lv in range(3050, 3501, 50)})
+# Chủ dự án 2026-10-28: Tàn Quyển hiếm dần theo làn — làn 6 rơi 4% / bộ CG 55 cần 20, làn 7 rơi 3% / bộ CG 65 cần 30 (đã sửa ở trên),
+# làn 8 (docs/LAN8_CAP_3500_4000.md): phẩm mới ĐẠI ĐẠO — 6 bộ CG 72 (wgid 99–104, lan8_a_build.py) đổi 40 Đại Đạo Tàn Quyển (djid 117) / bộ;
+# boss làn 8 (3550–4000) rơi Đại Đạo Tàn Quyển 2% thay Hỗn Nguyên.
+DD_DJID, DD_NEED = 117, 40
+DD_WGID = list(range(99, 105))
+TIENDAO_WGID += DD_WGID
+NEED_BY_WGID.update({wid: DD_NEED for wid in DD_WGID})
+DJID_BY_WGID.update({wid: DD_DJID for wid in DD_WGID})
+DROP_PCT.update({lv: 2 for lv in range(3550, 4001, 50)})
+DROP_DJID_BY_LV.update({lv: DD_DJID for lv in range(3550, 4001, 50)})
 
 # ---- Cấu hình đổi / rơi ----
 save('tiendao_config.json', {
@@ -79,8 +89,17 @@ items = [{
     'djname': 'Hỗn Nguyên Tàn Quyển',
     'djzl': str(HN_DJID),
     'djinfo': 'Tàn trang bí tịch Hỗn Nguyên, rơi từ Boss khu vực cấp 2050 trở lên. '
-              'Gom đủ %d quyển đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42).' % HN_NEED,
+              'Gom đủ %d–30 quyển (tùy bộ) đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42 trở lên).' % HN_NEED,
     'djid': HN_DJID,
+    'djyxb': 0,
+    'djjg': 0,
+    'no_shop': 1,
+}, {
+    'djname': 'Đại Đạo Tàn Quyển',
+    'djzl': str(DD_DJID),
+    'djinfo': 'Tàn trang bí tịch Đại Đạo, rơi rất hiếm từ Boss khu vực cấp 3550 trở lên. '
+              'Gom đủ %d quyển đổi 1 bộ võ công Đại Đạo tại Thiên Cơ Các (cần cảnh giới thứ 72).' % DD_NEED,
+    'djid': DD_DJID,
     'djyxb': 0,
     'djjg': 0,
     'no_shop': 1,
@@ -94,6 +113,6 @@ for it in items:
     block = json.dumps(it, ensure_ascii=False, indent=4).replace('\n', '\n    ')
     text = re.sub(r'\s*\}\s*$', ',\n    "%d": %s\n}\n' % (it['djid'], block), text, count=1)
 d = json.loads(text)  # kiểm tra JSON hợp lệ trước khi ghi
-assert text.count('"%d": {' % DJID) == 1 and text.count('"%d": {' % HN_DJID) == 1
+assert all(text.count('"%d": {' % i) == 1 for i in (DJID, HN_DJID, DD_DJID))
 open(path, 'w', encoding='utf-8').write(text)
-print('OK: tiendao_config.json + daoju %d, %d' % (DJID, HN_DJID))
+print('OK: tiendao_config.json + daoju %d, %d, %d' % (DJID, HN_DJID, DD_DJID))

@@ -132,7 +132,8 @@ function zhuangbei_rarity_map(){
         10 => array('name' => 'Đạo',  'color' => '#d4af37', 'mult' => 8.0),
         11 => array('name' => 'Hỗn Độn', 'color' => '#7e57c2', 'mult' => 12.0),  // làn 3: bậc 1000 / 1250
         12 => array('name' => 'Thái Sơ', 'color' => '#26c6da', 'mult' => 18.0),  // làn 4–5: bậc 1500 / 2000
-        13 => array('name' => 'Vĩnh Hằng', 'color' => '#ffb300', 'mult' => 26.0) // làn 6: bậc 2500
+        13 => array('name' => 'Vĩnh Hằng', 'color' => '#ffb300', 'mult' => 26.0), // làn 6–7: bậc 2500 / 3000
+        14 => array('name' => 'Chí Tôn', 'color' => '#ff1744', 'mult' => 38.0)    // làn 8: bậc 3500
     );
 }
 

@@ -1,0 +1,247 @@
+{
+ "_note": "Sinh bởi tools/gen/lan8_c_build.py — dùng cho sql/migrate_lan8_c.php",
+ "npcs": [
+  {
+   "nid": 109,
+   "qyid": 97,
+   "nname": "Ngân Hà Độ Tinh Sứ",
+   "mid": 7001
+  },
+  {
+   "nid": 110,
+   "qyid": 98,
+   "nname": "Viên Mãn Đài Thủ Tọa Lão Nhân",
+   "mid": 7009
+  },
+  {
+   "nid": 111,
+   "qyid": 99,
+   "nname": "Thiên Thư Các Thủ Thư Thần Nữ",
+   "mid": 7017
+  },
+  {
+   "nid": 112,
+   "qyid": 100,
+   "nname": "Thần Quốc Biên Cảnh Sứ Giả",
+   "mid": 7025
+  },
+  {
+   "nid": 113,
+   "qyid": 101,
+   "nname": "Trường Hà Lái Đò Thần Nhân",
+   "mid": 7033
+  },
+  {
+   "nid": 114,
+   "qyid": 102,
+   "nname": "Thánh Lộ Dẫn Đường Đạo Đồng",
+   "mid": 7041
+  },
+  {
+   "nid": 115,
+   "qyid": 103,
+   "nname": "Thí Luyện Tháp Thủ Tháp Lão Nhân",
+   "mid": 7049
+  },
+  {
+   "nid": 116,
+   "qyid": 104,
+   "nname": "Thánh Cảnh Hỗn Độn Đạo Nhân",
+   "mid": 7057
+  },
+  {
+   "nid": 117,
+   "qyid": 105,
+   "nname": "Thánh Vực Thủ Vọng Sứ",
+   "mid": 7065
+  },
+  {
+   "nid": 118,
+   "qyid": 106,
+   "nname": "Thánh Điện Thủ Môn Thánh Tướng",
+   "mid": 7073
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 277,
+   "mid": 7001,
+   "mname": "Tận Đầu Bến Sao",
+   "qyid": 97
+  },
+  {
+   "rwid": 278,
+   "mid": 7005,
+   "mname": "Băng Tinh Hà Đạo",
+   "qyid": 97
+  },
+  {
+   "rwid": 279,
+   "mid": 7008,
+   "mname": "Cự Long Thủ Hộ Đàm",
+   "qyid": 97
+  },
+  {
+   "rwid": 280,
+   "mid": 7009,
+   "mname": "Viên Mãn Đài Cơ",
+   "qyid": 98
+  },
+  {
+   "rwid": 281,
+   "mid": 7013,
+   "mname": "Vạn Tượng Hồi Lang",
+   "qyid": 98
+  },
+  {
+   "rwid": 282,
+   "mid": 7016,
+   "mname": "Chí Tôn Viên Mãn Đàn",
+   "qyid": 98
+  },
+  {
+   "rwid": 283,
+   "mid": 7017,
+   "mname": "Thiên Thư Ngoại Viện",
+   "qyid": 99
+  },
+  {
+   "rwid": 284,
+   "mid": 7021,
+   "mname": "Nhân Quả Bia Lâm",
+   "qyid": 99
+  },
+  {
+   "rwid": 285,
+   "mid": 7024,
+   "mname": "Bí Lục Chủ Điện",
+   "qyid": 99
+  },
+  {
+   "rwid": 286,
+   "mid": 7025,
+   "mname": "Thần Quốc Biên Thành",
+   "qyid": 100
+  },
+  {
+   "rwid": 287,
+   "mid": 7029,
+   "mname": "Hoàng Lộ Thần Quốc",
+   "qyid": 100
+  },
+  {
+   "rwid": 288,
+   "mid": 7032,
+   "mname": "Thủ Hộ Cự Điện",
+   "qyid": 100
+  },
+  {
+   "rwid": 289,
+   "mid": 7033,
+   "mname": "Trường Hà Thượng Nguồn",
+   "qyid": 101
+  },
+  {
+   "rwid": 290,
+   "mid": 7037,
+   "mname": "Thần Kình Hồi Lưu",
+   "qyid": 101
+  },
+  {
+   "rwid": 291,
+   "mid": 7040,
+   "mname": "Kình Miên Thần Đàm",
+   "qyid": 101
+  },
+  {
+   "rwid": 292,
+   "mid": 7041,
+   "mname": "Thánh Lộ Khởi Bước",
+   "qyid": 102
+  },
+  {
+   "rwid": 293,
+   "mid": 7045,
+   "mname": "Tâm Ma Khảo Đài",
+   "qyid": 102
+  },
+  {
+   "rwid": 294,
+   "mid": 7048,
+   "mname": "Siêu Phàm Thánh Môn",
+   "qyid": 102
+  },
+  {
+   "rwid": 295,
+   "mid": 7049,
+   "mname": "Tháp Hạ Quảng Trường",
+   "qyid": 103
+  },
+  {
+   "rwid": 296,
+   "mid": 7053,
+   "mname": "Thất Trọng Huyễn Cảnh",
+   "qyid": 103
+  },
+  {
+   "rwid": 297,
+   "mid": 7056,
+   "mname": "Tháp Đỉnh Thánh Đài",
+   "qyid": 103
+  },
+  {
+   "rwid": 298,
+   "mid": 7057,
+   "mname": "Thánh Cảnh Hỗn Mang",
+   "qyid": 104
+  },
+  {
+   "rwid": 299,
+   "mid": 7061,
+   "mname": "Đế Giang Ca Vũ Đài",
+   "qyid": 104
+  },
+  {
+   "rwid": 300,
+   "mid": 7064,
+   "mname": "Thánh Sào Hỗn Mang",
+   "qyid": 104
+  },
+  {
+   "rwid": 301,
+   "mid": 7065,
+   "mname": "Hư Môn Thánh Vực",
+   "qyid": 105
+  },
+  {
+   "rwid": 302,
+   "mid": 7069,
+   "mname": "Ma Thánh Tế Đài",
+   "qyid": 105
+  },
+  {
+   "rwid": 303,
+   "mid": 7072,
+   "mname": "Phệ Thiên Ma Điện",
+   "qyid": 105
+  },
+  {
+   "rwid": 304,
+   "mid": 7073,
+   "mname": "Thánh Điện Ngọc Giai",
+   "qyid": 106
+  },
+  {
+   "rwid": 305,
+   "mid": 7077,
+   "mname": "Kim Huy Hành Lang",
+   "qyid": 106
+  },
+  {
+   "rwid": 306,
+   "mid": 7080,
+   "mname": "Vô Thượng Thánh Tọa",
+   "qyid": 106
+  }
+ ]
+}
