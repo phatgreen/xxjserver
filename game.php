@@ -531,7 +531,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102934">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102935">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
@@ -687,7 +687,7 @@ if (isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($
 }
 // Thông báo nổi: nhiệm vụ Cơ Duyên vừa hoàn thành (nhiemvu_coduyen_event ghi vào session)
 if (!empty($_SESSION['cd_flash'])) {
-    echo '<div class="cd-toast" id="cdToast">';
+    echo '<div class="cd-toast" id="cdToast" title="Bấm để đóng" onclick="this.parentNode.removeChild(this)">';
     foreach ($_SESSION['cd_flash'] as $cdMsg) echo '<div>🌟 ' . htmlspecialchars($cdMsg, ENT_QUOTES, 'UTF-8') . '</div>';
     echo '</div><script>setTimeout(function(){var e=document.getElementById("cdToast");if(e){e.parentNode.removeChild(e);}},6000);</script>';
     unset($_SESSION['cd_flash']);
