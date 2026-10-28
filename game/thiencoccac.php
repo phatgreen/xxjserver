@@ -582,15 +582,12 @@ $tabWgActive = ($currentTab === 'wg') ? ' active' : '';
 $tabCpActive = ($currentTab === 'cp') ? ' active' : '';
 
 $html = <<<HTML
-<div class="tcg-tcc-page">
-    <div class="tcg-wg-hero" style="background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('./images/bg/thiencocac.png') center/cover no-repeat!important;grid-template-columns:1fr!important;padding:32px 18px!important">
-        <div class="tcg-wg-hero-info" style="position:relative!important;z-index:2!important">
-            <div class="tcg-wg-kicker" style="text-shadow:0 1px 6px rgba(0,0,0,.7)!important">Thương Lương Bát Vạn</div>
-            <h2 style="text-shadow:0 2px 10px rgba(0,0,0,.8)!important">Thiên Cơ Các</h2>
-            <p style="text-shadow:0 1px 4px rgba(0,0,0,.6)!important">Chốn lưu trữ bảo kinh thiên hạ, nơi tu sĩ tìm kiếm bí tịch võ công và công pháp tu luyện.</p>
-            <div class="tcg-wg-current" style="text-align:left!important;display:block!important;font-size:13px!important;width: 50%;">
-                <span style="display:inline!important;margin:0 25px 0 0!important">Cảnh giới</span><b style="display:inline!important;margin:0!important">{$playerRealmName}</b>
-            </div>
+<div class="tcg-tcc-page tcc-compact">
+    <div class="tcg-shop-hero">
+        <img src="./images/bg/thiencocac.png" alt="Thiên Cơ Các">
+        <div class="tcg-shop-title">
+            Thiên Cơ Các
+            <div class="tcg-shop-subtitle">Bí tịch võ công · công pháp — cảnh giới hiện tại: <b class="tcc-realm">{$playerRealmName}</b></div>
         </div>
     </div>
 
@@ -632,10 +629,6 @@ $html = <<<HTML
     if(!tccFilter('ok')) tccFilter('all');
     </script>
 
-    <div class="tcg-tcc-footer">
-        <a class="tcg-wg-navbtn" href="#" onClick="javascript:history.back(-1);">Trở về</a>
-        <a class="tcg-wg-navbtn primary" href="game.php?cmd={$gonowmid}">Đại sảnh</a>
-    </div>
 </div>
 HTML;
 

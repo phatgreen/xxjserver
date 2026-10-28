@@ -2,14 +2,14 @@
 
 > Nhánh `claude/tong-quan-du-an`, commit `3ba1f3e` → `bc74ebe`. Tông Môn có tài liệu riêng: `DESIGN_TONGMON_CANBANG.md`.
 > **Máy chủ:** chỉ cần `cron\capnhat_code.bat` + Ctrl+F5 — trừ Tông Môn phải chạy `sql\migrate_tongmon.php --apply` (đã chạy 2026-10-28).
-> CSS: `css/mystyle.css?v=2026102909`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
+> CSS: `css/mystyle.css?v=2026102912`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
 
 ## 1. Mục tiêu chung
 
 - Desktop (1920×880, đã trừ thanh trình duyệt) **vừa 1 màn hình, không cuộn**; mobile 390px vẫn cuộn nhưng không tràn ngang.
 - **Nhân vật / đối tượng làm trung tâm**: khung "sân khấu" ảnh giữa, chỉ số 2 bên (mẫu là trang Tu Luyện).
 - **Bỏ phần trùng**: Linh/Ma thạch (đã ở thanh trên), nút Đại Sảnh / Trở về / Túi đồ (đã ở thanh dưới + tab con).
-- Mọi CSS mới đặt **cuối `mystyle.css`** dưới class riêng của trang (`pf-compact`, `cw-compact`, `bag-compact`, `tb-compact`, `shop-compact`) +
+- Mọi CSS mới đặt **cuối `mystyle.css`** dưới class riêng của trang (`pf-compact`, `cw-compact`, `bag-compact`, `tb-compact`, `shop-compact`, `tcc-compact`) +
   selector dài / `!important` để đè rule cũ mà không ảnh hưởng trang khác. Logic PHP (mặc, tháo, bán, phân giải…) **không đổi**.
 
 ## 2. Khung chung (`game.php`, `class/function/dieu_huong.php`)
@@ -33,6 +33,7 @@
 | Linh Sủng | `game/chongwu.php` | Sủng vật xuất chiến giữa khung (ảnh chung `images/sungvat/san_khau_linh_thu.jpg`), 3 chỉ số mỗi bên, thanh Khí huyết + Kinh nghiệm; danh sách thẻ nhỏ, desktop 6 con/trang (mobile 5); trang chi tiết cùng khung, `exit()` → `return` để còn thanh dưới |
 | Túi Đồ (5 mục) | `game/bag{zb,dj,yp,jn,yd}.php`, `js/bagpop.js` | Banner 1 hàng; **lưới ô** (desktop 5 cột, mobile 3): ảnh/số lượng + tên + phẩm; **bấm ô → bảng nổi** gồm thông tin (trang bị dùng lại nội dung hộp xem nhanh: chỉ số, so sánh, cảnh báo cảnh giới) + nguyên các nút cũ (Trang bị / Phân Giải / Dùng / Bán / Xem / Sử dụng). Trang bị 20 món/trang, Đạo cụ chia trang 20 loại (giữ trang sau khi bán / dùng) |
 | Cửa Hàng | `game/shangdian.php` | Banner thấp 74px; tab Linh/Ma thạch + ô tìm kiếm 1 hàng; **lưới ô** (desktop 5 cột, mobile 3): ảnh + tên đủ 2 dòng + giá gọn (💰 15.000, đơn vị đầy đủ ở title) + nút Mua; 15 món/trang (trước 10); bỏ nút Trở Về / Đại Sảnh; thêm tab Võ Công / Công Pháp (mở Thiên Cơ Các, 2 trang chung hàng 5 tab) |
+| Thiên Cơ Các (Võ Công / Công Pháp) | `game/thiencoccac.php` | Banner thấp giống Cửa Hàng (cảnh giới ghi ở dòng phụ); hàng lọc 1 dòng cuộn ngang; mỗi giai / loại là lưới ô (desktop 4 cột, mobile 2): tên + phẩm/hệ + yêu cầu + giá/nút mua (2 loại tiền xếp dọc); bỏ Trở về / Đại sảnh. Lưu ý: ô không được `display:…!important` vì bộ lọc ẩn bằng `style.display='none'` |
 | Tính năng chưa mở | `game/feature_locked.php` | Sửa chữ 2 nút bị lệch (thêm `a.fk-lock-btn:link`) |
 
 ## 4. Lỗi đã sửa kèm
