@@ -38,7 +38,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Boss | Chặn hạ lại boss trước thời gian hồi sinh (`mid.ms`), mốc hồi ghi đúng map boss | `DOT_D_…` mục 6 |
 | Đột phá + trang bị | Gốc từ cấp 94 theo mốc (500: −20%, 4300: −110%); ô Linh Phù/Ngọc Nhãn/Cổ Ngọc +đột phá, Phi Phong/Linh Đai/Linh Bội +tu luyện (trần 30%) | `KHUNG_TONG_500_4300.md` mục 4 |
 | UI-1 mobile | Thanh trên 1 hàng (217→133px), số tiền gọn, vùng chạm ≥32px, chữ ≥11px | `UI_DON_GIAN_HOA_MOBILE.md` mục 3.1 |
-| KT-0 nền kỹ thuật | Tương thích PHP 7.4/8, BIGINT 17 cột (`sql/migrate_kt0_bigint.php`), EXP quái > 500, đủ 86 màu cảnh giới, sửa tên, cron tự chọn PHP | `DEPLOY_KT0_PHP74.md` |
+| KT-0 nền kỹ thuật | Tương thích PHP 7.4/8, BIGINT 17 cột (`sql/migrate_kt0_bigint.php`), EXP quái > 500, đủ 86 màu cảnh giới, sửa tên (K6), Đột Phá Đan + sự kiện cuối tuần (K2), cron tự chọn PHP | `DEPLOY_KT0_PHP74.md` |
 | UI-2/UI-3 khung mới | Thanh dưới cố định 5 tab mọi trang (chấm đỏ, 🔒), tab con Nhân Vật/Linh Sủng/Nhiệm Vụ, Tiên Đồ thay 2 cột nút Tu Luyện + 21 nút Đại Sảnh; HTML ở `class/function/dieu_huong.php` | `UI_DON_GIAN_HOA_MOBILE.md` mục 3.2 |
 | Mở khóa MK-1..3 | 24 tính năng mở cấp 3→120 (chặn router, nút 🔒, popup "Tính năng mới"), lọc nhiệm vụ ngày/tuần/tháng, sửa kẹt chính tuyến 1.6, chương Cơ Duyên 24 nhiệm vụ | `MO_KHOA_TINH_NANG.md` |
 | Chỉ mục DB | `sql/migrate_index_sid.php` — 13 bảng (game1, túi đồ…) | — |
@@ -59,7 +59,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Quái cũ cấp ≤ 105 | Chưa cân lại theo đường sức mạnh mới (vẫn dễ: quái cần 50–180 đòn hạ người) |
 | Lệch múi giờ PHP–MySQL trên máy chủ | Không ảnh hưởng game hiện tại; nên đặt cùng `date.timezone` |
 | Thư mục `images/other` | Ảnh tham khảo game khác — chủ dự án sẽ xóa sau |
-| **Chờ duyệt / làm tiếp (2026-10-28)** | Chủ dự án chuyển máy sang PHP 7.4 x64 theo `DEPLOY_KT0_PHP74.md` · KT-0 còn: Đan/Sự kiện cộng đột phá (K2), tên "Thánh Nhân" trùng (K6) · làn 500→4300 (K5 tên phẩm) |
+| **Chờ duyệt / làm tiếp (2026-10-28)** | Chủ dự án chuyển máy sang PHP 7.4 x64 theo `DEPLOY_KT0_PHP74.md` · làn 500→4300 (K5 tên phẩm) |
 
 ## 4. Bản đồ code nhanh (phần đã đụng tới)
 

@@ -31,6 +31,7 @@ require_once __DIR__ . '/function/conghuong.php';
 require_once __DIR__ . '/function/online_reward.php';
 require_once __DIR__ . '/function/feature_unlock.php';
 require_once __DIR__ . '/function/dieu_huong.php';
+require_once __DIR__ . '/function/tupo_bonus.php';
 
 
 class player

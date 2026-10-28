@@ -103,7 +103,7 @@ $rangesjj = array(
 		// Thánh Nhân (Hồng Hoang) - Đỏ lửa -> Trắng bạc - 8
 		'<font color="#FF5252" style="text-shadow:1px 1px 2px #B71C1C">Nhập </font><font color="#FF1744" style="text-shadow:1px 1px 2px #B71C1C">Thánh </font>',
 		'<font color="#FF1744" style="text-shadow:1px 1px 2px #B71C1C">Chuẩn </font><font color="#D50000" style="text-shadow:1px 1px 2px #B71C1C">Thánh </font>',
-		'<font color="#D50000" style="text-shadow:0px 0px 5px #FF5252">Thánh </font><font color="#B71C1C" style="text-shadow:0px 0px 5px #FF5252">Nhân </font>',
+		'<font color="#D50000" style="text-shadow:0px 0px 5px #FF5252">Hỗn Độn </font><font color="#B71C1C" style="text-shadow:0px 0px 5px #FF5252">Thánh Nhân </font>',
 		'<font color="#F5F5F5" style="text-shadow:0px 0px 8px #9E9E9E">Hư Vô </font><font color="#BDBDBD" style="text-shadow:0px 0px 8px #424242">Thánh Nhân </font>',
 		'<font color="#FFF9C4" style="text-shadow:0px 0px 10px #FBC02D">Vô Thượng </font><font color="#FBC02D" style="text-shadow:0px 0px 10px #F57F17">Thánh Nhân </font>',
 		'<font color="#E1F5FE" style="text-shadow:0px 0px 10px #03A9F4">Thiên Đạo </font><font color="#03A9F4" style="text-shadow:0px 0px 10px #01579B">Thánh Nhân </font>',

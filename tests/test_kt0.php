@@ -43,6 +43,24 @@ tassert('E2 không còn khoảng trắng đôi trong tên', $space, array());
 tassert('E2 cấp 3701 (cảnh giới 74) hiện được', strpos(\player\getJingJieHtml(3701), 'Sáng') !== false, true);
 tassert('E2 cấp 4299 hiện được', strpos(\player\getJingJieHtml(4299), 'Vô') !== false, true);
 
+// ── E2b. "Thánh Nhân" không trùng (K6) ──
+$cnt = array_count_values($names);
+tassert('E2b mỗi tên cảnh giới chỉ một lần', array_keys(array_filter($cnt, function($n){ return $n > 1; })), array());
+tassert('E2b cấp 3851 = Hỗn Độn Thánh Nhân', trim(strip_tags($rangesjj[77])), 'Hỗn Độn Thánh Nhân');
+
+// ── E6. Đột Phá Đan (K2): đúng cảnh giới, +5%/viên, tối đa 3 · Sự kiện Thứ 7 +5%, Chủ Nhật +10% ──
+$p = \player\tupo_pill_for_level(420);
+tassert('E6 cấp 420 (Kim Đan) dùng Kim Đan Đột Phá Đan', array($p['djid'], $p['per_pill'], $p['max_pills']), array(21, 5.0, 3));
+tassert('E6 cấp 400 (đột phá vào Kim Đan) cũng là đan Kim Đan', \player\tupo_pill_for_level(400)['djid'], 21);
+tassert('E6 cấp 399 là đan Trúc Cơ', \player\tupo_pill_for_level(399)['djid'], 20);
+tassert('E6 cấp 93 / 1000 không có đan', array(\player\tupo_pill_for_level(93), \player\tupo_pill_for_level(1000)), array(false, false));
+$realms = array();
+foreach (array(20, 21, 22, 23, 24, 25, 26) as $dj) { foreach (range(0, 85) as $r) { $q = \player\tupo_pill_for_level($r * 50); if ($q && $q['djid'] == $dj) $realms[$dj] = trim(strip_tags($rangesjj[$r])); } }
+tassert('E6 tên đan khớp tên cảnh giới', $realms, array(20 => 'Trúc Cơ', 21 => 'Kim Đan', 22 => 'Nguyên Anh', 23 => 'Hóa Thần', 24 => 'Luyện Hư', 25 => 'Hợp Thể', 26 => 'Đại Thừa'));
+tassert('E6 Thứ 4 không có sự kiện', \player\tupo_event_bonus(strtotime('2026-10-28'))[0], 0);
+tassert('E6 Thứ 7 +5%', \player\tupo_event_bonus(strtotime('2026-10-31'))[0], 5.0);
+tassert('E6 Chủ Nhật +10%', \player\tupo_event_bonus(strtotime('2026-11-01'))[0], 10.0);
+
 // ── E3. Router không dùng parse_str 1 tham số (deprecated PHP 7.2, bỏ ở PHP 8) ──
 $src = file_get_contents(__DIR__ . '/../game.php');
 tassert('E3 game.php không còn parse_str 1 tham số', preg_match('/parse_str\(\s*\$\w+\s*\)/', $src), 0);

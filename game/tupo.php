@@ -139,7 +139,17 @@ if ($player->ulv > 93) {
     $levelPenalty = round($tpPenalty * 0.9, 1);
     $realmPenalty = round($tpPenalty - $levelPenalty, 1);
 }
-$rate =min(99, max(5, intval($baseRate - $levelPenalty - $realmPenalty + $psjs + $zbsjs + $tpBreak)));
+// Đột Phá Đan (đúng cảnh giới, tối đa max_pills viên, mất khi thử) + Sự kiện theo ngày — class/config/tupo_bonus_config.json
+$tpPill = \player\tupo_pill_for_level($player->ulv);
+$danOwned = 0;
+if ($tpPill) {
+    $danRow = \player\getplayerdaoju($sid, $tpPill['djid'], $dblj);
+    $danOwned = $danRow ? intval($danRow->djsum) : 0;
+}
+$danUse = ($tpPill && isset($tpdan)) ? max(0, min(intval($tpdan), $tpPill['max_pills'], $danOwned)) : 0;
+$danBonus = $tpPill ? $danUse * $tpPill['per_pill'] : 0;
+list($evBonus, $evName) = \player\tupo_event_bonus();
+$rate =min(99, max(5, intval($baseRate - $levelPenalty - $realmPenalty + $psjs + $zbsjs + $tpBreak + $danBonus + $evBonus)));
 
 // Giảm tỷ lệ đột phá do đan độc (>1000 toxin = -1% mỗi 100 điểm)
 $toxinEffects = \player\luonden_apply_toxin_effects($sid, $dblj);
@@ -154,7 +164,7 @@ foreach ($toxinEffects as $eff) {
     }
 }
 
-$tupocmd = $encode->encode("cmd=tupo&canshu=tupo&sid=$sid");
+$tupocmd = $encode->encode("cmd=tupo&canshu=tupo&tpdan=$danUse&sid=$sid");
 $gonowmid = $encode->encode("cmd=gomid&newmid=$player->nowmid&sid=$sid");
 $tupo = \player\istupo($sid, $dblj);
 $tpls = 0;
@@ -171,6 +181,16 @@ if ($tupo != 8) {
         if (isset($canshu) && $canshu == 'tupo') {
             $ret = \player\changeyxb(2, $tpls, $sid, $dblj);
             if ($ret) {
+                // Uống Đột Phá Đan: mất dù thành công hay thất bại. Trừ không được (vừa dùng ở tab khác) -> bỏ khoản Đan.
+                if ($danUse > 0 && $rate > 0) {
+                    if (\player\deledjsum($tpPill['djid'], $danUse, $sid, $dblj)) {
+                        $danOwned -= $danUse;
+                    } else {
+                        $rate = max(5, $rate - $danBonus);
+                        $danUse = 0;
+                        $danBonus = 0;
+                    }
+                }
                 // Two independent rolls. $btRoll decides success against the displayed
                 // rate; $rand only grades how hard a failure lands. Sharing one roll
                 // made the real success rate = displayed rate - 6 (branch 1..6 pre-empted).
@@ -314,6 +334,28 @@ if ($tupo == 8) {
     $actionHtml = '<span class="break-btn disabled">Chưa đủ điều kiện</span>';
 }
 
+// Khu chọn Đột Phá Đan (0..max viên, chỉ chọn được tới số viên đang có)
+$danHtml = '';
+if ($tupo != 8) {
+    if ($tpPill) {
+        $danHtml = '<div class="break-dan"><div class="break-dan-head">💊 ' . htmlspecialchars($tpPill['name'], ENT_QUOTES, 'UTF-8')
+            . ' <span>có ' . $danOwned . ' viên · +' . $tpPill['per_pill'] . '%/viên, tối đa ' . $tpPill['max_pills'] . '</span></div><div class="break-dan-pick">';
+        for ($k = 0; $k <= $tpPill['max_pills']; $k++) {
+            if ($k > $danOwned) {
+                $danHtml .= '<span class="off">' . $k . '</span>';
+            } else {
+                $danHtml .= '<a class="' . ($k == $danUse ? 'on' : '') . '" href="?cmd=' . $encode->encode("cmd=tupo&tpdan=$k&sid=$sid") . '">' . $k . '</a>';
+            }
+        }
+        $danHtml .= '</div><div class="break-dan-note">Đan mất dù thành công hay thất bại.</div></div>';
+    } else {
+        $danHtml = '<div class="break-dan"><div class="break-dan-note">Cảnh giới này chưa có Đột Phá Đan.</div></div>';
+    }
+    if ($evBonus > 0) {
+        $danHtml .= '<div class="break-event">🎉 Sự kiện ' . htmlspecialchars($evName, ENT_QUOTES, 'UTF-8') . ': +' . $evBonus . '% tỉ lệ đột phá</div>';
+    }
+}
+
 if (trim($resultHtml) == '') {
     $resultHtml = '<div class="break-note">Linh khí đã viên mãn thì có thể thử đột phá. Thất bại vẫn tiêu hao linh thạch, hãy cân nhắc trước khi xuất thủ.</div>';
 }
@@ -363,6 +405,8 @@ $ts
                 <div><span>Milestone</span><b>+$psjs%</b></div>
                 <div><span>Trang bị</span><b>+$zbsjs%</b></div>
                 <div><span>Thiên Phú</span><b>+$tpBreak%</b></div>
+                <div><span>Đan</span><b>+$danBonus%</b></div>
+                <div><span>Sự kiện</span><b>+$evBonus%</b></div>
             </div>
         </section>
 
@@ -373,6 +417,7 @@ $ts
                     <div class="break-ring-inner"><b>$rate%</b><span>thành công</span></div>
                 </div>
             </div>
+            $danHtml
             <div class="break-actions">$actionHtml</div>
         </section>
     </div>

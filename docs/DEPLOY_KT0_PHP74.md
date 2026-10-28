@@ -30,4 +30,7 @@
 | EXP quái cấp > 500 | `guaiwu_exp()`: ≤ 500 giữ `cấp × (106–108)`; > 500 = `110 × cấp² ÷ 400` (≈ 400 quái/cấp). Hiện chưa có quái > 500 nên chưa đổi gì trong game — dùng cho làn L2 trở đi | `class/function/guaiwu.php`, `game/nowmid.php` |
 | Màu cảnh giới | Mảng màu chỉ có 74/86 ô vì 15 tầng Chu Thiên ghi gộp 3 dòng ⇒ **từ cấp 2900 màu lệch**, cấp ≥ 3700 không có màu. Tách thành 15 dòng (giữ màu đã chọn) ⇒ đủ 86 | `class/jingjieColor.php` |
 | Tên cảnh giới | "Sáng Thê" → "Sáng Thế"; bỏ khoảng trắng đôi "Vô Thượng Tiên Đế", "Bất Hủ Tiên Đế", "Đại Chủ Tể" | `class/rangesjj.php` |
-| Test | `tests/test_kt0.php` (15 mục) | |
+| Đột Phá Đan (K2) | Trang Đột Phá có khu chọn 0–3 viên đan **đúng cảnh giới** (Trúc Cơ 350–399 · Kim Đan 400–449 · Nguyên Anh 500–549 · Hợp Thể 650–699 · Hóa Thần 600–649 · Luyện Hư 750–799 · Đại Thừa 800–849, tính theo cấp đang đứng khi đột phá), +5%/viên; đan trừ sau khi trả Linh Thạch, mất dù thành bại. Không chọn được quá số viên đang có | `game/tupo.php`, `class/function/tupo_bonus.php`, `class/config/tupo_bonus_config.json` |
+| Sự kiện (K2) | Thứ 7 +5%, Chủ Nhật +10% (giờ máy chủ); tắt bằng `"enabled": false` | như trên |
+| K6 | Cảnh giới cấp 3851: "Thánh Nhân" → "Hỗn Độn Thánh Nhân" | `class/rangesjj.php` |
+| Test | `tests/test_kt0.php` (26 mục) | |

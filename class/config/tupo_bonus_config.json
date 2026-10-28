@@ -1,0 +1,13 @@
+{
+    "_note": "Cộng tỉ lệ đột phá (docs/KHUNG_TONG_500_4300.md mục 4.2, chủ dự án chốt K2 2026-10-28). pills: djid => chỉ số cảnh giới (floor(cấp/50)) mà viên đan có tác dụng — đột phá từ cấp 50×R tới 50×R+49. event.weekday: 0 = Chủ Nhật … 6 = Thứ 7 (giờ máy chủ).",
+    "pill": {
+        "per_pill": 5,
+        "max_pills": 3,
+        "items": {"20": 7, "21": 8, "22": 10, "23": 12, "24": 15, "25": 13, "26": 16}
+    },
+    "event": {
+        "enabled": true,
+        "weekday": {"6": 5, "0": 10},
+        "names": {"6": "Thứ 7", "0": "Chủ Nhật"}
+    }
+}

@@ -7920,3 +7920,14 @@ body.tcg-bg-body .tcg-nav a,body.tcg-bg-body .tcg-nav a:visited{height:40px!impo
 .td-grid[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
 .td-item{min-height:54px}
 }
+/* KT-0 (K2): chọn Đột Phá Đan + Sự kiện trên trang Đột Phá (game/tupo.php) */
+.break-dan{margin:12px 0 4px;padding:10px 12px;border-radius:13px;border:1px solid rgba(250,204,21,.32);background:rgba(250,204,21,.06)}
+.break-dan-head{color:#fde68a;font-size:13px;font-weight:900;line-height:1.4}
+.break-dan-head span{display:block;color:#cbd5e1;font-size:12px;font-weight:700}
+.break-dan-pick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
+.break-dan-pick a,.break-dan-pick span{display:flex;align-items:center;justify-content:center;min-height:36px;border-radius:10px;font-size:15px;font-weight:1000;text-decoration:none;border:1px solid rgba(125,170,255,.45);background:linear-gradient(180deg,rgba(59,84,160,.85),rgba(36,52,110,.9));color:#dbe6ff!important}
+.break-dan-pick a.on{color:#1f1300!important;border-color:#fde68a;background:linear-gradient(180deg,#fde68a,#f59e0b)}
+.break-dan-pick span.off{opacity:.35}
+.break-dan-note{margin-top:6px;color:#94a3b8;font-size:12px}
+.break-event{margin-top:8px;padding:8px 12px;border-radius:12px;color:#fde68a;font-size:13px;font-weight:900;border:1px solid rgba(250,204,21,.45);background:rgba(250,204,21,.1)}
+@media(max-width:760px){body.tcg-bg-body .break-bless{grid-template-columns:repeat(2,minmax(0,1fr))}}

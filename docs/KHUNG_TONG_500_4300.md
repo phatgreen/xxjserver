@@ -228,7 +228,7 @@ Làn mới = viết 1 file `spec/lanN.json` (tên) → `build.py N` → `migrate
 
 | Đợt | Nội dung | Phụ thuộc |
 |---|---|---|
-| **KT-0** Nền kỹ thuật | **ĐÃ LÀM 2026-10-28** (`DEPLOY_KT0_PHP74.md`): tương thích PHP 7.4 + BIGINT 17 cột · EXP quái cấp > 500 · công thức đột phá mới + `tuposjs` trang bị · đủ 86 màu (sửa lệch từ cấp 2900) + sửa tên. **Còn:** mục Đan / Sự kiện (chờ K2) · tên trùng "Thánh Nhân" 3851 (chờ K6) · tách file quái theo làn + `tools/gen/lan/` (làm đầu L2, khi có dữ liệu) | — |
+| **KT-0** Nền kỹ thuật | **ĐÃ LÀM 2026-10-28** (`DEPLOY_KT0_PHP74.md`): tương thích PHP 7.4 + BIGINT 17 cột · EXP quái cấp > 500 · công thức đột phá mới + `tuposjs` trang bị · đủ 86 màu (sửa lệch từ cấp 2900) + sửa tên. **Đan / Sự kiện (K2):** Đột Phá Đan +5%/viên, tối đa 3 viên/lần, chỉ viên đúng cảnh giới, mất khi thử; Thứ 7 +5%, Chủ Nhật +10% (`class/config/tupo_bonus_config.json`) · **K6:** cấp 3851 = "Hỗn Độn Thánh Nhân" · **Còn:** tách file quái theo làn + `tools/gen/lan/` (làm đầu L2, khi có dữ liệu) | — |
 | **L2** 500–1000 | 10 khu (tên đã đề xuất ở `LAN2_CAP_500_1000.md`), Tàn Quyển boss mới | KT-0 |
 | **L3** 1000–1500 | 10 khu, bậc đồ 1000/1250 (Hỗn Độn), 5 võ công + 4 công pháp | L2 |
 | **L4** 1500–2000 | 10 khu, bậc 1500 | L3 |
@@ -242,10 +242,10 @@ trong khi người chơi thật cao nhất hiện mới cấp 93.
 | # | Câu hỏi | Đề xuất |
 |---|---|---|
 | ~~K1~~ | ~~Giới hạn số~~ | **Đã chốt: PHP 7.4 64-bit + BIGINT** |
-| K2 | Tổng mức cộng tỉ lệ đột phá một người chơi chịu khó gom được ở cấp cao (Trang bị + Đan + Sự kiện + Thiên Phú + Milestone) | ≈ +100% ⇒ cấp 4300 gom đủ còn ~−10% → cần thêm sự kiện/đan đặc biệt mới qua được (đúng "tu tiên khó") |
+| ~~K2~~ | **Đã chốt:** Đan +5%/viên × tối đa 3, đúng cảnh giới; Thứ 7 +5%, CN +10% — | Tổng mức cộng tỉ lệ đột phá một người chơi chịu khó gom được ở cấp cao (Trang bị + Đan + Sự kiện + Thiên Phú + Milestone) | ≈ +100% ⇒ cấp 4300 gom đủ còn ~−10% → cần thêm sự kiện/đan đặc biệt mới qua được (đúng "tu tiên khó") |
 | K3 | Sàn cuối cùng | 5% (giữ như cũ) |
 | K4 | Áp dụng công thức đột phá mới từ cấp 94 (thay vì để âm sâu như hiện tại) | Có |
 | K5 | Tên 4 phẩm trang bị mới | Hỗn Độn · Thái Sơ · Vĩnh Hằng · Chí Tôn |
-| K6 | Đổi tên "Thánh Nhân" trùng ở cấp 3851 | "Hỗn Độn Thánh Nhân" |
+| ~~K6~~ | Đổi tên "Thánh Nhân" trùng ở cấp 3851 | **Đã đổi:** "Hỗn Độn Thánh Nhân" |
 | K7 | Số quái/cấp khi chỉ đánh quái thường (`KILLS`) | 400 |
 | K8 | Thứ tự | MK + UI-1 → KT-0 (PHP 7.4 + BIGINT + EXP + đột phá) → L2 → … |
