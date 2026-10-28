@@ -1,6 +1,6 @@
 # BÀN GIAO PHIÊN LÀM VIỆC — đọc file này đầu tiên khi mở phiên mới
 
-> Cập nhật 2026-10-28. Nhánh làm việc: **`claude/tong-quan-du-an`** (repo private `phatgreen/xxjserver`).
+> Cập nhật 2026-10-28. Nhánh làm việc: **`claude/tong-quan-du-an`** (repo `phatgreen/xxjserver` — **hiện đang Public, cần chuyển Private + đổi mật khẩu MySQL**).
 > Tổng quan kiến trúc: `docs/TONG_QUAN_DU_AN.md`. Kế hoạch mở rộng tổng: `docs/PLAN_MO_RONG_NOI_DUNG.md`.
 
 ## 1. Bối cảnh & quy ước
@@ -29,6 +29,21 @@
 **Máy chủ chủ dự án đã chạy xong (2026-10-28):** `migrate_dot_b.php --apply`, `migrate_dot_c.php --apply`, `migrate_dot_f.php --apply`;
 test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL sau đó — cần kéo code về chạy lại xác nhận).
 
+### Phiên 2026-10-28 (Claude Code cloud) — đã đẩy lên nhánh
+
+| Hạng mục | Tóm tắt | Tài liệu |
+|---|---|---|
+| Cấp tối đa 4300 | Lên đúng 4300 "Vô Ngã Viên Mãn — Đại Đạo Đỉnh Phong"; vá lỗi cấp 4299 đột phá miễn phí cộng chỉ số vô hạn | — |
+| Đợt D | Tiên Đạo Tàn Quyển (djid 115): boss 400/450/500 rơi 3/4/5%, đổi 10 quyển/bộ ở Thiên Cơ Các; tiệm không bán (`no_shop`) | `DOT_D_TIENDAO_TANQUYEN.md` |
+| Boss | Chặn hạ lại boss trước thời gian hồi sinh (`mid.ms`), mốc hồi ghi đúng map boss | `DOT_D_…` mục 6 |
+| Đột phá + trang bị | Gốc từ cấp 94 theo mốc (500: −20%, 4300: −110%); ô Linh Phù/Ngọc Nhãn/Cổ Ngọc +đột phá, Phi Phong/Linh Đai/Linh Bội +tu luyện (trần 30%) | `KHUNG_TONG_500_4300.md` mục 4 |
+| UI-1 mobile | Thanh trên 1 hàng (217→133px), số tiền gọn, vùng chạm ≥32px, chữ ≥11px | `UI_DON_GIAN_HOA_MOBILE.md` mục 3.1 |
+| Mở khóa MK-1..3 | 24 tính năng mở cấp 3→120 (chặn router, nút 🔒, popup "Tính năng mới"), lọc nhiệm vụ ngày/tuần/tháng, sửa kẹt chính tuyến 1.6, chương Cơ Duyên 24 nhiệm vụ | `MO_KHOA_TINH_NANG.md` |
+| Chỉ mục DB | `sql/migrate_index_sid.php` — 13 bảng (game1, túi đồ…) | — |
+
+**Máy chủ cần chạy:** `sql\migrate_index_sid.php --dry-run` rồi `--apply` (sao lưu trước). Các phần khác không cần migrate.
+**Test mới:** `tests/test_dot_d.php`, `tests/test_mo_khoa.php`. Fixture e2e phải ở **cấp 1000** (test trang Thiên Phú/Linh Căn cần tính năng đã mở).
+
 ## 3. Việc còn treo / có thể làm tiếp
 
 | Việc | Ghi chú |
@@ -42,6 +57,8 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Quái cũ cấp ≤ 105 | Chưa cân lại theo đường sức mạnh mới (vẫn dễ: quái cần 50–180 đòn hạ người) |
 | Lệch múi giờ PHP–MySQL trên máy chủ | Không ảnh hưởng game hiện tại; nên đặt cùng `date.timezone` |
 | Thư mục `images/other` | Ảnh tham khảo game khác — chủ dự án sẽ xóa sau |
+
+| **Chờ duyệt / làm tiếp (2026-10-28)** | UI-2/UI-3 bố cục mới (`UI_DON_GIAN_HOA_MOBILE.md`) · KT-0: lên PHP 7.4 64-bit + BIGINT, EXP quái cấp > 500, đan/sự kiện cộng đột phá (`KHUNG_TONG_500_4300.md`, còn câu hỏi K2/K5/K6) · làn 500→4300 · 12 màu cảnh giới thiếu |
 
 ## 4. Bản đồ code nhanh (phần đã đụng tới)
 
