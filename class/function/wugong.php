@@ -217,19 +217,25 @@ if (!function_exists(__NAMESPACE__ . '\\cqwg')) {
 
         $player = getplayer($sid, $dblj);
 
+        // INSERT IGNORE + khóa duy nhất (sid, wgid): không thêm dòng trùng (xem class/player.php cqwg)
         $stmt = $dblj->prepare('
-            INSERT INTO playerwugong
+            INSERT IGNORE INTO playerwugong
                 (wgid, sid, uid, wgsum)
             VALUES
                 (?, ?, ?, ?)
         ');
-
-        return $stmt->execute(array(
+        $stmt->execute(array(
             isset($mj->wgid) ? $mj->wgid : $wgid,
             $sid,
             isset($player->uid) ? $player->uid : '',
             $wgsum
         ));
+        if ($stmt->rowCount() < 1) {
+            $stmt = $dblj->prepare('UPDATE playerwugong SET wgsum = wgsum + ? WHERE wgid = ? AND sid = ?');
+            $stmt->execute(array($wgsum, $wgid, $sid));
+        }
+        wgcx($wgid, $sid, $dblj, true);
+        return true;
     }
 }
 

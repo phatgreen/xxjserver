@@ -3139,19 +3139,26 @@ function cqwg($cqsjs,$sid,$dblj){
     $player = getplayer($sid,$dblj);
     $uid = isset($player->uid) ? $player->uid : 0;
 
+    // INSERT IGNORE + khóa duy nhất (sid, wgid) (sql/migrate_wugong_dedup.php): đọc trượt / 2 request cùng lúc
+    // không còn thêm dòng trùng — đã có dòng thì cộng bí tịch vào dòng đó.
     $stmt = $dblj->prepare("
-        INSERT INTO playerwugong
+        INSERT IGNORE INTO playerwugong
             (wgid, sid, uid, wgsum)
         VALUES
             (?, ?, ?, ?)
     ");
-
-    return $stmt->execute(array(
+    $stmt->execute(array(
         $mj->wgid,
         $sid,
         $uid,
         $wgsum
     ));
+    if ($stmt->rowCount() < 1) {
+        $stmt = $dblj->prepare("UPDATE playerwugong SET wgsum = wgsum + ? WHERE wgid = ? AND sid = ?");
+        $stmt->execute(array($wgsum, $wgid, $sid));
+    }
+    wgcx($wgid, $sid, $dblj, true); // làm mới cache tĩnh (đang giữ "chưa có")
+    return true;
 }
 
 
