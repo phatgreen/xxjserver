@@ -320,42 +320,22 @@ $realm_label = xl_realm_label($player->jingjie);
             <span>Chiến Lực</span><b><?= xl_num($chien_luc) ?></b>
         </div>
 
-        <div class="xl-res">
-            <div class="xl-res-chip"><span>💰 Linh thạch</span><b id="yxb_val"><?= number_format($player->uyxb) ?></b></div>
-            <div class="xl-res-chip"><span>💎 Ma thạch</span><b id="czb_val"><?= number_format($player->uczb) ?></b></div>
-        </div>
-    </div>
-
-  <div class="xl-grid">
-    <div class="xl-col xl-col-left">
-    <div class="xl-realm">
-        <img class="xl-realm-frame" src="./images/xiulian/banner-lua.png" alt="">
-        <div class="xl-realm-name"><?= $realm_label['main'] ?> <span><?= $player->cengci ?></span></div>
-        <?php if ($realm_label['note'] != ''): ?>
-        <div class="xl-realm-note"><?= $realm_label['note'] ?></div>
-        <?php endif; ?>
-
-        <div class="xl-exp">
-            <div class="xl-exp-track">
-                <div id="xlprogress" class="xl-exp-fill" style="width:<?= $exp_progress ?>%;--xl-bar:<?= $bar_color ?>"></div>
-                <div class="xl-exp-pct"><span id="xlprogress_pct"><?= number_format($exp_progress, 1, '.', '') ?></span>%</div>
-            </div>
-            <div id="xlprogress_text" class="xl-exp-text"><?= number_format($player->uexp) ?> / <?= number_format($player->umaxexp) ?></div>
-        </div>
-    </div>
-
-    <div class="xl-modes">
-        <?php foreach ($mode_names as $mode_id => $mode_label): ?>
-            <?php if ($running): ?>
-                <span class="xl-mode<?= ($active_type == $mode_id) ? ' on' : '' ?>"><?= $mode_label ?></span>
-            <?php else: ?>
-                <a class="xl-mode<?= ($active_type == $mode_id) ? ' on' : '' ?>" href="?cmd=<?= $encode->encode("cmd=goxiulian&mode=$mode_id&sid=$sid") ?>"><?= $mode_label ?></a>
+        <div class="xl-realm">
+            <div class="xl-realm-name"><?= $realm_label['main'] ?> <span><?= $player->cengci ?></span></div>
+            <?php if ($realm_label['note'] != ''): ?>
+            <div class="xl-realm-note"><?= $realm_label['note'] ?></div>
             <?php endif; ?>
-        <?php endforeach; ?>
-    </div>
+
+            <div class="xl-exp">
+                <div class="xl-exp-track">
+                    <div id="xlprogress" class="xl-exp-fill" style="width:<?= $exp_progress ?>%;--xl-bar:<?= $bar_color ?>"></div>
+                    <div class="xl-exp-pct"><span id="xlprogress_pct"><?= number_format($exp_progress, 1, '.', '') ?></span>%</div>
+                </div>
+                <div id="xlprogress_text" class="xl-exp-text"><?= number_format($player->uexp) ?> / <?= number_format($player->umaxexp) ?></div>
+            </div>
+        </div>
     </div>
 
-    <div class="xl-col xl-col-right">
     <div class="xl-stats">
         <div class="xl-stat"><span>Tu luyện</span><b><?= $real_exp_rate_text ?>/s</b></div>
         <div class="xl-stat"><span>Đột phá</span><b id="xl_eta"><?= $break_ready ? 'Sẵn sàng' : xl_time($break_left) ?></b></div>
@@ -367,8 +347,16 @@ $realm_label = xl_realm_label($player->jingjie);
         <div class="xl-stat"><span>Trang bị</span><b class="xl-plus">+<?= xl_rate_text($equip_bonus_percent) ?>%</b></div>
         <div class="xl-stat"><span>Hấp thụ</span><b class="<?= $absorb_total >= 0 ? 'xl-plus' : 'xl-minus' ?>"><?= ($absorb_total >= 0 ? '+' : '') ?><?= xl_rate_text($absorb_total) ?>%</b></div>
     </div>
+
+    <div class="xl-modes">
+        <?php foreach ($mode_names as $mode_id => $mode_label): ?>
+            <?php if ($running): ?>
+                <span class="xl-mode<?= ($active_type == $mode_id) ? ' on' : '' ?>"><?= $mode_label ?></span>
+            <?php else: ?>
+                <a class="xl-mode<?= ($active_type == $mode_id) ? ' on' : '' ?>" href="?cmd=<?= $encode->encode("cmd=goxiulian&mode=$mode_id&sid=$sid") ?>"><?= $mode_label ?></a>
+            <?php endif; ?>
+        <?php endforeach; ?>
     </div>
-  </div>
 
     <div class="xl-action">
         <div class="xl-action-side xl-action-side-left">
@@ -510,7 +498,7 @@ $realm_label = xl_realm_label($player->jingjie);
 
         if (sfxlType > 1) {
             curRes -= resPerSec;
-            put(sfxlType == 2 ? 'yxb_val' : 'czb_val', Math.max(0, Math.floor(curRes)).toLocaleString());
+            put(sfxlType == 2 ? 'yxb_val' : 'czb_val', Math.max(0, Math.floor(curRes)).toLocaleString('vi-VN'));
         }
 
         if (currentExp >= maxExp || (maxSec > 0 && totalSec >= maxSec) || (sfxlType > 1 && curRes <= 0)) {

@@ -503,7 +503,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026101401">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102801">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
@@ -581,8 +581,8 @@ switch ($cmd) {
             <div class="tcg-username"><?php echo htmlspecialchars($tcg_header_name, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="tcg-userid"><?php echo htmlspecialchars($tcg_header_id, ENT_QUOTES, 'UTF-8'); ?></div>
         </div>
-        <div class="tcg-money tcg-linh"><span>💰</span><b><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></b></div>
-        <div class="tcg-diamond"><span>💎</span><b><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></b></div>
+        <div class="tcg-money tcg-linh"><span>💰</span><b id="yxb_val"><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></b></div>
+        <div class="tcg-diamond"><span>💎</span><b id="czb_val"><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></b></div>
     </div>
 </header>
 <div class="tcg-page">
@@ -611,20 +611,7 @@ switch ($cmd) {
                     window.location.reload();
                 }
             });
-
-            function changetime(){
-                var ary = Array("Chủ Nhật","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7");
-                var Timehtml = document.getElementById('CurrentTime');
-                if (!Timehtml) return;
-                var date = new Date();
-                Timehtml.innerHTML = '' + date.toLocaleString() + ' ' + ary[date.getDay()];
-            }
-            window.onload = function(){
-                changetime();
-                setInterval(changetime,1000);
-            }
             </script>
-            <div id="CurrentTime"><?php echo date('Y-m-d H:i:s') ?></div>
         </footer>
     </div>
 </div>
