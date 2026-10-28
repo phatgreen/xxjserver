@@ -7809,3 +7809,38 @@ a.hm-act-transform:link,a.hm-act-transform:visited,a.hm-act-transform:hover,a.hm
 .tcg-npc-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
 .tcg-npc-label{padding:4px 10px;border-radius:999px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.4);color:#7dd3fc;font-size:12px;font-weight:900}
 .tcg-npc-row img{width:16px;height:16px;vertical-align:middle}
+
+/* ===== UI-1 (2026-10-28) — sửa lỗi mobile nhỏ, xem docs/UI_DON_GIAN_HOA_MOBILE.md mục 3 =====
+   Dùng tiền tố body.tcg-bg-body để thắng các quy tắc mobile cũ cùng tiền tố (không sửa quy tắc cũ). */
+/* M4: số tiền thanh trên — desktop hiện số đầy đủ, mobile hiện số gọn (2.09B) thay vì bị cắt "…" */
+.tcg-num-full,.tcg-num-short{font-style:normal}
+.tcg-num-short{display:none}
+@media(max-width:760px){
+body.tcg-bg-body .tcg-num-full{display:none}
+body.tcg-bg-body .tcg-num-short{display:inline}
+body.tcg-bg-body .tcg-money,body.tcg-bg-body .tcg-diamond{max-width:none!important}
+body.tcg-bg-body .tcg-money b,body.tcg-bg-body .tcg-diamond b{max-width:none!important;overflow:visible!important}
+/* M1: thanh trên — 5 nút trên 1 hàng (icon trên, chữ dưới) thay vì lưới 2 cột × 3 hàng */
+body.tcg-bg-body .tcg-nav{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}
+body.tcg-bg-body .tcg-nav a,body.tcg-bg-body .tcg-nav a:visited{height:42px!important;flex-direction:column!important;justify-content:center!important;gap:2px!important;padding:0 2px!important;font-size:11px!important;line-height:1.1!important;white-space:nowrap!important}
+body.tcg-bg-body .tcg-nav a .nav-ico{font-size:15px!important;line-height:1!important;margin:0!important}
+body.tcg-bg-body .tcg-nav a:nth-child(5){grid-column:auto!important}
+}
+/* M6: hàng cuộn ngang (chip lọc Thiên Cơ Các, hàng bậc Thể Chất / Huyết Mạch) — mờ mép phải để báo "còn nữa, vuốt ngang" */
+@media(max-width:760px){
+body.tcg-bg-body .tcg-tcc-filter,body.tcg-bg-body .nb-rail,body.tcg-bg-body .hm-rail{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent);padding-right:28px}
+}
+/* M7: vùng chạm tối thiểu trên mobile — nút bấm ≥ 36px, tên dạng liên kết ≥ 32px (không đổi cỡ chữ) */
+@media(max-width:760px){
+body.tcg-bg-body .remove-btn,body.tcg-bg-body .ct-recipe-toggle,body.tcg-bg-body .bag-btn{min-height:36px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+body.tcg-bg-body .tcg-shop-name,body.tcg-bg-body .rank-player,body.tcg-bg-body .bag-item-name{min-height:32px!important;display:inline-flex!important;align-items:center!important}
+}
+/* M8: chữ tối thiểu trên mobile. Nút tròn trang Tu Luyện rộng 58px nên nhãn 10px, cho xuống 2 dòng (thiết kế lại ở UI-3) */
+@media(max-width:760px){
+body.tcg-bg-body .xl-rail .xl-node b{font-size:10px!important;line-height:1.05!important;white-space:normal!important;text-align:center!important}
+body.tcg-bg-body .xl-tabbar a b,body.tcg-bg-body .tp-tabbar a b,body.tcg-bg-body .lc-tabbar a b,body.tcg-bg-body .nb-tabbar a b,body.tcg-bg-body .hm-tabbar a b,
+body.tcg-bg-body .pb-card-type,body.tcg-bg-body .tp-attr-cap{font-size:11px!important}
+body.tcg-bg-body .xl-res-chip span,body.tcg-bg-body .tp-tier em,body.tcg-bg-body .tcg-userid,
+body.tcg-bg-body .tcg-tcc-item-sub,body.tcg-bg-body .tcg-tcc-purpose-badge,body.tcg-bg-body .tcg-tcc-rarity-badge,body.tcg-bg-body .tcg-tcc-elem-badge,
+body.tcg-bg-body .event-task-grade,body.tcg-bg-body .info-label,body.tcg-bg-body .rank-tier,body.tcg-bg-body .rank-stars{font-size:11px!important}
+}

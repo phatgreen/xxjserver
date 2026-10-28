@@ -509,7 +509,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102803">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102804">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
@@ -517,6 +517,19 @@ if (!isset($sid) || $sid==''){
 </head>
 <body class="bg-body tcg-bg-body">
 <?php
+// Số gọn cho thanh trên ở mobile (cùng quy tắc xl_num() trong game/xiulian.php): 2.09B / 554.05K
+if (!function_exists('tcg_num_short')) {
+    function tcg_num_short($value) {
+        $value = floatval($value);
+        $units = array(1000000000 => 'B', 1000000 => 'M', 1000 => 'K');
+        foreach ($units as $div => $unit) {
+            if (abs($value) >= $div) {
+                return rtrim(rtrim(number_format($value / $div, 2, '.', ''), '0'), '.') . $unit;
+            }
+        }
+        return number_format($value, 0, ',', '.');
+    }
+}
 $tcg_header_name = 'Khách';
 $tcg_header_id = '';
 $tcg_header_avatar = 'images/avatar_nam.png';
@@ -587,8 +600,8 @@ switch ($cmd) {
             <div class="tcg-username"><?php echo htmlspecialchars($tcg_header_name, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="tcg-userid"><?php echo htmlspecialchars($tcg_header_id, ENT_QUOTES, 'UTF-8'); ?></div>
         </div>
-        <div class="tcg-money tcg-linh"><span>💰</span><b><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></b></div>
-        <div class="tcg-diamond"><span>💎</span><b><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></b></div>
+        <div class="tcg-money tcg-linh"><span>💰</span><b><i class="tcg-num-full"><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_linh); ?></i></b></div>
+        <div class="tcg-diamond"><span>💎</span><b><i class="tcg-num-full"><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_ma); ?></i></b></div>
     </div>
 </header>
 <div class="tcg-page">

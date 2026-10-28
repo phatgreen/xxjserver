@@ -47,6 +47,21 @@ Mục tiêu:
 
 > Ghi chú môi trường thử: tên bản đồ hiện lỗi font trên server cloud do cách nạp DB — trên máy chủ thật (ảnh chủ dự án gửi) hiển thị đúng, **không phải lỗi game**.
 
+### 3.1 Kết quả UI-1 (ĐÃ LÀM 2026-10-28)
+
+Mọi sửa đổi nằm ở cuối `css/mystyle.css` (khối `UI-1`, tiền tố `body.tcg-bg-body` để thắng quy tắc mobile cũ mà không sửa chúng) + số gọn trong `game.php`. CSS `?v=2026102804`.
+
+| # | Trước | Sau | Cách sửa |
+|---|---|---|---|
+| M1 | Thanh trên 217 px (5 nút lưới 2×3) | **133 px**, 5 nút 1 hàng | lưới 5 cột, icon trên chữ dưới; hủy quy tắc cũ kéo nút thứ 5 hết hàng |
+| M4 | Tiền "2.09…", "50…" | **2.09B · 500.24K** (desktop vẫn số đầy đủ) | `tcg_num_short()` (cùng quy tắc `xl_num`) + CSS ẩn/hiện theo màn hình |
+| M5 | "Dải trắng cuối trang" | **Không phải lỗi** | Chụp khung nhìn thật khi cuộn cuối trang: nền phủ kín. Dải trắng chỉ xuất hiện ở ảnh chụp toàn trang do nền `fixed` |
+| M6 | "Tràn mép" ở 3 trang | Đúng ra là **vùng cuộn ngang có chủ đích** (`overflow-x:auto`) — thêm mờ mép phải báo "vuốt ngang" | `mask-image` cho `.tcg-tcc-filter`, `.nb-rail`, `.hm-rail`; `audit_mobile.js` bỏ qua phần tử trong vùng cuộn |
+| M7 | 6 loại nút < 32 px (Tháo, mở công thức, Bán 1, tên vật phẩm / người chơi) | **0** | nút ≥ 36 px, tên dạng liên kết ≥ 32 px (không đổi cỡ chữ) |
+| M8 | Chữ < 11 px (Thiên Cơ Các 233 chỗ, nhãn nút Tu Luyện **8 px**, thanh dưới 9,5 px…) | **0** trừ nhãn 10 nút tròn trang Tu Luyện = **10 px** (nút rộng 58 px, cho xuống 2 dòng — thiết kế lại ở UI-3) | cỡ tối thiểu 11 px theo lớp |
+
+Đo lại 26 trang (`tools/cloud/audit_mobile.js`): 0 trang tràn ngang, 0 nút < 32 px, mỗi trang ngắn đi ~84 px; desktop 1366×768 không đổi.
+
 ## 4. Bố cục mới đề xuất
 
 ### 4.1 Khung chung (mọi trang)
