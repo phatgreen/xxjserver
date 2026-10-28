@@ -336,12 +336,20 @@ function tcg_taskguide_build_page_links($totalPages, $currentPage, $filterType, 
     if ($totalPages <= 1) {
         return '';
     }
-    $links = '';
-    for ($i = 1; $i <= $totalPages; $i++) {
+    // Chỉ hiện trang đầu, cuối và 1 trang mỗi bên trang hiện tại (in hết 25+ số làm tràn khung)
+    $link = function ($i, $text) use ($currentPage, $filterType, $sid, $encode) {
         $cmd = $encode->encode("cmd=taskguide&ttype=$filterType&pg=$i&sid=$sid");
         $cls = ($i == $currentPage) ? ' current' : '';
-        $links .= '<a class="news-task-page-link'.$cls.'" href="?cmd='.$cmd.'">'.$i.'</a>';
+        return '<a class="news-task-page-link'.$cls.'" href="?cmd='.$cmd.'">'.$text.'</a>';
+    };
+    $links = '';
+    $from = max(1, $currentPage - 1);
+    $to = min($totalPages, $currentPage + 1);
+    if ($from > 1) $links .= $link(1, '1') . ($from > 2 ? '<span class="news-task-page-gap">…</span>' : '');
+    for ($i = $from; $i <= $to; $i++) {
+        $links .= $link($i, (string)$i);
     }
+    if ($to < $totalPages) $links .= ($to < $totalPages - 1 ? '<span class="news-task-page-gap">…</span>' : '') . $link($totalPages, (string)$totalPages);
     return $links;
 }
 
