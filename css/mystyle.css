@@ -8422,3 +8422,15 @@ body.tcg-bg-body .zb-compact .cws-stat .zb-lb-sm{font-size:9.5px!important}
 .nh-btn,a.nh-btn:link,a.nh-btn:visited{display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1.2!important;margin:0!important}
 body.tcg-bg-body .zb-compact .nh-btn,body.tcg-bg-body .zb-compact a.nh-btn:link,body.tcg-bg-body .zb-compact a.nh-btn:visited{height:30px!important;min-height:0!important;min-width:0!important;max-width:100%!important;font-size:12px!important}
 body.tcg-bg-body .zb-compact .nh-row{overflow:hidden!important;padding-bottom:7px!important}
+.nh-cost i{font-style:normal}
+/* Ô Ngũ Hành hẹp: chi phí tách 3 dòng ngắn để chữ to dễ đọc; dòng "Đã có x/5 hành" lên cùng hàng tiêu đề */
+body.tcg-bg-body .zb-compact .nh-el{font-size:15px!important}
+body.tcg-bg-body .zb-compact .nh-cost{display:flex!important;flex-direction:column!important;align-items:center!important;font-size:13px!important;line-height:1.35!important}
+body.tcg-bg-body .zb-compact .nh-cost .nh-sep{display:none!important}
+body.tcg-bg-body .zb-compact .nh-btn,body.tcg-bg-body .zb-compact a.nh-btn:link,body.tcg-bg-body .zb-compact a.nh-btn:visited{font-size:13px!important}
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2){display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:center}
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .zb-section-title{margin:0!important}
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .zb-row{border:0!important;padding:0!important}
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .nh-list,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .zb-desc,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .nh-done{grid-column:1/-1;margin-top:8px!important}
+body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
+@media(max-width:760px){body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2){grid-template-columns:1fr}}

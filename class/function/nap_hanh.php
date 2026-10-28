@@ -262,8 +262,9 @@ if (!function_exists(__NAMESPACE__ . '\\nap_hanh_section_html')) {
                 . '<span class="nh-el" style="color:' . zhuangbei_element_color_ui($el) . '">'
                 . zhuangbei_element_icon($el) . ' ' . zhuangbei_element_name($el) . $chip . '</span>'
                 . '<span class="nh-cost' . ($have < $c['stone_qty'] ? ' bad' : '') . '">'
-                . $c['stone_qty'] . ' đá (có ' . $have . ') · ' . $c['linhthach'] . ' LT'
-                . ' · <span class="nh-rate">Tỉ lệ ' . $rate . '%</span></span>'
+                . '<i class="nh-c">' . $c['stone_qty'] . ' đá (có ' . $have . ')</i><i class="nh-sep"> · </i>'
+                . '<i class="nh-c">' . $c['linhthach'] . ' LT</i><i class="nh-sep"> · </i>'
+                . '<span class="nh-rate">Tỉ lệ ' . $rate . '%</span></span>'
                 . '<a class="nh-btn" href="?cmd=' . $cmd . '">Kích hoạt</a>'
                 . '</div>';
         }
