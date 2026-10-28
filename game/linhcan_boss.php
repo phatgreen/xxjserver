@@ -202,6 +202,11 @@ foreach ($lcvh as $ckB) {
 }
 ?>
 <div class="lcb-wrap">
+    <nav class="lc-tabbar">
+        <a href="?cmd=<?= $lccmd ?>"><i>☯</i><b>Luyện Căn</b></a>
+        <a href="?cmd=<?= $lcqcmd ?>"><i>📜</i><b>Nhiệm Vụ</b></a>
+        <a class="on" href="?cmd=<?= $lcbcmd ?>"><i>👹</i><b>Boss Ngũ Hành</b></a>
+    </nav>
     <div class="lcb-head"><span class="lcb-title"><?= $isPersonal ? 'BOSS ĐỘT PHÁ · ' . $lcdefP['name'] : 'BOSS LINH CĂN THẾ GIỚI' ?></span></div>
     <div class="lcb-chips">
         <a class="lcb-chip<?= $isPersonal ? '' : ' is-active' ?>" href="?cmd=<?= $lcbcmd ?>">🌍 Thế Giới</a>
@@ -213,10 +218,4 @@ foreach ($lcvh as $ckB) {
     <?php endif; ?>
     <?= $hintHtml ?>
     <div class="lcb-footnote">Boss cá nhân mỗi hành xuất hiện khi hành đó đạt Lv trần bậc; hạ boss mới ĐỘT PHÁ được bậc kế. Boss thế giới (2h) rơi đá ngũ hành + Bình Anh thật vào túi đồ.</div>
-    <nav class="lc-tabbar">
-        <a href="?cmd=<?= $lccmd ?>"><i>☯</i><b>Luyện Căn</b></a>
-        <a href="?cmd=<?= $lcqcmd ?>"><i>📜</i><b>Nhiệm Vụ</b></a>
-        <a class="on" href="?cmd=<?= $lcbcmd ?>"><i>👹</i><b>Boss Ngũ Hành</b></a>
-        <a href="?cmd=<?= $ztcmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-    </nav>
 </div>

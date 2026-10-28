@@ -57,6 +57,11 @@ foreach ($lcquests as $qid => $q) {
 }
 ?>
 <div class="lcq-wrap">
+    <nav class="lc-tabbar">
+        <a href="?cmd=<?= $lccmd ?>"><i>☯</i><b>Luyện Căn</b></a>
+        <a class="on" href="?cmd=<?= $lcqcmd ?>"><i>📜</i><b>Nhiệm Vụ</b></a>
+        <a href="?cmd=<?= $lcbcmd ?>"><i>👹</i><b>Boss Ngũ Hành</b></a>
+    </nav>
     <div class="lcq-card">
         <div class="lcq-head">
             <span class="lcq-title">📜 NHIỆM VỤ LINH CĂN</span>
@@ -79,10 +84,4 @@ foreach ($lcquests as $qid => $q) {
         </div>
         <?php endif; ?>
     </div>
-    <nav class="lc-tabbar">
-        <a href="?cmd=<?= $lccmd ?>"><i>☯</i><b>Luyện Căn</b></a>
-        <a class="on" href="?cmd=<?= $lcqcmd ?>"><i>📜</i><b>Nhiệm Vụ</b></a>
-        <a href="?cmd=<?= $lcbcmd ?>"><i>👹</i><b>Boss Ngũ Hành</b></a>
-        <a href="?cmd=<?= $ztcmd ?>"><i>👤</i><b>Nhân Vật</b></a>
-    </nav>
 </div>

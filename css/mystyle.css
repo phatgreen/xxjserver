@@ -8434,3 +8434,21 @@ body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .zb-row{borde
 body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .nh-list,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .zb-desc,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2) > .nh-done{grid-column:1/-1;margin-top:8px!important}
 body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:12px!important}
 @media(max-width:760px){body.tcg-bg-body .zb-compact .zb-cols > .zb-section:nth-child(2){grid-template-columns:1fr}}
+/* ===== Linh Căn gọn (game/linhcan.php .lc-compact) — tab lên đầu; vòng Ngũ Hành giữa, Thuộc tính trái / Đột phá phải ===== */
+.lc-wrap > .lc-tabbar{margin:0 0 10px}
+.lcq-wrap > .lc-tabbar,.lcb-wrap > .lc-tabbar{margin:0 0 10px}
+.lc-compact .lc-rail{margin:6px 0}
+.lc-compact .lc-main{display:grid;grid-template-columns:150px minmax(0,1fr) 150px;gap:10px;align-items:start}
+.lc-compact .lc-stage{max-width:300px!important}
+.lc-compact .lc-forge{margin-top:8px}
+.lc-compact .lc-col{min-width:0;padding:8px;border-radius:12px;border:1px solid rgba(148,163,184,.16);background:rgba(4,10,28,.45)}
+.lc-compact .lc-col-title{font-size:13px;margin-bottom:6px}
+.lc-compact .lc-attr-row,.lc-compact .lc-reqs-row{font-size:11.5px;line-height:1.35;margin-bottom:5px}
+.lc-compact .lc-ms,.lc-compact .lc-skillcard{font-size:11px;line-height:1.4;margin-top:6px}
+@media(max-width:760px){
+.lc-compact .lc-main{grid-template-columns:1fr 1fr}
+.lc-compact .lc-forge-wrap{grid-column:1/-1;order:-1}
+.lc-compact .lc-stage{max-width:340px!important}
+}
+.lc-compact .lc-attr-row,.lc-compact .lc-reqs-row{font-size:12.5px}
+.lc-compact .lc-ms,.lc-compact .lc-skillcard{font-size:12px}

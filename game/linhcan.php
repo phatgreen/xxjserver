@@ -182,29 +182,28 @@ $html = '<div class="lc-wrap lc-fx' . $lcmaxStage . '" style="--lc-tier:' . $lcm
 if ($lcmsg !== '') {
     $html .= '<div class="lc-notice' . ($lcmsgBad ? ' bad' : '') . '">' . $lcmsg . '</div>';
 }
-$html .= '<div class="lc-card lc-card-ring">';
+// Tab bar đặt đầu trang (giống các trang khác; 3 trang Linh Căn cùng vị trí). Bỏ tab Nhân Vật — đã có ở thanh trên.
+$html .= '<nav class="lc-tabbar">'
+    . '<a class="on" href="' . $lclink($lcview) . '"><i>☯</i><b>Luyện Căn</b></a>'
+    . '<a href="?cmd=' . $questcmd . '"><i>📜</i><b>Nhiệm Vụ</b></a>'
+    . '<a href="?cmd=' . $bosscmd . '"><i>👹</i><b>Boss Ngũ Hành</b></a></nav>';
+$html .= '<div class="lc-card lc-card-ring lc-compact">';
 $html .= '<div class="lc-head"><span class="lc-title">LINH CĂN</span>'
     . '<span class="lc-badge" style="--lc-color:' . $lctitle['color'] . '">' . $lctitle['icon'] . ' '
     . $lctitle['name'] . ' · tổng Lv ' . $lctotal . '</span></div>';
 $html .= '<div class="lc-rail">' . $lcchips . '</div>';
 $html .= '<div class="lc-viewline">' . $lcviewline . '</div>';
-$html .= '<div class="lc-forge-wrap"><div class="lc-stage">'
+// Khung giữa: vòng Ngũ Hành làm trung tâm, thuộc tính trái / đột phá phải (giống trang Nhân Vật)
+$html .= '<div class="lc-main">'
+    . '<div class="lc-col lc-col-left"><div class="lc-col-title">Thuộc Tính Kích Hoạt</div>' . $lcsrowLeft . $lcmsLine . '</div>'
+    . '<div class="lc-forge-wrap"><div class="lc-stage">'
     . '<img class="lc-ring-img" src="images/linhcan/vong-ngu-hanh.jpg?v=' . $lcImgVer . '" alt="Vòng Ngũ Hành">'
     . $lcgems . $lccore . '</div>'
-    . '<div class="lc-forge">' . $lcbtnTrain . $lcbtnBreak . '</div></div>';
-$html .= '</div>'; // lc-card-ring
-// Tab bar o CAP WRAP (khong nam trong card) -> 4 tab Linh Can cung vi tri,
-// giong khuon .hm-tabbar / .nb-tabbar; vao tab khong bi nhay 13px.
-$html .= '<nav class="lc-tabbar">'
-    . '<a class="on" href="' . $lclink($lcview) . '"><i>☯</i><b>Luyện Căn</b></a>'
-    . '<a href="?cmd=' . $questcmd . '"><i>📜</i><b>Nhiệm Vụ</b></a>'
-    . '<a href="?cmd=' . $bosscmd . '"><i>👹</i><b>Boss Ngũ Hành</b></a>'
-    . '<a href="?cmd=' . $ztcmd . '"><i>👤</i><b>Nhân Vật</b></a></nav>';
-$html .= '<div class="lc-card lc-cols">'
-    . '<div class="lc-col"><div class="lc-col-title">Thuộc Tính Kích Hoạt</div>' . $lcsrowLeft . $lcmsLine . '</div>'
-    . '<div class="lc-col"><div class="lc-col-title">Đột Phá ' . $defv['icon'] . ' ' . $defv['name'] . '</div>'
+    . '<div class="lc-forge">' . $lcbtnTrain . $lcbtnBreak . '</div></div>'
+    . '<div class="lc-col lc-col-right"><div class="lc-col-title">Đột Phá ' . $defv['icon'] . ' ' . $defv['name'] . '</div>'
     . '<div class="lc-reqs">' . $lcsrowRight . '</div>'
     . '<div class="lc-skillcard">' . $lcSkillCard . '</div></div>'
     . '</div>';
+$html .= '</div>'; // lc-card-ring
 $html .= '</div>'; // lc-wrap
 echo $html;
