@@ -109,6 +109,9 @@ $djhtml = '';
 $hangshu = 0;
 $totalKind = 0;
 $totalNum = 0;
+// Chia trang: 20 loại / trang (lưới 5 x 4); tổng loại / tổng số lượng vẫn đếm toàn bộ
+$djPer = 20;
+$yeshu = isset($yeshu) ? max(0, intval($yeshu)) : 0;
 
 for ($i=0;$i<count($retdj);$i++){
     $djid = $retdj[$i]['djid'];
@@ -120,12 +123,13 @@ for ($i=0;$i<count($retdj);$i++){
         $hangshu = $hangshu + 1;
         $totalKind++;
         $totalNum += $djsum;
+        if ($hangshu <= $yeshu || $hangshu > $yeshu + $djPer) continue;
 
         $chakandj = $encode->encode("cmd=djinfo&djid=$djid&uid=$player->uid&sid=$sid");
-        $maichu1 = $encode->encode("cmd=getbagdj&canshu=maichu1&djid=$djid&uid=$player->uid&sid=$sid");
-        $maichu5 = $encode->encode("cmd=getbagdj&canshu=maichu5&djid=$djid&uid=$player->uid&sid=$sid");
-        $maichu10 = $encode->encode("cmd=getbagdj&canshu=maichu10&djid=$djid&uid=$player->uid&sid=$sid");
-        $usedj = $encode->encode("cmd=usedaoju&djid=$djid&uid=$player->uid&sid=$sid");
+        $maichu1 = $encode->encode("cmd=getbagdj&canshu=maichu1&djid=$djid&yeshu=$yeshu&uid=$player->uid&sid=$sid");
+        $maichu5 = $encode->encode("cmd=getbagdj&canshu=maichu5&djid=$djid&yeshu=$yeshu&uid=$player->uid&sid=$sid");
+        $maichu10 = $encode->encode("cmd=getbagdj&canshu=maichu10&djid=$djid&yeshu=$yeshu&uid=$player->uid&sid=$sid");
+        $usedj = $encode->encode("cmd=usedaoju&djid=$djid&yeshu=$yeshu&uid=$player->uid&sid=$sid");
         $usedjEffect = $encode->encode("cmd=use_dj&djid=$djid&uid=$player->uid&sid=$sid");
         $daojuCfg = $daojuConfig;
         $canUseDjuse = ($daojuCfg && isset($daojuCfg->djuse) && $daojuCfg->djuse != '');
@@ -155,6 +159,17 @@ for ($i=0;$i<count($retdj);$i++){
             </div>
         </div>';
     }
+}
+
+$djPager = '';
+if ($totalKind > $djPer) {
+    $djPrev = $yeshu > 0 ? $encode->encode("cmd=getbagdj&yeshu=" . max(0, $yeshu - $djPer) . "&sid=$sid") : '';
+    $djNext = $yeshu + $djPer < $totalKind ? $encode->encode("cmd=getbagdj&yeshu=" . ($yeshu + $djPer) . "&sid=$sid") : '';
+    $djPager = '<div class="bag-pagination">'
+        . ($djPrev !== '' ? '<a class="bag-page-btn" href="?cmd=' . $djPrev . '">‹ Trang trước</a>' : '')
+        . '<span class="bag-page-num">' . (intval($yeshu / $djPer) + 1) . ' / ' . intval(ceil($totalKind / $djPer)) . '</span>'
+        . ($djNext !== '' ? '<a class="bag-page-btn" href="?cmd=' . $djNext . '">Trang sau ›</a>' : '')
+        . '</div>';
 }
 
 if ($djhtml == '') {
@@ -200,6 +215,8 @@ $bagdjhtml =<<<HTML
     <div class="bag-list">
         $djhtml
     </div>
+
+    $djPager
 
 </div>
 $danPopup

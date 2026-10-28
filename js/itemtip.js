@@ -64,7 +64,7 @@
             '>' + esc(text) + '</span>';
     }
 
-    function render(data, href) {
+    function buildHtml(data, href) {
         var html = '';
         var elems = data.elem || [];
         var rar = data.rar || ['', ''];
@@ -115,7 +115,11 @@
             html += '<a class="tcg-itemtip-more" href="' + esc(href) + '">Xem chi tiết →</a>';
         }
 
-        ensureBox().innerHTML = html;
+        return html;
+    }
+
+    function render(data, href) {
+        ensureBox().innerHTML = buildHtml(data, href);
     }
 
     function place(el) {
@@ -232,6 +236,8 @@
     function onClick(e) {
         var el = findTrigger(e.target);
         if (!el) return;
+        // Ô vật phẩm Túi Đồ tự mở bảng thao tác (js/bagpop.js) — không mở hộp xem nhanh khi chạm
+        if (el.closest && el.closest('.bag-compact .bag-item-card')) return;
         if (supportsHover()) return;
         if (box && box.style.display === 'block' && trigger === el) return;
         e.preventDefault();
@@ -246,6 +252,12 @@
     function onKey(e) {
         if (e.key === 'Escape' || e.keyCode === 27) hide();
     }
+
+    // Cho js/bagpop.js dùng lại nội dung hộp xem nhanh trong bảng thao tác
+    window.tcgItemTip = {
+        html: function (el) { var d = parseData(el); return (d && d.stats) ? buildHtml(d, el.getAttribute('href')) : ''; },
+        hide: function () { hide(); }
+    };
 
     function init() {
         document.addEventListener('mouseover', onMouseOver, false);

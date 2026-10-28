@@ -166,7 +166,7 @@ $yeshu = max(0, intval($yeshu));
     }
 }
 
-$cxjg = $dblj->prepare("select * from playerzhuangbei WHERE sid = ? ORDER BY zbid DESC LIMIT $yeshu,10");
+$cxjg = $dblj->prepare("select * from playerzhuangbei WHERE sid = ? ORDER BY zbid DESC LIMIT $yeshu,20");
 $cxjg->execute(array($sid));
 $retzb = $cxjg->fetchAll(PDO::FETCH_ASSOC);
 
@@ -179,13 +179,13 @@ $zbhtml = '';
 $fanye='';
 
 if ($yeshu!=0){
-    $shangcanshu=$yeshu-10;
+    $shangcanshu=$yeshu-20;
     if ($shangcanshu < 0) $shangcanshu = 0;
     $shangyiye = $encode->encode("cmd=getbagzb&yeshu=$shangcanshu&sid=$sid");
     $fanye .= '<a class="bag-page-btn" href="?cmd='.$shangyiye.'">‹ Trang trước</a>';
 }
-if ($yeshu +10 < $zbcount){
-    $xiacanshu=$yeshu+10;
+if ($yeshu +20 < $zbcount){
+    $xiacanshu=$yeshu+20;
     $xiayiye = $encode->encode("cmd=getbagzb&yeshu=$xiacanshu&sid=$sid");
     $fanye .= '<a class="bag-page-btn" href="?cmd='.$xiayiye.'">Trang sau ›</a>';
 }
@@ -270,7 +270,7 @@ $getbagjncmd = $encode->encode("cmd=getbagjn&sid=$sid");
 $getbagydcmd = $encode->encode("cmd=getbagyd&sid=$sid");
 
 $fromNum = $zbcount > 0 ? ($yeshu + 1) : 0;
-$toNum = min($yeshu + 10, $zbcount);
+$toNum = min($yeshu + 20, $zbcount);
 
 $noticeHtml = '';
 if ($tishi != '') {
