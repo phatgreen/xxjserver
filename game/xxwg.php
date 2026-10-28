@@ -148,7 +148,7 @@ if ($canshu != '') {
 HTML;
 
             echo $cwhtml;
-            exit;
+            return; // dừng file nhưng để game.php vẽ tiếp thanh dưới
             break;
     }
 }
@@ -238,6 +238,7 @@ $wgxl       = $encode->encode("cmd=wgxl&sid=".$sid);
 $wgxx       = $encode->encode("cmd=xxwg&sid=".$sid);
 
 $activeName = 'Chưa học võ công';
+$activeWg = false;
 if ($wgid > 0) {
     $activeWg = \player\wgcx($wgid, $sid, $dblj);
     if ($activeWg) {
@@ -246,36 +247,47 @@ if ($wgid > 0) {
 }
 $activeName = wg_safe_text($activeName);
 
+// Khung trung tâm: võ công đang học (giống trang Võ Công / Nhân Vật, dùng lại .cws-*)
+$bookKinds = $allcw ? count($allcw) : 0;
+if ($activeWg) {
+    $aYs = wg_safe_text($activeWg->wgys);
+    $aMax = max(1, intval($activeWg->wgxlmax));
+    $aPct = min(100, intval(round(intval($activeWg->wgxl) * 100 / $aMax)));
+    $aInfo = explode('|', $activeWg->wginfo);
+    $aType = isset($aInfo[0]) ? wg_safe_text($aInfo[0]) : '';
+    $stageHtml = '<div class="cws-stage wgs-stage" style="--cw-q:' . $aYs . '">'
+        . '<div class="cws-tag">📖 Đang học</div>'
+        . '<div class="cws-side cws-side-left">'
+        . '<div class="cws-stat"><span>📈 Cấp võ công</span><b>' . intval($activeWg->wgdj) . '</b></div>'
+        . '<div class="cws-stat"><span>📖 Bí tịch</span><b>' . intval($activeWg->wgsum) . '</b></div>'
+        . '<div class="cws-stat"><span>📚 Võ công sở hữu</span><b>' . $bookKinds . '</b></div>'
+        . '</div>'
+        . '<div class="cws-figure wgs-figure"><img src="./images/wugong/' . intval($wgid) . '.png" alt="Võ công"></div>'
+        . '<div class="cws-side cws-side-right">'
+        . '<div class="cws-stat"><span>✨ Phẩm chất</span><b style="color:' . $aYs . '">' . wg_color_name($activeWg->wgys) . '</b></div>'
+        . '<div class="cws-stat"><span>⚡ Kinh nghiệm</span><b>' . $aPct . '%</b></div>'
+        . '<div class="cws-stat"><span>⚔️ Loại vũ khí</span><b class="wgs-small">' . $aType . '</b></div>'
+        . '</div>'
+        . '<div class="cws-id"><div class="cws-name" style="color:' . $aYs . ';text-shadow:0 0 16px ' . $aYs . '88">' . $activeName . '</div>'
+        . '<div class="wgs-actions"><a class="tcg-wg-btn primary" href="?cmd=' . $wgxl . '">🥋 Tu luyện võ công</a></div></div>'
+        . '</div>';
+} else {
+    $stageHtml = '<div class="cws-stage cws-empty wgs-stage"><div class="cws-tag">📖 Bí tịch</div>'
+        . '<div class="cws-figure wgs-figure"><img src="./images/wugong/0.png" alt="Võ công"></div>'
+        . '<div class="cws-id"><div class="cws-name">Chưa học võ công — chọn "Thi Triển" ở danh sách bên dưới</div></div></div>';
+}
+
 $cwhtml = <<<HTML
-<div class="tcg-wg-page">
-    <div class="tcg-wg-hero">
-        <div class="tcg-wg-imgbox">
-            <img src="./images/wugong/$wgid.png" alt="Võ công">
-        </div>
-        <div class="tcg-wg-hero-info">
-            <div class="tcg-wg-kicker">Thư Phòng Riêng</div>
-            <h2>Võ Công</h2>
-            <p>Quản lý bí tịch, chọn võ công đang học và loại bỏ bí tịch dư thừa.</p>
-            <div class="tcg-wg-current">
-                <span>Đang học</span>
-                <b>$activeName</b>
-            </div>
-        </div>
-    </div>
-
+<div class="tcg-wg-page wg-compact bt-compact">
     <div class="tcg-wg-tabs">
-        <a href="?cmd=$xiuliancmd">Ngồi thiền</a>
-        <a href="?cmd=$wgxl">Tu luyện võ công</a>
-        <a class="active" href="?cmd=$wgxx">Bí tịch</a>
+        <a class="tcg-wg-tab" href="?cmd=$xiuliancmd">Ngồi thiền</a>
+        <a class="tcg-wg-tab" href="?cmd=$wgxl">Tu luyện võ công</a>
+        <a class="tcg-wg-tab active" href="?cmd=$wgxx">Bí tịch</a>
     </div>
 
-    <div class="tcg-wg-toolbar">
-        <div>
-            <span class="tcg-wg-small-title">Kho bí tịch</span>
-            <b>Danh sách võ công sở hữu</b>
-        </div>
-    </div>
+    $stageHtml
 
+    <div class="bt-title">Kho bí tịch ($bookKinds)</div>
     <div class="tcg-wg-list">
         $cwnamehtml
     </div>
@@ -283,11 +295,6 @@ $cwhtml = <<<HTML
     $tssb
     $tscg
     $tiss
-
-    <div class="tcg-wg-bottom">
-        <a class="tcg-wg-navbtn" href="#" onClick="javascript:history.back(-1);">Trở về</a>
-        <a class="tcg-wg-navbtn primary" href="game.php?cmd=$gonowmid">Đại sảnh</a>
-    </div>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0" />
 </div>
