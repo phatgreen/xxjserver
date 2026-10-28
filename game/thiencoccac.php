@@ -798,9 +798,10 @@ document.querySelectorAll('[data-wg-click]').forEach(function(el){
     font-size: 14px;
     font-weight: 1000;
     text-shadow: 0 0 8px rgba(255,255,255,.12), 0 0 14px currentColor;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* Tên dài (vd Tiên Đạo) xuống dòng thay vì bị cắt "…" */
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.3;
 }
 .tcg-tcc-item-meta {
     display: flex;

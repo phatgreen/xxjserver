@@ -79,8 +79,13 @@
 | Hạ boss cấp 500 (tạm đặt 100% ở bản sao chạy thử) / boss cấp 350 | Nhận "Tiên Đạo Tàn Quyển x1" + thông báo Hệ Thống / không rơi |
 | Test cũ A, B, C, F, combat, Cộng Hưởng | ALL PASS |
 
-### Lỗi có sẵn phát hiện khi test (chưa sửa — chờ chủ dự án)
+### Lỗi có sẵn phát hiện khi test (ĐÃ SỬA 2026-10-28)
 
 `game/boss.php:66-72`: boss đã chết mà gọi lại link tấn công thì boss "bỏ trốn" và **hồi đầy máu ngay**, bỏ qua thời gian hồi
 sinh `mid.ms` (600 giây) mà `nowmid.php:125` vẫn tôn trọng ⇒ có thể hạ boss liên tục, thưởng (Linh Thạch, Ma Thạch, trang bị,
 nay thêm Tàn Quyển) không bị giới hạn bởi 600 giây. Ước tính kinh tế ở mục 2 chỉ đúng khi lỗi này được sửa.
+
+**Đã sửa:** nhánh "bỏ trốn" chỉ hồi máu khi đã qua `mid.ms` (tra bản đồ theo `midboss`); chưa đủ thì báo
+"Boss đã bị hạ, sẽ hồi sinh sau X giây". Lúc hạ boss, `mgtime` ghi vào **bản đồ của boss** (trước đây ghi vào bản đồ người chơi
+đang đứng ⇒ đứng map khác gọi link boss thì không bao giờ bị tính thời gian hồi). Test thật: hạ → gọi lại ngay bị chặn
+(600 giây) → giả lập qua 601 giây thì boss hồi máu bình thường.

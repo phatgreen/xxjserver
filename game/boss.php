@@ -64,6 +64,15 @@ $cwts = '';
 $cwhtml = '';
 $tishi = isset($tishi) ? $tishi : '';
 if ($boss->bosshp <= 0) {
+    // Chưa hết thời gian hồi sinh (mid.ms, tính từ mgtime như nowmid.php) => không cho hồi máu để hạ lại ngay
+    $bossMidStmt = $dblj->prepare("SELECT mid FROM mid WHERE midboss = ? LIMIT 1");
+    $bossMidStmt->execute(array(intval($bossid)));
+    $bossMidId = $bossMidStmt->fetchColumn();
+    $bossMid = $bossMidId ? \player\getmid($bossMidId, $dblj) : false;
+    $bossWait = $bossMid ? intval($bossMid->ms) - floor((strtotime(date('Y-m-d H:i:s')) - strtotime($bossMid->mgtime)) % 86400) : 0;
+    if ($bossWait > 0) {
+        exit('Boss đã bị hạ, sẽ hồi sinh sau ' . intval($bossWait) . ' giây.<br/><a href="?cmd=' . $gonowmid . '">Đại Sảnh</a>');
+    }
     // Khi BOSS đã hết máu nhưng người chơi refresh / vào lại link cũ:
     // BOSS bỏ trốn, tăng trưởng chỉ số rồi hồi đầy máu để lần sau đánh tiếp.
     // thứ tự gán quan trọng: bosshp = bossmaxhp phải đặt SAU khi bossmaxhp đã tăng.
@@ -530,8 +539,9 @@ HTML;
             if (!empty($nvRv['ok'])) $tishihtml .= "<font color='#facc15'><b>📜 " . $nvRv['msg'] . "</b></font><br/>";
         }
 
-		$stmt = $dblj->prepare("UPDATE mid SET mgtime = :mgtime WHERE mid = :mid");
-		$stmt->execute(array(':mgtime' => $nowdate, ':mid' => $player->nowmid));
+		// Mốc hồi sinh ghi vào bản đồ của boss (không phải bản đồ người chơi đang đứng)
+		$stmt = $dblj->prepare("UPDATE mid SET mgtime = :mgtime WHERE midboss = :bossid");
+		$stmt->execute(array(':mgtime' => $nowdate, ':bossid' => intval($bossid)));
 		//$sql = "update boss set bosshp = bossmaxhp  WHERE bossid='$bossid'";//给boss加血
 		//$dblj->exec($sql);
 		$sjyxb1 = mt_rand(1,2000);
