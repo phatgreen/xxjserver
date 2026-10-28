@@ -13,6 +13,10 @@ from dot_b_build import ELEM_TXT, ARCH_TXT
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 GW = os.path.join(ROOT, 'class', 'config', 'guaiwu_config.json')
 
+# Id map cố định (không tự tăng) để NPC / nhiệm vụ (renwu.rwqy — nút Truyền tống) / ảnh khu khớp trên mọi máy chủ.
+# Quy ước: làn N dùng mid 1000×(N−1)+1 trở đi ⇒ làn 2 = 1001–1080.
+MID_BASE = 1001
+
 def band(k):
     return '%d–%d' % (501 + 50 * k, 550 + 50 * k)
 
@@ -39,7 +43,7 @@ def build_data():
         rmaps = []
         for i, mname in enumerate(maps):
             mgid = ','.join('%d|%d' % (m['id'], m['count']) for m in ms if m['qy'] == QY_START + k and m['mi'] == i)
-            rmaps.append({'mname': mname, 'mgid': mgid,
+            rmaps.append({'mid': MID_BASE + 8 * k + i, 'mname': mname, 'mgid': mgid,
                           'midinfo': '%s thuộc %s — vùng luyện cấp %s.' % (mname, rname, band(k))})
         regions.append({'qyid': QY_START + k, 'qyname': rname, 'band': band(k), 'maps': rmaps})
     bs = [{'bossname': b['name'], 'bosslv': b['lv'], 'bosshp': b['hp'], 'bossgj': b['gj'], 'bossfy': b['fy'],

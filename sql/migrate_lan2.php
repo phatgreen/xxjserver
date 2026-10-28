@@ -8,7 +8,8 @@
  *
  * Sao lưu trước (Windows cmd):
  *   "D:\XXJserver\phpstudy_pro\Extensions\MySQL5.5.29\bin\mysqldump.exe" -uroot -p game > D:\XXJserver\backup_lan2.sql
- * Idempotent (như migrate_dot_b.php): khu theo qyid; map theo (mname, mqy); boss theo bossname. Chạy lại không tạo trùng.
+ * Idempotent (như migrate_dot_b.php): khu theo qyid; map theo (mname, mqy) với id cố định 1001–1080; boss theo bossname.
+ * Chạy lại không tạo trùng. Id map cố định để nút Truyền tống của nhiệm vụ NPC (renwu.rwqy) đúng trên mọi máy.
  * Cửa vào: map cuối làn 1 (entry_from_mid = 408 Thiên Ngoại Thiên Đỉnh) đi xuống -> map đầu khu 37.
  */
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
@@ -41,7 +42,6 @@ $entry = intval($data['entry_from_mid']);
 $down = q1("SELECT mdown FROM mid WHERE mid = ?", array($entry));
 if ($down === false) { echo "LOI: khong co map cua vao $entry (chay migrate_dot_b.php truoc)\n"; exit(1); }
 
-$NEWMID = 900000; // id tạm khi --dry-run
 $regionMaps = array();
 foreach ($data['regions'] as $r) {
     $qyid = intval($r['qyid']);
@@ -57,15 +57,16 @@ foreach ($data['regions'] as $r) {
     foreach ($r['maps'] as $m) {
         $mid = q1("SELECT mid FROM mid WHERE mname = ? AND mqy = ? LIMIT 1", array($m['mname'], $qyid));
         if ($mid === false) {
-            say("[mid] TAO map '{$m['mname']}' (khu $qyid) quai {$m['mgid']}");
-            if ($APPLY) {
-                run("INSERT INTO mid (mname, mgid, mnpc, mgtime, ms, midinfo, midboss, mup, mdown, mleft, mright, mqy, playerinfo, ispvp)
-                     VALUES (?, ?, '', '2000-01-01 00:00:00', '0', ?, 0, 0, 0, 0, 0, ?, '', 0)",
-                    array($m['mname'], $m['mgid'], $m['midinfo'], $qyid));
-                $mid = intval($dblj->lastInsertId());
-            } else {
-                $mid = $NEWMID++;
-            }
+            // Id cố định (lan2_data.json) — đã có map khác chiếm id này thì dừng, không ghi đè
+            $mid = intval($m['mid']);
+            $taken = q1("SELECT mname FROM mid WHERE mid = ?", array($mid));
+            if ($taken !== false) { echo "LOI: mid $mid da duoc map '$taken' dung — khong tao duoc '{$m['mname']}'\n"; exit(1); }
+            say("[mid] TAO map $mid '{$m['mname']}' (khu $qyid) quai {$m['mgid']}");
+            run("INSERT INTO mid (mid, mname, mgid, mnpc, mgtime, ms, midinfo, midboss, mup, mdown, mleft, mright, mqy, playerinfo, ispvp)
+                 VALUES (?, ?, ?, '', '2000-01-01 00:00:00', '0', ?, 0, 0, 0, 0, 0, ?, '', 0)",
+                array($mid, $m['mname'], $m['mgid'], $m['midinfo'], $qyid));
+        } elseif (intval($mid) !== intval($m['mid'])) {
+            echo "LOI: map '{$m['mname']}' da co voi mid $mid, khac id co dinh {$m['mid']} — kiem tra lai\n"; exit(1);
         } else {
             $mid = intval($mid);
             say("[mid] cap nhat map $mid '{$m['mname']}' quai {$m['mgid']}");
