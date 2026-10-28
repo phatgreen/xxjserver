@@ -107,5 +107,48 @@ if (!$row) {
     $setLv($oldLv);
 }
 
+// ── K6. Cơ Duyên ──
+$cfg = \player\nhiemvu_coduyen_config();
+$bad = array(); $ids = array();
+foreach ($cfg as $q) {
+    if (strlen($q['id']) > 20 || isset($ids[$q['id']]) || !\player\feature_get($q['feature'])) $bad[] = $q['id'];
+    $ids[$q['id']] = 1;
+}
+tassert('K6 cấu hình: mã ≤ 20 ký tự (cột quest_id), không trùng, tính năng tồn tại', $bad, array());
+tassert('K6 mỗi tính năng mở theo cấp có 1 nhiệm vụ Cơ Duyên', count($cfg), count(\player\feature_unlock_config()));
+$row = $db->query("SELECT ulv, uexp, uyxb FROM game1 WHERE sid = '$sid'")->fetch(PDO::FETCH_ASSOC);
+if ($row) {
+    $_SESSION = array();
+    $reset = function() use ($db, $sid) { $db->prepare("DELETE FROM player_nhiemvu_main WHERE sid = ? AND quest_id LIKE 'cd\\_%'")->execute(array($sid)); $_SESSION = array(); };
+    $st = function($id) use ($db, $sid) { $q = $db->prepare("SELECT status FROM player_nhiemvu_main WHERE sid = ? AND quest_id = ?"); $q->execute(array($sid, $id)); return intval($q->fetchColumn()); };
+    $exp = function() use ($db, $sid) { return intval($db->query("SELECT uexp FROM game1 WHERE sid = '$sid'")->fetchColumn()); };
+    $setLv = function($lv) use ($db, $sid) { $db->prepare("UPDATE game1 SET ulv = ?, uexp = 0 WHERE sid = ?")->execute(array($lv, $sid)); \player\player_cache_clear($sid); };
+    $reset();
+    $setLv(2);
+    \player\nhiemvu_coduyen_event($sid, 'shop_buy', $db);
+    tassert('K6 cấp 2 (Cửa Hàng chưa mở): mua không tính', $st('cd_shangdian'), 0);
+    $setLv(3);
+    $m = \player\nhiemvu_coduyen_event($sid, 'shop_buy', $db);
+    tassert('K6 cấp 3: mua lần đầu -> hoàn thành', $st('cd_shangdian'), 2);
+    tassert('K6 có thông báo hoàn thành', count($m) === 1 && strpos($m[0], 'Lần Đầu Vào Tiệm') !== false, true);
+    $e1 = $exp();
+    tassert('K6 nhận tu vi thưởng', $e1 > 0, true);
+    $_SESSION = array(); // phiên mới: vẫn không nhận lần 2 (đọc trạng thái từ DB)
+    \player\nhiemvu_coduyen_event($sid, 'shop_buy', $db);
+    tassert('K6 mua lần 2 không thưởng lại', $exp(), $e1);
+    $setLv(5);
+    \player\nhiemvu_coduyen_event($sid, 'visit:xephang', $db);
+    tassert('K6 ghé tính năng chưa mở (Xếp Hạng cấp 20) không tính', $st('cd_xephang'), 0);
+    \player\nhiemvu_coduyen_event($sid, 'visit:allmap', $db);
+    tassert('K6 ghé Dịch Chuyển ở cấp 5 -> hoàn thành', $st('cd_allmap'), 2);
+    tassert('K6 ghé tính năng không làm xong nhiệm vụ tính năng khác', $st('cd_chongwu'), 0);
+    $list = \player\nhiemvu_coduyen_get($sid, 5, $db);
+    $keys = array(); foreach ($list as $q) $keys[] = $q['id'];
+    tassert('K6 danh sách cấp 5 = 2 tính năng đã mở', $keys, array('cd_shangdian', 'cd_allmap'));
+    $reset();
+    $db->prepare("UPDATE game1 SET ulv = ?, uexp = ?, uyxb = ? WHERE sid = ?")->execute(array($row['ulv'], $row['uexp'], $row['uyxb'], $sid));
+    \player\player_cache_clear($sid);
+}
+
 echo $fails ? "\n$fails FAIL\n" : "\nALL PASS\n";
 exit($fails ? 1 : 0);

@@ -348,6 +348,35 @@ elseif ($tab === 'main') {
         $rv = \player\nhiemvu_update_all($sid, 'dialogue', 1, $dblj, array('npc' => 'nhiem_vu'));
         if (!empty($rv['ok'])) $mainNotice = '<div class="nv-success">' . $rv['msg'] . '</div>';
     }
+    // Cơ Duyên: nhiệm vụ hướng dẫn tính năng đã mở theo cấp (độc lập chính tuyến)
+    $cdList = \player\nhiemvu_coduyen_get($sid, $player->ulv, $dblj);
+    $cdNext = \player\feature_next_locked($player->ulv, 1);
+    if (!empty($cdList) || !empty($cdNext)) {
+        $cdDone = 0;
+        foreach ($cdList as $cq) if ($cq['status'] == 2) $cdDone++;
+        $html .= '<div class="nv-card"><div class="nv-title">🌟 Cơ Duyên <small style="font-size:12px;color:#94a3b8">' . $cdDone . '/' . count($cdList) . ' — hướng dẫn tính năng mới mở</small></div>';
+        // Chưa xong lên trước
+        usort($cdList, function($a, $b){ return ($a['status'] == 2) - ($b['status'] == 2); });
+        foreach ($cdList as $q) {
+            $rw = \player\nhiemvu_reward($q, 'main', $player->ulv);
+            $rwTxt = array();
+            if ($rw['exp'] > 0) $rwTxt[] = number_format($rw['exp']) . ' tu vi';
+            if ($rw['lt'] > 0)  $rwTxt[] = number_format($rw['lt']) . ' LT';
+            $done = $q['status'] == 2;
+            $html .= '<div class="nv-item" style="opacity:' . ($done ? '0.6' : '1') . '">
+                <div class="nv-info">
+                    <div class="nv-name" style="color:' . ($done ? '#4CAF50' : '#fde68a') . ';font-size:12px">' . ($done ? '✅' : '✨') . ' ' . htmlspecialchars($q['name'], ENT_QUOTES, 'UTF-8')
+                    . ' <span style="font-size:11px;color:#888">[' . implode(', ', $rwTxt) . ']</span></div>
+                    <div class="nv-desc">' . htmlspecialchars($q['desc'], ENT_QUOTES, 'UTF-8') . '</div>
+                </div>
+                <div class="nv-bar-wrap" style="width:80px"><span class="nv-num">' . ($done ? 'Xong' : min($q['progress'], $q['target']) . '/' . $q['target']) . '</span></div>
+            </div>';
+        }
+        if (!empty($cdNext)) {
+            $html .= '<div class="nv-desc" style="text-align:center;margin-top:8px">Cơ duyên kế tiếp: 🔒 ' . htmlspecialchars($cdNext[0]['name'], ENT_QUOTES, 'UTF-8') . ' — mở ở cấp ' . intval($cdNext[0]['level']) . '</div>';
+        }
+        $html .= '</div>';
+    }
     $mainQuests = \player\nhiemvu_main_get_all($sid, $dblj);
     $html .= '<div class="nv-card"><div class="nv-title">⚔ Nhiệm Vụ Chính Tuyến</div>';
     $html .= $mainNotice;

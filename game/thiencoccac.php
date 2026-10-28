@@ -194,6 +194,7 @@ if ($canshu != '') {
             if (function_exists('player\\nhiemvu_main_update')) {
                 \player\nhiemvu_main_update($sid, 'learn_book', $dblj); // Chính tuyến: mua bí tịch
             }
+            \player\nhiemvu_coduyen_event($sid, 'learn_book', $dblj); // Cơ Duyên: cầu bí tịch
             $player = \player\getplayer($sid, $dblj);
             break;
 
@@ -238,6 +239,7 @@ if ($canshu != '') {
             if (function_exists('player\\nhiemvu_main_update')) {
                 \player\nhiemvu_main_update($sid, 'learn_book', $dblj); // Chính tuyến: mua bí tịch
             }
+            \player\nhiemvu_coduyen_event($sid, 'learn_book', $dblj); // Cơ Duyên: cầu bí tịch
             $player = \player\getplayer($sid, $dblj);
             break;
     }

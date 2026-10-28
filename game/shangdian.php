@@ -214,6 +214,7 @@ if (isset($canshu) && $canshu == 'gogoumai') {
             \player\player_cache_clear($sid);
             $player = player\getplayer($sid, $dblj);
             $noticeHtml .= $tskcg;
+            \player\nhiemvu_coduyen_event($sid, 'shop_buy', $dblj); // Cơ Duyên: lần đầu mua ở tiệm
         } else {
             $noticeHtml .= $tsksb;
         }
@@ -245,6 +246,7 @@ if (isset($canshu1) && $canshu1 == 'gogoumai1') {
             \player\player_cache_clear($sid);
             $player = player\getplayer($sid, $dblj);
             $noticeHtml .= $tskcg;
+            \player\nhiemvu_coduyen_event($sid, 'shop_buy', $dblj); // Cơ Duyên: lần đầu mua ở tiệm
         } else {
             $noticeHtml .= $tsksb;
         }
@@ -319,6 +321,7 @@ if ((isset($canshu2) && $canshu2 == 'gogoumai2') || (isset($canshu21) && $canshu
                 \player\player_cache_clear($sid);
                 $player = player\getplayer($sid, $dblj);
                 $noticeHtml .= $tskcg;
+                \player\nhiemvu_coduyen_event($sid, 'shop_buy', $dblj); // Cơ Duyên: lần đầu mua ở tiệm
             } else {
                 $noticeHtml .= $tsksb;
             }
@@ -396,6 +399,7 @@ if ((isset($canshu3) && $canshu3 == 'gogoumai3') || (isset($canshu31) && $canshu
                 \player\player_cache_clear($sid);
                 $player = player\getplayer($sid, $dblj);
                 $noticeHtml .= $tskcg;
+                \player\nhiemvu_coduyen_event($sid, 'shop_buy', $dblj); // Cơ Duyên: lần đầu mua ở tiệm
             } else {
                 $noticeHtml .= $tsksb;
             }

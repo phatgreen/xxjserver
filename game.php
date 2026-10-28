@@ -276,6 +276,7 @@ switch ($cmd){
 				]);
 			}
 
+			\player\nhiemvu_coduyen_event($sid, 'chat_send', $dblj); // Cơ Duyên: gửi tin nhắn đầu tiên
 			$ym='game/liaotian.php';
 		}
 	break;
@@ -510,6 +511,9 @@ if (!isset($sid) || $sid==''){
 			exit();
 		}
 		$ym = 'game/feature_locked.php';
+	} elseif (!$isAjaxEarly && ($fkVisit = \player\feature_key_for_cmd($cmd)) !== '') {
+		// Cơ Duyên loại "ghé tính năng": lần đầu mở trang tính năng (đã mở theo cấp)
+		\player\nhiemvu_coduyen_event($sid, 'visit:' . $fkVisit, $dblj);
 	}
 }
 
@@ -525,7 +529,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102807">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102808">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
@@ -672,6 +676,13 @@ switch ($cmd) {
 // Popup "Tính năng mới" (đặt sau khi trang chạy xong: vừa đột phá lên cấp mở tính năng là hiện ngay)
 if (isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($player->ulv)) {
     echo \player\feature_new_popup(\player\getplayer($sid, $dblj), $sid, $encode);
+}
+// Thông báo nổi: nhiệm vụ Cơ Duyên vừa hoàn thành (nhiemvu_coduyen_event ghi vào session)
+if (!empty($_SESSION['cd_flash'])) {
+    echo '<div class="cd-toast" id="cdToast">';
+    foreach ($_SESSION['cd_flash'] as $cdMsg) echo '<div>🌟 ' . htmlspecialchars($cdMsg, ENT_QUOTES, 'UTF-8') . '</div>';
+    echo '</div><script>setTimeout(function(){var e=document.getElementById("cdToast");if(e){e.parentNode.removeChild(e);}},6000);</script>';
+    unset($_SESSION['cd_flash']);
 }
 ?>
 </body>

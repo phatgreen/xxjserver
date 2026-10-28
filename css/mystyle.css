@@ -7874,3 +7874,6 @@ body.tcg-bg-body .xl-node .fk-badge{top:-8px;right:-10px;padding:0 4px}
 .fk-new-item span{display:block;font-size:13px;color:#cbd5e1;line-height:1.4}
 .fk-new-actions{display:flex;gap:10px;justify-content:center;margin-top:16px}
 button.fk-lock-btn{cursor:pointer;font-size:14px;font-family:inherit}
+/* MK-3: thông báo nổi hoàn thành nhiệm vụ Cơ Duyên */
+.cd-toast{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:9998;width:calc(100% - 32px);max-width:420px;padding:10px 14px;border-radius:14px;border:1px solid rgba(250,204,21,.55);background:rgba(15,23,42,.95);color:#fde68a;font-size:13px;font-weight:800;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.cd-toast div+div{margin-top:4px}

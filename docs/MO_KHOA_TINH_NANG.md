@@ -1,4 +1,4 @@
-# MỞ KHÓA TÍNH NĂNG THEO CẤP / CẢNH GIỚI (MK-1 + MK-2 ĐÃ LÀM 2026-10-28)
+# MỞ KHÓA TÍNH NĂNG THEO CẤP / CẢNH GIỚI (MK-1 + MK-2 + MK-3 ĐÃ LÀM 2026-10-28)
 
 > Lập 2026-10-28. Đi cùng `docs/UI_DON_GIAN_HOA_MOBILE.md` (bố cục) và chính tuyến `class/config/nhiemvu_main_config.json`.
 
@@ -134,6 +134,24 @@ cấp 25 ⇒ Luyện Đan, Chế Tạo, chat mở, Tông Môn vẫn khóa. Test 
 
 Kiểm chứng thật: cấp 7→8 (đột phá thật) ⇒ popup "Linh Sủng" ngay trang kết quả; tải lại không hiện; nhảy 8→15 ⇒ gộp "Võ Công, Thiên Cơ Các, Luyện Đan";
 tụt 14 rồi lên lại 15 ⇒ không báo lại. Chụp Tu Luyện ở cấp 1 / 8 / 15 / 30 / 101 thấy các nút mở dần. 10 bộ test ALL PASS.
+
+## 5d. Kết quả MK-3 — Cơ Duyên (ĐÃ LÀM 2026-10-28)
+
+| Phần | File | Ghi chú |
+|---|---|---|
+| 24 nhiệm vụ (1 / tính năng) | `class/config/nhiemvu_coduyen_config.json` | Thưởng `exp_pct` 2–5% thanh cấp + Linh Thạch nhỏ (quy tắc thưởng chính tuyến) |
+| Bộ máy | `nhiemvu_coduyen_get`, `nhiemvu_coduyen_event` trong `class/function/nhiemvu.php` | Lưu chung bảng `player_nhiemvu_main` (mã `cd_…`) ⇒ **không cần migrate**; chỉ tính khi tính năng đã mở; xong rồi thì session nhớ để khỏi truy vấn lại |
+| Loại "làm thao tác" (5) | Cửa Hàng `shop_buy` (4 nhánh mua trong `shangdian.php`) · Thiên Cơ Các `learn_book` · Luyện Đan `alchemy` · Chế Tạo `craft` (qua `nhiemvu_update_all`) · Tán Gẫu `chat_send` (`game.php`) | Thao tác có điểm thành công rõ và chắc chắn làm được ở cấp mở |
+| Loại "ghé tính năng" (19) | 1 móc ở router `game.php` (`visit:<tính năng>`) | Thao tác cần người chơi khác / vật phẩm chưa chắc có ở cấp mở (Hảo Hữu, Tông Môn, Vấn Đỉnh Đài, Thiên Phú…) ⇒ mục tiêu "ghé" để không ai kẹt; mô tả vẫn hướng dẫn thao tác |
+| Hiển thị | Tab Chính Tuyến (`game/nhiemvu.php`): thẻ "🌟 Cơ Duyên x/y" + "Cơ duyên kế tiếp 🔒"; thông báo nổi khi hoàn thành (`game.php`, tự ẩn 6 giây) | |
+| Vá thêm | `game/otherzhuangtai.php` | Nút "Kết Giao" trên trang người chơi khác đi qua `getplayerinfo` (không bị khóa) ⇒ dưới cấp 20 vẫn kết bạn được. Nay: hiện 🔒 20 và không ghi |
+
+Kiểm chứng: `tests/test_mo_khoa.php` phần K6 (chưa mở không tính, xong thưởng 1 lần kể cả phiên mới, ghé đúng tính năng) — ALL PASS.
+Trình duyệt thật: cấp 3 mua Cường Hóa Thạch ⇒ "Cơ Duyên hoàn thành: Lần Đầu Vào Tiệm — +52 tu vi, +103 LT", mua lần 2 không thưởng;
+cấp 5 mở Dịch Chuyển ⇒ hoàn thành "Nhìn Ra Thế Giới"; trang Nhiệm Vụ hiện "🌟 Cơ Duyên 2/2". Kết giao ở cấp 5 bị chặn, cấp 20 được.
+
+**Còn lại (nếu muốn chặt hơn):** đổi dần các nhiệm vụ "ghé" sang "làm thao tác" khi đã chắc người chơi có đủ điều kiện ở cấp mở
+(vd Linh Sủng: cần biết nguồn linh sủng đầu tiên ở cấp 8).
 
 ## 6. Cần chủ dự án quyết
 

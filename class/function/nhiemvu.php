@@ -1016,6 +1016,9 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_update_all')) {
             }
         }
 
+        // Cơ Duyên: nhiệm vụ hướng dẫn tính năng (alchemy, craft... cùng tên sự kiện)
+        nhiemvu_coduyen_event($sid, $type, $dblj, $amount);
+
         // Main-line quests name their types differently from daily/weekly ones.
         $mainAlias = array(
             'alchemy' => array('alchemy_count'),
@@ -1031,6 +1034,95 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_update_all')) {
             if ($result['ok']) return $result;
         }
         return array('ok' => false, 'msg' => '');
+    }
+}
+
+// ─── Cơ Duyên (nhiệm vụ hướng dẫn tính năng mở theo cấp) ────────
+// Cấu hình: class/config/nhiemvu_coduyen_config.json. Độc lập chính tuyến; lưu tiến độ chung bảng
+// player_nhiemvu_main (mã 'cd_...' không trùng mã chính tuyến). docs/MO_KHOA_TINH_NANG.md mục 4.5.
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_coduyen_config')) {
+    function nhiemvu_coduyen_config(){
+        static $cache = null;
+        if ($cache !== null) return $cache;
+        $json = @file_get_contents(__DIR__ . '/../config/nhiemvu_coduyen_config.json');
+        $data = $json ? json_decode($json, true) : null;
+        $cache = (is_array($data) && isset($data['quests'])) ? $data['quests'] : array();
+        return $cache;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_coduyen_get')) {
+    // Nhiệm vụ Cơ Duyên của các tính năng ĐÃ mở ở cấp $lv, kèm status (0 chưa, 1 đang, 2 xong) và progress.
+    function nhiemvu_coduyen_get($sid, $lv, $dblj){
+        $list = array();
+        foreach (nhiemvu_coduyen_config() as $q) {
+            if (feature_is_open_lv($lv, $q['feature'])) $list[] = $q;
+        }
+        if (empty($list)) return array();
+        $ids = array();
+        foreach ($list as $q) $ids[] = $q['id'];
+        $in = implode(',', array_fill(0, count($ids), '?'));
+        $stmt = $dblj->prepare("SELECT quest_id, status, progress FROM player_nhiemvu_main WHERE sid = ? AND quest_id IN ($in)");
+        $stmt->execute(array_merge(array($sid), $ids));
+        $rows = array();
+        while ($r = $stmt->fetch(\PDO::FETCH_ASSOC)) $rows[$r['quest_id']] = $r;
+        foreach ($list as $i => $q) {
+            $r = isset($rows[$q['id']]) ? $rows[$q['id']] : null;
+            $list[$i]['status']   = $r ? intval($r['status']) : 0;
+            $list[$i]['progress'] = $r ? intval($r['progress']) : 0;
+            $list[$i]['target']   = max(1, intval($q['target']));
+        }
+        return $list;
+    }
+}
+
+if (!function_exists(__NAMESPACE__ . '\\nhiemvu_coduyen_event')) {
+    /**
+     * Ghi nhận sự kiện cho nhiệm vụ Cơ Duyên. $type: 'visit:<feature>' (ghé trang, gọi từ router game.php)
+     * hoặc loại sự kiện ('shop_buy', 'chat_send', 'learn_book', 'alchemy', 'craft'...).
+     * Hoàn thành -> trao thưởng ngay (như chính tuyến) + thông báo nổi ở cuối trang (session cd_flash).
+     */
+    function nhiemvu_coduyen_event($sid, $type, $dblj, $amount = 1){
+        $feature = '';
+        if (strpos($type, 'visit:') === 0) { $feature = substr($type, 6); $type = 'visit'; }
+        $cands = array();
+        foreach (nhiemvu_coduyen_config() as $q) {
+            if ($q['type'] !== $type) continue;
+            if ($feature !== '' && $q['feature'] !== $feature) continue;
+            if (isset($_SESSION['cd_done'][$sid][$q['id']])) continue; // đã xong: khỏi truy vấn lại
+            $cands[] = $q;
+        }
+        if (empty($cands)) return array();
+
+        $lv = nhiemvu_player_level($sid, $dblj);
+        $msgs = array();
+        foreach ($cands as $q) {
+            if (!feature_is_open_lv($lv, $q['feature'])) continue;
+            $stmt = $dblj->prepare("SELECT status, progress FROM player_nhiemvu_main WHERE sid = ? AND quest_id = ? LIMIT 1");
+            $stmt->execute(array($sid, $q['id']));
+            $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+            if ($row && intval($row['status']) === 2) { $_SESSION['cd_done'][$sid][$q['id']] = 1; continue; }
+
+            $target = max(1, intval($q['target']));
+            $have = min($target, ($row ? intval($row['progress']) : 0) + max(1, intval($amount)));
+            $status = $have >= $target ? 2 : 1;
+            $up = $dblj->prepare("INSERT INTO player_nhiemvu_main (sid, quest_id, status, progress) VALUES (?, ?, ?, ?)
+                                  ON DUPLICATE KEY UPDATE status = ?, progress = ?");
+            $up->execute(array($sid, $q['id'], $status, $have, $status, $have));
+            if ($status !== 2) continue;
+
+            $_SESSION['cd_done'][$sid][$q['id']] = 1;
+            $rw = nhiemvu_reward($q, 'main', $lv);
+            nhiemvu_grant_reward($sid, $rw['exp'], $rw['lt'], $rw['mt'], $dblj);
+            $parts = array();
+            if ($rw['exp'] > 0) $parts[] = '+' . number_format($rw['exp']) . ' tu vi';
+            if ($rw['lt'] > 0)  $parts[] = '+' . number_format($rw['lt']) . ' LT';
+            $msg = 'Cơ Duyên hoàn thành: ' . $q['name'] . ($parts ? ' — ' . implode(', ', $parts) : '');
+            $msgs[] = $msg;
+            $_SESSION['cd_flash'][] = $msg;
+        }
+        return $msgs;
     }
 }
 

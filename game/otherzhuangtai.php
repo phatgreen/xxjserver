@@ -106,8 +106,10 @@ $pkcmd = $encode->encode("cmd=pvp&uid=$uid&sid=$sid");
 
 $clubplayer = \player\getclubplayer_once($player1->sid, $dblj);
 
+// Hảo Hữu mở theo cấp (feature_unlock.json): chưa mở thì không cho kết giao qua trang này
+$imLock = \player\feature_lock_mark($player, 'im');
 if (isset($canshu)) {
-    if ($canshu == 'addim') {
+    if ($canshu == 'addim' && $imLock[0] === '') {
         \player\addim($uid, $sid, $dblj);
     }
 }
@@ -127,7 +129,7 @@ if ($player->sid != $player1->sid) {
     $ret = \player\isim($uid, $sid, $dblj);
     if (!$ret) {
         $addim = $encode->encode("cmd=getplayerinfo&canshu=addim&uid=$uid&sid=$sid");
-        $immenu .= "<a class='tcg-profile-action friend' href='?cmd=$addim'>🤝 Kết Giao</a>";
+        $immenu .= "<a class='tcg-profile-action friend{$imLock[0]}' href='?cmd=$addim'>🤝 Kết Giao{$imLock[1]}</a>";
     } else {
         $deim = $encode->encode("cmd=im&canshu=deim&uid=$uid&sid=$sid");
         $immenu .= "<a class='tcg-profile-action remove' href='?cmd=$deim'>🗑 Xóa Bạn</a>";

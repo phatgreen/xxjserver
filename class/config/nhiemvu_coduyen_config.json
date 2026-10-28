@@ -1,0 +1,29 @@
+{
+    "_note": "Chương phụ Cơ Duyên (docs/MO_KHOA_TINH_NANG.md mục 4.5): mỗi tính năng mở theo cấp có 1 nhiệm vụ hướng dẫn, hiện khi tính năng mở, độc lập chính tuyến. type: visit = ghé trang tính năng lần đầu (router game.php); shop_buy / chat_send = móc mới; learn_book / alchemy / craft = sự kiện có sẵn. Thưởng = exp_pct % thanh cấp + lt (quy tắc thưởng chính tuyến).",
+    "quests": [
+        {"id": "cd_shangdian",   "feature": "shangdian",   "type": "shop_buy",   "target": 1, "exp_pct": 3, "lt": 100, "name": "Lần Đầu Vào Tiệm",      "desc": "Mua 1 món bất kỳ ở Cửa Hàng (dược hồi máu rất cần khi đánh quái)."},
+        {"id": "cd_allmap",      "feature": "allmap",      "type": "visit",      "target": 1, "exp_pct": 3, "lt": 100, "name": "Nhìn Ra Thế Giới",      "desc": "Mở Dịch Chuyển (nút Sự Kiện trên thanh trên) để xem các địa vực có thể tới."},
+        {"id": "cd_chongwu",     "feature": "chongwu",     "type": "visit",      "target": 1, "exp_pct": 3, "lt": 150, "name": "Bạn Đồng Hành",         "desc": "Mở trang Linh Sủng, chọn một linh sủng và cho xuất chiến để cùng chiến đấu."},
+        {"id": "cd_thiencoccac", "feature": "thiencoccac", "type": "learn_book", "target": 1, "exp_pct": 4, "lt": 200, "name": "Cầu Bí Tịch",           "desc": "Tới Thiên Cơ Các, mua 1 bí tịch võ công hợp cảnh giới."},
+        {"id": "cd_wugong",      "feature": "wugong",      "type": "visit",      "target": 1, "exp_pct": 3, "lt": 150, "name": "Luyện Võ",              "desc": "Mở trang Võ Công, chọn võ công đã học để tu luyện — võ công lên cấp sẽ mở thế võ mạnh hơn."},
+        {"id": "cd_luonden",     "feature": "luonden",     "type": "alchemy",    "target": 1, "exp_pct": 4, "lt": 200, "name": "Khai Lò Luyện Đan",     "desc": "Vào Luyện Đan, dùng nguyên liệu đánh quái rơi ra để luyện 1 lò."},
+        {"id": "cd_liaotian",    "feature": "liaotian",    "type": "chat_send",  "target": 1, "exp_pct": 2, "lt": 100, "name": "Chào Đạo Hữu",          "desc": "Vào Tán Gẫu, gửi 1 lời chào tới đạo hữu toàn server."},
+        {"id": "cd_haohuu",      "feature": "haohuu",      "type": "visit",      "target": 1, "exp_pct": 2, "lt": 100, "name": "Kết Giao",              "desc": "Mở Hảo Hữu. Bấm tên một người chơi (ở Đại Sảnh, Xếp Hạng…) để kết giao."},
+        {"id": "cd_giaodich",    "feature": "giaodich",    "type": "visit",      "target": 1, "exp_pct": 2, "lt": 100, "name": "Phường Thị",            "desc": "Mở Giao Dịch để xem vật phẩm người chơi khác rao bán."},
+        {"id": "cd_xephang",     "feature": "xephang",     "type": "visit",      "target": 1, "exp_pct": 2, "lt": 100, "name": "Bảng Phong Thần",       "desc": "Mở Xếp Hạng để xem mình đứng ở đâu trên tiên đồ."},
+        {"id": "cd_quydoi",      "feature": "quydoi",      "type": "visit",      "target": 1, "exp_pct": 2, "lt": 100, "name": "Quy Đổi Linh Thạch",    "desc": "Mở Quy Đổi để đổi qua lại Linh Thạch và Ma Thạch."},
+        {"id": "cd_chetao",      "feature": "chetao",      "type": "craft",      "target": 1, "exp_pct": 4, "lt": 300, "name": "Rèn Binh Khí",          "desc": "Vào Chế Tạo, rèn 1 món trang bị từ nguyên liệu."},
+        {"id": "cd_tongmon",     "feature": "tongmon",     "type": "visit",      "target": 1, "exp_pct": 3, "lt": 300, "name": "Tìm Tông Môn",          "desc": "Mở Tông Môn — xin gia nhập một tông môn, hoặc tự khai lập tông môn của mình."},
+        {"id": "cd_phoban",      "feature": "phoban",      "type": "visit",      "target": 1, "exp_pct": 2, "lt": 200, "name": "Cửa Thử Thách",         "desc": "Mở Phó Bản để xem các thử thách đang mở."},
+        {"id": "cd_toayeuthap",  "feature": "toayeuthap",  "type": "visit",      "target": 1, "exp_pct": 3, "lt": 300, "name": "Tỏa Yêu Tháp",          "desc": "Vào Tỏa Yêu Tháp, khiêu chiến tầng 1 — mỗi tầng vượt qua có thưởng."},
+        {"id": "cd_congphap",    "feature": "congphap",    "type": "visit",      "target": 1, "exp_pct": 3, "lt": 300, "name": "Vận Công Pháp",         "desc": "Mở Công Pháp. Công pháp mua ở Thiên Cơ Các (tab Công Pháp); vận công pháp để tăng chỉ số."},
+        {"id": "cd_linhcan",     "feature": "linhcan",     "type": "visit",      "target": 1, "exp_pct": 4, "lt": 400, "name": "Khai Mở Linh Căn",      "desc": "Mở Linh Căn để xem ngũ hành căn cơ — linh căn càng cao, tu luyện và chiến đấu càng mạnh."},
+        {"id": "cd_hammo",       "feature": "hammo",       "type": "visit",      "target": 1, "exp_pct": 3, "lt": 400, "name": "Xuống Hầm Mỏ",          "desc": "Vào Hầm Mỏ (trong Phó Bản) để khai thác linh khoáng."},
+        {"id": "cd_sauthu",      "feature": "sauthu",      "type": "visit",      "target": 1, "exp_pct": 3, "lt": 400, "name": "Săn Yêu Thú",           "desc": "Vào Sào Thú (trong Phó Bản) cùng linh sủng săn yêu thú."},
+        {"id": "cd_tianfu",      "feature": "tianfu",      "type": "visit",      "target": 1, "exp_pct": 4, "lt": 500, "name": "Thiên Phú Bẩm Sinh",    "desc": "Mở Thiên Phú. Uống Khai Phú Đan (mua ở Cửa Hàng) để khai mở thiên phú đầu tiên."},
+        {"id": "cd_vandinhdai",  "feature": "vandinhdai",  "type": "visit",      "target": 1, "exp_pct": 3, "lt": 500, "name": "Vấn Đỉnh Đài",          "desc": "Vào Vấn Đỉnh Đài để tỷ võ cùng người chơi khác, tranh hạng."},
+        {"id": "cd_conghuong",   "feature": "conghuong",   "type": "visit",      "target": 1, "exp_pct": 3, "lt": 500, "name": "Tàng Kinh Các",         "desc": "Mở Cộng Hưởng — nhiều bộ võ công Viên Mãn cùng nhóm sẽ cộng hưởng tăng chỉ số."},
+        {"id": "cd_huyetmach",   "feature": "huyetmach",   "type": "visit",      "target": 1, "exp_pct": 5, "lt": 800, "name": "Huyết Mạch Thượng Cổ",  "desc": "Mở Huyết Mạch để thức tỉnh dòng máu thượng cổ."},
+        {"id": "cd_thechat",     "feature": "thechat",     "type": "visit",      "target": 1, "exp_pct": 5, "lt": 800, "name": "Rèn Nhục Thân",         "desc": "Mở Thể Chất để luyện hóa nhục thân, tăng khí huyết."}
+    ]
+}
