@@ -89,3 +89,10 @@ nay thêm Tàn Quyển) không bị giới hạn bởi 600 giây. Ước tính k
 "Boss đã bị hạ, sẽ hồi sinh sau X giây". Lúc hạ boss, `mgtime` ghi vào **bản đồ của boss** (trước đây ghi vào bản đồ người chơi
 đang đứng ⇒ đứng map khác gọi link boss thì không bao giờ bị tính thời gian hồi). Test thật: hạ → gọi lại ngay bị chặn
 (600 giây) → giả lập qua 601 giây thì boss hồi máu bình thường.
+
+## Bổ sung 2026-10-29
+
+- 24 võ công lấp khoảng trống (CG 48 / 60 / 69 / 78, wgid 111–134, `tools/gen/vc_bosung_build.py`): 15 / 25 / 35 Hỗn Nguyên Tàn Quyển, 45 Đại Đạo Tàn Quyển.
+- Công pháp cảnh giới ≥ 30 không bán bằng tiền nữa (`tools/gen/cp_price_build.py` `TQ_MIN_CG`), đổi Tàn Quyển: loại theo vùng boss
+  (CG < 42 Tiên Đạo, 42–71 Hỗn Nguyên, ≥ 72 Đại Đạo), số quyển = mốc võ công gần nhất bên dưới (`WG_NEED_STEPS` trong `dot_d_build.py`).
+- Thứ tự chạy lại: `vc_bosung_build.py` → `cp_price_build.py` → `dot_d_build.py`.

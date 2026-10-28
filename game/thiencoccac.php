@@ -66,11 +66,11 @@ $giaiCurrency = array(
     3 => 'Linh Thạch / Ma Thạch',
     4 => 'Ma Thạch',
     5 => 'Ma Thạch',
-    6 => 'Ma Thạch',
-    7 => 'Ma Thạch',
-    8 => 'Ma Thạch',
-    9 => 'Ma Thạch',
-    10 => 'Ma Thạch',
+    6 => 'Ma Thạch / Tàn Quyển',   // cảnh giới >= 30 đổi Tàn Quyển (tiendao_cp_cost)
+    7 => 'Tàn Quyển',
+    8 => 'Tàn Quyển',
+    9 => 'Tàn Quyển',
+    10 => 'Tàn Quyển',
 );
 
 function tcc_full_name($giai, $pham) {
@@ -238,7 +238,16 @@ if ($canshu != '') {
             if ($priceLT > 0 && $priceMT > 0) {
                 if ($tien === 'lt') $priceMT = 0; else $priceLT = 0;
             }
-            if ($priceLT > 0) {
+            // Cảnh giới >= 30: đổi bằng Tàn Quyển rơi từ boss thay vì tiền
+            list($cpTqDjid, $cpTqNeed) = \player\tiendao_cp_cost(intval($buy_id));
+            if ($cpTqNeed > 0) {
+                if (!\player\deledjsum($cpTqDjid, $cpTqNeed, $sid, $dblj)) {
+                    $tqRow = \player\getplayerdaoju($sid, $cpTqDjid, $dblj);
+                    $tqCfg = \player\daoju_config_get($cpTqDjid);
+                    $tssb = wg_popup_html('error', 'Không đủ ' . ($tqCfg ? $tqCfg['djname'] : 'Tàn Quyển') . '! (cần ' . $cpTqNeed . ', đang có ' . ($tqRow ? intval($tqRow->djsum) : 0) . ')');
+                    break;
+                }
+            } elseif ($priceLT > 0) {
                 if (intval($player->uyxb) < $priceLT) {
                     $tssb = wg_popup_html('error', 'Không đủ Linh thạch! (cần ' . number_format($priceLT) . ')');
                     break;
@@ -418,6 +427,8 @@ if ($currentTab === 'wg') {
     }
 } else {
     $grouped = array();
+    $tdHaveBy = array();   // số Tàn Quyển đang có theo loại (công pháp cảnh giới >= 30)
+    $tdNameBy = array();
     foreach ($cpCfgAll as $key => $cfg) {
         $cpid = intval($cfg['cpid']);
         if ($cpid <= 0) continue;
@@ -427,7 +438,14 @@ if ($currentTab === 'wg') {
         $priceLT = isset($cfg['price_linhthong']) ? intval($cfg['price_linhthong']) : 0;
         $priceMT = isset($cfg['price_masthach']) ? intval($cfg['price_masthach']) : 0;
         $trainMult = isset($cfg['training_time_mult']) ? floatval($cfg['training_time_mult']) : 1.0;
-        if ($priceLT <= 0 && $priceMT <= 0) continue;
+        list($cpTqDjid, $cpTqNeed) = \player\tiendao_cp_cost($cpid);
+        if ($priceLT <= 0 && $priceMT <= 0 && $cpTqNeed <= 0) continue;
+        if ($cpTqNeed > 0 && !isset($tdHaveBy[$cpTqDjid])) {
+            $tdR = \player\getplayerdaoju($sid, $cpTqDjid, $dblj);
+            $tdHaveBy[$cpTqDjid] = $tdR ? intval($tdR->djsum) : 0;
+            $tdC = \player\daoju_config_get($cpTqDjid);
+            $tdNameBy[$cpTqDjid] = $tdC ? $tdC['djname'] : 'Tàn Quyển';
+        }
         if (!isset($grouped[$giai])) $grouped[$giai] = array();
         $grouped[$giai][] = array(
             'key' => $key,
@@ -436,6 +454,8 @@ if ($currentTab === 'wg') {
             'realm_req' => $realmReq,
             'price_lt' => $priceLT,
             'price_mt' => $priceMT,
+            'td_need' => $cpTqNeed,
+            'td_djid' => $cpTqDjid,
             'train_mult' => $trainMult,
         );
     }
@@ -474,7 +494,11 @@ if ($currentTab === 'wg') {
 
             $priceText = '';
             $priceTextPlain = '';
-            if ($isDual) {
+            if ($item['td_need'] > 0) {
+                $isDual = false;
+                $priceText = '<span class="tcg-tcc-price mt">' . $item['td_need'] . ' Quyển</span>';
+                $priceTextPlain = $item['td_need'] . ' ' . $tdNameBy[$item['td_djid']];
+            } elseif ($isDual) {
                 $priceText = '';   // 2 nút mua, mỗi nút ghi giá riêng
             } elseif ($priceLT > 0) {
                 $priceText = '<span class="tcg-tcc-price lt">' . number_format($priceLT) . ' LT</span>';
@@ -504,7 +528,7 @@ if ($currentTab === 'wg') {
                 $itemsHtml .= '<span class="tcg-tcc-train">' . $trainText . '</span>';
             }
             $itemsHtml .= '</div>';
-            $itemsHtml .= '<div class="tcg-tcc-item-sub">Yêu cầu: ' . $reqName . '</div>';
+            $itemsHtml .= '<div class="tcg-tcc-item-sub">Yêu cầu: ' . $reqName . ($item['td_need'] > 0 ? ' · Đang có ' . $tdHaveBy[$item['td_djid']] . ' ' . wg_safe_text($tdNameBy[$item['td_djid']]) : '') . '</div>';
             $itemsHtml .= '</div>';
             $itemsHtml .= '<div class="tcg-tcc-item-right">';
             $itemsHtml .= $priceText;

@@ -15,7 +15,16 @@ $wgxl = $encode->encode("cmd=wgxl&sid=$sid");
 $wgxx = $encode->encode("cmd=xxwg&sid=$sid");
 $chcmd = $encode->encode("cmd=conghuong&sid=$sid");
 
-$buyBookPrice = 400;
+// Giá mỗi bí tịch = giá bán bộ này ở Thiên Cơ Các (Linh thạch / Ma thạch / Tàn Quyển) — \player\wugong_book_price()
+list($buyBookCur, $buyBookPrice, $buyBookDjid) = \player\wugong_book_price($wgid);
+$buyBookUnit = 'Ma thạch';
+if ($buyBookCur === 'lt') {
+    $buyBookUnit = 'Linh thạch';
+} elseif ($buyBookCur === 'tq') {
+    $buyBookDjCfg = \player\daoju_config_get($buyBookDjid);
+    $buyBookUnit = $buyBookDjCfg ? $buyBookDjCfg['djname'] : 'Tàn Quyển';
+}
+$buyBookPriceText = number_format($buyBookPrice) . ' ' . $buyBookUnit;
 $strbuybook = $encode->encode("cmd=wgxl&canshu=buybook&wgid=$wgid&sid=$sid");
 $strbuybookCancel = $encode->encode("cmd=wgxl&sid=$sid");
 
@@ -50,9 +59,11 @@ if ($cmd == 'wgxl' && ($canshu == 'buybook' || $canshu == 'buybook_confirm') && 
         $tishi = 'Kinh nghiệm võ công chưa đầy, còn thiếu '.$lackExp.' EXP.';
     } elseif ($bookLack <= 0) {
         $tishi = 'Bí tịch hiện đã đủ để nâng cấp.';
+    } elseif ($buyBookPrice <= 0) {
+        $tishi = 'Bí tịch này không bán, hãy tìm thêm từ hoạt động khác.';
     } elseif ($canshu == 'buybook') {
         $safeWgName = wg_safe_text($cxwg->wgname);
-        $totalCost = $bookLack * $buyBookPrice;
+        $totalCost = number_format($bookLack * $buyBookPrice) . ' ' . $buyBookUnit;
         $buyBookLinks = array();
         for ($i = 1; $i <= $bookLack; $i++) {
             $buyBookLinks[] = '"'.$i.'":"?cmd='.$encode->encode("cmd=wgxl&canshu=buybook_confirm&wgid=$wgid&buycount=$i&sid=$sid").'"';
@@ -80,14 +91,14 @@ if ($cmd == 'wgxl' && ($canshu == 'buybook' || $canshu == 'buybook_confirm') && 
 
         <form class="tcg-wg-buy-form" method="get" action="game.php" onsubmit="return false;">
             <div class="tcg-pay-lines">
-                <div><span>Giá mỗi bí tịch</span><strong class="purple">$buyBookPrice Ma thạch</strong></div>
+                <div><span>Giá mỗi bí tịch</span><strong class="purple">$buyBookPriceText</strong></div>
                 <div><span>Đang có / cần</span><strong>$bookNum / $needBook bí tịch</strong></div>
                 <div><span>Còn thiếu</span><strong class="fail">$bookLack bí tịch</strong></div>
             </div>
 
             <label class="tcg-wg-buy-label" for="tcg-wg-buycount">Số lượng mua</label>
             <input id="tcg-wg-buycount" class="tcg-wg-buy-input" type="number" name="buycount" min="1" max="$bookLack" value="$bookLack">
-            <div class="tcg-pay-status ok">Mặc định mua đủ số còn thiếu, dự kiến $totalCost Ma thạch.</div>
+            <div class="tcg-pay-status ok">Mặc định mua đủ số còn thiếu, dự kiến $totalCost.</div>
 
             <div class="tcg-pay-actions">
                 <a class="tcg-pay-cancel" href="?cmd=$strbuybookCancel">Hủy</a>
@@ -130,12 +141,19 @@ HTML;
         try {
             $dblj->beginTransaction();
 
-            $payStmt = $dblj->prepare("UPDATE game1 SET uczb = uczb - ? WHERE sid = ? AND uczb >= ?");
-            $payStmt->execute(array($totalCost, $sid, $totalCost));
+            // Trừ đúng loại tiền shop bán bộ này (cột cố định theo loại, không ghép từ input)
+            if ($buyBookCur === 'tq') {
+                $paid = \player\deledjsum($buyBookDjid, $totalCost, $sid, $dblj);
+            } else {
+                $payCol = ($buyBookCur === 'lt') ? 'uyxb' : 'uczb';
+                $payStmt = $dblj->prepare("UPDATE game1 SET $payCol = $payCol - ? WHERE sid = ? AND $payCol >= ?");
+                $payStmt->execute(array($totalCost, $sid, $totalCost));
+                $paid = ($payStmt->rowCount() >= 1);
+            }
 
-            if ($payStmt->rowCount() < 1) {
+            if ($buyBookPrice <= 0 || !$paid) {
                 $dblj->rollBack();
-                $tishi = 'Không đủ Ma thạch để mua '.$buyCount.' bí tịch. Cần '.$totalCost.' Ma thạch.';
+                $tishi = 'Không đủ '.$buyBookUnit.' để mua '.$buyCount.' bí tịch. Cần '.number_format($totalCost).' '.$buyBookUnit.'.';
             } else {
                 $bookStmt = $dblj->prepare("UPDATE playerwugong SET wgsum = wgsum + ? WHERE wgid = ? AND sid = ?");
                 $bookStmt->execute(array($buyCount, $wgid, $sid));
@@ -148,7 +166,7 @@ HTML;
                     \player\player_cache_clear($sid);
                     $player = \player\getplayer($sid, $dblj);
                     $forceRefreshWg = true;
-                    $tishi = 'Mua thành công '.$buyCount.' bí tịch. Tiêu hao '.$totalCost.' Ma thạch.';
+                    $tishi = 'Mua thành công '.$buyCount.' bí tịch. Tiêu hao '.number_format($totalCost).' '.$buyBookUnit.'.';
                 }
             }
         } catch (\Exception $e) {
@@ -222,8 +240,8 @@ if (!$cxwg || $wgid == 0) {
     }
 }
 
-if ($wgxl_now >= $wgxlmax && $wgsum < $xiaohao) {
-    $xlcz .= "<a class='tcg-wg-btn buybook' href='?cmd=$strbuybook'>Mua ngay $buyBookPrice Ma thạch</a>";
+if ($wgxl_now >= $wgxlmax && $wgsum < $xiaohao && $buyBookPrice > 0) {
+    $xlcz .= "<a class='tcg-wg-btn buybook' href='?cmd=$strbuybook'>Mua ngay $buyBookPriceText</a>";
 }
 
 $exCxwg = explode('|', $wginfo);

@@ -17,6 +17,7 @@ BOSS_PER_DAY = 30
 PRICE_MULT = 5
 LT_MULT = 3
 DUAL_MAX_TIER = 3            # giai 0–3: bán cả Linh Thạch lẫn Ma Thạch
+TQ_MIN_CG = 30               # CG >= 30: không bán bằng tiền, đổi Tàn Quyển (tools/gen/dot_d_build.py, 2026-10-29)
 MONTHS = {(8, 1): 1, (8, 2): 1.25, (8, 3): 1.5, (8, 4): 2, (9, 1): 3, (9, 2): 4, (9, 3): 5, (9, 4): 6, (10, 1): 8, (10, 2): 10}
 MONTHS_PHAM = 0.1
 
@@ -32,7 +33,7 @@ def price_mt(tier, subtier, cg):
 def apply(cfg):
     # Ghi giá vào một công pháp (dict của congphap_config.json)
     t, st, cg = int(cfg['tier']), int(cfg['subtier']), int(cfg['realm_require'])
-    mt = price_mt(t, st, cg)
+    mt = price_mt(t, st, cg) if cg < TQ_MIN_CG else 0
     cfg['price_masthach'] = mt
     cfg['price_linhthong'] = mt * LT_MULT if t <= DUAL_MAX_TIER else 0
     return cfg

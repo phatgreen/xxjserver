@@ -69,6 +69,27 @@ NEED_BY_WGID.update({wid: 50 for wid in DD2_WGID})
 DJID_BY_WGID.update({wid: DD_DJID for wid in DD2_WGID})
 DROP_PCT.update({lv: 1 for lv in range(4050, 4301, 50)})
 DROP_DJID_BY_LV.update({lv: DD_DJID for lv in range(4050, 4301, 50)})
+# Bổ sung lấp khoảng trống (tools/gen/vc_bosung_build.py, chủ dự án 2026-10-29): số quyển nằm giữa 2 mốc kề.
+#   CG 48 (wgid 111–116) 15 / CG 60 (117–122) 25 / CG 69 (123–128) 35 quyển Hỗn Nguyên; CG 78 (129–134) 45 quyển Đại Đạo.
+for base, need, dj in ((111, 15, HN_DJID), (117, 25, HN_DJID), (123, 35, HN_DJID), (129, 45, DD_DJID)):
+    ids = list(range(base, base + 6))
+    TIENDAO_WGID += ids
+    NEED_BY_WGID.update({wid: need for wid in ids})
+    DJID_BY_WGID.update({wid: dj for wid in ids})
+
+# ---- Công pháp cảnh giới >= 30: không bán bằng tiền, đổi Tàn Quyển rơi từ boss (chủ dự án 2026-10-29) ----
+# Loại quyển theo vùng boss rơi: CG < 42 Tiên Đạo, CG 42–71 Hỗn Nguyên, CG >= 72 Đại Đạo.
+# Số quyển = số của mốc võ công gần nhất phía dưới (cùng nhịp với võ công cùng cảnh giới).
+CP_TQ_MIN_CG = 30
+WG_NEED_STEPS = [(30, 10), (36, 15), (42, 10), (48, 15), (55, 20), (60, 25), (65, 30), (69, 35), (72, 40), (78, 45), (83, 50)]
+def cp_tq(cg):
+    need = [n for c, n in WG_NEED_STEPS if c <= cg][-1]
+    dj = DJID if cg < 42 else (HN_DJID if cg < 72 else DD_DJID)
+    return need, dj
+CP_NEED_BY_CPID, CP_DJID_BY_CPID = {}, {}
+for _k, _c in json.load(open(os.path.join(CFG, 'congphap_config.json'), encoding='utf-8')).items():
+    if int(_c['realm_require']) >= CP_TQ_MIN_CG:
+        CP_NEED_BY_CPID[int(_c['cpid'])], CP_DJID_BY_CPID[int(_c['cpid'])] = cp_tq(int(_c['realm_require']))
 
 # ---- Cấu hình đổi / rơi ----
 save('tiendao_config.json', {
@@ -80,6 +101,8 @@ save('tiendao_config.json', {
     'djid_by_wgid': {str(k): v for k, v in sorted(DJID_BY_WGID.items())},
     'drop_djid_by_lv': {str(k): v for k, v in sorted(DROP_DJID_BY_LV.items())},
     'drop_pct': {str(k): v for k, v in sorted(DROP_PCT.items())},
+    'cp_need_by_cpid': {str(k): v for k, v in sorted(CP_NEED_BY_CPID.items())},
+    'cp_djid_by_cpid': {str(k): v for k, v in sorted(CP_DJID_BY_CPID.items())},
 }, indent=2)
 
 # ---- Đạo cụ ----
@@ -88,7 +111,7 @@ items = [{
     'djname': 'Tiên Đạo Tàn Quyển',
     'djzl': str(DJID),
     'djinfo': 'Tàn trang bí tịch Tiên Đạo, rơi từ Boss khu vực cấp 400 trở lên. '
-              'Gom đủ %d quyển đổi 1 bộ võ công Tiên Đạo tại Thiên Cơ Các (cần cảnh giới thứ 30).' % NEED,
+              'Gom đủ %d–15 quyển (tùy bộ) đổi 1 bộ võ công Tiên Đạo hoặc công pháp (cảnh giới thứ 30–41) tại Thiên Cơ Các.' % NEED,
     'djid': DJID,
     'djyxb': 0,      # bán cho tiệm không được tiền
     'djjg': 0,
@@ -97,7 +120,7 @@ items = [{
     'djname': 'Hỗn Nguyên Tàn Quyển',
     'djzl': str(HN_DJID),
     'djinfo': 'Tàn trang bí tịch Hỗn Nguyên, rơi từ Boss khu vực cấp 2050 trở lên. '
-              'Gom đủ %d–30 quyển (tùy bộ) đổi 1 bộ võ công Hỗn Nguyên tại Thiên Cơ Các (cần cảnh giới thứ 42 trở lên).' % HN_NEED,
+              'Gom đủ %d–35 quyển (tùy bộ) đổi 1 bộ võ công Hỗn Nguyên hoặc công pháp (cảnh giới thứ 42–71) tại Thiên Cơ Các.' % HN_NEED,
     'djid': HN_DJID,
     'djyxb': 0,
     'djjg': 0,
@@ -106,7 +129,7 @@ items = [{
     'djname': 'Đại Đạo Tàn Quyển',
     'djzl': str(DD_DJID),
     'djinfo': 'Tàn trang bí tịch Đại Đạo, rơi rất hiếm từ Boss khu vực cấp 3550 trở lên. '
-              'Gom đủ %d–50 quyển (tùy bộ) đổi 1 bộ võ công Đại Đạo tại Thiên Cơ Các (cần cảnh giới thứ 72 trở lên).' % DD_NEED,
+              'Gom đủ %d–50 quyển (tùy bộ) đổi 1 bộ võ công Đại Đạo hoặc công pháp (cảnh giới thứ 72 trở lên) tại Thiên Cơ Các.' % DD_NEED,
     'djid': DD_DJID,
     'djyxb': 0,
     'djjg': 0,

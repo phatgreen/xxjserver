@@ -503,7 +503,7 @@
     "subtier": 3,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 670000
+    "price_masthach": 0
   },
   "24": {
     "cpid": 24,
@@ -525,7 +525,7 @@
     "subtier": 4,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 710000
+    "price_masthach": 0
   },
   "25": {
     "cpid": 25,
@@ -547,7 +547,7 @@
     "subtier": 1,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 780000
+    "price_masthach": 0
   },
   "26": {
     "cpid": 26,
@@ -569,7 +569,7 @@
     "subtier": 2,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 850000
+    "price_masthach": 0
   },
   "27": {
     "cpid": 27,
@@ -591,7 +591,7 @@
     "subtier": 3,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 890000
+    "price_masthach": 0
   },
   "28": {
     "cpid": 28,
@@ -613,7 +613,7 @@
     "subtier": 4,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 960000
+    "price_masthach": 0
   },
   "29": {
     "cpid": 29,
@@ -1119,7 +1119,7 @@
     "subtier": 3,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 670000
+    "price_masthach": 0
   },
   "52": {
     "cpid": 52,
@@ -1141,7 +1141,7 @@
     "subtier": 4,
     "training_time_mult": 12.0,
     "price_linhthong": 0,
-    "price_masthach": 710000
+    "price_masthach": 0
   },
   "53": {
     "cpid": 53,
@@ -1163,7 +1163,7 @@
     "subtier": 1,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 780000
+    "price_masthach": 0
   },
   "54": {
     "cpid": 54,
@@ -1185,7 +1185,7 @@
     "subtier": 2,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 850000
+    "price_masthach": 0
   },
   "55": {
     "cpid": 55,
@@ -1207,7 +1207,7 @@
     "subtier": 3,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 890000
+    "price_masthach": 0
   },
   "56": {
     "cpid": 56,
@@ -1229,7 +1229,7 @@
     "subtier": 4,
     "training_time_mult": 20.0,
     "price_linhthong": 0,
-    "price_masthach": 960000
+    "price_masthach": 0
   },
   "57": {
     "cpid": 57,
@@ -1251,7 +1251,7 @@
     "subtier": 1,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 1000000
+    "price_masthach": 0
   },
   "58": {
     "cpid": 58,
@@ -1273,7 +1273,7 @@
     "subtier": 1,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 1000000
+    "price_masthach": 0
   },
   "59": {
     "cpid": 59,
@@ -1295,7 +1295,7 @@
     "subtier": 2,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 1340000
+    "price_masthach": 0
   },
   "60": {
     "cpid": 60,
@@ -1317,7 +1317,7 @@
     "subtier": 2,
     "training_time_mult": 30.0,
     "price_linhthong": 0,
-    "price_masthach": 1340000
+    "price_masthach": 0
   },
   "61": {
     "cpid": 61,
@@ -1339,7 +1339,7 @@
     "subtier": 3,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 1740000
+    "price_masthach": 0
   },
   "62": {
     "cpid": 62,
@@ -1361,7 +1361,7 @@
     "subtier": 3,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 1740000
+    "price_masthach": 0
   },
   "63": {
     "cpid": 63,
@@ -1383,7 +1383,7 @@
     "subtier": 4,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 2550000
+    "price_masthach": 0
   },
   "64": {
     "cpid": 64,
@@ -1405,7 +1405,7 @@
     "subtier": 4,
     "training_time_mult": 40.0,
     "price_linhthong": 0,
-    "price_masthach": 2550000
+    "price_masthach": 0
   },
   "65": {
     "cpid": 65,
@@ -1427,7 +1427,7 @@
     "subtier": 1,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 4160000
+    "price_masthach": 0
   },
   "66": {
     "cpid": 66,
@@ -1449,7 +1449,7 @@
     "subtier": 1,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 4160000
+    "price_masthach": 0
   },
   "67": {
     "cpid": 67,
@@ -1471,7 +1471,7 @@
     "subtier": 2,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 5990000
+    "price_masthach": 0
   },
   "68": {
     "cpid": 68,
@@ -1493,7 +1493,7 @@
     "subtier": 2,
     "training_time_mult": 50.0,
     "price_linhthong": 0,
-    "price_masthach": 5990000
+    "price_masthach": 0
   },
   "69": {
     "cpid": 69,
@@ -1515,7 +1515,7 @@
     "subtier": 3,
     "training_time_mult": 60.0,
     "price_linhthong": 0,
-    "price_masthach": 8280000
+    "price_masthach": 0
   },
   "70": {
     "cpid": 70,
@@ -1537,7 +1537,7 @@
     "subtier": 3,
     "training_time_mult": 60.0,
     "price_linhthong": 0,
-    "price_masthach": 8280000
+    "price_masthach": 0
   },
   "71": {
     "cpid": 71,
@@ -1559,7 +1559,7 @@
     "subtier": 4,
     "training_time_mult": 60.0,
     "price_linhthong": 0,
-    "price_masthach": 10480000
+    "price_masthach": 0
   },
   "72": {
     "cpid": 72,
@@ -1581,7 +1581,7 @@
     "subtier": 4,
     "training_time_mult": 60.0,
     "price_linhthong": 0,
-    "price_masthach": 10480000
+    "price_masthach": 0
   },
   "73": {
     "cpid": 73,
@@ -1691,7 +1691,7 @@
     "subtier": 1,
     "training_time_mult": 70.0,
     "price_linhthong": 0,
-    "price_masthach": 14690000
+    "price_masthach": 0
   },
   "78": {
     "cpid": 78,
@@ -1713,7 +1713,7 @@
     "subtier": 1,
     "training_time_mult": 70.0,
     "price_linhthong": 0,
-    "price_masthach": 14690000
+    "price_masthach": 0
   },
   "79": {
     "cpid": 79,
@@ -1735,7 +1735,7 @@
     "subtier": 2,
     "training_time_mult": 70.0,
     "price_linhthong": 0,
-    "price_masthach": 19040000
+    "price_masthach": 0
   },
   "80": {
     "cpid": 80,
@@ -1757,6 +1757,6 @@
     "subtier": 2,
     "training_time_mult": 70.0,
     "price_linhthong": 0,
-    "price_masthach": 19040000
+    "price_masthach": 0
   }
 }

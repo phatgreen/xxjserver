@@ -59,6 +59,7 @@ $tdSell = 0; foreach ($wg as $w) if (in_array($w['rarity'], array('tien_dao', 'h
 tassert('W3 Tien Dao / Hon Nguyen / Dai Dao khong ban o Thien Co Cac', $tdSell, 0);
 
 // ===== Công pháp =====
+$tdCfg = json_decode(file_get_contents(__DIR__ . '/../class/config/tiendao_config.json'), true);
 $cbad = array(); $cids = array();
 $okCpEff = array('absorb_speed', 'exp_bonus', 'hp_regen', 'drop_rate', 'dmg_reduce', 'heal_bonus', 'def_bonus',
     'mining_bonus', 'atk_bonus', 'crit_dmg', 'stone_bonus');
@@ -69,7 +70,11 @@ foreach ($cp as $key => $c) {
     if (intval($c['tier']) < 0 || intval($c['tier']) > 10 || intval($c['subtier']) < 1 || intval($c['subtier']) > 4) $cbad[] = "$id: giai/pham";
     if (floatval($c['effect_value_max']) <= floatval($c['effect_value'])) $cbad[] = "$id: max <= base";
     if (count(explode('|', $c['cpinfo'])) !== 3) $cbad[] = "$id: cpinfo";
-    if (intval($c['price_linhthong']) <= 0 && intval($c['price_masthach']) <= 0) $cbad[] = "$id: khong co gia";
+    // CG >= 30 đổi Tàn Quyển (tiendao_config.json cp_need_by_cpid, 2026-10-29), dưới đó bán bằng tiền
+    $tqNeed = isset($tdCfg['cp_need_by_cpid'][(string)$id]) ? intval($tdCfg['cp_need_by_cpid'][(string)$id]) : 0;
+    if (intval($c['realm_require']) >= 30) {
+        if ($tqNeed <= 0 || intval($c['price_linhthong']) > 0 || intval($c['price_masthach']) > 0) $cbad[] = "$id: CG>=30 phai doi Tan Quyen";
+    } elseif (intval($c['price_linhthong']) <= 0 && intval($c['price_masthach']) <= 0) $cbad[] = "$id: khong co gia";
 }
 // Đợt A: cpid 1–56; làn 5 + làn 6 thêm 8 bộ Đế Giai cpid 57–64; làn 7–8 thêm 8 bộ Đạo Giai cpid 65–72; Phàm Giai cpid 73–76 (cp_pham_build.py); làn 9 thêm 4 bộ Chí Tôn Giai cpid 77–80
 tassert('C1 80 cong phap', count($cp), 80);
@@ -89,13 +94,16 @@ tassert('C2 Dao Giai yeu cau CG 62, 62, 67, 67, 74, 74, 78, 78', $dao, array(62,
 $pbad = array();
 foreach ($cp as $c) {
     $t = intval($c['tier']); $lt = intval($c['price_linhthong']); $mt = intval($c['price_masthach']);
+    if (intval($c['realm_require']) >= 30) { if ($mt + $lt !== 0) $pbad[] = $c['cpid'] . ': CG>=30 van ban tien'; continue; }
     if ($mt <= 0) $pbad[] = $c['cpid'] . ': khong co gia MT';
     if ($t <= 3 && $lt !== 3 * $mt) $pbad[] = $c['cpid'] . ': LT != 3 x MT';
     if ($t >= 4 && $lt !== 0) $pbad[] = $c['cpid'] . ': giai 4+ van ban LT';
 }
 tassert('C3 gia: giai 0–3 LT = 3 x MT, giai 4+ chi MT', $pbad, array());
 $pr = function($id) use ($cp) { return intval($cp[(string)$id]['price_masthach']); };
-tassert('C3 gia moc: Pham 1.000 · Hoang 14.000 · De Giai So 1.000.000 · Dao Giai Thuong 10.480.000 · Chi Ton Giai 14.690.000 / 19.040.000', array($pr(73), $pr(1), $pr(57), $pr(72), $pr(77), $pr(80)), array(1000, 14000, 1000000, 10480000, 14690000, 19040000));
+tassert('C3 gia moc: Pham 1.000 · Hoang 14.000 · CG 28 = 620.000 (CG >= 30 doi Tan Quyen)', array($pr(73), $pr(1), $pr(22), $pr(57)), array(1000, 14000, 620000, 0));
+$tq = function($id) use ($tdCfg) { return array($tdCfg['cp_djid_by_cpid'][(string)$id], $tdCfg['cp_need_by_cpid'][(string)$id]); };
+tassert('C4 Tan Quyen: CG 30 = 10 Tien Dao · CG 45 = 10 Hon Nguyen · CG 78 = 45 Dai Dao · CG 85 = 50 Dai Dao', array($tq(23), $tq(57), $tq(72), $tq(80)), array(array(115, 10), array(116, 10), array(117, 45), array(117, 50)));
 
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

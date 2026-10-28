@@ -303,6 +303,55 @@ if (!function_exists(__NAMESPACE__ . '\\tiendao_drop_djid')) {
     }
 }
 
+// Giá 1 bí tịch khi "Mua ngay" ở trang Võ Công = giá bán bộ đó ở Thiên Cơ Các (mua thêm ở shop cũng chỉ +1 bí tịch).
+// Trả array(loại, số lượng, djid): 'lt' Linh thạch / 'mt' Ma thạch / 'tq' Tàn Quyển (djid); array('', 0, 0) = không mua được.
+// Bộ shop không bán (vd phần thưởng sự kiện) => lấy giá thấp nhất của các bộ cùng mốc cảnh giới, không có thì mốc gần nhất bên dưới.
+if (!function_exists(__NAMESPACE__ . '\\wugong_book_price')) {
+    function wugong_book_price($wgid){
+        $wgid = intval($wgid);
+        $own = function ($cfg) {
+            $id = intval($cfg['wgid']);
+            $need = tiendao_need($id);
+            if ($need > 0) return array('tq', $need, tiendao_djid_for($id));
+            if (intval($cfg['price_linhthong']) > 0) return array('lt', intval($cfg['price_linhthong']), 0);
+            if (intval($cfg['price_masthach']) > 0) return array('mt', intval($cfg['price_masthach']), 0);
+            return array('', 0, 0);
+        };
+        $cfg = wugong_config_get($wgid);
+        if (!$cfg || $wgid <= 0) return array('', 0, 0);
+        $p = $own($cfg);
+        if ($p[1] > 0) return $p;
+
+        $realm = intval($cfg['realm_require']);
+        $best = array('', 0, 0);
+        $bestRealm = -1;
+        foreach (wugong_config_all() as $c) {
+            if (intval($c['wgid']) <= 0 || intval($c['realm_require']) > $realm) continue;
+            $q = $own($c);
+            if ($q[1] <= 0) continue;
+            $r = intval($c['realm_require']);
+            // Ưu tiên mốc cao nhất <= mốc của bộ; cùng mốc thì lấy giá thấp nhất
+            if ($r > $bestRealm || ($r == $bestRealm && $q[1] < $best[1])) {
+                $best = $q;
+                $bestRealm = $r;
+            }
+        }
+        return $best;
+    }
+}
+
+// Công pháp cảnh giới >= 30 đổi bằng Tàn Quyển (cp_need_by_cpid / cp_djid_by_cpid): trả array(djid, số quyển), 0 quyển = mua bằng tiền.
+if (!function_exists(__NAMESPACE__ . '\\tiendao_cp_cost')) {
+    function tiendao_cp_cost($cpid){
+        $cfg = tiendao_config();
+        $k = (string)intval($cpid);
+        if (!isset($cfg['cp_need_by_cpid'][$k]) || !isset($cfg['cp_djid_by_cpid'][$k])) {
+            return array(0, 0);
+        }
+        return array(intval($cfg['cp_djid_by_cpid'][$k]), intval($cfg['cp_need_by_cpid'][$k]));
+    }
+}
+
 // Số Tàn Quyển cần để đổi võ công $wgid; 0 = bộ này không đổi bằng Tàn Quyển.
 if (!function_exists(__NAMESPACE__ . '\\tiendao_need')) {
     function tiendao_need($wgid){
