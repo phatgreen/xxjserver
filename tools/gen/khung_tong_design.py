@@ -10,13 +10,14 @@ from dot_f_build import base_curve
 
 LMAX = 4300
 BASE = base_curve(LMAX)
-SAFE = 1.0e9          # trần an toàn mọi giá trị số (PHP 5.6 Windows: số nguyên 32-bit, tối đa 2.147.483.647)
+SAFE = 2147483647.0  # mốc INT 32-bit cũ — chỉ để so sánh (sau khi lên PHP 7.4 64-bit + BIGINT thì không còn là giới hạn)
 
 # ── Đường EXP ────────────────────────────────────────────────
 def need_old(L):  return 110 * L * L                       # class/player.php: umaxexp
 def mob_old(L):   return 107 * L                           # nowmid.php: exp quái lúc sinh
-def need_new(L):  return need_old(L) if L <= 500 else 27.5e6 * (L / 500.0) ** 1.2
-def mob_new(L):   return mob_old(L) if L <= 500 else 53500 * (L / 500.0) ** 1.45
+KILLS = 400        # số quái Thường cần để lên 1 cấp (chỉ tính phần EXP từ quái) khi cấp > 500
+def need_new(L):  return need_old(L)                       # giữ công thức cũ (PHP 7.4 64-bit + BIGINT, không lo tràn)
+def mob_new(L):   return mob_old(L) if L <= 500 else max(mob_old(L), need_old(L) / KILLS)  # EXP quái tăng theo cấp
 
 # ── Nhân vật chuẩn: gốc + đồ đủ bộ (50% gốc ở bậc) cường hóa qh, nhân hệ số buff % ──
 GEAR_TIERS = [500, 600, 800, 1000, 1250, 1500, 2000, 2500, 3000, 3500, 4000]

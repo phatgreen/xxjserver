@@ -1,101 +1,115 @@
 # KHUNG TỔNG NỘI DUNG CẤP 500 → 4300 (CHỜ DUYỆT)
 
 > Lập 2026-10-28 — phương án C (chủ dự án chọn): **làm khung tổng một lần**, sau đó **sinh dữ liệu từng làn** bằng một bộ công cụ chung.
-> Mọi bảng số in bằng `python3 tools/gen/khung_tong_design.py` (sửa công thức ở đó rồi chạy lại, không gõ tay).
+> Bảng số mục 5 in bằng `python3 tools/gen/khung_tong_design.py` (sửa công thức ở đó rồi chạy lại, không gõ tay).
 > Thay thế bản `LAN2_CAP_500_1000.md` (làn 2 trở thành làn đầu tiên dùng khung này).
 
-## 0. Tóm tắt
+## 0. Tóm tắt (bản 2 — theo phản hồi chủ dự án 2026-10-28)
 
-| # | Hạng mục | Vấn đề hiện tại | Khung đề xuất |
-|---|---|---|---|
-| 1 | Giới hạn số | PHP 5.6 trên Windows dùng **số nguyên 32-bit** (tối đa 2.147.483.647, kể cả bản 64-bit); cột MySQL `INT` cùng giới hạn | Mọi giá trị ở cấp 4300 **≤ 1 tỉ** (trần an toàn ~47%) ⇒ **không cần** đổi BIGINT, không rà toàn bộ `intval()` |
-| 2 | Kinh nghiệm | Giữ công thức cũ: cấp 4300 cần **2,03 tỉ** EXP (95% giới hạn), **4.420 quái/cấp**, tổng **9,4 triệu quái** | Từ cấp 500: EXP lên cấp tăng chậm lại, EXP quái tăng nhanh hơn ⇒ **514 → 300 quái/cấp**, tổng **1,38 triệu**; EXP lớn nhất 364 triệu |
-| 3 | Đột phá | Tỉ lệ chạm sàn **5% từ cấp ~300**, phí `cấp×(cấp+1)` ⇒ cấp 1000 tốn TB **20 triệu LT/cấp**, cấp 4300 **370 triệu/cấp** | Sàn tỉ lệ theo loại đột phá + phí tăng chậm (mục 4) |
-| 4 | Sức mạnh | Đường chỉ số đợt F mới tới 800 | Kéo dài tới 4300; quái/boss tính ngược từ nhân vật chuẩn (giữ nhịp 5,5 đòn / 50 đòn) |
-| 5 | Trang bị | Bậc cao nhất 800, phẩm cao nhất "Đạo" | Thêm 8 bậc (1000 → 4000) + 4 phẩm mới |
-| 6 | Võ công / Công pháp | Võ công tới CG 30 (cấp 1450), công pháp tới CG 43 (cấp 2100) | Mỗi làn thêm 5 võ công + 4 công pháp; thêm 2 phẩm võ công trên Tiên Đạo |
-| 7 | Cảnh giới | 74 màu / 86 cảnh giới; lỗi tên "Sáng Thê", "Thánh Nhân" trùng (1101 & 3851), khoảng trắng thừa | Thêm 12 màu, sửa tên |
-| 8 | Nội dung | Hết ở cấp 500 | 8 làn × ~10 khu: **~76 khu, ~600 map, ~1.300 loại quái, 76 boss, 76 chương chính tuyến** — sinh bằng công cụ chung |
+| # | Hạng mục | Quyết định |
+|---|---|---|
+| 1 | Giới hạn số | **Lên PHP 7.4 bản 64-bit + đổi cột chỉ số sang `BIGINT`** (chủ dự án chọn) ⇒ giới hạn ~9,2 tỉ tỉ. Máy chủ hiện `PHP_INT_SIZE = 4` (đã kiểm). Làm ở đợt **KT-0**, test toàn bộ game trên PHP 7.4 trước khi chuyển máy chủ thật |
+| 2 | Kinh nghiệm | **Giữ công thức EXP lên cấp cũ** (`110 × cấp²`). Quái cấp cao **cho nhiều EXP hơn** để số quái mỗi cấp **không phình** (≈ 400 con/cấp từ cấp 500) — độ khó tăng nhờ **quái mạnh hơn** + đột phá khó hơn, không nhờ bắt giết hàng nghìn con/cấp |
+| 3 | Đột phá | Giữ 6 mục cộng/trừ hiện có (Cơ bản · Cấp độ · Cảnh giới · Milestone · Trang bị · Thiên Phú) + thêm Đan và Sự kiện; **tỉ lệ gốc càng cao càng âm** nhưng ở mức mà các khoản cộng **có tác dụng thật** (hiện từ cấp ~125 tỉ lệ gốc âm sâu, mọi khoản cộng bị nuốt, luôn dừng ở sàn 5%) |
+| 4 | Bí Cảnh Luyện Cấp | Map luyện cấp dày quái cho người chơi cấp cao, có điều kiện vào + **giới hạn bằng Thể Lực** để không tăng cấp quá nhanh (mục 4b) |
+| 5 | Sức mạnh | Kéo đường chỉ số đợt F tới 4300; quái/boss tính ngược từ nhân vật chuẩn (giữ nhịp 5,5 đòn / 50 đòn) |
+| 6 | Trang bị | Thêm 8 bậc (1000 → 4000) + 4 phẩm mới; gắn chỉ số **cộng tỉ lệ đột phá** (`tuposjs`) cho trang bị (hiện mọi món = 0) |
+| 7 | Võ công / Công pháp | Mỗi làn thêm 5 võ công + 4 công pháp; thêm 2 phẩm võ công trên Tiên Đạo |
+| 8 | Cảnh giới | Thêm 12 màu; sửa tên "Sáng Thê", "Thánh Nhân" trùng (1101 & 3851), khoảng trắng thừa |
+| 9 | Nội dung | 8 làn × ~10 khu: ~76 khu, ~600 map, ~1.300 loại quái, 76 boss, 76 chương chính tuyến — sinh bằng công cụ chung |
 
 ## 1. Nguyên tắc
 
-1. **Không đổi gì ở cấp 1–500** (nội dung đã chơi được, đã cân ở đợt B/C/F). Công thức mới chỉ áp dụng khi cấp > 500, nối liền tại 500.
+1. **Không đổi nội dung cấp 1–500** (đã cân ở đợt B/C/F) — ngoại trừ công thức tỉ lệ đột phá (mục 4) vì đang lỗi từ cấp ~125.
 2. **Mỗi cảnh giới (50 cấp) = 1 khu** có: quái luyện cấp, 1 boss, 1 NPC, 1 chương chính tuyến; mỗi làn có võ công/công pháp/trang bị mới.
-3. **Một bộ công cụ cho mọi làn**: làn mới chỉ thêm 1 file mô tả (tên khu, boss, quái), không viết lại code sinh.
-4. **Cân theo nhân vật chưa có buff %** (công pháp, cộng hưởng, linh căn, huyết mạch, thiên phú…) ⇒ các hệ phụ là phần thưởng thật, không bắt buộc.
-5. Mỗi làn: sinh → migrate (chạy lại không trùng) → test số liệu → **đánh thật + chụp màn hình** → bàn giao.
+3. **Càng lên cao càng khó** nhờ: quái mạnh hơn (cần đồ/kỹ năng mới), đột phá khó hơn (cần gom khoản cộng), tài nguyên đắt hơn — **không** nhờ nhân số quái phải giết.
+4. **Một bộ công cụ cho mọi làn**: làn mới chỉ thêm 1 file mô tả (tên khu, boss, quái).
+5. Cân theo nhân vật **chưa có buff %** ⇒ các hệ phụ là phần thưởng thật.
+6. Mỗi làn: sinh → migrate (chạy lại không trùng) → test số liệu → **đánh thật + chụp màn hình** → bàn giao.
 
-## 2. Ràng buộc kỹ thuật: giới hạn số nguyên
+## 2. Nâng nền tảng: PHP 7.4 64-bit + BIGINT
 
-| Nơi | Giới hạn | Hệ quả nếu vượt |
+| Hạng mục | Việc | Ghi chú |
 |---|---|---|
-| PHP 5.6 Windows (`PHP_INT_MAX`) | 2.147.483.647 — số nguyên 64-bit trên Windows chỉ có từ PHP 7 | `intval()` trả sai, cộng/trừ thành số thực ⇒ sai so sánh, lỗi hiển thị |
-| MySQL `INT` (cột `uexp`, `umaxhp`, `ugj`, `ufy`, `uyxb`, `uczb` của `game1`) | 2.147.483.647 | `sql_mode=''` (máy chủ đang dùng) **cắt im lặng** về 2.147.483.647 ⇒ mất tiền/exp không báo |
-| Bảng `boss` (máu/công lưu `VARCHAR`) | đọc bằng `intval` ⇒ như PHP | như trên |
+| PHP | phpStudy chuyển site sang **PHP 7.4 (x64)** ⇒ `PHP_INT_SIZE = 8` | Kiểm: `php.exe -r "echo PHP_INT_SIZE;"` phải ra `8` |
+| Tương thích code | Chạy toàn bộ game + 40 bộ test trên PHP 7.4 ở cloud trước | Server thử đã chạy game trên **PHP 8.3** chỉ với 1 chỗ vá `parse_str` 1 tham số (PHP 7.4 vẫn chấp nhận, chỉ báo deprecated) ⇒ khả năng tương thích cao. Rà thêm: `each()`, `create_function`, `{}` lấy ký tự chuỗi, `mysql_*` |
+| DB | `ALTER TABLE game1` các cột `uexp, umaxhp, uhp, ugj, ufy, uyxb, uczb` → `BIGINT`; rà các bảng khác giữ chỉ số/tiền (trang bị, thú cưng, tông môn, xếp hạng) | `sql/migrate_kt0_bigint.php` có `--dry-run` / `--apply`; sao lưu trước |
+| Code | `intval()` trên PHP 7.4 64-bit trả đúng tới 9,2 tỉ tỉ ⇒ **không phải sửa 2.934 chỗ `intval`** | Hiển thị số lớn: dùng hàm rút gọn sẵn có (K/M) — thêm đơn vị **B** (tỉ) |
+| Quy ước dự án | Cập nhật: backend **PHP 7.4** (thay PHP 5.6) | Code mới vẫn viết tránh tính năng PHP 8 |
 
-**Quyết định:** trần thiết kế **1.000.000.000** cho mọi giá trị lưu/tính (kể cả sau buff, cường hóa +30, nhân sát thương thế võ).
-Kiểm tra trước khi làm (chạy trên máy chủ): `php.exe -r "echo PHP_INT_SIZE, ' ', PHP_INT_MAX;"` — kỳ vọng `4 2147483647`.
+## 3. Kinh nghiệm
 
-Đo bằng `khung_tong_design.py`: giá trị nhân vật lớn nhất ở 4300 = **61 triệu** (6% trần); máu boss lớn nhất **448 triệu** (45%); EXP lên cấp lớn nhất **364 triệu** (36%).
-**Ngoại lệ phải xử lý — Linh Thạch tích lũy** (mục 9): tiền là thứ duy nhất cộng dồn không giới hạn.
-
-## 3. Đường kinh nghiệm
-
-Công thức (chỉ cấp > 500; cấp ≤ 500 giữ nguyên):
+Nguyên tắc chủ dự án: *người chơi lên cấp ⇒ có quái tương ứng, quái khó hơn đồng thời cho nhiều EXP hơn* ⇒ không cần giết hàng triệu con.
 
 ```
-EXP lên cấp  = 27.500.000 × (cấp/500)^1,2     (cũ: 110 × cấp²)      — class/player.php (umaxexp)
-EXP mỗi quái = 53.500 × (cấp quái/500)^1,45  (cũ: 107 × cấp quái)    — game/nowmid.php (lúc sinh quái)
+EXP lên cấp  = 110 × cấp²                             (giữ nguyên)
+EXP mỗi quái = 107 × cấp quái                         (cấp ≤ 500, giữ nguyên)
+             = 110 × cấp quái² ÷ 400                  (cấp > 500 — mới, game/nowmid.php lúc sinh quái)
 ```
 
-| Cấp | EXP lên cấp (cũ) | EXP lên cấp (mới) | EXP/quái (cũ) | EXP/quái (mới) | Quái/cấp cũ | Quái/cấp mới |
-|---|---|---|---|---|---|---|
-| 500 | 27.500.000 | 27.500.000 | 53.500 | 53.500 | 514 | 514 |
-| 750 | 61.875.000 | 44.734.461 | 80.250 | 96.313 | 771 | 464 |
-| 1000 | 110.000.000 | 63.178.410 | 107.000 | 146.166 | 1028 | 432 |
-| 1500 | 247.500.000 | 102.772.803 | 160.500 | 263.136 | 1542 | 390 |
-| 2000 | 440.000.000 | 145.145.870 | 214.000 | 399.338 | 2056 | 363 |
-| 2500 | 687.500.000 | 189.712.828 | 267.500 | 551.900 | 2570 | 343 |
-| 3000 | 990.000.000 | 236.109.898 | 321.000 | 718.908 | 3084 | 328 |
-| 3500 | 1.347.500.000 | 284.086.334 | 374.500 | 898.972 | 3598 | 316 |
-| 4000 | 1.760.000.000 | 333.457.645 | 428.000 | 1.091.024 | 4112 | 305 |
-| 4300 | 2.033.900.000 | 363.689.561 | 460.100 | 1.211.648 | 4420 | 300 |
+| Cấp | EXP lên cấp | EXP/quái cũ | EXP/quái mới | Quái/cấp cũ | Quái/cấp mới |
+|---|---|---|---|---|---|
+| 500 | 27.500.000 | 53.500 | 53.500 | 514 | 514 |
+| 1000 | 110.000.000 | 107.000 | 275.000 | 1.028 | 400 |
+| 2000 | 440.000.000 | 214.000 | 1.100.000 | 2.056 | 400 |
+| 3000 | 990.000.000 | 321.000 | 2.475.000 | 3.084 | 400 |
+| 4300 | 2.033.900.000 | 460.100 | 5.084.750 | 4.420 | 400 |
 
-Tổng quái 500 → 4300: **cũ 9.373.748 · mới 1.378.351** (chưa tính nhiệm vụ, Bế Quan, tu luyện).
+- 400 con/cấp là **nếu chỉ đánh quái thường**. Thực tế EXP còn từ nhiệm vụ (thưởng theo % thanh cấp), Bế Quan, tu luyện, Bí Cảnh ⇒ số quái thực tế ít hơn.
+- Đánh quái **thấp cấp hơn** mình: EXP bị chia theo chênh lệch cấp (`pve.php`, có sẵn) ⇒ phải đi map đúng cấp.
+- Hằng số `KILLS = 400` nằm trong `tools/gen/khung_tong_design.py` (và config khi làm) — đổi được.
 
-| Làn | 500–1000 | 1000–1500 | 1500–2000 | 2000–2500 | 2500–3000 | 3000–3500 | 3500–4000 | 4000–4300 |
-|---|---|---|---|---|---|---|---|---|
-| Quái cần | 233.677 | 204.845 | 188.117 | 176.584 | 167.906 | 161.017 | 155.346 | 90.860 |
+## 4. Đột phá
 
-Ghi chú: thưởng nhiệm vụ đợt C tính theo **% thanh cấp** ⇒ tự co giãn, không cần sửa. Quái cấp ≤ 500 và người chơi ≤ 500 không bị ảnh hưởng.
+### 4.1 Hiện tại (đúng như trang Đột Phá đang hiện)
 
-## 4. Đột phá (lên cấp)
+`Tỉ lệ = Cơ bản 75 + Cấp độ (−0,6 × cấp) + Cảnh giới (−3 × bậc cảnh giới) + Milestone (+10 ở mốc ×50) + Trang bị + Thiên Phú`, sàn 5%, trần 99%.
 
-Hiện tại (`game/tupo.php`): `tỉ lệ = 75 − 0,6×cấp − 3×cảnh giới (+10 ở mốc ×50, + trang bị, + thiên phú)`, **sàn 5%**;
-phí Linh Thạch: tiểu cảnh `cấp×(cấp+1)`, đại cảnh giới `cấp²×3`. Thất bại: mất phí; 1% tụt 1 cấp, 1% mất hết EXP, 1% mất 75%, 1% mất 50%.
+| Cấp | Cơ bản | Cấp độ | Cảnh giới | Gốc | Ghi chú |
+|---|---|---|---|---|---|
+| 93 | 75 | −55,8 | −6 | **13,2%** | đúng như ảnh chủ dự án gửi |
+| 125 | 75 | −75 | −9 | −9% | từ đây gốc âm |
+| 500 | 75 | −300 | −33 | **−258%** | cộng bao nhiêu cũng chỉ ra 5% |
+| 4300 | 75 | −2.580 | −258 | **−2.763%** | |
 
-| Cấp | Tỉ lệ | Phí / lần | Trung bình / cấp |
+Thêm 2 phát hiện: **mọi trang bị có `tuposjs` = 0** (mục Trang bị luôn +0%) · **7 Đột Phá Đan (djid 20–26) chưa có tác dụng** (không có code dùng).
+
+### 4.2 Đề xuất
+
+Giữ cấu trúc 6 mục (+ 2 mục mới: **Đan**, **Sự kiện**). Đổi 2 mục trừ sao cho **gốc càng cao càng âm, đều đặn**, và các khoản cộng có thể kéo lên:
+
+| Cấp | Gốc mục tiêu (Cơ bản + Cấp độ + Cảnh giới) | Người không gom gì | Người gom đủ (≈ +X%) |
 |---|---|---|---|
-| 100 | 6% | 10.100 | 168.333 |
-| 300 | 5% | 90.300 | 1.806.000 |
-| 500 | 5% | 250.500 | 5.010.000 |
-| 1000 | 5% | 1.001.000 | 20.020.000 |
-| 2000 | 5% | 4.002.000 | 80.040.000 |
-| 4300 | 5% | 18.494.300 | **369.886.000** |
+| 1–93 | **giữ nguyên** công thức cũ | — | — |
+| 100 | ≈ +10% | 10% | |
+| 500 | ≈ −20% | sàn | |
+| 1000 | ≈ −40% | sàn | |
+| 2000 | ≈ −70% | sàn | |
+| 4300 | ≈ −110% | sàn | |
 
-⇒ Từ cấp ~300 mọi lần đột phá đều 5% (20 lần thử/cấp, 4% mỗi lần dính phạt nặng), chi phí tăng theo bình phương.
-Ở 4300 một cấp tốn ~370 triệu LT — vượt xa thu nhập và dễ chạm trần ví.
+Nguồn cộng (thiết kế cùng):
 
-**Đề xuất (chỉ cấp > 500):**
+| Mục | Nguồn | Trần đề xuất |
+|---|---|---|
+| Milestone | mốc ×50 (có sẵn) | +10% |
+| Trang bị | `tuposjs` trên ô Linh Phù / Ngọc Nhãn / Cổ Ngọc, tăng theo bậc | **K2** |
+| Thiên Phú | Đột Phách Tâm Kinh, Bất Khúc Đạo Ý (0,25%/cấp, có sẵn) | theo trần cấp thiên phú |
+| **Đan** (mới) | 7 Đột Phá Đan có sẵn (Trúc Cơ → Đại Thừa) + đan mới cho cảnh giới cao; uống trước khi đột phá, mất khi thử | **K2** |
+| **Sự kiện** (mới) | cuối tuần / sự kiện server, cấu hình theo khung giờ | **K2** |
+
+Sàn cuối cùng giữ **5%** (hoặc 1% — **K3**). Phí Linh Thạch giữ công thức cũ (`cấp×(cấp+1)`, đại cảnh giới `cấp²×3`) — với BIGINT không còn lo tràn ví.
+
+## 4b. Bí Cảnh Luyện Cấp (map luyện cấp cho người chơi cấp cao)
+
+Đề xuất của chủ dự án: map bãi quái dày cho người chơi cấp cao, cần kỹ năng tương ứng. **Ổn**, với các chốt chặn để không tăng cấp quá nhanh:
 
 | Mục | Đề xuất |
 |---|---|
-| Sàn tỉ lệ | Tiểu cảnh **25%**, đại cảnh giới (mốc ×50) **12%** — vẫn cộng trang bị / thiên phú như cũ, trần 99% |
-| Phí | `250.000 × (cấp/500)^1,2` (tiểu cảnh), ×3 cho đại cảnh giới ⇒ cấp 4300 ≈ 3,3 triệu/lần |
-| Phạt thất bại | Giữ nguyên tỉ lệ 1%/1%/1%/1% (đặc trưng "tâm ma") |
-
-Trung bình / cấp sau sửa: 1000 ≈ 2,3 triệu · 2000 ≈ 5,3 triệu · 4300 ≈ 13 triệu LT (so với 20 / 80 / 370 triệu).
-**Câu hỏi K4:** có muốn áp dụng luôn cho cấp 300–500 (đang 5%) không?
+| Vị trí | 1 Bí Cảnh / cảnh giới (map cuối mỗi khu có cổng vào) — quái **dày** (sinh lại nhanh), cùng cấp khu |
+| Điều kiện vào | Đủ cấp khu **và** võ công đang dùng đạt cấp mở **Tuyệt Kỹ** (thế võ bậc 2, có sẵn `unlock_lv`) — "sở hữu kỹ năng tương ứng" |
+| Giới hạn | Mỗi trận trong Bí Cảnh tốn **Thể Lực** (hệ thể lực đã có: `ustamina`/`umaxstamina`); hết thể lực thì phải ra ⇒ trần số trận/ngày tự nhiên |
+| EXP | ×1,5 so với quái thường cùng cấp; **không rơi trang bị / Tàn Quyển** (tránh cày đồ) |
+| Kiểm soát tổng | Mục tiêu: Bí Cảnh chiếm ≤ 25–30% EXP một ngày chơi đầy đủ — đo trên server thử mỗi làn |
 
 ## 5. Sức mạnh nhân vật / quái / boss
 
@@ -159,7 +173,7 @@ Cộng Hưởng: thêm mốc khi nhóm đông lên (giữ trần 5% mỗi chỉ 
 
 | Vấn đề | Đề xuất |
 |---|---|
-| Ví `uyxb` cộng dồn không trần; vượt 2,147 tỉ bị MySQL cắt im lặng | Trần ví **1.500.000.000**: `changeyxb` không cộng quá trần, báo "Túi linh thạch đã đầy" |
+| Ví `uyxb` cộng dồn không trần | Sau BIGINT không còn tràn; vẫn theo dõi tổng Linh Thạch toàn server mỗi làn để chống lạm phát |
 | Thu nhập cấp cao (boss: `cấp×(1–5)×30`, quái, nhiệm vụ) | Mỗi làn đo thu nhập/giờ trên server thử, so với chi đột phá (mục 4) + cường hóa + mua võ công; mục tiêu chi ≈ 60–80% thu |
 | Giá Thiên Cơ Các / Thương Điếm theo cấp | Võ công/công pháp mới định giá theo thu nhập làn (như đợt A) |
 
@@ -210,7 +224,7 @@ Làn mới = viết 1 file `spec/lanN.json` (tên) → `build.py N` → `migrate
 
 | Đợt | Nội dung | Phụ thuộc |
 |---|---|---|
-| **KT-0** Nền kỹ thuật | Kiểm `PHP_INT_SIZE` máy chủ · EXP mới (2 chỗ code) · Đột phá mới · trần ví · 12 màu + sửa tên cảnh giới · tách file quái theo làn · bộ công cụ `tools/gen/lan/` | — |
+| **KT-0** Nền kỹ thuật | PHP 7.4 64-bit + BIGINT (test toàn bộ trên cloud trước) · EXP quái cấp > 500 · công thức đột phá mới + mục Đan / Sự kiện + `tuposjs` trang bị · 12 màu + sửa tên cảnh giới · tách file quái theo làn · bộ công cụ `tools/gen/lan/` | — |
 | **L2** 500–1000 | 10 khu (tên đã đề xuất ở `LAN2_CAP_500_1000.md`), Tàn Quyển boss mới | KT-0 |
 | **L3** 1000–1500 | 10 khu, bậc đồ 1000/1250 (Hỗn Độn), 5 võ công + 4 công pháp | L2 |
 | **L4** 1500–2000 | 10 khu, bậc 1500 | L3 |
@@ -223,10 +237,11 @@ trong khi người chơi thật cao nhất hiện mới cấp 93.
 
 | # | Câu hỏi | Đề xuất |
 |---|---|---|
-| K1 | Đường EXP mục 3 (514 → 300 quái/cấp) | Đồng ý |
-| K2 | Đột phá mục 4 (sàn 25%/12%, phí tăng chậm) | Đồng ý |
-| K3 | Trần ví 1,5 tỉ Linh Thạch | Đồng ý |
-| K4 | Áp dụng đột phá mới cho cả cấp 300–500? | Có (hiện 5% là quá khắt) |
+| ~~K1~~ | ~~Giới hạn số~~ | **Đã chốt: PHP 7.4 64-bit + BIGINT** |
+| K2 | Tổng mức cộng tỉ lệ đột phá một người chơi chịu khó gom được ở cấp cao (Trang bị + Đan + Sự kiện + Thiên Phú + Milestone) | ≈ +100% ⇒ cấp 4300 gom đủ còn ~−10% → cần thêm sự kiện/đan đặc biệt mới qua được (đúng "tu tiên khó") |
+| K3 | Sàn cuối cùng | 5% (giữ như cũ) |
+| K4 | Áp dụng công thức đột phá mới từ cấp 94 (thay vì để âm sâu như hiện tại) | Có |
 | K5 | Tên 4 phẩm trang bị mới | Hỗn Độn · Thái Sơ · Vĩnh Hằng · Chí Tôn |
 | K6 | Đổi tên "Thánh Nhân" trùng ở cấp 3851 | "Hỗn Độn Thánh Nhân" |
-| K7 | Thứ tự ưu tiên | MK + UI-1 trước → KT-0 → L2 → … |
+| K7 | Số quái/cấp khi chỉ đánh quái thường (`KILLS`) | 400 |
+| K8 | Thứ tự | MK + UI-1 → KT-0 (PHP 7.4 + BIGINT + EXP + đột phá) → L2 → … |

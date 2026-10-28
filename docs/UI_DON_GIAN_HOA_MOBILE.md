@@ -1,4 +1,6 @@
-# GIAO DIỆN — Đơn giản hóa cho người mới + Rà soát mobile (CHỜ DUYỆT)
+# GIAO DIỆN — Đơn giản hóa cho người mới + Rà soát mobile (CHỜ DUYỆT — bản 2)
+
+> **Bản 2 (2026-10-28, theo chủ dự án):** mọi nút **hiển thị đầy đủ**, không gom vào nút ☰. Thay vào đó: bỏ trùng lặp, xếp theo nhóm có tiêu đề, nút chưa mở hiện 🔒 (theo `MO_KHOA_TINH_NANG.md`).
 
 > Lập 2026-10-28. Đi cùng `docs/MO_KHOA_TINH_NANG.md` (mở tính năng theo cấp). Hai tài liệu bổ sung nhau:
 > tài liệu này quyết định **bố cục / điều hướng**, tài liệu kia quyết định **khi nào một tính năng xuất hiện**.
@@ -51,7 +53,8 @@ Mục tiêu:
 
 ```
 ┌──────────────────────────────┐
-│ 👤 Tên · Cảnh giới   💰 2,09B 💎 500K  ☰ │  ← thanh trên 1 hàng (~52 px). ☰ mở: Tin Tức, Sự Kiện, Cẩm Nang, Cộng Đồng, Giftcode, Rời Khỏi
+│ 👤 Tên · Cảnh giới      💰 2,09B  💎 500K │  ← dòng 1: nhân vật + tiền (số rút gọn)
+│ 🏠Trang Chủ 📰Tin Tức 🎁Sự Kiện 📖Cẩm Nang 💬Cộng Đồng │  ← dòng 2: đủ 5 nút, 1 hàng nhỏ (~36 px) thay vì 3 hàng (~170 px)
 ├──────────────────────────────┤
 │                              │
 │        nội dung trang        │
@@ -75,23 +78,23 @@ Mục tiêu:
 | 🐾 **Linh Sủng** | Thú cưng, Sào Thú (khi mở) | Thú Cưng trong lưới |
 | 📜 **Nhiệm Vụ** | Chính tuyến, ngày/tuần, Trực Tuyến, Bế Quan | giữ nguyên trang `nhiemvu` |
 
-**Gom vào nút ☰ / "Thêm" (chỉ hiện khi đã mở):** Cửa Hàng, Thiên Cơ Các, Tông Môn, Giao Dịch, Hảo Hữu, Xếp Hạng, Tán Gẫu, Quy Đổi, Tháp Yêu, Vấn Đỉnh Đài.
+**Nhóm "Tiên Đồ" (hiện đầy đủ ngay trong trang, xếp theo nhóm có tiêu đề, nút chưa mở hiện 🔒):** Giao thương (Cửa Hàng, Thiên Cơ Các, Giao Dịch, Quy Đổi) · Kết giao (Tông Môn, Hảo Hữu, Tán Gẫu, Xếp Hạng) · Thử thách (Phó Bản, Tháp Yêu, Vấn Đỉnh Đài) · Khác (Giftcode, Rời Khỏi).
 
 ### 4.3 Người mới (cấp 1) sẽ thấy
 
 Thanh dưới 5 tab (Linh Sủng hiện khóa "🔒 cấp 8" để gợi tò mò) · trang Tu Luyện chỉ có quả cầu + Đột Phá + Dùng Đan ·
-Hành Tẩu có quái, NPC tân thủ · ☰ có Tin Tức / Cẩm Nang / Giftcode. **≈ 12 lối vào thay vì ~40.**
+Hành Tẩu có quái, NPC tân thủ · thanh trên đủ 5 nút. Các nút chưa mở hiện 🔒 kèm cấp mở. **≈ 15 lối vào dùng được thay vì ~40.**
 
 ## 5. Chia đợt
 
 | Đợt | Nội dung | File chính | Rủi ro |
 |---|---|---|---|
 | **UI-1** Sửa mobile nhỏ | M4 rút gọn tiền, M5 nền body, M6 hàng bậc cuộn ngang có dấu hiệu, M7 nút ≥ 36 px, M8 chữ ≥ 11 px | `css/mystyle.css` (+ CSS trong trang), tăng `?v=` | Thấp |
-| **UI-2** Khung mới | Thanh trên 1 hàng + ☰, thanh dưới cố định 5 tab mọi trang | `game.php` (khung chung), `css/mystyle.css` | Trung — đụng mọi trang, test 26 trang × mobile/desktop |
+| **UI-2** Khung mới | Thanh trên 2 dòng gọn (đủ 5 nút), thanh dưới cố định 5 tab mọi trang | `game.php` (khung chung), `css/mystyle.css` | Trung — đụng mọi trang, test 26 trang × mobile/desktop |
 | **UI-3** Trang gọn | Tu Luyện: bỏ 2 cột icon → hàng Tiên Đồ. Hành Tẩu: bỏ 21 nút. Nhân Vật: tab con | `game/xiulian.php`, `game/nowmid.php`, `game/zhuangtai.php` | Trung |
 | Kiểm chứng | Chụp 26 trang ở 390×844 và 1366×768 trước/sau, chạy lại `tools/cloud/audit_mobile.js` (mục tiêu: 0 tràn mép, 0 nút < 32 px ở các trang chính) | — | — |
 
-UI-2/UI-3 làm **sau** khi có hệ mở khóa (đợt MK-1 của `MO_KHOA_TINH_NANG.md`) để hàng Tiên Đồ / ☰ chỉ hiện đúng tính năng đã mở.
+UI-2/UI-3 làm **sau** khi có hệ mở khóa (đợt MK-1 của `MO_KHOA_TINH_NANG.md`) để các nút hiện đúng trạng thái mở/🔒.
 
 ## 6. Cần chủ dự án quyết
 
@@ -99,5 +102,5 @@ UI-2/UI-3 làm **sau** khi có hệ mở khóa (đợt MK-1 của `MO_KHOA_TINH_
 |---|---|---|
 | U1 | 5 tab thanh dưới như mục 4.2? | Đồng ý |
 | U2 | Tên tab đánh quái: "Hành Tẩu" / "Bản Đồ" / "Thám Hiểm"? | Hành Tẩu |
-| U3 | Thanh trên: bỏ 5 nút Trang Chủ/Tin Tức/… vào ☰? | Đồng ý |
+| ~~U3~~ | ~~Gom nút vào ☰~~ | **Đã chốt: không gom — hiện đầy đủ** |
 | U4 | Làm UI-1 (sửa nhỏ, rủi ro thấp) ngay trong lúc chờ duyệt phần còn lại? | Có |
