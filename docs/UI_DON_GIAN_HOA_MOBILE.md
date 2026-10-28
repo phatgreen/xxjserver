@@ -1,4 +1,4 @@
-# GIAO DIỆN — Đơn giản hóa cho người mới + Rà soát mobile (CHỜ DUYỆT — bản 2)
+# GIAO DIỆN — Đơn giản hóa cho người mới + Rà soát mobile (ĐÃ LÀM UI-1, UI-2, UI-3 — bản 2)
 
 > **Bản 2 (2026-10-28, theo chủ dự án):** mọi nút **hiển thị đầy đủ**, không gom vào nút ☰. Thay vào đó: bỏ trùng lặp, xếp theo nhóm có tiêu đề, nút chưa mở hiện 🔒 (theo `MO_KHOA_TINH_NANG.md`).
 
@@ -62,6 +62,26 @@ Mọi sửa đổi nằm ở cuối `css/mystyle.css` (khối `UI-1`, tiền t�
 
 Đo lại 26 trang (`tools/cloud/audit_mobile.js`): 0 trang tràn ngang, 0 nút < 32 px, mỗi trang ngắn đi ~84 px; desktop 1366×768 không đổi.
 
+### 3.2 Kết quả UI-2 / UI-3 (ĐÃ LÀM 2026-10-28)
+
+HTML điều hướng gom vào **`class/function/dieu_huong.php`** (cấu hình tab / tab con / nhóm Tiên Đồ là mảng PHP ở đầu file — thêm nút mới chỉ sửa ở đó).
+CSS khối `UI-2 / UI-3` cuối `css/mystyle.css`, `?v=2026102809`. Test `tests/test_dieu_huong.php` (15 mục).
+
+| Phần | Làm gì | File |
+|---|---|---|
+| Thanh trên | Mobile: ẩn chữ logo ⇒ 2 dòng (nhân vật + tiền / 5 nút cao 40 px). **133 → ~105 px** | CSS |
+| Thanh dưới | **Cố định ở mọi trang** (khi đã đăng nhập): Tu Luyện · Hành Tẩu · Nhân Vật · Linh Sủng (🔒 8) · Nhiệm Vụ. Tab sáng theo lệnh đang mở. **Chấm đỏ**: Tu Luyện khi tu vi đủ đột phá, Nhiệm Vụ khi có nhiệm vụ ngày/tuần/tháng xong chưa nhận (1 truy vấn theo khóa chính `sid`) | `game.php`, `nav_bottom_html()` |
+| Tab con | Hiện đầu trang thuộc tab: **Nhân Vật** = Thông Tin · Trang Bị · Túi Đồ · Võ Công · Bí Tịch · Chế Tạo; **Linh Sủng** = Linh Sủng · Sào Thú; **Nhiệm Vụ** = Nhiệm Vụ · Nhiệm Vụ NPC (`mytask` — trước chỉ có ở Đại Sảnh). Mobile lưới 3 cột, desktop 1 hàng | `game.php`, `nav_sub_html()` |
+| Tu Luyện | Bỏ 2 cột 10 nút tròn + thanh dưới riêng 6 nút ⇒ nhóm **Tu Thân** dưới quả cầu: Công Pháp, Linh Căn, Thể Chất, Huyết Mạch, Thiên Phú, Luyện Đan. Trang Bị / Chế Tạo / Võ Công / Bí Tịch sang tab con Nhân Vật | `game/xiulian.php` |
+| Đại Sảnh (Hành Tẩu) | Bỏ 6 nút lớn + lưới 15 nút ⇒ 4 nhóm Tiên Đồ: **Thám Hiểm** (Bản Đồ, Phó Bản, Tỏa Yêu Tháp, Vấn Đỉnh Đài) · **Giao Thương** (Cửa Hàng, Thiên Cơ Các, Giao Dịch, Quy Đổi) · **Kết Giao** (Tông Môn, Hảo Hữu, Tán Gẫu, Xếp Hạng) · **Khác** (Giftcode, Rời Khỏi). Trang **2.028 → 1.646 px** | `game/nowmid.php` |
+| 🔒 | Mọi nút mới dùng `feature_lock_mark()`; nhãn khóa đặt ở mép trên nút để không đè biểu tượng | CSS |
+
+Giữ nguyên (không đổi logic): chip **Dùng Đan / Lò Đan / Đột Phá** cạnh quả cầu (lối tắt), menu riêng trong trang Nhân Vật (Sủng vật, Thần trang…),
+thanh tab riêng của Thiên Phú / Linh Căn / Thể Chất / Huyết Mạch. Đoạn đếm nhiệm vụ NPC ở Đại Sảnh vẫn chạy (nó xóa nhiệm vụ NPC ngày đã hết hạn).
+
+Đo lại 28 trang ở 390×844 (`tools/cloud/audit_mobile.js`): 0 tràn ngang, 0 nút < 32 px, 0 chữ < 11 px. Chụp desktop 1366×768: thanh dưới nằm trong khung giữa.
+Test: `test_dieu_huong` ALL PASS; các test cũ không đổi kết quả (5 test lỗi sẵn do DB môi trường thử — lỗi y hệt trên code gốc).
+
 ## 4. Bố cục mới đề xuất
 
 ### 4.1 Khung chung (mọi trang)
@@ -115,7 +135,7 @@ UI-2/UI-3 làm **sau** khi có hệ mở khóa (đợt MK-1 của `MO_KHOA_TINH_
 
 | # | Câu hỏi | Đề xuất |
 |---|---|---|
-| U1 | 5 tab thanh dưới như mục 4.2? | Đồng ý |
-| U2 | Tên tab đánh quái: "Hành Tẩu" / "Bản Đồ" / "Thám Hiểm"? | Hành Tẩu |
+| U1 | 5 tab thanh dưới như mục 4.2? | **Đã làm theo đề xuất** |
+| U2 | Tên tab đánh quái: "Hành Tẩu" / "Bản Đồ" / "Thám Hiểm"? | **Đã dùng "Hành Tẩu"** (đổi được ở `nav_tabs_config()`) |
 | ~~U3~~ | ~~Gom nút vào ☰~~ | **Đã chốt: không gom — hiện đầy đủ** |
 | U4 | Làm UI-1 (sửa nhỏ, rủi ro thấp) ngay trong lúc chờ duyệt phần còn lại? | Có |

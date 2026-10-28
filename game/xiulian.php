@@ -266,22 +266,6 @@ if ($running) {
     $orb_href = '?cmd=' . $strxl0;
 }
 
-/* Cột trái = tu thân, cột phải = trui rèn */
-$rail_left = array(
-    array('gocp', '📜', 'Công Pháp'),
-    array('linhcan', '🌱', 'Linh Căn'),
-    array('thechat', '🧎', 'Thể Chất'),
-    array('huyetmach', '🩸', 'Huyết Mạch'),
-    array('luonden', '🔥', 'Luyện Đan')
-);
-$rail_right = array(
-    array('trangbi', '🗡️', 'Trang Bị'),
-    array('chetao', '🔨', 'Chế Tạo'),
-    array('wgxiulian', '🥋', 'Võ Công'),
-    array('xxwg', '📖', 'Bí Tịch'),
-    array('tianfu', '🌟', 'Thiên Phú')
-);
-
 /* Chip hai bên orb: khi orb đã là ĐỘT PHÁ thì tách đôi 2 nút đan cho cân */
 if ($orb_break) {
     $chips_left = array(array('getbagyp', '💊', 'Dùng Đan'));
@@ -298,20 +282,6 @@ $realm_label = xl_realm_label($player->jingjie);
 
     <div class="xl-stage">
         <div class="xl-stage-sky"></div>
-
-        <div class="xl-rail xl-rail-left">
-            <?php foreach ($rail_left as $item): ?>
-            <?php $lk = \player\feature_lock_mark($player, $item[0]); ?>
-            <a class="xl-node<?= $lk[0] ?>" href="<?= $nav[$item[0]] ?>"><i><?= $item[1] ?></i><b><?= $item[2] ?></b><?= $lk[1] ?></a>
-            <?php endforeach; ?>
-        </div>
-
-        <div class="xl-rail xl-rail-right">
-            <?php foreach ($rail_right as $item): ?>
-            <?php $lk = \player\feature_lock_mark($player, $item[0]); ?>
-            <a class="xl-node<?= $lk[0] ?>" href="<?= $nav[$item[0]] ?>"><i><?= $item[1] ?></i><b><?= $item[2] ?></b><?= $lk[1] ?></a>
-            <?php endforeach; ?>
-        </div>
 
         <div class="xl-figure">
             <img class="xl-figure-art" src="./images/xiulian/nen-ngoi-thien.jpg" alt="Ngồi thiền hút linh khí">
@@ -420,14 +390,8 @@ $realm_label = xl_realm_label($player->jingjie);
         </div>
     </div>
 
-    <nav class="xl-tabbar">
-        <a class="on" href="<?= $nav['goxiulian'] ?>"><i>🧘</i><b>Tu Luyện</b></a>
-        <a href="<?= $nav['zhuangtai'] ?>"><i>👤</i><b>Nhân Vật</b></a>
-        <?php $lk = \player\feature_lock_mark($player, 'allmap'); ?><a class="<?= trim($lk[0]) ?>" href="<?= $nav['allmap'] ?>"><i>🗺</i><b>Bản Đồ</b><?= $lk[1] ?></a>
-        <?php $lk = \player\feature_lock_mark($player, 'club'); ?><a class="<?= trim($lk[0]) ?>" href="<?= $nav['club'] ?>"><i>🏯</i><b>Tông Môn</b><?= $lk[1] ?></a>
-        <a href="<?= $nav['nhiemvu'] ?>"><i>📜</i><b>Nhiệm Vụ</b></a>
-        <?php $lk = \player\feature_lock_mark($player, 'shangdian'); ?><a class="<?= trim($lk[0]) ?>" href="<?= $nav['shangdian'] ?>"><i>🛒</i><b>Cửa Hàng</b><?= $lk[1] ?></a>
-    </nav>
+    <?php /* Tiên Đồ — hệ tu thân (thay 2 cột nút tròn; Trang Bị / Võ Công / Bí Tịch / Chế Tạo nằm ở tab Nhân Vật) */ ?>
+    <?= \player\nav_tiendo_html($player, $sid, $encode, array('tuthan')) ?>
 </div>
 
 <script>

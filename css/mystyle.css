@@ -7877,3 +7877,46 @@ button.fk-lock-btn{cursor:pointer;font-size:14px;font-family:inherit}
 /* MK-3: thông báo nổi hoàn thành nhiệm vụ Cơ Duyên */
 .cd-toast{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:9998;width:calc(100% - 32px);max-width:420px;padding:10px 14px;border-radius:14px;border:1px solid rgba(250,204,21,.55);background:rgba(15,23,42,.95);color:#fde68a;font-size:13px;font-weight:800;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .cd-toast div+div{margin-top:4px}
+/* ===== UI-2 / UI-3 (2026-10-28) — khung điều hướng mới, xem docs/UI_DON_GIAN_HOA_MOBILE.md mục 4 =====
+   Thanh dưới cố định 5 tab (mọi trang), tab con (Nhân Vật / Linh Sủng / Nhiệm Vụ), nhóm "Tiên Đồ". HTML: class/function/dieu_huong.php */
+.tcg-bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:700;box-sizing:border-box;width:min(660px,100vw);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border:1px solid rgba(125,211,252,.25);border-bottom:0;border-radius:16px 16px 0 0;background:linear-gradient(180deg,rgba(9,22,52,.97),rgba(4,11,30,.99));box-shadow:0 -8px 24px rgba(0,0,0,.45)}
+.bn-tab,.bn-tab:link,.bn-tab:visited,.sn-tab,.sn-tab:link,.sn-tab:visited,.td-item,.td-item:link,.td-item:visited{position:relative;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;text-decoration:none;border-radius:12px;border:1px solid transparent;color:#94b8dd!important}
+.bn-tab{min-height:52px;padding:5px 2px}
+.bn-tab i,.sn-tab i,.td-item i{display:block;font-style:normal;line-height:1;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+.bn-tab i{font-size:20px;filter:grayscale(.35)}
+.bn-tab b,.sn-tab b,.td-item b{display:block;width:100%;font-size:11px;font-weight:900;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.bn-tab.on,.bn-tab.on:visited{color:#ffd77a!important;border-color:rgba(255,205,120,.42);background:radial-gradient(circle at 50% 26%,rgba(120,74,14,.55),rgba(28,16,2,.35));box-shadow:0 0 18px rgba(255,178,66,.18)}
+.bn-tab.on i{filter:none}
+.bn-tab:hover,.sn-tab:hover,.td-item:hover{color:#fff!important}
+.nav-dot{position:absolute;top:5px;left:calc(50% + 8px);width:9px;height:9px;border-radius:50%;background:#ef4444;border:1px solid #fff;box-shadow:0 0 6px rgba(239,68,68,.8);pointer-events:none}
+/* Chừa chỗ cho thanh dưới để nội dung cuối trang không bị che */
+body.tcg-bg-body.has-bn .tcg-page{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
+/* Tab con */
+.tcg-sub-nav{box-sizing:border-box;width:100%;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;margin:0 0 12px;padding:5px;border-radius:14px;border:1px solid rgba(125,211,252,.2);background:rgba(4,11,30,.55)}
+.sn-tab{min-height:46px;padding:4px 2px}
+.tcg-sub-nav .sn-tab,.tcg-tiendo .td-item{width:auto!important;max-width:none!important;min-width:0!important;margin:0!important}
+/* Nhãn 🔒 đặt ở mép trên (ngoài nút) để không đè biểu tượng / chữ */
+body.tcg-bg-body .bn-tab.is-locked,body.tcg-bg-body .sn-tab.is-locked,body.tcg-bg-body .td-item.is-locked{overflow:visible!important}
+.bn-tab .fk-badge,.sn-tab .fk-badge,.td-item .fk-badge{top:-8px;right:-2px;padding:0 4px}
+.sn-tab i{font-size:16px}
+.sn-tab.on,.sn-tab.on:visited{color:#0b1530!important;background:linear-gradient(180deg,#7dd3fc,#38bdf8);border-color:rgba(186,230,253,.8)}
+/* Tiên Đồ */
+.tcg-tiendo{margin:12px 0 4px}
+.td-group+.td-group{margin-top:10px}
+.td-title{margin:0 2px 6px;font-size:13px;font-weight:900;letter-spacing:.3px;color:#fcd34d}
+.td-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.td-grid[data-n="6"]{grid-template-columns:repeat(6,minmax(0,1fr))}
+.td-item{min-height:58px;padding:6px 3px;border-color:rgba(118,157,255,.28);background:linear-gradient(180deg,rgba(30,44,100,.75),rgba(14,22,58,.85))}
+.td-item i{font-size:20px}
+.td-item b{font-size:12px;white-space:normal}
+@media(max-width:760px){
+/* Thanh trên 2 dòng: ẩn chữ logo (dòng 1 = nhân vật + tiền, dòng 2 = 5 nút) */
+body.tcg-bg-body .tcg-logo{display:none!important}
+body.tcg-bg-body .tcg-nav a,body.tcg-bg-body .tcg-nav a:visited{height:40px!important}
+/* Tab con: lưới 3 cột, biểu tượng cạnh chữ (6 mục = 2 hàng) */
+.tcg-sub-nav{grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
+.sn-tab,.sn-tab:link,.sn-tab:visited{flex-direction:row;gap:6px;min-height:38px;padding:4px 6px}
+.sn-tab b{width:auto}
+.td-grid[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+.td-item{min-height:54px}
+}

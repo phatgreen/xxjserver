@@ -538,20 +538,9 @@ $lukouhtmlView = trim($lukouhtml) != ''
     ? $lukouhtml 
     : '<div class="tcg-dir-empty"><center>Không có lối đi từ khu vực này</center></div>';
 
-// Nhãn 🔒 cho nút dẫn tới tính năng chưa mở theo cấp (nút vẫn hiện đủ) — class/config/feature_unlock.json
-$lk_wgxl = \player\feature_lock_mark($player, 'wgxl');
-$lk_phoban = \player\feature_lock_mark($player, 'phoban');
-$lk_thiencoccac = \player\feature_lock_mark($player, 'thiencoccac');
-$lk_luonden = \player\feature_lock_mark($player, 'luonden');
-$lk_chetao = \player\feature_lock_mark($player, 'chetao');
-$lk_liaotian = \player\feature_lock_mark($player, 'liaotian');
-$lk_chongwu = \player\feature_lock_mark($player, 'chongwu');
-$lk_paihang = \player\feature_lock_mark($player, 'paihang');
-$lk_fangshi = \player\feature_lock_mark($player, 'fangshi');
-$lk_club = \player\feature_lock_mark($player, 'club');
-$lk_im = \player\feature_lock_mark($player, 'im');
-$lk_quydoi = \player\feature_lock_mark($player, 'quydoi');
-$lk_shangdian = \player\feature_lock_mark($player, 'shangdian');
+// Tiên Đồ (UI-3): lối vào tính năng xếp theo nhóm, chưa mở thì 🔒 — class/function/dieu_huong.php.
+// Tu Luyện / Nhân Vật (Thông Tin, Trang Bị, Túi Đồ, Võ Công, Chế Tạo) / Linh Sủng / Nhiệm Vụ đã ở thanh dưới.
+$tiendoHtml = \player\nav_tiendo_html($player, $sid, $encode, array('thamhiem', 'giaothuong', 'ketgiao', 'khac'));
 $nowhtml = <<<HTML
 <div class="tcg-title">$clmid->mname</div>
 <div class="tcg-badges">
@@ -611,35 +600,7 @@ $nvMapNoticeHtml
     $lthtml
 </div>
 
-<div class="tcg-actions">
-    <a class="tcg-action cyan" href="?cmd=$xiuliancmd">🧘 Tu Luyện</a>
-    <a class="tcg-action gold{$lk_wgxl[0]}" href="?cmd=$wgxlcmd">⚔ Võ Công{$lk_wgxl[1]}</a>
-    <a class="tcg-action green{$lk_phoban[0]}" href="?cmd=$phobancmd">📋 Phó Bản{$lk_phoban[1]}</a>
-	<!-- <a class="tcg-action green" href="?cmd=$mapcmd">🌐 Thế Giới</a> -->
-    <a class="tcg-action purple" href="?cmd=$mytask">📜 Nhiệm Vụ ($taskcount)</a>
-    <a class="tcg-action red" href="?cmd=$qydt">🗺 Bản Đồ</a>
-    <a class="tcg-action green{$lk_thiencoccac[0]}" href="?cmd=$thiencoccaccmd">📚 Thiên Cơ Các{$lk_thiencoccac[1]}</a>
-</div>
-
-<div class="tcg-divider"><span>◇</span></div>
-
-<div class="tcg-menu-grid">
-    <a class="tcg-menu-item" href="?cmd=$ztcmd">ⓘ Thông Tin</a>
-    <a class="tcg-menu-item" href="?cmd=$trangbicmd">⚔️ Trang Bị</a>
-    <a class="tcg-menu-item" href="?cmd=$getbagcmd">🎒 Túi Đồ</a>
-    <a class="tcg-menu-item{$lk_luonden[0]}" href="?cmd=$luondenCmd">🔥 Luyện Đan{$lk_luonden[1]}</a>
-    <a class="tcg-menu-item{$lk_chetao[0]}" href="?cmd=$chetaoCmd">⚒ Chế Tạo{$lk_chetao[1]}</a>
-    <a class="tcg-menu-item{$lk_liaotian[0]}" href="?cmd=$goliaotian">💬 Tán Gẫu{$lk_liaotian[1]}</a>
-    <a class="tcg-menu-item{$lk_chongwu[0]}" href="?cmd=$cwcmd">🐾 Thú Cưng{$lk_chongwu[1]}</a>
-    <a class="tcg-menu-item{$lk_paihang[0]}" href="?cmd=$phcmd">🏆 Xếp Hạng{$lk_paihang[1]}</a>
-    <a class="tcg-menu-item{$lk_fangshi[0]}" href="?cmd=$fangshi">🤝 Giao Dịch{$lk_fangshi[1]}</a>
-    <a class="tcg-menu-item{$lk_club[0]}" href="?cmd=$clubcmd">⛩ Môn Phái{$lk_club[1]}</a>
-    <a class="tcg-menu-item{$lk_im[0]}" href="?cmd=$imcmd">👥 Hảo Hữu{$lk_im[1]}</a>
-    <a class="tcg-menu-item" href="?cmd=$duihuancmd">🎁 Giftcode</a>
-    <a class="tcg-menu-item{$lk_quydoi[0]}" href="?cmd=$quydoicmd">💱 Quy Đổi{$lk_quydoi[1]}</a>
-    <a class="tcg-menu-item{$lk_shangdian[0]}" href="?cmd=$shangdian">🛒 Cửa Hàng{$lk_shangdian[1]}</a>
-    <a class="tcg-menu-item" href="index.php">↪ Rời Khỏi</a>
-</div>
+$tiendoHtml
 HTML;
 echo $nowhtml;
 ?>

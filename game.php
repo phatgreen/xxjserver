@@ -529,13 +529,17 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102808">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102809">
     <link rel="stylesheet" href="css/game-alert.css?v=2026072401">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026072401"></script>
     <script src="js/itemtip.js?v=2026100402"></script>
 </head>
-<body class="bg-body tcg-bg-body">
+<?php
+// Khung điều hướng UI-2 (class/function/dieu_huong.php): chỉ khi đã có nhân vật
+$tcg_has_nav = isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($player->ulv);
+?>
+<body class="bg-body tcg-bg-body<?php echo $tcg_has_nav ? ' has-bn' : ''; ?>">
 <?php
 // Số gọn cho thanh trên ở mobile (cùng quy tắc xl_num() trong game/xiulian.php): 2.09B / 554.05K
 if (!function_exists('tcg_num_short')) {
@@ -641,6 +645,11 @@ switch ($cmd) {
                     echo '<div class="tcg-tip">'.$tpts.'</div>';
                 }
 
+                // Tab con của tab đang đứng (Nhân Vật / Linh Sủng / Nhiệm Vụ)
+                if ($tcg_has_nav) {
+                    echo \player\nav_sub_html($player, $sid, $encode, $cmd);
+                }
+
                 include "$ym";
             }
         ?>
@@ -672,6 +681,15 @@ switch ($cmd) {
         </footer>
     </div>
 </div>
+<?php
+// Thanh dưới cố định 5 tab; chấm đỏ: Tu Luyện khi đột phá được, Nhiệm Vụ khi có thưởng chưa nhận
+if ($tcg_has_nav) {
+    echo \player\nav_bottom_html($player, $sid, $encode, $cmd, array(
+        'tuluyen' => $tpts != '',
+        'nhiemvu' => \player\nav_quest_dot($sid, $dblj),
+    ));
+}
+?>
 <?php
 // Popup "Tính năng mới" (đặt sau khi trang chạy xong: vừa đột phá lên cấp mở tính năng là hiện ngay)
 if (isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($player->ulv)) {
