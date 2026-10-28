@@ -124,8 +124,18 @@ $lcName = isset($elementNames[$lcElement]) ? $elementNames[$lcElement] : 'Không
 
 $recipeCount = count($recipes);
 
+// Mặc định chọn công thức đầu tiên đủ điều kiện để khung giữa luôn có nội dung (vẫn phải bấm LUYỆN ĐAN + xác nhận)
+if ($selectedRecipe <= 0 || !isset($recipes[$selectedRecipe])) {
+    foreach ($recipes as $rid0 => $r0) {
+        $lv0 = isset($r0['level_required']) ? intval($r0['level_required']) : 1;
+        $rk0 = isset($r0['alch_rank_required']) ? intval($r0['alch_rank_required']) : 1;
+        if (intval($player->ulv) >= $lv0 && $alchRank >= $rk0) { $selectedRecipe = intval($rid0); break; }
+    }
+}
+
 // Build recipe cards
 $recipeCards = '';
+$ldSel = null;   // dữ liệu công thức đang chọn cho khung trung tâm
 foreach ($recipes as $rid => $recipe) {
     $rLevel = isset($recipe['level_required']) ? intval($recipe['level_required']) : 1;
     $rType = isset($recipe['type']) ? $recipe['type'] : 'yaopin';
@@ -248,6 +258,10 @@ foreach ($recipes as $rid => $recipe) {
             </div>
             <div class='event-detail-mats'>{$matHtml}</div>
         </div>";
+        $ldSel = array('name' => $rName, 'color' => $rColor, 'icon' => $rIcon, 'type' => $typeText, 'desc' => $rDesc,
+            'result' => $resultText, 'rate' => $rateText, 'grade' => $gradeName . ' phẩm', 'gradeColor' => $gradeColor,
+            'diff' => $diffName, 'toxin' => $rToxinBase, 'mats' => $matHtml);
+        $detailHtml = '';   // chi tiết hiện ở khung trung tâm
     }
 
     $href = ($isOpen || !$canCraft) ? '#' : '?cmd=' . $encode->encode("cmd=luonden&recipe_id={$rid}&sid=$sid");
@@ -322,6 +336,33 @@ $backlashPanelHtml = "<div class='backlash-panel'>
     </div>
     <div class='backlash-actions'>{$detoxBtn}</div>
 </div>";
+
+// Khung trung tâm: đan đang chọn (giống trang Nhân Vật, dùng lại .cws-*)
+if ($ldSel) {
+    $ldStageHtml = '<div class="cws-stage ld-stage" style="--cw-q:' . $ldSel['color'] . '">'
+        . '<div class="cws-tag">🔥 Đan đỉnh ' . $dinhName . ' Lv' . $dinhLevel . ' · ' . $rankName . '</div>'
+        . '<div class="cws-side cws-side-left">'
+        . '<div class="cws-stat"><span>👨‍🔬 Cấp sư</span><b>' . $rankName . '</b></div>'
+        . '<div class="cws-stat"><span>📈 Kinh nghiệm</span><b>' . number_format($alchExp, 0, ',', '.') . '</b></div>'
+        . '<div class="cws-stat"><span>✅ Luyện thành</span><b>' . number_format($totalCraft, 0, ',', '.') . '</b></div>'
+        . '</div>'
+        . '<div class="cws-figure ld-figure"><span>' . $ldSel['icon'] . '</span></div>'
+        . '<div class="cws-side cws-side-right">'
+        . '<div class="cws-stat"><span>⚡ Tỷ lệ</span><b class="ld-small">' . $ldSel['rate'] . '</b></div>'
+        . '<div class="cws-stat"><span>✨ Phẩm</span><b style="color:' . $ldSel['gradeColor'] . '">' . $ldSel['grade'] . '</b></div>'
+        . '<div class="cws-stat"><span>☠ Độ khó · Độc</span><b class="ld-small">' . $ldSel['diff'] . ' · ' . $ldSel['toxin'] . '</b></div>'
+        . '</div>'
+        . '<div class="cws-id">'
+        . '<div class="cws-name" style="color:' . $ldSel['color'] . ';text-shadow:0 0 16px ' . $ldSel['color'] . '88">' . $ldSel['name'] . '</div>'
+        . '<div class="ld-desc">' . $ldSel['type'] . ' · ' . $ldSel['result'] . ($ldSel['desc'] !== '' ? ' — ' . $ldSel['desc'] : '') . '</div>'
+        . '<div class="event-detail-mats">' . $ldSel['mats'] . '</div>'
+        . '<a class="event-craft-btn" href="#" onclick="return craftConfirm();">🔥 LUYỆN ĐAN</a>'
+        . '</div></div>';
+} else {
+    $ldStageHtml = '<div class="cws-stage cws-empty ld-stage"><div class="cws-tag">🔥 Đan đỉnh ' . $dinhName . ' Lv' . $dinhLevel . '</div>'
+        . '<div class="cws-figure ld-figure"><span>⚗</span></div>'
+        . '<div class="cws-id"><div class="cws-name">Chưa có công thức đủ điều kiện luyện</div></div></div>';
+}
 
 $html = <<<HTML
 <style>
@@ -488,48 +529,22 @@ $html = <<<HTML
 }
 </style>
 
-<div class="event-page">
+<div class="event-page ld-compact">
 {$craftMsgHtml}
 
-<div class="ld-hero-bg">
-    <div class="event-hero-text">
-        <div class="event-kicker">Hệ Thống Luyện Đan Tông Môn</div>
-        <div class="event-title">Luyện Đan</div>
-        <div class="event-subtitle">Pha chế đan dược, thuốc bôi và thẻ cường hóa từ nguyên liệu quý hiếm.</div>
-        <div class="event-stats">
-            <span>🔥 <b>{$recipeCount}</b> Công thức</span>
-            <span>⚗ <b>{$lcName}</b> Hệ</span>
-            <span>👨‍🔬 <b>{$rankName}</b></span>
-            <span>🔥 <b>{$dinhName}</b> Lv{$dinhLevel}</span>
-        </div>
-    </div>
-    <div class="event-seal">🔥</div>
+<div class="ld-tabs">
+    <a class="ld-tab" href="?cmd={$chetaoCmd}">⚒ Chế Tạo</a>
+    <a class="ld-tab active" href="?cmd={$luondenCmd}">🔥 Luyện Đan</a>
 </div>
 
-<div class="alchemist-info">
-    <div class="info-item">
-        <div class="info-label">Cấp Sư</div>
-        <div class="info-value rank">{$rankName}</div>
-    </div>
-    <div class="info-item">
-        <div class="info-label">Kinh Nghiệm</div>
-        <div class="info-value exp">{$alchExp}</div>
-    </div>
-    <div class="info-item">
-        <div class="info-label">Luyện Thành Công</div>
-        <div class="info-value">{$totalCraft}</div>
-    </div>
-</div>
+{$ldStageHtml}
 
 {$backlashPanelHtml}
 
-<div class="event-divider"><span>◇</span></div>
-
+<div class="ld-title">Công thức ({$recipeCount})</div>
 <div class="event-task-list">
 {$taskView}
 </div>
-
-<a class="event-craft-btn{$btnDisabled}" href="#" onclick="return craftConfirm();">🔥 LUYỆN ĐAN</a>
 
 <script>
 function craftConfirm() {
@@ -543,10 +558,6 @@ function craftConfirm() {
 }
 </script>
 
-<div class="event-bottom">
-    <a class="event-btn ghost" href="#" onClick="javascript:history.back(-1);">Trở Về</a>
-    <a class="event-btn primary" href="game.php?cmd={$gonowmid}">Đại Sảnh</a>
-</div>
 </div>
 HTML;
 

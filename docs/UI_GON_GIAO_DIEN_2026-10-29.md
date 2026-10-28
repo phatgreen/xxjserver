@@ -2,7 +2,7 @@
 
 > Nhánh `claude/tong-quan-du-an`, commit `3ba1f3e` → `bc74ebe`. Tông Môn có tài liệu riêng: `DESIGN_TONGMON_CANBANG.md`.
 > **Máy chủ:** chỉ cần `cron\capnhat_code.bat` + Ctrl+F5 — trừ Tông Môn phải chạy `sql\migrate_tongmon.php --apply` (đã chạy 2026-10-28).
-> CSS: `css/mystyle.css?v=2026102917`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
+> CSS: `css/mystyle.css?v=2026102924`, `js/itemtip.js?v=2026102902`, `js/bagpop.js?v=2026102901` (khai báo trong `game.php`).
 
 ## 1. Mục tiêu chung
 
@@ -36,6 +36,8 @@
 | Thiên Cơ Các (Võ Công / Công Pháp) | `game/thiencoccac.php` | Banner thấp giống Cửa Hàng (cảnh giới ghi ở dòng phụ); hàng lọc 1 dòng cuộn ngang; mỗi giai / loại là lưới ô (desktop 4 cột, mobile 2): tên + phẩm/hệ + yêu cầu + giá/nút mua (2 loại tiền xếp dọc); bỏ Trở về / Đại sảnh. Lưu ý: ô không được `display:…!important` vì bộ lọc ẩn bằng `style.display='none'` |
 | Chế Tạo | `game/chetao.php` | Khung `.cws-*`: thành phẩm công thức đang chọn ở giữa (ảnh trang bị / 💎 đạo cụ), trái Tỷ lệ · Yêu cầu cấp · Loại, phải tối đa 3 chỉ số; dưới tên là nguyên liệu + nút CHẾ TẠO (thiếu nguyên liệu thì nút nhạt). Mặc định chọn công thức đầu; 24 công thức dạng lưới ô (desktop 4 cột, mobile 2); bỏ banner, nút Nhân Vật (trùng hàng tab), Trở về / Đại Sảnh |
 | Công Pháp | `game/congphap.php` | Khung `.cws-*`: công pháp đang vận đầu tiên ở giữa, trái Hiệu ứng · Loại, phải Cấp · Kinh nghiệm · Giảm Công/Thủ (hoặc số bộ sở hữu); bộ đang vận khác hiện nhãn dưới tên; danh sách 2 cột; bỏ banner, Trở Về / Đại Sảnh |
+| Luyện Đan | `game/luonden.php` | Thêm tab Chế Tạo / Luyện Đan; khung `.cws-*`: đan đang chọn giữa (biểu tượng loại), trái Cấp sư · Kinh nghiệm · Luyện thành, phải Tỷ lệ · Phẩm · Độ khó/Đan độc, dưới tên nguyên liệu + nút LUYỆN ĐAN; mặc định chọn công thức đầu đủ điều kiện; phản phệ 1 hàng; 17 công thức lưới 4 cột (mobile 2, ẩn nhãn phẩm trong ô); bỏ banner, ô thống kê, Trở Về / Đại Sảnh. Rule `.event-task-*` cũ dùng `!important` nên rule mới cũng phải `!important` |
+| Chi tiết trang bị | `game/zbinfo.php` | Khung `.cws-*`: ảnh giữa, trái Công · Thủ · HP, phải Bạo kích · Hút máu · Đột phá/Tu luyện; dưới tên: nhãn phẩm/hệ + cấp + yêu cầu cảnh giới + mô tả; thao tác 1 hàng (bỏ tiêu đề); Cường hóa 2 cột + 5 nút 1 hàng; Ngũ Hành 5 ô ngang (mobile 2); bỏ Trở Về / Đại Sảnh |
 | Tính năng chưa mở | `game/feature_locked.php` | Sửa chữ 2 nút bị lệch (thêm `a.fk-lock-btn:link`) |
 
 ## 4. Lỗi đã sửa kèm

@@ -360,46 +360,33 @@ $html = <<<HTML
 <!-- CSS moved to mystyle.css -->
 
 
-<div class="zb-page">
+<div class="zb-page zb-compact">
     <div class="zb-panel">
-        <div class="zb-head">
-            <div class="zb-emblem"><img src="$zbImg" alt="$zhuangbei->zbname"></div>
-            <div class="zb-kicker">Trang bị</div>
-            <div class="zb-title">【 <span class="zb-name" style="color:$zhuangbei->zbys">$zhuangbei->zbname</span> 】$htmlqianghua</div>
-            <div class="zb-badges">$zbBadgeHtml</div>
-        </div>
-
-        <div class="zb-meta">
-            <div class="zb-meta-card"><span>Đẳng cấp</span><b>$zhuangbei->zblv</b></div>
-            <div class="zb-meta-card"><span>Thuộc loại</span><b class="zb-type">$tool</b></div>
-            <div class="zb-meta-card"><span>Yêu cầu cảnh giới</span><b>$zbRealmReq</b></div>
-            $zbElemCard
+        <div class="cws-stage zb-stage" style="--cw-q:$zhuangbei->zbys">
+            <div class="cws-tag">🗡 $tool</div>
+            <div class="cws-side cws-side-left">
+                <div class="cws-stat"><span>⚔️ Công kích</span><b>$zhuangbei->zbgj</b></div>
+                <div class="cws-stat"><span>🛡️ Phòng ngự</span><b>$zhuangbei->zbfy</b></div>
+                <div class="cws-stat"><span>❤️ HP</span><b>$zhuangbei->zbhp</b></div>
+            </div>
+            <div class="cws-figure zb-figure"><img src="$zbImg" alt="$zhuangbei->zbname"></div>
+            <div class="cws-side cws-side-right">
+                <div class="cws-stat"><span>💥 Bạo kích</span><b>$zhuangbei->zbbj%</b></div>
+                <div class="cws-stat"><span>🩸 Hút máu</span><b>$zhuangbei->zbxx%</b></div>
+                <div class="cws-stat"><span class="zb-lb-sm">🌀 Đột phá · Tu luyện</span><b>$zhuangbei->tuposjs% · $zhuangbei->tupoexp%</b></div>
+            </div>
+            <div class="cws-id">
+                <div class="cws-name"><span style="color:$zhuangbei->zbys;text-shadow:0 0 16px {$zhuangbei->zbys}88">$zhuangbei->zbname</span> $htmlqianghua</div>
+                <div class="cws-meta">$zbBadgeHtml<span class="cws-badge">Cấp $zhuangbei->zblv</span><span class="cws-badge">Yêu cầu cảnh giới $zbRealmReq</span></div>
+                <div class="zb-desc">$zhuangbei->zbinfo</div>
+            </div>
         </div>
 
         $notice_html
 
-        <div class="zb-grid">
-            <div class="zb-section">
-                <div class="zb-section-title">Thuộc tính cơ bản</div>
-                <div class="zb-row"><span>Công kích</span><b>$zhuangbei->zbgj</b></div>
-                <div class="zb-row"><span>Phòng ngự</span><b>$zhuangbei->zbfy</b></div>
-                <div class="zb-row"><span>HP</span><b>$zhuangbei->zbhp</b></div>
-                <div class="zb-row"><span>Bạo kích</span><b>$zhuangbei->zbbj%</b></div>
-                <div class="zb-row"><span>Hút máu</span><b>$zhuangbei->zbxx%</b></div>
-            </div>
+        $setzbwz_html
 
-            <div class="zb-section">
-                <div class="zb-section-title">Thuộc tính đặc biệt</div>
-                <div class="zb-row"><span>Tỉ lệ đột phá</span><b>$zhuangbei->tuposjs%</b></div>
-                <div class="zb-row"><span>Tốc độ tu luyện</span><b>$zhuangbei->tupoexp%</b></div>
-            </div>
-        </div>
-
-        <div class="zb-section">
-            <div class="zb-section-title">Thông tin trang bị</div>
-            <div class="zb-desc">$zhuangbei->zbinfo</div>
-        </div>
-
+        <div class="zb-cols">
         <div class="zb-section">
             <div class="zb-section-title">Cường hóa</div>
             <div class="zb-progress"><span style="width:$qhcgl_width%"></span></div>
@@ -412,12 +399,6 @@ $html = <<<HTML
         </div>
 
         $nhSectionHtml
-
-        $setzbwz_html
-
-        <div class="zb-bottom">
-            <a href="#" onclick="javascript:history.back(-1);return false;">Trở Về</a>
-            <a href="game.php?cmd=$gonowmid">Đại Sảnh</a>
         </div>
     </div>
 </div>

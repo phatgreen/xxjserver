@@ -8333,3 +8333,88 @@ body.tcg-bg-body .cp-compact .cp-name-row .cp-name{flex:0 1 auto!important;font-
 body.tcg-bg-body .cp-compact .cp-meta{font-size:12px!important;gap:4px!important}
 body.tcg-bg-body .cp-compact .cp-actions{justify-content:flex-end!important}
 @media(max-width:760px){body.tcg-bg-body .cp-compact .cp-stage{min-height:0}}
+/* ===== Luyện Đan gọn (game/luonden.php .ld-compact) — khung .cws-* (đan đang chọn giữa), phản phệ 1 hàng, công thức lưới ô ===== */
+body.tcg-bg-body .ld-compact .ld-tabs{display:flex;justify-content:center;gap:10px;padding:6px;margin:0 0 10px;border:1px solid rgba(94,208,255,.22);border-radius:14px;background:rgba(7,16,45,.44)}
+body.tcg-bg-body .ld-compact .ld-tab,body.tcg-bg-body .ld-compact a.ld-tab:link,body.tcg-bg-body .ld-compact a.ld-tab:visited{display:inline-flex;align-items:center;min-height:34px;margin:0;padding:0 16px;border-radius:11px;border:1px solid rgba(100,146,255,.30);background:rgba(27,43,91,.72);color:#cfe9ff;font-weight:900;font-size:13px;text-decoration:none}
+body.tcg-bg-body .ld-compact .ld-tab.active{color:#fff;border-color:rgba(125,211,252,.78);background:linear-gradient(180deg,rgba(42,115,210,.80),rgba(33,69,156,.74));box-shadow:0 0 16px rgba(56,189,248,.28)}
+body.tcg-bg-body .ld-compact .ld-stage{min-height:0;padding-top:196px}
+body.tcg-bg-body .ld-compact .ld-figure{top:52px;width:132px;height:132px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.10),rgba(4,12,32,.2) 62%,transparent 70%)}
+body.tcg-bg-body .ld-compact .ld-figure span{font-size:70px;line-height:1;color:var(--cw-q);text-shadow:0 0 24px var(--cw-q)}
+body.tcg-bg-body .ld-compact .ld-small{font-size:12px!important;line-height:1.3}
+body.tcg-bg-body .ld-compact .ld-desc{color:#9fcaff;font-size:12px;line-height:1.4;max-width:440px}
+body.tcg-bg-body .ld-compact .cws-id .event-detail-mats{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:0}
+body.tcg-bg-body .ld-compact .cws-id .event-craft-btn,body.tcg-bg-body .ld-compact .cws-id a.event-craft-btn:link,body.tcg-bg-body .ld-compact .cws-id a.event-craft-btn:visited{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:180px;margin:4px 0 0;padding:9px 22px;font-size:14px}
+body.tcg-bg-body .ld-compact .backlash-panel{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:6px 12px!important;margin:10px 0 0!important;padding:8px 12px!important}
+body.tcg-bg-body .ld-compact .backlash-header{margin:0!important;gap:8px!important}
+body.tcg-bg-body .ld-compact .backlash-bar{grid-column:2!important;margin:0!important}
+body.tcg-bg-body .ld-compact .backlash-info{grid-column:1/3!important;margin:0!important;display:flex!important;gap:12px!important;flex-wrap:wrap!important;font-size:11px!important}
+body.tcg-bg-body .ld-compact .backlash-actions{grid-column:3!important;grid-row:1/3!important;margin:0!important}
+body.tcg-bg-body .ld-compact .ld-title{margin:10px 0 6px;color:#cfe9ff;font-size:13px;font-weight:1000}
+body.tcg-bg-body .ld-compact .event-task-list{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;margin:0!important}
+body.tcg-bg-body .ld-compact .event-task-card,body.tcg-bg-body .ld-compact a.event-task-card:link,body.tcg-bg-body .ld-compact a.event-task-card:visited{display:flex!important;align-items:center!important;gap:7px!important;margin:0!important;padding:6px 8px!important;min-height:0!important;border-radius:12px!important;min-width:0!important}
+body.tcg-bg-body .ld-compact .event-task-card.ready{border-color:rgba(125,211,252,.78)!important;box-shadow:0 0 16px rgba(56,189,248,.30)!important}
+body.tcg-bg-body .ld-compact .event-task-icon{width:28px!important;height:28px!important;min-width:28px!important;font-size:14px!important}
+body.tcg-bg-body .ld-compact .event-task-main{min-width:0!important;gap:3px!important}
+body.tcg-bg-body .ld-compact .event-task-name{font-size:12.5px!important;line-height:1.25!important}
+body.tcg-bg-body .ld-compact .event-task-meta{gap:3px!important;flex-wrap:wrap!important}
+body.tcg-bg-body .ld-compact .event-task-meta span{font-size:9.5px!important;padding:1px 5px!important;min-height:0!important}
+@media(max-width:760px){
+body.tcg-bg-body .ld-compact .ld-stage{padding-top:50px}
+body.tcg-bg-body .ld-compact .ld-figure{top:auto;width:120px;height:120px}
+body.tcg-bg-body .ld-compact .event-task-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+body.tcg-bg-body .ld-compact .backlash-panel{grid-template-columns:minmax(0,1fr) auto!important}
+body.tcg-bg-body .ld-compact .backlash-bar{grid-column:1/-1!important}
+body.tcg-bg-body .ld-compact .backlash-info{grid-column:1!important}
+body.tcg-bg-body .ld-compact .backlash-actions{grid-column:2!important;grid-row:auto!important}
+}
+body.tcg-bg-body .ld-compact .event-task-meta{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;overflow:hidden!important}
+body.tcg-bg-body .ld-compact .event-task-meta .event-task-grade{display:none!important}
+body.tcg-bg-body .ld-compact .event-task-meta span{white-space:nowrap!important}
+body.tcg-bg-body .ld-compact .event-task-name{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body.tcg-bg-body .ld-compact .event-task-meta{flex-wrap:wrap!important}
+body.tcg-bg-body .ld-compact .event-task-name{white-space:normal!important;overflow:visible!important}
+/* ===== Chi tiết trang bị gọn (game/zbinfo.php .zb-compact) — khung .cws-*: ảnh giữa, chỉ số 2 bên; thao tác 1 hàng; Cường hóa | Ngũ Hành 2 cột ===== */
+body.tcg-bg-body .zb-compact .zb-panel{padding:10px!important}
+body.tcg-bg-body .zb-compact .zb-stage{min-height:0;padding-top:186px;margin:0 0 10px}
+body.tcg-bg-body .zb-compact .zb-figure{top:50px;width:124px;height:124px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.10),rgba(4,12,32,.2) 62%,transparent 70%)}
+body.tcg-bg-body .zb-compact .zb-figure img{width:96px;height:96px;object-fit:contain;-webkit-mask-image:none;mask-image:none;border-radius:0;filter:drop-shadow(0 0 18px var(--cw-q))}
+body.tcg-bg-body .zb-compact .cws-name{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+body.tcg-bg-body .zb-compact .cws-meta .zb-badge{margin:0!important}
+body.tcg-bg-body .zb-compact .cws-id .zb-desc{margin:0!important;color:#9fcaff!important;font-size:12px!important;line-height:1.4!important}
+body.tcg-bg-body .zb-compact .zb-section{margin:0 0 10px!important;padding:10px 12px!important}
+body.tcg-bg-body .zb-compact .zb-section-title{margin-bottom:6px!important}
+body.tcg-bg-body .zb-compact .zb-row{padding:4px 0!important;min-height:0!important}
+body.tcg-bg-body .zb-compact .zb-action-section .zb-actions-legacy{display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;gap:8px!important}
+body.tcg-bg-body .zb-compact .zb-action-section .zb-actions-legacy br{display:none!important}
+body.tcg-bg-body .zb-compact .zb-action-section form{display:inline-flex!important;margin:0!important}
+body.tcg-bg-body .zb-compact .zb-action-section form div{display:flex!important;align-items:center!important;gap:6px!important;font-size:12px!important}
+body.tcg-bg-body .zb-compact .zb-action-section form input[type=number]{width:110px!important;margin:0!important}
+body.tcg-bg-body .zb-compact .zb-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+body.tcg-bg-body .zb-compact .zb-cols .zb-section{margin:0!important}
+body.tcg-bg-body .zb-compact .zb-upgrade-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;margin-top:6px!important}
+body.tcg-bg-body .zb-compact .nh-list{gap:5px!important}
+body.tcg-bg-body .zb-compact .nh-row{padding:5px 8px!important;min-height:0!important}
+body.tcg-bg-body .zb-compact .nh-btn{min-height:28px!important;padding:0 10px!important;font-size:12px!important}
+body.tcg-bg-body .zb-compact .zb-cols .zb-desc{font-size:11px!important;line-height:1.4!important}
+@media(max-width:760px){
+body.tcg-bg-body .zb-compact .zb-stage{padding-top:50px}
+body.tcg-bg-body .zb-compact .zb-figure{top:auto;width:116px;height:116px}
+body.tcg-bg-body .zb-compact .zb-cols{grid-template-columns:1fr}
+}
+body.tcg-bg-body .zb-compact .zb-cols{grid-template-columns:1fr}
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:first-child{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px}
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:first-child > .zb-section-title,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:first-child > .zb-progress,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:first-child > .zb-upgrade-grid,body.tcg-bg-body .zb-compact .zb-cols > .zb-section:first-child > .zb-notice{grid-column:1/-1}
+body.tcg-bg-body .zb-compact .zb-upgrade-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+body.tcg-bg-body .zb-compact .zb-up-btn{white-space:nowrap!important;min-height:32px!important;font-size:13px!important}
+body.tcg-bg-body .zb-compact .nh-list{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important}
+body.tcg-bg-body .zb-compact .nh-row{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:4px!important}
+body.tcg-bg-body .zb-compact .nh-cost{font-size:10.5px!important;line-height:1.35!important}
+body.tcg-bg-body .zb-compact .nh-btn{width:100%!important;box-sizing:border-box!important;justify-content:center!important;margin:0!important}
+@media(max-width:760px){
+body.tcg-bg-body .zb-compact .zb-cols > .zb-section:first-child{grid-template-columns:1fr}
+body.tcg-bg-body .zb-compact .zb-upgrade-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body.tcg-bg-body .zb-compact .nh-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+body.tcg-bg-body .zb-compact .zb-action-section > .zb-section-title{display:none!important}
+body.tcg-bg-body .zb-compact .zb-action-section{padding:8px 12px!important}
+body.tcg-bg-body .zb-compact .cws-stat .zb-lb-sm{font-size:9.5px!important}
