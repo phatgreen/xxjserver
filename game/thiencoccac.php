@@ -162,7 +162,16 @@ if ($canshu != '') {
                 break;
             }
 
-            if ($priceLT > 0) {
+            // Đợt D: võ công Tiên Đạo đổi bằng Tiên Đạo Tàn Quyển thay vì tiền
+            $tdNeed = \player\tiendao_need(intval($buy_id));
+            if ($tdNeed > 0) {
+                $tdCfg = \player\tiendao_config();
+                if (!\player\deledjsum(intval($tdCfg['djid']), $tdNeed, $sid, $dblj)) {
+                    $tdRow = \player\getplayerdaoju($sid, intval($tdCfg['djid']), $dblj);
+                    $tssb = wg_popup_html('error', 'Không đủ Tiên Đạo Tàn Quyển! (cần ' . $tdNeed . ', đang có ' . ($tdRow ? intval($tdRow->djsum) : 0) . ')');
+                    break;
+                }
+            } elseif ($priceLT > 0) {
                 if (intval($player->uyxb) < $priceLT) {
                     $tssb = wg_popup_html('error', 'Không đủ Linh thạch! (cần ' . number_format($priceLT) . ')');
                     break;
@@ -249,6 +258,10 @@ $itemsHtml = '';
 
 if ($currentTab === 'wg') {
     $grouped = array();
+    // Đợt D: số Tiên Đạo Tàn Quyển đang có (hiện cạnh giá đổi)
+    $tdCfgList = \player\tiendao_config();
+    $tdRowList = intval($tdCfgList['djid']) > 0 ? \player\getplayerdaoju($sid, intval($tdCfgList['djid']), $dblj) : false;
+    $tdHave = $tdRowList ? intval($tdRowList->djsum) : 0;
     foreach ($wgCfgAll as $key => $cfg) {
         if (intval($cfg['id']) <= 0) continue;
         $cat = isset($cfg['category']) ? $cfg['category'] : 'noi_cong';
@@ -257,7 +270,8 @@ if ($currentTab === 'wg') {
         $priceLT = isset($cfg['price_linhthong']) ? intval($cfg['price_linhthong']) : 0;
         $priceMT = isset($cfg['price_masthach']) ? intval($cfg['price_masthach']) : 0;
         $trainMult = isset($cfg['training_time_mult']) ? floatval($cfg['training_time_mult']) : 1.0;
-        if ($priceLT <= 0 && $priceMT <= 0) continue;
+        $tdNeed = \player\tiendao_need(isset($cfg['wgid']) ? $cfg['wgid'] : 0);
+        if ($priceLT <= 0 && $priceMT <= 0 && $tdNeed <= 0) continue;
         if (!isset($grouped[$cat])) $grouped[$cat] = array();
         $grouped[$cat][] = array(
             'key' => $key,
@@ -266,6 +280,7 @@ if ($currentTab === 'wg') {
             'realm_req' => $realmReq,
             'price_lt' => $priceLT,
             'price_mt' => $priceMT,
+            'td_need' => $tdNeed,
             'train_mult' => $trainMult,
         );
     }
@@ -310,7 +325,10 @@ if ($currentTab === 'wg') {
 
             $priceText = '';
             $priceTextPlain = '';
-            if ($priceLT > 0) {
+            if ($item['td_need'] > 0) {
+                $priceText = '<span class="tcg-tcc-price mt">' . $item['td_need'] . ' Quyển</span>';
+                $priceTextPlain = $item['td_need'] . ' Tiên Đạo Tàn Quyển';
+            } elseif ($priceLT > 0) {
                 $priceText = '<span class="tcg-tcc-price lt">' . number_format($priceLT) . ' LT</span>';
                 $priceTextPlain = number_format($priceLT) . ' Linh thạch';
             } else {
@@ -342,7 +360,7 @@ if ($currentTab === 'wg') {
                 $itemsHtml .= '<span class="tcg-tcc-train">' . $trainText . '</span>';
             }
             $itemsHtml .= '</div>';
-            $itemsHtml .= '<div class="tcg-tcc-item-sub">Yêu cầu: ' . $reqName . '</div>';
+            $itemsHtml .= '<div class="tcg-tcc-item-sub">Yêu cầu: ' . $reqName . ($item['td_need'] > 0 ? ' · Đang có ' . $tdHave . ' Tàn Quyển' : '') . '</div>';
             $itemsHtml .= '</div>';
             $itemsHtml .= '<div class="tcg-tcc-item-right">';
             $itemsHtml .= $priceText;

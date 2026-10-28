@@ -662,6 +662,14 @@
         "djid": 79,
         "djyxb": 10000,
         "djjg": 10000
+    },
+    "115": {
+        "djname": "Tiên Đạo Tàn Quyển",
+        "djzl": "115",
+        "djinfo": "Tàn trang bí tịch Tiên Đạo, rơi từ Boss khu vực cấp 400 trở lên. Gom đủ 10 quyển đổi 1 bộ võ công Tiên Đạo tại Thiên Cơ Các (cần cảnh giới thứ 30).",
+        "djid": 115,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1
     }
-
 }

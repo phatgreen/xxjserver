@@ -1,4 +1,4 @@
-# ĐỢT D — Nguồn võ công Tiên Đạo: Tiên Đạo Tàn Quyển (CHỜ DUYỆT)
+# ĐỢT D — Nguồn võ công Tiên Đạo: Tiên Đạo Tàn Quyển (ĐÃ LÀM 2026-10-28)
 
 > Lập 2026-10-28. Thuộc kế hoạch tổng `PLAN_MO_RONG_NOI_DUNG.md`, nối tiếp quyết định D4 của `DOT_A_VOCONG_CONGPHAP.md`
 > ("Tiên Đạo không bán — rơi từ Boss"). Hướng đã chọn: **Tàn Quyển** (chủ dự án chọn 2026-10-28).
@@ -35,7 +35,7 @@
   ⇒ đủ thời gian tích lũy, mà vẫn hiếm (đúng tinh thần phẩm Tiên Đạo).
 - Không sinh Linh Thạch / Ma Thạch mới ⇒ không ảnh hưởng lạm phát.
 
-## 3. Thay đổi code (dự kiến)
+## 3. Thay đổi code
 
 | File | Thay đổi |
 |---|---|
@@ -45,6 +45,9 @@
 | `game/thiencoccac.php` | Danh sách: không bỏ qua bộ có `need` Tàn Quyển, giá hiện "10 Tàn Quyển (đang có X)". `buy_wg`: nếu là Tiên Đạo ⇒ kiểm tra cảnh giới + số Tàn Quyển, trừ bằng `deledjsum(115, 10)` thay vì trừ tiền |
 | `tools/gen/dot_d_build.py` (mới) | Sinh/ghi 2 file config ở trên (chạy lại cho cùng kết quả, đúng quy ước `tools/gen/`) |
 | `tests/test_dot_d.php` (mới) | Kiểm thử mục 4 |
+
+| `game/shangdian.php` | Cờ `no_shop` trong `daoju_config.json`: Thương Điếm không bày bán và chặn cả lệnh mua gọi thẳng URL (trước đây tiệm bán **mọi** đạo cụ trừ 112/113) |
+| `class/function/wugong.php` | `tiendao_config()`, `tiendao_need($wgid)` |
 
 **Không cần migrate DB** (đạo cụ và cấu hình đều là JSON; `playerdaoju` đã có sẵn).
 
@@ -63,3 +66,21 @@
 | Q1 | Tỉ lệ 3/4/5% và cần 10 quyển/bộ có ổn? | Như trên |
 | Q2 | Tên vật phẩm | "Tiên Đạo Tàn Quyển" |
 | Q3 | Học trùng bộ đã có thì sao? | Như mua thường hiện nay (`cqwg` +1 `wgsum`) — không chặn |
+
+## 6. Kết quả kiểm chứng (cloud, 2026-10-28)
+
+| Kiểm tra | Kết quả |
+|---|---|
+| `tests/test_dot_d.php` | ALL PASS (cấu hình, đạo cụ 115, 5 bộ đổi 10 quyển, trừ quyển thiếu/đủ) |
+| Thương Điếm tìm "Tàn Quyển" / mua thẳng URL djid 115 | Không thấy / không mua được |
+| Thiên Cơ Các cấp 1000 + 10 quyển | "Cần đạt Địa Tiên mới có thể mua!", không mất quyển |
+| Cấp 1460 + 9 quyển | "Không đủ Tiên Đạo Tàn Quyển! (cần 10, đang có 9)", không mất quyển |
+| Cấp 1460 + 10 quyển | Học được Thái Thượng Trảm Đạo Kiếm, còn 0 quyển |
+| Hạ boss cấp 500 (tạm đặt 100% ở bản sao chạy thử) / boss cấp 350 | Nhận "Tiên Đạo Tàn Quyển x1" + thông báo Hệ Thống / không rơi |
+| Test cũ A, B, C, F, combat, Cộng Hưởng | ALL PASS |
+
+### Lỗi có sẵn phát hiện khi test (chưa sửa — chờ chủ dự án)
+
+`game/boss.php:66-72`: boss đã chết mà gọi lại link tấn công thì boss "bỏ trốn" và **hồi đầy máu ngay**, bỏ qua thời gian hồi
+sinh `mid.ms` (600 giây) mà `nowmid.php:125` vẫn tôn trọng ⇒ có thể hạ boss liên tục, thưởng (Linh Thạch, Ma Thạch, trang bị,
+nay thêm Tàn Quyển) không bị giới hạn bởi 600 giây. Ước tính kinh tế ở mục 2 chỉ đúng khi lỗi này được sửa.

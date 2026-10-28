@@ -305,7 +305,9 @@ if ((isset($canshu2) && $canshu2 == 'gogoumai2') || (isset($canshu21) && $canshu
 
     if (isset($djid) && isset($buy)) {
         $daoju = \player\getdaoju($djid, $dblj);
-        if ($daoju && !(isset($daoju->djuse) && $daoju->djuse != '')) {
+        // no_shop: vật phẩm chỉ rơi từ boss (vd Tiên Đạo Tàn Quyển) — không cho mua kể cả gọi thẳng URL
+        $djCfg = \player\daoju_config_get(intval($djid));
+        if ($daoju && !(isset($daoju->djuse) && $daoju->djuse != '') && empty($djCfg['no_shop'])) {
             $price = max(50, intval($daoju->djyxb));
             if ($isMagic) {
                 $ret = \player\changeczb(2, $price, $sid, $dblj);
@@ -341,6 +343,7 @@ if ((isset($canshu2) && $canshu2 == 'gogoumai2') || (isset($canshu21) && $canshu
     $filtered = array();
     foreach ($daojuList as $d) {
         if (intval($d['djid']) == 112 || intval($d['djid']) == 113) continue;
+        if (!empty($d['no_shop'])) continue;
         $filtered[] = $d;
     }
     $itemHtml = tcg_shop_render_daoju($filtered, $encode, $sid, $page, $pageSize, $isMagic, $canKey);

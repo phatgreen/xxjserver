@@ -260,3 +260,28 @@ if (!function_exists(__NAMESPACE__ . '\\wugongcs')) {
         return $miji;
     }
 }
+
+// Đợt D: cấu hình Tiên Đạo Tàn Quyển (djid, số quyển đổi 1 bộ, % rơi theo cấp boss) — class/config/tiendao_config.json
+if (!function_exists(__NAMESPACE__ . '\\tiendao_config')) {
+    function tiendao_config(){
+        static $cache = null;
+        if ($cache !== null) {
+            return $cache;
+        }
+        $file = __DIR__ . '/../config/tiendao_config.json';
+        $data = is_file($file) ? json_decode(file_get_contents($file), true) : null;
+        $cache = is_array($data) ? $data : array('djid' => 0, 'need' => 0, 'wgid' => array(), 'drop_pct' => array());
+        return $cache;
+    }
+}
+
+// Số Tàn Quyển cần để đổi võ công $wgid; 0 = bộ này không đổi bằng Tàn Quyển.
+if (!function_exists(__NAMESPACE__ . '\\tiendao_need')) {
+    function tiendao_need($wgid){
+        $cfg = tiendao_config();
+        if (intval($cfg['djid']) <= 0 || !in_array(intval($wgid), array_map('intval', $cfg['wgid']), true)) {
+            return 0;
+        }
+        return intval($cfg['need']);
+    }
+}

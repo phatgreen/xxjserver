@@ -632,6 +632,17 @@ HTML;
                 $huode .= "Nhận được: <div class='ypys'>$ypname x$ypsum</div>";
             }
         }
+        // Đợt D: Tiên Đạo Tàn Quyển — lượt rơi riêng theo cấp boss, mỗi lần 1 quyển, không cộng may mắn
+        $tdCfg = \player\tiendao_config();
+        $tdPct = isset($tdCfg['drop_pct'][strval(intval($boss->bosslv))]) ? intval($tdCfg['drop_pct'][strval(intval($boss->bosslv))]) : 0;
+        if ($tdPct > 0 && intval($tdCfg['djid']) > 0 && mt_rand(1, 100) <= $tdPct) {
+            \player\adddj($sid, intval($tdCfg['djid']), 1, $dblj);
+            $tdDj = \player\getdaoju(intval($tdCfg['djid']), $dblj);
+            $tdName = $tdDj ? $tdDj->djname : 'Tiên Đạo Tàn Quyển';
+            $huode .= "Nhận được: <font color='#facc15'><b>$tdName x1</b></font><br>";
+            $stmt = $dblj->prepare("insert into ggliaotian(name,msg,uid) values(?,?,?)");
+            $stmt->execute(array('【Hệ Thống】', '[' . htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8') . '] hạ [' . htmlspecialchars($boss->bossname, ENT_QUOTES, 'UTF-8') . '] nhặt được <font color="#facc15">[' . $tdName . ']</font>!', '0'));
+        }
        // $boss->bossexp = round($boss->bossexp / ($lvc+1),0);//经验计算
 	    $boss->bossexp = round($boss->bossgj / 2+$player->ugj/2+$player->ufy/2,0);
         if($boss->bossexp < 3){
