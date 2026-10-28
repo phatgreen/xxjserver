@@ -8080,3 +8080,40 @@ body.tcg-bg-body .bag-page.bag-compact .bag-tabs{display:grid!important;grid-tem
 body.tcg-bg-body .bag-page.bag-compact .bag-tab,body.tcg-bg-body .bag-page.bag-compact .bag-tab:visited{min-width:0!important;padding:0 2px!important;font-size:11px!important;white-space:nowrap!important}
 }
 
+/* Túi Trang bị: 1 cột (10 món/trang) — tên 1 dòng, ảnh + nút lớn hơn, lấp khoảng trống dưới */
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col{grid-template-columns:1fr!important;gap:6px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card{grid-template-columns:26px 44px minmax(0,1fr) auto!important;gap:10px!important;padding:7px 12px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card .bag-item-icon{width:42px!important;height:42px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card .bag-item-icon img{width:36px!important;height:36px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card .bag-item-name{display:block!important;-webkit-line-clamp:unset!important;font-size:14px!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card .bag-item-badges{display:inline-flex!important;margin-top:3px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card .bag-btn,body.tcg-bg-body .bag-page.bag-compact .bag-list.bag-list-1col .bag-item-card .bag-btn:visited{height:30px!important;padding:0 14px!important;font-size:12px!important}
+
+/* ===== Trang Bị kiểu búp bê nhân vật (game/trangbi.php, .profile-page.tb-compact) =====
+   8 ô nhóm "Trang bị" trái · chân dung + nút Trang bị nhanh giữa · 8 ô "Vũ khí – Phù – Pháp bảo" phải.
+   Rê chuột lên ảnh ô đã mặc => hộp xem nhanh (data-tip, js/itemtip.js). Nút × = tháo. */
+.tb-stage{display:grid;grid-template-columns:minmax(0,1fr) 176px minmax(0,1fr);gap:10px;align-items:start;padding:12px;border-radius:20px;border:1px solid rgba(125,211,252,.28);box-shadow:0 18px 40px rgba(0,0,0,.32),0 0 40px rgba(56,189,248,.12) inset;background:radial-gradient(ellipse at 50% 112%,rgba(45,140,205,.55),transparent 60%),linear-gradient(180deg,#04091c 0%,#0a1c3e 46%,#123c66 100%)}
+.tb-side-title{margin:0 0 6px;font-size:12px;font-weight:1000;color:#fcd34d;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.tb-slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px 5px;border-radius:12px;border:1px solid rgba(92,151,255,.26);background:linear-gradient(180deg,rgba(20,42,86,.78),rgba(8,20,48,.86));min-width:0}
+.tb-slot.is-worn{border-color:rgba(253,230,138,.45);box-shadow:0 0 12px rgba(253,200,90,.16)}
+.tb-slot.is-empty{opacity:.62;border-style:dashed}
+body.tcg-bg-body .tb-compact .tb-thumb,body.tcg-bg-body .tb-compact a.tb-thumb:link,body.tcg-bg-body .tb-compact a.tb-thumb:visited{position:relative;display:flex;align-items:center;justify-content:center;width:48px;height:48px;margin:0;padding:0;border-radius:10px;background:rgba(4,12,32,.55)}
+.tb-thumb img{max-width:42px;max-height:42px;display:block}
+.tb-qh{position:absolute;right:-4px;bottom:-4px;padding:0 4px;border-radius:6px;background:#14532d;color:#86efac;font-size:10px;font-weight:1000;line-height:15px}
+.tb-name{width:100%;font-size:11px;font-weight:900;line-height:1.25;color:#cbd5f5;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.tcg-bg-body .tb-compact a.tb-x,body.tcg-bg-body .tb-compact a.tb-x:link,body.tcg-bg-body .tb-compact a.tb-x:visited{position:absolute;top:3px;right:3px;display:flex;align-items:center;justify-content:center;width:18px;height:18px;min-height:0;margin:0;padding:0;border-radius:50%;background:rgba(190,18,60,.85);color:#fff!important;font-size:13px;font-weight:1000;line-height:1;text-decoration:none}
+.tb-center{display:flex;flex-direction:column;align-items:center;gap:7px;padding-top:6px;text-align:center}
+.tb-figure{position:relative;width:150px;height:150px;flex:0 0 auto}
+.tb-figure-art{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;-webkit-mask-image:radial-gradient(circle,#000 58%,rgba(0,0,0,.4) 66%,transparent 71%);mask-image:radial-gradient(circle,#000 58%,rgba(0,0,0,.4) 66%,transparent 71%)}
+.tb-pname{font-size:18px;font-weight:1000;color:#fff;text-shadow:0 0 12px rgba(253,230,138,.5)}
+.tb-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
+.tb-badge{padding:2px 9px;border-radius:999px;border:1px solid rgba(125,211,252,.35);background:rgba(4,12,32,.6);color:#dbeafe;font-size:12px;font-weight:900}
+body.tcg-bg-body .tb-compact a.tb-quick,body.tcg-bg-body .tb-compact a.tb-quick:link,body.tcg-bg-body .tb-compact a.tb-quick:visited{display:inline-flex;align-items:center;justify-content:center;min-height:34px;margin:0;padding:0 16px;border-radius:11px;border:1px solid rgba(253,186,116,.6);background:linear-gradient(180deg,#f59e0b,#c2410c);color:#fff!important;font-size:13px;font-weight:1000;text-decoration:none}
+.tb-hint{font-size:10.5px;line-height:1.35;color:#94a3b8}
+@media(max-width:760px){
+.tb-stage{grid-template-columns:1fr;padding:10px}
+.tb-center{order:-1}
+.tb-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+

@@ -85,7 +85,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 | Nhiệm vụ | `class/function/nhiemvu.php`, `class/function/online_reward.php`, `game/nhiemvu.php`, `game/task.php`, `npc/npc.php`, `game/taskguide.php`; móc ở `nowmid.php`, `pve.php`, `boss.php`, `thiencoccac.php`, `conghuong.php`, `tupo.php` |
 | Trang bị | `class/function/zhuangbei.php`, `class/function/taozhuang.php`, `upzbsx` trong `player.php`, `game/zbinfo.php`, `game/taozhuang.php` |
 | Bản đồ | `game/nowmid.php` (Đại Sảnh), bảng `mid` (`mgid` quái, `mnpc` NPC, `midboss`), `qy` khu vực |
-| CSS | `css/mystyle.css` — **tăng số `?v=` trong `game.php` mỗi khi sửa** (hiện `2026102821`) |
+| CSS | `css/mystyle.css` — **tăng số `?v=` trong `game.php` mỗi khi sửa** (hiện `2026102901`) |
 
 ## 5. Môi trường thử trên cloud (container mới mỗi phiên)
 

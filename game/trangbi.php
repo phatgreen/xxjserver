@@ -191,23 +191,18 @@ for($i=1;$i<=16;$i++){
         $detailHref = '?cmd=' . $encode->encode("cmd=chakanzb&zbnowid=" . $player->{"tool$i"} . "&uid=" . $player->uid . "&sid=$sid");
 
         // Hover/cham vao ANH moi mo tooltip (data-tip nam tren <a> boc <img>).
-        $thumb  = '<a class="equip-thumb"' . $tipAttr . ' href="' . $detailHref . '">'
-                . '<img src="' . $icon . '" alt="' . $zhuangbei->zbname . '"></a>';
-        $cap    = '<div class="equip-cap">'
-                . '<div class="equip-item-name" style="color:' . $zhuangbei->zbys . '">' . $zhuangbei->zbname . $qhHtml . '</div>'
-                . '<div class="equip-sub">C&#7845;p ' . intval($zhuangbei->zblv) . '</div>'
-                . '</div>';
-        $remove = '<div class="equip-remove"><a class="remove-btn" href="?cmd=' . $encode->encode("cmd=xxzb&zbwz=$i&sid=$sid") . '">Th&aacute;o</a></div>';
+        $qhTag  = $qh > 0 ? '<span class="tb-qh">+' . $qh . '</span>' : '';
+        $thumb  = '<a class="tb-thumb"' . $tipAttr . ' href="' . $detailHref . '">'
+                . '<img src="' . $icon . '" alt="' . $zhuangbei->zbname . '">' . $qhTag . '</a>';
+        $cap    = '<div class="tb-name" style="color:' . $zhuangbei->zbys . '" title="' . $zhuangbei->zbname . '">' . $zhuangbei->zbname . '</div>';
+        $remove = '<a class="tb-x" href="?cmd=' . $encode->encode("cmd=xxzb&zbwz=$i&sid=$sid") . '" title="Th&aacute;o">&times;</a>';
 
-        $equipCards[$i] = '<div class="equip-card is-worn">' . $thumb . $cap . $remove . '</div>';
+        $equipCards[$i] = '<div class="tb-slot is-worn">' . $thumb . $cap . $remove . '</div>';
     } else {
         $icon  = tcg_zb_image_with_version_tb($defaultIcon);
-        $thumb = '<div class="equip-thumb equip-thumb-empty"><img src="' . $icon . '" alt="' . $slotName . '"></div>';
-        $cap   = '<div class="equip-cap">'
-               . '<div class="equip-item-name equip-slotname">' . $slotName . '</div>'
-               . '<div class="equip-sub equip-sub-empty">Ch&#432;a trang b&#7883;</div>'
-               . '</div>';
-        $equipCards[$i] = '<div class="equip-card is-empty">' . $thumb . $cap . '</div>';
+        $thumb = '<div class="tb-thumb"><img src="' . $icon . '" alt="' . $slotName . '"></div>';
+        $cap   = '<div class="tb-name">' . $slotName . '</div>';
+        $equipCards[$i] = '<div class="tb-slot is-empty" title="' . $slotName . ' — ch&#432;a trang b&#7883;">' . $thumb . $cap . '</div>';
     }
 }
 
@@ -219,34 +214,30 @@ for($i=1;$i<=16;$i++){
 $quickEquipCmd = $encode->encode("cmd=quickequip&sid=$sid");
 $bagzbcmd = $encode->encode("cmd=getbagzb&sid=$sid");
 
-/* Hai cot, moi cot 8 o theo nhom. */
-$zbColsHtml = '';
+/* Bố cục búp bê nhân vật (giống trang Nhân Vật): 8 ô nhóm 1 bên trái, chân dung giữa, 8 ô nhóm 2 bên phải */
+$zbSides = array();
 foreach ($equipGroups as $groupName => $groupSlots) {
     $groupCards = '';
     foreach ($groupSlots as $slot) {
         $groupCards .= $equipCards[$slot];
     }
-    $zbColsHtml .= '<div class="zb-col">'
-        . '<div class="zb-col-title">' . $groupName
-        . '<span class="zb-col-count">' . count($groupSlots) . ' &ocirc;</span></div>'
-        . '<div class="equip-grid">' . $groupCards . '</div></div>';
+    $zbSides[] = '<div class="tb-side-title">' . $groupName . '</div><div class="tb-grid">' . $groupCards . '</div>';
 }
+$tbVip = intval($player->vip) > 0 ? intval($player->vip) : 0;
+$tbAvatar = \player\player_avatar_img(isset($player->usex) ? $player->usex : 1);
+$tbName = htmlspecialchars($player->uname, ENT_QUOTES, 'UTF-8');
 
-$html = '<div class="profile-page">'
-    . '<div class="profile-header">'
-    . '<div class="profile-realm">Cấp ' . $player->ulv . '</div>'
-    . '<div class="profile-hint">Chỉ mặc được trang bị có yêu cầu cảnh giới không vượt quá cấp hiện tại</div>'
+$html = '<div class="profile-page tb-compact">'
+    . '<div class="tb-stage">'
+    . '<div class="tb-side tb-side-left">' . $zbSides[0] . '</div>'
+    . '<div class="tb-center">'
+    . '<div class="tb-figure"><div class="pf-figure-ring"></div><img class="tb-figure-art" src="./' . $tbAvatar . '" alt="avatar"></div>'
+    . '<div class="tb-pname">' . $tbName . '</div>'
+    . '<div class="tb-meta"><span class="tb-badge">Cấp ' . intval($player->ulv) . '</span><span class="tb-badge">Đã mặc ' . $wornCount . '/16</span></div>'
+    . '<a class="tb-quick" href="?cmd=' . $quickEquipCmd . '">⚡ Trang bị nhanh</a>'
+    . '<div class="tb-hint">Chỉ mặc được trang bị có yêu cầu cảnh giới không vượt quá cấp hiện tại</div>'
     . '</div>'
-    . '<div class="profile-section">'
-    . '<div class="profile-section-title">🎒 Trang bị đang mặc <span class="zb-worn-count">Đã mặc ' . $wornCount . '/16</span></div>'
-    . '<div class="profile-section-actions">'
-    . '<a class="quick-equip-btn" href="?cmd=' . $quickEquipCmd . '">Trang bị nhanh</a>'
-    . '</div>'
-    . '<div class="zb-cols">' . $zbColsHtml . '</div>'
-    . '</div>'
-    . '<div class="profile-bottom">'
-    . '<a class="profile-back" href="game.php?cmd=' . $gonowmid . '">← Đại Sảnh</a>'
-    . '<a class="profile-home" href="?cmd=' . $bagzbcmd . '">Túi đồ →</a>'
+    . '<div class="tb-side tb-side-right">' . (isset($zbSides[1]) ? $zbSides[1] : '') . '</div>'
     . '</div>'
     . $ts
     . '</div>';

@@ -306,7 +306,7 @@ $toolhtml =<<<HTML
     $ts
     $dialogLib
 
-    <div class="bag-list">
+    <div class="bag-list bag-list-1col">
         $zbhtml
     </div>
 
