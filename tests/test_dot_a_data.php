@@ -45,6 +45,7 @@ tassert('W1 lan 5: 6 bo Hon Nguyen CG 42 (wgid 81–86, 1 bo / he + Ngu Hanh)', 
 tassert('W1 lan 6: 6 bo Hon Nguyen CG 55 (wgid 87–92, 1 bo / he + Ngu Hanh)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 87 && intval($w['wgid']) <= 92 && $w['rarity'] === 'hon_nguyen' && intval($w['realm_require']) === 55; })), 6);
 tassert('W1 lan 7: 6 bo Hon Nguyen CG 65 (wgid 93–98, 1 bo / he + Ngu Hanh)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 93 && intval($w['wgid']) <= 98 && $w['rarity'] === 'hon_nguyen' && intval($w['realm_require']) === 65; })), 6);
 tassert('W1 lan 8: 6 bo Dai Dao CG 72 (wgid 99–104, phẩm mới)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 99 && intval($w['wgid']) <= 104 && $w['rarity'] === 'dai_dao' && intval($w['realm_require']) === 72; })), 6);
+tassert('W1 lan 9: 6 bo Dai Dao CG 83 (wgid 105–110)', count(array_filter($wg, function($w){ return intval($w['wgid']) >= 105 && intval($w['wgid']) <= 110 && $w['rarity'] === 'dai_dao' && intval($w['realm_require']) === 83; })), 6);
 tassert('W1 wgid khong trung', count($ids), count(array_unique($ids)));
 tassert('W1 moi bo hop le (id, phẩm, hiệu ứng, mô tả, 3 thế)', $bad, array());
 // Ngân sách trung bình tăng dần theo phẩm
@@ -65,19 +66,19 @@ foreach ($cp as $key => $c) {
     $id = intval($c['cpid']); $cids[] = $id;
     if ((string)$id !== (string)$key) $cbad[] = "$id: key != cpid";
     if (!in_array($c['effect_type'], $okCpEff, true)) $cbad[] = "$id: effect {$c['effect_type']}";
-    if (intval($c['tier']) < 0 || intval($c['tier']) > 9 || intval($c['subtier']) < 1 || intval($c['subtier']) > 4) $cbad[] = "$id: giai/pham";
+    if (intval($c['tier']) < 0 || intval($c['tier']) > 10 || intval($c['subtier']) < 1 || intval($c['subtier']) > 4) $cbad[] = "$id: giai/pham";
     if (floatval($c['effect_value_max']) <= floatval($c['effect_value'])) $cbad[] = "$id: max <= base";
     if (count(explode('|', $c['cpinfo'])) !== 3) $cbad[] = "$id: cpinfo";
     if (intval($c['price_linhthong']) <= 0 && intval($c['price_masthach']) <= 0) $cbad[] = "$id: khong co gia";
 }
-// Đợt A: cpid 1–56; làn 5 + làn 6 thêm 8 bộ Đế Giai cpid 57–64; làn 7–8 thêm 8 bộ Đạo Giai cpid 65–72; Phàm Giai cpid 73–76 (cp_pham_build.py)
-tassert('C1 76 cong phap', count($cp), 76);
+// Đợt A: cpid 1–56; làn 5 + làn 6 thêm 8 bộ Đế Giai cpid 57–64; làn 7–8 thêm 8 bộ Đạo Giai cpid 65–72; Phàm Giai cpid 73–76 (cp_pham_build.py); làn 9 thêm 4 bộ Chí Tôn Giai cpid 77–80
+tassert('C1 80 cong phap', count($cp), 80);
 tassert('C1 cpid khong trung', count($cids), count(array_unique($cids)));
 tassert('C1 moi bo hop le', $cbad, array());
 // Mỗi giai có 8 bộ
 $perGiai = array(); foreach ($cp as $c) { $g = intval($c['tier']); $perGiai[$g] = isset($perGiai[$g]) ? $perGiai[$g] + 1 : 1; }
 ksort($perGiai);
-tassert('C2 giai 0 (Pham Giai) 4 bo, giai 1–9 moi giai 8 bo', $perGiai, array(0 => 4, 1 => 8, 2 => 8, 3 => 8, 4 => 8, 5 => 8, 6 => 8, 7 => 8, 8 => 8, 9 => 8));
+tassert('C2 giai 0 (Pham Giai) 4 bo, giai 1–9 moi giai 8 bo, giai 10 (Chi Ton Giai) 4 bo', $perGiai, array(0 => 4, 1 => 8, 2 => 8, 3 => 8, 4 => 8, 5 => 8, 6 => 8, 7 => 8, 8 => 8, 9 => 8, 10 => 4));
 $de = array(); foreach ($cp as $c) if (intval($c['tier']) === 8) $de[] = intval($c['realm_require']);
 sort($de);
 tassert('C2 De Giai yeu cau CG 45, 45, 48, 48, 52, 52, 57, 57', $de, array(45, 45, 48, 48, 52, 52, 57, 57));
@@ -94,7 +95,7 @@ foreach ($cp as $c) {
 }
 tassert('C3 gia: giai 0–3 LT = 3 x MT, giai 4+ chi MT', $pbad, array());
 $pr = function($id) use ($cp) { return intval($cp[(string)$id]['price_masthach']); };
-tassert('C3 gia moc: Pham 1.000 · Hoang 14.000 · De Giai So 1.000.000 · Dao Giai Thuong 10.480.000', array($pr(73), $pr(1), $pr(57), $pr(72)), array(1000, 14000, 1000000, 10480000));
+tassert('C3 gia moc: Pham 1.000 · Hoang 14.000 · De Giai So 1.000.000 · Dao Giai Thuong 10.480.000 · Chi Ton Giai 14.690.000 / 19.040.000', array($pr(73), $pr(1), $pr(57), $pr(72), $pr(77), $pr(80)), array(1000, 14000, 1000000, 10480000, 14690000, 19040000));
 
 echo $fails === 0 ? "ALL PASS\n" : "FAILED: $fails\n";
 exit($fails === 0 ? 0 : 1);

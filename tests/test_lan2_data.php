@@ -17,8 +17,10 @@ function tassert($name, $got, $exp) {
 
 // Tham số làn (mặc định làn 2)
 if (!isset($LANE)) $LANE = array('n' => 2, 'gid0' => 300, 'lv0' => 500, 'qy0' => 37, 'entry' => 408, 'ch0' => 14, 'npc0' => 49);
-$N = $LANE['n']; $G0 = $LANE['gid0']; $G1 = $G0 + 169; $LV0 = $LANE['lv0']; $LV1 = $LV0 + 500;
-$QY0 = $LANE['qy0']; $QY1 = $QY0 + 9; $ENTRY = $LANE['entry']; $CH0 = $LANE['ch0']; $NPC0 = $LANE['npc0'];
+// k = số khu của làn (mặc định 10; làn 9 có 6 khu): 17 quái / 8 map / 1 boss / 1 chương / 1 NPC mỗi khu
+$K = isset($LANE['k']) ? $LANE['k'] : 10; $NQ = 17 * $K; $NM = 8 * $K;
+$N = $LANE['n']; $G0 = $LANE['gid0']; $G1 = $G0 + $NQ - 1; $LV0 = $LANE['lv0']; $LV1 = $LV0 + 50 * $K;
+$QY0 = $LANE['qy0']; $QY1 = $QY0 + $K - 1; $ENTRY = $LANE['entry']; $CH0 = $LANE['ch0']; $NPC0 = $LANE['npc0'];
 $data = json_decode(file_get_contents(__DIR__ . "/../sql/lan{$N}_data.json"), true);
 $gw = \player\guaiwu_config_all();
 $zb = json_decode(file_get_contents(__DIR__ . '/../class/config/zhuangbei_config.json'), true);
@@ -38,7 +40,7 @@ for ($id = $G0; $id <= $G1; $id++) {
     $want = $p ? '1,' . $p['djid'] : '1';
     if ($lv % 50 != 0 && $g['gdj'] !== $want) $badPill[] = "$id:{$g['gdj']}";
 }
-tassert("Q1 đủ 170 quái mã {$G0}–$G1", count($ids), 170);
+tassert("Q1 đủ $NQ quái mã {$G0}–$G1", count($ids), $NQ);
 tassert('Q1 tên quái không trùng (trong làn và với quái cũ)', count(array_unique(array_map(function($g){ return $g['gname']; }, array_values($gw)))), count($gw));
 tassert("Q1 cấp quái trong " . ($LV0 + 1) . "–$LV1", $badLv, array());
 tassert('Q1 rơi trang bị có thật, bậc ≤ cấp quái', $badDrop, array());
@@ -63,7 +65,7 @@ if (intval($have) === 0) {
 } else {
     $maps = array();
     foreach ($db->query("SELECT mid, mname, mup, mdown, mleft, mright, mqy, midboss, ms, mgid FROM mid WHERE mqy BETWEEN $QY0 AND $QY1") as $r) $maps[intval($r['mid'])] = $r;
-    tassert("Q2 80 map ở khu {$QY0}–$QY1", count($maps), 80);
+    tassert("Q2 $NM map ở khu {$QY0}–$QY1", count($maps), $NM);
     $per = array(); foreach ($maps as $m) $per[$m['mqy']] = isset($per[$m['mqy']]) ? $per[$m['mqy']] + 1 : 1;
     tassert('Q2 mỗi khu 8 map', array_unique(array_values($per)), array(8));
     // Lối đi 2 chiều + đi từ map cửa vào của làn tới được cả 80 map
@@ -80,7 +82,7 @@ if (intval($have) === 0) {
     tassert('Q2 mọi lối đi đều 2 chiều', $oneWay, array());
     $seen = array($ENTRY => 1); $queue = array($ENTRY);
     while ($queue) { $c = array_shift($queue); foreach ($opp as $d => $o) { $t = intval($all[$c][$d]); if ($t && isset($maps[$t]) && !isset($seen[$t])) { $seen[$t] = 1; $queue[] = $t; } } }
-    tassert("Q2 từ map cửa vào $ENTRY đi tới cả 80 map", count($seen) - 1, 80);
+    tassert("Q2 từ map cửa vào $ENTRY đi tới cả $NM map", count($seen) - 1, $NM);
     $badG = array();
     foreach ($maps as $mid => $m) foreach (explode(',', $m['mgid']) as $p) { $gid = intval($p); if (!isset($gw[(string)$gid])) $badG[] = "$mid:$gid"; }
     tassert('Q2 quái trên map đều có trong config', $badG, array());
@@ -92,17 +94,17 @@ if (intval($have) === 0) {
         if ($b) $lvs[] = intval($b['bosslv']);
     }
     sort($lvs);
-    tassert('Q2 10 boss, hồi sinh 600 giây', array(count($bossMaps), array_unique($bossMaps)), array(10, array('ok')));
+    tassert("Q2 $K boss, hồi sinh 600 giây", array(count($bossMaps), array_unique($bossMaps)), array($K, array('ok')));
     tassert("Q2 cấp boss " . ($LV0 + 50) . " … $LV1", $lvs, range($LV0 + 50, $LV1, 50));
     $qe = $db->query("SELECT COUNT(*) FROM qy q JOIN mid m ON m.mid = q.mid AND m.mqy = q.qyid WHERE q.qyid BETWEEN $QY0 AND $QY1")->fetchColumn();
-    tassert('Q2 cửa vào khu (qy.mid) là map của chính khu', intval($qe), 10);
-    tassert("Q2 có ảnh sơ đồ dt/ditu/{$QY0}–$QY1.png", count(array_filter(range($QY0, $QY1), function($q){ return is_file(__DIR__ . "/../dt/ditu/$q.png"); })), 10);
+    tassert('Q2 cửa vào khu (qy.mid) là map của chính khu', intval($qe), $K);
+    tassert("Q2 có ảnh sơ đồ dt/ditu/{$QY0}–$QY1.png", count(array_filter(range($QY0, $QY1), function($q){ return is_file(__DIR__ . "/../dt/ditu/$q.png"); })), $K);
 }
 
 // ── Q4. Nhiệm vụ: 10 chương của làn trỏ đúng khu / quái / boss / vật phẩm; 10 NPC, nhiệm vụ trỏ quái + map của làn ──
 $mc = \player\nhiemvu_main_config();
-$chs = array(); foreach ($mc['chapters'] as $c) if ($c['id'] >= $CH0 && $c['id'] <= $CH0 + 9) $chs[$c['id']] = $c;
-tassert("Q4 chương {$CH0}–" . ($CH0 + 9), array_keys($chs), range($CH0, $CH0 + 9));
+$chs = array(); foreach ($mc['chapters'] as $c) if ($c['id'] >= $CH0 && $c['id'] <= $CH0 + $K - 1) $chs[$c['id']] = $c;
+tassert("Q4 chương {$CH0}–" . ($CH0 + $K - 1), array_keys($chs), range($CH0, $CH0 + $K - 1));
 $bossNames = array(); foreach ($data['bosses'] as $b) $bossNames[] = $b['bossname'];
 $bad = array();
 foreach ($chs as $cid => $c) {
@@ -126,21 +128,21 @@ $npcs = json_decode(file_get_contents(__DIR__ . '/../class/config/npc_config.jso
 $rws = json_decode(file_get_contents(__DIR__ . '/../class/config/renwu_config.json'), true);
 $mapIds = array(); foreach ($data['regions'] as $r) foreach ($r['maps'] as $m) $mapIds[] = intval($m['mid']);
 $bad = array();
-for ($nid = $NPC0; $nid <= $NPC0 + 9; $nid++) {
+for ($nid = $NPC0; $nid <= $NPC0 + $K - 1; $nid++) {
     if (!isset($npcs[(string)$nid])) { $bad[] = "npc$nid"; continue; }
     foreach (explode(',', $npcs[(string)$nid]['taskid']) as $rid) {
         $rw = isset($rws[$rid]) ? $rws[$rid] : null;
         if (!$rw || !isset($gw[$rw['rwyq']]) || intval($gw[$rw['rwyq']]['id']) < $G0 || !in_array(intval($rw['rwqy']), $mapIds, true)) $bad[] = "rw$rid";
     }
 }
-tassert("Q4 10 NPC ({$NPC0}–" . ($NPC0 + 9) . "), 30 nhiệm vụ trỏ quái + map Truyền tống của làn", $bad, array());
+tassert("Q4 $K NPC ({$NPC0}–" . ($NPC0 + $K - 1) . "), " . (3 * $K) . " nhiệm vụ trỏ quái + map Truyền tống của làn", $bad, array());
 if (intval($have) > 0) {
     $placed = 0;
     foreach (json_decode(file_get_contents(__DIR__ . "/../sql/lan{$N}_c_data.json"), true)['npcs'] as $n) {
         $mn = $db->query("SELECT mnpc FROM mid WHERE mid = " . intval($n['mid']))->fetchColumn();
         if (in_array((string)$n['nid'], explode(',', $mn), true)) $placed++;
     }
-    tassert("Q4 DB: 10 NPC đã đặt ở map cửa vào khu (sau migrate_lan{$N}_c.php)", $placed, 10);
+    tassert("Q4 DB: $K NPC đã đặt ở map cửa vào khu (sau migrate_lan{$N}_c.php)", $placed, $K);
 }
 
 // ── Q3. EXP quái ≈ 400 quái cùng cấp mỗi cấp ──

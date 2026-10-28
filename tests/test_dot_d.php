@@ -41,8 +41,11 @@ tassert('D1 lan 7: 3050–3500 = 3%', array_slice($cfg['drop_pct'], 53, 10, true
 tassert('D1 lan 7: boss 3050 / 3500 roi 116', array(\player\tiendao_drop_djid(3050), \player\tiendao_drop_djid(3500)), array(116, 116));
 tassert('D1 lan 7: Hon Nguyen CG 65 doi 30 quyen 116, CG 55 can 20', array(\player\tiendao_need(93), \player\tiendao_need(98), \player\tiendao_djid_for(98), \player\tiendao_need(87)), array(30, 30, 116, 20));
 // Làn 8: boss 3550–4000 rơi Đại Đạo Tàn Quyển (117) 2%; 6 bộ Đại Đạo CG 72 (wgid 99–104) đổi 40 quyển 117 (docs/LAN8_CAP_3500_4000.md)
-tassert('D1 lan 8: 3550–4000 = 2%', array_slice($cfg['drop_pct'], 63, null, true), array_fill_keys(range(3550, 4000, 50), 2));
+tassert('D1 lan 8: 3550–4000 = 2%', array_slice($cfg['drop_pct'], 63, 10, true), array_fill_keys(range(3550, 4000, 50), 2));
 tassert('D1 lan 8: boss 3500 roi 116, 3550 / 4000 roi 117', array(\player\tiendao_drop_djid(3500), \player\tiendao_drop_djid(3550), \player\tiendao_drop_djid(4000)), array(116, 117, 117));
+// Làn 9: boss 4050–4300 rơi 117 1%; 6 bộ Đại Đạo CG 83 (wgid 105–110) đổi 50 quyển 117 (docs/LAN9_CAP_4000_4300.md)
+tassert('D1 lan 9: 4050–4300 = 1%', array_slice($cfg['drop_pct'], 73, null, true), array_fill_keys(range(4050, 4300, 50), 1));
+tassert('D1 lan 9: Dai Dao CG 83 doi 50 quyen 117, boss 4300 roi 117', array(\player\tiendao_need(105), \player\tiendao_need(110), \player\tiendao_djid_for(110), \player\tiendao_drop_djid(4300)), array(50, 50, 117, 117));
 tassert('D1 lan 8: Dai Dao CG 72 doi 40 quyen 117', array(\player\tiendao_need(99), \player\tiendao_need(104), \player\tiendao_djid_for(99), \player\tiendao_djid_for(104)), array(40, 40, 117, 117));
 $dd = \player\daoju_config_get(117);
 tassert('D1 lan 8: dao cu 117 Dai Dao Tan Quyen khong ban, ban lai 0', array($dd['djname'], intval($dd['no_shop']), intval($dd['djyxb'])), array('Đại Đạo Tàn Quyển', 1, 0));

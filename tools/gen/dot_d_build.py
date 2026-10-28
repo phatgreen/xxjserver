@@ -61,6 +61,14 @@ NEED_BY_WGID.update({wid: DD_NEED for wid in DD_WGID})
 DJID_BY_WGID.update({wid: DD_DJID for wid in DD_WGID})
 DROP_PCT.update({lv: 2 for lv in range(3550, 4001, 50)})
 DROP_DJID_BY_LV.update({lv: DD_DJID for lv in range(3550, 4001, 50)})
+# Làn 9 (docs/LAN9_CAP_4000_4300.md): 6 bộ Đại Đạo CG 83 (wgid 105–110, lan9_a_build.py) đổi 50 quyển 117 / bộ (CG 72 giữ 40);
+# boss làn 9 (4050–4300) rơi Đại Đạo Tàn Quyển 1% — tiếp nhịp hiếm dần 5 → 4 → 3 → 2 → 1%.
+DD2_WGID = list(range(105, 111))
+TIENDAO_WGID += DD2_WGID
+NEED_BY_WGID.update({wid: 50 for wid in DD2_WGID})
+DJID_BY_WGID.update({wid: DD_DJID for wid in DD2_WGID})
+DROP_PCT.update({lv: 1 for lv in range(4050, 4301, 50)})
+DROP_DJID_BY_LV.update({lv: DD_DJID for lv in range(4050, 4301, 50)})
 
 # ---- Cấu hình đổi / rơi ----
 save('tiendao_config.json', {
@@ -98,7 +106,7 @@ items = [{
     'djname': 'Đại Đạo Tàn Quyển',
     'djzl': str(DD_DJID),
     'djinfo': 'Tàn trang bí tịch Đại Đạo, rơi rất hiếm từ Boss khu vực cấp 3550 trở lên. '
-              'Gom đủ %d quyển đổi 1 bộ võ công Đại Đạo tại Thiên Cơ Các (cần cảnh giới thứ 72).' % DD_NEED,
+              'Gom đủ %d–50 quyển (tùy bộ) đổi 1 bộ võ công Đại Đạo tại Thiên Cơ Các (cần cảnh giới thứ 72 trở lên).' % DD_NEED,
     'djid': DD_DJID,
     'djyxb': 0,
     'djjg': 0,

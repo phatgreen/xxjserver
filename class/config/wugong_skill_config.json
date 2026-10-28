@@ -2520,6 +2520,162 @@
         "hits": 5,
         "text": "Vạn đạo hợp thành một đạo quang, xuyên thẳng qua {mob}!"
       }
+    ],
+    "105": [
+      {
+        "tier": 1,
+        "name": "Trảm Đạo Kiếm Quang",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Kiếm quang thánh nhân lao thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Thánh Kiếm Đoạn Pháp",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 3,
+        "text": "Một kiếm chém đứt pháp tắc hộ thân, phòng ngự của {mob} sụp đổ hoàn toàn!"
+      },
+      {
+        "tier": 3,
+        "name": "Nhất Kiếm Trảm Thiên Đạo",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 1,
+        "text": "Thiên đạo cũng bị chém làm đôi, {mob} không còn chỗ dung thân!"
+      }
+    ],
+    "106": [
+      {
+        "tier": 1,
+        "name": "Hồng Mông Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực mang khí hồng mông đánh trúng {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Sinh Diệt Tuần Hoàn",
+        "effect": "heal",
+        "value": 26,
+        "hits": 1,
+        "text": "Khí hồng mông xoay chuyển, thương thế tái sinh ngay trước mắt {mob}!"
+      },
+      {
+        "tier": 3,
+        "name": "Hồng Mông Tái Tạo",
+        "effect": "heal",
+        "value": 50,
+        "hits": 3,
+        "text": "Hồng mông bao trùm, vừa giam chặt {mob} vừa tái tạo toàn thân!"
+      }
+    ],
+    "107": [
+      {
+        "tier": 1,
+        "name": "Thái Hư Chỉ",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một chỉ từ giữa thái hư điểm thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Vô Tung Vô Ảnh",
+        "effect": "guard",
+        "value": 90,
+        "hits": 3,
+        "text": "Thân hình tan vào thái hư, {mob} đánh tới chỉ trúng khoảng không!"
+      },
+      {
+        "tier": 3,
+        "name": "Thái Hư Phong Tỏa",
+        "effect": "stun",
+        "value": 90,
+        "hits": 4,
+        "text": "Thái hư khép lại thành ngục, giam chặt {mob} không lối thoát!"
+      }
+    ],
+    "108": [
+      {
+        "tier": 1,
+        "name": "Khai Thiên Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền mang lực khai thiên đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Tịch Địa Hỏa Bạo",
+        "effect": "burn",
+        "value": 81,
+        "hits": 3,
+        "text": "Lửa sáng thế bùng lên trong thân {mob}, cháy mãi không tắt!"
+      },
+      {
+        "tier": 3,
+        "name": "Khai Thiên Tịch Địa",
+        "effect": "crit",
+        "value": 170,
+        "hits": 1,
+        "text": "Trời đất như bị tách đôi, biển lửa nuốt trọn {mob}!"
+      }
+    ],
+    "109": [
+      {
+        "tier": 1,
+        "name": "Đạo Tổ Quyền",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Một quyền nặng như núi thái cổ nện xuống {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Bất Diệt Đạo Thân",
+        "effect": "guard",
+        "value": 90,
+        "hits": 1,
+        "text": "Đạo thân phát sáng, đòn của {mob} chỉ để lại vết xước!"
+      },
+      {
+        "tier": 3,
+        "name": "Đạo Tổ Trấn Áp",
+        "effect": "stun",
+        "value": 90,
+        "hits": 2,
+        "text": "Uy áp Đạo Tổ đè xuống, {mob} quỳ rạp không đứng dậy nổi!"
+      }
+    ],
+    "110": [
+      {
+        "tier": 1,
+        "name": "Vô Ngã Chưởng",
+        "effect": "",
+        "value": 0,
+        "hits": 1,
+        "text": "Chưởng lực không mang sát ý mà vẫn đánh thẳng vào {mob}."
+      },
+      {
+        "tier": 2,
+        "name": "Vô Ngã Hấp Nguyên",
+        "effect": "lifesteal",
+        "value": 53,
+        "hits": 3,
+        "text": "Đại đạo xoay chuyển, rút tinh khí của {mob} về thân ngươi!"
+      },
+      {
+        "tier": 3,
+        "name": "Chí Tôn Quy Đạo",
+        "effect": "pierce",
+        "value": 95,
+        "hits": 5,
+        "text": "Thân hóa thành đạo, một đạo quang xuyên thẳng qua {mob}!"
+      }
     ]
   }
 }

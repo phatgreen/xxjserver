@@ -1,0 +1,151 @@
+{
+ "_note": "Sinh bởi tools/gen/lan9_c_build.py — dùng cho sql/migrate_lan9_c.php",
+ "npcs": [
+  {
+   "nid": 119,
+   "qyid": 107,
+   "nname": "Pháp Đài Thủ Đạo Sứ",
+   "mid": 8001
+  },
+  {
+   "nid": 120,
+   "qyid": 108,
+   "nname": "Thánh Sơn Âm Dương Đạo Nhân",
+   "mid": 8009
+  },
+  {
+   "nid": 121,
+   "qyid": 109,
+   "nname": "Bản Nguyên Hải Lão Ngư Ông",
+   "mid": 8017
+  },
+  {
+   "nid": 122,
+   "qyid": 110,
+   "nname": "Tử Tiêu Cung Thủ Môn Đạo Đồng",
+   "mid": 8025
+  },
+  {
+   "nid": 123,
+   "qyid": 111,
+   "nname": "Thiên Khư Thủ Mộ Lão Nhân",
+   "mid": 8033
+  },
+  {
+   "nid": 124,
+   "qyid": 112,
+   "nname": "Vô Ngã Cảnh Dẫn Độ Thánh Nữ",
+   "mid": 8041
+  }
+ ],
+ "task_maps": [
+  {
+   "rwid": 307,
+   "mid": 8001,
+   "mname": "Pháp Đài Cửu Giai",
+   "qyid": 107
+  },
+  {
+   "rwid": 308,
+   "mid": 8005,
+   "mname": "Thiên Võng Khôi Khôi",
+   "qyid": 107
+  },
+  {
+   "rwid": 309,
+   "mid": 8008,
+   "mname": "Thiên Đạo Pháp Tọa",
+   "qyid": 107
+  },
+  {
+   "rwid": 310,
+   "mid": 8009,
+   "mname": "Cổ Đạo Thánh Sơn",
+   "qyid": 108
+  },
+  {
+   "rwid": 311,
+   "mid": 8013,
+   "mname": "Âm Dương Song Tuyền",
+   "qyid": 108
+  },
+  {
+   "rwid": 312,
+   "mid": 8016,
+   "mname": "Tuyệt Đỉnh Thánh Phong",
+   "qyid": 108
+  },
+  {
+   "rwid": 313,
+   "mid": 8017,
+   "mname": "Bản Nguyên Hải Ngạn",
+   "qyid": 109
+  },
+  {
+   "rwid": 314,
+   "mid": 8021,
+   "mname": "Đạo Long Thâm Câu",
+   "qyid": 109
+  },
+  {
+   "rwid": 315,
+   "mid": 8024,
+   "mname": "Long Cung Hải Điện",
+   "qyid": 109
+  },
+  {
+   "rwid": 316,
+   "mid": 8025,
+   "mname": "Cung Môn Tử Tiêu",
+   "qyid": 110
+  },
+  {
+   "rwid": 317,
+   "mid": 8029,
+   "mname": "Phân Bảo Nhai",
+   "qyid": 110
+  },
+  {
+   "rwid": 318,
+   "mid": 8032,
+   "mname": "Hồng Quân Pháp Tọa",
+   "qyid": 110
+  },
+  {
+   "rwid": 319,
+   "mid": 8033,
+   "mname": "Thiên Khư Phế Thành",
+   "qyid": 111
+  },
+  {
+   "rwid": 320,
+   "mid": 8037,
+   "mname": "Phong Ma Huyết Trì",
+   "qyid": 111
+  },
+  {
+   "rwid": 321,
+   "mid": 8040,
+   "mname": "Tận Cùng Hư Khư",
+   "qyid": 111
+  },
+  {
+   "rwid": 322,
+   "mid": 8041,
+   "mname": "Vô Ngã Hư Lộ",
+   "qyid": 112
+  },
+  {
+   "rwid": 323,
+   "mid": 8045,
+   "mname": "Kính Điện Vấn Tâm",
+   "qyid": 112
+  },
+  {
+   "rwid": 324,
+   "mid": 8048,
+   "mname": "Chung Cực Vô Ngã Đài",
+   "qyid": 112
+  }
+ ]
+}

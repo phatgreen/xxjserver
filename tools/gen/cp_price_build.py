@@ -4,7 +4,7 @@ Giá công pháp (chủ dự án 2026-10-28) — chạy lại nhiều lần cho 
   Giá Ma Thạch = 5 × MT tích lũy 1 tháng ở cấp yêu cầu × số tháng theo giai / phẩm.
     - Tích lũy 1 ngày ≈ BOSS_PER_DAY lần giết boss × (cấp/10 + 3) MT (game/boss.php) ⇒ 1 tháng = 30 × (3 × cấp + 90) với 30 boss/ngày.
     - Cấp yêu cầu = 50 × (CG − 1) (CG 0 = cấp 1).
-    - Số tháng: giai 1–7 = 1; Đế Giai Sơ / Trung / Cao / Thượng = 1 / 1,25 / 1,5 / 2; Đạo Giai = 3 / 4 / 5 / 6; Phàm Giai = 0,1 (nhập môn).
+    - Số tháng: giai 1–7 = 1; Đế Giai Sơ / Trung / Cao / Thượng = 1 / 1,25 / 1,5 / 2; Đạo Giai = 3 / 4 / 5 / 6; Chí Tôn Giai = 8 / 10; Phàm Giai = 0,1 (nhập môn).
   Phàm, Hoàng, Huyền, Địa Giai (giai 0–3) mua được bằng cả hai: Linh Thạch = 3 × giá Ma Thạch.
   Làm tròn: ≥ 100.000 tới hàng chục nghìn, dưới đó tới hàng nghìn.
 Đổi BOSS_PER_DAY rồi chạy lại để nâng / hạ cả bảng. Chạy: python3 tools/gen/cp_price_build.py
@@ -17,7 +17,7 @@ BOSS_PER_DAY = 30
 PRICE_MULT = 5
 LT_MULT = 3
 DUAL_MAX_TIER = 3            # giai 0–3: bán cả Linh Thạch lẫn Ma Thạch
-MONTHS = {(8, 1): 1, (8, 2): 1.25, (8, 3): 1.5, (8, 4): 2, (9, 1): 3, (9, 2): 4, (9, 3): 5, (9, 4): 6}
+MONTHS = {(8, 1): 1, (8, 2): 1.25, (8, 3): 1.5, (8, 4): 2, (9, 1): 3, (9, 2): 4, (9, 3): 5, (9, 4): 6, (10, 1): 8, (10, 2): 10}
 MONTHS_PHAM = 0.1
 
 def month_mt(cg):

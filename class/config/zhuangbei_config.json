@@ -1278,4 +1278,64 @@
     "320": {
         "zbname": "Chí Tôn Tọa Kỵ","zbinfo": "Trang bị bậc Chí Tôn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 98497,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 320,"zbhp": 524768,"zblv": 3500,"zbtool": 15,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 3500
     }
+,
+    "321": {
+        "zbname": "Vô Thượng Chí Tôn Lam Tinh Kiếm","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Vũ Khí.","zbgj": 739480,"zbfy": 0,"zbbj": 48,"zbxx": 28,"tuposjs": 0,"tupoexp": 0,"zbid": 321,"zbhp": 0,"zblv": 4000,"zbtool": 1,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "322": {
+        "zbname": "Vô Thượng Chí Tôn Thiên Thuẫn","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Thiên Thuẫn.","zbgj": 0,"zbfy": 337797,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 322,"zbhp": 415681,"zblv": 4000,"zbtool": 2,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "323": {
+        "zbname": "Vô Thượng Chí Tôn Quan","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Thiên Quan.","zbgj": 94095,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 323,"zbhp": 208665,"zblv": 4000,"zbtool": 3,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "324": {
+        "zbname": "Vô Thượng Chí Tôn Huyền Vũ Giáp","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Giáp Bào.","zbgj": 0,"zbfy": 460917,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 324,"zbhp": 748958,"zblv": 4000,"zbtool": 4,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "325": {
+        "zbname": "Vô Thượng Chí Tôn Hộ Thủ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Hộ Thủ.","zbgj": 0,"zbfy": 292018,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 325,"zbhp": 499801,"zblv": 4000,"zbtool": 5,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "326": {
+        "zbname": "Vô Thượng Chí Tôn Giới Chỉ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Giới Chỉ.","zbgj": 223033,"zbfy": 0,"zbbj": 18,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 326,"zbhp": 0,"zblv": 4000,"zbtool": 6,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "327": {
+        "zbname": "Vô Thượng Chí Tôn Yêu Đai","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Yêu Đai.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 327,"zbhp": 249193,"zblv": 4000,"zbtool": 7,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "328": {
+        "zbname": "Vô Thượng Chí Tôn Phi Phong","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Phi Phong.","zbgj": 0,"zbfy": 209939,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 18,"zbid": 328,"zbhp": 415681,"zblv": 4000,"zbtool": 8,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "329": {
+        "zbname": "Vô Thượng Chí Tôn Linh Phù","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Linh Phù.","zbgj": 128939,"zbfy": 0,"zbbj": 0,"zbxx": 11,"tuposjs": 9,"tupoexp": 0,"zbid": 329,"zbhp": 124612,"zblv": 4000,"zbtool": 9,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "330": {
+        "zbname": "Vô Thượng Chí Tôn Ngọc Nhãn","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Ngọc Nhãn.","zbgj": 185069,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 9,"tupoexp": 0,"zbid": 330,"zbhp": 82570,"zblv": 4000,"zbtool": 10,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "331": {
+        "zbname": "Vô Thượng Chí Tôn Cổ Ngọc","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Cổ Ngọc.","zbgj": 185069,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 9,"tupoexp": 0,"zbid": 331,"zbhp": 82570,"zblv": 4000,"zbtool": 11,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "332": {
+        "zbname": "Vô Thượng Chí Tôn Vai Khôi","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Vai Khôi.","zbgj": 0,"zbfy": 292018,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 332,"zbhp": 499801,"zblv": 4000,"zbtool": 12,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "333": {
+        "zbname": "Vô Thượng Chí Tôn Ngọc Đai","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Linh Đai.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 18,"zbid": 333,"zbhp": 249193,"zblv": 4000,"zbtool": 13,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "334": {
+        "zbname": "Vô Thượng Chí Tôn Linh Bội","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Linh Bội.","zbgj": 146545,"zbfy": 0,"zbbj": 18,"zbxx": 11,"tuposjs": 0,"tupoexp": 18,"zbid": 334,"zbhp": 82570,"zblv": 4000,"zbtool": 14,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
+,
+    "335": {
+        "zbname": "Vô Thượng Chí Tôn Tọa Kỵ","zbinfo": "Trang bị bậc Vô Thượng Chí Tôn, gắn vào ô Tọa Kỵ.","zbgj": 0,"zbfy": 127859,"zbbj": 0,"zbxx": 0,"tuposjs": 0,"tupoexp": 0,"zbid": 335,"zbhp": 666455,"zblv": 4000,"zbtool": 15,"zbys": "#ff1744","taozhuang": 14,"element": "none","rarity": 14,"rarity_name": "ChiTon","realm_require": 4000
+    }
 }

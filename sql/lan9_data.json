@@ -1,0 +1,416 @@
+{
+ "_note": "Sinh bởi tools/gen/lan9_build.py — dùng cho sql/migrate_lan9.php",
+ "entry_from_mid": 7080,
+ "regions": [
+  {
+   "qyid": 107,
+   "qyname": "Thiên Đạo Pháp Đài",
+   "band": "4001–4050",
+   "maps": [
+    {
+     "mid": 8001,
+     "mname": "Pháp Đài Cửu Giai",
+     "mgid": "1490|2,1491|2",
+     "midinfo": "Pháp Đài Cửu Giai thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8002,
+     "mname": "Thiên Quy Bia Lâm",
+     "mgid": "1492|2,1493|2",
+     "midinfo": "Thiên Quy Bia Lâm thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8003,
+     "mname": "Luật Lệnh Hành Lang",
+     "mgid": "1494|2,1495|2",
+     "midinfo": "Luật Lệnh Hành Lang thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8004,
+     "mname": "Thẩm Phán Thạch Đài",
+     "mgid": "1496|2,1497|2",
+     "midinfo": "Thẩm Phán Thạch Đài thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8005,
+     "mname": "Thiên Võng Khôi Khôi",
+     "mgid": "1498|2,1499|2",
+     "midinfo": "Thiên Võng Khôi Khôi thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8006,
+     "mname": "Thiên Bình Nhân Quả",
+     "mgid": "1500|2,1501|2",
+     "midinfo": "Thiên Bình Nhân Quả thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8007,
+     "mname": "Hóa Thân Tĩnh Thất",
+     "mgid": "1502|2,1503|2",
+     "midinfo": "Hóa Thân Tĩnh Thất thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    },
+    {
+     "mid": 8008,
+     "mname": "Thiên Đạo Pháp Tọa",
+     "mgid": "1504|2,1505|1,1506|1",
+     "midinfo": "Thiên Đạo Pháp Tọa thuộc Thiên Đạo Pháp Đài — vùng luyện cấp 4001–4050."
+    }
+   ]
+  },
+  {
+   "qyid": 108,
+   "qyname": "Hỗn Nguyên Thánh Sơn",
+   "band": "4051–4100",
+   "maps": [
+    {
+     "mid": 8009,
+     "mname": "Cổ Đạo Thánh Sơn",
+     "mgid": "1507|2,1508|2",
+     "midinfo": "Cổ Đạo Thánh Sơn thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8010,
+     "mname": "Thái Cực Lưỡng Nghi Phong",
+     "mgid": "1509|2,1510|2",
+     "midinfo": "Thái Cực Lưỡng Nghi Phong thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8011,
+     "mname": "Tứ Linh Thạch Lâm",
+     "mgid": "1511|2,1512|2",
+     "midinfo": "Tứ Linh Thạch Lâm thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8012,
+     "mname": "Bát Quái Vân Đài",
+     "mgid": "1513|2,1514|2",
+     "midinfo": "Bát Quái Vân Đài thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8013,
+     "mname": "Âm Dương Song Tuyền",
+     "mgid": "1515|2,1516|2",
+     "midinfo": "Âm Dương Song Tuyền thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8014,
+     "mname": "Nguyên Khí Linh Mạch",
+     "mgid": "1517|2,1518|2",
+     "midinfo": "Nguyên Khí Linh Mạch thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8015,
+     "mname": "Thánh Thú Huyệt Động",
+     "mgid": "1519|2,1520|2",
+     "midinfo": "Thánh Thú Huyệt Động thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    },
+    {
+     "mid": 8016,
+     "mname": "Tuyệt Đỉnh Thánh Phong",
+     "mgid": "1521|2,1522|1,1523|1",
+     "midinfo": "Tuyệt Đỉnh Thánh Phong thuộc Hỗn Nguyên Thánh Sơn — vùng luyện cấp 4051–4100."
+    }
+   ]
+  },
+  {
+   "qyid": 109,
+   "qyname": "Đại Đạo Bản Nguyên Hải",
+   "band": "4101–4150",
+   "maps": [
+    {
+     "mid": 8017,
+     "mname": "Bản Nguyên Hải Ngạn",
+     "mgid": "1524|2,1525|2",
+     "midinfo": "Bản Nguyên Hải Ngạn thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8018,
+     "mname": "Văn Triều Đạo Hải",
+     "mgid": "1526|2,1527|2",
+     "midinfo": "Văn Triều Đạo Hải thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8019,
+     "mname": "Hải Lưu Pháp Tắc",
+     "mgid": "1528|2,1529|2",
+     "midinfo": "Hải Lưu Pháp Tắc thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8020,
+     "mname": "Nguyên Sơ Đảo Tự",
+     "mgid": "1530|2,1531|2",
+     "midinfo": "Nguyên Sơ Đảo Tự thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8021,
+     "mname": "Đạo Long Thâm Câu",
+     "mgid": "1532|2,1533|2",
+     "midinfo": "Đạo Long Thâm Câu thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8022,
+     "mname": "Hải Nhãn Vạn Pháp",
+     "mgid": "1534|2,1535|2",
+     "midinfo": "Hải Nhãn Vạn Pháp thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8023,
+     "mname": "Triều Tịch Lốc Xoáy",
+     "mgid": "1536|2,1537|2",
+     "midinfo": "Triều Tịch Lốc Xoáy thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    },
+    {
+     "mid": 8024,
+     "mname": "Long Cung Hải Điện",
+     "mgid": "1538|2,1539|1,1540|1",
+     "midinfo": "Long Cung Hải Điện thuộc Đại Đạo Bản Nguyên Hải — vùng luyện cấp 4101–4150."
+    }
+   ]
+  },
+  {
+   "qyid": 110,
+   "qyname": "Đạo Tổ Tử Tiêu Cung",
+   "band": "4151–4200",
+   "maps": [
+    {
+     "mid": 8025,
+     "mname": "Cung Môn Tử Tiêu",
+     "mgid": "1541|2,1542|2",
+     "midinfo": "Cung Môn Tử Tiêu thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8026,
+     "mname": "Giảng Đạo Hồng Mông Đường",
+     "mgid": "1543|2,1544|2",
+     "midinfo": "Giảng Đạo Hồng Mông Đường thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8027,
+     "mname": "Tam Thanh Bồ Đoàn",
+     "mgid": "1545|2,1546|2",
+     "midinfo": "Tam Thanh Bồ Đoàn thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8028,
+     "mname": "Khí Hải Vân Đài",
+     "mgid": "1547|2,1548|2",
+     "midinfo": "Khí Hải Vân Đài thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8029,
+     "mname": "Phân Bảo Nhai",
+     "mgid": "1549|2,1550|2",
+     "midinfo": "Phân Bảo Nhai thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8030,
+     "mname": "Luyện Đan Tổ Phòng",
+     "mgid": "1551|2,1552|2",
+     "midinfo": "Luyện Đan Tổ Phòng thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8031,
+     "mname": "Huyền Môn Tàng Kinh",
+     "mgid": "1553|2,1554|2",
+     "midinfo": "Huyền Môn Tàng Kinh thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    },
+    {
+     "mid": 8032,
+     "mname": "Hồng Quân Pháp Tọa",
+     "mgid": "1555|2,1556|1,1557|1",
+     "midinfo": "Hồng Quân Pháp Tọa thuộc Đạo Tổ Tử Tiêu Cung — vùng luyện cấp 4151–4200."
+    }
+   ]
+  },
+  {
+   "qyid": 111,
+   "qyname": "Chí Tôn Thiên Khư",
+   "band": "4201–4250",
+   "maps": [
+    {
+     "mid": 8033,
+     "mname": "Thiên Khư Phế Thành",
+     "mgid": "1558|2,1559|2",
+     "midinfo": "Thiên Khư Phế Thành thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8034,
+     "mname": "Chí Tôn Cốt Hải",
+     "mgid": "1560|2,1561|2",
+     "midinfo": "Chí Tôn Cốt Hải thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8035,
+     "mname": "Vẫn Đế Mộ Địa",
+     "mgid": "1562|2,1563|2",
+     "midinfo": "Vẫn Đế Mộ Địa thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8036,
+     "mname": "Đoạn Thiên Kiếm Trủng",
+     "mgid": "1564|2,1565|2",
+     "midinfo": "Đoạn Thiên Kiếm Trủng thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8037,
+     "mname": "Phong Ma Huyết Trì",
+     "mgid": "1566|2,1567|2",
+     "midinfo": "Phong Ma Huyết Trì thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8038,
+     "mname": "Cửu U Liệt Khẩu",
+     "mgid": "1568|2,1569|2",
+     "midinfo": "Cửu U Liệt Khẩu thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8039,
+     "mname": "Chí Tôn Ma Lăng",
+     "mgid": "1570|2,1571|2",
+     "midinfo": "Chí Tôn Ma Lăng thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    },
+    {
+     "mid": 8040,
+     "mname": "Tận Cùng Hư Khư",
+     "mgid": "1572|2,1573|1,1574|1",
+     "midinfo": "Tận Cùng Hư Khư thuộc Chí Tôn Thiên Khư — vùng luyện cấp 4201–4250."
+    }
+   ]
+  },
+  {
+   "qyid": 112,
+   "qyname": "Vô Ngã Chung Cực Cảnh",
+   "band": "4251–4300",
+   "maps": [
+    {
+     "mid": 8041,
+     "mname": "Vô Ngã Hư Lộ",
+     "mgid": "1575|2,1576|2",
+     "midinfo": "Vô Ngã Hư Lộ thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8042,
+     "mname": "Quên Thân Kiều",
+     "mgid": "1577|2,1578|2",
+     "midinfo": "Quên Thân Kiều thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8043,
+     "mname": "Diệt Tướng Nhai",
+     "mgid": "1579|2,1580|2",
+     "midinfo": "Diệt Tướng Nhai thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8044,
+     "mname": "Vô Niệm Hồ",
+     "mgid": "1581|2,1582|2",
+     "midinfo": "Vô Niệm Hồ thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8045,
+     "mname": "Kính Điện Vấn Tâm",
+     "mgid": "1583|2,1584|2",
+     "midinfo": "Kính Điện Vấn Tâm thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8046,
+     "mname": "Chân Ngã Tế Đàn",
+     "mgid": "1585|2,1586|2",
+     "midinfo": "Chân Ngã Tế Đàn thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8047,
+     "mname": "Chân Viên Chi Môn",
+     "mgid": "1587|2,1588|2",
+     "midinfo": "Chân Viên Chi Môn thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    },
+    {
+     "mid": 8048,
+     "mname": "Chung Cực Vô Ngã Đài",
+     "mgid": "1589|2,1590|1,1591|1",
+     "midinfo": "Chung Cực Vô Ngã Đài thuộc Vô Ngã Chung Cực Cảnh — vùng luyện cấp 4251–4300."
+    }
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "bossname": "Boss·Thiên Đạo Hóa Thân",
+   "bosslv": 4050,
+   "bosshp": 2487503900,
+   "bossgj": 10987443,
+   "bossfy": 110730,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "321,324,326,327,329",
+   "bossdj": "1",
+   "qyid": 107,
+   "bossinfo": "Thiên Đạo Hóa Thân — bá chủ Thiên Đạo Pháp Đài, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Hỗn Nguyên Thái Cực Thánh Thú",
+   "bosslv": 4100,
+   "bosshp": 2553756200,
+   "bossgj": 11100353,
+   "bossfy": 112684,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "321,324,326,327,329",
+   "bossdj": "1",
+   "qyid": 108,
+   "bossinfo": "Hỗn Nguyên Thái Cực Thánh Thú — bá chủ Hỗn Nguyên Thánh Sơn, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Bản Nguyên Đạo Long",
+   "bosslv": 4150,
+   "bosshp": 2660595000,
+   "bossgj": 11381203,
+   "bossfy": 114652,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "321,324,326,327,329",
+   "bossdj": "1",
+   "qyid": 109,
+   "bossinfo": "Bản Nguyên Đạo Long — bá chủ Đại Đạo Bản Nguyên Hải, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Tử Tiêu Cung Đạo Tổ Tàn Niệm",
+   "bosslv": 4200,
+   "bosshp": 2730426700,
+   "bossgj": 11497045,
+   "bossfy": 116633,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "321,324,326,327,329",
+   "bossdj": "1",
+   "qyid": 110,
+   "bossinfo": "Tử Tiêu Cung Đạo Tổ Tàn Niệm — bá chủ Đạo Tổ Tử Tiêu Cung, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Thiên Khư Chí Tôn Ma Ảnh",
+   "bosslv": 4250,
+   "bosshp": 2801761100,
+   "bossgj": 11614269,
+   "bossfy": 118627,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "321,324,326,327,329",
+   "bossdj": "1",
+   "qyid": 111,
+   "bossinfo": "Thiên Khư Chí Tôn Ma Ảnh — bá chủ Chí Tôn Thiên Khư, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  },
+  {
+   "bossname": "Boss·Chung Cực Vô Ngã Tâm Ma",
+   "bosslv": 4300,
+   "bosshp": 2915755800,
+   "bossgj": 11899964,
+   "bossfy": 120635,
+   "bossbj": 15,
+   "bossxx": 10,
+   "bosszb": "321,324,326,327,329",
+   "bossdj": "1",
+   "qyid": 112,
+   "bossinfo": "Chung Cực Vô Ngã Tâm Ma — bá chủ Vô Ngã Chung Cực Cảnh, cứ mỗi lần bị hạ lại trỗi dậy mạnh hơn."
+  }
+ ]
+}

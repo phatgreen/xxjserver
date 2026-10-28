@@ -1048,5 +1048,65 @@
     "taskid": "304,305,306",
     "mz": "",
     "rwqy": ""
+  },
+  "119": {
+    "id": 119,
+    "nname": "Pháp Đài Thủ Đạo Sứ",
+    "nsex": "Nam",
+    "ninfo": "Sứ giả giữ luật trước Thiên Đạo Pháp Đài, lời y nói ra chính là một điều thiên quy.",
+    "muban": "",
+    "taskid": "307,308,309",
+    "mz": "",
+    "rwqy": ""
+  },
+  "120": {
+    "id": 120,
+    "nname": "Thánh Sơn Âm Dương Đạo Nhân",
+    "nsex": "Nam",
+    "ninfo": "Đạo nhân tu hành dưới chân Hỗn Nguyên Thánh Sơn, nửa thân sáng nửa thân tối như thái cực.",
+    "muban": "",
+    "taskid": "310,311,312",
+    "mz": "",
+    "rwqy": ""
+  },
+  "121": {
+    "id": 121,
+    "nname": "Bản Nguyên Hải Lão Ngư Ông",
+    "nsex": "Nam",
+    "ninfo": "Ông lão buông câu bên Đại Đạo Bản Nguyên Hải, mỗi lần kéo cần là một đạo văn trồi lên mặt nước.",
+    "muban": "",
+    "taskid": "313,314,315",
+    "mz": "",
+    "rwqy": ""
+  },
+  "122": {
+    "id": 122,
+    "nname": "Tử Tiêu Cung Thủ Môn Đạo Đồng",
+    "nsex": "Nam",
+    "ninfo": "Đạo đồng giữ cửa Tử Tiêu Cung, từng nghe Đạo Tổ giảng đạo suốt vạn kiếp.",
+    "muban": "",
+    "taskid": "316,317,318",
+    "mz": "",
+    "rwqy": ""
+  },
+  "123": {
+    "id": 123,
+    "nname": "Thiên Khư Thủ Mộ Lão Nhân",
+    "nsex": "Nam",
+    "ninfo": "Lão nhân giữ mộ ở Chí Tôn Thiên Khư, thuộc tên từng vị chí tôn đã vẫn lạc nơi đây.",
+    "muban": "",
+    "taskid": "319,320,321",
+    "mz": "",
+    "rwqy": ""
+  },
+  "124": {
+    "id": 124,
+    "nname": "Vô Ngã Cảnh Dẫn Độ Thánh Nữ",
+    "nsex": "Nữ",
+    "ninfo": "Thánh nữ dẫn độ người tu vào Vô Ngã Chung Cực Cảnh, ánh mắt nàng phản chiếu chân ngã của mỗi người.",
+    "muban": "",
+    "taskid": "322,323,324",
+    "mz": "",
+    "rwqy": ""
   }
 }

@@ -19,17 +19,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 CFG = os.path.join(ROOT, 'class', 'config')
 SRC = os.path.join(ROOT, 'tools', 'gen', 'data', 'zhuangbei_dot_f_src.json')
 
-TIERS = [1, 10, 30, 60, 120, 200, 300, 400, 500, 600, 800, 1000, 1250, 1500, 2000, 2500, 3000, 3500]   # 1000/1250: làn 3 · 1500: làn 4 · 2000: làn 5 · 2500: làn 6 · 3000: làn 7 · 3500: làn 8 (docs/LAN*_CAP_*.md)
+TIERS = [1, 10, 30, 60, 120, 200, 300, 400, 500, 600, 800, 1000, 1250, 1500, 2000, 2500, 3000, 3500, 4000]   # 1000/1250: làn 3 · 1500: làn 4 · 2000: làn 5 · 2500: làn 6 · 3000: làn 7 · 3500: làn 8 · 4000: làn 9 (docs/LAN*_CAP_*.md)
 KEEP_TIERS = (1, 10, 30)          # giữ chỉ số cũ
 PROFILE_TIERS = (30, 200, 400, 800)  # bậc đủ 15 ô, dùng làm tỉ lệ giữa các ô
 GEAR_SHARE = 0.5                  # tổng đồ đủ bộ = 50% chỉ số gốc ở cấp = bậc
-RARITY = {1: 1, 10: 2, 30: 3, 60: 4, 120: 5, 200: 6, 300: 7, 400: 8, 500: 9, 600: 9, 800: 10, 1000: 11, 1250: 11, 1500: 12, 2000: 12, 2500: 13, 3000: 13, 3500: 14}
+RARITY = {1: 1, 10: 2, 30: 3, 60: 4, 120: 5, 200: 6, 300: 7, 400: 8, 500: 9, 600: 9, 800: 10, 1000: 11, 1250: 11, 1500: 12, 2000: 12, 2500: 13, 3000: 13, 3500: 14, 4000: 14}
 RNAME = {1: 'Pham', 2: 'Linh', 3: 'Huyen', 4: 'Dia', 5: 'Thien', 6: 'Thanh', 7: 'Tien', 8: 'Than', 9: 'De', 10: 'Dao', 11: 'HonDon', 12: 'ThaiSo', 13: 'VinhHang', 14: 'ChiTon'}
 RVI = {1: 'Phàm', 2: 'Linh', 3: 'Huyền', 4: 'Địa', 5: 'Thiên', 6: 'Thánh', 7: 'Tiên', 8: 'Thần', 9: 'Đế', 10: 'Đạo', 11: 'Hỗn Độn', 12: 'Thái Sơ', 13: 'Vĩnh Hằng', 14: 'Chí Tôn'}
 RCOLOR = {1: '#9e9e9e', 2: '#4caf50', 3: '#2196f3', 4: '#795548', 5: '#ff9800', 6: '#ffeb3b', 7: '#e040fb', 8: '#f44336', 9: '#b71c1c', 10: '#d4af37', 11: '#7e57c2', 12: '#26c6da', 13: '#ffb300', 14: '#ff1744'}
 PREFIX = {1: 'Phàm', 10: 'Linh', 30: 'Huyền', 60: 'Địa', 120: 'Thiên', 200: 'Thánh', 300: 'Tiên', 400: 'Thần', 500: 'Hồng Mông', 600: 'Đế', 800: 'Đạo',
-          1000: 'Hỗn Độn', 1250: 'Thái Hư Hỗn Độn', 1500: 'Thái Sơ', 2000: 'Thái Sơ Hồng Hoang', 2500: 'Vĩnh Hằng', 3000: 'Vạn Cổ Vĩnh Hằng', 3500: 'Chí Tôn'}
-SET_OF = {500: 9, 1000: 11, 1250: 11, 1500: 12, 2000: 12, 2500: 13, 3000: 13, 3500: 14}   # Thần Trang của bậc mới (bộ 11 Hỗn Độn: 2 bậc làn 3 · bộ 12 Thái Sơ: 1500 + 2000 · bộ 13 Vĩnh Hằng: 2500 + 3000 · bộ 14 Chí Tôn)
+          1000: 'Hỗn Độn', 1250: 'Thái Hư Hỗn Độn', 1500: 'Thái Sơ', 2000: 'Thái Sơ Hồng Hoang', 2500: 'Vĩnh Hằng', 3000: 'Vạn Cổ Vĩnh Hằng', 3500: 'Chí Tôn', 4000: 'Vô Thượng Chí Tôn'}
+SET_OF = {500: 9, 1000: 11, 1250: 11, 1500: 12, 2000: 12, 2500: 13, 3000: 13, 3500: 14, 4000: 14}   # Thần Trang của bậc mới (bộ 11 Hỗn Độn: 2 bậc làn 3 · bộ 12 Thái Sơ: 1500 + 2000 · bộ 13 Vĩnh Hằng: 2500 + 3000 · bộ 14 Chí Tôn: 3500 + 4000)
 SLOT_NAME = {1: 'Vũ Khí', 2: 'Thiên Thuẫn', 3: 'Thiên Quan', 4: 'Giáp Bào', 5: 'Hộ Thủ', 6: 'Giới Chỉ', 7: 'Yêu Đai', 8: 'Phi Phong',
              9: 'Linh Phù', 10: 'Ngọc Nhãn', 11: 'Cổ Ngọc', 12: 'Vai Khôi', 13: 'Linh Đai', 14: 'Linh Bội', 15: 'Tọa Kỵ'}
 NEW_ID0 = 181
@@ -37,8 +37,8 @@ NEW_ID0 = 181
 # Chỉ số huyền theo ô (mỗi món chỉ mang 1 loại) — cân 2026-10-28, xem docs/KHUNG_TONG_500_4300.md mục 4
 BREAK_SLOTS = (9, 10, 11)    # Linh Phù · Ngọc Nhãn · Cổ Ngọc  -> tuposjs (tỉ lệ đột phá +%)
 CULT_SLOTS = (8, 13, 14)     # Phi Phong · Linh Đai · Linh Bội -> tupoexp (tốc độ tu luyện +%)
-BREAK_PCT = {1: 0, 10: 1, 30: 1, 60: 2, 120: 2, 200: 3, 300: 3, 400: 4, 500: 4, 600: 5, 800: 5, 1000: 6, 1250: 6, 1500: 7, 2000: 7, 2500: 8, 3000: 8, 3500: 9}
-CULT_PCT = {1: 1, 10: 2, 30: 2, 60: 4, 120: 4, 200: 6, 300: 6, 400: 8, 500: 8, 600: 10, 800: 10, 1000: 12, 1250: 12, 1500: 14, 2000: 14, 2500: 16, 3000: 16, 3500: 18}
+BREAK_PCT = {1: 0, 10: 1, 30: 1, 60: 2, 120: 2, 200: 3, 300: 3, 400: 4, 500: 4, 600: 5, 800: 5, 1000: 6, 1250: 6, 1500: 7, 2000: 7, 2500: 8, 3000: 8, 3500: 9, 4000: 9}
+CULT_PCT = {1: 1, 10: 2, 30: 2, 60: 4, 120: 4, 200: 6, 300: 6, 400: 8, 500: 8, 600: 10, 800: 10, 1000: 12, 1250: 12, 1500: 14, 2000: 14, 2500: 16, 3000: 16, 3500: 18, 4000: 18}
 
 def apply_mystic(v):
     s, T = v['zbtool'], v['zblv']
@@ -57,7 +57,7 @@ def base_curve(maxlv=800):
         f += 3 + round(L / 2) + GJ[i]
         h += 4 + round(L / 1.2) + HP[i]
     return out
-BASE = base_curve(4000)
+BASE = base_curve(4300)
 
 STATS = ('zbgj', 'zbfy', 'zbhp')
 

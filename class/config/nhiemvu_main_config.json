@@ -921,6 +921,72 @@
                 {"id": "83.5", "name": "Hạ Thánh Điện Hộ Pháp Thánh Tướng", "type": "kill_boss_name", "boss_names": ["Boss·Thánh Điện Hộ Pháp Thánh Tướng"], "target_count": 1, "exp": 0, "lt": 39500, "mt": 0, "exp_pct": 25},
                 {"id": "83.6", "name": "Đột Phá Cấp 4000", "type": "breakthrough", "target_level": 4000, "exp": 0, "lt": 39500, "mt": 0, "exp_pct": 25}
             ]
+        },
+        {
+            "id": 84, "name": "Thiên Đạo Pháp Đài", "level_range": [4000, 4050],
+            "quests": [
+                {"id": "84.1", "name": "Đặt Chân Thiên Đạo Pháp Đài", "type": "reach_region", "region": 107, "exp": 0, "lt": 40000, "mt": 0, "exp_pct": 5},
+                {"id": "84.2", "name": "Thanh Tẩy Thiên Đạo Pháp Đài", "type": "kill", "target_monster_min": 4001, "target_monster_max": 4050, "target_count": 300, "exp": 0, "lt": 40000, "mt": 0, "exp_pct": 12},
+                {"id": "84.3", "name": "Trảm Pháp Đài Thiên Quy Chấp Pháp", "type": "kill_monster", "monster_ids": [1506], "target_count": 50, "exp": 0, "lt": 40000, "mt": 0, "exp_pct": 12},
+                {"id": "84.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 40000, "mt": 0, "exp_pct": 10},
+                {"id": "84.5", "name": "Hạ Thiên Đạo Hóa Thân", "type": "kill_boss_name", "boss_names": ["Boss·Thiên Đạo Hóa Thân"], "target_count": 1, "exp": 0, "lt": 40000, "mt": 0, "exp_pct": 25},
+                {"id": "84.6", "name": "Đột Phá Cấp 4050", "type": "breakthrough", "target_level": 4050, "exp": 0, "lt": 40000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 85, "name": "Hỗn Nguyên Thánh Sơn", "level_range": [4050, 4100],
+            "quests": [
+                {"id": "85.1", "name": "Đặt Chân Hỗn Nguyên Thánh Sơn", "type": "reach_region", "region": 108, "exp": 0, "lt": 40500, "mt": 0, "exp_pct": 5},
+                {"id": "85.2", "name": "Thanh Tẩy Hỗn Nguyên Thánh Sơn", "type": "kill", "target_monster_min": 4051, "target_monster_max": 4100, "target_count": 300, "exp": 0, "lt": 40500, "mt": 0, "exp_pct": 12},
+                {"id": "85.3", "name": "Trảm Thánh Sơn Lưỡng Nghi Thủ Hộ", "type": "kill_monster", "monster_ids": [1523], "target_count": 50, "exp": 0, "lt": 40500, "mt": 0, "exp_pct": 12},
+                {"id": "85.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 40500, "mt": 0, "exp_pct": 10},
+                {"id": "85.5", "name": "Hạ Hỗn Nguyên Thái Cực Thánh Thú", "type": "kill_boss_name", "boss_names": ["Boss·Hỗn Nguyên Thái Cực Thánh Thú"], "target_count": 1, "exp": 0, "lt": 40500, "mt": 0, "exp_pct": 25},
+                {"id": "85.6", "name": "Đột Phá Cấp 4100", "type": "breakthrough", "target_level": 4100, "exp": 0, "lt": 40500, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 86, "name": "Đại Đạo Bản Nguyên Hải", "level_range": [4100, 4150],
+            "quests": [
+                {"id": "86.1", "name": "Đặt Chân Đại Đạo Bản Nguyên Hải", "type": "reach_region", "region": 109, "exp": 0, "lt": 41000, "mt": 0, "exp_pct": 5},
+                {"id": "86.2", "name": "Thanh Tẩy Đại Đạo Bản Nguyên Hải", "type": "kill", "target_monster_min": 4101, "target_monster_max": 4150, "target_count": 300, "exp": 0, "lt": 41000, "mt": 0, "exp_pct": 12},
+                {"id": "86.3", "name": "Trảm Bản Nguyên Hải Đạo Giao Vương", "type": "kill_monster", "monster_ids": [1540], "target_count": 50, "exp": 0, "lt": 41000, "mt": 0, "exp_pct": 12},
+                {"id": "86.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 41000, "mt": 0, "exp_pct": 10},
+                {"id": "86.5", "name": "Hạ Bản Nguyên Đạo Long", "type": "kill_boss_name", "boss_names": ["Boss·Bản Nguyên Đạo Long"], "target_count": 1, "exp": 0, "lt": 41000, "mt": 0, "exp_pct": 25},
+                {"id": "86.6", "name": "Đột Phá Cấp 4150", "type": "breakthrough", "target_level": 4150, "exp": 0, "lt": 41000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 87, "name": "Đạo Tổ Tử Tiêu Cung", "level_range": [4150, 4200],
+            "quests": [
+                {"id": "87.1", "name": "Đặt Chân Đạo Tổ Tử Tiêu Cung", "type": "reach_region", "region": 110, "exp": 0, "lt": 41500, "mt": 0, "exp_pct": 5},
+                {"id": "87.2", "name": "Thanh Tẩy Đạo Tổ Tử Tiêu Cung", "type": "kill", "target_monster_min": 4151, "target_monster_max": 4200, "target_count": 300, "exp": 0, "lt": 41500, "mt": 0, "exp_pct": 12},
+                {"id": "87.3", "name": "Trảm Tử Tiêu Cung Hồng Mông Đạo Đồng", "type": "kill_monster", "monster_ids": [1557], "target_count": 50, "exp": 0, "lt": 41500, "mt": 0, "exp_pct": 12},
+                {"id": "87.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 41500, "mt": 0, "exp_pct": 10},
+                {"id": "87.5", "name": "Hạ Tử Tiêu Cung Đạo Tổ Tàn Niệm", "type": "kill_boss_name", "boss_names": ["Boss·Tử Tiêu Cung Đạo Tổ Tàn Niệm"], "target_count": 1, "exp": 0, "lt": 41500, "mt": 0, "exp_pct": 25},
+                {"id": "87.6", "name": "Đột Phá Cấp 4200", "type": "breakthrough", "target_level": 4200, "exp": 0, "lt": 41500, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 88, "name": "Chí Tôn Thiên Khư", "level_range": [4200, 4250],
+            "quests": [
+                {"id": "88.1", "name": "Đặt Chân Chí Tôn Thiên Khư", "type": "reach_region", "region": 111, "exp": 0, "lt": 42000, "mt": 0, "exp_pct": 5},
+                {"id": "88.2", "name": "Thanh Tẩy Chí Tôn Thiên Khư", "type": "kill", "target_monster_min": 4201, "target_monster_max": 4250, "target_count": 300, "exp": 0, "lt": 42000, "mt": 0, "exp_pct": 12},
+                {"id": "88.3", "name": "Trảm Thiên Khư Vẫn Đế Ma Tướng", "type": "kill_monster", "monster_ids": [1574], "target_count": 50, "exp": 0, "lt": 42000, "mt": 0, "exp_pct": 12},
+                {"id": "88.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 42000, "mt": 0, "exp_pct": 10},
+                {"id": "88.5", "name": "Hạ Thiên Khư Chí Tôn Ma Ảnh", "type": "kill_boss_name", "boss_names": ["Boss·Thiên Khư Chí Tôn Ma Ảnh"], "target_count": 1, "exp": 0, "lt": 42000, "mt": 0, "exp_pct": 25},
+                {"id": "88.6", "name": "Đột Phá Cấp 4250", "type": "breakthrough", "target_level": 4250, "exp": 0, "lt": 42000, "mt": 0, "exp_pct": 25}
+            ]
+        },
+        {
+            "id": 89, "name": "Vô Ngã Chung Cực Cảnh", "level_range": [4250, 4300],
+            "quests": [
+                {"id": "89.1", "name": "Đặt Chân Vô Ngã Chung Cực Cảnh", "type": "reach_region", "region": 112, "exp": 0, "lt": 42500, "mt": 0, "exp_pct": 5},
+                {"id": "89.2", "name": "Thanh Tẩy Vô Ngã Chung Cực Cảnh", "type": "kill", "target_monster_min": 4251, "target_monster_max": 4300, "target_count": 300, "exp": 0, "lt": 42500, "mt": 0, "exp_pct": 12},
+                {"id": "89.3", "name": "Trảm Chung Cực Tâm Ma Hộ Vệ", "type": "kill_monster", "monster_ids": [1591], "target_count": 50, "exp": 0, "lt": 42500, "mt": 0, "exp_pct": 12},
+                {"id": "89.4", "name": "Tích Trữ Cường Hóa Thạch", "type": "collect_item", "item_id": 1, "item_count": 30, "exp": 0, "lt": 42500, "mt": 0, "exp_pct": 10},
+                {"id": "89.5", "name": "Hạ Chung Cực Vô Ngã Tâm Ma", "type": "kill_boss_name", "boss_names": ["Boss·Chung Cực Vô Ngã Tâm Ma"], "target_count": 1, "exp": 0, "lt": 42500, "mt": 0, "exp_pct": 25},
+                {"id": "89.6", "name": "Đột Phá Cấp 4300", "type": "breakthrough", "target_level": 4300, "exp": 0, "lt": 42500, "mt": 0, "exp_pct": 25}
+            ]
         }
     ]
 }
