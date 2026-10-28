@@ -8080,17 +8080,19 @@ body.tcg-bg-body .bag-page.bag-compact .bag-tabs{display:grid!important;grid-tem
 body.tcg-bg-body .bag-page.bag-compact .bag-tab,body.tcg-bg-body .bag-page.bag-compact .bag-tab:visited{min-width:0!important;padding:0 2px!important;font-size:11px!important;white-space:nowrap!important}
 }
 
-/* Túi Trang bị (2 cột): dòng 1 = tên + nhãn phẩm, dòng 2 = 2 nút chia đều (thẻ đạo cụ/dược phẩm… vẫn 1 dòng) */
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei{grid-template-columns:22px 40px minmax(0,1fr)!important;grid-template-rows:auto auto!important;row-gap:6px!important;padding:8px 10px!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-index{grid-column:1!important;grid-row:1 / span 2!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-icon{grid-column:2!important;grid-row:1 / span 2!important;width:40px!important;height:40px!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-icon img{width:34px!important;height:34px!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-main{grid-column:3!important;grid-row:1!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:flex-start!important;align-items:center!important;text-align:left!important;gap:6px!important;min-width:0!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-name{display:block!important;-webkit-line-clamp:unset!important;width:auto!important;max-width:100%!important;text-align:left!important;flex:0 1 auto!important;min-width:0!important;font-size:13.5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-badges{flex:0 0 auto!important;margin:0!important;display:inline-flex!important;gap:4px!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-meta{flex:0 0 auto!important;margin:0!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-item-actions{grid-column:3!important;grid-row:2!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;width:100%!important}
-body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-btn,body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card.zhuangbei .bag-btn:visited{width:100%!important;height:28px!important;font-size:12px!important}
+/* Mọi mục Túi Đồ (2 cột): dòng 1 = tên + nhãn / ghi chú, dòng 2 = các nút chia đều */
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card{grid-template-columns:22px 40px minmax(0,1fr)!important;grid-template-rows:auto auto!important;row-gap:6px!important;padding:8px 10px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-index{grid-column:1!important;grid-row:1 / span 2!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-icon{grid-column:2!important;grid-row:1 / span 2!important;width:40px!important;height:40px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-icon img{width:34px!important;height:34px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-main{grid-column:3!important;grid-row:1!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:flex-start!important;align-items:center!important;text-align:left!important;gap:6px!important;min-width:0!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-name{display:block!important;-webkit-line-clamp:unset!important;width:auto!important;max-width:100%!important;text-align:left!important;flex:0 1 auto!important;min-width:0!important;font-size:13.5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-badges{flex:0 0 auto!important;margin:0!important;display:inline-flex!important;gap:4px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-meta{flex:0 1 auto!important;min-width:0!important;margin:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-actions{grid-column:3!important;grid-row:2!important;display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;grid-template-columns:none!important;gap:6px!important;width:100%!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-btn,body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-btn:visited{width:100%!important;height:28px!important;font-size:12px!important}
+
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-empty{grid-column:1/-1!important}
 
 /* ===== Trang Bị kiểu búp bê nhân vật (game/trangbi.php, .profile-page.tb-compact) =====
    8 ô nhóm "Trang bị" trái · chân dung + nút Trang bị nhanh giữa · 8 ô "Vũ khí – Phù – Pháp bảo" phải.
