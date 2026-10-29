@@ -82,7 +82,7 @@ $cfg = \player\thonguyen_config();
 $sid = t_create($db, 'ThoNguyenT1');
 ttrue('T1 tạo nhân vật', intval(q1("SELECT COUNT(*) FROM game1 WHERE sid = ?", array($sid))) === 1);
 $h = page("cmd=zhuangtai&sid=$sid");
-ttrue('T1 trang cá nhân có thanh Tuổi / Thọ nguyên', strpos($h, 'Tuổi / Thọ nguyên') !== false);
+ttrue('T1 trang cá nhân có thanh Thọ nguyên + huy hiệu tuổi', strpos($h, '· Thọ nguyên ') !== false && strpos($h, ' tuổi</span>') !== false);
 ttrue('T1 vào game lần đầu đã có mốc tuổi', intval(q1("SELECT moc FROM player_thonguyen WHERE sid = ?", array($sid))) > 0);
 $s = st($sid);
 ttrue('T1 tuổi ~0', $s['age'] < 0.1, round($s['age'], 3));
