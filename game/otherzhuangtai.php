@@ -91,12 +91,19 @@ if (!function_exists('tcg_other_equipment_slot')) {
         $zbname = isset($zhuangbei->zbname) ? tcg_other_e($zhuangbei->zbname) : 'Trang bị';
         $zbImg = player\zhuangbei_image_path($zhuangbei, player\zhuangbei_slot_icon(isset($zhuangbei->tool) ? $zhuangbei->tool : 0));
 
-        return "<div class='tcg-profile-equip'>
-                    <div class='tcg-profile-equip-label'><img class='tcg-equip-mini' src='{$zbImg}' alt=''> {$slotName}</div>
-                    <a class='tcg-profile-equip-name' href='?cmd={$zbcmd}'>
-                        <span style='color:{$zbys}'>{$zbname}</span><b>{$qhs}</b>
-                    </a>
-                </div>";
+        // Thẻ trang bị: ảnh vật phẩm lớn làm trọng tâm (viền + phát sáng theo phẩm chất), +cường hóa trên góc ảnh
+        $zbRa = isset($zhuangbei->rarity) ? intval($zhuangbei->rarity) : 1;
+        $raColor = player\zhuangbei_rarity_color($zbRa);
+        $raName = tcg_other_e(player\zhuangbei_rarity_name($zbRa));
+        $qhBadge = $qhs !== '' ? "<b class='tcg-eq-qh'>{$qhs}</b>" : '';
+        return "<a class='tcg-profile-equip tcg-eq-card' href='?cmd={$zbcmd}' style='--ra:{$raColor}'>
+                    <span class='tcg-eq-art'><img src='{$zbImg}' alt=''>{$qhBadge}</span>
+                    <span class='tcg-eq-info'>
+                        <span class='tcg-eq-slot'>{$icon} {$slotName}</span>
+                        <span class='tcg-eq-name' style='color:{$zbys}'>{$zbname}</span>
+                        <span class='tcg-eq-ra'>{$raName}</span>
+                    </span>
+                </a>";
     }
 }
 
