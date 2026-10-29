@@ -85,11 +85,17 @@ $old = $db->query("SELECT g.sid FROM game1 g LEFT JOIN player_tanthu t ON t.sid 
 if ($old) tassert('T1 nhân vật cũ (không có dòng player_tanthu): ngày tuổi 0', \player\tanthu_day($old, $db), 0);
 
 // ── T2. Giftcode ───────────────────────────────────────────────
+// 5 mã tân thủ (sql/migrate_giftcode_tanthu2.php), mỗi mã 10 Tu Vi Đan + 2 Thể Lực Đan + chút LT ⇒ đủ 5 mã = 50 viên
+$lt0 = intval(q1("SELECT uyxb FROM game1 WHERE sid = ?", array($sid)));
 $h = page("cmd=duihuan&dhm=tanthu&sid=$sid");
-tassert('T2 TANTHU: +50 Tân Thủ Tu Vi Đan', dj($sid, $PILL), 50);
+tassert('T2 TANTHU: +10 Tân Thủ Tu Vi Đan', dj($sid, $PILL), 10);
 tassert('T2 TANTHU: +3 Túi Linh Thạch', dj($sid, $BAG), 3);
 $h = page("cmd=duihuan&dhm=tanthu&sid=$sid");
-ttrue('T2 TANTHU nhập lại: báo đã dùng, không cộng', dj($sid, $PILL) === 50 && strpos($h, 'đã được sử dụng') !== false);
+ttrue('T2 TANTHU nhập lại: báo đã dùng, không cộng', dj($sid, $PILL) === 10 && strpos($h, 'đã được sử dụng') !== false);
+foreach (array('nhapmon', 'luyenkhi', 'tuchan', 'daotam') as $m) page("cmd=duihuan&dhm=$m&sid=$sid");
+tassert('T2 đủ 5 mã tân thủ: 50 Tu Vi Đan', dj($sid, $PILL), 50);
+tassert('T2 đủ 5 mã tân thủ: 10 Thể Lực Đan', intval(q1("SELECT COALESCE(SUM(ypsum),0) FROM playeryaopin WHERE sid = ? AND ypid = 17", array($sid))), 10);
+tassert('T2 đủ 5 mã tân thủ: +11.000 linh thạch', intval(q1("SELECT uyxb FROM game1 WHERE sid = ?", array($sid))) - $lt0, 11000);
 page("cmd=duihuan&dhm=nhomtele&sid=$sid");
 tassert('T2 NHOMTELE: +1 Thẻ ×2', dj($sid, $X2), 1);
 tassert('T2 NHOMTELE: tổng 80 Tu Vi Đan', dj($sid, $PILL), 80);
