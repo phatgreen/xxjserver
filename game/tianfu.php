@@ -248,7 +248,8 @@ foreach ($tpSlots as $tpSd):
     $tpVcls = $tpVal <= 0 ? ' is-zero' : ($tpVal >= $tpCap ? ' is-max' : '');
 ?>
         <div class="tp-attr">
-            <span class="tp-attr-name"><?= htmlspecialchars($tpGd['name']) ?></span>
+            <?php $tpGemo = array('exp_cultivate' => '🧘', 'exp_monster' => '🗡', 'drop' => '🎁', 'alchemy' => '🔥', 'forge_cost' => '🔨', 'stamina' => '⚡', 'breakthrough' => '💥'); ?>
+            <span class="tp-attr-name"><?= isset($tpGemo[$tpGkey]) ? $tpGemo[$tpGkey] . ' ' : '' ?><?= htmlspecialchars($tpGd['name']) ?></span>
             <b class="tp-attr-val<?= $tpVcls ?>">+<?= $tpVal ?><?= $tpGd['unit'] === '%' ? '' : ' ' ?><?= htmlspecialchars($tpGd['unit']) ?></b>
         </div>
 <?php endforeach; ?>

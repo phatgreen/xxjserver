@@ -562,7 +562,7 @@ if (!isset($sid) || $sid==''){
     <meta http-equiv="Expires" content="0">
     <title>Tu Chân Giới</title>
     <link rel="stylesheet" href="css/gamecss.css?v=2026063001">
-    <link rel="stylesheet" href="css/mystyle.css?v=2026102979">
+    <link rel="stylesheet" href="css/mystyle.css?v=2026102980">
     <link rel="stylesheet" href="css/game-alert.css?v=2026102901">
     <link rel="stylesheet" href="css/itemtip.css?v=2026100401">
     <script src="js/game-alert.js?v=2026102901"></script>

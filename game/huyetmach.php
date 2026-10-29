@@ -304,7 +304,7 @@ if ($hmBloodId > 0 && $hmStage >= 3) {
         </div>
         <div class="hm-reqs">
 <?php foreach ($hmReqRows as $hmReqRow): ?>
-            <div class="hm-req <?= $hmReqRow['ok'] ? 'ok' : 'no' ?>">[<?= $hmReqRow['ok'] ? 'Đủ' : 'Thiếu' ?>] <?= htmlspecialchars($hmReqRow['text']) ?></div>
+            <div class="hm-req <?= $hmReqRow['ok'] ? 'ok' : 'no' ?>"><?= $hmReqRow['ok'] ? "<span class='lc-req ok'>✅ Đủ</span>" : "<span class='lc-req bad'>❌ Thiếu</span>" ?> <?= htmlspecialchars($hmReqRow['text']) ?></div>
 <?php endforeach; ?>
         </div>
         <form method="post" action="?cmd=<?= $encode->encode("cmd=huyetmach&view=" . intval($hmNextTier['stage']) . "&sid=$sid") ?>">

@@ -159,7 +159,7 @@ $lcmsLine = '<div class="lc-ms">Cộng hưởng tổng Lv ' . $lctotal . ': <b>+
 // ---- cột phải: checklist đột phá ----
 $lcsrowRight = '';
 foreach ($lcReqs['rows'] as $req) {
-    $mark = $req['ok'] ? "<font color='#4ade80'>[Đủ]</font>" : "<font color='#f87171'>[Thiếu]</font>";
+    $mark = $req['ok'] ? "<span class='lc-req ok'>✅ Đủ</span>" : "<span class='lc-req bad'>❌ Thiếu</span>";
     $lcsrowRight .= '<div class="lc-reqs-row">' . $mark . ' ' . $req['label']
         . ' <span class="lc-reqs-num">' . number_format($req['cur'], 0, ',', '.')
         . '/' . number_format($req['need'], 0, ',', '.') . '</span></div>';

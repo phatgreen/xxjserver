@@ -8885,3 +8885,7 @@ body.tcg-bg-body .g-drop .item-art img,body.tcg-bg-body .ptask-reward-item .item
 body.tcg-bg-body .g-drop .item-art .bag-emo,body.tcg-bg-body .ptask-reward-item .item-art .bag-emo{font-size:15px}
 body.tcg-bg-body .ptask-reward-item{display:flex!important;align-items:center!important;gap:8px!important}
 body.tcg-bg-body .ptask-reward-item>span{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Linh Căn: nhãn điều kiện đột phá Đủ / Thiếu */
+.lc-req{display:inline-block;padding:0 6px;border-radius:999px;font-size:10px;font-weight:900;line-height:16px;margin-right:4px}
+.lc-req.ok{color:#bbf7d0;background:rgba(22,163,74,.25);border:1px solid rgba(74,222,128,.5)}
+.lc-req.bad{color:#fecaca;background:rgba(185,28,28,.25);border:1px solid rgba(248,113,113,.5)}
