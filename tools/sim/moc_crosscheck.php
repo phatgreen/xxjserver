@@ -54,8 +54,8 @@ if (in_array('--features', $argv)) {
     $uid = intval($db->query("SELECT uid FROM game1 WHERE sid = " . $db->quote($sid))->fetchColumn());
     $lt = function () use ($db, $sid) { \player\player_cache_clear($sid); return intval($db->query("SELECT uyxb FROM game1 WHERE sid = " . $db->quote($sid))->fetchColumn()); };
     echo "| Cơ chế | Mô hình | Đo thật trên server | Khớp |\n|---|---|---|---|\n";
-    // 1) Bán Đột Phá Đan (djid 20/21/22) cho NPC = giá tiệm
-    foreach (array(20 => 50000, 21 => 150000, 22 => 200000) as $dj => $price) {
+    // 1) Bán Đột Phá Đan (djid 20/21/22) cho NPC — sau sửa E1 = 10% giá tiệm (daoju_sell_config.json)
+    foreach (array(20 => 5000, 21 => 15000, 22 => 20000) as $dj => $price) {
         \player\adddj($sid, $dj, 3, $db);
         $a = $lt(); page("cmd=getbagdj&canshu=maichu1&djid=$dj&yeshu=1&uid=$uid&sid=$sid"); usleep(150000); $b = $lt();
         printf("| Bán 1 Đột Phá Đan djid %d | %d LT | %d LT | %s |\n", $dj, $price, $b - $a, ($b - $a) == $price ? 'OK' : 'LỆCH');
@@ -64,10 +64,12 @@ if (in_array('--features', $argv)) {
     page("cmd=linhcan_boss&sid=$sid");
     $b1 = $db->query("SELECT id, level, maxhp FROM linhcan_boss WHERE status = 'active' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
     $db->exec("UPDATE linhcan_boss SET hp = 0 WHERE id = " . intval($b1['id']));   // giả lập bị hạ (chỉ để đo)
+    // sau sửa E3: giả lập bị hạ phải đi qua linhcan_boss_mark_killed (status killed + killed_at) ⇒ không có boss mới trong 120'
+    \player\linhcan_boss_mark_killed(intval($b1['id']), $sid, $db);
     usleep(150000); page("cmd=linhcan_boss&sid=$sid");
-    $b2 = $db->query("SELECT id, level, maxhp FROM linhcan_boss WHERE status = 'active' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-    printf("| Boss Linh Căn: boss mới ngay sau khi bị hạ | có | id %d → %d | %s |\n", $b1['id'], $b2['id'], ($b2 && $b2['id'] != $b1['id']) ? 'OK' : 'LỆCH');
-    printf("| Boss Linh Căn: máu = 5000 + 500 × cấp | %d (cấp %d) | %d | %s |\n", 5000 + 500 * $b2['level'], $b2['level'], $b2['maxhp'], (5000 + 500 * $b2['level']) == $b2['maxhp'] ? 'OK' : 'LỆCH');
+    $nNew = intval($db->query("SELECT COUNT(*) FROM linhcan_boss WHERE id > " . intval($b1['id']))->fetchColumn());
+    printf("| Boss Linh Căn: không có boss mới trong 120' sau khi bị hạ | 0 boss mới | %d boss mới | %s |\n", $nNew, $nNew == 0 ? 'OK' : 'LỆCH');
+    printf("| Boss Linh Căn: máu = 5000 + 500 × cấp | %d (cấp %d) | %d | %s |\n", 5000 + 500 * $b1['level'], $b1['level'], $b1['maxhp'], (5000 + 500 * $b1['level']) == $b1['maxhp'] ? 'OK' : 'LỆCH');
     // 3) Hầm Mỏ: 5 lượt miễn phí/ngày — đo LT trung bình / lượt + Cường Hóa Thạch qua 100 ngày (đặt lại bộ đếm ngày, chỉ để đo)
     $digs = 0; $gain = 0; $cht0 = 0;
     $chtq = function () use ($db, $sid) { $r = $db->query("SELECT djsum FROM playerdaoju WHERE sid = " . $db->quote($sid) . " AND djid = 1")->fetchColumn(); return intval($r); };
@@ -88,9 +90,10 @@ if (in_array('--features', $argv)) {
     $r1 = isset($tb[1]) ? $tb[1] : reset($tb);
     printf("| Vấn Đỉnh Đài: thưởng hạng 1 | 10000 LT + 100 MT | %s | %s |\n", json_encode($r1), (strpos(json_encode($r1), '10000') !== false && strpos(json_encode($r1), '100') !== false) ? 'OK' : 'LỆCH');
     // 5) Huyết Thạch (112) không bán ở tiệm
-    $shop = page("cmd=shangdian&kw=" . urlencode('Huyết Thạch') . "&sid=$sid");
+    $shop = page("cmd=shangdian&canshu2=gogoumai2&kw=" . urlencode('Huyết Thạch') . "&sid=$sid");   // tab Đạo cụ
     $shop = str_replace('value="Huyết Thạch"', '', $shop);   // bỏ chữ trong ô tìm kiếm, chỉ xét danh sách hàng
-    printf("| Tiệm không bán Huyết Thạch (112) | không có | %s | %s |\n", strpos($shop, 'Huyết Thạch') === false ? 'không có' : 'CÓ', strpos($shop, 'Huyết Thạch') === false ? 'OK' : 'LỆCH');
+    $noHt = strpos($shop, 'Không tìm thấy vật phẩm nào') !== false;   // trang báo rỗng in lại từ khóa ⇒ xét câu báo rỗng
+    printf("| Tiệm (tab Đạo cụ) không bán Huyết Thạch (112) | không có | %s | %s |\n", $noHt ? 'không có' : 'CÓ', $noHt ? 'OK' : 'LỆCH');
     mt_clean($db);
     exit(0);
 }

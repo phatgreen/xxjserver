@@ -1,0 +1,8 @@
+{
+    "_note": "Thuế Phường Thị (game/fangshi.php), trừ vào tiền người bán nhận: thuế % = base_pct + bậc theo tổng giá trị giao dịch (price_steps) + bậc theo phẩm cấp món hàng (trang bị: rarity_steps theo phẩm 1–14; đạo cụ: item_value_steps theo giá gốc djyxb), kẹp trong [base_pct, max_pct]. Mỗi bảng lấy bậc cao nhất có ngưỡng <= giá trị. Chủ dự án chốt 2026-10-29: 5% → 15%.",
+    "base_pct": 5,
+    "max_pct": 15,
+    "price_steps": [[10000, 1], [100000, 3], [1000000, 5]],
+    "rarity_steps": [[4, 1], [7, 2], [10, 3], [12, 4], [13, 5]],
+    "item_value_steps": [[1000, 1], [10000, 2], [50000, 5]]
+}

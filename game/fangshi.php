@@ -146,7 +146,10 @@ switch ($fangshi) {
                     throw new PDOException('Trong phường thị đạo cụ này không đủ');
                 }
 
-                $priceAfterTax = floor($price * 0.9);
+                // Thuế 5–15% theo tổng giá + giá gốc đạo cụ (trade_tax_config.json), trừ vào tiền người bán (cũ cố định 10%)
+                $fsDjCfg = \player\getdaoju($fsdj->djid, $dblj);
+                $taxPct = \player\trade_tax_pct('daoju', $fsDjCfg ? intval($fsDjCfg->djyxb) : 0, $price);
+                $priceAfterTax = \player\trade_tax_after($price, $taxPct);
                 $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb + :price WHERE uid = :uid");
                 $stmt->execute(array(':price' => $priceAfterTax, ':uid' => intval($fsdj->uid)));
                 if ($stmt->rowCount() == 0 && $priceAfterTax > 0) {
@@ -174,7 +177,7 @@ switch ($fangshi) {
                 }
 
                 $dblj->commit();
-                $noticeHtml .= tcg_market_notice('success', 'Giao dịch thành công');
+                $noticeHtml .= tcg_market_notice('success', 'Giao dịch thành công (thuế ' . $taxPct . '%, người bán nhận ' . $priceAfterTax . ' Linh thạch)');
                 \player\changerwyq1(1, $fsdj->djid, 1, $sid, $dblj);
             } catch (PDOException $e) {
                 if ($dblj->inTransaction()) {
@@ -305,7 +308,10 @@ switch ($fangshi) {
                     throw new PDOException('Trang bị xuất hàng thất bại');
                 }
 
-                $priceAfterTax = floor($pay * 0.9);
+                // Thuế 5–15% theo giá + phẩm trang bị (trade_tax_config.json), trừ vào tiền người bán (cũ cố định 10%)
+                $fsZb = \player\getzb($zbnowid, $dblj);
+                $taxPct = \player\trade_tax_pct('zb', ($fsZb && isset($fsZb->rarity)) ? intval($fsZb->rarity) : 1, $pay);
+                $priceAfterTax = \player\trade_tax_after($pay, $taxPct);
                 $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb + :pay WHERE uid = :uid");
                 $stmt->execute(array(':pay' => $priceAfterTax, ':uid' => $sellerUid));
                 if ($stmt->rowCount() == 0 && $priceAfterTax > 0) {
@@ -323,7 +329,7 @@ switch ($fangshi) {
                 }
 
                 $dblj->commit();
-                $noticeHtml .= tcg_market_notice('success', 'Giao dịch thành công');
+                $noticeHtml .= tcg_market_notice('success', 'Giao dịch thành công (thuế ' . $taxPct . '%, người bán nhận ' . $priceAfterTax . ' Linh thạch)');
             } catch (PDOException $e) {
                 if ($dblj->inTransaction()) {
                     $dblj->rollBack();
@@ -425,7 +431,10 @@ switch ($fangshi) {
                     throw new PDOException('Trang bị xuất hàng thất bại');
                 }
 
-                $priceAfterTax = floor($pay * 0.9);
+                // Thuế 5–15% theo giá + phẩm trang bị (trade_tax_config.json), trừ vào tiền người bán (cũ cố định 10%)
+                $fsZb = \player\getzb($sdZbnowid, $dblj);
+                $taxPct = \player\trade_tax_pct('zb', ($fsZb && isset($fsZb->rarity)) ? intval($fsZb->rarity) : 1, $pay);
+                $priceAfterTax = \player\trade_tax_after($pay, $taxPct);
                 $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb + :pay WHERE uid = :uid");
                 $stmt->execute(array(':pay' => $priceAfterTax, ':uid' => intval($sd->uid)));
                 if ($stmt->rowCount() == 0 && $priceAfterTax > 0) {
@@ -441,7 +450,7 @@ switch ($fangshi) {
                 }
 
                 $dblj->commit();
-                $noticeHtml .= tcg_market_notice('success', 'Giao dịch thành công');
+                $noticeHtml .= tcg_market_notice('success', 'Giao dịch thành công (thuế ' . $taxPct . '%, người bán nhận ' . $priceAfterTax . ' Linh thạch)');
             } catch (PDOException $e) {
                 if ($dblj->inTransaction()) {
                     $dblj->rollBack();
@@ -497,7 +506,7 @@ $html = <<<HTML
         <div class="tcg-market-emblem">⚖️</div>
         <div class="tcg-market-head">
             <h1>Phường Thị Giao Dịch</h1>
-            <div class="tcg-market-desc">Mua bán đạo cụ, trang bị và vật phẩm do tu sĩ khác bày bán.</div>
+            <div class="tcg-market-desc">Mua bán đạo cụ, trang bị và vật phẩm do tu sĩ khác bày bán. Thuế giao dịch 5–15% theo giá trị và phẩm cấp, trừ vào tiền người bán.</div>
         </div>
     </div>
 

@@ -76,6 +76,19 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_check_spawn')) {
             $updateStmt->execute(array($boss['id']));
         }
 
+        // Boss vừa bị hạ: chỉ hồi sinh sau spawn_interval_minutes tính từ killed_at (cũ: hạ xong mở trang là có boss mới ngay — E3).
+        // killed_at ghi bằng date() của PHP (linhcan_boss_mark_killed) nên so bằng time() của PHP.
+        $stmt = $dblj->query("SELECT * FROM linhcan_boss WHERE status = 'killed' AND killed_at IS NOT NULL ORDER BY id DESC LIMIT 1");
+        $dead = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($dead) {
+            $left = intval(strtotime($dead['killed_at'])) + $spawnInterval * 60 - time();
+            if ($left > 0) {
+                $dead['hp'] = 0;
+                $dead['respawn_in'] = $left;
+                return $dead;
+            }
+        }
+
         return false;
     }
 }

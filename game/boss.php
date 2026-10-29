@@ -632,6 +632,9 @@ HTML;
 					
                     goto yp;
                 }
+                if ($lvc >= 35 && \player\tupo_is_pill($djid)){
+                    goto yp;// Đột Phá Đan chặn theo chênh lệch cấp như linh thạch / ma thạch (không quét boss cấp thấp lấy đan) — E1
+                }
                 $djsum = mt_rand(3,12);
                 \player\adddj($sid,$djid,$djsum,$dblj);
                 $huode .= "Nhận được: <font class='djys'>$djname x$djsum</font><br>";//色彩要素

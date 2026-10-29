@@ -59,6 +59,21 @@ if (!function_exists(__NAMESPACE__ . '\\daoju_config_get')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\daoju_sell_price')) {
+    // Giá bán 1 đạo cụ cho NPC theo class/config/daoju_sell_config.json; 0 = không bán cho NPC được.
+    function daoju_sell_price($djid, $djyxb){
+        static $pct = null;
+        if ($pct === null) {
+            $file = __DIR__ . '/../config/daoju_sell_config.json';
+            $data = is_file($file) ? json_decode(file_get_contents($file), true) : null;
+            $pct = (is_array($data) && isset($data['pct']) && is_array($data['pct'])) ? $data['pct'] : array();
+        }
+        $key = (string)intval($djid);
+        $p = isset($pct[$key]) ? intval($pct[$key]) : 100;
+        return intval(floor(intval($djyxb) * max(0, $p) / 100));
+    }
+}
+
 if (!function_exists(__NAMESPACE__ . '\\hydrate_daoju_config_to_object')) {
     function hydrate_daoju_config_to_object($object, $config){
         if (!$config || !is_array($config)) {

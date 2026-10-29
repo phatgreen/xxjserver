@@ -374,10 +374,10 @@ block('Trang bị (mặc / tháo / cường hóa / ngũ hành / phân giải / b
     go('phân giải trang bị (delezb)', "cmd=delezb&zbnowid={$ZB['spare']}&sid=$SID", null, '');
     chk('phân giải: xóa món, trừ 20 LT, +đá cường hóa', intval(q1("SELECT COUNT(*) FROM playerzhuangbei WHERE zbnowid = ?", array($ZB['spare']))) === 0
         && $lt0 - intval(row()['uyxb']) === 20 && dj(1) > $s0, 'LT -' . ($lt0 - intval(row()['uyxb'])) . ', đá +' . (dj(1) - $s0));
-    // Bán: nhận rarity×50 + qh×5
+    // Bán: nhận rarity×25 + qh×5 (E2 2026-10-29, cũ ×50)
     $lt0 = intval(row()['uyxb']);
     go('bán trang bị (maichu)', "cmd=getbagzb&canshu=maichu&yeshu=0&zbnowid={$ZB['sell']}&sid=$SID", null, '');
-    chk('bán zbid 1 (+2): nhận 1×50 + 2×5 = 60 LT', intval(row()['uyxb']) - $lt0 === 60, 'nhận ' . (intval(row()['uyxb']) - $lt0));
+    chk('bán zbid 1 (+2): nhận 1×25 + 2×5 = 35 LT', intval(row()['uyxb']) - $lt0 === 35, 'nhận ' . (intval(row()['uyxb']) - $lt0));
     go('Thần Trang (taozhuang)', "cmd=taozhuang&sid=$SID", null, '');
 });
 
@@ -776,8 +776,8 @@ block('Giao dịch (Phường thị)', function () {
     $db->prepare("UPDATE game1 SET uyxb = 100000 WHERE sid = ?")->execute(array($SID2));
     $lt0 = intval(row()['uyxb']); $lt20 = intval(row($SID2)['uyxb']);
     go('người mua mua trang bị', "cmd=fangshi&fangshi=zhuangbei&canshu=buy&payid=$payid&sid=$SID", null, '');
-    chk('mua: người mua -1000 LT, người bán +900 (thuế 10%), món về người mua', $lt0 - intval(row()['uyxb']) === 1000
-        && intval(row($SID2)['uyxb']) - $lt20 === 900 && q1("SELECT sid FROM playerzhuangbei WHERE zbnowid = ?", array($zb)) === $SID,
+    chk('mua: người mua -1000 LT, người bán +950 (thuế 5%: phẩm 1, giá < 10k — trade_tax_config.json), món về người mua', $lt0 - intval(row()['uyxb']) === 1000
+        && intval(row($SID2)['uyxb']) - $lt20 === 950 && q1("SELECT sid FROM playerzhuangbei WHERE zbnowid = ?", array($zb)) === $SID,
         'mua -' . ($lt0 - intval(row()['uyxb'])) . ', bán +' . (intval(row($SID2)['uyxb']) - $lt20));
     // Treo rồi thu hồi
     go('người mua treo lại món vừa mua', "cmd=zbinfo&canshu=chushou&pay=500&zbnowid=$zb&sid=$SID", null, '');

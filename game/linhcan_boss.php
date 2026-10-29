@@ -180,7 +180,9 @@ if ($isPersonal) {
         if ($bwHp > 0) {
             $bossHtml .= '<a class="lcb-btn" href="?cmd=' . $wattackCmd . '">TẤN CÔNG</a>';
         } else {
-            $bossHtml .= '<div class="lcb-dead">BOSS ĐÃ BỊ TIÊU DIỆT — hồi sau xuất hiện lại</div>';
+            $bwLeft = isset($bossData['respawn_in']) ? intval($bossData['respawn_in']) : 0;
+            $bossHtml .= '<div class="lcb-dead">BOSS ĐÃ BỊ TIÊU DIỆT — '
+                . ($bwLeft > 0 ? 'xuất hiện lại sau ' . max(1, intval(ceil($bwLeft / 60))) . ' phút' : 'hồi sau xuất hiện lại') . '</div>';
         }
         $bossHtml .= '</div>';
     } else {

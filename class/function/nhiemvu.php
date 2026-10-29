@@ -1265,6 +1265,17 @@ if (!function_exists(__NAMESPACE__ . '\\nhiemvu_coduyen_event')) {
             $parts = array();
             if ($rw['exp'] > 0) $parts[] = '+' . number_format($rw['exp']) . ' tu vi';
             if ($rw['lt'] > 0)  $parts[] = '+' . number_format($rw['lt']) . ' LT';
+            // Thưởng đạo cụ tùy chọn: "items": [{"id": djid, "count": n}] (vd. cd_huyetmach phát Huyết Thạch mở đầu — E4)
+            if (!empty($q['items']) && is_array($q['items'])) {
+                foreach ($q['items'] as $it) {
+                    $itId = isset($it['id']) ? intval($it['id']) : 0;
+                    $itN = isset($it['count']) ? intval($it['count']) : 0;
+                    if ($itId <= 0 || $itN <= 0) continue;
+                    adddj($sid, $itId, $itN, $dblj);
+                    $itCfg = daoju_config_get($itId);
+                    $parts[] = '+' . $itN . ' ' . ($itCfg && isset($itCfg['djname']) ? $itCfg['djname'] : ('vật phẩm #' . $itId));
+                }
+            }
             $msg = 'Cơ Duyên hoàn thành: ' . $q['name'] . ($parts ? ' — ' . implode(', ', $parts) : '');
             $msgs[] = $msg;
             $_SESSION['cd_flash'][] = $msg;

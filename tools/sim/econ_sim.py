@@ -74,10 +74,13 @@ GEAR_HALF = {1: 1.7, 10: 3.8, 30: 12.3, 60: 56.3, 120: 201.6, 200: 501.8, 300: 1
 def gear_salvage(T): return max(GEAR_RAR[T] * 50, 10 * (GEAR_HALF[T] + 0.18) - 20)   # đồ dư: bán NPC hoặc phân giải ra đá (10 LT/viên), lấy cái lợi hơn (bagzb.php)
 def ugj_est(L): return boss_hp(L) / 50 + 10.5 * L   # công ước lượng khớp giả định "boss cùng cấp 50 đòn" (boss DEF ≈ 14·cấp)
 
-def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0, full=False, sell_pill=True):
+def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0, full=False, sell_pill=True, fixed=False):
     # marks: ngày ghi số liệu; cult_bonus: % EXP tu luyện cộng thêm (Tông Môn)
     # full: thêm Boss Linh Căn, Hầm Mỏ, Vấn Đỉnh Đài, Tông Môn tự lập, Luyện Đan / Chế Tạo, bán đồ dư, Đột Phá Đan rơi từ boss,
     #       sửa linh căn đột phá theo từng hệ, Huyết Mạch bế tắc với F2P; sell_pill: bán Đột Phá Đan cho NPC (luật hiện tại)
+    # fixed: luật sau sửa E1–E5 (2026-10-29): đan bán NPC 10% + không rơi khi chênh >= 35; Cường Hóa Thạch không bán (đồ dư chỉ bán
+    #        25/phẩm); boss Linh Căn hồi 120' sau khi bị hạ; Cơ Duyên Huyết Mạch tặng 32 Huyết Thạch ⇒ boss mạch huyết 5 lượt/ngày;
+    #        độc tính luyện đan giảm 3/giờ (hết trần 115 lò)
     random.seed(seed)
     owned = dict((s, 0) for s in range(1, 16))   # bậc trang bị đang mặc theo ô
     def gb():
@@ -93,7 +96,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         for _ in range(k):
             if random.random() < MOB_DROP:
                 sl = random.choice(random.choice(NORMAL_GROUPS))
-                if full and owned[sl] >= T: add_lt(gear_salvage(T), 'lt_sell')
+                if full and owned[sl] >= T: add_lt(GEAR_RAR[T] * 25 if fixed else gear_salvage(T), 'lt_sell')
                 owned[sl] = max(owned[sl], T)
     def drop_boss(n, bl):
         T = tkey(bl)
@@ -101,7 +104,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         for _ in range(int(n)):
             if random.random() < BOSS_DROP:
                 sl = random.choice(SPECIAL_BREAK + SPECIAL_CULT)
-                if full and owned[sl] >= T: add_lt(gear_salvage(T), 'lt_sell')
+                if full and owned[sl] >= T: add_lt(GEAR_RAR[T] * 25 if fixed else gear_salvage(T), 'lt_sell')
                 owned[sl] = max(owned[sl], T)
     L, exp, lt, mt = 1, 0.0, 2000.0, 0
     S = dict(mt_pet=0, lt_in=0, lt_boss=0, lt_mob=0, lt_quest=0, lt_tower=0, lt_tupo=0, lt_cult=0, lt_feat=0, mt_boss=0, mt_quest=0,
@@ -222,7 +225,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
                     S['tf'] -= t; spend(c); F['tf_q'] += 1
                 else: break
         # huyết mạch (101+) / thể chất (120+): kỳ vọng chi phí = phí / tỉ lệ
-        if L >= 101 and not full:   # full: Huyết Thạch (112) không mua được, chỉ boss Huyết Mạch rơi mà boss cần thức tỉnh bằng Huyết Thạch ⇒ F2P kẹt
+        if L >= 101 and (not full or fixed):   # fixed: Cơ Duyên 32 Huyết Thạch mở đường, boss mạch huyết rơi tiếp. full (luật cũ): Huyết Thạch (112) không mua được, chỉ boss Huyết Mạch rơi mà boss cần thức tỉnh bằng Huyết Thạch ⇒ F2P kẹt
             while F['hm'] < len(HM_STEPS) and L >= HM_LV[F['hm']]:
                 c, p = HM_STEPS[F['hm']]
                 if lt - reserve < c / p: break
@@ -240,7 +243,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         if full:
             # Luyện Đan (15+): ~4 lò/ngày (đủ nhiệm vụ ngày/tuần), kỳ vọng 404 LT/lò; dừng ở ~115 lò vì độc tính luyện đan không giảm
             if L >= 15:
-                k = min(4, 115 - S['ld'])
+                k = 4 if fixed else min(4, 115 - S['ld'])
                 if k > 0 and lt - reserve >= 404 * k: spend(404 * k); S['ld'] += k
             # Chế Tạo (200+): Thánh Phi Phong ô 8 bậc 200, 250 LT, hỏng không mất nguyên liệu
             if L >= 200 and owned[8] < 200 and lt - reserve >= 250: spend(250); owned[8] = 200
@@ -302,7 +305,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
             own = boss_hp(L)
             for bl, (hp, ms) in BOSS.items():
                 far = L - bl >= 35
-                if bl > L or (far and not (full and sell_pill and bl in BOSS_PILL)): continue   # chênh >= 35: chỉ còn đáng săn để lấy đan
+                if bl > L or (far and not (full and sell_pill and not fixed and bl in BOSS_PILL)): continue   # chênh >= 35: chỉ còn đáng săn để lấy đan
                 t = max(1, math.ceil(50 * hp / own)) * CLICK + TRAVEL
                 n = min(3600 // ms, left // t)
                 if n > 0:
@@ -312,7 +315,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
                     if not far: add_lt(n * (90 * bl + 1330), 'lt_boss'); add_mt(n * (3 + round(bl / 10)), 'mt_boss')
                     if full and bl in BOSS_PILL:
                         S['pills'] += n * PILL_PER_KILL
-                        if sell_pill: add_lt(n * PILL_PER_KILL * BOSS_PILL[bl], 'lt_pill')
+                        if sell_pill: add_lt(n * PILL_PER_KILL * BOSS_PILL[bl] * (0.1 if fixed else 1), 'lt_pill')
             # quái cùng cấp: 1 thể lực / đòn, 5,5 đòn / con
             stamina = min(100 + L - 1 + 40, stamina + 60)
             used = 0
@@ -326,11 +329,16 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
                 d_ = max(1, ugj_est(L) - 0.75 * (100 + 10 * L))
                 t_ = math.ceil((5000 + 500 * L) / d_) * CLICK + TRAVEL
                 n = int(max(0, left - used) // t_)
+                if fixed: n = min(n, 1 if (day * 24 + h) % 2 == 0 else 0)   # hồi 120' sau khi bị hạ ⇒ tối đa 1 con / 2 giờ online
                 S['lcb'] += n; F['lcw'] += n; add_lt(n * 300, 'lt_lcb'); F['st'] += n * 3; F['ba'] += n * 1.5
             try_tupo(wd)
         for chL in (10, 25, 50, 60, 78, 92, 106, 150, 200, 250, 300, 400, 500, 550, 600):
             if L >= chL and chL > ch_done: add_exp(need(L) * 0.9, 'e_quest'); add_lt(10 * chL * 6 * (1 + L / 100), 'lt_quest'); ch_done = chL
         try_tupo(wd)
+        if full and fixed and L >= 101:
+            # boss mạch huyết (huyetmach_boss_config.json): 5 lượt/ngày, stage 2 cấp 150 = 20.000 LT + 4 Huyết Thạch / lần
+            # (cần thức tỉnh 1 — có từ 32 Huyết Thạch Cơ Duyên); đánh được khi công ước lượng hạ trong <= 60 đòn
+            if (33000 / max(1, ugj_est(L) - 0.75 * 1350)) <= 60: add_lt(5 * 20000, 'lt_boss')
         if full and F['club']:
             # boss tông môn 1 lần/ngày, tự đánh 1 mình (3 giây/đòn): được nếu hạ trong 25% thời gian online
             chp = 100000 + 500000 * (F['clv'] - 1); dmg = 0.85 * max(1, ugj_est(L) - 0.75 * (1500 + 5 * (F['clv'] - 1)))

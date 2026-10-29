@@ -23,7 +23,7 @@
         {"id": "cd_tianfu",      "feature": "tianfu",      "type": "visit",      "target": 1, "exp_pct": 4, "lt": 500, "name": "Thiên Phú Bẩm Sinh",    "desc": "Mở Thiên Phú. Uống Khai Phú Đan (mua ở Cửa Hàng) để khai mở thiên phú đầu tiên."},
         {"id": "cd_vandinhdai",  "feature": "vandinhdai",  "type": "visit",      "target": 1, "exp_pct": 3, "lt": 500, "name": "Vấn Đỉnh Đài",          "desc": "Vào Vấn Đỉnh Đài để tỷ võ cùng người chơi khác, tranh hạng."},
         {"id": "cd_conghuong",   "feature": "conghuong",   "type": "visit",      "target": 1, "exp_pct": 3, "lt": 500, "name": "Tàng Kinh Các",         "desc": "Mở Cộng Hưởng — nhiều bộ võ công Viên Mãn cùng nhóm sẽ cộng hưởng tăng chỉ số."},
-        {"id": "cd_huyetmach",   "feature": "huyetmach",   "type": "visit",      "target": 1, "exp_pct": 5, "lt": 800, "name": "Huyết Mạch Thượng Cổ",  "desc": "Mở Huyết Mạch để thức tỉnh dòng máu thượng cổ."},
+        {"id": "cd_huyetmach",   "feature": "huyetmach",   "type": "visit",      "target": 1, "exp_pct": 5, "lt": 800, "items": [{"id": 112, "count": 32}], "name": "Huyết Mạch Thượng Cổ",  "desc": "Mở Huyết Mạch để thức tỉnh dòng máu thượng cổ. Tặng 32 Huyết Thạch — đủ luyện mạch tới thức tỉnh Sơ Giác (nguồn Huyết Thạch đầu tiên, sau đó boss mạch huyết rơi)."},
         {"id": "cd_thechat",     "feature": "thechat",     "type": "visit",      "target": 1, "exp_pct": 5, "lt": 800, "name": "Rèn Nhục Thân",         "desc": "Mở Thể Chất để luyện hóa nhục thân, tăng khí huyết."}
     ]
 }

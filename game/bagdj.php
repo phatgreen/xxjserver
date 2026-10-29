@@ -54,31 +54,36 @@ $tishi = '';
 
 if (isset($canshu)){
     $getyxb = 0;
+    // Giá bán NPC theo daoju_sell_config.json (Đột Phá Đan 10%, Cường Hóa Thạch không bán) — kiểm TRƯỚC khi trừ đạo cụ
+    $sellDj = \player\getdaoju($djid,$dblj);
+    $sellUnit = $sellDj ? \player\daoju_sell_price($djid, $sellDj->djyxb) : 0;
+    $sellMap = array('maichu1' => 1, 'maichu5' => 5, 'maichu10' => 10);
+    if ($sellUnit <= 0 && isset($sellMap[$canshu])) {
+        $tishi = "Vật phẩm này không bán cho NPC được (có thể treo ở Phường Thị)";
+    } else {
     if ($canshu == "maichu1"){
         $ret = \player\deledjsum($djid,1,$sid,$dblj);
         if ($ret){
-            $daoju = \player\getdaoju($djid,$dblj);
-            \player\changeyxb(1,$daoju->djyxb,$sid,$dblj);
-            $getyxb = $daoju->djyxb;
+            \player\changeyxb(1,$sellUnit,$sid,$dblj);
+            $getyxb = $sellUnit;
         }
     }
     if ($canshu == "maichu5"){
         $ret = \player\deledjsum($djid,5,$sid,$dblj);
         if ($ret){
-            $daoju = \player\getdaoju($djid,$dblj);
-            \player\changeyxb(1,$daoju->djyxb*5,$sid,$dblj);
-            $getyxb = $daoju->djyxb*5;
+            \player\changeyxb(1,$sellUnit*5,$sid,$dblj);
+            $getyxb = $sellUnit*5;
         }
     }
     if ($canshu == "maichu10"){
         $ret = \player\deledjsum($djid,10,$sid,$dblj);
         if ($ret){
-            $daoju = \player\getdaoju($djid,$dblj);
-            \player\changeyxb(1,$daoju->djyxb*10,$sid,$dblj);
-            $getyxb = $daoju->djyxb*10;
+            \player\changeyxb(1,$sellUnit*10,$sid,$dblj);
+            $getyxb = $sellUnit*10;
         }
     }
     $tishi = "Bán thành công, nhận được {$getyxb} Linh thạch";
+    }
 }
 
 if ($cmd == 'usedaoju'){

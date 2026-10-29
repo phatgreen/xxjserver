@@ -77,6 +77,8 @@ if(isset($canshu))
 $name = $ydaoju ? djinfo_h($ydaoju->djname) : 'Đạo cụ không tồn tại';
 $info = $ydaoju ? djinfo_h($ydaoju->djinfo) : 'Mã đạo cụ này không có trong cấu hình.';
 $price = $ydaoju ? number_format(intval($ydaoju->djyxb), 0, ',', '.') : '0';
+$sellUnit = $ydaoju ? \player\daoju_sell_price($djid, $ydaoju->djyxb) : 0;
+$sellText = $sellUnit > 0 ? number_format($sellUnit, 0, ',', '.') . ' Linh thạch' : 'Không bán NPC';
 $owned = $daoju ? intval($daoju->djsum) : 0;
 $noticeHtml = $notice != '' ? '<div class="djinfo-notice '.$noticeType.'">'.djinfo_h($notice).'</div>' : '';
 
@@ -114,6 +116,7 @@ $formSection = $daoju
     <section class="djinfo-stats">
         <div class="djinfo-stat"><span>Số lượng đang có</span><b><?php echo number_format($owned, 0, ',', '.'); ?></b></div>
         <div class="djinfo-stat"><span>Giá tham khảo</span><b><?php echo $price; ?> Linh thạch</b></div>
+        <div class="djinfo-stat"><span>Bán cho NPC</span><b><?php echo $sellText; ?></b></div>
     </section>
 
     <?php echo $formSection; ?>

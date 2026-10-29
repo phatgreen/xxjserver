@@ -61,6 +61,15 @@ if (!function_exists(__NAMESPACE__ . '\\luonden_get_all_recipes')) {
  */
 if (!function_exists(__NAMESPACE__ . '\\luonden_get_alchemist')) {
     function luonden_get_alchemist($sid, $dblj){
+        // Độc tính tự giảm 3 điểm/giờ (phản phệ + đan độc), tính bù khi đọc — không cần cron (cũ: luonden_reduce_toxin_hourly
+        // không có chỗ gọi ⇒ độc tính không bao giờ giảm, cả đời chỉ ~115 lò — E5). updated_at ghi bằng NOW() của MySQL nên
+        // tính giờ bằng NOW() luôn; SET chạy trái → phải nên 2 cột độc tính dùng updated_at cũ, phần lẻ < 1 giờ được giữ lại.
+        $settle = $dblj->prepare("UPDATE player_alchemist SET
+                total_toxin = GREATEST(0, total_toxin - 3 * FLOOR(TIMESTAMPDIFF(SECOND, updated_at, NOW()) / 3600)),
+                pill_toxin = GREATEST(0, pill_toxin - 3 * FLOOR(TIMESTAMPDIFF(SECOND, updated_at, NOW()) / 3600)),
+                updated_at = DATE_ADD(updated_at, INTERVAL FLOOR(TIMESTAMPDIFF(SECOND, updated_at, NOW()) / 3600) HOUR)
+            WHERE sid = ? AND (total_toxin > 0 OR pill_toxin > 0) AND updated_at <= NOW() - INTERVAL 1 HOUR");
+        $settle->execute(array($sid));
         $stmt = $dblj->prepare("SELECT * FROM player_alchemist WHERE sid = ?");
         $stmt->execute(array($sid));
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

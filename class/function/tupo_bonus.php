@@ -40,6 +40,14 @@ if (!function_exists(__NAMESPACE__ . '\\tupo_pill_for_level')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\tupo_is_pill')) {
+    // djid có phải Đột Phá Đan (pill.items) không — dùng để chặn rơi đan theo chênh cấp ở boss.php / pve.php.
+    function tupo_is_pill($djid){
+        $cfg = tupo_bonus_config();
+        return isset($cfg['pill']['items'][(string)intval($djid)]);
+    }
+}
+
 if (!function_exists(__NAMESPACE__ . '\\tupo_pill_no_effect')) {
     // Từ Độ Kiếp (cảnh giới no_pill_from_realm) trở đi đan dược không còn tác dụng với đột phá.
     function tupo_pill_no_effect($lv){

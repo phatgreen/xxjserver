@@ -2,6 +2,7 @@
 
 > Ngày đo: 2026-10-29 · Nhánh `claude/tong-quan-du-an` (code mới nhất) · Môi trường cloud: MariaDB 10.11 + `docs/db/game.sql` + 30 migration (`kt0` → `lan9`, `drop_cover`, `tongmon`, 4 migration 10-29), server thử `127.0.0.1:8091`.
 > Cách làm giống `DOT_G_KINH_TE_THE_LUC_TRANG_BI.md` mục 6 (mô hình `tools/sim/econ_sim.py`, công thức lấy từ code), mở rộng ra 9 mức giờ chơi, **đủ mọi tính năng online**, và **đối chiếu bằng nhân vật test thật trên server**.
+> **Bản 3 (cùng ngày): đã sửa E1–E5 + thêm thuế Phường Thị 5–15%** — xem **mục 9** (test thật 50/50 PASS, mô phỏng sau sửa).
 > **Bản 2 (cùng ngày):** thêm các tính năng bản 1 chưa mô phỏng: Boss Linh Căn, Hầm Mỏ, Vấn Đỉnh Đài, Tông Môn, Luyện Đan, Chế Tạo, bán đồ dư, Đột Phá Đan, sự kiện cuối tuần. Kèm theo là **5 lỗi kinh tế / cơ chế** phát hiện được trong lúc làm (mục 6).
 
 | Mục | Nội dung |
@@ -14,6 +15,7 @@
 | 6 | Lỗi kinh tế / cơ chế phát hiện được |
 | 7 | Nhận xét cân bằng |
 | 8 | Mô hình: những gì đã thêm / sửa, giới hạn, cách chạy lại |
+| 9 | **Đã sửa E1–E5 + thuế Phường Thị** — thay đổi, test, mô phỏng sau sửa |
 
 ---
 
@@ -194,7 +196,7 @@ Mở khóa tính năng: ở mức ≥ 2h, đủ 24/24 trong tháng 1; ở mức 
 
 ## 6. Lỗi kinh tế / cơ chế phát hiện được
 
-| # | Mức | Lỗi | Bằng chứng | Hệ quả đo được | Hướng sửa (chờ chủ dự án chốt, chưa sửa) |
+| # | Mức | Lỗi | Bằng chứng | Hệ quả đo được | Hướng sửa (bản 2 đề xuất — **đã sửa, xem mục 9**) |
 |---|---|---|---|---|---|
 | E1 | **Nặng** | **Đột Phá Đan rơi từ boss bán lại NPC đúng 100% giá tiệm** (50k / 150k / 200k LT); rơi đồ boss **không bị chặn chênh cấp** | `boss`: `bossdj` 1,20 / 1,21 / 1,22, `djjv` 10; `bagdj.php:57` (bán = `djyxb`); **đo thật** 50.000 / 150.000 / 200.000 | 87–92% LT tháng 1 là tiền bán đan; 24h/ngày ≈ **960M LT/tháng** (tổng LT gấp ~10 lần) | Giá bán đan ≈ 5–10% `djyxb`, hoặc `no_sell`; và/hoặc chặn rơi đan khi chênh ≥ 35 cấp như LT/MT |
 | E2 | **Nặng** | **Chế tạo + phân giải sinh LT vô hạn từ cấp 200**: Thánh Phi Phong (#4: 3 Cường Hóa Thạch + 2 đá Mộc = 250 LT) phân giải ra `round((0+589)/2)` ≈ 295 đá × 10 LT | `chetao_config.json` #4, `zhuangbei` 91 `zbfy` 589, `bagzb.php:122-152` | Lãi ~2.700 LT/vòng, vài giây/vòng (**đọc code, chưa bấm thật**; chưa đưa vào mô hình vì không có trần) | Phân giải theo phẩm / bậc chứ không theo chỉ số; hoặc đá phân giải không bán được |
@@ -267,3 +269,67 @@ php tools/sim/moc_crosscheck.php --bt 400       # 27 nhân vật test + bấm đ
 php tools/sim/moc_crosscheck.php --features     # kiểm thật cơ chế mới (đan, boss LC, Hầm Mỏ, VĐĐ, Huyết Thạch)
 php tools/sim/moc_crosscheck.php --clean        # dọn nhân vật test (token moctest_*)
 ```
+
+## 9. Đã sửa E1–E5 + thuế Phường Thị (bản 3)
+
+Chủ dự án chốt 2026-10-29: sửa E1 gấp, E2–E5 test kỹ rồi sửa; thêm thuế mua bán 5–15% theo giá trị và phẩm cấp. **Không cần migrate DB**: chỉ code + 3 file config mới; `git pull` rồi Ctrl+F5.
+
+### 9.1 Thay đổi
+
+| # | Sửa | File | Hành vi mới |
+|---|---|---|---|
+| E1 | Giá bán NPC Đột Phá Đan = **10%** giá tiệm | `class/config/daoju_sell_config.json` (mới), `class/function/daoju.php` `daoju_sell_price()`, `game/bagdj.php`, `game/djinfo.php` (thêm dòng "Bán cho NPC") | 50k / 150k / 200k … 1M → 5k / 15k / 20k … 100k LT |
+| E1 | Đột Phá Đan **không rơi** khi chênh cấp ≥ 35 (boss) / ≥ 30 (quái), cùng luật chặn LT/MT | `game/boss.php`, `game/pve.php`, `class/function/tupo_bonus.php` `tupo_is_pill()` | Cường Hóa Thạch và đồ vẫn rơi như cũ |
+| E2 | **Cường Hóa Thạch không bán NPC** (vẫn treo Phường Thị được) | `daoju_sell_config.json` (`"1": 0`), `game/bagdj.php` (báo "không bán cho NPC được", không trừ đá) | Phân giải vẫn ra đá như cũ, nhưng đá chỉ để cường hóa |
+| E2 | Bán trang bị cho NPC **25/phẩm** (cũ 50) + 5/cấp cường hóa | `game/bagzb.php` | Cả 23 công thức chế tạo: bán NPC < giá nguyên liệu ⇒ hết vòng lãi |
+| E3 | Boss Linh Căn thế giới hồi sinh **120 phút sau khi bị hạ** (`spawn_interval_minutes`) | `class/function/linhcan_boss.php` `linhcan_boss_check_spawn()`, `game/linhcan_boss.php` | Trang hiện "BOSS ĐÃ BỊ TIÊU DIỆT — xuất hiện lại sau N phút" |
+| E4 | Cơ Duyên **"Huyết Mạch Thượng Cổ"** (ghé Huyết Mạch lần đầu, cấp 101) tặng **32 Huyết Thạch** — đủ luyện 32 cấp mạch ⇒ thức tỉnh Sơ Giác ⇒ boss mạch huyết stage 2 rơi Huyết Thạch tiếp | `class/config/nhiemvu_coduyen_config.json`, `class/function/nhiemvu.php` (Cơ Duyên hỗ trợ thêm `"items"`) | Nhận 1 lần / nhân vật |
+| E5 | Độc tính luyện đan (phản phệ + đan độc) **giảm 3 điểm/giờ**, tính bù khi đọc (không cần cron), giữ phần lẻ < 1 giờ | `class/function/luonden.php` `luonden_get_alchemist()` (SQL dùng `NOW()` của MySQL — cùng đồng hồ với `updated_at`) | ~72 điểm/ngày ⇒ ~8–14 lò/ngày lâu dài; hết trần ~115 lò cả đời |
+| Thuế | Phường Thị: thuế = **5% + bậc giá trị (≥10k +1, ≥100k +3, ≥1M +5) + bậc phẩm cấp** (trang bị phẩm ≥4/7/10/12/13: +1…+5; đạo cụ giá gốc ≥1k/10k/50k: +1/+2/+5), kẹp **5–15%**, trừ vào tiền người bán | `class/config/trade_tax_config.json` (mới), `class/function/trade_tax.php` (mới), `class/player.php` (require), `game/fangshi.php` (3 đường mua + thông báo + dòng mô tả) | Cũ cố định 10%. Ví dụ: đồ rẻ 5%; Đột Phá Đan bán 60k = 11%; trang bị phẩm 6 giá 150k = 9%; hàng ≥1M phẩm cao = 15% |
+
+### 9.2 Test
+
+**`tests/test_e1_e5_thue.php` — 50/50 PASS**, chạy trên server thử qua route HTTP thật, tự tạo và tự dọn nhân vật test.
+
+| Nhóm | Kiểm | Kết quả |
+|---|---|---|
+| E1 | bán 1 viên djid 20 qua route = +5.000 LT; trang đạo cụ hiện "Bán cho NPC 5.000" | PASS |
+| E1 | **đánh boss 30 thật ~200 lần** (máu = 1, lùi mốc hồi sinh): cấp 40 (chênh 10) rơi 55–78 đan; **cấp 100 (chênh 70) rơi 0 đan**, Cường Hóa Thạch vẫn rơi 45–95 viên | PASS |
+| E2 | bán Cường Hóa Thạch: 0 LT, không mất đá, có thông báo; bán Thánh Phi Phong phẩm 6 = 150 LT; phân giải trừ 20 LT, ra 295 đá; **23/23 công thức** bán NPC < nguyên liệu | PASS |
+| E3 | vừa hạ: không boss mới, trang báo "xuất hiện lại sau 120 phút"; sau 119 phút vẫn chưa; sau 121 phút có đúng 1 boss mới | PASS |
+| E4 | ghé Huyết Mạch cấp 101: +32 Huyết Thạch, ghé lần 2 không cộng; tiệm (tab Đạo cụ) bán Tố Thể Đan, không bán Huyết Thạch; dùng Tố Thể Đan có huyết mạch; 32 Huyết Thạch luyện đúng 32 cấp mạch; **thức tỉnh Sơ Giác thành công** | PASS |
+| E5 | 10,5 giờ: 1000 → 970, 500 → 470, giữ 30 phút lẻ; đọc lại không giảm thêm; không âm; 1006 qua 3 giờ = 997 (mở luyện đan) | PASS |
+| Thuế | 6 ca công thức (5% / 11% / 15% / 5% / 10% / 15%); **mua thật** Đột Phá Đan 60k: người mua −60.000, người bán +53.400 (11%); mua thật trang bị phẩm 6 giá 150k: người bán +136.500 (9%), món về túi người mua | PASS |
+
+**Hồi quy** — chạy lại toàn bộ `tests/test_*.php`, so với code gốc (stash, cùng DB):
+- Không có FAIL mới ngoài 2 dòng của `test_e2e_full` khoá luật cũ (bán đồ ×50, thuế 10%). Đã cập nhật 2 dòng đó theo luật mới.
+- `test_e2e_full` giờ: **267/268** (code gốc 3 FAIL). Dòng còn lại "Đại sảnh thiếu 'Thôn Quảng Tràng'" có từ trước (lỗi mã hóa tên map trong dump).
+- Các file FAIL từ trước, giống hệt code gốc: `test_linhcan_pages`, `test_nguhanh_market`, `test_nguhanh_combat`, `test_tianfu_migration` (gọi đường dẫn PHP Windows), `test_*_schema` (DEFAULT cột).
+
+`tools/sim/moc_crosscheck.php --features` cập nhật theo luật mới: **10/10 OK** (bán đan 5k / 15k / 20k; boss Linh Căn không hồi trong 120'). Đối chiếu 27 nhân vật theo mốc: **0/27 lệch**.
+
+### 9.3 Mô phỏng sau sửa (`sim(..., full=True, fixed=True)`)
+
+| Giờ/ngày | Tháng 1: luật cũ | Tháng 1: **sau sửa** | LT thu tháng 1: luật cũ → sau sửa | MT còn | Tỉ lệ ĐP |
+|---|---|---|---|---|---|
+| 1h | 102 | **103** (95–108) | 27,7M → **5,0M** | 3.947 | 26% |
+| 2h | 128 | **129** (124–135) | 66,4M → **9,2M** | 7.890 | 22% |
+| 4h | 170 | **156** (145–174) | 150M → **13,3M** | 9.557 | 20% |
+| 8h | 225 | **193** (172–220) | 327M → **21,8M** | 16,0K | 18% |
+| 12h | 269 | **209** (194–236) | 510M → **26,9M** | 18,6K | 18% |
+| 16h | 305 | **229** (198–247) | 695M → **33,6M** | 24,6K | 18% |
+| 24h | 346 | **254** (228–288) | 1.066M → **45,0M** | 36,2K | 16% |
+
+Ngày 1 / tuần 1 gần như không đổi so với các kịch bản trước (mục 2).
+
+- **LT tháng 1 giảm 5–24 lần.** Nguồn chính trở lại là boss thế giới (45–68%) và quái (9–18%). Bán đan còn 9–31%: cao nhất ở mức 1h, vì người chơi ít giờ ở lâu vùng cấp 30–64, nơi boss 30 rơi đan hợp lệ.
+- **Cấp tháng 1 ở mức ≥ 4h giảm 8–27%** so với luật cũ, nhưng vẫn cao hơn bản 1 (chưa đủ tính năng). Mức 1–2h gần như không đổi.
+- **Tỉ lệ đột phá không còn tụt xuống 10–12%** như luật cũ (lên cấp chậm hơn nên dừng ở 16–18%).
+- Huyết Mạch nay lên được phẩm 5 trong tháng 1 ở mức ≥ 2h (mức 1h: phẩm 2–3; luật cũ kẹt phẩm 1). Boss mạch huyết thêm 100k LT/ngày từ cấp 101.
+
+### 9.4 Còn để ý
+
+- **Vòng nhỏ còn lại:** luyện Thẻ Cường Hóa ATK +5 (3 Cường Hóa Thạch, 90%) rồi bán NPC 50 LT ≈ 15 LT/viên đá. Bị chặn bởi độc tính (~72 điểm/ngày) nên tối đa vài trăm LT/ngày — không đáng sửa.
+- Hàm cron cũ `luonden_reduce_toxin_hourly()` vẫn để nguyên, không chỗ nào gọi. **Không được nối vào cron**: sẽ giảm độc 2 lần, và hàm này `intval($row['sid'])` sai với sid hex.
+- Nhân vật đã hoàn thành Cơ Duyên Huyết Mạch trước bản sửa sẽ không nhận 32 Huyết Thạch. Game chưa mở nên không ảnh hưởng.
+- Thuế áp lúc thanh toán. Tin đã treo trước bản sửa vẫn tính theo luật mới khi có người mua.

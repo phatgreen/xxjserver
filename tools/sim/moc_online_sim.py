@@ -22,7 +22,8 @@ def fmt(v):
     return '%d' % round(v)
 
 # 3 kịch bản: bản trước (chưa đủ tính năng) / đủ tính năng nhưng không bán Đột Phá Đan / đủ tính năng theo luật hiện tại (bán đan)
-SCEN = (('cu', dict()), ('du_khong_ban_dan', dict(full=True, sell_pill=False)), ('du_luat_hien_tai', dict(full=True, sell_pill=True)))
+SCEN = (('cu', dict()), ('du_khong_ban_dan', dict(full=True, sell_pill=False)), ('du_luat_hien_tai', dict(full=True, sell_pill=True)),
+        ('sau_sua', dict(full=True, sell_pill=True, fixed=True)))   # sau sửa E1–E5 (2026-10-29)
 
 def run(**kw):
     res = {}
@@ -47,7 +48,7 @@ def table(title, cols, res, d):
 if __name__ == '__main__':
     import sys
     allres = dict((k, run(**kw)) for k, kw in SCEN)
-    res = allres['du_luat_hien_tai']
+    res = allres['sau_sua']
     if '--json' in sys.argv:
         # cho tools/sim/moc_crosscheck.php dựng nhân vật test đúng trạng thái từng mốc
         print(json.dumps(dict((h, dict((d, dict(L=round(res[h][d]['L']), lt=int(res[h][d]['lt']), mt=int(res[h][d]['mt'])))
@@ -78,18 +79,18 @@ if __name__ == '__main__':
             ('Cường hóa', lambda a: '+%d' % round(a['ch'])), ('Võ công', lambda a: '%d' % round(a['wg'])),
             ('Công pháp', lambda a: '%d' % round(a['cp'])),
             ('Linh sủng (phẩm/cấp)', lambda a: '%s / %d' % ('-' if a['pet_q'] < 0 else '%.1f' % a['pet_q'], round(a['pet_lv'])))]
-    print('\n### So sánh 3 kịch bản — cấp TB (min–max)\n')
-    print('| Giờ/ngày | ' + ' | '.join('%s %s' % (n, m) for m in ('ngày 1', 'tuần 1', 'tháng 1') for n in ('Cũ', 'Đủ (không bán đan)', 'Đủ (luật hiện tại)')) + ' |')
-    print('|---|' + '---|' * 9)
+    print('\n### So sánh 4 kịch bản — cấp TB (min–max)\n')
+    print('| Giờ/ngày | ' + ' | '.join('%s %s' % (n, m) for m in ('ngày 1', 'tuần 1', 'tháng 1') for n in ('Cũ', 'Đủ (không bán đan)', 'Đủ (luật cũ)', 'Sau sửa')) + ' |')
+    print('|---|' + '---|' * 12)
     for h in HOURS:
         cells = []
         for d in MARKS:
             for k, _ in SCEN:
                 a = allres[k][h][d]; cells.append('%d (%d–%d)' % (round(a['L']), a['Lmin'], a['Lmax']))
         print('| %dh | ' % h + ' | '.join(cells) + ' |')
-    print('\n### So sánh 3 kịch bản — tháng 1: LT thu / MT còn / tỉ lệ ĐP\n')
-    print('| Giờ/ngày | Cũ | Đủ (không bán đan) | Đủ (luật hiện tại) |')
-    print('|---|---|---|---|')
+    print('\n### So sánh 4 kịch bản — tháng 1: LT thu / MT còn / tỉ lệ ĐP\n')
+    print('| Giờ/ngày | Cũ | Đủ (không bán đan) | Đủ (luật cũ) | Sau sửa |')
+    print('|---|---|---|---|---|')
     for h in HOURS:
         print('| %dh | ' % h + ' | '.join('%s / %s / %d%%' % (fmt(allres[k][h][30]['lt_in']), fmt(allres[k][h][30]['mt']), round(allres[k][h][30]['rate'])) for k, _ in SCEN) + ' |')
     for d in MARKS:

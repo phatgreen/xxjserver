@@ -647,6 +647,9 @@ HTML;
                 if ($djid == 1 && $lvc == 0){
                     goto yp;
                 }
+                if ($lvc >= 30 && \player\tupo_is_pill($djid)){
+                    goto yp;// Đột Phá Đan chặn theo chênh lệch cấp như linh thạch (pve.php:575) — E1
+                }
                 $djsum = mt_rand(1,2);
                 \player\adddj($sid,$djid,$djsum,$dblj);
                 $huode .= "Nhận được: <div class='djys'>$djname x$djsum</div>";// Hiển thị vật phẩm nhận được theo định dạng màu giao diện

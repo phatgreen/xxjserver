@@ -102,7 +102,8 @@ if (isset($canshu)){
         if (!$mczb) { $tishi = "Không tìm thấy trang bị."; } else {
         $rarity = isset($mczb->rarity) ? intval($mczb->rarity) : 1;
         $qianghua = isset($mczb->qianghua) ? intval($mczb->qianghua) : 0;
-        $sxzz = $rarity * 50 + $qianghua * 5;
+        // 25/phẩm (cũ 50): đồ chế tạo từ nguyên liệu tiệm (250–1.600 LT) bán NPC không còn lãi — E2, docs/BAO_CAO_MOC_THOI_GIAN_2026-10-29.md
+        $sxzz = $rarity * 25 + $qianghua * 5;
         $mcls = round($sxzz);
         tcg_bagzb_unequip_if_worn($player, $zbnowid, $dblj, $sid);
         $stmt = $dblj->prepare("DELETE FROM playerzhuangbei WHERE zbnowid = :zbnowid AND sid = :sid");

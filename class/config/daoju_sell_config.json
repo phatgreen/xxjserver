@@ -1,0 +1,13 @@
+{
+    "_note": "Giá bán đạo cụ cho NPC (game/bagdj.php) = floor(djyxb × pct / 100). Không khai báo = 100% djyxb như cũ. pct 0 = không bán cho NPC (vẫn treo Phường Thị được). docs/BAO_CAO_MOC_THOI_GIAN_2026-10-29.md mục 6: E1 Đột Phá Đan rơi từ boss bán lại đúng giá tiệm (50k–1M LT/viên) ⇒ 10%; E2 Cường Hóa Thạch phân giải ra theo chỉ số trang bị ⇒ chế tạo + phân giải sinh LT vô hạn ⇒ không bán NPC.",
+    "pct": {
+        "1": 0,
+        "20": 10,
+        "21": 10,
+        "22": 10,
+        "23": 10,
+        "24": 10,
+        "25": 10,
+        "26": 10
+    }
+}
