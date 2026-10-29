@@ -199,7 +199,10 @@ for($i=1;$i<=16;$i++){
         $cap    = '<div class="tb-name" style="color:' . $zhuangbei->zbys . '" title="' . $zhuangbei->zbname . '">' . $zhuangbei->zbname . '</div>';
         $remove = '<a class="tb-x" href="?cmd=' . $encode->encode("cmd=xxzb&zbwz=$i&sid=$sid") . '" title="Th&aacute;o">&times;</a>';
 
-        $equipCards[$i] = '<div class="tb-slot is-worn">' . $thumb . $cap . $remove . '</div>';
+        // Màu phẩm chất cho viền / phát sáng ô (giống thẻ trang bị trang xem người khác)
+        $zbRa = isset($zhuangbei->rarity) ? intval($zhuangbei->rarity) : 1;
+        $cap .= '<div class="tb-ra">' . htmlspecialchars(player\zhuangbei_rarity_name($zbRa), ENT_QUOTES, 'UTF-8') . '</div>';
+        $equipCards[$i] = '<div class="tb-slot is-worn" style="--ra:' . player\zhuangbei_rarity_color($zbRa) . '">' . $thumb . $cap . $remove . '</div>';
     } else {
         $icon  = tcg_zb_image_with_version_tb($defaultIcon);
         $thumb = '<div class="tb-thumb"><img src="' . $icon . '" alt="' . $slotName . '"></div>';
