@@ -40,7 +40,7 @@ function dj($sid, $id) { return intval(q1("SELECT COALESCE(SUM(djsum),0) FROM pl
 function t_clean($db) {
     $sids = $db->query("SELECT sid FROM game1 WHERE uname LIKE 'GmTestT%'")->fetchAll(PDO::FETCH_COLUMN);
     foreach ($sids as $s) {
-        foreach (array('playerdaoju', 'playerzhuangbei', 'playeryaopin', 'duihuan_log') as $t) {
+        foreach (array('playerdaoju', 'playerzhuangbei', 'playeryaopin', 'duihuan_log', 'player_thonguyen') as $t) {
             try { $db->prepare("DELETE FROM $t WHERE sid = ?")->execute(array($s)); } catch (Exception $e) {}
         }
     }
@@ -97,6 +97,20 @@ http('gm/gm.php?tab=player&sid=' . $sid, array('act' => 'djset', 'csrf' => $tok,
 ttrue('G2 đặt số lượng Cường Hóa Thạch 20 → 7', dj($sid, 1) === 7);
 $h = http('gm/gm.php?tab=player&sid=' . $sid);
 ttrue('G2 trang chi tiết hiện túi đồ + trang bị + Tân thủ', strpos($h, 'Cường Hóa Thạch') !== false && strpos($h, 'Trang bị (') !== false && strpos($h, 'Tân thủ') !== false);
+ttrue('G2 Thọ Nguyên: có khung', strpos($h, '⏳ Thọ Nguyên') !== false);
+http('gm/gm.php?tab=player&sid=' . $sid, array('act' => 'thonguyen', 'csrf' => $tok, 'tn_mode' => 'left', 'tn_v' => 0));
+\player\thonguyen_moc($sid, $db, true); \player\player_cache_clear($sid);
+$tnS = \player\thonguyen_status(\player\getplayer($sid, $db), $db);
+ttrue('G2 Thọ Nguyên: % còn 0 ⇒ Tọa Hóa', $tnS && $tnS['dead']);
+$h = http('gm/gm.php?tab=player&sid=' . $sid, array('act' => 'thonguyen', 'csrf' => $tok, 'tn_mode' => 'left', 'tn_v' => 50));
+\player\thonguyen_moc($sid, $db, true); \player\player_cache_clear($sid);
+$tnS = \player\thonguyen_status(\player\getplayer($sid, $db), $db);
+ttrue('G2 Thọ Nguyên: hồi sinh còn 50%', $tnS && !$tnS['dead'] && abs($tnS['left_pct'] - 50) < 0.5 && strpos($h, 'Tọa Hóa') !== false);
+http('gm/gm.php?tab=player&sid=' . $sid, array('act' => 'thonguyen', 'csrf' => $tok, 'tn_mode' => 'set', 'tn_v' => 10));
+\player\thonguyen_moc($sid, $db, true);
+$tnS = \player\thonguyen_status(\player\getplayer($sid, $db), $db);
+ttrue('G2 Thọ Nguyên: đặt tuổi 10', $tnS && abs($tnS['age'] - 10) < 0.05);
+ttrue('G2 Thọ Nguyên: ghi nhật ký', intval(q1("SELECT COUNT(*) FROM gm_log WHERE action = 'player_thonguyen'")) >= 3);
 
 // ── Phát quà 2 bước ───────────────────────────────────────────
 $zb0 = intval(q1("SELECT COUNT(*) FROM playerzhuangbei WHERE sid = ?", array($sid)));

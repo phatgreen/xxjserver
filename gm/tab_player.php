@@ -59,6 +59,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $sid !== '') {
             gm_log($db, 'player_zbdel', $before['uname'] . ' (' . $before['uid'] . ')', array('zbnowid' => $zn, 'name' => $z ? $z->zbname : ''));
             $flash[] = array('ok', 'Đã xoá trang bị #' . $zn . ($z ? ' ' . gm_h($z->zbname) : '') . '.');
         }
+    } elseif (gm_req('act') === 'thonguyen') {
+        // Thọ Nguyên: đặt tuổi / cộng tuổi / đặt % thọ nguyên còn lại (hồi sinh Tọa Hóa = đặt % còn > 0)
+        $pl0 = \player\getplayer($sid, $db);
+        $s0 = \player\thonguyen_status($pl0, $db);   // chưa có mốc ⇒ tạo (tuổi 0)
+        $mode = gm_req('tn_mode'); $v = gm_req('tn_v');
+        if (!$s0) {
+            $flash[] = array('bad', 'Tính năng Thọ Nguyên chưa chạy được (bảng player_thonguyen).');
+        } elseif ($v === '' || !is_numeric($v)) {
+            $flash[] = array('bad', 'Nhập số.');
+        } else {
+            $v = floatval($v);
+            if ($mode === 'add') $age = $s0['age'] + $v;
+            elseif ($mode === 'left') $age = $s0['life'] * (1 - min(100, max(0, $v)) / 100);
+            else $age = $v;
+            $age = max(0, $age);
+            if (!\player\thonguyen_set_age($sid, $age, $s0, $db)) {
+                $flash[] = array('bad', 'Không ghi được, thử lại.');
+            } else {
+                \player\player_cache_clear($sid);
+                gm_log($db, 'player_thonguyen', $before['uname'] . ' (' . $before['uid'] . ')',
+                    array('mode' => $mode, 'value' => $v, 'age_from' => round($s0['age'], 2), 'age_to' => round($age, 2), 'life' => round($s0['life'], 2), 'dead_before' => $s0['dead']));
+                $flash[] = array('ok', 'Thọ Nguyên ' . gm_h($before['uname']) . ': tuổi ' . \player\thonguyen_years_text($s0['age']) . ' → ' . \player\thonguyen_years_text($age)
+                    . ' / thọ nguyên ' . \player\thonguyen_years_text($s0['life']) . ($age >= $s0['life'] ? ' (Tọa Hóa)' : ''));
+            }
+        }
     }
 }
 
@@ -93,6 +118,14 @@ if (!$p) { echo '<div class="flash bad">Không tìm thấy nhân vật.</div>'; 
 $pl = \player\getplayer($sid, $db);
 $tt = \player\tanthu_row($sid, $db);
 $ttDay = \player\tanthu_active_day($sid, $db);
+// Thọ Nguyên: chỉ đọc mốc có sẵn (xem ở GM không tạo mốc ⇒ không làm nhân vật bắt đầu già)
+$tnHas = false;
+if (\player\thonguyen_ready($db)) {
+    $st = $db->prepare("SELECT COUNT(*) FROM player_thonguyen WHERE sid = ?");
+    $st->execute(array($sid));
+    $tnHas = intval($st->fetchColumn()) > 0;
+}
+$tn = $tnHas ? \player\thonguyen_status($pl, $db) : false;
 
 echo '<div class="card"><h2>' . gm_h($p['uname']) . ' <span class="mut">UID ' . intval($p['uid']) . ' · sid ' . gm_h($sid) . '</span></h2><div class="kv">';
 $kv = array('Cấp' => $p['ulv'], 'Tu vi' => gm_num($p['uexp']) . ' / ' . gm_num($pl->umaxexp), 'Linh thạch' => gm_num($p['uyxb']), 'Ma thạch' => gm_num($p['uczb']),
@@ -101,6 +134,30 @@ $kv = array('Cấp' => $p['ulv'], 'Tu vi' => gm_num($p['uexp']) . ' / ' . gm_num
     'Tân thủ' => $ttDay > 0 ? ('ngày ' . $ttDay . '/3 · túi ' . gm_num($tt['tanthu_lt']) . ' LT' . (!empty($tt['tanthu_x2_until']) ? ' · ×2 tới ' . $tt['tanthu_x2_until'] : '')) : (($tt && !empty($tt['created_at'])) ? 'hết (tạo ' . substr($tt['created_at'], 0, 10) . ')' : 'không (nhân vật cũ)'));
 foreach ($kv as $k => $v) echo '<div><span class="mut">' . gm_h($k) . '</span><b>' . gm_h($v) . '</b></div>';
 echo '</div></div>';
+
+// Thọ Nguyên
+echo '<div class="card"><h2>⏳ Thọ Nguyên</h2>';
+if (!$tn) {
+    echo '<p class="mut">Chưa có mốc tuổi — nhân vật bắt đầu 0 tuổi ở lần vào game kế tiếp (hoặc khi GM chỉnh bên dưới).</p>';
+} else {
+    list($tnB, $tnParts) = \player\thonguyen_bonus_pct($pl);
+    $tnTag = $tn['dead'] ? '<span class="tag red">Tọa Hóa</span>' : ($tn['cut'] > 0 ? '<span class="tag yel">hấp thụ −' . $tn['cut'] . '%</span>' : '<span class="tag green">bình thường</span>');
+    $tnPart = array(); foreach ($tnParts as $n => $v) if ($v > 0) $tnPart[] = $n . ' +' . round($v, 1) . '%';
+    echo '<div class="kv">'
+        . '<div><span class="mut">Tuổi</span><b>' . gm_h(\player\thonguyen_years_text($tn['age'])) . '</b></div>'
+        . '<div><span class="mut">Thọ nguyên</span><b>' . gm_h(\player\thonguyen_years_text($tn['life'])) . '</b></div>'
+        . '<div><span class="mut">Còn lại</span><b>' . round($tn['left_pct'], 1) . '%</b></div>'
+        . '<div><span class="mut">Trạng thái</span><b>' . $tnTag . '</b></div>'
+        . '<div><span class="mut">Thưởng hệ thống</span><b>+' . round($tnB, 1) . '%</b>' . ($tnPart ? '<span class="mut">' . gm_h(implode(' · ', $tnPart)) . '</span>' : '') . '</div>'
+        . '<div><span class="mut">Mốc sinh</span><b>' . gm_h(date('Y-m-d H:i', $tn['moc'])) . '</b></div>'
+        . '</div>';
+}
+echo '<form method="post" class="flex" style="margin-top:10px" data-confirm="Chỉnh Thọ Nguyên cho ' . gm_h($p['uname']) . '?">' . gm_csrf_field()
+    . '<input type="hidden" name="act" value="thonguyen">'
+    . '<label>Cách chỉnh<select name="tn_mode"><option value="left">Đặt % thọ nguyên còn lại (hồi sinh)</option><option value="set">Đặt tuổi (năm)</option><option value="add">Cộng tuổi (năm, âm để trừ)</option></select></label>'
+    . '<label>Giá trị<input name="tn_v" type="number" step="any" value="50"></label>'
+    . '<button class="btn">Áp dụng</button></form>'
+    . '<p class="mut">Ví dụ: % còn lại 50 = hồi sinh như Cửu Chuyển Hoàn Hồn Đan · 0 = cho Tọa Hóa ngay · Đặt tuổi 0 = trẻ lại từ đầu.</p></div>';
 
 echo '<form class="card" method="post" data-confirm="Lưu thay đổi chỉ số cho ' . gm_h($p['uname']) . '?">' . gm_csrf_field()
     . '<input type="hidden" name="act" value="edit"><h2>Sửa chỉ số</h2><p class="mut">Để trống = không đổi. "Cộng" = cộng thêm (số âm để trừ).</p><div class="grid">';
