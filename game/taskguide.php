@@ -166,6 +166,13 @@ function tcg_taskguide_is_main($task, $sourceNpc)
 function tcg_taskguide_card($task, $sourceNpc, $targetText, $targetMap, $cmd, $kindClass, $kindText, $teleportCost, $stateText, $isOpen = false, $toggleCmd = '')
 {
     $taskName = tcg_taskguide_h($task['rwname']);
+    // Biểu tượng theo tên nhiệm vụ (Trừ hại 🗡, Tìm 🔍, Thu thập 🌿, Đưa thư 📦, Gặp / Hỏi 💬…)
+    $tgEmo = '📜'; $tgColor = '#7dd3fc';
+    foreach (array('Trảm' => array('🗡', '#f87171'), 'Trừ' => array('🗡', '#f87171'), 'Diệt' => array('🗡', '#f87171'), 'Săn' => array('🏹', '#fb923c'), 'Đánh' => array('⚔', '#f87171'),
+        'Tìm' => array('🔍', '#38bdf8'), 'Thu' => array('🌿', '#4ade80'), 'Hái' => array('🌿', '#4ade80'), 'Đưa' => array('📦', '#fbbf24'), 'Giao' => array('📦', '#fbbf24'), 'Mang' => array('📦', '#fbbf24'),
+        'Gặp' => array('💬', '#a78bfa'), 'Hỏi' => array('💬', '#a78bfa'), 'Thăm' => array('💬', '#a78bfa'), 'Bảo vệ' => array('🛡', '#60a5fa'), 'Tuần' => array('🛡', '#60a5fa')) as $tk => $tv) {
+        if (mb_stripos($task['rwname'], $tk, 0, 'UTF-8') !== false) { $tgEmo = $tv[0]; $tgColor = $tv[1]; break; }
+    }
     $taskInfo = tcg_taskguide_h($task['rwinfo']);
     $npcName = tcg_taskguide_h($sourceNpc['name']);
     $mapName = tcg_taskguide_h($sourceNpc['map_name']);
@@ -214,6 +221,7 @@ HTML;
     return <<<HTML
     <article class="news-task-card $kindClass $openClass">
         <a class="news-task-toggle" href="?cmd=$linkCmd">
+            <span class="news-task-ico item-art" style="--ra:$tgColor"><span class="bag-emo">$tgEmo</span></span>
             <span class="news-task-badge">$kindText</span>
             <span class="news-task-name">$taskName</span>
             <span class="news-task-arrow">$arrow</span>

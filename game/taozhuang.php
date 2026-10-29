@@ -134,9 +134,11 @@ for ($i = 1; $i <= 16; $i++) {
 
     $tier = intval(tz_ui_get_prop($zb, 'taozhuang', 0));
 
-    $equipHtml .= '<div class="tz-equip-row">';
+    // Ô ảnh trang bị (ô trống: ảnh ô mặc định, mờ); số ô gắn ở góc
+    $tzImg = \player\zhuangbei_image_path($zb ? $zb : false, \player\zhuangbei_slot_icon($i));
+    $equipHtml .= '<div class="tz-equip-row'.($zb ? '' : ' is-empty').'" style="--ra:'.tz_ui_escape($color).'">';
     $equipHtml .= '<div class="tz-equip-left">';
-    $equipHtml .= '<span class="tz-slot">'.sprintf('%02d', $i).'</span>';
+    $equipHtml .= '<span class="tz-slot item-art"><img src="'.$tzImg.'" alt=""><b class="bag-qty">'.sprintf('%02d', $i).'</b></span>';
     // Nếu ô này có trang bị thật thì tên trang bị sẽ là link xem chi tiết giống zhuangtai.php.
     // Link mở chức năng chakanzb, truyền zbnowid + uid + sid để xem thông tin trang bị.
     if ($zb && $zbId > 0) {

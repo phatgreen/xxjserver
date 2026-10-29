@@ -8830,3 +8830,15 @@ body.tcg-bg-body .tcg-rz-item .item-art .bag-emo{font-size:20px}
 @media(max-width:480px){.tcg-rz-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 body.tcg-bg-body .tcg-rz .tcg-rz-item{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;margin:0!important;min-height:0!important;padding:8px 4px!important}
 body.tcg-bg-body .tcg-rz .tcg-rz-item b{line-height:1.25!important}
+/* Chi tiết đạo cụ / Thần Trang / Nhiệm vụ NPC: ô ảnh chung (--ra) */
+body.tcg-bg-body .djinfo-icon.item-art{width:64px!important;height:64px!important;font-size:inherit!important}
+body.tcg-bg-body .djinfo-icon.item-art .bag-emo{font-size:36px}
+.tz-equip-row{--ra:#7dd3fc}
+body.tcg-bg-body .tz-equip-row .tz-slot.item-art{width:34px!important;height:34px!important;min-width:34px!important;border-radius:9px!important;font-size:inherit!important}
+body.tcg-bg-body .tz-equip-row .tz-slot.item-art img{width:28px!important;height:28px!important}
+body.tcg-bg-body .tz-equip-row .tz-slot.item-art .bag-qty{font-size:8px;line-height:12px;padding:0 3px;right:-5px;bottom:-5px}
+body.tcg-bg-body .tz-equip-row.is-empty .tz-slot.item-art{opacity:.45;border-style:dashed!important}
+body.tcg-bg-body .tz-equip-left{display:flex!important;align-items:center!important;gap:8px!important}
+body.tcg-bg-body .news-task-toggle{display:flex!important;align-items:center!important;gap:8px!important}
+body.tcg-bg-body .news-task-ico.item-art{width:34px!important;height:34px!important;border-radius:9px!important}
+body.tcg-bg-body .news-task-ico.item-art .bag-emo{font-size:17px}
