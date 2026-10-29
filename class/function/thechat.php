@@ -264,7 +264,9 @@ if (!function_exists(__NAMESPACE__ . '\\thechat_awaken_mult')) {
  * - element, name, color, icon
  */
 if (!function_exists(__NAMESPACE__ . '\\thechat_calc_bonuses')) {
-    function thechat_calc_bonuses($sid, $dblj){
+    // $jingjieValue: cảnh giới của CHÍNH nhân vật đang tính (getplayer truyền vào); trước đây đọc $GLOBALS['player']
+    // = người đang xem => lần đầu ×1, lần sau ×cảnh giới, xem người khác thì dùng cảnh giới người xem (BUG-10)
+    function thechat_calc_bonuses($sid, $dblj, $jingjieValue = null){
         // Nhục Thân (6 bộ phận) luôn tính, kể cả khi chưa có Thể Chất.
         $body = thechat_body_bonuses($sid, $dblj);
 
@@ -299,7 +301,7 @@ if (!function_exists(__NAMESPACE__ . '\\thechat_calc_bonuses')) {
         $categoryId = isset($config['category_id']) ? intval($config['category_id']) : 0;
         $categoryName = isset($config['category_name']) ? $config['category_name'] : '';
 
-        $realmScale = thechat_realm_scale(isset($GLOBALS['player']) ? $GLOBALS['player']->jingjieValue : 0);
+        $realmScale = thechat_realm_scale($jingjieValue !== null ? $jingjieValue : (isset($GLOBALS['player']) ? $GLOBALS['player']->jingjieValue : 0));
         $awakenMult = thechat_awaken_mult($awakenStage);
 
         $finalHP = round(floatval(isset($baseStats['hp']) ? $baseStats['hp'] : 0) * $quality * $realmScale * $awakenMult) + $body['hp'];

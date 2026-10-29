@@ -21,7 +21,8 @@ if ($canshu != '') {
 
         case 'xuexi':
 
-            if ($wgid > 0) {
+            // Chỉ cho luyện võ công đã sở hữu (trước đây wgid từ URL không kiểm tra — BUG-09)
+            if ($wgid > 0 && \player\wgcx($wgid, $sid, $dblj, true)) {
                 \player\changeplayersx('wugong', $wgid, $sid, $dblj);
                 $player = \player\getplayer($sid, $dblj);
             }

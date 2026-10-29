@@ -158,8 +158,8 @@ function tyt_give_item($sid, $player, $dblj, $djid, $amount)
         $stmt = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + ? WHERE sid = ? AND djid = ?");
         $stmt->execute(array($amount, $sid, $djid));
     } else {
-        $stmt = $dblj->prepare("INSERT INTO playerdaoju (sid, djid, djsum) VALUES (?, ?, ?)");
-        $stmt->execute(array($sid, $djid, $amount));
+        $stmt = $dblj->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum) SELECT sid, uid, ?, ? FROM game1 WHERE sid = ? LIMIT 1"); // kèm uid (khóa chính uid+djid)
+        $stmt->execute(array($djid, $amount, $sid));
     }
 
     $djConfig = \player\daoju_config_get($djid);

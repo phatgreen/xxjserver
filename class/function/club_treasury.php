@@ -53,9 +53,17 @@ if (!function_exists(__NAMESPACE__ . '\\club_treasury_history')) {
 /* === NHẬN VẬT PHẨM TỪ BẢO KHỐ === */
 if (!function_exists(__NAMESPACE__ . '\\club_treasury_claim')) {
     function club_treasury_claim($treasuryId, $claimerSid, $dblj) {
+        // game/club.php truyền vào UID người nhận (số), không phải sid => tra sid thật (sid là chuỗi hex, intval làm hỏng)
+        $claimerUid = intval($claimerSid);
+        $q = $dblj->prepare("SELECT sid FROM game1 WHERE uid = ? LIMIT 1");
+        $q->execute(array($claimerUid));
+        $claimerSid = $q->fetchColumn();
+        if ($claimerSid === false || $claimerSid === '') {
+            return array('ok' => false, 'msg' => 'Không tìm thấy thành viên nhận');
+        }
         /* Lock and claim atomically */
         $upd = $dblj->prepare("UPDATE club_treasury SET claimed_by = ?, claimed_at = NOW() WHERE id = ? AND claimed_by IS NULL");
-        $upd->execute(array(intval($claimerSid), intval($treasuryId)));
+        $upd->execute(array($claimerUid, intval($treasuryId)));
         if ($upd->rowCount() === 0) {
             return array('ok' => false, 'msg' => 'Vật phẩm không tồn tại hoặc đã được nhận');
         }
@@ -72,36 +80,36 @@ if (!function_exists(__NAMESPACE__ . '\\club_treasury_claim')) {
 
         if ($itemType === 'yaodan') {
             $check = $dblj->prepare("SELECT ydsum FROM playeryaodan WHERE sid = ? AND ydid = ? LIMIT 1");
-            $check->execute(array(intval($claimerSid), $itemId));
+            $check->execute(array($claimerSid, $itemId));
             $row = $check->fetch(\PDO::FETCH_ASSOC);
             if ($row) {
                 $upd2 = $dblj->prepare("UPDATE playeryaodan SET ydsum = ydsum + ? WHERE sid = ? AND ydid = ?");
-                $upd2->execute(array($itemAmount, intval($claimerSid), $itemId));
+                $upd2->execute(array($itemAmount, $claimerSid, $itemId));
             } else {
                 $ins = $dblj->prepare("INSERT INTO playeryaodan (sid, ydid, ydsum) VALUES (?, ?, ?)");
-                $ins->execute(array(intval($claimerSid), $itemId, $itemAmount));
+                $ins->execute(array($claimerSid, $itemId, $itemAmount));
             }
         } elseif ($itemType === 'daoju') {
             $check = $dblj->prepare("SELECT djsum FROM playerdaoju WHERE sid = ? AND djid = ? LIMIT 1");
-            $check->execute(array(intval($claimerSid), $itemId));
+            $check->execute(array($claimerSid, $itemId));
             $row = $check->fetch(\PDO::FETCH_ASSOC);
             if ($row) {
                 $upd2 = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + ? WHERE sid = ? AND djid = ?");
-                $upd2->execute(array($itemAmount, intval($claimerSid), $itemId));
+                $upd2->execute(array($itemAmount, $claimerSid, $itemId));
             } else {
-                $ins = $dblj->prepare("INSERT INTO playerdaoju (sid, djid, djsum) VALUES (?, ?, ?)");
-                $ins->execute(array(intval($claimerSid), $itemId, $itemAmount));
+                $ins = $dblj->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum) VALUES (?, ?, ?, ?)"); // kèm uid (khóa chính uid+djid)
+                $ins->execute(array($claimerSid, $claimerUid, $itemId, $itemAmount));
             }
         } else {
             $check = $dblj->prepare("SELECT ypsum FROM playeryaopin WHERE sid = ? AND ypid = ? LIMIT 1");
-            $check->execute(array(intval($claimerSid), $itemId));
+            $check->execute(array($claimerSid, $itemId));
             $row = $check->fetch(\PDO::FETCH_ASSOC);
             if ($row) {
                 $upd2 = $dblj->prepare("UPDATE playeryaopin SET ypsum = ypsum + ? WHERE sid = ? AND ypid = ?");
-                $upd2->execute(array($itemAmount, intval($claimerSid), $itemId));
+                $upd2->execute(array($itemAmount, $claimerSid, $itemId));
             } else {
                 $ins = $dblj->prepare("INSERT INTO playeryaopin (sid, ypid, ypsum) VALUES (?, ?, ?)");
-                $ins->execute(array(intval($claimerSid), $itemId, $itemAmount));
+                $ins->execute(array($claimerSid, $itemId, $itemAmount));
             }
         }
 

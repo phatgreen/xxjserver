@@ -82,7 +82,13 @@ if (isset($canshu)) {
             echo "Treo bán thành công!<br/>";
             $dblj->commit();
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            // Lỗi SQL không in ra trang (lộ cấu trúc DB) — ghi log, báo người chơi câu chung; thông báo tự đặt ở trên vẫn hiện
+            $tbMsg = $e->getMessage();
+            if (strpos($tbMsg, 'SQLSTATE') !== false) {
+                error_log('zbinfo chushou: ' . $tbMsg);
+                $tbMsg = 'Treo bán thất bại, vui lòng thử lại.<br/>';
+            }
+            echo $tbMsg;
             $dblj->rollBack();
         }
 

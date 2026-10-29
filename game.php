@@ -85,8 +85,13 @@ $_SESSION["post_sep"] = $current_time;
 |--------------------------------------------------------------------------
 */
 
+// Biến nội bộ của router KHÔNG được ghi đè từ URL: $ym = file sẽ include (lỗ include file tùy ý),
+// $pvpts / $tpts in thẳng ra trang (XSS), các đối tượng DB / người chơi (BUG-04, BUG-06 docs/BAO_CAO_TEST_TOAN_BO_2026-10-29.md)
+$__routerVars = array('ym', 'pvpts', 'tpts', 'Dcmd', 'player', 'guaiwu', 'clmid', 'npc', 'encode', 'dblj',
+    'cmdMap', 'needEncode', 'safe_cmd', '__cmdVars', '__routerVars', '_SESSION', 'GLOBALS');
 // Phân tích query string thành biến (dạng 2 tham số: parse_str 1 tham số bị deprecated từ PHP 7.2, bỏ ở PHP 8)
 parse_str($Dcmd, $__cmdVars);
+foreach ($__routerVars as $__rv) { unset($__cmdVars[$__rv]); }
 extract($__cmdVars);
 // Nếu không có cmd thì quay về index
 if (!isset($cmd)){
@@ -113,6 +118,7 @@ $Dcmd = $encode->decode($cmd);
 
 // Parse lại biến
 parse_str($Dcmd, $__cmdVars);
+foreach ($__routerVars as $__rv) { unset($__cmdVars[$__rv]); }
 extract($__cmdVars);
 
 
@@ -197,7 +203,7 @@ switch ($cmd){
 				(token,sid,uname, ulv,uyxb,uczb, uexp,uhp,umaxhp,ustamina,umaxstamina,ugj,ufy,uwx,usex, vip,nowmid,endtime,sfzx,shenfen,linhcan_id,linhcan_quality,thechat_id,thechat_quality,huyetmach_id,huyetmach_quality)
 				VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				$stmt = $dblj->prepare($sql);
-				$stmt->execute([
+				$cjOk = $stmt->execute([
                     $token,
                     $sid,
                     $username,
@@ -225,6 +231,11 @@ switch ($cmd){
                     0, // Huyết mạch
                     0 // Phẩm chất huyết mạch
 				]);
+				// Không tạo được nhân vật thì báo lỗi, không in lời chào (trước đây không kiểm tra — BUG-08)
+				if (!$cjOk || $stmt->rowCount() < 1) {
+					echo '<meta charset="utf-8">Tạo nhân vật thất bại, vui lòng thử lại sau.';
+					exit();
+				}
 
 				// vào map đầu
 				$gonowmid = $encode->encode("cmd=gomid&newmid=$firstmid&sid=$sid");

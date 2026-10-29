@@ -833,7 +833,7 @@ function getplayer($sid,$dblj){
     $player->thechat_category_name = '';
 
     if (function_exists(__NAMESPACE__ . '\\thechat_calc_bonuses')) {
-        $tcB = thechat_calc_bonuses($player->sid, $dblj);
+        $tcB = thechat_calc_bonuses($player->sid, $dblj, $player->jingjieValue);
         $player->thechat_quality = $tcB['quality'];
         $player->thechat_awaken_stage = $tcB['awaken_stage'];
         $player->thechat_stats = $tcB['stats'];
@@ -873,7 +873,7 @@ function getplayer($sid,$dblj){
     $player->huyetmach_can_transform = false;
 
     if (function_exists(__NAMESPACE__ . '\\huyetmach_calc_bonuses')) {
-        $hmB = huyetmach_calc_bonuses($player->sid, $dblj);
+        $hmB = huyetmach_calc_bonuses($player->sid, $dblj, $player->jingjieValue);
         $player->huyetmach_quality = $hmB['quality'];
         $player->huyetmach_awaken_stage = $hmB['awaken_stage'];
         $player->huyetmach_stats = $hmB['stats'];
@@ -898,10 +898,14 @@ function getplayer($sid,$dblj){
         if (!empty($hmB['vessel']) && is_array($hmB['vessel'])) {
             $player->ugj    += intval($hmB['vessel']['atk']);
             $player->umaxhp += intval($hmB['vessel']['hp']);
-            $player->ubj    += intval($hmB['vessel']['crit']);
-            $player->uxx    += intval($hmB['vessel']['lifesteal']);
+            $player->ubj    += floatval($hmB['vessel']['crit']);
+            $player->uxx    += floatval($hmB['vessel']['lifesteal']);
         }
     }
+    // Bạo kích / Hút máu: Nhục Thân + Mạng Mạch cộng số lẻ (0.2–0.4/cấp) => cộng dồn rồi làm tròn 1 lần ở tổng
+    // (trước: Nhục Thân để float 213.05, Mạng Mạch intval từng mạch => Xung cấp 1–2 ra 0 — STAT-4/5)
+    $player->ubj = intval(round(floatval($player->ubj)));
+    $player->uxx = intval(round(floatval($player->uxx)));
     // Thien Phu: bonus 7 cong + anh xa chu phu. KHONG cong ugj/ufy/umaxhp/ubj/uxx
     // (ranh gioi cua 3 he truoc; thien phu chi lam viec o ti le, xem spec §1).
     $player->tianfu_bonus = array();

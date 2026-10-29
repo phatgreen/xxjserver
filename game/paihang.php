@@ -9,15 +9,9 @@ $backcmd = $gonowmid;
 
 function tcg_calc_chien_luc_rank($rankPlayer)
 {
-    // LECH co y: ham nay thieu 4 trong so thechat_*/huyetmach_* ma \player\combat_power()
-    // (class/player.php:425) co. Giu nguyen de bang xep hang khong nhay bac — xem Task 12 handoff.
-    return intval($rankPlayer->ugj) * 10
-        + intval($rankPlayer->ufy) * 8
-        + intval($rankPlayer->umaxhp)
-        + intval($rankPlayer->ubj) * 30
-        + intval($rankPlayer->uxx) * 25
-        + intval(isset($rankPlayer->tianfu_power) ? $rankPlayer->tianfu_power : 0)
-        + intval(isset($rankPlayer->shenzhuang_power) ? $rankPlayer->shenzhuang_power : 0);
+    // Dùng chung công thức với trang Trạng thái (\player\combat_power, class/player.php) — trước đây bỏ 4 trọng số
+    // Thể Chất / Huyết Mạch nên Chiến lực ở Xếp hạng khác trang Trạng thái (STAT-3)
+    return \player\combat_power($rankPlayer);
 }
 
 // Loại bảng xếp hạng. Chỉ dùng field đã whitelist để tránh SQL injection.

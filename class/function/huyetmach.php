@@ -203,7 +203,9 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_awaken_mult')) {
  * Tính tổng bonus từ huyết mạch.
  */
 if (!function_exists(__NAMESPACE__ . '\\huyetmach_calc_bonuses')) {
-    function huyetmach_calc_bonuses($sid, $dblj){
+    // $jingjieValue: cảnh giới của CHÍNH nhân vật đang tính (getplayer truyền vào); trước đây đọc $GLOBALS['player']
+    // = người đang xem => lần đầu ×1, lần sau ×cảnh giới, xem người khác thì dùng cảnh giới người xem (BUG-10)
+    function huyetmach_calc_bonuses($sid, $dblj, $jingjieValue = null){
         $empty = array(
             'stats' => array('atk' => 0, 'hp' => 0, 'crit' => 0, 'lifesteal' => 0),
             'element_dmg' => 0,
@@ -232,7 +234,7 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_calc_bonuses')) {
         $awakenStage = isset($config['_awaken_stage']) ? intval($config['_awaken_stage']) : 0;
         $baseStats = isset($config['base_stats']) ? $config['base_stats'] : array();
 
-        $realmScale = huyetmach_realm_scale(isset($GLOBALS['player']) ? $GLOBALS['player']->jingjieValue : 0);
+        $realmScale = huyetmach_realm_scale($jingjieValue !== null ? $jingjieValue : (isset($GLOBALS['player']) ? $GLOBALS['player']->jingjieValue : 0));
         $awakenMult = huyetmach_awaken_mult($awakenStage);
 
         $finalATK = round(floatval(isset($baseStats['atk']) ? $baseStats['atk'] : 0) * $quality * $realmScale * $awakenMult);
@@ -1073,6 +1075,9 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_vessel_bonuses')) {
             if (isset($caps[$stat])) {
                 // chi so am: o day chi chan tuyet doi stat_cap; tran cap theo stage do Task 4 chan luc ghi
                 $out[$stat] = min(floatval($caps[$stat]), round($out[$stat] + $val, 2));
+            } elseif ($stat === 'crit' || $stat === 'lifesteal') {
+                // giữ số lẻ, getplayer làm tròn ở tổng (trước round từng mạch => Xung cấp 1–2 = 0 — STAT-5)
+                $out[$stat] = round($out[$stat] + $val * $mult, 2);
             } else {
                 $out[$stat] = $out[$stat] + round($val * $mult);
             }

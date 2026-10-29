@@ -47,8 +47,10 @@ function st_cfg($name) {
  * code đọc $GLOBALS['player']->jingjieValue — trong 1 request mới của game.php giá trị này = 0).
  * Trả mảng chỉ số + chi tiết từng nguồn.
  */
-function st_expected($db, $sid, $scaleCtx) {
+function st_expected($db, $sid, $scaleCtx = null) {
     $row = e2e_row($db, $sid);
+    // Chủ dự án 2026-10-29: Thể chất / Huyết mạch nhân theo cảnh giới CỦA CHÍNH nhân vật (null = cảnh giới của nhân vật này)
+    if ($scaleCtx === null) $scaleCtx = min(intval(floor(intval($row['ulv']) / 50)), count($GLOBALS['rangeslv']) - 2) + 1;
     $atk = intval($row['ugj']); $def = intval($row['ufy']); $hp = intval($row['umaxhp']);
     $crit = intval($row['ubj']); $ls = intval($row['uxx']);
     $src = array('goc' => array($atk, $def, $hp, $crit, $ls));
@@ -283,9 +285,11 @@ function st_expected($db, $sid, $scaleCtx) {
     foreach ($vc['vessels'] as $id => $vd) {
         if (!isset($ves[$vd['stat']])) continue; // 4 chỉ số âm (né/xuyên/giảm/vận) không cộng vào 5 chỉ số chính
         $lv = isset($vl[intval($id)]) ? $vl[intval($id)] : 0;
-        $ves[$vd['stat']] += round(floatval($vd['per_lv']) * $lv * (1 + $vms / 100));
+        $gainV = floatval($vd['per_lv']) * $lv * (1 + $vms / 100);
+        // Bạo kích / Hút máu giữ số lẻ (làm tròn 1 lần ở tổng — STAT-5); Công / HP làm tròn từng mạch như cũ
+        $ves[$vd['stat']] = in_array($vd['stat'], array('crit', 'lifesteal'), true) ? round($ves[$vd['stat']] + $gainV, 2) : $ves[$vd['stat']] + round($gainV);
     }
-    $h[0] += intval($ves['atk']); $h[2] += intval($ves['hp']); $h[3] += intval($ves['crit']); $h[4] += intval($ves['lifesteal']);
+    $h[0] += intval($ves['atk']); $h[2] += intval($ves['hp']); $h[3] += floatval($ves['crit']); $h[4] += floatval($ves['lifesteal']);
     $atk += $h[0]; $hp += $h[2]; $crit += $h[3]; $ls += $h[4];
     $src['huyet_mach'] = $h;
 
@@ -301,6 +305,8 @@ function st_expected($db, $sid, $scaleCtx) {
     $hmA = intval($row['huyetmach_id']) > 0 ? intval($row['huyetmach_awaken_stage']) : 0;
     // tianfu_power: tổng lực thiên phú (đọc qua hàm tianfu_bonuses — nguồn dữ liệu bảng player_tianfu)
     $tfb = \player\tianfu_bonuses($sid, $db);
+    // Tổng Bạo kích / Hút máu làm tròn 1 lần (getplayer — STAT-4)
+    $crit = intval(round(floatval($crit))); $ls = intval(round(floatval($ls)));
     $power = intval($hp) + intval($atk) * 10 + intval($def) * 8 + intval($crit) * 30 + intval($ls) * 25
         + intval($tfb['power']) + $tcQ * 200 + $tcA * 500 + $hmQ * 250 + $hmA * 600;
 
@@ -382,7 +388,7 @@ st_check("A0 chỉ số gốc cấp $LEVEL = công thức đột phá (dung sai 
     "Công {$row['ugj']} (thiết kế $gj, lệch $dGj) Thủ {$row['ufy']} (thiết kế $fy, lệch $dFy) HP {$row['umaxhp']}/" . intval($hpb));
 
 // ============================ A. TRẮNG ============================
-st_compare('A_trang', st_expected($db, $SID, 0), st_actual($db, $SID, $emptyCtx));
+st_compare('A_trang', st_expected($db, $SID), st_actual($db, $SID, $emptyCtx));
 
 // ============================ B. FULL TRANG BỊ ============================
 $zbCfg = st_cfg('zhuangbei_config.json');
@@ -412,7 +418,7 @@ $zr = $db->query("SELECT zbid, zbgj, qianghua FROM playerzhuangbei WHERE zbnowid
 $baseGj = intval($zbCfg[(string)$zr['zbid']]['zbgj']);
 st_check('B0 cường hóa +5: mỗi cấp +8% chỉ số gốc config', intval($zr['zbgj']) === $baseGj + 5 * max(1, intval(round($baseGj * 0.08))),
     "zbgj DB={$zr['zbgj']} gốc=$baseGj qh={$zr['qianghua']}");
-st_compare('B_trang_bi', st_expected($db, $SID, 0), st_actual($db, $SID, $emptyCtx));
+st_compare('B_trang_bi', st_expected($db, $SID), st_actual($db, $SID, $emptyCtx));
 
 // ============================ C. FULL HỆ THỐNG ============================
 // Võ công 20 (Bát Quái Quyền) cấp 6
@@ -448,7 +454,7 @@ $db->prepare("INSERT INTO playerchongwu (cwname, cwhp, cwmaxhp, cwgj, cwfy, cwbj
     VALUES ('E2E Pet', 100, 100, 50, 20, 0, 0, 1, 0, 0,0,0,0,0,0, ?, 10, 2, 2, 1)")->execute(array($SID));
 $db->prepare("UPDATE game1 SET cw = ? WHERE sid = ?")->execute(array(intval($db->lastInsertId()), $SID));
 
-$expC = st_expected($db, $SID, 0);
+$expC = st_expected($db, $SID);
 $pC = st_actual($db, $SID, $emptyCtx);
 st_compare('C_full', $expC, $pC);
 
@@ -468,16 +474,18 @@ st_check('STAT-1b lần gọi 2 = công thức với cảnh giới thật của 
 \player\wgcx(20, $SID, $db, true); // nạp cache (giống game/wugong.php dòng 10)
 $db->prepare("UPDATE playerwugong SET wgdj = wgdj + 1 WHERE sid = ? AND wgid = 20")->execute(array($SID));
 \player\player_cache_clear($SID);
+\player\wgcx(20, $SID, $db, true); // game/wugong.php làm mới cache ngay sau UPDATE nâng cấp (BUG-11)
 $pW = \player\getplayer($SID, $db);
 // $GLOBALS['player'] lúc này = $ctx (cảnh giới thật) -> kỳ vọng tính cùng ngữ cảnh đó
 $expW = st_expected($db, $SID, intval($ctx->jingjieValue));
 st_check('STAT-2 getplayer() thấy cấp võ công mới ngay sau khi nâng (cùng request)', intval($pW->ugj) === intval($expW['ugj']),
     'getplayer Công ' . $pW->ugj . ' / kỳ vọng ' . $expW['ugj'] . ' (lệch = add_gj Bát Quái Quyền × 1 cấp)');
 // STAT-3: Chiến lực bảng xếp hạng vs Trạng thái
-$rankPow = intval($pC->ugj) * 10 + intval($pC->ufy) * 8 + intval($pC->umaxhp) + intval($pC->ubj) * 30 + intval($pC->uxx) * 25
-    + intval($pC->tianfu_power);
+// game/paihang.php giờ gọi thẳng combat_power() => kiểm tra nguồn trang dùng chung công thức
+$rankSrc = file_get_contents(__DIR__ . '/../game/paihang.php');
 st_check('STAT-3 Chiến lực bảng xếp hạng (game/paihang.php) = Chiến lực trang Trạng thái (combat_power)',
-    $rankPow === \player\combat_power($pC), 'xếp hạng ' . $rankPow . ' / trạng thái ' . \player\combat_power($pC));
+    preg_match('/function tcg_calc_chien_luc_rank\(\$rankPlayer\)\s*\{[^}]*combat_power\(\$rankPlayer\)/s', $rankSrc) === 1,
+    'paihang.php chưa dùng \\player\\combat_power()');
 // STAT-4: Bạo kích là số nguyên (cột INT, hiển thị) — Nhục Thân Cốt Tủy 0.2/cấp làm ubj thành số thực
 st_check('STAT-4 ubj là số nguyên', floor(floatval($pC->ubj)) == floatval($pC->ubj), 'ubj = ' . var_export($pC->ubj, true));
 // STAT-5: Mạch Xung (Bạo kích 0.2/cấp) — 1-2 cấp làm tròn về 0

@@ -243,6 +243,12 @@ $qr1 = '';
 if (isset($canshu)) {
     switch ($canshu) {
         case 'chuzhan':
+            // Chỉ xuất chiến linh sủng của chính mình (trước đây cwid lấy từ URL không kiểm tra chủ — BUG-07)
+            $cwOwn = $dblj->prepare("SELECT cwid FROM playerchongwu WHERE cwid = ? AND sid = ? LIMIT 1");
+            $cwOwn->execute(array(intval($cwid), $sid));
+            if (!$cwOwn->fetchColumn()) {
+                break;
+            }
             \player\changeplayersx('cw', $cwid, $sid, $dblj);
             $player = \player\getplayer($sid, $dblj);
             break;

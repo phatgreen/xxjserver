@@ -198,8 +198,8 @@ if (!function_exists(__NAMESPACE__ . '\\chetao_craft')) {
                         $stmt2 = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + ? WHERE sid = ? AND djid = ?");
                         $stmt2->execute(array($resultAmount, $sid, $resultDaojuId));
                     } else {
-                        $stmt2 = $dblj->prepare("INSERT INTO playerdaoju (sid, djid, djsum) VALUES (?, ?, ?)");
-                        $stmt2->execute(array($sid, $resultDaojuId, $resultAmount));
+                        $stmt2 = $dblj->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum) SELECT sid, uid, ?, ? FROM game1 WHERE sid = ? LIMIT 1"); // kèm uid (khóa chính uid+djid)
+                        $stmt2->execute(array($resultDaojuId, $resultAmount, $sid));
                     }
 
                     $djConfig = daoju_config_get($resultDaojuId);

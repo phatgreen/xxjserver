@@ -202,6 +202,7 @@ if ($cmd == 'wgxiulian' && $cxwg) {
         $stmt = $dblj->prepare($sql);
         $stmt->execute(array($leftExp, $addMax, $needBook, $wgid, $sid));
         \player\player_cache_clear($sid);
+        \player\wgcx($wgid, $sid, $dblj, true); // làm mới cache tĩnh trước getplayer (không thì chỉ số thiếu 1 cấp — BUG-11)
         $forceRefreshWg = true;
         $tishi = 'Tu luyện thành công, võ công tăng 1 cấp. Tiêu hao bí tịch: '.$needBook;
         $player = \player\getplayer($sid, $dblj);

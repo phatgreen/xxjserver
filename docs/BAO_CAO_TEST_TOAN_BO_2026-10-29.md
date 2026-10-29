@@ -237,3 +237,28 @@ Trong e2e, các phép đo getplayer() sau mỗi hành động qua route thật �
 - Server 8091 được chia sẻ với người đang sửa giao diện. Test chỉ đọc `/tmp/xxjrun/php_error.log` theo offset trước/sau từng request, nên nếu có request khác chen vào thì có thể nhận nhầm dòng log của họ. Khả năng này thấp.
 - `--relax` mở server phụ `127.0.0.1:8092` (tự tắt khi xong). Không đổi `sql_mode` toàn cục, không ảnh hưởng 8091.
 - Lỗi đã biết, không thuộc phạm vi báo cáo này: `tests/test_dot_c.php` và `tests/test_dot_d.php` FAIL do strict mode và dữ liệu cũ. Theo BUG-01 thì đây cũng là cùng một nguyên nhân gốc.
+
+---
+
+## 5. Đã sửa (2026-10-29)
+
+| Lỗi | Cách sửa | File |
+|---|---|---|
+| BUG-01 INSERT thiếu cột NOT NULL | Migration gắn DEFAULT cho 298 cột (số → 0, chuỗi → '', text/ngày → NULL); bỏ qua cột khóa chính và `game1.sid/token/endtime` (bảng chạm giới hạn kích thước dòng, code luôn truyền) | `sql/migrate_default_cols.php` |
+| BUG-02 `playerdaoju` thiếu uid | 6 câu INSERT lấy uid từ `game1` theo sid; kho Tông Môn: tham số thực ra là UID người nhận (trước bị dùng như sid ⇒ đồ không tới ai) — tra sid thật. Migration sửa dữ liệu uid = 0 (gán uid / gộp số lượng) | `game/hammo.php`, `game/toayeuthap.php`, `game/sauthu.php`, `class/function/chetao.php`, `class/function/luonden.php`, `class/function/club_treasury.php`, `sql/migrate_daoju_uid.php` |
+| BUG-03 shop trừ tiền mất đồ | Hết lỗi khi BUG-01 đã sửa (INSERT không còn hỏng) | — |
+| BUG-04 / BUG-06 include file tùy ý + XSS | Trước mỗi `extract()` loại khỏi tham số URL các biến nội bộ router (`ym`, `pvpts`, `tpts`, `dblj`, `player`…) | `game.php` |
+| BUG-05 Phường thị | `fangshi_zb.sid` / `fangshi_sd.sid` INT → VARCHAR(32); không in lỗi SQL ra trang | `sql/migrate_fangshi_sid.php`, `game/zbinfo.php` |
+| BUG-07 xuất chiến linh sủng người khác | Kiểm tra `playerchongwu.sid` trước khi xuất chiến | `game/chongwu.php` |
+| BUG-08 lời chào khi tạo nhân vật lỗi | Kiểm tra kết quả INSERT | `game.php` |
+| BUG-09 luyện võ công chưa sở hữu | Kiểm tra `wgcx()` trước khi đặt | `game/xxwg.php` |
+| BUG-10 / STAT-1 Thể chất / Huyết mạch theo người xem | Chủ dự án chốt **nhân theo cảnh giới của chính nhân vật**; `getplayer()` truyền `jingjieValue` vào `thechat_calc_bonuses` / `huyetmach_calc_bonuses` | `class/player.php`, `class/function/thechat.php`, `class/function/huyetmach.php` |
+| BUG-11 cache `wgcx()` sau nâng cấp | Làm mới cache ngay sau UPDATE | `game/wugong.php` |
+| BUG-12 tu luyện hiển thị ≠ trừ | Hiển thị đúng số đã trừ (`$cost`) | `game/xiulian.php` |
+| STAT-3 Chiến lực Xếp hạng | Dùng chung `\player\combat_power()` | `game/paihang.php` |
+| STAT-4 / STAT-5 Bạo kích lẻ / Mạch Xung 0 | Mạng Mạch giữ số lẻ, `getplayer()` làm tròn tổng Bạo kích / Hút máu 1 lần | `class/player.php`, `class/function/huyetmach.php` |
+
+Kết quả sau sửa (DB strict): `tests/test_e2e_full.php` 263/263 PASS, `tests/test_player_stats.php` ALL PASS (đã cập nhật kỳ vọng theo quy tắc mới).
+Còn lại (có từ trước, số FAIL giống hệt trước/sau sửa): `test_dot_c` 1, `test_drop_cover` 2, `test_huyetmach_schema` 1, `test_kt0` 1,
+`test_linhcan_pages` 29, `test_nguhanh_market` 12, `test_tianfu_migration` 16, `test_tianfu_schema` 1; nhiều test cũ dựng `game1` thiếu `token` nên chỉ chạy được khi DB không strict.
+Chưa sửa: STAT-6 (Chiến lực luôn cộng phẩm mặc định — có thể chủ ý), STAT-7 (làm tròn cột INT khi lên cấp, lệch rất nhỏ), BUG-08 phần token tạo nhân vật không đối chiếu `userinfo`.

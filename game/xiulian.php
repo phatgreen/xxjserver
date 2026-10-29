@@ -224,7 +224,7 @@ if ($cmd == 'endxiulian' && $player->sfxl > 0) {
             \player\nhiemvu_update_all($sid, 'cultivate', $medMin, $dblj, array());
         }
 
-        $tishi = "Nhận được <b style='color:#ff9800'>$gain_exp</b> tu vi sau $xlsjc phút $xlsec giây.<br>" . (($cost_per_min > 0) ? ("Tiêu hao: " . (ceil($diff / 60) * $cost_per_min) . " " . $resource_name) : "Tiêu hao: " . $resource_name);
+        $tishi = "Nhận được <b style='color:#ff9800'>$gain_exp</b> tu vi sau $xlsjc phút $xlsec giây.<br>" . (($cost_per_min > 0) ? ("Tiêu hao: " . $cost . " " . $resource_name) : "Tiêu hao: " . $resource_name);
         $player = \player\getplayer($sid, $dblj);
     }
 }

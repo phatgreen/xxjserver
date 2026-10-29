@@ -453,8 +453,8 @@ if (!function_exists(__NAMESPACE__ . '\\luonden_add_result')) {
                 $stmt2 = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + ? WHERE sid = ? AND djid = ?");
                 return $stmt2->execute(array($resultAmount, $sid, $resultId));
             } else {
-                $stmt2 = $dblj->prepare("INSERT INTO playerdaoju (sid, djid, djsum) VALUES (?, ?, ?)");
-                return $stmt2->execute(array($sid, $resultId, $resultAmount));
+                $stmt2 = $dblj->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum) SELECT sid, uid, ?, ? FROM game1 WHERE sid = ? LIMIT 1"); // kèm uid (khóa chính uid+djid)
+                return $stmt2->execute(array($resultId, $resultAmount, $sid));
             }
         } else {
             $stmt = $dblj->prepare("SELECT ypsum FROM playeryaopin WHERE sid = ? AND ypid = ? LIMIT 1");
