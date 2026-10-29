@@ -350,12 +350,15 @@ $energyPercent = $energyMax > 0 ? min(100, max(0, intval(round($energyValue * 10
 // Thọ nguyên: thanh % tuổi đã dùng, bấm vào mở trang Thọ Nguyên
 $tnZt = \player\thonguyen_status($player, $dblj);
 $tnZtHtml = '';
+$tnZtBadge = '';
 if ($tnZt) {
+    $tnZtBadge = '<span class="profile-badge">⏳ ' . \player\thonguyen_years_text($tnZt['age']) . ' tuổi</span>';
     $tnZtUsed = min(100, max(0, intval(round(100 - $tnZt['left_pct']))));
     $tnZtColor = $tnZt['dead'] ? '#e5534b' : ($tnZt['cut'] > 0 ? '#d9a33f' : '#7fb2ff');
-    $tnZtHtml = '<a class="profile-bar" style="display:block;text-decoration:none;color:inherit" href="?cmd=' . $encode->encode("cmd=thonguyen&sid=$sid") . '">'
-        . '<div class="profile-bar-title"><span>⏳ ' . ($tnZt['dead'] ? 'Đã Tọa Hóa' : 'Tuổi / Thọ nguyên') . '</span><span>'
-        . \player\thonguyen_years_text($tnZt['age']) . ' / ' . \player\thonguyen_years_text($tnZt['life']) . '</span></div>'
+    $tnZtState = $tnZt['dead'] ? ' · <b style="color:#ff8a80">Tọa Hóa</b>' : ($tnZt['cut'] > 0 ? ' · <b style="color:#ffd27a">hấp thụ −' . $tnZt['cut'] . '%</b>' : '');
+    $tnZtHtml = '<a class="profile-bar profile-bar-fullwidth" style="display:block;text-decoration:none;color:inherit" href="?cmd=' . $encode->encode("cmd=thonguyen&sid=$sid") . '">'
+        . '<div class="profile-bar-title"><span>⏳ Tuổi ' . \player\thonguyen_years_text($tnZt['age']) . ' · Thọ nguyên ' . \player\thonguyen_years_text($tnZt['life']) . ' năm</span><span>còn '
+        . round($tnZt['left_pct'], 1) . '%' . $tnZtState . ' ›</span></div>'
         . '<div class="profile-bar-track"><div class="profile-bar-fill" style="width:' . $tnZtUsed . '%;background:' . $tnZtColor . '"></div></div></a>';
 }
 
@@ -419,6 +422,7 @@ $html = <<<HTML
                 <span class="profile-badge realm">✦ $player->jingjie $player->cengci</span>
                 <span class="profile-badge">🎖️ $sf</span>
                 <span class="profile-badge">Cấp $player->ulv</span>
+                $tnZtBadge
             </div>
         </div>
     </div>

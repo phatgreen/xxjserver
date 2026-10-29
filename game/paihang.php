@@ -82,6 +82,7 @@ if ($rankType == 'power') {
     }
 }
 
+$podium = array();
 if (!empty($ret)) {
     for ($i = 0; $i < count($ret); $i++) {
         $uname = isset($ret[$i]['uname']) ? $ret[$i]['uname'] : '';
@@ -141,6 +142,19 @@ if (!empty($ret)) {
         }
 
         $safeName = htmlspecialchars($clubName.$uname, ENT_QUOTES, 'UTF-8');
+        if ($rankNo <= 3) {
+            // Top 1–3: bục vinh danh riêng phía trên danh sách
+            $podium[$rankNo] = '<a class="rank-pod rank-pod-'.$rankNo.'" href="?cmd='.$ucmd.'">'
+                . '<span class="rank-pod-icon">'.$rankIcon.'</span>'
+                . '<span class="rank-pod-no">'.$rankNo.'</span>'
+                . '<span class="rank-pod-name">'.$safeName.'</span>'
+                . '<span class="rank-pod-tier">'.$rankTier.'</span>'
+                . '<span class="rank-pod-lv">Lv.'.$ulv.'</span>'
+                . '<span class="rank-pod-value"><small>'.$rankCfg['name'].'</small><b>'.$mainValueText.'</b></span>'
+                . '<span class="rank-pod-base">'.$rankNo.'</span>'
+                . '</a>';
+            continue;
+        }
         $phlshtml .= '<div class="rank-row'.$rankClass.'">';
         $phlshtml .= '  <div class="rank-no"><span>'.$rankNo.'</span></div>';
         $phlshtml .= '  <div class="rank-main">';
@@ -153,7 +167,16 @@ if (!empty($ret)) {
     }
 }
 
-if ($phlshtml == '') {
+// Bục: hạng 2 – hạng 1 – hạng 3 (hạng 1 ở giữa, cao nhất)
+$podiumHtml = '';
+if ($podium) {
+    $podiumHtml = '<div class="rank-podium">';
+    foreach (array(2, 1, 3) as $pn) {
+        $podiumHtml .= isset($podium[$pn]) ? $podium[$pn] : '<div class="rank-pod rank-pod-'.$pn.' rank-pod-empty"><span class="rank-pod-base">'.$pn.'</span></div>';
+    }
+    $podiumHtml .= '</div>';
+}
+if ($phlshtml == '' && $podiumHtml == '') {
     $phlshtml = '<div class="rank-empty">Chưa có dữ liệu xếp hạng</div>';
 }
 
@@ -170,6 +193,7 @@ $phhtml = <<<HTML
 
     <div class="rank-tabs">$tabsHtml</div>
 
+    $podiumHtml
     <div class="rank-list">
         $phlshtml
     </div>
