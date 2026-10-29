@@ -37,13 +37,14 @@ $tnBagCmd = $encode->encode("cmd=getbagdj&sid=$sid");
     $tnColor = $tn['dead'] ? '#e5534b' : ($tn['cut'] > 0 ? '#d9a33f' : '#2fbf71');
     $tnHours = floatval($tnCfg['hours_per_year']);
 ?>
-    <div class="fk-lock-icon"><?php echo $tn['dead'] ? '🪦' : '⏳'; ?></div>
+    <div class="zb-art" style="--ra:<?php echo $tnColor; ?>"><span class="bag-emo"><?php echo $tn['dead'] ? '🪦' : '⏳'; ?></span><span class="zb-art-ra"><?php echo $tnLeftPct; ?>%</span></div>
     <div class="fk-lock-title"><?php echo $tn['dead'] ? 'Đã Tọa Hóa' : 'Tuổi & Thọ Nguyên'; ?></div>
     <?php if ($tnNotice !== ''): ?>
     <div class="fk-lock-level" style="color:<?php echo $tnNoticeType === 'ok' ? '#2fbf71' : '#e5534b'; ?>"><?php echo htmlspecialchars($tnNotice, ENT_QUOTES, 'UTF-8'); ?></div>
     <?php endif; ?>
     <div class="fk-lock-level">Tuổi <b><?php echo $tnAgeTxt; ?></b> / Thọ nguyên <b><?php echo $tnLifeTxt; ?></b> năm
         — còn <b style="color:<?php echo $tnColor; ?>"><?php echo $tnLeftPct; ?>%</b></div>
+    <div class="tn-bar"><i style="width:<?php echo min(100, max(0, 100 - $tnLeftPct)); ?>%;background:<?php echo $tnColor; ?>"></i></div>
     <?php if ($tn['dead']): ?>
     <div class="fk-lock-desc" style="color:#e5534b">Thọ nguyên đã cạn, hồn phách ly thể. Không thể tu luyện, chiến đấu hay đột phá cho tới khi dùng Hồi Hồn Đan.</div>
     <?php elseif ($tn['cut'] > 0): ?>
@@ -63,9 +64,14 @@ $tnBagCmd = $encode->encode("cmd=getbagdj&sid=$sid");
         $tnBuyCmd = $encode->encode("cmd=thonguyen&tnact=buy&tnk=$tnKey&sid=$sid");
         $tnUseCmd = $encode->encode("cmd=thonguyen&tnact=use&tnk=$tnKey&sid=$sid");
     ?>
-        <div><b><?php echo $tnName; ?></b> (có <?php echo $tnHaveN; ?>)<br>
+        <?php list($tnEmo, $tnEmoC) = \player\item_emoji($tnName, '💊'); ?>
+        <div class="tn-pill" style="--ra:<?php echo $tnEmoC; ?>">
+            <span class="item-art"><span class="bag-emo"><?php echo $tnEmo; ?></span><b class="bag-qty">x<?php echo $tnHaveN; ?></b></span>
+            <span class="tn-pill-name"><b><?php echo $tnName; ?></b><small><?php echo $tnKey === 'dientho' ? 'Tuổi −10% thọ nguyên' : ($tnKey === 'daitinh' ? 'Sống lại, còn 15% thọ nguyên' : 'Sống lại, còn 50% thọ nguyên'); ?></small></span>
+            <span class="tn-pill-btns">
             <?php if ($tnHaveN > 0): ?><a class="fk-lock-btn" href="?cmd=<?php echo $tnUseCmd; ?>">💊 Dùng</a><?php endif; ?>
-            <a class="fk-lock-btn alt" href="?cmd=<?php echo $tnBuyCmd; ?>">🛒 Mua 1 viên — <?php echo number_format($tnPrice); ?> <?php echo $tnCur === 'mt' ? 'Ma Thạch' : 'Linh Thạch'; ?></a>
+            <a class="fk-lock-btn alt" href="?cmd=<?php echo $tnBuyCmd; ?>">🛒 <?php echo number_format($tnPrice); ?> <?php echo $tnCur === 'mt' ? 'MT' : 'LT'; ?></a>
+            </span>
         </div>
     <?php endforeach; ?>
     </div>

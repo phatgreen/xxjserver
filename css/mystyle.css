@@ -8889,3 +8889,13 @@ body.tcg-bg-body .ptask-reward-item>span{flex:1 1 auto;min-width:0;overflow:hidd
 .lc-req{display:inline-block;padding:0 6px;border-radius:999px;font-size:10px;font-weight:900;line-height:16px;margin-right:4px}
 .lc-req.ok{color:#bbf7d0;background:rgba(22,163,74,.25);border:1px solid rgba(74,222,128,.5)}
 .lc-req.bad{color:#fecaca;background:rgba(185,28,28,.25);border:1px solid rgba(248,113,113,.5)}
+/* Trang Thọ Nguyên */
+.tn-bar{height:8px;margin:8px 0 10px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.tn-bar i{display:block;height:100%;border-radius:999px}
+.tn-pill{--ra:#7dd3fc;display:flex;align-items:center;gap:10px;width:100%;padding:8px;border-radius:12px;text-align:left;border:1px solid color-mix(in srgb,var(--ra) 45%,transparent);background:linear-gradient(180deg,rgba(20,42,86,.75),rgba(10,24,60,.82))}
+body.tcg-bg-body .tn-pill .item-art{width:46px!important;height:46px!important}
+body.tcg-bg-body .tn-pill .item-art .bag-emo{font-size:24px}
+.tn-pill-name{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.tn-pill-name small{color:#a9c8f6;font-size:11px}
+.tn-pill-btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+body.tcg-bg-body .fk-lock .zb-art{margin:0 auto 14px!important}

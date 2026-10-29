@@ -1,7 +1,7 @@
 <?php
 /**
  * fix_mojibake.php — quét & sửa chữ lỗi font kiểu "Thiáº¿t bá»‹" (UTF-8 bị mã hoá 2 lần qua latin1, thường do nhập .sql
- * hoặc ghi DB bằng kết nối không SET NAMES utf8). Chỉ xét cột chữ có charset utf8/utf8mb4.
+ * hoặc ghi DB bằng kết nối không SET NAMES utf8). Chỉ xét cột chữ có charset utf8/utf8mb3/utf8mb4 (MariaDB 10.x, MySQL 8 báo utf8 là utf8mb3).
  *
  * Chỉ sửa giá trị CHẮC CHẮN lỗi: mọi ký tự đều đổi ngược được về 1 byte latin1 VÀ dãy byte thu được là UTF-8 hợp lệ có dấu.
  * Chữ Việt đúng (vd "Phát Đạt", "Tiên") không bao giờ thoả điều kiện này ⇒ không bị đụng.
@@ -74,7 +74,7 @@ $db = $dblj->query("SELECT DATABASE()")->fetchColumn();
 $st = $dblj->prepare("SELECT c.table_name, c.column_name FROM information_schema.columns c
     JOIN information_schema.tables t ON t.table_schema = c.table_schema AND t.table_name = c.table_name AND t.table_type = 'BASE TABLE'
     WHERE c.table_schema = ? AND c.data_type IN ('char','varchar','tinytext','text','mediumtext','longtext')
-      AND c.character_set_name IN ('utf8','utf8mb4') ORDER BY c.table_name, c.ordinal_position");
+      AND c.character_set_name IN ('utf8','utf8mb3','utf8mb4') ORDER BY c.table_name, c.ordinal_position");
 $st->execute(array($db));
 $cols = $st->fetchAll(PDO::FETCH_NUM);
 
