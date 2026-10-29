@@ -217,7 +217,7 @@ if ($isAjax && isset($_POST['attack']) && $_POST['attack'] == '1') {
     $isDodge = false;
 
     /* Bạo kích player */
-    if (intval($player->ubj) > 0 && mt_rand(1, 100) <= min(75, intval($player->ubj))) {
+    if (\player\roll_pct($player->ubj, 75)) {
         $damage = round($damage * 1.65);
         $isCrit = true;
     }
@@ -230,8 +230,8 @@ if ($isAjax && isset($_POST['attack']) && $_POST['attack'] == '1') {
 
     /* Hút máu (lifesteal) */
     $heal = 0;
-    if ($damage > 0 && intval($player->uxx) > 0) {
-        $heal = max(0, intval(round($damage * intval($player->uxx) / 220)));
+    if ($damage > 0 && floatval($player->uxx) > 0) {
+        $heal = max(0, intval(round($damage * floatval($player->uxx) / 220)));
     }
 
     /* Boss phản đòn */

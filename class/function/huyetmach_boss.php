@@ -140,7 +140,7 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_calc_damage')) {
         }
         $dmg = max(1, round($baseDmg * $elemMult));
         $isCrit = false;
-        if (mt_rand(1, 100) <= intval($player->ubj)) {
+        if (roll_pct($player->ubj, 100)) {
             $dmg = round($dmg * 1.72);
             $isCrit = true;
         }

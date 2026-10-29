@@ -154,8 +154,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_calc_damage')) {
         $damage = max(1, round($baseDmg * $elemMult));
 
         // Bạo kích
-        $critChance = intval($player->ubj);
-        if (mt_rand(1, 100) <= $critChance) {
+        if (roll_pct($player->ubj, 100)) {
             $damage = round($damage * 1.72);
             return array('damage' => $damage, 'crit' => true, 'elem_mult' => $elemMult);
         }
@@ -304,7 +303,7 @@ if (!function_exists(__NAMESPACE__ . '\\lcboss_calc_damage')) {
         }
         $dmg = max(1, round($baseDmg * $elemMult));
         $isCrit = false;
-        if (mt_rand(1, 100) <= intval($player->ubj)) {
+        if (roll_pct($player->ubj, 100)) {
             $dmg = round($dmg * 1.72);
             $isCrit = true;
         }

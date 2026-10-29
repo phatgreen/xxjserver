@@ -98,9 +98,9 @@ function vdd_simulate($attacker, $defender)
     for ($round = 1; $round <= 35 && $aHp > 0 && $dHp > 0; $round++) {
         $aDamage = max(1, intval(round(intval($attacker->ugj) - intval($defender->ufy) * 0.62)));
         if ($aDamage < intval($attacker->ugj * 0.12)) $aDamage = max(1, intval(round($attacker->ugj * 0.12)));
-        if (mt_rand(1, 100) <= min(80, max(0, intval($attacker->ubj)))) $aDamage = intval(round($aDamage * 1.6));
+        if (\player\roll_pct($attacker->ubj, 80)) $aDamage = intval(round($aDamage * 1.6));
         $dHp -= $aDamage;
-        $aHeal = max(0, intval(round($aDamage * max(0, intval($attacker->uxx)) / 230)));
+        $aHeal = max(0, intval(round($aDamage * max(0, floatval($attacker->uxx)) / 230)));
         $aHp = min(intval($attacker->umaxhp), $aHp + $aHeal);
 
         $dDamage = 0;
@@ -108,9 +108,9 @@ function vdd_simulate($attacker, $defender)
         if ($dHp > 0) {
             $dDamage = max(1, intval(round(intval($defender->ugj) - intval($attacker->ufy) * 0.62)));
             if ($dDamage < intval($defender->ugj * 0.12)) $dDamage = max(1, intval(round($defender->ugj * 0.12)));
-            if (mt_rand(1, 100) <= min(80, max(0, intval($defender->ubj)))) $dDamage = intval(round($dDamage * 1.6));
+            if (\player\roll_pct($defender->ubj, 80)) $dDamage = intval(round($dDamage * 1.6));
             $aHp -= $dDamage;
-            $dHeal = max(0, intval(round($dDamage * max(0, intval($defender->uxx)) / 230)));
+            $dHeal = max(0, intval(round($dDamage * max(0, floatval($defender->uxx)) / 230)));
             $dHp = min(intval($defender->umaxhp), $dHp + $dHeal);
         }
 

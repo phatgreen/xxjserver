@@ -162,6 +162,13 @@ switch ($cmd){
 	*/
 	case 'cjplayer':
 		if(isset($token,$username,$sex)){
+			// Token phải thuộc 1 tài khoản đã đăng ký (userinfo) — trước chỉ cần dài ≥ 32 ký tự là tạo được nhân vật
+			$stmt = $dblj->prepare("SELECT 1 FROM userinfo WHERE token=? LIMIT 1");
+			$stmt->execute([$token]);
+			if (!$stmt->fetchColumn()) {
+				echo '<meta charset="utf-8">Phiên đăng nhập không hợp lệ, hãy quay lại đăng nhập lại.';
+				exit();
+			}
 			// Kiểm tra trùng tên
 			$stmt = $dblj->prepare("SELECT uname FROM game1 WHERE uname=?");
 			$stmt->execute([$username]);

@@ -10,6 +10,7 @@
  *   - char / varchar / enum / set            => NOT NULL DEFAULT ''
  *   - text / blob / date / time / datetime   => NULL (MySQL 5.5 không cho DEFAULT với kiểu này)
  *   - BỎ QUA cột thuộc PRIMARY KEY và cột auto_increment (khóa phải do code truyền).
+ *   - Riêng midguaiwu.sid => VARCHAR(32) NOT NULL DEFAULT '' (code tìm quái bằng sid = '', NULL sẽ không khớp).
  *
  *   php sql/migrate_default_cols.php --dry-run    in việc sẽ làm, KHÔNG ghi DB
  *   php sql/migrate_default_cols.php --apply      ghi thật
@@ -58,5 +59,22 @@ foreach ($rows as $r) {
     }
 }
 if (!$rows) echo "[bo qua] khong con cot NOT NULL thieu DEFAULT\n";
+
+// midguaiwu.sid (mediumtext): câu sinh quái (game/nowmid.php) không truyền sid, còn quái công khai được tìm bằng sid = ''.
+// TEXT không có DEFAULT được (MySQL 5.5) => nếu để NULL thì quái mới mang sid NULL, không khớp '' => bản đồ "không có quái".
+// Đổi sang VARCHAR(32) NOT NULL DEFAULT '' (sid hex 32 ký tự hoặc rỗng) và đưa NULL cũ về ''.
+$st = $dblj->prepare("SELECT DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'midguaiwu' AND COLUMN_NAME = 'sid'");
+$st->execute(array($db));
+$mgType = $st->fetchColumn();
+if ($mgType !== false && strtolower($mgType) !== 'varchar') {
+    echo "[sua] midguaiwu.sid ($mgType) => VARCHAR(32) NOT NULL DEFAULT ''\n";
+    if ($APPLY) {
+        $dblj->exec("UPDATE midguaiwu SET sid = '' WHERE sid IS NULL");
+        $dblj->exec("ALTER TABLE `midguaiwu` MODIFY `sid` VARCHAR(32) NOT NULL DEFAULT ''");
+    }
+    $done++;
+} else {
+    echo "[bo qua] midguaiwu.sid da la varchar\n";
+}
 echo "Tong: $done cot" . ($skip ? ", loi $skip" : '') . "\n";
 echo $APPLY ? "XONG (--apply)\n" : "DRY-RUN: chua ghi gi. Chay lai voi --apply\n";

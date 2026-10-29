@@ -341,8 +341,8 @@ HTML;
         $tishihtml .= "<font color='#42a5f5'>Võ công {$wgEffectName} phát huy: giảm {$wgReduceHurt} sát thương</font><br/>";
     }
 
-    $ran = mt_rand(1,200);// Kiểm tra khả năng kích hoạt bạo kích
-    if ($player->ubj >= $ran){
+    // Tỉ lệ bạo kích = ubj / 2 (%) như cũ (mt_rand 1..200), tính đúng phần số lẻ
+    if (\player\roll_pct($player->ubj / 2, 100)){
         $cbCritMult = floatval(\player\combat_rule('crit_mult', null, 1.72));
         if ($cbWg && $cbWg->effect_type == 'crit_dmg' && intval($cbWg->effect_value) > 0) {
             $cbCritMult += intval($cbWg->effect_value) / 100 * \player\combat_passive_scale($cbWg->wgdj);

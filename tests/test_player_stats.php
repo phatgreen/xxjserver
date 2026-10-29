@@ -118,8 +118,8 @@ function st_expected($db, $sid, $scaleCtx = null) {
         }
     }
     $tz = array(intval(round($atk * $pct['gj'] / 100)), intval(round($def * $pct['fy'] / 100)),
-                intval(round($hp * $pct['hp'] / 100)), intval(round($crit * $pct['bj'] / 100)),
-                intval(round($ls * $pct['xx'] / 100)));
+                intval(round($hp * $pct['hp'] / 100)), round($crit * $pct['bj'] / 100, 2),
+                round($ls * $pct['xx'] / 100, 2));
     $atk += $tz[0]; $def += $tz[1]; $hp += $tz[2]; $crit += $tz[3]; $ls += $tz[4];
     $src['than_trang'] = $tz;
     $src['than_trang_pct'] = $pct;
@@ -247,7 +247,7 @@ function st_expected($db, $sid, $scaleCtx = null) {
         $gain = floatval($nd['per_lv']) * $lv * (1 + $bms / 100);
         $body[$nd['stat']] = in_array($nd['stat'], array('crit', 'lifesteal')) ? round($body[$nd['stat']] + $gain, 2) : $body[$nd['stat']] + round($gain);
     }
-    $t = array($body['atk'], $body['def'], $body['hp'], $body['crit'], round(floatval($body['lifesteal'])));
+    $t = array($body['atk'], $body['def'], $body['hp'], $body['crit'], floatval($body['lifesteal']));
     if (intval($row['thechat_id']) > 0) {
         $tc = st_cfg('thechat_config.json');
         $c = isset($tc[(string)$row['thechat_id']]) ? $tc[(string)$row['thechat_id']] : null;
@@ -299,15 +299,16 @@ function st_expected($db, $sid, $scaleCtx = null) {
 
     // ---- Chiến lực (combat_power): HP + 10·Công + 8·Thủ + 30·Bạo + 25·Hút + tianfu_power
     //      + 200·phẩm TC + 500·giác tỉnh TC + 250·phẩm HM + 600·giác tỉnh HM (phẩm mặc định = 1) ----
-    $tcQ = intval($row['thechat_id']) > 0 ? intval($row['thechat_quality']) : 1;
-    $hmQ = intval($row['huyetmach_id']) > 0 ? intval($row['huyetmach_quality']) : 1;
-    $tcA = intval($row['thechat_awaken_stage']);
+    // Chưa có Thể chất / Huyết mạch => không cộng phẩm / giác tỉnh (chủ dự án 2026-10-29)
+    $tcQ = intval($row['thechat_id']) > 0 ? intval($row['thechat_quality']) : 0;
+    $hmQ = intval($row['huyetmach_id']) > 0 ? intval($row['huyetmach_quality']) : 0;
+    $tcA = intval($row['thechat_id']) > 0 ? intval($row['thechat_awaken_stage']) : 0;
     $hmA = intval($row['huyetmach_id']) > 0 ? intval($row['huyetmach_awaken_stage']) : 0;
     // tianfu_power: tổng lực thiên phú (đọc qua hàm tianfu_bonuses — nguồn dữ liệu bảng player_tianfu)
     $tfb = \player\tianfu_bonuses($sid, $db);
-    // Tổng Bạo kích / Hút máu làm tròn 1 lần (getplayer — STAT-4)
-    $crit = intval(round(floatval($crit))); $ls = intval(round(floatval($ls)));
-    $power = intval($hp) + intval($atk) * 10 + intval($def) * 8 + intval($crit) * 30 + intval($ls) * 25
+    // Bạo kích / Hút máu giữ số lẻ chính xác, chặn sai số float ở 2 chữ số (chủ dự án 2026-10-29)
+    $crit = round(floatval($crit), 2); $ls = round(floatval($ls), 2);
+    $power = intval($hp) + intval($atk) * 10 + intval($def) * 8 + intval(round($crit * 30)) + intval(round($ls * 25))
         + intval($tfb['power']) + $tcQ * 200 + $tcA * 500 + $hmQ * 250 + $hmA * 600;
 
     $lvv = intval($row['ulv']) + 1;
@@ -487,7 +488,7 @@ st_check('STAT-3 Chiến lực bảng xếp hạng (game/paihang.php) = Chiến 
     preg_match('/function tcg_calc_chien_luc_rank\(\$rankPlayer\)\s*\{[^}]*combat_power\(\$rankPlayer\)/s', $rankSrc) === 1,
     'paihang.php chưa dùng \\player\\combat_power()');
 // STAT-4: Bạo kích là số nguyên (cột INT, hiển thị) — Nhục Thân Cốt Tủy 0.2/cấp làm ubj thành số thực
-st_check('STAT-4 ubj là số nguyên', floor(floatval($pC->ubj)) == floatval($pC->ubj), 'ubj = ' . var_export($pC->ubj, true));
+st_check('STAT-4 ubj giữ số lẻ tối đa 2 chữ số', round(floatval($pC->ubj), 2) == floatval($pC->ubj), 'ubj = ' . var_export($pC->ubj, true));
 // STAT-5: Mạch Xung (Bạo kích 0.2/cấp) — 1-2 cấp làm tròn về 0
 $db->prepare("UPDATE player_huyetmach_vessel SET level = 2 WHERE sid = ? AND vessel_id = 3")->execute(array($SID));
 $vb = \player\huyetmach_vessel_bonuses($SID, $db);

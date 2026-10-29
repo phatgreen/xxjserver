@@ -438,6 +438,12 @@ function zhuangbei_cache_clear($zbnowid = null){
     }
 }
 
+// Tung xác suất theo phần trăm có số lẻ (Bạo kích 12.6% = đúng 12.6%), chặn trên $cap%. Độ chính xác 0.01%.
+function roll_pct($pct, $cap = 100){
+    $p = min(floatval($cap), max(0, floatval($pct)));
+    return mt_rand(1, 10000) <= intval(round($p * 100));
+}
+
 function combat_power($player){
     if (!is_object($player)) return 0;
 
@@ -453,10 +459,19 @@ function combat_power($player){
         'huyetmach_awaken_stage'  => 600
     );
 
+    // Chưa có Thể chất / Huyết mạch thì không cộng phẩm / giác tỉnh (phẩm mặc định = 1 từng cho +450 không có gì)
+    if (intval(isset($player->thechat_id) ? $player->thechat_id : 0) <= 0) {
+        unset($weights['thechat_quality'], $weights['thechat_awaken_stage']);
+    }
+    if (intval(isset($player->huyetmach_id) ? $player->huyetmach_id : 0) <= 0) {
+        unset($weights['huyetmach_quality'], $weights['huyetmach_awaken_stage']);
+    }
+
     $power  = intval(isset($player->umaxhp) ? $player->umaxhp : 0);
     $power += intval(isset($player->shenzhuang_power) ? $player->shenzhuang_power : 0);
     foreach ($weights as $col => $weight) {
-        $power += intval(isset($player->$col) ? $player->$col : 0) * $weight;
+        // Bạo / Hút có số lẻ: nhân trước rồi mới lấy nguyên
+        $power += intval(round(floatval(isset($player->$col) ? $player->$col : 0) * $weight));
     }
 
     return $power;
@@ -787,7 +802,7 @@ function getplayer($sid,$dblj){
             $player->umaxhp = max(1, intval($player->umaxhp * (100 - min(80, $lcB['penalty_maxhp_percent'])) / 100));
         }
         if ($lcB['penalty_crit_percent'] > 0) {
-            $player->ubj = max(0, intval($player->ubj * (100 - min(80, $lcB['penalty_crit_percent'])) / 100));
+            $player->ubj = max(0, round($player->ubj * (100 - min(80, $lcB['penalty_crit_percent'])) / 100, 2));
         }
 
         // Thong tin hien thi — nguon node Ngu Hanh (khong doc config 22 can ngau nhien nua).
@@ -852,7 +867,7 @@ function getplayer($sid,$dblj){
         $player->ugj    += $tcB['stats']['atk'];
         $player->ufy    += $tcB['stats']['def'];
         $player->ubj    += $tcB['stats']['crit'];
-        $player->uxx    += round(floatval($tcB['stats']['lifesteal']));
+        $player->uxx    += floatval($tcB['stats']['lifesteal']);
     }
 
     // ===== BUFF HUYẾT MẠCH (Passive) =====
@@ -902,10 +917,9 @@ function getplayer($sid,$dblj){
             $player->uxx    += floatval($hmB['vessel']['lifesteal']);
         }
     }
-    // Bạo kích / Hút máu: Nhục Thân + Mạng Mạch cộng số lẻ (0.2–0.4/cấp) => cộng dồn rồi làm tròn 1 lần ở tổng
-    // (trước: Nhục Thân để float 213.05, Mạng Mạch intval từng mạch => Xung cấp 1–2 ra 0 — STAT-4/5)
-    $player->ubj = intval(round(floatval($player->ubj)));
-    $player->uxx = intval(round(floatval($player->uxx)));
+    // Bạo kích / Hút máu giữ số lẻ chính xác (chủ dự án 2026-10-29): Nhục Thân + Mạng Mạch 0.2–0.4/cấp; chỉ chặn sai số float ở 2 chữ số
+    $player->ubj = round(floatval($player->ubj), 2);
+    $player->uxx = round(floatval($player->uxx), 2);
     // Thien Phu: bonus 7 cong + anh xa chu phu. KHONG cong ugj/ufy/umaxhp/ubj/uxx
     // (ranh gioi cua 3 he truoc; thien phu chi lam viec o ti le, xem spec §1).
     $player->tianfu_bonus = array();
@@ -3383,11 +3397,11 @@ function sauthu_battle($player, $monster) {
         if ($damage < intval($playerAtk * 0.12)) {
             $damage = max(1, intval(round($playerAtk * 0.12)));
         }
-        if (mt_rand(1, 100) <= min(75, max(0, intval($player->ubj)))) {
+        if (roll_pct($player->ubj, 75)) {
             $damage = intval(round($damage * 1.65));
         }
         $monsterHp -= $damage;
-        $heal = max(0, intval(round($damage * max(0, intval($player->uxx)) / 220)));
+        $heal = max(0, intval(round($damage * max(0, floatval($player->uxx)) / 220)));
         $playerHp = min($playerMaxHp, $playerHp + $heal);
 
         $monsterDamage = 0;

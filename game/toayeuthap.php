@@ -72,11 +72,11 @@ function tyt_simulate($player, $boss)
         if ($damage < intval($playerAtk * 0.12)) {
             $damage = max(1, intval(round($playerAtk * 0.12)));
         }
-        if (mt_rand(1, 100) <= min(75, max(0, intval($player->ubj)))) {
+        if (\player\roll_pct($player->ubj, 75)) {
             $damage = intval(round($damage * 1.65));
         }
         $bossHp -= $damage;
-        $heal = max(0, intval(round($damage * max(0, intval($player->uxx)) / 220)));
+        $heal = max(0, intval(round($damage * max(0, floatval($player->uxx)) / 220)));
         $playerHp = min($playerMaxHp, $playerHp + $heal);
 
         $bossDamage = 0;

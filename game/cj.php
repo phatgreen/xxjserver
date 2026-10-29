@@ -3,7 +3,14 @@ $selfym = $_SERVER['PHP_SELF'];
 $tishi = isset($tishi) ? $tishi : '';
 
 // Trang tao nhan vat chi hop le khi dang nhap bang tai khoan chua co nhan vat (token that).
-if (!isset($token) || $token === '' || strlen($token) < 32) {
+// Token phải thuộc 1 tài khoản đã đăng ký (userinfo), không chỉ đủ độ dài
+$cjTokenOk = false;
+if (isset($token) && is_string($token) && strlen($token) >= 32) {
+    $cjStmt = $dblj->prepare("SELECT 1 FROM userinfo WHERE token = ? LIMIT 1");
+    $cjStmt->execute(array($token));
+    $cjTokenOk = (bool)$cjStmt->fetchColumn();
+}
+if (!$cjTokenOk) {
     echo <<<HTML
 <div class="create-character-page">
     <div class="create-message">Phiên đăng nhập không hợp lệ, hãy quay lại đăng nhập lại.</div>

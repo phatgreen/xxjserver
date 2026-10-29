@@ -40,6 +40,7 @@ $SID2   = e2e_sid_for($UNAME2, $TOKEN2);
 
 if (in_array('--clean', $argv)) {
     $n = e2e_cleanup($db, $SID) + e2e_cleanup($db, $SID2);
+    $db->prepare("DELETE FROM userinfo WHERE token IN (?, ?)")->execute(array($TOKEN, $TOKEN2)); // tài khoản test
     $db->prepare("DELETE FROM arena_log WHERE attacker_sid IN (?, ?) OR defender_sid IN (?, ?)")->execute(array($SID, $SID2, $SID, $SID2));
     echo "Đã dọn $n dòng.\n";
     exit(0);
@@ -118,12 +119,20 @@ $up = intval(@file_get_contents(getenv('E2E_BASE') ? getenv('E2E_BASE') : 'http:
 echo "Server: " . $E2E_BASE . ($RELAX ? ' (relax sql_mode)' : ' (sql_mode của DB: ' . $db->query('SELECT @@GLOBAL.sql_mode')->fetchColumn() . ')') . "\n";
 e2e_cleanup($db, $SID);
 e2e_cleanup($db, $SID2);
+// Tạo nhân vật cần token thuộc tài khoản đã đăng ký (userinfo) — tạo tài khoản test trước
+$db->prepare("DELETE FROM userinfo WHERE token IN (?, ?)")->execute(array($TOKEN, $TOKEN2));
+$db->prepare("INSERT INTO userinfo (username, userpass, token) VALUES (?, ?, ?)")->execute(array('e2efull_acc', 'x', $TOKEN));
 $db->prepare("DELETE FROM arena_log WHERE attacker_sid IN (?, ?) OR defender_sid IN (?, ?)")->execute(array($SID, $SID2, $SID, $SID2));
 $UID = 0; $UID2 = 0;
 
 // ============================ 1. TẠO NHÂN VẬT (route thật) ============================
 block('Tạo nhân vật', function () {
     global $db, $SID, $UNAME, $TOKEN, $UID;
+    // Token tự đặt (không có trong userinfo) phải bị từ chối
+    $fake = 'e2efake' . md5('khong-co-tai-khoan');
+    list($fc, $fbody) = e2e_http_raw('cmd=cjplayer&token=' . $fake . '&username=e2efake01&sex=1&shenfen=1');
+    chk('cjplayer từ chối token không thuộc tài khoản nào', q1("SELECT COUNT(*) FROM game1 WHERE token = ?", array($fake)) == 0
+        && strpos($fbody, 'Hoan Nghênh') === false, '');
     list($code, $body, $log) = e2e_http_raw('cmd=cjplayer&token=' . $TOKEN . '&username=' . $UNAME . '&sex=1&shenfen=1');
     $r = row();
     $sqlErr = '';
@@ -858,6 +867,7 @@ if (!in_array('--keep', $argv)) {
     $db->prepare("DELETE FROM arena_log WHERE attacker_sid IN (?, ?) OR defender_sid IN (?, ?)")->execute(array($SID, $SID2, $SID, $SID2));
     $db->prepare("DELETE FROM midguaiwu WHERE sid = ?")->execute(array($SID));
     $n = e2e_cleanup($db, $SID) + e2e_cleanup($db, $SID2);
+    $db->prepare("DELETE FROM userinfo WHERE token IN (?, ?)")->execute(array($TOKEN, $TOKEN2)); // tài khoản test
     echo "Đã dọn $n dòng của 2 nhân vật test.\n";
 }
 if ($relaxProc) { proc_terminate($relaxProc); }

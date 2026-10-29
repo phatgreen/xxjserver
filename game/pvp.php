@@ -94,8 +94,7 @@ if (isset($canshu)){
             $player->ubj +=$jineng->jnbj;
             $player->uxx +=$jineng->jnxx;
 
-            $ran = mt_rand(1,100);
-            if ($player->ubj >= $ran){
+            if (\player\roll_pct($player->ubj, 100)){
                 $player->ugj = round($player->ugj * 1.82);
                 $pvpbj = '<span class="pvp-crit">Bạo kích</span>';
                 $lastActionClass = ' crit-flash';

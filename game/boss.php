@@ -347,8 +347,8 @@ HTML;
         \player\nhiemvu_main_update($sid, 'use_move', $dblj, array('tier' => intval($cbMove['tier'])));
     }
 
-    $ran = mt_rand(1,200);//控制暴击概率
-    if ($player->ubj >= $ran){
+    // Tỉ lệ bạo kích = ubj / 2 (%) như cũ (mt_rand 1..200), tính đúng phần số lẻ
+    if (\player\roll_pct($player->ubj / 2, 100)){
         $cbCritMult = floatval(\player\combat_rule('crit_mult', null, 1.72));
         if ($cbWg && $cbWg->effect_type == 'crit_dmg' && intval($cbWg->effect_value) > 0) {
             $cbCritMult += intval($cbWg->effect_value) / 100 * \player\combat_passive_scale($cbWg->wgdj);

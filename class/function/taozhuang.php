@@ -441,8 +441,8 @@ function taozhuang_apply_buff_to_player($player, $equips)
     $player->shenzhuang_add_hp = intval(round(intval($player->umaxhp) * $hpPercent / 100));
     $player->shenzhuang_add_gj = intval(round(intval($player->ugj) * $gjPercent / 100));
     $player->shenzhuang_add_fy = intval(round(intval($player->ufy) * $fyPercent / 100));
-    $player->shenzhuang_add_bj = intval(round(floatval($player->ubj) * $bjPercent / 100));
-    $player->shenzhuang_add_xx = intval(round(floatval($player->uxx) * $xxPercent / 100));
+    $player->shenzhuang_add_bj = round(floatval($player->ubj) * $bjPercent / 100, 2);
+    $player->shenzhuang_add_xx = round(floatval($player->uxx) * $xxPercent / 100, 2);
 
     $player->umaxhp += $player->shenzhuang_add_hp;
     $player->ugj    += $player->shenzhuang_add_gj;

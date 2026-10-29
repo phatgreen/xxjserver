@@ -262,3 +262,14 @@ Kết quả sau sửa (DB strict): `tests/test_e2e_full.php` 263/263 PASS, `test
 Còn lại (có từ trước, số FAIL giống hệt trước/sau sửa): `test_dot_c` 1, `test_drop_cover` 2, `test_huyetmach_schema` 1, `test_kt0` 1,
 `test_linhcan_pages` 29, `test_nguhanh_market` 12, `test_tianfu_migration` 16, `test_tianfu_schema` 1; nhiều test cũ dựng `game1` thiếu `token` nên chỉ chạy được khi DB không strict.
 Chưa sửa: STAT-6 (Chiến lực luôn cộng phẩm mặc định — có thể chủ ý), STAT-7 (làm tròn cột INT khi lên cấp, lệch rất nhỏ), BUG-08 phần token tạo nhân vật không đối chiếu `userinfo`.
+
+### Đợt sửa thêm (2026-10-29, chủ dự án chốt)
+
+| Việc | Cách sửa | File |
+|---|---|---|
+| Token tạo nhân vật | `cj` và `cjplayer` đối chiếu token với `userinfo` (token tự đặt dài ≥ 32 ký tự không còn tạo được nhân vật) | `game.php`, `game/cj.php` |
+| STAT-6 Chiến lực | Phần phẩm / giác tỉnh Thể chất, Huyết mạch chỉ cộng khi đã có (trước phẩm mặc định 1 ⇒ +450 không có gì); Bạo / Hút số lẻ nhân trọng số rồi mới lấy nguyên | `class/player.php` `combat_power()` |
+| Bạo kích / Hút máu số lẻ | Giữ chính xác tới 2 chữ số (không làm tròn nguyên); hàm `\player\roll_pct($pct, $cap)` tung xác suất chính xác 0,01% thay `mt_rand(1,100) <= intval(ubj)` ở mọi màn đánh (PVE/Boss giữ quy tắc cũ tỉ lệ = ubj/2); hút máu bỏ `intval` | `class/player.php`, `game/pve.php`, `game/boss.php`, `game/pvp.php`, `game/vandinhdai.php`, `game/toayeuthap.php`, `game/club_boss.php`, `class/function/linhcan_boss.php`, `class/function/huyetmach_boss.php`, `class/function/taozhuang.php` |
+| Hồi quy do migration | TEXT → NULL làm quái mới có `midguaiwu.sid = NULL`, không khớp `sid = ''` ⇒ bản đồ không hiện quái. `migrate_default_cols.php` đổi riêng cột này sang `VARCHAR(32) NOT NULL DEFAULT ''` và đưa NULL về '' | `sql/migrate_default_cols.php` |
+
+Kết quả: `tests/test_e2e_full.php` 266/266 PASS (thêm mục token giả bị từ chối), `tests/test_player_stats.php` ALL PASS (Bạo kích 263.18, Hút máu 69.2 khớp tuyệt đối).
