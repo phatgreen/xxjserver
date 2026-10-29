@@ -285,7 +285,7 @@ foreach ($tpSlots as $tpSd):
         <div class="tp-gate" style="--tp-color:<?= $tpNextQd['color'] ?>"><i class="tp-emoji"><?= $tpQIcon ?></i> <?= htmlspecialchars($tpQName) ?> → <i class="tp-emoji"><?= $tpNextQd['icon'] ?></i> <?= htmlspecialchars($tpNextQd['name']) ?> · cấp tối đa <?= intval($tpNextQd['lv_cap']) ?></div>
         <div class="tp-reqs">
 <?php foreach ($tpBreakRows as $tpBr): ?>
-            <div><span class="<?= $tpBr['ok'] ? 'ok' : 'no' ?>">[<?= $tpBr['ok'] ? 'Đủ' : 'Thiếu' ?>]</span> <?= htmlspecialchars($tpBr['text']) ?><?php
+            <div><?= $tpBr['ok'] ? "<span class='lc-req ok'>✅ Đủ</span>" : "<span class='lc-req bad'>❌ Thiếu</span>" ?> <?= htmlspecialchars($tpBr['text']) ?><?php
                 if (empty($tpBr['ok']) && isset($tpBr['key']) && $tpBr['key'] === 'realm') {
                     $tpGo = \player\tianfu_realm_link($player, $sid, $encode);
                     echo ' <a class="tp-go" href="?cmd=' . $tpGo['href'] . '">' . $tpGo['label'] . ' ›</a>';

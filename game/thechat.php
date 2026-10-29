@@ -308,7 +308,7 @@ $nbNodeCurTxt = number_format(floatval($nbNodeDef['per_lv']) * $nbNodeLv * (1 + 
         </div>
         <div class="nb-reqs">
 <?php foreach ($nbBreakRows as $nbReqRow): ?>
-            <div class="nb-req <?= $nbReqRow['ok'] ? 'ok' : 'no' ?>">[<?= $nbReqRow['ok'] ? 'Đủ' : 'Thiếu' ?>] <?= htmlspecialchars($nbReqRow['text']) ?></div>
+            <div class="nb-req <?= $nbReqRow['ok'] ? 'ok' : 'no' ?>"><?= $nbReqRow['ok'] ? "<span class='lc-req ok'>✅ Đủ</span>" : "<span class='lc-req bad'>❌ Thiếu</span>" ?> <?= htmlspecialchars($nbReqRow['text']) ?></div>
 <?php endforeach; ?>
         </div>
         <form method="post" action="?cmd=<?= $encode->encode("cmd=thechat&view=" . intval($nbNextTier['stage']) . "&sid=$sid") ?>">
