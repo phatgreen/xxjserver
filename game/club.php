@@ -164,7 +164,7 @@ if ($canshu !== '') {
                     <label class="tcg-club-pay-option">
                         <input type="radio" name="paytype" value="mt" checked>
                         <span class="tcg-club-pay-box">
-                            <span class="tcg-club-pay-icon">🔮</span>
+                            <span class="tcg-club-pay-icon"><img class=money-ico src=./images/daoju/ma_thach.png alt></span>
                             <span class="tcg-club-pay-name">Ma Thạch</span>
                             <span class="tcg-club-pay-cost">20,000 MT</span>
                         </span>
@@ -172,7 +172,7 @@ if ($canshu !== '') {
                     <label class="tcg-club-pay-option">
                         <input type="radio" name="paytype" value="lt">
                         <span class="tcg-club-pay-box">
-                            <span class="tcg-club-pay-icon">💎</span>
+                            <span class="tcg-club-pay-icon"><img class=money-ico src=./images/daoju/linh_thach.png alt></span>
                             <span class="tcg-club-pay-name">Linh Thạch</span>
                             <span class="tcg-club-pay-cost">200,000 LT</span>
                         </span>
@@ -473,7 +473,7 @@ HTML;
         <div class="tcg-club-hero-bg"><img src="/images/tongmon/bg_tongmon.png" alt=""></div>
         <div class="tcg-club-hero-mask"></div>
         <div class="tcg-club-hero-main">
-            <div class="tcg-club-label">💰 QUYÊN GÓP</div>
+            <div class="tcg-club-label"><img class=money-ico src=./images/daoju/linh_thach.png alt> QUYÊN GÓP</div>
             <h1>Gửi Tài Nguyên</h1>
             <div class="tcg-club-desc">Đóng góp tài nguyên để xây dựng tông môn. LT: 10 LT = 1 EXP | MT: 1 MT = 1 EXP. Nhận cả EXP cá nhân lẫn EXP tông môn.</div>
         </div>
@@ -486,7 +486,7 @@ HTML;
                     <label class="tcg-club-pay-option">
                         <input type="radio" name="donate_type" value="lt" checked>
                         <span class="tcg-club-pay-box">
-                            <span class="tcg-club-pay-icon">💎</span>
+                            <span class="tcg-club-pay-icon"><img class=money-ico src=./images/daoju/linh_thach.png alt></span>
                             <span class="tcg-club-pay-name">Linh Thạch</span>
                             <span class="tcg-club-pay-cost">Còn: {$player->uyxb} LT</span>
                         </span>
@@ -494,7 +494,7 @@ HTML;
                     <label class="tcg-club-pay-option">
                         <input type="radio" name="donate_type" value="mt">
                         <span class="tcg-club-pay-box">
-                            <span class="tcg-club-pay-icon">🔮</span>
+                            <span class="tcg-club-pay-icon"><img class=money-ico src=./images/daoju/ma_thach.png alt></span>
                             <span class="tcg-club-pay-name">Ma Thạch</span>
                             <span class="tcg-club-pay-cost">Còn: {$player->uczb} MT</span>
                         </span>
@@ -652,8 +652,8 @@ HTML;
         <div class="tcg-club-form-group">
             <label class="tcg-club-form-label">Chi Phí Nâng Cấp</label>
             <div class="tcg-club-upgrade-req">
-                <div class="tcg-club-req-item">💎 Linh thạch: <strong>$club->clubyxb</strong> / $upgradeCostLT</div>
-                <div class="tcg-club-req-item">🔮 Ma thạch: <strong>$club->clubczb</strong> / $upgradeCostMT</div>
+                <div class="tcg-club-req-item"><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh thạch: <strong>$club->clubyxb</strong> / $upgradeCostLT</div>
+                <div class="tcg-club-req-item"><img class=money-ico src=./images/daoju/ma_thach.png alt> Ma thạch: <strong>$club->clubczb</strong> / $upgradeCostMT</div>
                 <div class="tcg-club-req-item">📈 EXP tông môn: <strong>$club->clubexp</strong> / $upgradeCostExp</div>
             </div>
         </div>
@@ -1044,16 +1044,16 @@ if ($clubid > 0) {
             $treasuryCmd = $encode->encode("cmd=club&canshu=treasuryview&sid=$sid");
             $bosscmd = $encode->encode("cmd=club&canshu=clubboss&sid=$sid");
             $bossFightCmd = $encode->encode("cmd=clubboss_fight&sid=$sid");
-            $clubmenu = "<a class='tcg-club-btn green' href='?cmd=$donatecmd'>💰 Quyên góp</a> <a class='tcg-club-btn blue' href='?cmd=$onlinecmd' onclick='return GameAlert.action(this.href)'>⏰ Online EXP</a> <a class='tcg-club-btn blue' href='?cmd=$questcmd'>📋 Nhiệm vụ</a> <a class='tcg-club-btn blue' href='?cmd=$treasuryCmd'>🏦 Bảo khố</a> <a class='tcg-club-btn purple' href='?cmd=$bossFightCmd'>🐉 Boss</a> <a class='tcg-club-btn danger' href='?cmd=$outclubcmd' onclick='return gameConfirm(\"Bạn chắc chắn muốn thoát phái?\",\"?cmd=$outclubcmd\")'>Thoát Phái</a>";
+            $clubmenu = "<a class='tcg-club-btn green' href='?cmd=$donatecmd'><img class=money-ico src=./images/daoju/linh_thach.png alt> Quyên góp</a> <a class='tcg-club-btn blue' href='?cmd=$onlinecmd' onclick='return GameAlert.action(this.href)'>⏰ Online EXP</a> <a class='tcg-club-btn blue' href='?cmd=$questcmd'>📋 Nhiệm vụ</a> <a class='tcg-club-btn blue' href='?cmd=$treasuryCmd'>🏦 Bảo khố</a> <a class='tcg-club-btn purple' href='?cmd=$bossFightCmd'>🐉 Boss</a> <a class='tcg-club-btn danger' href='?cmd=$outclubcmd' onclick='return gameConfirm(\"Bạn chắc chắn muốn thoát phái?\",\"?cmd=$outclubcmd\")'>Thoát Phái</a>";
 
             if (intval($clubplayer->uclv) == 1) {
                 $outclubcmd = $encode->encode("cmd=club&canshu=deleteclub&sid=$sid");
                 $renzhicmd = $encode->encode("cmd=club&canshu=renzhi&sid=$sid");
                 $upgradeCmd = $encode->encode("cmd=club&canshu=upgrade&sid=$sid");
-                $clubmenu = "<a class='tcg-club-btn green' href='?cmd=$donatecmd'>💰 Quyên góp</a> <a class='tcg-club-btn purple' href='?cmd=$upgradeCmd'>⬆ Nâng cấp</a> <a class='tcg-club-btn blue' href='?cmd=$onlinecmd' onclick='return GameAlert.action(this.href)'>⏰ Online</a> <a class='tcg-club-btn blue' href='?cmd=$questcmd'>📋 Nhiệm vụ</a> <a class='tcg-club-btn blue' href='?cmd=$treasuryCmd'>🏦 Bảo khố</a> <a class='tcg-club-btn purple' href='?cmd=$bossFightCmd'>🐉 Boss</a> <a class='tcg-club-btn blue' href='?cmd=$renzhicmd'>Nhậm chức</a> <a class='tcg-club-btn danger' href='?cmd=$outclubcmd' onclick='return gameConfirm(\"Giải tán sẽ xóa toàn bộ tông môn!\",\"?cmd=$outclubcmd\")'>Giải tán</a>";
+                $clubmenu = "<a class='tcg-club-btn green' href='?cmd=$donatecmd'><img class=money-ico src=./images/daoju/linh_thach.png alt> Quyên góp</a> <a class='tcg-club-btn purple' href='?cmd=$upgradeCmd'>⬆ Nâng cấp</a> <a class='tcg-club-btn blue' href='?cmd=$onlinecmd' onclick='return GameAlert.action(this.href)'>⏰ Online</a> <a class='tcg-club-btn blue' href='?cmd=$questcmd'>📋 Nhiệm vụ</a> <a class='tcg-club-btn blue' href='?cmd=$treasuryCmd'>🏦 Bảo khố</a> <a class='tcg-club-btn purple' href='?cmd=$bossFightCmd'>🐉 Boss</a> <a class='tcg-club-btn blue' href='?cmd=$renzhicmd'>Nhậm chức</a> <a class='tcg-club-btn danger' href='?cmd=$outclubcmd' onclick='return gameConfirm(\"Giải tán sẽ xóa toàn bộ tông môn!\",\"?cmd=$outclubcmd\")'>Giải tán</a>";
             } elseif (intval($clubplayer->uclv) == 2) {
                 $renzhicmd = $encode->encode("cmd=club&canshu=renzhi&sid=$sid");
-                $clubmenu = "<a class='tcg-club-btn green' href='?cmd=$donatecmd'>💰 Quyên góp</a> <a class='tcg-club-btn blue' href='?cmd=$onlinecmd' onclick='return GameAlert.action(this.href)'>⏰ Online</a> <a class='tcg-club-btn blue' href='?cmd=$questcmd'>📋 Nhiệm vụ</a> <a class='tcg-club-btn blue' href='?cmd=$treasuryCmd'>🏦 Bảo khố</a> <a class='tcg-club-btn purple' href='?cmd=$bossFightCmd'>🐉 Boss</a> <a class='tcg-club-btn blue' href='?cmd=$renzhicmd'>Nhậm chức</a> <a class='tcg-club-btn danger' href='?cmd=$outclubcmd' onclick='return gameConfirm(\"Bạn chắc chắn muốn thoát phái?\",\"?cmd=$outclubcmd\")'>Thoát Phái</a>";
+                $clubmenu = "<a class='tcg-club-btn green' href='?cmd=$donatecmd'><img class=money-ico src=./images/daoju/linh_thach.png alt> Quyên góp</a> <a class='tcg-club-btn blue' href='?cmd=$onlinecmd' onclick='return GameAlert.action(this.href)'>⏰ Online</a> <a class='tcg-club-btn blue' href='?cmd=$questcmd'>📋 Nhiệm vụ</a> <a class='tcg-club-btn blue' href='?cmd=$treasuryCmd'>🏦 Bảo khố</a> <a class='tcg-club-btn purple' href='?cmd=$bossFightCmd'>🐉 Boss</a> <a class='tcg-club-btn blue' href='?cmd=$renzhicmd'>Nhậm chức</a> <a class='tcg-club-btn danger' href='?cmd=$outclubcmd' onclick='return gameConfirm(\"Bạn chắc chắn muốn thoát phái?\",\"?cmd=$outclubcmd\")'>Thoát Phái</a>";
             }
         } else {
             $clubmenu = '';
@@ -1244,11 +1244,11 @@ HTML;
 
     <div class="tcg-club-stats four">
         <div class="tcg-club-stat">
-            <span>💎 Linh thạch</span>
+            <span><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh thạch</span>
             <strong>$club->clubyxb</strong>
         </div>
         <div class="tcg-club-stat">
-            <span>🔮 Ma thạch</span>
+            <span><img class=money-ico src=./images/daoju/ma_thach.png alt> Ma thạch</span>
             <strong>$club->clubczb</strong>
         </div>
         <div class="tcg-club-stat">
@@ -1286,8 +1286,8 @@ HTML;
     <div class="tcg-club-section">
         <div class="tcg-club-section-title">📈 Cách Kiếm EXP Tông Môn</div>
         <div class="tcg-club-benefits">
-            <div class="tcg-club-benefit">💰 Quyên góp LT: 10 LT = 1 EXP cá nhân + 1 EXP tông môn</div>
-            <div class="tcg-club-benefit">💰 Quyên góp MT: 1 MT = 1 EXP cá nhân + 1 EXP tông môn</div>
+            <div class="tcg-club-benefit"><img class=money-ico src=./images/daoju/linh_thach.png alt> Quyên góp LT: 10 LT = 1 EXP cá nhân + 1 EXP tông môn</div>
+            <div class="tcg-club-benefit"><img class=money-ico src=./images/daoju/ma_thach.png alt> Quyên góp MT: 1 MT = 1 EXP cá nhân + 1 EXP tông môn</div>
             <div class="tcg-club-benefit">🧘 Tu luyện: +1% tu vi nhận được</div>
             <div class="tcg-club-benefit">⏰ Online: +50 EXP/giờ (mỗi thành viên, tối đa 24 giờ/lần nhận)</div>
             <div class="tcg-club-benefit">📋 Nhiệm vụ: +100~500 EXP/ngày</div>

@@ -257,7 +257,7 @@ $nbNodeCurTxt = number_format(floatval($nbNodeDef['per_lv']) * $nbNodeLv * (1 + 
 <?php else: ?>
         <div class="nb-forge-row">
             <span class="nb-cost-item <?= $nbMatHave >= $nbCost['material_amount'] ? 'nb-cost-ok' : 'nb-cost-no' ?>">📦 <?= htmlspecialchars($nbMatName) ?> <b><?= $nbMatHave ?>/<?= $nbCost['material_amount'] ?></b></span>
-            <span class="nb-cost-item <?= $nbLinhThach >= $nbCost['linh_thach_cost'] ? 'nb-cost-ok' : 'nb-cost-no' ?>">💰 Linh Thạch <b><?= number_format($nbLinhThach) ?>/<?= number_format($nbCost['linh_thach_cost']) ?></b></span>
+            <span class="nb-cost-item <?= $nbLinhThach >= $nbCost['linh_thach_cost'] ? 'nb-cost-ok' : 'nb-cost-no' ?>"><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh Thạch <b><?= number_format($nbLinhThach) ?>/<?= number_format($nbCost['linh_thach_cost']) ?></b></span>
         </div>
 <?php endif; ?>
         <form method="post" action="?cmd=<?= $encode->encode("cmd=thechat&node=$nbNode&sid=$sid") ?>">

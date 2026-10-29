@@ -67,7 +67,7 @@ if ($upgradeInfo) {
         <span class="tc-badge tcq-badge tcq-badge-to"><i class="tcq-ico">{$toIcon}</i> {$toBadgeName}</span>
     </div>
     <div class="tcq-cost" style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px">
-        <div style="color:#38bdf8;font-weight:800;margin-bottom:6px">💎 Linh Thạch: {$ltCost}</div>
+        <div style="color:#38bdf8;font-weight:800;margin-bottom:6px"><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh Thạch: {$ltCost}</div>
         <div style="color:#94a3b8;margin:4px 0">📦 {$matName}: {$matAmt}</div>
         {$extraHtml}
         <div class="tcq-rate" style="color:#6ee7b7;font-weight:800;margin-top:8px">🎯 Tỷ lệ: {$rate}%</div>

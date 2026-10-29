@@ -97,7 +97,7 @@ function tcg_shop_page_cmd($encode, $sid, $mode, $page)
 
 function tcg_shop_item_html($index, $name, $color, $price, $unitName, $infoCmd, $payCmd, $isMagic, $img = '', $tipAttr = '')
 {
-    $icon = $isMagic ? '💠' : '💰';
+    $icon = $isMagic ? '<img class=money-ico src=./images/daoju/ma_thach.png alt>' : '<img class=money-ico src=./images/daoju/linh_thach.png alt>';
     $priceClass = $isMagic ? 'purple' : 'gold';
     $safeName = tcg_shop_text($name);
     $safeUnit = tcg_shop_text($unitName);

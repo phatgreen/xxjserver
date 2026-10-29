@@ -36,7 +36,7 @@ if (isset($canshu)){
             //    $gm5yp = '<a href="?cmd='.$gm5yp.'">购买5</a>';
             //    $gm10yp = '<a href="?cmd='.$gm10yp.'">购买10</a>';
                 $gnhtml .= <<<HTML
-                    <div class="npc-item" style="--ra:$ypEmoColor"><span class="item-art"><span class="bag-emo">$ypEmo</span></span><a class="npc-item-name" href="?cmd=$ypcmd">$ypname</a><span class="npc-item-price">💰 $ypjg</span>$gm1yp</div>
+                    <div class="npc-item" style="--ra:$ypEmoColor"><span class="item-art"><span class="bag-emo">$ypEmo</span></span><a class="npc-item-name" href="?cmd=$ypcmd">$ypname</a><span class="npc-item-price"><img class=money-ico src=./images/daoju/linh_thach.png alt> $ypjg</span>$gm1yp</div>
 HTML;
             }
 

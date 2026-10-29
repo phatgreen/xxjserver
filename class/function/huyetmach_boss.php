@@ -214,7 +214,7 @@ if (!function_exists(__NAMESPACE__ . '\\huyetmach_boss_finish')) {
         player_cache_clear($sid);
 
         $html = "<font color='#FFD700'>🩸 {$ht} Huyết Thạch</font><br/>";
-        if ($lt > 0) $html .= "<font color='#4CAF50'>💰 " . number_format($lt) . " Linh Thạch</font><br/>";
+        if ($lt > 0) $html .= "<font color='#4CAF50'><img class=money-ico src=./images/daoju/linh_thach.png alt> " . number_format($lt) . " Linh Thạch</font><br/>";
         if ($firstKill) $html .= "<font color='#6ee7b7'>✦ Hạ boss mạch huyết lần đầu — checklist Thức Tỉnh đã ghi nhận.</font><br/>";
         return array('html' => $html, 'huyet_thach' => $ht, 'linh_thach' => $lt);
     }

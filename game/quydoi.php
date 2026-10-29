@@ -158,7 +158,7 @@ $gonowmid = $encode->encode("cmd=gomid&sid=$sid");
 <?php endif; ?>
 
 <div class="qd-card">
-    <div style="font-weight:800;margin-bottom:8px;color:#c0a050">💰 Tài Sản</div>
+    <div style="font-weight:800;margin-bottom:8px;color:#c0a050"><img class=money-ico src=./images/daoju/linh_thach.png alt> Tài Sản</div>
     <div class="qd-grid">
         <div class="qd-stat">
             <div class="qd-stat-label">Ma Thạch</div>

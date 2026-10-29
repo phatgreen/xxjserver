@@ -649,11 +649,11 @@ switch ($cmd) {
 <header class="tcg-topbar">
     <div class="tcg-logo">Tu Chân Giới</div>
     <nav class="tcg-nav">
-        <a class="<?php echo $tcg_active_nav === 'home' ? 'active' : ''; ?>" href="<?php echo $tcg_home_href; ?>"><span class="nav-ico">🏠</span> Trang Chủ</a>
-        <a class="<?php echo $tcg_active_nav === 'news' ? 'active' : ''; ?>" href="<?php echo $tcg_news_href; ?>"><span class="nav-ico">📰</span> Tin Tức</a>
-        <a class="<?php echo ($tcg_active_nav === 'event' ? 'active' : '') . $tcg_lk_event[0]; ?>" href="<?php echo $tcg_event_href; ?>"><span class="nav-ico">🎁</span> Sự Kiện<?php echo $tcg_lk_event[1]; ?></a>
-        <a class="<?php echo $tcg_active_nav === 'guide' ? 'active' : ''; ?>" href="<?php echo $tcg_guide_href; ?>"><span class="nav-ico">📖</span> Cẩm Nang</a>
-        <a class="<?php echo ($tcg_active_nav === 'comm' ? 'active' : '') . $tcg_lk_comm[0]; ?>" href="<?php echo $tcg_comm_href; ?>"><span class="nav-ico">💬</span> Cộng Đồng<?php echo $tcg_lk_comm[1]; ?></a>
+        <a class="<?php echo $tcg_active_nav === 'home' ? 'active' : ''; ?>" href="<?php echo $tcg_home_href; ?>"><span class="nav-ico"><img src="./images/ui/nav_home.png" alt=""></span> Trang Chủ</a>
+        <a class="<?php echo $tcg_active_nav === 'news' ? 'active' : ''; ?>" href="<?php echo $tcg_news_href; ?>"><span class="nav-ico"><img src="./images/ui/nav_news.png" alt=""></span> Tin Tức</a>
+        <a class="<?php echo ($tcg_active_nav === 'event' ? 'active' : '') . $tcg_lk_event[0]; ?>" href="<?php echo $tcg_event_href; ?>"><span class="nav-ico"><img src="./images/ui/nav_event.png" alt=""></span> Sự Kiện<?php echo $tcg_lk_event[1]; ?></a>
+        <a class="<?php echo $tcg_active_nav === 'guide' ? 'active' : ''; ?>" href="<?php echo $tcg_guide_href; ?>"><span class="nav-ico"><img src="./images/ui/nav_guide.png" alt=""></span> Cẩm Nang</a>
+        <a class="<?php echo ($tcg_active_nav === 'comm' ? 'active' : '') . $tcg_lk_comm[0]; ?>" href="<?php echo $tcg_comm_href; ?>"><span class="nav-ico"><img src="./images/ui/nav_comm.png" alt=""></span> Cộng Đồng<?php echo $tcg_lk_comm[1]; ?></a>
     </nav>
     <div class="tcg-userbox">
         <div class="tcg-avatar">
@@ -663,8 +663,8 @@ switch ($cmd) {
             <div class="tcg-username"><?php echo htmlspecialchars($tcg_header_name, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="tcg-userid"><?php echo htmlspecialchars($tcg_header_id, ENT_QUOTES, 'UTF-8'); ?></div>
         </div>
-        <div class="tcg-money tcg-linh"><span>💰</span><b><i class="tcg-num-full" id="yxb_val"><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_linh); ?></i></b></div>
-        <div class="tcg-diamond"><span>💎</span><b><i class="tcg-num-full" id="czb_val"><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_ma); ?></i></b></div>
+        <div class="tcg-money tcg-linh"><span><img src="./images/daoju/linh_thach.png" alt="Linh Thạch"></span><b><i class="tcg-num-full" id="yxb_val"><?php echo number_format($tcg_header_linh, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_linh); ?></i></b></div>
+        <div class="tcg-diamond"><span><img src="./images/daoju/ma_thach.png" alt="Ma Thạch"></span><b><i class="tcg-num-full" id="czb_val"><?php echo number_format($tcg_header_ma, 0, ',', '.'); ?></i><i class="tcg-num-short"><?php echo tcg_num_short($tcg_header_ma); ?></i></b></div>
     </div>
 </header>
 <div class="tcg-page">
@@ -718,9 +718,9 @@ if (isset($sid) && $sid != '' && isset($player) && is_object($player) && isset($
 }
 // Thông báo nổi: nhiệm vụ Cơ Duyên vừa hoàn thành (nhiemvu_coduyen_event ghi vào session)
 if (!empty($_SESSION['cd_flash'])) {
-    echo '<div class="cd-toast" id="cdToast" title="Bấm để đóng" onclick="this.parentNode.removeChild(this)">';
+    echo '<div class="cd-toast" id="cdToast" title="Bấm để đóng" onclick="cdToastClose()">';
     foreach ($_SESSION['cd_flash'] as $cdMsg) echo '<div>🌟 ' . htmlspecialchars($cdMsg, ENT_QUOTES, 'UTF-8') . '</div>';
-    echo '</div><script>setTimeout(function(){var e=document.getElementById("cdToast");if(e){e.parentNode.removeChild(e);}},6000);</script>';
+    echo '</div><script>function cdToastClose(){var e=document.getElementById("cdToast");if(!e||e.className.indexOf("cd-out")>=0)return;e.className+=" cd-out";setTimeout(function(){if(e.parentNode)e.parentNode.removeChild(e);},350);}setTimeout(cdToastClose,6500);</script>';
     unset($_SESSION['cd_flash']);
 }
 ?>

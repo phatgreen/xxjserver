@@ -215,7 +215,7 @@ foreach ($tpSlots as $tpSd):
             <div class="tp-forge-row">
                 <div class="tp-forge-cost">
                     <span class="<?= $tpTfOk ? 'ok' : 'no' ?>"><i class="tp-emoji">🎯</i> Điểm Thiên Phú <b><?= intval($tpW['tf']) ?>/<?= $tpCostTf ?></b></span>
-                    <span class="<?= $tpLtOk ? 'ok' : 'no' ?>"><i class="tp-emoji">💰</i> Linh Thạch <b><?= number_format($tpW['uyxb'], 0, ',', '.') ?>/<?= number_format($tpCostLt, 0, ',', '.') ?></b></span>
+                    <span class="<?= $tpLtOk ? 'ok' : 'no' ?>"><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh Thạch <b><?= number_format($tpW['uyxb'], 0, ',', '.') ?>/<?= number_format($tpCostLt, 0, ',', '.') ?></b></span>
                 </div>
                 <form method="post" action="?cmd=<?= $tpPostCmd ?>">
                     <input type="hidden" name="tp_action" value="lvup">

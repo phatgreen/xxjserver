@@ -83,7 +83,7 @@ if ($hmUpInfo) {
         <span class="hm-badge hmq-badge hmq-badge-to"><i class="hmq-ico">{$hmUpToIcon}</i> {$hmUpToName}</span>
     </div>
     <div class="hmq-cost">
-        <div class="hmq-lt">💎 Linh Thạch: {$hmUpLt}</div>
+        <div class="hmq-lt"><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh Thạch: {$hmUpLt}</div>
         <div class="hm-cost-item {$hmUpMatCls}">🩸 {$hmUpMatName}: {$hmUpMatHave}/{$hmUpMatAmt}</div>
         {$hmUpExtraHtml}
         {$hmUpGateHtml}

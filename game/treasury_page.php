@@ -154,7 +154,7 @@ echo '</div></div>';
 echo '<div class="tcg-treasury-stats">';
 echo '<div class="tcg-treasury-stat"><span>⏳ Chờ nhận</span><strong class="gold">'.$treasuryCount.'</strong></div>';
 echo '<div class="tcg-treasury-stat"><span>✅ Đã phát</span><strong>'.$claimedTotal.'</strong></div>';
-echo '<div class="tcg-treasury-stat"><span>💎 Linh thạch kho</span><strong>'.$clubLt.'</strong></div>';
+echo '<div class="tcg-treasury-stat"><span><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh thạch kho</span><strong>'.$clubLt.'</strong></div>';
 echo '</div>';
 
 echo '<div class="tcg-treasury-tabs">';

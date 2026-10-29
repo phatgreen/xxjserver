@@ -190,7 +190,7 @@ if (!function_exists(__NAMESPACE__ . '\\linhcan_boss_drops')) {
         $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ? WHERE sid = ?")
              ->execute(array($lt, $player->sid));
 
-        $html = "<font color='#FFD700'>💰 {$lt} Linh thạch</font><br/>";
+        $html = "<font color='#FFD700'><img class=money-ico src=./images/daoju/linh_thach.png alt> {$lt} Linh thạch</font><br/>";
 
         $bossElement = isset($bossRow['element']) ? $bossRow['element'] : '';
         $stoneId = linhcan_da_id($bossElement);

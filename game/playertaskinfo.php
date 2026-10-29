@@ -15,7 +15,7 @@ function ptask_h($value)
 
 function ptask_reward_item($type, $name, $countHtml)
 {
-    $emo = array('exp' => array('✨', '#a78bfa'), 'linh' => array('💰', '#fbbf24'));
+    $emo = array('exp' => array('✨', '#a78bfa'), 'linh' => array('<img class=money-ico src=./images/daoju/linh_thach.png alt>', '#fbbf24'));
     $e = isset($emo[$type]) ? $emo[$type] : array('🎁', '#7dd3fc');
     return '<div class="ptask-reward-item '.$type.'" style="--ra:'.$e[1].'"><i class="item-art"><span class="bag-emo">'.$e[0].'</span></i><span>'.ptask_h($name).'</span><b>'.$countHtml.'</b></div>';
 }

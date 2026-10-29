@@ -253,7 +253,7 @@ if ($hmBloodId > 0 && $hmStage >= 3) {
 <?php else: ?>
         <div class="hm-forge-row">
             <span class="hm-cost-item <?= $hmMatHave >= $hmCost['material_amount'] ? 'hm-cost-ok' : 'hm-cost-no' ?>">📦 <?= htmlspecialchars($hmMatName) ?> <b><?= $hmMatHave ?>/<?= $hmCost['material_amount'] ?></b></span>
-            <span class="hm-cost-item <?= $hmLinhThach >= $hmCost['linh_thach_cost'] ? 'hm-cost-ok' : 'hm-cost-no' ?>">💰 Linh Thạch <b><?= number_format($hmLinhThach) ?>/<?= number_format($hmCost['linh_thach_cost']) ?></b></span>
+            <span class="hm-cost-item <?= $hmLinhThach >= $hmCost['linh_thach_cost'] ? 'hm-cost-ok' : 'hm-cost-no' ?>"><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh Thạch <b><?= number_format($hmLinhThach) ?>/<?= number_format($hmCost['linh_thach_cost']) ?></b></span>
         </div>
 <?php endif; ?>
         <form method="post" action="?cmd=<?= $encode->encode("cmd=huyetmach&node=$hmNode&sid=$sid") ?>">

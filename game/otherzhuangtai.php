@@ -277,8 +277,8 @@ $html = <<<HTML
         <div class="tcg-profile-stat"><span>🛡️ Phòng</span><b>{$player1->ufy}</b></div>
         <div class="tcg-profile-stat"><span>💥 Bạo</span><b>{$player1->ubj}</b></div>
         <div class="tcg-profile-stat"><span>🩸 Hút máu</span><b>{$player1->uxx}</b></div>
-        <div class="tcg-profile-stat"><span>💰 Linh thạch</span><b>{$player1->uyxb}{$tishi}</b></div>
-        <div class="tcg-profile-stat"><span>🔷 Ma thạch</span><b>{$player1->uczb}</b></div>
+        <div class="tcg-profile-stat"><span><img class=money-ico src=./images/daoju/linh_thach.png alt> Linh thạch</span><b>{$player1->uyxb}{$tishi}</b></div>
+        <div class="tcg-profile-stat"><span><img class=money-ico src=./images/daoju/ma_thach.png alt> Ma thạch</span><b>{$player1->uczb}</b></div>
     </div>
 
     <div class="tcg-profile-section">
