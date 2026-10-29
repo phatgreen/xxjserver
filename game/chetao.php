@@ -195,6 +195,19 @@ if ($selectedRecipe <= 0 || !isset($recipes[$selectedRecipe])) {
 }
 
 // Tên + màu thành phẩm của 1 công thức
+// Ô ảnh công thức: ảnh trang bị thành phẩm, hoặc biểu tượng theo tên đạo cụ
+function ct_recipe_art($recipe, $rName, $dblj)
+{
+    $rType = isset($recipe['type']) ? $recipe['type'] : 'equipment';
+    if ($rType === 'equipment') {
+        $zbid = isset($recipe['result_zbid']) ? intval($recipe['result_zbid']) : 0;
+        $zbConfig = \player\getzbkzb($zbid, $dblj);
+        if ($zbConfig) return '<img src="' . \player\zhuangbei_image_path((object) array('zbid' => $zbid), \player\zhuangbei_slot_icon(isset($zbConfig->zbtool) ? intval($zbConfig->zbtool) : 0)) . '" alt="">';
+    }
+    list($emo) = \player\item_emoji($rName, '💎');
+    return '<span class="bag-emo">' . $emo . '</span>';
+}
+
 function ct_recipe_name($recipe, $dblj)
 {
     $rType = isset($recipe['type']) ? $recipe['type'] : 'equipment';
@@ -288,7 +301,8 @@ foreach ($recipes as $rid => $recipe) {
     $rLevel = isset($recipe['level_required']) ? intval($recipe['level_required']) : 1;
     $activeClass = ($selectedRecipe == intval($rid)) ? ' active' : '';
     $href = '?cmd=' . $encode->encode("cmd=chetao&recipe_id={$rid}&sid=$sid");
-    $html .= '<a class="ct-recipe' . $activeClass . '" href="' . $href . '"><span class="ct-recipe-name" style="color:' . $rColor . '">' . $rName . '</span><span class="ct-recipe-level">Cấp ' . $rLevel . '</span></a>';
+    $html .= '<a class="ct-recipe ct-recipe-art' . $activeClass . '" href="' . $href . '" style="--ra:' . $rColor . '"><span class="item-art">' . ct_recipe_art($recipe, $rName, $dblj) . '</span>'
+        . '<span class="ct-recipe-txt"><span class="ct-recipe-name" style="color:' . $rColor . '">' . $rName . '</span><span class="ct-recipe-level">Cấp ' . $rLevel . '</span></span></a>';
 }
 $html .= '</div></div>';
 

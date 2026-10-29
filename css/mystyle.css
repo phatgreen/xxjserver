@@ -8758,3 +8758,15 @@ body.tcg-bg-body .item-art,body.tcg-bg-body a.item-art:link,body.tcg-bg-body a.i
 body.tcg-bg-body .item-art img{width:40px!important;height:40px!important;object-fit:contain!important;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 70%,transparent))}
 body.tcg-bg-body .item-art .bag-emo{font-size:26px;line-height:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 75%,transparent))}
 body.tcg-bg-body .tcg-wg-card,body.tcg-bg-body .cw-pet-card,body.tcg-bg-body .cp-card{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
+/* ===== Luyện Đan / Chế Tạo / Phường Thị: ô ảnh chung kiểu Túi đồ (--ra) ===== */
+.event-task-card,.ct-recipe,.tcg-market-item{--ra:#7dd3fc}
+body.tcg-bg-body .event-task-card .event-task-icon.item-art{width:44px!important;height:44px!important;min-width:44px!important;font-size:inherit!important}
+body.tcg-bg-body .event-task-card .item-art .bag-emo{font-size:22px}
+body.tcg-bg-body .ct-recipe.ct-recipe-art{display:flex!important;align-items:center!important;gap:8px!important;padding:6px 8px!important}
+body.tcg-bg-body .ct-recipe.ct-recipe-art .item-art{width:44px!important;height:44px!important}
+body.tcg-bg-body .ct-recipe.ct-recipe-art .item-art img{width:36px!important;height:36px!important}
+body.tcg-bg-body .ct-recipe.ct-recipe-art .item-art .bag-emo{font-size:22px}
+.ct-recipe-txt{display:flex;flex-direction:column;min-width:0}
+body.tcg-bg-body .ct-recipe.ct-recipe-art{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
+body.tcg-bg-body .tcg-market-item{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
+body.tcg-bg-body .tcg-market-icon.item-art{width:52px!important;height:52px!important;font-size:inherit!important}

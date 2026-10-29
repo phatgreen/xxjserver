@@ -166,6 +166,8 @@ foreach ($recipes as $rid => $recipe) {
         $rColor = '#86efac';
         $rIcon = '❋';
     }
+    // Biểu tượng theo tên thành phẩm (Hồi Khí Đan 💊, Thẻ Tấn Công 🎫…), giống Túi đồ / Cửa hàng
+    list($rIcon) = \player\item_emoji($rName, $rIcon);
 
     // Type badge
     $typeClass = 'normal';
@@ -267,8 +269,8 @@ foreach ($recipes as $rid => $recipe) {
     $href = ($isOpen || !$canCraft) ? '#' : '?cmd=' . $encode->encode("cmd=luonden&recipe_id={$rid}&sid=$sid");
 
     $recipeCards .= <<<HTML
-    <a class="event-task-card {$statusClass}" href="{$href}">
-        <span class="event-task-icon">{$rIcon}</span>
+    <a class="event-task-card {$statusClass}" href="{$href}" style="--ra:{$rColor}">
+        <span class="event-task-icon item-art"><span class="bag-emo">{$rIcon}</span></span>
         <span class="event-task-main">
             <span class="event-task-name" style="color:{$rColor}">{$rName}</span>
             <span class="event-task-meta">

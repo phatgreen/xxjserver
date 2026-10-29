@@ -41,9 +41,10 @@ if (!function_exists('tcg_market_item_daoju')) {
         $action = $retractCmd !== ''
             ? '<a class="tcg-market-retract" href="?cmd=' . $retractCmd . '">Thu hồi</a>'
             : '<a class="tcg-market-buy" href="?cmd=' . $buy1Cmd . '">Mua 1</a>';
+        list($dEmo, $dEmoColor) = \player\item_emoji(html_entity_decode($name, ENT_QUOTES, 'UTF-8'), '📦');
         return <<<HTML
-<div class="tcg-market-item">
-    <div class="tcg-market-icon">📦</div>
+<div class="tcg-market-item" style="--ra:$dEmoColor">
+    <div class="tcg-market-icon item-art"><span class="bag-emo">$dEmo</span></div>
     <div class="tcg-market-info">
         <a class="tcg-market-name" href="?cmd=$infoCmd">[$index] $name</a>
         <div class="tcg-market-meta">
@@ -81,8 +82,8 @@ if (!function_exists('tcg_market_item_zb')) {
             ? '<a class="tcg-market-retract" href="?cmd=' . $retractCmd . '">Thu hồi</a>'
             : '<a class="' . $buyClass . '" href="?cmd=' . $buyCmd . '">Mua</a>';
         return <<<HTML
-<div class="tcg-market-item">
-    <div class="tcg-market-icon">{$icon}</div>
+<div class="tcg-market-item" style="--ra:$color">
+    <div class="tcg-market-icon item-art">{$icon}</div>
     <div class="tcg-market-info">
         <a class="tcg-market-name"{$tipAttr} href="?cmd=$infoCmd" style="color:$color!important">[$index] $name</a>
         <div class="tcg-market-meta">
