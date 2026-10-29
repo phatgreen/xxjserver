@@ -8878,3 +8878,10 @@ body.tcg-bg-body .npc-actions-box .npc-item a.npc-buy{display:inline-flex!import
 body.tcg-bg-body .npc-actions-box a.npc-act{display:inline-flex!important;width:auto!important;grid-template-columns:none!important;justify-content:flex-start!important;text-align:left!important}
 body.tcg-bg-body .npc-actions-box a.npc-act b{display:inline!important;margin:0 2px!important}
 body.tcg-bg-body .npc-actions-box a.npc-act,body.tcg-bg-body .npc-actions-box a.npc-act:link,body.tcg-bg-body .npc-actions-box a.npc-act:visited{display:inline-block!important;line-height:1.5!important;min-height:0!important}
+/* Chi tiết quái / nhiệm vụ: ô biểu tượng nhỏ cho vật phẩm rơi và phần thưởng */
+body.tcg-bg-body a.g-drop{display:inline-flex!important;align-items:center!important;gap:6px!important;padding-left:4px!important}
+body.tcg-bg-body .g-drop .item-art,body.tcg-bg-body .ptask-reward-item .item-art{width:28px!important;height:28px!important;min-width:28px!important;border-radius:8px!important;border-width:1.5px!important}
+body.tcg-bg-body .g-drop .item-art img,body.tcg-bg-body .ptask-reward-item .item-art img{width:22px!important;height:22px!important}
+body.tcg-bg-body .g-drop .item-art .bag-emo,body.tcg-bg-body .ptask-reward-item .item-art .bag-emo{font-size:15px}
+body.tcg-bg-body .ptask-reward-item{display:flex!important;align-items:center!important;gap:8px!important}
+body.tcg-bg-body .ptask-reward-item>span{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

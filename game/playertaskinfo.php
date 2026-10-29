@@ -15,7 +15,9 @@ function ptask_h($value)
 
 function ptask_reward_item($type, $name, $countHtml)
 {
-    return '<div class="ptask-reward-item '.$type.'"><span>'.ptask_h($name).'</span><b>'.$countHtml.'</b></div>';
+    $emo = array('exp' => array('✨', '#a78bfa'), 'linh' => array('💰', '#fbbf24'));
+    $e = isset($emo[$type]) ? $emo[$type] : array('🎁', '#7dd3fc');
+    return '<div class="ptask-reward-item '.$type.'" style="--ra:'.$e[1].'"><i class="item-art"><span class="bag-emo">'.$e[0].'</span></i><span>'.ptask_h($name).'</span><b>'.$countHtml.'</b></div>';
 }
 
 if ($task->rwdj!=''){
@@ -25,7 +27,8 @@ if ($task->rwdj!=''){
         $djcount = $djarr[1];
         $rwdj = \player\getdaoju($djid,$dblj);
         $djinfo = $encode->encode("cmd=djinfo&djid=$rwdj->djid&sid=$sid");
-        $rewardHtml .= "<a class='ptask-reward-item daoju' href='?cmd=$djinfo'><span>".ptask_h($rwdj->djname)."</span><b>x".intval($djcount)."</b></a>";
+        list($dEmo, $dCol) = \player\item_emoji($rwdj->djname, '📦');
+        $rewardHtml .= "<a class='ptask-reward-item daoju' style='--ra:$dCol' href='?cmd=$djinfo'><i class='item-art'><span class='bag-emo'>$dEmo</span></i><span>".ptask_h($rwdj->djname)."</span><b>x".intval($djcount)."</b></a>";
     }
 }
 if ($task->rwzb!=''){
@@ -34,7 +37,8 @@ if ($task->rwzb!=''){
         $zbname = $ret[$i]['zbname'];
         $zbid = $ret[$i]['zbid'];
         $zbcmd = $encode->encode("cmd=zbinfo_sys&zbid=$zbid&sid=$sid");
-        $rewardHtml .= "<a class='ptask-reward-item zhuangbei' href='?cmd=$zbcmd'><span>".ptask_h($zbname)."</span><b>Trang bị</b></a>";
+        $dImg = \player\zhuangbei_image_path((object) array('zbid' => $zbid));
+        $rewardHtml .= "<a class='ptask-reward-item zhuangbei' style='--ra:#fbbf24' href='?cmd=$zbcmd'><i class='item-art'><img src='$dImg' alt=''></i><span>".ptask_h($zbname)."</span><b>Trang bị</b></a>";
     }
 }
 if ($task->rwexp!=''){

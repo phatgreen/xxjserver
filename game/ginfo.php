@@ -37,7 +37,9 @@ HTML;
                 $zbkzb = \player\getzbkzb($newstr,$dblj);
 				//$zhuangbei = new \player\zhuangbei();
                 $zbcmd = $encode->encode("cmd=zbinfo_sys&zbid=$zbkzb->zbid&sid=$sid");
-                $zbhtml .= "<a href='?cmd=$zbcmd'><font color='{$zbkzb->zbys}'>$zbkzb->zbname</font></a>";
+                if (!$zbkzb) continue;
+                $dImg = \player\zhuangbei_image_path((object) array('zbid' => $zbkzb->zbid), \player\zhuangbei_slot_icon(isset($zbkzb->zbtool) ? intval($zbkzb->zbtool) : 0));
+                $zbhtml .= "<a class='g-drop' style='--ra:{$zbkzb->zbys}' href='?cmd=$zbcmd'><i class='item-art'><img src='$dImg' alt=''></i><font color='{$zbkzb->zbys}'>$zbkzb->zbname</font></a>";
             }
             $dlhtml .=$zbhtml;
         }
@@ -46,7 +48,8 @@ HTML;
             foreach($djarr as $newstr){
                 $dj = \player\getdaoju($newstr,$dblj);
                 $djinfo = $encode->encode("cmd=djinfo&djid=$dj->djid&sid=$sid");
-                $djhtml .= "<font class='djys'><a href='?cmd=$djinfo'>$dj->djname</a></font>";
+                list($dEmo, $dCol) = \player\item_emoji($dj->djname, '📦');
+                $djhtml .= "<a class='g-drop' style='--ra:$dCol' href='?cmd=$djinfo'><i class='item-art'><span class='bag-emo'>$dEmo</span></i>$dj->djname</a>";
             }
             $dlhtml .=$djhtml;
         }
@@ -56,7 +59,8 @@ HTML;
                 $yp = \player\getyaopinonce($newstr,$dblj);
                 $ypinfo = $encode->encode("cmd=ypinfo&ypid=$yp->ypid&sid=$sid");
 
-                $yphtml .= "<font class='ypys'><a href='?cmd=$ypinfo'>$yp->ypname</a></font>";
+                list($dEmo, $dCol) = \player\item_emoji($yp->ypname, '💊');
+                $yphtml .= "<a class='g-drop' style='--ra:$dCol' href='?cmd=$ypinfo'><i class='item-art'><span class='bag-emo'>$dEmo</span></i>$yp->ypname</a>";
             }
             $dlhtml .=$yphtml;
         }
