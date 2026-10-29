@@ -8752,3 +8752,9 @@ body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .zb-badge.elem{p
 .tcc-compact .tcg-tcc-item{padding:9px 6px 7px!important;gap:4px!important}
 .tcc-compact .tcg-tcc-list{gap:6px!important}
 .shop-compact .tcg-shop-item{padding:8px 5px!important;gap:5px!important}
+/* ===== Bí tịch / Linh Sủng / Công pháp: ô ảnh/biểu tượng chung kiểu Túi đồ (--ra = màu phẩm) ===== */
+.tcg-wg-card,.cw-pet-card,.cp-card{--ra:#7dd3fc}
+body.tcg-bg-body .item-art,body.tcg-bg-body a.item-art:link,body.tcg-bg-body a.item-art:visited,body.tcg-bg-body .tcg-wg-page.bt-compact .tcg-wg-card-scroll.item-art,body.tcg-bg-body .cw-wrap.cw-compact .cw-pet-grid .cw-avatar.item-art{position:relative!important;flex:0 0 auto!important;width:50px!important;height:50px!important;line-height:1!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;border-radius:12px!important;border:2px solid var(--ra)!important;background:radial-gradient(circle,color-mix(in srgb,var(--ra) 30%,#0b1533),#0b1533 72%)!important;box-shadow:0 0 12px color-mix(in srgb,var(--ra) 55%,transparent),inset 0 0 10px rgba(0,0,0,.45)!important;text-decoration:none!important}
+body.tcg-bg-body .item-art img{width:40px!important;height:40px!important;object-fit:contain!important;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 70%,transparent))}
+body.tcg-bg-body .item-art .bag-emo{font-size:26px;line-height:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 75%,transparent))}
+body.tcg-bg-body .tcg-wg-card,body.tcg-bg-body .cw-pet-card,body.tcg-bg-body .cp-card{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}

@@ -414,9 +414,10 @@ if ($pagePets) {
 
         $expBar = cw_exp_bar($chongwu->cwexp, $chongwu->cwmaxexp);
 
-        $cwnamehtml .= '<div class="cw-pet-card">';
+        // Ô biểu tượng sủng vật theo tên, viền / phát sáng theo phẩm chất (--ra)
+        $cwnamehtml .= '<div class="cw-pet-card" style="--ra:'.$q['color'].'">';
         $cwnamehtml .= '<a class="cw-pet-main" href="?cmd='.$cwinfo.'">';
-        $cwnamehtml .= '<div class="cw-avatar '.$qClass.'">Thú</div>';
+        $cwnamehtml .= '<div class="cw-avatar item-art '.$qClass.'"><span class="bag-emo">'.\player\pet_emoji($cw['cwname']).'</span></div>';
         $cwnamehtml .= '<div class="cw-pet-info">';
         $cwnamehtml .= '<div class="cw-pet-name '.$qClass.'">'.cw_e($cw['cwname']).'</div>';
         $cwnamehtml .= '<div class="cw-pet-meta"><span>'.$q['short'].'</span><span>Cấp '.$chongwu->cwlv.'</span><span>Công '.$chongwu->cwgj.'</span></div>';

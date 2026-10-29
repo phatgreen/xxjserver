@@ -182,9 +182,9 @@ if (!empty($allCp)) {
         }
 
         $cwnamehtml .= '
-        <div class="cp-card'.$activeClass.'">
+        <div class="cp-card'.$activeClass.'" style="--ra:'.$thisColor.'">
             <div class="cp-card-main">
-                <a class="cp-scroll" href="?cmd='.$cpinfo.'">📜</a>
+                <a class="cp-scroll item-art" href="?cmd='.$cpinfo.'"><img src="./images/congphap/'.min(12, max(1, $thisCpid)).'.svg" alt=""></a>
                 <div class="cp-card-info">
                     <div class="cp-name-row">
                         <a class="cp-name" style="color:'.$thisColor.'" href="?cmd='.$cpinfo.'">'.$thisName.'</a>

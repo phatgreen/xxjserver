@@ -145,3 +145,20 @@ if (!function_exists(__NAMESPACE__ . '\\item_emoji')) {
         return array($default, '#7dd3fc');
     }
 }
+
+if (!function_exists(__NAMESPACE__ . '\\pet_emoji')) {
+    // Biểu tượng sủng vật theo tên (chưa có ảnh riêng): Long → 🐉, Hổ / Hồ → 🐯 / 🦊, Xà → 🐍 …
+    function pet_emoji($name){
+        static $map = array(
+            array('Kì Lân', '🦄'), array('Kỳ Lân', '🦄'), array('Phượng', '🦚'), array('Loan', '🦚'), array('Đại Bàng', '🦅'), array('Bằng', '🦅'),
+            array('Long', '🐉'), array('Giao', '🐉'), array('Côn', '🐋'), array('Xà', '🐍'), array('Hổ', '🐯'), array('Hồ', '🦊'), array('Báo', '🐆'),
+            array('Sư', '🦁'), array('Hầu', '🐒'), array('Ngưu', '🐂'), array('Dương', '🐐'), array('Thỏ', '🐇'), array('Thố', '🐇'), array('Kê', '🐓'),
+            array('Lang', '🐺'), array('Lộc', '🦌'), array('Hùng', '🐻'), array('Trư', '🐗'), array('Quy', '🐢'), array('Giáp', '🐢'), array('Ngư', '🐟'),
+            array('Thủy', '💧'), array('Linh', '👻'), array('Tiền', '🪙'), array('Tài', '🪙'), array('Cầu', '🔮'), array('Ma', '🐴'), array('Mã', '🐎')
+        );
+        foreach ($map as $m) {
+            if (mb_stripos((string)$name, $m[0], 0, 'UTF-8') !== false) return $m[1];
+        }
+        return '🐾';
+    }
+}

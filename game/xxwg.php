@@ -176,9 +176,13 @@ if ($allcw) {
         $rowClass = $isActive ? ' tcg-wg-row-active' : '';
         $activeBadge = $isActive ? '<span class="tcg-wg-meta-active">Đang học</span>' : '';
 
-        $cwnamehtml .= '<div class="tcg-wg-card'.$rowClass.'">';
+        // Ô ảnh bí tịch: ảnh võ công nếu có file, không thì biểu tượng theo loại (đầu chuỗi wginfo); màu theo phẩm (--ra)
+        $wgCat = isset($cw['wginfo']) ? (string)$cw['wginfo'] : '';
+        $wgEmo = (mb_stripos($wgCat, 'Khinh', 0, 'UTF-8') !== false) ? '🍃' : ((mb_stripos($wgCat, 'Nội', 0, 'UTF-8') !== false || mb_stripos($wgCat, 'Tâm Pháp', 0, 'UTF-8') !== false) ? '🧘' : ((mb_stripos($wgCat, 'Ngoại', 0, 'UTF-8') !== false) ? '👊' : '📕'));
+        $wgArt = is_file(__DIR__ . '/../images/wugong/' . intval($thisWgid) . '.png') ? '<img src="./images/wugong/' . intval($thisWgid) . '.png" alt="">' : '<span class="bag-emo">' . $wgEmo . '</span>';
+        $cwnamehtml .= '<div class="tcg-wg-card'.$rowClass.'" style="--ra:'.$safeColor.'">';
         $cwnamehtml .= '<div class="tcg-wg-card-main">';
-        $cwnamehtml .= '<a class="tcg-wg-card-scroll" href="?cmd='.$wginfo.'">📜</a>';
+        $cwnamehtml .= '<a class="tcg-wg-card-scroll item-art" href="?cmd='.$wginfo.'">'.$wgArt.'</a>';
         $cwnamehtml .= '<div class="tcg-wg-card-info">';
         $cwnamehtml .= '<a class="tcg-wg-card-name" style="color:'.$safeColor.'" href="?cmd='.$wginfo.'">'.$safeName.'</a>';
         $cwLevel = isset($cw['wgdj']) ? intval($cw['wgdj']) : 0;
