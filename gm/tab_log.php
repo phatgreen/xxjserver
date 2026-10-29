@@ -2,7 +2,7 @@
 if (!defined('GM_PAGE')) exit;   // chỉ chạy qua gm/gm.php
 // Tab Nhật ký: mọi thao tác GM (đăng nhập, sửa nhân vật, phát quà, giftcode) — bảng gm_log.
 $labels = array('login' => 'Đăng nhập', 'login_fail' => 'Sai mã GM', 'logout' => 'Đăng xuất', 'player_edit' => 'Sửa chỉ số', 'player_item' => 'Sửa túi đồ',
-    'player_zbdel' => 'Xoá trang bị', 'gift' => 'Phát quà', 'code_new' => 'Tạo giftcode', 'code_edit' => 'Sửa giftcode', 'code_delete' => 'Xoá giftcode');
+    'player_zbdel' => 'Xoá trang bị', 'gift' => 'Phát quà', 'code_new' => 'Tạo giftcode', 'code_edit' => 'Sửa giftcode', 'code_delete' => 'Xoá giftcode', 'code_setup' => 'Tạo mã GM', 'code_change' => 'Đổi mã GM');
 $q = gm_req('q');
 $a = gm_req('a');
 gm_log_ready($db);

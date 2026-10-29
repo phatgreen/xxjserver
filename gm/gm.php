@@ -8,11 +8,40 @@ define('GM_PAGE', 1);
 require __DIR__ . '/lib.php';
 
 $tab = gm_req('tab', 'player');
-$tabs = array('player' => '👤 Nhân vật', 'gift' => '🎁 Phát quà', 'code' => '🎟 Giftcode', 'items' => '📦 Vật phẩm', 'log' => '📜 Nhật ký');
+$tabs = array('player' => '👤 Nhân vật', 'gift' => '🎁 Phát quà', 'code' => '🎟 Giftcode', 'items' => '📦 Vật phẩm', 'log' => '📜 Nhật ký', 'pass' => '🔑 Mã GM');
 if (!isset($tabs[$tab])) $tab = 'player';
 $flash = array();   // array(loại ok|bad, nội dung)
 
 if (gm_req('act') === 'logout') { gm_log($db, 'logout', '', ''); $_SESSION = array(); session_destroy(); header('Location: gm.php'); exit; }
+if (!gm_logged_in() && gm_code_hash($db) === '') {
+    // Chưa có mã GM: form tạo mã lần đầu (chỉ tại máy chủ)
+    $err = '';
+    if (!gm_is_local()) $err = 'Chưa có mã GM. Hãy mở trang này ngay trên máy chủ (http://localhost/gm/gm.php) để tạo mã lần đầu.';
+    elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newcode'])) {
+        $c1 = (string)$_POST['newcode']; $c2 = isset($_POST['newcode2']) ? (string)$_POST['newcode2'] : '';
+        $t = isset($_POST['st']) ? (string)$_POST['st'] : '';
+        if ($t === '' || empty($_SESSION['gm_setup_t']) || !hash_equals_compat($_SESSION['gm_setup_t'], $t)) $err = 'Form hết hạn — thử lại.';
+        else $err = gm_code_rule_err($c1, $c2);
+        if ($err === '') {
+            gm_save_code($db, $c1);
+            gm_log($db, 'code_setup', '', 'tạo mã GM lần đầu');
+            gm_login($db, $c1);
+            header('Location: gm.php'); exit;
+        }
+    }
+    $_SESSION['gm_setup_t'] = bin2hex(gm_random(16));
+    gm_page_head('Tạo mã GM');
+    echo '<form method="post" class="card login"><h1>⚙ Tạo mã GM lần đầu</h1>'
+        . '<div class="mut">Mã này dùng để đăng nhập trang GM. Ghi nhớ cẩn thận — quên thì chạy <code>php gm/reset_code.php</code> trên máy chủ.</div>'
+        . ($err !== '' ? '<div class="flash bad">' . gm_h($err) . '</div>' : '');
+    if (gm_is_local()) echo '<input type="hidden" name="st" value="' . gm_h($_SESSION['gm_setup_t']) . '">'
+        . '<label>Mã GM mới (ít nhất 6 ký tự)<input type="password" name="newcode" autofocus autocomplete="new-password"></label>'
+        . '<label>Nhập lại mã<input type="password" name="newcode2" autocomplete="new-password"></label>'
+        . '<button class="btn" type="submit">Tạo mã và đăng nhập</button>';
+    echo '</form>';
+    gm_page_foot();
+    exit;
+}
 if (!gm_logged_in()) {
     $err = '';
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gmcode'])) {

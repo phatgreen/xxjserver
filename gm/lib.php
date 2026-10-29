@@ -60,10 +60,33 @@ function gm_logged_in() {
     $_SESSION['gm_last'] = time();
     return true;
 }
+// Mã GM: GM_CODE_HASH trong config.php (nếu điền) được ưu tiên; để trống thì dùng mã lưu trong bảng gm_setting (tạo ở lần vào đầu tiên).
+function gm_setting_ready($db) {
+    $db->exec("CREATE TABLE IF NOT EXISTS gm_setting (k VARCHAR(32) NOT NULL, v VARCHAR(255) NOT NULL DEFAULT '', PRIMARY KEY (k)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+}
+function gm_code_hash($db) {
+    if (GM_CODE_HASH !== '') return GM_CODE_HASH;
+    gm_setting_ready($db);
+    $st = $db->prepare("SELECT v FROM gm_setting WHERE k = 'code_hash'");
+    $st->execute();
+    return (string)$st->fetchColumn();
+}
+function gm_save_code($db, $code) {
+    gm_setting_ready($db);
+    $db->prepare("REPLACE INTO gm_setting (k, v) VALUES ('code_hash', ?)")->execute(array(password_hash($code, PASSWORD_BCRYPT)));
+}
+// Tạo mã lần đầu chỉ cho phép ngồi tại máy chủ (localhost) — tránh người lạ chiếm trang GM trước khi bạn tạo mã
+function gm_is_local() { $ip = gm_ip(); return $ip === '127.0.0.1' || $ip === '::1'; }
+function gm_code_rule_err($code, $code2) {
+    if (strlen($code) < 6) return 'Mã GM phải có ít nhất 6 ký tự.';
+    if ($code !== $code2) return 'Hai lần nhập mã không khớp.';
+    return '';
+}
 function gm_login($db, $code) {
     $fails = isset($_SESSION['gm_fail']) ? intval($_SESSION['gm_fail']) : 0;
     if ($fails >= 3) sleep(min(10, $fails));   // chậm dần khi nhập sai nhiều
-    if ($code !== '' && password_verify($code, GM_CODE_HASH)) {
+    $hash = gm_code_hash($db);
+    if ($code !== '' && $hash !== '' && password_verify($code, $hash)) {
         session_regenerate_id(true);
         $_SESSION = array('gm_ok' => 1, 'gm_last' => time(), 'gm_csrf' => bin2hex(gm_random(16)));
         gm_log($db, 'login', '', 'ok');
