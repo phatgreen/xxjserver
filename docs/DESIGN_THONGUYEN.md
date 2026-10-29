@@ -50,7 +50,7 @@ Chỉnh số: sửa `realm_base`, `growth`, `tien_growth`, `penalty`, `price`…
 |---|---|---|
 | Mốc trực tuyến 240 phút / ngày | 1 viên / ngày | `nhiemvu_reward_rules.json` → `online.milestones` |
 | Tỏa Yêu Tháp tầng 50 / 100 / 150 | 1 viên / tầng, tối đa 3 viên / tuần | `game/toayeuthap.php` `tyt_floor_rewards` (cả tự động vượt) |
-| Vấn Đỉnh Đài chốt 21:00 | top 1: 3 · top 2–3: 2 · top 4–10: 1 / ngày | `class/function/vandinhdai_reward.php` |
+| Vấn Đỉnh Đài chốt 21:00 | top 1: 3 · top 2–3: 2 · top 4–20: 1 / ngày | `class/function/vandinhdai_reward.php` |
 | Giftcode / Phát quà GM | tuỳ GM | trang GM: thêm đạo cụ 121 vào giftcode hoặc tab Phát quà |
 | Mua ở trang Thọ Nguyên | 1.000 × (cảnh giới+1)^1,5 LT | |
 

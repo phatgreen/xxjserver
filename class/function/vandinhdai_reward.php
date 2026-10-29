@@ -18,7 +18,8 @@ if (!function_exists('vdd_daily_reward_table')) {
         for ($i = 11; $i <= 20; $i++) {
             $table[$i] = array(
                 'yxb' => intval(800 - (($i - 11) * 40)),
-                'czb' => 0
+                'czb' => 0,
+                'dientho' => 1
             );
         }
 

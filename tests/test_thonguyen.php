@@ -201,7 +201,7 @@ $m240 = null; foreach ($rules['online']['milestones'] as $m) if (intval($m['minu
 ttrue('T9 mốc online 240 phút có 1 Diên Thọ Đan', $m240 && in_array(array('type' => 'daoju', 'id' => 121, 'count' => 1), $m240['items'], true));
 require_once __DIR__ . '/../class/function/vandinhdai_reward.php';
 $vt = vdd_daily_reward_table();
-tassert('T9 bảng VĐĐ: top 1/2/3/4/10/11 = 3/2/2/1/1/0 Diên Thọ Đan', array($vt[1]['dientho'], $vt[2]['dientho'], $vt[3]['dientho'], $vt[4]['dientho'], $vt[10]['dientho'], isset($vt[11]['dientho']) ? $vt[11]['dientho'] : 0), array(3, 2, 2, 1, 1, 0));
+tassert('T9 bảng VĐĐ: top 1/2/3/4/10/11/20/21 = 3/2/2/1/1/1/1/0 Diên Thọ Đan', array($vt[1]['dientho'], $vt[2]['dientho'], $vt[3]['dientho'], $vt[4]['dientho'], $vt[10]['dientho'], $vt[11]['dientho'], $vt[20]['dientho'], isset($vt[21]['dientho']) ? $vt[21]['dientho'] : 0), array(3, 2, 2, 1, 1, 1, 1, 0));
 // Chốt thưởng thật: nhân vật test top 1 (chỉ trên DB thử — xoá thưởng hôm nay rồi phát lại bằng --force)
 $db->exec("DELETE FROM arena_daily_reward WHERE reward_date = CURDATE()");
 $db->prepare("REPLACE INTO arena_player (sid, score, wins) VALUES (?, 99999999, 1)")->execute(array($sid));
