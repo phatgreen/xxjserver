@@ -8853,3 +8853,7 @@ body.tcg-bg-body .zb-art .bag-emo{font-size:62px;line-height:1;filter:drop-shado
 body.tcg-bg-body .djinfo-hero{grid-template-columns:1fr!important;justify-items:center!important;text-align:center!important}
 body.tcg-bg-body .djinfo-hero .zb-art{margin:4px auto 10px!important}
 body.tcg-bg-body .ypinfo-hero.ypinfo-hero-art{display:flex!important;justify-content:center!important;padding:10px 0 4px!important;background:none!important;border:0!important;box-shadow:none!important;min-height:0!important;height:auto!important}
+/* Chi tiết phù lục (kỹ năng) */
+.jn-trade{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#dcecff;font-weight:800}
+.jn-equip{display:flex;gap:8px;flex-wrap:wrap}
+body.tcg-bg-body .djinfo-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}

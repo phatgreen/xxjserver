@@ -54,25 +54,56 @@ if (isset($canshu)){
 
 }
 
-$dhhtml = "Trao đổi cần: $dhdaoju->djname($daoju->djsum/$jineng->djcount)<a href='?cmd=$duihuan'>Trao Đổi</a><br/><br/>";
-if ($playerjn){
-    $setjn1 = $encode->encode("cmd=jninfo&canshu=setjn1&jnid=$jnid&sid=$sid");
-    $setjn2 = $encode->encode("cmd=jninfo&canshu=setjn2&jnid=$jnid&sid=$sid");
-    $setjn3 = $encode->encode("cmd=jninfo&canshu=setjn3&jnid=$jnid&sid=$sid");
-    $dhhtml .=
-        '<a href="?cmd='.$setjn1.'">Trang bị phù lục 1</a>'.
-        '<a href="?cmd='.$setjn2.'">Trang bị phù lục 2</a>'.
-        '<a href="?cmd='.$setjn3.'">Trang bị phù lục 3</a><br/>';
+// ===== Giao diện (cùng khung với trang chi tiết đạo cụ) — logic đổi / gắn phù lục ở trên giữ nguyên =====
+$jnH = function ($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); };
+$jnName = $jnH($jineng->jnname);
+$jnHave = $playerjn ? intval(isset($playerjn->jncount) ? $playerjn->jncount : 1) : 0;
+$needName = $dhdaoju ? $jnH($dhdaoju->djname) : 'Đạo cụ';
+$needHave = intval($daoju->djsum);
+$needCount = intval($jineng->djcount);
+$needOk = $needHave >= $needCount;
+$equipBtns = '';
+if ($playerjn) {
+    foreach (array(1, 2, 3) as $slot) {
+        $setCmd = $encode->encode("cmd=jninfo&canshu=setjn$slot&jnid=$jnid&sid=$sid");
+        $equipBtns .= '<a class="djinfo-btn" href="?cmd=' . $setCmd . '">Gắn ô ' . $slot . '</a>';
+    }
 }
-
+$jnStats = array(array('⚔️ Công kích', $jineng->jngj), array('🛡️ Phòng ngự', $jineng->jnfy), array('💥 Bạo kích', $jineng->jnbj), array('🩸 Hút máu', $jineng->jnxx));
 ?>
-Tên phù lục: <?php echo $jineng->jnname; ?><br/>
-Công kích +<?php echo $jineng->jngj; ?>%<br/>
-Phòng ngự +<?php echo $jineng->jnfy; ?>%<br/>
-Bạo kích +<?php echo $jineng->jnbj; ?>%<br/>
-Hút máu +<?php echo $jineng->jnxx; ?>%<br/>
-<?php echo $htmltishi; ?>
-<?php echo $dhhtml; ?>
-<br/>
-<a href="#" onClick="javascript:history.back(-1);">Trở Về</a><br/>
-<a href="?cmd=<?php echo $gonowmid; ?>">Đại Sảnh</a><br/>
+<div class="djinfo-page">
+    <section class="djinfo-hero">
+        <div class="zb-art" style="--ra:#f87171"><span class="bag-emo">🧧</span><span class="zb-art-ra">Phù lục</span></div>
+        <div class="djinfo-head">
+            <div class="djinfo-eyebrow">Thông tin phù lục</div>
+            <h1><?php echo $jnName; ?></h1>
+            <p>Đang có: <b><?php echo $jnHave; ?></b></p>
+        </div>
+    </section>
+
+    <?php if ($htmltishi !== '') echo '<div class="djinfo-notice ' . (strpos($htmltishi, 'thành công') !== false ? 'ok' : 'bad') . '">' . strip_tags($htmltishi) . '</div>'; ?>
+
+    <section class="djinfo-stats">
+        <?php foreach ($jnStats as $st) echo '<div class="djinfo-stat"><span>' . $st[0] . '</span><b' . (floatval($st[1]) > 0 ? '' : ' style="opacity:.5"') . '>+' . $jnH($st[1]) . '%</b></div>'; ?>
+    </section>
+
+    <section class="djinfo-section">
+        <div class="djinfo-section-title">Trao đổi</div>
+        <div class="jn-trade">
+            <span>Cần <b><?php echo $needName; ?></b> <b style="color:<?php echo $needOk ? '#4ade80' : '#f87171'; ?>">(<?php echo $needHave; ?>/<?php echo $needCount; ?>)</b></span>
+            <a class="djinfo-btn use-btn" href="?cmd=<?php echo $duihuan; ?>">Trao Đổi</a>
+        </div>
+    </section>
+
+    <?php if ($equipBtns !== ''): ?>
+    <section class="djinfo-section">
+        <div class="djinfo-section-title">Trang bị phù lục</div>
+        <div class="jn-equip"><?php echo $equipBtns; ?></div>
+    </section>
+    <?php endif; ?>
+
+    <div class="djinfo-bottom">
+        <a class="djinfo-btn" href="#" onClick="javascript:history.back(-1);return false;">Trở Về</a>
+        <a class="djinfo-btn primary" href="?cmd=<?php echo $gonowmid; ?>">Đại Sảnh</a>
+    </div>
+</div>

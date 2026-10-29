@@ -242,11 +242,15 @@ if ($tishi != '') {
     $noticeHtml = '<div class="yd-notice">'.$tishi.'</div>';
 }
 
+// Khung biểu tượng đan dược theo tên, màu theo phẩm của đan (giống chi tiết trang bị)
+list($ydEmo) = \player\item_emoji($yaodan->ydname, '⚗');
+$ydArtColor = $yaodan->ydys != '' ? $yaodan->ydys : '#facc15';
 $ydinfo = <<<HTML
 <div class="ydinfo-page ydinfo-page-v3">
 
     <div class="ydinfo-hero ydinfo-no-image">
         <div class="ydinfo-main">
+            <div class="zb-art" style="--ra:{$ydArtColor}"><span class="bag-emo">$ydEmo</span><span class="zb-art-ra">Đan dược</span></div>
             <div class="ydinfo-label">THÔNG TIN ĐAN DƯỢC</div>
             <h1 style="color:{$yaodan->ydys}">{$yaodan->ydname}</h1>
 
