@@ -243,6 +243,10 @@ switch ($cmd){
 					echo '<meta charset="utf-8">Tạo nhân vật thất bại, vui lòng thử lại sau.';
 					exit();
 				}
+				// Ngày tạo nhân vật (Quà Tân Thủ 3 ngày — sql/migrate_tanthu.php). Bảng riêng, chưa migrate vẫn tạo được nhân vật.
+				if (\player\tanthu_ready($dblj)) {
+					$dblj->prepare("INSERT IGNORE INTO player_tanthu (sid, created_at) VALUES (?, ?)")->execute([$sid, $nowdate]);
+				}
 
 				// vào map đầu
 				$gonowmid = $encode->encode("cmd=gomid&newmid=$firstmid&sid=$sid");

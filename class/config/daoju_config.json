@@ -689,5 +689,38 @@
         "djyxb": 0,
         "djjg": 0,
         "no_shop": 1
+    },
+    "118": {
+        "djname": "Tân Thủ Tu Vi Đan",
+        "djzl": "118",
+        "djinfo": "Quà tân thủ: lấp đầy thanh tu vi cấp hiện tại. Chỉ dùng trong 3 ngày đầu kể từ khi tạo nhân vật và dưới trần cấp của ngày (ngày 1: 150, ngày 2: 250, ngày 3: 300). Không bán, không giao dịch.",
+        "djid": 118,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1,
+        "no_trade": 1,
+        "use_effect": {"type": "tanthu_pill"}
+    },
+    "119": {
+        "djname": "Túi Linh Thạch Tân Thủ",
+        "djzl": "119",
+        "djinfo": "Quà tân thủ: mở ra cộng 500.000 Linh Thạch vào Túi Tân Thủ — chỉ dùng để trả phí Đột Phá (trừ trước Linh Thạch thường). Không bán, không giao dịch.",
+        "djid": 119,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1,
+        "no_trade": 1,
+        "use_effect": {"type": "tanthu_bag"}
+    },
+    "120": {
+        "djname": "Thẻ ×2 Hấp Thụ Linh Khí",
+        "djzl": "120",
+        "djinfo": "Quà tân thủ: tu luyện hấp thụ linh khí ×2 trong 72 giờ kể từ khi dùng. Không bán, không giao dịch.",
+        "djid": 120,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1,
+        "no_trade": 1,
+        "use_effect": {"type": "tanthu_x2"}
     }
 }

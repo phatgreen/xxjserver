@@ -110,6 +110,15 @@ HTML;
 }
 
 $player = \player\getplayer($sid, $dblj);
+// Quà Tân Thủ (class/function/tanthu.php): dùng Tân Thủ Tu Vi Đan ngay tại đây — bấm tay (canshu=tanthu_dan) hoặc
+// Đột Phá Liên Tục tự dùng khi thanh tu vi chưa đầy. Đan chỉ lấp thanh tu vi; tỉ lệ và phí đột phá giữ nguyên luật.
+$lientuc = isset($lientuc) ? max(0, intval($lientuc)) : 0;
+$ttMsg = '';
+if ((isset($canshu) && $canshu == 'tanthu_dan') || ($lientuc > 0 && $player->uexp < $player->umaxexp
+        && \player\tanthu_active_day($sid, $dblj) > 0 && \player\getplayerdaoju($sid, \player\tanthu_item('pill'), $dblj))) {
+    list($ttOk, $ttMsg) = \player\tanthu_use_pill($sid, $dblj);
+    if ($ttOk) $player = \player\getplayer($sid, $dblj);
+}
 $tssb1 = makePopup('error', 'Tu vi không đủ');
 
 $ts = '';
@@ -165,6 +174,7 @@ foreach ($toxinEffects as $eff) {
 }
 
 $tupocmd = $encode->encode("cmd=tupo&canshu=tupo&tpdan=$danUse&sid=$sid");
+$ret = null;
 $gonowmid = $encode->encode("cmd=gomid&newmid=$player->nowmid&sid=$sid");
 $tupo = \player\istupo($sid, $dblj);
 $tpls = 0;
@@ -179,7 +189,7 @@ if ($tupo == 2) {
 if ($tupo != 8) {
     if ($player->uexp >= $player->umaxexp) {
         if (isset($canshu) && $canshu == 'tupo') {
-            $ret = \player\changeyxb(2, $tpls, $sid, $dblj);
+            $ret = \player\tanthu_pay_tupo($sid, $tpls, $dblj);   // Túi Tân Thủ trước, thiếu thì Linh Thạch thường (đủ phí như luật)
             if ($ret) {
                 // Uống Đột Phá Đan: mất dù thành công hay thất bại. Trừ không được (vừa dùng ở tab khác) -> bỏ khoản Đan.
                 if ($danUse > 0 && $rate > 0) {
@@ -284,9 +294,39 @@ if ($zhanbi < 0) {
 }
 
 $rateBar = max(0, min(100, intval($rate)));
-$canBreak = ($tupo != 8 && $player->uexp >= $player->umaxexp && intval($player->uyxb) >= intval($tpls));
+$ttPool = \player\tanthu_pool($sid, $dblj);   // Túi Linh Thạch Tân Thủ (chỉ trả phí đột phá)
+$canBreak = ($tupo != 8 && $player->uexp >= $player->umaxexp && intval($player->uyxb) + $ttPool >= intval($tpls));
 $expClass = ($player->uexp >= $player->umaxexp) ? 'ok' : 'bad';
-$stoneClass = (intval($player->uyxb) >= intval($tpls)) ? 'ok' : 'bad';
+$stoneClass = (intval($player->uyxb) + $ttPool >= intval($tpls)) ? 'ok' : 'bad';
+
+// Đột Phá Liên Tục: mỗi lần tải trang = 1 lần bấm đột phá thật (cùng route, cùng luật); tự tải lần kế tới khi phải dừng.
+$ttCfg = \player\tanthu_config();
+$ltMax = isset($ttCfg['lientuc_max']) ? intval($ttCfg['lientuc_max']) : 200;
+$ltDelay = isset($ttCfg['lientuc_delay_ms']) ? intval($ttCfg['lientuc_delay_ms']) : 350;
+$ttDay = \player\tanthu_active_day($sid, $dblj);
+$ttPillDj = $ttDay > 0 ? \player\getplayerdaoju($sid, \player\tanthu_item('pill'), $dblj) : false;
+$ttPillN = $ttPillDj ? intval($ttPillDj->djsum) : 0;
+$ttPillOk = ($ttPillN > 0 && $player->uexp < $player->umaxexp && intval($player->ulv) < \player\tanthu_cap($ttDay));
+$lientucHtml = '';
+if ($lientuc > 0 && isset($canshu) && $canshu == 'tupo') {
+    $ltStop = '';
+    if ($ret === false) $ltStop = 'không đủ Linh Thạch (gồm cả Túi Tân Thủ)';
+    elseif ($tupo == 8) $ltStop = 'đã đạt cấp tối đa';
+    elseif ($rate <= 0) $ltStop = 'không thể đột phá';
+    elseif ($lientuc >= $ltMax) $ltStop = 'đã bấm ' . $ltMax . ' lần';
+    elseif ($player->uexp < $player->umaxexp && !$ttPillOk) $ltStop = 'thanh tu vi chưa đầy' . ($ttDay > 0 && $ttPillN > 0 ? ' (đã tới trần cấp Tân Thủ hôm nay: ' . \player\tanthu_cap($ttDay) . ')' : '');
+    if ($ltStop === '') {
+        $ltNext = $encode->encode("cmd=tupo&canshu=tupo&tpdan=$danUse&lientuc=" . ($lientuc + 1) . "&sid=$sid");
+        $ltStopCmd = $encode->encode("cmd=tupo&sid=$sid");
+        $lientucHtml = '<div class="break-result good"><b>Đang đột phá liên tục — lần ' . $lientuc . '/' . $ltMax . ' · cấp ' . intval($player->ulv)
+            . '</b><span><a class="break-nav" href="?cmd=' . $ltStopCmd . '">Dừng</a></span></div>'
+            . '<script>setTimeout(function(){location.href="?cmd=' . $ltNext . '";}, ' . $ltDelay . ');</script>';
+    } else {
+        $lientucHtml = '<div class="break-result bad"><b>Dừng đột phá liên tục sau ' . $lientuc . ' lần</b><span>Lý do: ' . htmlspecialchars($ltStop, ENT_QUOTES, 'UTF-8') . '.</span></div>';
+    }
+    $ts = '';   // chạy liên tục: bỏ hiệu ứng popup từng lần cho nhanh, chỉ giữ dòng kết quả
+}
+if ($ttMsg !== '') $lientucHtml = '<div class="break-note">💊 ' . htmlspecialchars($ttMsg, ENT_QUOTES, 'UTF-8') . '</div>' . $lientucHtml;
 $breakType = $tupo == 1 ? 'Đột phá cảnh giới' : 'Đột phá cấp độ';
 $realmStep = max(0, intval(floor(intval($player->ulv) / 50)));
 $innerLevel = intval($player->ulv) % 50;
@@ -333,6 +373,12 @@ if ($tupo == 8) {
 } else {
     $actionHtml = '<span class="break-btn disabled">Chưa đủ điều kiện</span>';
 }
+if ($tupo != 8 && ($canBreak || $ttPillOk)) {
+    $actionHtml .= '<a class="break-btn" href="?cmd=' . $encode->encode("cmd=tupo&canshu=tupo&tpdan=$danUse&lientuc=1&sid=$sid") . '">Đột phá liên tục</a>';
+}
+if ($ttPillOk) {
+    $actionHtml .= '<a class="break-btn" href="?cmd=' . $encode->encode("cmd=tupo&canshu=tanthu_dan&tpdan=$danUse&sid=$sid") . '">💊 Tân Thủ Tu Vi Đan (' . $ttPillN . ')</a>';
+}
 
 // Khu chọn Đột Phá Đan (0..max viên, chỉ chọn được tới số viên đang có)
 $danHtml = '';
@@ -362,6 +408,7 @@ if (trim($resultHtml) == '') {
     $resultHtml = '<div class="break-note">Linh khí đã viên mãn thì có thể thử đột phá. Thất bại vẫn tiêu hao linh thạch, hãy cân nhắc trước khi xuất thủ.</div>';
 }
 
+$ttPoolHtml = ($ttPool > 0 || $ttDay > 0) ? '<div class="break-stat full"><span>Túi Tân Thủ (chỉ trả phí đột phá, dùng trước)</span><b>' . number_format($ttPool) . '</b></div>' : '';
 $tupohtml = <<<HTML
 $ts
 
@@ -395,6 +442,7 @@ $ts
                 <div class="break-stat full"><span>Cấp hiện tại: </span><b style="font-size:14px">$player->ulv</b><br><span>Cảnh giới: </span><b style="font-size:14px">$player->jingjie $player->cengci</b></div>
                 <div class="break-stat $expClass"><span>Tu vi</span><b>$player->uexp / $player->umaxexp</b></div>
                 <div class="break-stat $stoneClass"><span>Linh thạch</span><b>$tpls / $player->uyxb</b></div>
+                $ttPoolHtml
             </div>
             <div class="break-progress">
                 <div class="break-progress-top"><span>Tiến độ tu vi</span><b>$zhanbi%</b></div>
@@ -424,6 +472,7 @@ $ts
         </section>
     </div>
 
+    $lientucHtml
     $resultHtml
 
     <div class="break-bottom">

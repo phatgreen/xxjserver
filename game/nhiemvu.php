@@ -23,6 +23,11 @@ if ($action === 'claim_daily') {
     $oidx = isset($oidx) ? intval($oidx) : (isset($_GET['oidx']) ? intval($_GET['oidx']) : -1);
     $r = \player\online_reward_claim($sid, $oidx, $player->ulv, $dblj);
     $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . $r['msg'] . '</div>';
+} elseif ($action === 'claim_tanthu') {
+    // Quà Tân Thủ 3 ngày: điểm danh (kind=daily) / mốc trực tuyến (kind=on<idx>) — class/function/tanthu.php
+    $tkind = isset($tkind) ? strval($tkind) : (isset($_GET['tkind']) ? strval($_GET['tkind']) : '');
+    $r = \player\tanthu_claim($sid, $tkind, $player->ulv, $dblj);
+    $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . htmlspecialchars($r['msg'], ENT_QUOTES, 'UTF-8') . '</div>';
 } elseif ($action === 'claim_offline') {
     $r = \player\offline_reward_claim($sid, $dblj);
     $msg = '<div class="' . ($r['ok'] ? 'nv-success' : 'nv-error') . '">' . $r['msg'] . '</div>';
@@ -508,6 +513,38 @@ if ($tab === 'canhgioi') {
 
 // ─── Trực tuyến + Bế Quan ──────────────────────────────────────
 if ($tab === 'online') {
+    $tts = \player\tanthu_status($sid, $player->ulv, $dblj);
+    if ($tts) {
+        $ttBagLt = \player\tanthu_config();
+        $ttBagLt = isset($ttBagLt['bag_lt']) ? intval($ttBagLt['bag_lt']) : 500000;
+        $ttRw = function ($pill, $bag) use ($ttBagLt) {
+            $p = array();
+            if ($pill > 0) $p[] = $pill . ' Tân Thủ Tu Vi Đan';
+            if ($bag > 0) $p[] = $bag . ' Túi LT (' . number_format($bag * $ttBagLt) . ' LT đột phá)';
+            return implode(' | ', $p);
+        };
+        $html .= '<div class="nv-card"><div class="nv-title">🎁 Quà Tân Thủ — Ngày ' . $tts['day'] . '/' . $tts['days'] . '</div>';
+        $html .= '<div class="nv-desc" style="text-align:center;margin-bottom:8px">Tu Vi Đan hôm nay dùng được tới cấp <b style="color:#fde68a">' . $tts['cap']
+            . '</b> · Túi Tân Thủ: <b style="color:#fde68a">' . number_format($tts['pool']) . ' LT</b> (chỉ trả phí Đột Phá)'
+            . ($tts['x2_until'] !== '' ? ' · Thẻ ×2 tới ' . htmlspecialchars($tts['x2_until'], ENT_QUOTES, 'UTF-8') : '') . '</div>';
+        $dc = $encode->encode("cmd=nhiemvu&action=claim_tanthu&tkind=daily&tab=online&sid=$sid");
+        $html .= '<div class="nv-item"><div class="nv-info"><div class="nv-name">Điểm danh tân thủ</div><div class="nv-desc">' . $ttRw($tts['daily']['pill'], $tts['daily']['bag'])
+            . '</div></div><div>' . ($tts['daily']['claimed'] ? '<span class="nv-btn nv-btn-done">✅</span>' : '<a class="nv-btn nv-btn-claim" href="?cmd=' . $dc . '">Nhận</a>') . '</div></div>';
+        foreach ($tts['online'] as $m) {
+            if ($m['claimed']) {
+                $btn = '<span class="nv-btn nv-btn-done">✅</span>';
+            } elseif ($m['reached']) {
+                $btn = '<a class="nv-btn nv-btn-claim" href="?cmd=' . $encode->encode("cmd=nhiemvu&action=claim_tanthu&tkind=on{$m['idx']}&tab=online&sid=$sid") . '">Nhận</a>';
+            } else {
+                $btn = '<span class="nv-btn nv-btn-lock">⏳</span>';
+            }
+            $pct = min(100, intval($tts['minutes'] * 100 / max(1, $m['minutes'])));
+            $html .= '<div class="nv-item"><div class="nv-info"><div class="nv-name">Trực tuyến tân thủ ' . ($m['minutes'] / 60) . ' giờ</div><div class="nv-desc">'
+                . $ttRw($m['pill'], $m['bag']) . '</div></div><div class="nv-bar-wrap"><span class="nv-num">' . min($tts['minutes'], $m['minutes']) . '/' . $m['minutes']
+                . '</span><div class="nv-bar ' . ($m['reached'] ? 'nv-bar-done' : 'nv-bar-progress') . '"><div class="nv-bar-fill" style="width:' . $pct . '%"></div></div></div><div>' . $btn . '</div></div>';
+        }
+        $html .= '</div>';
+    }
     $off = \player\offline_reward_pending($sid, $dblj);
     $nvRules = \player\nhiemvu_rules();
     $offCfg = isset($nvRules['offline']) ? $nvRules['offline'] : array();

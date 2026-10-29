@@ -1,6 +1,6 @@
 # Thiết kế: Quà Tân Thủ 3 ngày đầu — đẩy cấp bằng quà, không đổi luật game
 
-> 2026-10-29 · Trạng thái: **CHỜ CHỦ DỰ ÁN DUYỆT** (chưa sửa code game) · Mô phỏng: `tools/sim/econ_sim.py` `sim(..., newbie=..., start_wd=...)` trên nền luật sau sửa E1–E5 (`docs/BAO_CAO_MOC_THOI_GIAN_2026-10-29.md` mục 9).
+> 2026-10-29 · Trạng thái: **ĐÃ DUYỆT + ĐÃ LÀM** (mục 8): túi LT chỉ đột phá, có nút Đột Phá Liên Tục, ngày 4 dừng hẳn · Mô phỏng: `tools/sim/econ_sim.py` `sim(..., newbie=..., start_wd=...)` trên nền luật sau sửa E1–E5 (`docs/BAO_CAO_MOC_THOI_GIAN_2026-10-29.md` mục 9).
 
 ## 1. Mục tiêu
 
@@ -111,3 +111,60 @@ Mọi con số (đan, túi, trần, giờ) để trong `class/config/tanthu_conf
 2. **Ngày 4 trở đi:** dừng hẳn như yêu cầu, hay thêm ngày 4–7 quà nhỏ dần để đỡ "đụng tường"?
 3. **Nút "Đột phá liên tục"** có làm không? Nếu không, người chơi 1–2h phải bấm ~250–300 lần/giờ.
 4. Số lượng đan / túi ở bảng 3.2 (chỉnh trong config sau cũng được).
+
+## 8. Đã làm (2026-10-29)
+
+Chủ dự án duyệt:
+- Túi LT chỉ dùng cho đột phá.
+- Làm nút "Đột phá liên tục".
+- Ngày 4 dừng hẳn (không chọn thêm quà ngày 4–7).
+- Số lượng theo bảng 3.2.
+
+### 8.1 Khác thiết kế
+
+| Thiết kế | Làm | Lý do |
+|---|---|---|
+| Thêm 3 cột vào `game1` | **Bảng riêng `player_tanthu`** (sid, created_at, lt, x2_until), InnoDB như game1 | ALTER `game1` báo *Row size too large*: InnoDB Compact đã sát trần cỡ dòng; MySQL 5.5 có thể chỉ cảnh báo rồi hỏng khi ghi. Lợi thêm: nhân vật cũ không có dòng ⇒ tự không nhận quà, khỏi gán ngày giả |
+| Ngày tuổi | Theo **ngày lịch** (ngày tạo = ngày 1) | Khớp bộ đếm phút trực tuyến theo ngày có sẵn. Tạo nhân vật lúc 23h thì ngày 1 ngắn — chấp nhận |
+
+### 8.2 File
+
+| File | Nội dung |
+|---|---|
+| `sql/migrate_tanthu.php` (mới) | bảng `player_tanthu`, `player_tanthu_claim`; cột `duihuan.dh_maxday`, `dh_maxlv`; 2 giftcode **`tanthu`**, **`nhomtele`** (ngày tuổi ≤ 3, cấp ≤ 300). **Bắt buộc chạy trên máy chủ** (`--dry-run` rồi `--apply`). Chưa chạy thì game vẫn như cũ |
+| `class/config/tanthu_config.json` (mới) | mọi con số: trần cấp, điểm danh, mốc online, giá trị túi (500k), thẻ 72h, liên tục tối đa 200 lần / 350 ms |
+| `class/function/tanthu.php` (mới) | ngày tuổi, dùng đan / túi / thẻ, trả phí đột phá (túi trước, 1 câu UPDATE 2 bảng), điểm danh + mốc online |
+| `class/config/daoju_config.json` | 118 Tân Thủ Tu Vi Đan, 119 Túi Linh Thạch Tân Thủ, 120 Thẻ ×2 Hấp Thụ (`no_shop`, `no_trade`) |
+| `class/config/daoju_sell_config.json` | 118–120 không bán NPC |
+| `game.php` | tạo nhân vật ghi `player_tanthu` (câu riêng, chưa migrate vẫn tạo được) |
+| `game/tupo.php` | trả phí từ Túi Tân Thủ; nút 💊 dùng đan; nút **Đột phá liên tục**: mỗi lần tải trang = 1 lần bấm thật, cùng route, cùng luật; tự dùng đan khi thanh chưa đầy; dừng khi hết LT / hết đan / chạm trần / 200 lần / cấp tối đa; hiện số dư túi |
+| `game/xiulian.php` | Thẻ ×2 nhân linh khí khi còn hạn |
+| `game/use_dj.php`, `game/bagdj.php` | dùng 3 vật phẩm; nút "Mở hết" cho túi |
+| `game/djinfo.php` | vật phẩm `no_trade` không treo Phường Thị |
+| `game/duihuan.php` | giftcode kiểm ngày tuổi / cấp trước khi ghi đã nhận |
+| `game/nhiemvu.php` | tab Trực Tuyến: thẻ **Quà Tân Thủ — Ngày N/3** (điểm danh + 6 mốc online, số dư túi, hạn thẻ) |
+
+### 8.3 Test
+
+`tests/test_tanthu.php` — **42/42 PASS**, chạy 2 lần liên tiếp, đi qua route thật:
+
+| Nhóm | Kiểm |
+|---|---|
+| Tạo nhân vật | `cmd=cjplayer` thật ⇒ có dòng `player_tanthu` ngày hôm nay, ngày tuổi 1; nhân vật cũ ngày tuổi 0 |
+| Giftcode | `tanthu` +50 đan +3 túi; nhập lại bị chặn; `nhomtele` +thẻ +30 đan +2 túi; nhân vật ngày 4 bị từ chối; cấp 301 bị từ chối |
+| Khóa | bán NPC đan: không LT, không mất; treo Phường Thị túi: bị chặn, không có tin treo |
+| Túi + thẻ | "Mở hết" 5 túi = 2.500.000 vào túi, LT thường không đổi; thẻ hạn 72h; **tu luyện 30' thật cấp 50: có thẻ 180.000, không thẻ 90.000** |
+| Điểm danh / online | ngày 1 +30 đan +1 túi, lần 2 không cộng; mốc 1h khi chưa đủ giờ bị từ chối, đủ 61 phút +6 đan +1 túi; tab hiện "Quà Tân Thủ — Ngày 1/3" |
+| Tu Vi Đan | cấp 10 lấp đúng 13.310; thanh đầy không trừ đan; ngày 1 ở cấp 150 bị từ chối; ngày 2 ở cấp 150 dùng được; ngày 4 hết tác dụng |
+| Phí đột phá | tỉ lệ hiển thị giữ đúng luật (60% ở cấp 20); túi trả 420, LT thường không trừ; túi 100 thiếu ⇒ 100 từ túi + 320 từ LT thường; túi 0 + LT 0 ⇒ không đột phá |
+| Liên tục | 15 đan, cấp 20 → 34 sau 24 lần bấm, dừng "thanh tu vi chưa đầy", phí toàn bộ từ túi; ở cấp 149 dừng đúng ở trần 150, còn đan |
+
+Hồi quy:
+- `test_e1_e5_thue`, `test_stamina`, `test_canhgioi`, `test_combat_moves`, `test_dot_c`, `test_tongmon`, `test_linhcan_boss`, `test_huyetmach_upgrade`, `test_tianfu_open`: **ALL PASS**.
+- `test_e2e_full`: 1 FAIL cũ ("Thôn Quảng Tràng"), so từng khối với code gốc: chỉ khác số lần thử ngẫu nhiên ở "Đột phá" / "Luyện đan", mọi phép kiểm PASS.
+
+### 8.4 Còn để ý
+
+- Chưa có **chấm đỏ** ở nút Nhiệm Vụ khi có quà tân thủ chưa nhận (làm thêm nếu cần).
+- Tên giftcode `tanthu` / `nhomtele`: đổi trong bảng `duihuan` (cột `dhm`, chữ thường) trước khi công bố.
+- Chưa chạy mô phỏng người chơi thật nhiều ngày trên server. Bảng mục 4 là mô hình; quà, trần và phí đã kiểm thật từng phần ở 8.3.

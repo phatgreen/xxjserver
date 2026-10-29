@@ -145,8 +145,23 @@ if ($dhm !== '') {
         $tishi = gift_error('Giftcode không hợp lệ. Chỉ dùng chữ, số, dấu gạch dưới hoặc gạch ngang.');
     } else {
         $duihuan = \player\getduihuan($dhm, $dblj);
-
-        if ($duihuan) {
+        // Điều kiện tùy chọn (sql/migrate_tanthu.php): dh_maxday = chỉ nhân vật trong N ngày đầu, dh_maxlv = cấp tối đa. 0 = không giới hạn.
+        $giftCond = '';
+        if ($duihuan && \player\tanthu_ready($dblj)) {
+            $cst = $dblj->prepare("SELECT dh_maxday, dh_maxlv FROM duihuan WHERE dhm = ? LIMIT 1");
+            $cst->execute(array($dhm));
+            $cond = $cst->fetch(PDO::FETCH_ASSOC);
+            if ($cond && intval($cond['dh_maxday']) > 0) {
+                $tday = \player\tanthu_day($sid, $dblj);
+                if ($tday < 1 || $tday > intval($cond['dh_maxday'])) $giftCond = 'Giftcode này chỉ dành cho nhân vật mới trong ' . intval($cond['dh_maxday']) . ' ngày đầu.';
+            }
+            if ($giftCond === '' && $cond && intval($cond['dh_maxlv']) > 0 && intval($player->ulv) > intval($cond['dh_maxlv'])) {
+                $giftCond = 'Giftcode này chỉ dành cho nhân vật cấp ' . intval($cond['dh_maxlv']) . ' trở xuống.';
+            }
+        }
+        if ($giftCond !== '') {
+            $tishi = gift_error($giftCond);
+        } elseif ($duihuan) {
             // Đánh dấu đã nhận trước khi phát thưởng.
             // Nếu refresh / nhập lại link cũ, INSERT IGNORE sẽ fail và không phát thưởng nữa.
             if (gift_mark_code_used($sid, $dhm, $dblj, $tishi)) {

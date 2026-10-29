@@ -12,7 +12,9 @@ function djinfo_h($value)
 {
     return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
 }
-if ($daoju){
+$djCfgTrade = \player\daoju_config_get($djid);
+$noTrade = ($djCfgTrade && !empty($djCfgTrade['no_trade']));   // vật phẩm khóa (quà tân thủ): không treo Phường Thị
+if ($daoju && !$noTrade){
     $self = $_SERVER['PHP_SELF'];
     $maxCount = intval($daoju->djsum);
     $djhtml =<<<HTML
@@ -39,7 +41,10 @@ if(isset($canshu))
         $djid     = intval($djid);
         $djcount  = max(1, intval($djcount));
         $pay      = max(1, intval($pay));
-        if (!$daoju || !$ydaoju) {
+        if ($noTrade) {
+            $notice = 'Vật phẩm này bị khóa, không thể giao dịch';
+            $noticeType = 'bad';
+        } elseif (!$daoju || !$ydaoju) {
             $notice = 'Trên người không đủ đạo cụ';
             $noticeType = 'bad';
         } else try{

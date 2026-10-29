@@ -147,6 +147,9 @@ for ($i=0;$i<count($retdj);$i++){
             $useBtn = '<a class="bag-btn use-pill" href="'.$self.'?cmd='.$usedj.'">Dùng'.($useLeft>0 ? " ($useLeft)" : ' (2/2)').'</a>';
         } elseif ($canUseEffect) {
             $useBtn = '<a class="bag-btn use-pill" href="'.$self.'?cmd='.$usedjEffect.'">Dùng</a>';
+            if (isset($daojuCfg->use_effect['type']) && $daojuCfg->use_effect['type'] === 'tanthu_bag' && $djsum > 1) {
+                $useBtn .= '<a class="bag-btn use-pill" href="'.$self.'?cmd='.$encode->encode("cmd=use_dj&djid=$djid&tatca=1&sid=$sid").'">Mở hết</a>';
+            }
         }
 
         $djhtml .= '

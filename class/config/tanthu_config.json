@@ -1,0 +1,20 @@
+{
+    "_note": "Quà Tân Thủ 3 ngày đầu — docs/DESIGN_TANTHU_3NGAY.md (chủ dự án duyệt 2026-10-29). Ngày tuổi = ngày lịch kể từ ngày tạo nhân vật (ngày tạo = ngày 1). cap: trần cấp dùng Tân Thủ Tu Vi Đan theo ngày tuổi. daily: quà điểm danh (nhận 1 lần mỗi ngày tuổi). online: mốc phút trực tuyến trong ngày (cùng bộ đếm Thưởng Trực Tuyến), mỗi mốc [phút, số Tu Vi Đan, số Túi Linh Thạch]. Chỉnh số ở đây, không cần sửa code.",
+    "days": 3,
+    "items": {"pill": 118, "bag": 119, "x2": 120},
+    "bag_lt": 500000,
+    "x2_hours": 72,
+    "cap": {"1": 150, "2": 250, "3": 300},
+    "daily": {
+        "1": {"pill": 30, "bag": 1},
+        "2": {"pill": 60, "bag": 30},
+        "3": {"pill": 110, "bag": 80}
+    },
+    "online": {
+        "1": [[60, 6, 1], [120, 6, 1], [240, 12, 2], [360, 12, 2], [480, 12, 2], [720, 24, 4]],
+        "2": [[60, 6, 4], [120, 6, 4], [240, 12, 8], [360, 12, 8], [480, 12, 8], [720, 24, 16]],
+        "3": [[60, 3, 6], [120, 3, 6], [240, 6, 12], [360, 6, 12], [480, 6, 12], [720, 12, 24]]
+    },
+    "lientuc_max": 200,
+    "lientuc_delay_ms": 350
+}
