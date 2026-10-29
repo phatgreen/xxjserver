@@ -595,4 +595,24 @@ $html .= <<<HTML
 </div>
 HTML;
 
+// Ô biểu tượng theo tên nhiệm vụ cho mọi dòng .nv-item (giống ô vật phẩm Túi đồ)
+$html = preg_replace_callback('#(<div class="nv-item"[^>]*>)(\s*<div class="nv-info">\s*<div class="nv-name"[^>]*>)(.*?)(</div>)#su', function ($m) {
+    static $map = array(
+        array('Bế quan', '🧘', '#a78bfa'), array('Tu Luyện', '🧘', '#38bdf8'), array('Tu luyện', '🧘', '#38bdf8'), array('Luyện Đan', '🔥', '#fb923c'),
+        array('Chế Tạo', '⚒', '#fbbf24'), array('Chế tạo', '⚒', '#fbbf24'), array('Cường', '🔨', '#f97316'), array('Nâng Cấp', '🔨', '#f97316'),
+        array('Boss', '👹', '#f87171'), array('BOSS', '👹', '#f87171'), array('Đấu', '⚔', '#f43f5e'), array('Tỷ', '⚔', '#f43f5e'), array('PK', '⚔', '#f43f5e'),
+        array('Trực tuyến', '⏱', '#34d399'), array('Điểm danh', '📅', '#fde047'), array('Đột Phá', '💥', '#fb923c'), array('Đột phá', '💥', '#fb923c'),
+        array('Cảnh', '🏔', '#c084fc'), array('Tháp', '🗼', '#60a5fa'), array('Quái', '🗡', '#94a3b8'), array('Diệt', '🗡', '#94a3b8'), array('Săn', '🗡', '#94a3b8'),
+        array('Linh Căn', '🌀', '#22d3ee'), array('Sủng', '🐾', '#4ade80'), array('Thú', '🐾', '#4ade80'), array('Thiên Phú', '🌟', '#fde047'),
+        array('Huyết', '🩸', '#f87171'), array('Thể Chất', '💪', '#fdba74'), array('Tông', '🏯', '#fbbf24'), array('Phường', '⚖', '#a3e635'),
+        array('Thu Thập', '🧺', '#86efac'), array('Mua', '🛒', '#93c5fd'), array('Võ', '🥋', '#e2e8f0'), array('Công Pháp', '📘', '#60a5fa')
+    );
+    $name = strip_tags($m[3]);
+    $emo = '📜'; $color = '#7dd3fc';
+    foreach ($map as $k) {
+        if (mb_strpos($name, $k[0], 0, 'UTF-8') !== false) { $emo = $k[1]; $color = $k[2]; break; }
+    }
+    if ($name === '???') $emo = '❔';
+    return $m[1] . '<span class="nv-ico item-art" style="--ra:' . $color . '"><span class="bag-emo">' . $emo . '</span></span>' . $m[2] . $m[3] . $m[4];
+}, $html);
 echo $html;

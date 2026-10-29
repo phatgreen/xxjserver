@@ -63,8 +63,9 @@ foreach ($treasuryItems as $tItem) {
     }
     $typeIcon = ($tType === 'yaodan') ? '💊' : (($tType === 'daoju') ? '📦' : '🧪');
     $safeTName = htmlspecialchars($tName, ENT_QUOTES, 'UTF-8');
-    $pendingItemsHtml .= '<div class="tcg-treasury-item" data-type="' . $tType . '">';
-    $pendingItemsHtml .= '<div class="tcg-treasury-item-icon">' . $typeIcon . '</div>';
+    list($tEmo, $tEmoColor) = \player\item_emoji($tName, $typeIcon);   // biểu tượng theo tên, giống Túi đồ
+    $pendingItemsHtml .= '<div class="tcg-treasury-item" data-type="' . $tType . '" style="--ra:' . $tEmoColor . '">';
+    $pendingItemsHtml .= '<div class="tcg-treasury-item-icon item-art"><span class="bag-emo">' . $tEmo . '</span></div>';
     $pendingItemsHtml .= '<div class="tcg-treasury-item-info">';
     $pendingItemsHtml .= '<div class="tcg-treasury-item-name">' . $safeTName . '</div>';
     $pendingItemsHtml .= '<div class="tcg-treasury-item-meta">Đóng góp bởi: <strong>' . $tDonor . '</strong> • ' . $tTime . '</div>';
@@ -113,8 +114,9 @@ foreach ($treasuryHistory as $hItem) {
     }
     $hIcon = ($hType === 'yaodan') ? '💊' : (($hType === 'daoju') ? '📦' : '🧪');
     $safeHName = htmlspecialchars($hName, ENT_QUOTES, 'UTF-8');
-    $historyItemsHtml .= '<div class="tcg-treasury-history-item" data-type="' . $hType . '">';
-    $historyItemsHtml .= '<div class="tcg-treasury-item-icon">' . $hIcon . '</div>';
+    list($hEmo, $hEmoColor) = \player\item_emoji($hName, $hIcon);
+    $historyItemsHtml .= '<div class="tcg-treasury-history-item" data-type="' . $hType . '" style="--ra:' . $hEmoColor . '">';
+    $historyItemsHtml .= '<div class="tcg-treasury-item-icon item-art"><span class="bag-emo">' . $hEmo . '</span></div>';
     $historyItemsHtml .= '<div class="tcg-treasury-item-info">';
     $historyItemsHtml .= '<div class="tcg-treasury-item-name">' . $safeHName . '</div>';
     $historyItemsHtml .= '<div class="tcg-treasury-item-meta">Đóng góp: <strong>' . $hDonor . '</strong> • ' . $hItem['created_at'] . '</div>';

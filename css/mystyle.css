@@ -8770,3 +8770,16 @@ body.tcg-bg-body .ct-recipe.ct-recipe-art .item-art .bag-emo{font-size:22px}
 body.tcg-bg-body .ct-recipe.ct-recipe-art{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
 body.tcg-bg-body .tcg-market-item{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
 body.tcg-bg-body .tcg-market-icon.item-art{width:52px!important;height:52px!important;font-size:inherit!important}
+/* Nhiệm vụ: ô biểu tượng đầu mỗi dòng; Bảo khố tông môn: ô biểu tượng vật phẩm */
+body.tcg-bg-body .nv-item .nv-ico.item-art{width:40px!important;height:40px!important;border-radius:10px!important}
+body.tcg-bg-body .nv-item .nv-ico.item-art .bag-emo{font-size:20px}
+body.tcg-bg-body .nv-item .nv-info{flex:1 1 auto;min-width:0}
+.tcg-treasury-item{--ra:#7dd3fc}
+body.tcg-bg-body .tcg-treasury-item{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
+body.tcg-bg-body .tcg-treasury-item-icon.item-art{width:46px!important;height:46px!important}
+body.tcg-bg-body .tcg-treasury-item-icon.item-art .bag-emo{font-size:24px}
+@media(max-width:560px){
+body.tcg-bg-body .nv-item{flex-wrap:wrap!important}
+body.tcg-bg-body .nv-item .nv-info{flex:1 1 calc(100% - 52px)!important}
+body.tcg-bg-body .nv-item .nv-bar-wrap{flex:1 1 0!important;width:auto!important;min-width:0!important;margin-left:48px!important}
+}
