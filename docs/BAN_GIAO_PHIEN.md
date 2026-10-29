@@ -103,6 +103,7 @@ test B / C / F đều PASS (test C D7 đã sửa lệch múi giờ PHP–MySQL s
 4. Tạo URL: `php tools/cloud/enc.php "cmd=gomid&newmid=225&sid=<sid>"`; chụp: `OUT=<dir> node tools/cloud/shot_url.js "ten|<url>"`.
 5. Test: `php tests/test_dot_c.php`, `test_dot_f.php`, `test_dot_b_data.php`, `test_dot_a_data.php`, `test_combat_moves.php`, `test_conghuong.php`.
 6. Mô phỏng cân bằng: `python3 tools/gen/sim_power.py 10`; rà nhiệm vụ NPC: `python3 tools/gen/audit_renwu.py 10 96`.
+   Nhân vật test theo mốc thời gian (ngày 1 / tuần 1 / tháng 1, 1h → 24h/ngày): `python3 tools/sim/moc_online_sim.py` + đối chiếu thật `php tools/sim/moc_crosscheck.php --bt 400` — kết quả `docs/BAO_CAO_MOC_THOI_GIAN_2026-10-29.md`.
 
 ## 6. Lệnh cho máy chủ chủ dự án (Windows cmd)
 

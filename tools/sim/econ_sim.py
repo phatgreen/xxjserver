@@ -39,10 +39,14 @@ def rate(L, wd, gb=None):
     else:
         pts = [(93, 13.2), (100, 10), (500, -20), (1000, -40)]
         for (a, va), (b, vb) in zip(pts, pts[1:]):
-            if L <= b: base = va + (vb - va) * (L - a) / (b - a); break
+            if L <= b:
+                # tupo.php làm tròn 2 phần trừ tới 0,1 (90% cấp độ / 10% cảnh giới) — giữ đúng để khớp % hiển thị
+                pen = 75 - (va + (vb - va) * (L - a) / (b - a)); lp = round(pen * 0.9, 1)
+                base = 75 - lp - round(pen - lp, 1); break
     return min(99, max(5, int(base + (10 if L % 50 == 0 else 0) + (3 * tier(L, BREAK_PCT) if gb is None else gb) + {5: 5, 6: 10}.get(wd, 0))))
 def mob_exp(L): return 107 * L if L <= 500 else 110 * L * L / 400
-def tupo_cost(L): return L * L * 3 if L % 50 == 0 else L * (L + 1)
+# tupo.php: istupo()==1 (đổi cảnh giới/giai: cấp kế chia hết cho 10, hoặc đang ở mốc 50) ⇒ 3·L²; còn lại L·(L+1) — đo thật moc_crosscheck.php
+def tupo_cost(L): return L * L * 3 if L % 50 == 0 or (L + 1) % 10 == 0 else L * (L + 1)
 
 # ---- chi phí tính năng (báo cáo agent, file:line trong đó) ----
 def lc_cost(lv): return min(7, 1 + lv // 15) * 50 + 100 + 15 * lv          # 1 cấp linh căn 1 hệ (đá mua tiệm 50)
@@ -224,13 +228,17 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         # offline: thể lực hồi tới trần; bế quan; 1 phiên tu luyện LT 180' hoặc thường 30'
         off_h = 24 - online_h
         stamina = min(100 + L - 1, stamina + off_h * 60)
+        # bế quan và tu luyện offline loại trừ nhau (online_reward.php: đang tu luyện thì không tính bế quan) ⇒ chọn cái lợi hơn;
+        # phiên tu luyện offline dài tối đa bằng số giờ offline (online 24h thì không còn phiên offline)
         bq = max(0, min(8, off_h - 3)) if L >= 10 else 0
-        add_exp(need(L) * 0.02 * bq, 'e_quest')
         per_min = math.ceil(L ** 1.15 / 5)
-        if lt >= per_min * 180 * 3 + tupo_cost(L) * 3:
-            cult_tick(180, wd)
+        use_lt = lt >= per_min * 180 * 3 + tupo_cost(L) * 3
+        off_min = min(180 if use_lt else 30, off_h * 60)
+        mult = (1 + gc() / 100) * (1 + cult_bonus / 100)
+        if off_min > 0 and min(need(L), L * (2 if use_lt else 1) * mult * off_min * 60) > need(L) * 0.02 * bq:
+            cult_tick(off_min, wd, use_lt)
         else:
-            cult_tick(30, wd, False)
+            add_exp(need(L) * 0.02 * bq, 'e_quest')
         try_tupo(wd)
         for h in range(int(online_h)):
             left = 3600

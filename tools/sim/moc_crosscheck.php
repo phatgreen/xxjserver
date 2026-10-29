@@ -1,0 +1,117 @@
+<?php
+/**
+ * Đối chiếu mô hình tools/sim/moc_online_sim.py với server thật (route game.php qua HTTP).
+ * Dựng 27 nhân vật test (9 mốc giờ × ngày 1 / tuần 1 / tháng 1) đúng cấp / LT / MT mô phỏng ra,
+ * đọc số game hiển thị (tỉ lệ + phí đột phá, thanh tu vi, linh khí/s, trần thể lực) rồi so với công thức mô hình.
+ * --bt N : thêm N lần bấm đột phá THẬT ở 3 cấp mẫu (đo tỉ lệ thành công thực tế).
+ * Chạy (server thử 127.0.0.1:8091 đang bật): php tools/sim/moc_crosscheck.php --bt 300
+ * Dọn: php tools/sim/moc_crosscheck.php --clean
+ */
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+$ROOT = dirname(dirname(__DIR__));
+require_once $ROOT . '/class/player.php';
+require_once $ROOT . '/class/encode.php';
+include $ROOT . '/pdo.php';
+$db = $dblj;
+$enc = new \encode\encode();
+$SIMDIR = __DIR__;
+$BASE = 'http://127.0.0.1:8091/game.php?cmd=';
+
+function mt_sid($h, $d) { return substr(md5('moctest_' . $h . '_' . $d), 0, 32); }
+function mt_clean($db) {
+    $db->exec("DELETE FROM game1 WHERE token LIKE 'moctest\\_%'");
+}
+if (in_array('--clean', $argv)) { mt_clean($db); echo "DA DON nhan vat test.\n"; exit(0); }
+$bt = 0;
+$i = array_search('--bt', $argv);
+if ($i !== false && isset($argv[$i + 1])) $bt = intval($argv[$i + 1]);
+
+function http_get($url) {
+    $ch = curl_init($url);
+    curl_setopt_array($ch, array(CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 30));
+    $r = curl_exec($ch); curl_close($ch);
+    return (string)$r;
+}
+function page($cmd) {
+    global $enc, $BASE;
+    return http_get($BASE . $enc->encode($cmd));
+}
+
+mt_clean($db);
+$sim = json_decode(shell_exec('cd ' . escapeshellarg($SIMDIR) . ' && python3 moc_online_sim.py --json'), true);
+$gc = \player\getgameconfig($db);
+// Cột NOT NULL không default (giống tests/e2e_fixture.php) + giá trị khởi tạo y hệt cmd=cjplayer (game.php)
+$nn = $db->query("SELECT COLUMN_NAME, DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE()
+    AND TABLE_NAME = 'game1' AND IS_NULLABLE = 'NO' AND COLUMN_DEFAULT IS NULL AND EXTRA NOT LIKE '%auto_increment%'")->fetchAll(PDO::FETCH_ASSOC);
+$rows = array();
+foreach ($sim as $h => $byDay) {
+    foreach ($byDay as $d => $st) {
+        $sid = mt_sid($h, $d);
+        $v = array();
+        foreach ($nn as $c) $v[$c['COLUMN_NAME']] = in_array($c['DATA_TYPE'], array('varchar', 'text', 'char', 'mediumtext')) ? '' : 0;
+        $v = array_merge($v, array('token' => 'moctest_' . $h . '_' . $d, 'sid' => $sid, 'uname' => 'MocTest' . $h . 'h_d' . $d,
+            'ulv' => 1, 'uyxb' => 2000, 'uczb' => 100, 'uexp' => 0, 'uhp' => 35, 'umaxhp' => 35, 'ustamina' => 100, 'umaxstamina' => 100,
+            'ugj' => 12, 'ufy' => 5, 'uwx' => 0, 'usex' => 1, 'vip' => 0, 'nowmid' => intval($gc->firstmid),
+            'endtime' => date('Y-m-d H:i:s'), 'sfzx' => 1, 'shenfen' => 1));
+        $cols = array_keys($v);
+        $db->prepare('INSERT INTO game1 (`' . implode('`,`', $cols) . '`) VALUES (' . implode(',', array_fill(0, count($cols), '?')) . ')')
+           ->execute(array_values($v));
+        // Đưa về đúng trạng thái mô phỏng ở mốc này (chỉ để đo): cấp, LT, MT; thanh tu vi đầy để mở nút đột phá
+        $L = intval($st['L']);
+        $db->prepare('UPDATE game1 SET ulv = ?, uexp = ?, uyxb = ?, uczb = ? WHERE sid = ?')
+           ->execute(array($L, ($L + 1) * ($L + 1) * 110, max(0, intval($st['lt'])), max(0, intval($st['mt'])), $sid));
+        \player\player_cache_clear($sid);
+        $p = \player\getplayer($sid, $db);
+        $tp = page("cmd=tupo&sid=$sid");
+        $xl = page("cmd=goxiulian&sid=$sid");
+        // 1 lượt tu luyện thường thật: lùi mốc bắt đầu 31 phút rồi kết thúc (chỉ để đo) — kỳ vọng min(30 phút × cấp/s, thanh)
+        $db->prepare('UPDATE game1 SET uexp = 0, sfxl = 1, xiuliantime = ? WHERE sid = ?')->execute(array(date('Y-m-d H:i:s', time() - 31 * 60), $sid));
+        \player\player_cache_clear($sid);
+        page("cmd=endxiulian&sid=$sid");
+        $gain = intval($db->query("SELECT uexp FROM game1 WHERE sid = " . $db->quote($sid))->fetchColumn());
+        preg_match('/break-ring-inner"><b>(\d+)%/', $tp, $mRate);
+        preg_match('/Linh thạch<\/span><b>(\d+) \//', $tp, $mCost);
+        preg_match('/Tu luyện<\/span><b>([\d.]+)\/s/', $xl, $mXl);
+        $rows[] = array('h' => $h, 'd' => $d, 'L' => $L, 'rate' => isset($mRate[1]) ? intval($mRate[1]) : -1,
+            'cost' => isset($mCost[1]) ? intval($mCost[1]) : -1, 'maxexp' => intval($p->umaxexp),
+            'xl' => isset($mXl[1]) ? floatval($mXl[1]) : -1, 'stcap' => intval($p->umaxstamina)   // getplayer() đã trả trần thực = stamina_cap()
+            , 'gain' => $gain, 'sid' => $sid);
+    }
+}
+// Giá trị mô hình (econ_sim.py) cho đúng các cấp đó — trang bị trống, ngày thường
+$levels = array_map(function ($r) { return $r['L']; }, $rows);
+$exp = json_decode(shell_exec('cd ' . escapeshellarg($SIMDIR) . ' && python3 -c ' . escapeshellarg(
+    'import json,sys; from econ_sim import rate,need,tupo_cost; L=json.loads(sys.argv[1]); print(json.dumps([[rate(x,0,0),tupo_cost(x),need(x)] for x in L]))'
+) . ' ' . escapeshellarg(json_encode($levels))), true);
+
+echo "| Giờ/ngày | Mốc | Cấp | Tỉ lệ ĐP game / mô hình | Phí ĐP game / mô hình | Thanh tu vi game / mô hình | Linh khí/s game | 1 lượt 30' thật / mô hình | Trần thể lực | Khớp |\n|---|---|---|---|---|---|---|---|---|---|\n";
+$bad = 0;
+foreach ($rows as $k => $r) {
+    list($eRate, $eCost, $eNeed) = $exp[$k];
+    $eGain = min(30 * 60 * $r['L'], $eNeed);
+    $ok = ($r['gain'] == $eGain && $r['rate'] == $eRate && $r['cost'] == $eCost && $r['maxexp'] == $eNeed && abs($r['xl'] - $r['L']) < 0.01 && $r['stcap'] == 100 + $r['L'] - 1);
+    if (!$ok) $bad++;
+    printf("| %sh | ngày %s | %d | %d%% / %d%% | %d / %d | %d / %d | %s | %d / %d | %d | %s |\n", $r['h'], $r['d'], $r['L'], $r['rate'], $eRate,
+        $r['cost'], $eCost, $r['maxexp'], $eNeed, $r['xl'], $r['gain'], $eGain, $r['stcap'], $ok ? 'OK' : 'LỆCH');
+}
+echo "\nLệch: $bad / " . count($rows) . "\n";
+
+// Bấm đột phá thật N lần ở 3 cấp mẫu (mỗi lần trả lại đúng cấp + thanh đầy + đủ LT, chỉ để đo xác suất)
+if ($bt > 0) {
+    echo "\n| Cấp | Tỉ lệ hiển thị | Bấm thật | Thành công | Tỉ lệ đo |\n|---|---|---|---|---|\n";
+    foreach (array(array('1', '1'), array('8', '7'), array('24', '30')) as $hd) {
+        foreach ($rows as $r) { if ($r['h'] == $hd[0] && $r['d'] == $hd[1]) { $sid = $r['sid']; $L = $r['L']; $shown = $r['rate']; } }
+        $ok = 0; $tried = 0;
+        for ($n = 0; $n < $bt; $n++) {
+            $db->prepare('UPDATE game1 SET ulv = ?, uexp = ?, uyxb = 999999999 WHERE sid = ?')->execute(array($L, ($L + 1) * ($L + 1) * 110, $sid));
+            \player\player_cache_clear($sid);
+            usleep(120000);   // tránh anti-flood của game.php (lần bấm bị chặn không trừ LT)
+            page("cmd=tupo&canshu=tupo&sid=$sid");
+            $after = $db->query("SELECT ulv, uyxb FROM game1 WHERE sid = " . $db->quote($sid))->fetch(PDO::FETCH_ASSOC);
+            if (intval($after['uyxb']) == 999999999) continue;   // không thực sự bấm
+            $tried++;
+            if (intval($after['ulv']) == $L + 1) $ok++;
+        }
+        printf("| %d | %d%% | %d | %d | %.1f%% |\n", $L, $shown, $tried, $ok, $tried ? 100 * $ok / $tried : 0);
+    }
+}
