@@ -21,10 +21,13 @@ def fmt(v):
     if abs(v) >= 1e4: return '%.1fK' % (v / 1e3)
     return '%d' % round(v)
 
-def run():
+# 3 kịch bản: bản trước (chưa đủ tính năng) / đủ tính năng nhưng không bán Đột Phá Đan / đủ tính năng theo luật hiện tại (bán đan)
+SCEN = (('cu', dict()), ('du_khong_ban_dan', dict(full=True, sell_pill=False)), ('du_luat_hien_tai', dict(full=True, sell_pill=True)))
+
+def run(**kw):
     res = {}
     for h in HOURS:
-        rs = [sim(30, h, seed=x, hunt=True, marks=MARKS) for x in range(RUNS)]
+        rs = [sim(30, h, seed=x, hunt=True, marks=MARKS, **kw) for x in range(RUNS)]
         res[h] = {}
         for d in MARKS:
             xs = [r[d] for r in rs]
@@ -43,7 +46,8 @@ def table(title, cols, res, d):
 
 if __name__ == '__main__':
     import sys
-    res = run()
+    allres = dict((k, run(**kw)) for k, kw in SCEN)
+    res = allres['du_luat_hien_tai']
     if '--json' in sys.argv:
         # cho tools/sim/moc_crosscheck.php dựng nhân vật test đúng trạng thái từng mốc
         print(json.dumps(dict((h, dict((d, dict(L=round(res[h][d]['L']), lt=int(res[h][d]['lt']), mt=int(res[h][d]['mt'])))
@@ -56,20 +60,38 @@ if __name__ == '__main__':
             ('LT còn', lambda a: fmt(a['lt'])), ('MT còn', lambda a: fmt(a['mt']))]
     money = [('LT thu', lambda a: fmt(a['lt_in'])), ('boss', lambda a: fmt(a['lt_boss'])), ('quái', lambda a: fmt(a['lt_mob'])),
              ('nhiệm vụ', lambda a: fmt(a['lt_quest'])), ('tháp', lambda a: fmt(a['lt_tower'])),
+             ('bán đan', lambda a: fmt(a['lt_pill'])), ('boss Linh Căn', lambda a: fmt(a['lt_lcb'])), ('đồ dư', lambda a: fmt(a['lt_sell'])),
+             ('Hầm Mỏ', lambda a: fmt(a['lt_mine'])), ('Vấn Đỉnh Đài', lambda a: fmt(a['lt_vdd'])), ('Tông Môn', lambda a: fmt(a['lt_club'])),
              ('LT chi ĐP', lambda a: fmt(a['lt_tupo'])), ('chi tu luyện x2', lambda a: fmt(a['lt_cult'])), ('chi tính năng', lambda a: fmt(a['lt_feat'])),
-             ('MT thu (boss / NV)', lambda a: '%s / %s' % (fmt(a['mt_boss']), fmt(a['mt_quest']))), ('MT chi linh sủng', lambda a: fmt(a['mt_pet']))]
+             ('MT thu (boss / NV / VĐĐ / tông môn)', lambda a: '%s / %s / %s / %s' % (fmt(a['mt_boss']), fmt(a['mt_quest']), fmt(a['mt_vdd']), fmt(a['mt_club']))), ('MT chi linh sủng', lambda a: fmt(a['mt_pet']))]
     def exp_share(a):
         t = a['e_cult'] + a['e_mob'] + a['e_quest'] + a['e_tower']
         return ' / '.join('%d%%' % round(100 * a[k] / t) if t else '0%' for k in ('e_cult', 'e_mob', 'e_quest', 'e_tower'))
     feat = [('Tu vi: tu luyện / quái / NV / tháp', exp_share),
             ('Trang bị (ĐP/TL %)', lambda a: '+%d / +%d' % (round(a['gb']), round(a['gc']))),
             ('Ô bậc hiện', lambda a: '%.1f/15' % a['cur_n']),
+            ('Tông Môn cấp', lambda a: '%.1f' % a['clv']), ('Boss LC hạ', lambda a: fmt(a['lcb'])), ('Đan rơi', lambda a: fmt(a['pills'])),
+            ('Lò đan', lambda a: '%d' % round(a['ld'])),
             ('Linh căn (cấp/bậc)', lambda a: '%d / %d' % (round(a['lc']), round(a['lc_stage']))),
             ('Thiên phú (phẩm/cấp)', lambda a: '%d / %d' % (round(a['tf_q']), round(a['tf_lv']))),
             ('Huyết mạch', lambda a: '%.1f' % a['hm']), ('Thể chất', lambda a: '%.1f' % a['tc']),
             ('Cường hóa', lambda a: '+%d' % round(a['ch'])), ('Võ công', lambda a: '%d' % round(a['wg'])),
             ('Công pháp', lambda a: '%d' % round(a['cp'])),
             ('Linh sủng (phẩm/cấp)', lambda a: '%s / %d' % ('-' if a['pet_q'] < 0 else '%.1f' % a['pet_q'], round(a['pet_lv'])))]
+    print('\n### So sánh 3 kịch bản — cấp TB (min–max)\n')
+    print('| Giờ/ngày | ' + ' | '.join('%s %s' % (n, m) for m in ('ngày 1', 'tuần 1', 'tháng 1') for n in ('Cũ', 'Đủ (không bán đan)', 'Đủ (luật hiện tại)')) + ' |')
+    print('|---|' + '---|' * 9)
+    for h in HOURS:
+        cells = []
+        for d in MARKS:
+            for k, _ in SCEN:
+                a = allres[k][h][d]; cells.append('%d (%d–%d)' % (round(a['L']), a['Lmin'], a['Lmax']))
+        print('| %dh | ' % h + ' | '.join(cells) + ' |')
+    print('\n### So sánh 3 kịch bản — tháng 1: LT thu / MT còn / tỉ lệ ĐP\n')
+    print('| Giờ/ngày | Cũ | Đủ (không bán đan) | Đủ (luật hiện tại) |')
+    print('|---|---|---|---|')
+    for h in HOURS:
+        print('| %dh | ' % h + ' | '.join('%s / %s / %d%%' % (fmt(allres[k][h][30]['lt_in']), fmt(allres[k][h][30]['mt']), round(allres[k][h][30]['rate'])) for k, _ in SCEN) + ' |')
     for d in MARKS:
         table('Tiến trình', main, res, d)
         table('Linh Thạch / Ma Thạch (cộng dồn)', money, res, d)

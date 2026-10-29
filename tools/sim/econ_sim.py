@@ -65,8 +65,19 @@ def pet_need(lv):
 def ch_cost(q): return (3 * q + 1) * 50 + round(q / 2) * round(q / 3) * 2 * round(q / 4) + 1
 def ch_p(q): return max(0.001, (1 - q / 35) * min(1, (31 - q) / 30))
 
-def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0):
+# ---- tính năng bổ sung (full=True) — docs/BAO_CAO_MOC_THOI_GIAN_2026-10-29.md mục 8 ----
+BOSS_PILL = {30: 50000, 45: 150000, 60: 200000, 70: 200000}   # boss → giá NPC 1 Đột Phá Đan rơi ra (bossdj 1,20/1,21/1,22; bagdj.php bán = djyxb)
+PILL_PER_KILL = 0.10 * 0.5 * 7.5        # djjv 10% × chọn 1/2 món × 3–12 viên (boss.php) — rơi đồ KHÔNG bị chặn chênh cấp
+LC_BRK = [(1, 5000, 0), (2, 20000, 5000), (4, 80000, 20000), (8, 250000, 80000)]   # đột phá linh căn MỖI HỆ: Bình Anh, LT, tu vi (linhcan.php:537-583)
+GEAR_RAR = {1: 1, 10: 2, 30: 3, 60: 4, 120: 5, 200: 6, 300: 7, 400: 8, 500: 9, 600: 9}
+GEAR_HALF = {1: 1.7, 10: 3.8, 30: 12.3, 60: 56.3, 120: 201.6, 200: 501.8, 300: 1104.3, 400: 1940.9, 500: 2154.5, 600: 4379.8}   # (gj+fy)/2 trung bình
+def gear_salvage(T): return max(GEAR_RAR[T] * 50, 10 * (GEAR_HALF[T] + 0.18) - 20)   # đồ dư: bán NPC hoặc phân giải ra đá (10 LT/viên), lấy cái lợi hơn (bagzb.php)
+def ugj_est(L): return boss_hp(L) / 50 + 10.5 * L   # công ước lượng khớp giả định "boss cùng cấp 50 đòn" (boss DEF ≈ 14·cấp)
+
+def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0, full=False, sell_pill=True):
     # marks: ngày ghi số liệu; cult_bonus: % EXP tu luyện cộng thêm (Tông Môn)
+    # full: thêm Boss Linh Căn, Hầm Mỏ, Vấn Đỉnh Đài, Tông Môn tự lập, Luyện Đan / Chế Tạo, bán đồ dư, Đột Phá Đan rơi từ boss,
+    #       sửa linh căn đột phá theo từng hệ, Huyết Mạch bế tắc với F2P; sell_pill: bán Đột Phá Đan cho NPC (luật hiện tại)
     random.seed(seed)
     owned = dict((s, 0) for s in range(1, 16))   # bậc trang bị đang mặc theo ô
     def gb():
@@ -82,6 +93,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         for _ in range(k):
             if random.random() < MOB_DROP:
                 sl = random.choice(random.choice(NORMAL_GROUPS))
+                if full and owned[sl] >= T: add_lt(gear_salvage(T), 'lt_sell')
                 owned[sl] = max(owned[sl], T)
     def drop_boss(n, bl):
         T = tkey(bl)
@@ -89,11 +101,14 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         for _ in range(int(n)):
             if random.random() < BOSS_DROP:
                 sl = random.choice(SPECIAL_BREAK + SPECIAL_CULT)
+                if full and owned[sl] >= T: add_lt(gear_salvage(T), 'lt_sell')
                 owned[sl] = max(owned[sl], T)
     L, exp, lt, mt = 1, 0.0, 2000.0, 0
     S = dict(mt_pet=0, lt_in=0, lt_boss=0, lt_mob=0, lt_quest=0, lt_tower=0, lt_tupo=0, lt_cult=0, lt_feat=0, mt_boss=0, mt_quest=0,
-             e_cult=0, e_mob=0, e_quest=0, e_tower=0, tupo_try=0, tupo_ok=0, lv_lost=0, kills=0, boss=0, tf=0)
-    F = dict(gear=0, pet_q=-1, pet_lv=1, pet_x=0.0, lc=[0] * 5, lc_stage=0, tf_lv=0, tf_q=0, tf_open=0, hm=0, tc=0, ch=0, wg_dj=0, wg_x=0.0, wg_max=0.0, cp=0)
+             e_cult=0, e_mob=0, e_quest=0, e_tower=0, tupo_try=0, tupo_ok=0, lv_lost=0, kills=0, boss=0, tf=0,
+             lt_pill=0, lt_sell=0, lt_mine=0, lt_vdd=0, lt_lcb=0, lt_club=0, mt_vdd=0, mt_club=0, e_club=0, lcb=0, pills=0, cboss=0, ld=0)
+    F = dict(gear=0, pet_q=-1, pet_lv=1, pet_x=0.0, lc=[0] * 5, lc_stage=0, tf_lv=0, tf_q=0, tf_open=0, hm=0, tc=0, ch=0, wg_dj=0, wg_x=0.0, wg_max=0.0, cp=0,
+             lc_st=[0] * 5, st=0.0, ba=0.0, lcw=0, brk_week=0, club=0, clv=0, cexp=0.0, cd=set())
     stamina, tower_best, tower_now, ch_done = 100, 0, 0, 0
     out = {}
     def add_lt(v, k): nonlocal lt; lt += v; S[k] += v; S['lt_in'] += v
@@ -119,10 +134,11 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
             elif a <= 2: exp = 0; return
             elif a <= 3: exp /= 4; return
             elif a <= 4: exp /= 2; return
+    def cb(): return cult_bonus + (F['clv'] if full else 0)   # Tông Môn: +cấp% EXP tu luyện (xiulian.php)
     def cult_tick(minutes, wd, allow_lt=True):
         nonlocal lt
         per_min = math.ceil(L ** 1.15 / 5)
-        mult = (1 + gc() / 100) * (1 + cult_bonus / 100)
+        mult = (1 + gc() / 100) * (1 + cb() / 100)
         if exp >= need(L): try_tupo(wd)
         if exp >= need(L): return
         if allow_lt and lt >= per_min * minutes * 3 + tupo_cost(L) * 3:
@@ -151,7 +167,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         nonlocal lt
         lt -= v; S['lt_feat'] += v
     def features():
-        nonlocal mt
+        nonlocal mt, exp
         reserve = tupo_cost(L) * 20
         # trang bị: mua trọn bộ bậc mới ở Thương Điếm khi đủ cấp
         t = max(k for k in GEAR_SET if k <= L)
@@ -167,7 +183,20 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
                     F['pet_q'] = q; F['pet_lv'] = 1; F['pet_x'] = 0
                     break
         # linh căn (51+): 5 hệ đều nhau, đột phá bậc khi chạm trần
-        if L >= 51:
+        if L >= 51 and full:
+            # đột phá theo TỪNG hệ (Bình Anh + LT + tu vi), đá hệ / Bình Anh từ Boss Linh Căn dùng trước, thiếu mua tiệm (50 / 100 LT)
+            while True:
+                i = min(range(5), key=lambda k: F['lc'][k]); lv = F['lc'][i]
+                if lv >= 90: break
+                stg = F['lc_st'][i]
+                if lv >= LC_STAGE[stg][0]:
+                    ba, blt, bx = LC_BRK[stg]; bu = min(ba, F['ba']); c = blt + (ba - bu) * 100
+                    if lt - reserve < c or exp < bx: break
+                    F['ba'] -= bu; spend(c); exp -= bx; F['lc_st'][i] += 1; F['brk_week'] = 1; continue
+                ns = min(7, 1 + lv // 15); use = min(ns, F['st']); c = (ns - use) * 50 + 100 + 15 * lv
+                if lt - reserve < c: break
+                F['st'] -= use; spend(c); F['lc'][i] += 1
+        elif L >= 51:
             while True:
                 i = min(range(5), key=lambda k: F['lc'][k]); lv = F['lc'][i]
                 cap, brk = LC_STAGE[F['lc_stage']]
@@ -193,7 +222,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
                     S['tf'] -= t; spend(c); F['tf_q'] += 1
                 else: break
         # huyết mạch (101+) / thể chất (120+): kỳ vọng chi phí = phí / tỉ lệ
-        if L >= 101:
+        if L >= 101 and not full:   # full: Huyết Thạch (112) không mua được, chỉ boss Huyết Mạch rơi mà boss cần thức tỉnh bằng Huyết Thạch ⇒ F2P kẹt
             while F['hm'] < len(HM_STEPS) and L >= HM_LV[F['hm']]:
                 c, p = HM_STEPS[F['hm']]
                 if lt - reserve < c / p: break
@@ -208,11 +237,38 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
             c = ch_cost(F['ch']) / ch_p(F['ch'])
             if lt - reserve < c: break
             spend(c); F['ch'] += 1
+        if full:
+            # Luyện Đan (15+): ~4 lò/ngày (đủ nhiệm vụ ngày/tuần), kỳ vọng 404 LT/lò; dừng ở ~115 lò vì độc tính luyện đan không giảm
+            if L >= 15:
+                k = min(4, 115 - S['ld'])
+                if k > 0 and lt - reserve >= 404 * k: spend(404 * k); S['ld'] += k
+            # Chế Tạo (200+): Thánh Phi Phong ô 8 bậc 200, 250 LT, hỏng không mất nguyên liệu
+            if L >= 200 and owned[8] < 200 and lt - reserve >= 250: spend(250); owned[8] = 200
+            # Tông Môn tự lập (30+, 200k LT) — ưu tiên sau mọi tính năng; nâng cấp khi đủ LT + MT + EXP tông môn (quyên góp 10 LT / 1 MT = 1 EXP)
+            if L >= 30 and not F['club'] and lt - reserve >= 200000: spend(200000); F['club'] = 1; F['clv'] = 1
+            if F['club'] and F['clv'] < 10:
+                up_lt, up_mt, up_ex = CLUB_UP[F['clv']]
+                if lt - reserve >= up_lt and mt - 1500 >= up_mt and F['cexp'] + up_lt / 10 + up_mt >= up_ex:
+                    spend(up_lt); mt -= up_mt; S['mt_club'] -= up_mt
+                    F['cexp'] += up_lt / 10 + up_mt - up_ex; add_exp(up_lt / 10 + up_mt, 'e_club'); F['clv'] += 1
 
     for day in range(days):
         wd = day % 7
         bar = need(L)
-        add_exp(bar * .20, 'e_quest'); add_lt(5 * 240 * (1 + L / 100) + 500, 'lt_quest'); add_mt(5, 'mt_quest')
+        if full and L >= 80 and random.random() < 5 / 8:
+            # D8 (thắng PvP 3) vào bộ 5/8 nhưng máy chủ 1 người không có đối thủ ⇒ mất 1 nhiệm vụ + thưởng đủ 5
+            add_exp(bar * .12, 'e_quest'); add_lt(4 * 240 * (1 + L / 100), 'lt_quest')
+        else:
+            add_exp(bar * .20, 'e_quest'); add_lt(5 * 240 * (1 + L / 100) + 500, 'lt_quest'); add_mt(5, 'mt_quest')
+        e_cult0 = S['e_cult']
+        if full:
+            for key, lv_, pct, lt_ in (('phoban', 30, .02, 200), ('hammo', 60, .03, 400), ('vdd', 80, .03, 500)):   # Cơ Duyên lần đầu ghé
+                if L >= lv_ and key not in F['cd']: F['cd'].add(key); add_exp(need(L) * pct, 'e_quest'); add_lt(lt_, 'lt_quest')
+            if L >= 60:   # Hầm Mỏ: 5 lượt miễn phí (lượt 6–30 tốn 5 MT, không đáng) — LT + Cường Hóa Thạch (quy 50 LT) + đá hệ
+                add_lt(5 * (96 + 0.465 * min(20, int(math.sqrt(L)))) + 5 * 0.255 * 50, 'lt_mine'); add_mt(5 * 0.005, 'mt_quest'); F['st'] += 5 * 0.06
+            if L >= 80 and F.get('vdd_day', day) < day:   # Vấn Đỉnh Đài: 1 người ⇒ không có trận, nhưng giữ hạng 1 ⇒ 10.000 LT + 100 MT/ngày (21:00)
+                add_lt(10000, 'lt_vdd'); add_mt(100, 'mt_vdd')
+            if L >= 80 and 'vdd_day' not in F: F['vdd_day'] = day
         if wd == 6: add_exp(bar * 1.4, 'e_quest'); add_lt(16200 * (1 + L / 100), 'lt_quest'); add_mt(20, 'mt_quest')
         if day == 29: add_exp(bar * 3.5, 'e_quest'); add_lt(200000 * (1 + L / 100), 'lt_quest'); add_mt(400, 'mt_quest')
         mins = online_h * 60
@@ -234,7 +290,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         per_min = math.ceil(L ** 1.15 / 5)
         use_lt = lt >= per_min * 180 * 3 + tupo_cost(L) * 3
         off_min = min(180 if use_lt else 30, off_h * 60)
-        mult = (1 + gc() / 100) * (1 + cult_bonus / 100)
+        mult = (1 + gc() / 100) * (1 + cb() / 100)
         if off_min > 0 and min(need(L), L * (2 if use_lt else 1) * mult * off_min * 60) > need(L) * 0.02 * bq:
             cult_tick(off_min, wd, use_lt)
         else:
@@ -245,30 +301,50 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
             # boss cùng tầm cấp (chênh < 35) — LT + MT
             own = boss_hp(L)
             for bl, (hp, ms) in BOSS.items():
-                if bl > L or L - bl >= 35: continue
+                far = L - bl >= 35
+                if bl > L or (far and not (full and sell_pill and bl in BOSS_PILL)): continue   # chênh >= 35: chỉ còn đáng săn để lấy đan
                 t = max(1, math.ceil(50 * hp / own)) * CLICK + TRAVEL
                 n = min(3600 // ms, left // t)
                 if n > 0:
                     left -= n * t; S['boss'] += n
                     drop_boss(n, bl)
                     pet_gain(n, n * ((hp / 50) * 0.02))   # tu vi boss nhỏ (công boss/2 + công/thủ người chơi/2) — ước lượng
-                    add_lt(n * (90 * bl + 1330), 'lt_boss'); add_mt(n * (3 + round(bl / 10)), 'mt_boss')
+                    if not far: add_lt(n * (90 * bl + 1330), 'lt_boss'); add_mt(n * (3 + round(bl / 10)), 'mt_boss')
+                    if full and bl in BOSS_PILL:
+                        S['pills'] += n * PILL_PER_KILL
+                        if sell_pill: add_lt(n * PILL_PER_KILL * BOSS_PILL[bl], 'lt_pill')
             # quái cùng cấp: 1 thể lực / đòn, 5,5 đòn / con
             stamina = min(100 + L - 1 + 40, stamina + 60)
+            used = 0
             for _t in range(12):
                 n = min(stamina / HITS_MOB, (left / 12) / (HITS_MOB * CLICK + FIND))
-                stamina -= n * HITS_MOB
+                stamina -= n * HITS_MOB; used += n * (HITS_MOB * CLICK + FIND)
                 kill(n)
                 cult_tick(5, wd)
+            if full and L >= 51:
+                # Boss Linh Căn thế giới: chết là hồi ngay (linhcan_boss_check_spawn), không tốn thể lực ⇒ dùng hết thời gian còn lại
+                d_ = max(1, ugj_est(L) - 0.75 * (100 + 10 * L))
+                t_ = math.ceil((5000 + 500 * L) / d_) * CLICK + TRAVEL
+                n = int(max(0, left - used) // t_)
+                S['lcb'] += n; F['lcw'] += n; add_lt(n * 300, 'lt_lcb'); F['st'] += n * 3; F['ba'] += n * 1.5
             try_tupo(wd)
         for chL in (10, 25, 50, 60, 78, 92, 106, 150, 200, 250, 300, 400, 500, 550, 600):
             if L >= chL and chL > ch_done: add_exp(need(L) * 0.9, 'e_quest'); add_lt(10 * chL * 6 * (1 + L / 100), 'lt_quest'); ch_done = chL
         try_tupo(wd)
+        if full and F['club']:
+            # boss tông môn 1 lần/ngày, tự đánh 1 mình (3 giây/đòn): được nếu hạ trong 25% thời gian online
+            chp = 100000 + 500000 * (F['clv'] - 1); dmg = 0.85 * max(1, ugj_est(L) - 0.75 * (1500 + 5 * (F['clv'] - 1)))
+            if chp / dmg * 3 <= online_h * 3600 * 0.25:
+                S['cboss'] += 1; add_exp(4700, 'e_club'); add_lt(1750, 'lt_club'); add_mt(65, 'mt_club'); F['cexp'] += 550
+            F['cexp'] += 0.01 * (S['e_cult'] - e_cult0) + 1200 + 2144   # 1% tu vi tu luyện + online 24h + nhiệm vụ tông môn (chỉ cho EXP tông môn)
+        if full and wd == 6:   # nhiệm vụ tuần Linh Căn: cần đột phá 1 bậc trong tuần + hạ boss
+            if L >= 51 and F['brk_week'] and F['lcw'] >= 1: add_lt(500, 'lt_quest'); F['ba'] += 1.5
+            F['brk_week'] = 0; F['lcw'] = 0
         features()
         if day + 1 in marks:
             cpq = 0; x = F['cp']; nd = 100
             while cpq < 10 and x >= nd: x -= nd; cpq += 1; nd *= 1.3
-            out[day + 1] = dict(L=L, lt=int(lt), mt=int(mt), rate=rate(L, 0, gb()), gb=gb() if hunt else 3 * tier(L, BREAK_PCT), gc=gc(), cur_t=tkey(L), cur_n=sum(1 for s_ in owned if owned[s_] >= tkey(L)) if hunt else 15, spec_n=sum(1 for s_ in SPECIAL_BREAK + SPECIAL_CULT if owned[s_] >= 60) if hunt else 6, lc=min(F['lc']), lc_stage=F['lc_stage'], tf_lv=F['tf_lv'], tf_q=F['tf_q'] + 1 if F['tf_open'] else 0,
+            out[day + 1] = dict(L=L, lt=int(lt), mt=int(mt), rate=rate(L, 0, gb()), gb=gb() if hunt else 3 * tier(L, BREAK_PCT), gc=gc(), cur_t=tkey(L), cur_n=sum(1 for s_ in owned if owned[s_] >= tkey(L)) if hunt else 15, spec_n=sum(1 for s_ in SPECIAL_BREAK + SPECIAL_CULT if owned[s_] >= 60) if hunt else 6, lc=min(F['lc']), lc_stage=min(F['lc_st']) if full else F['lc_stage'], clv=F['clv'], tf_lv=F['tf_lv'], tf_q=F['tf_q'] + 1 if F['tf_open'] else 0,
                                 hm=F['hm'] + 1 if L >= 101 else 0, gear=F['gear'], pet_q=F['pet_q'], pet_lv=F['pet_lv'] if F['pet_q'] >= 0 else 0, tc=F['tc'] + 1 if L >= 120 else 0, ch=F['ch'], wg=F['wg_dj'], cp=cpq, tower=tower_best,
                                 **{k: int(v) for k, v in S.items()})
     return out

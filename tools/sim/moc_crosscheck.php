@@ -37,6 +37,64 @@ function page($cmd) {
     return http_get($BASE . $enc->encode($cmd));
 }
 
+// --features: kiểm thật các cơ chế mới đưa vào mô hình (full=True) bằng 1 nhân vật test cấp 150
+if (in_array('--features', $argv)) {
+    mt_clean($db);
+    $sid = mt_sid('feat', 150);
+    $nn = $db->query("SELECT COLUMN_NAME, DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE()
+        AND TABLE_NAME = 'game1' AND IS_NULLABLE = 'NO' AND COLUMN_DEFAULT IS NULL AND EXTRA NOT LIKE '%auto_increment%'")->fetchAll(PDO::FETCH_ASSOC);
+    $v = array();
+    foreach ($nn as $c) $v[$c['COLUMN_NAME']] = in_array($c['DATA_TYPE'], array('varchar', 'text', 'char', 'mediumtext')) ? '' : 0;
+    $gc = \player\getgameconfig($db);
+    $v = array_merge($v, array('token' => 'moctest_feat', 'sid' => $sid, 'uname' => 'MocTestFeat', 'ulv' => 150, 'uyxb' => 1000000, 'uczb' => 0,
+        'uexp' => 0, 'uhp' => 5000, 'umaxhp' => 5000, 'ustamina' => 100, 'umaxstamina' => 100, 'ugj' => 2000, 'ufy' => 1500, 'uwx' => 0, 'usex' => 1,
+        'vip' => 0, 'nowmid' => intval($gc->firstmid), 'endtime' => date('Y-m-d H:i:s'), 'sfzx' => 1, 'shenfen' => 1));
+    $cols = array_keys($v);
+    $db->prepare('INSERT INTO game1 (`' . implode('`,`', $cols) . '`) VALUES (' . implode(',', array_fill(0, count($cols), '?')) . ')')->execute(array_values($v));
+    $uid = intval($db->query("SELECT uid FROM game1 WHERE sid = " . $db->quote($sid))->fetchColumn());
+    $lt = function () use ($db, $sid) { \player\player_cache_clear($sid); return intval($db->query("SELECT uyxb FROM game1 WHERE sid = " . $db->quote($sid))->fetchColumn()); };
+    echo "| Cơ chế | Mô hình | Đo thật trên server | Khớp |\n|---|---|---|---|\n";
+    // 1) Bán Đột Phá Đan (djid 20/21/22) cho NPC = giá tiệm
+    foreach (array(20 => 50000, 21 => 150000, 22 => 200000) as $dj => $price) {
+        \player\adddj($sid, $dj, 3, $db);
+        $a = $lt(); page("cmd=getbagdj&canshu=maichu1&djid=$dj&yeshu=1&uid=$uid&sid=$sid"); usleep(150000); $b = $lt();
+        printf("| Bán 1 Đột Phá Đan djid %d | %d LT | %d LT | %s |\n", $dj, $price, $b - $a, ($b - $a) == $price ? 'OK' : 'LỆCH');
+    }
+    // 2) Boss Linh Căn thế giới hồi sinh ngay khi chết
+    page("cmd=linhcan_boss&sid=$sid");
+    $b1 = $db->query("SELECT id, level, maxhp FROM linhcan_boss WHERE status = 'active' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+    $db->exec("UPDATE linhcan_boss SET hp = 0 WHERE id = " . intval($b1['id']));   // giả lập bị hạ (chỉ để đo)
+    usleep(150000); page("cmd=linhcan_boss&sid=$sid");
+    $b2 = $db->query("SELECT id, level, maxhp FROM linhcan_boss WHERE status = 'active' ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+    printf("| Boss Linh Căn: boss mới ngay sau khi bị hạ | có | id %d → %d | %s |\n", $b1['id'], $b2['id'], ($b2 && $b2['id'] != $b1['id']) ? 'OK' : 'LỆCH');
+    printf("| Boss Linh Căn: máu = 5000 + 500 × cấp | %d (cấp %d) | %d | %s |\n", 5000 + 500 * $b2['level'], $b2['level'], $b2['maxhp'], (5000 + 500 * $b2['level']) == $b2['maxhp'] ? 'OK' : 'LỆCH');
+    // 3) Hầm Mỏ: 5 lượt miễn phí/ngày — đo LT trung bình / lượt + Cường Hóa Thạch qua 100 ngày (đặt lại bộ đếm ngày, chỉ để đo)
+    $digs = 0; $gain = 0; $cht0 = 0;
+    $chtq = function () use ($db, $sid) { $r = $db->query("SELECT djsum FROM playerdaoju WHERE sid = " . $db->quote($sid) . " AND djid = 1")->fetchColumn(); return intval($r); };
+    $cht0 = $chtq();
+    for ($i = 0; $i < 200; $i++) {
+        $db->exec("UPDATE mine_player SET today_digs = 0 WHERE sid = " . $db->quote($sid));
+        $a = $lt(); usleep(150000); page("cmd=hammo&canshu=dig5&sid=$sid"); $b = $lt();
+        if ($b > $a) { $digs += 5; $gain += $b - $a; }
+    }
+    $mz = intval($db->query("SELECT uczb FROM game1 WHERE sid = " . $db->quote($sid))->fetchColumn());
+    printf("| Hầm Mỏ: LT / lượt (cấp 150, b = 12) | %.1f | %.1f (%d lượt) | %s |\n", 96 + 0.465 * 12, $digs ? $gain / $digs : 0, $digs, ($digs && abs($gain / $digs - 101.6) < 12) ? 'OK' : 'LỆCH');
+    printf("| Hầm Mỏ: Cường Hóa Thạch / lượt | 0.255 | %.3f | %s |\n", $digs ? ($chtq() - $cht0) / $digs : 0, ($digs && abs(($chtq() - $cht0) / $digs - 0.255) < 0.06) ? 'OK' : 'LỆCH');
+    // bắt đầu với 0 MT: đào được đủ 500 lượt ⇒ 5 lượt/ngày miễn phí; MT còn lại là MT rơi từ mỏ (0,5% × 1 MT)
+    printf("| Hầm Mỏ: 5 lượt/ngày miễn phí (bắt đầu 0 MT) | 1000/1000 lượt | %d/1000 lượt, MT rơi %d (kỳ vọng 5) | %s |\n", $digs, $mz, $digs == 1000 ? 'OK' : 'LỆCH');
+    // 4) Vấn Đỉnh Đài: thưởng hạng 1 / ngày
+    require_once $ROOT . '/class/function/vandinhdai_reward.php';
+    $tb = function_exists("\\player\\vdd_daily_reward_table") ? \player\vdd_daily_reward_table() : \vdd_daily_reward_table();
+    $r1 = isset($tb[1]) ? $tb[1] : reset($tb);
+    printf("| Vấn Đỉnh Đài: thưởng hạng 1 | 10000 LT + 100 MT | %s | %s |\n", json_encode($r1), (strpos(json_encode($r1), '10000') !== false && strpos(json_encode($r1), '100') !== false) ? 'OK' : 'LỆCH');
+    // 5) Huyết Thạch (112) không bán ở tiệm
+    $shop = page("cmd=shangdian&kw=" . urlencode('Huyết Thạch') . "&sid=$sid");
+    $shop = str_replace('value="Huyết Thạch"', '', $shop);   // bỏ chữ trong ô tìm kiếm, chỉ xét danh sách hàng
+    printf("| Tiệm không bán Huyết Thạch (112) | không có | %s | %s |\n", strpos($shop, 'Huyết Thạch') === false ? 'không có' : 'CÓ', strpos($shop, 'Huyết Thạch') === false ? 'OK' : 'LỆCH');
+    mt_clean($db);
+    exit(0);
+}
+
 mt_clean($db);
 $sim = json_decode(shell_exec('cd ' . escapeshellarg($SIMDIR) . ' && python3 moc_online_sim.py --json'), true);
 $gc = \player\getgameconfig($db);
