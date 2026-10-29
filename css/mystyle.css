@@ -8700,3 +8700,6 @@ body.tcg-bg-body .tcg-profile-section{margin-top:8px!important}
 .rank-page .rank-pod>*{flex-shrink:0}
 /* Hạng 4–10: 1 cột để hiện đủ tên (2 cột bị ẩn tên) */
 body.tcg-bg-body .rank-page .rank-list{grid-template-columns:1fr!important}
+/* Trang cá nhân: Chiến sĩ · Cấp · Tuổi luôn chung 1 dòng (cảnh giới dòng riêng nếu dài) */
+.profile-meta .profile-meta-row{display:inline-flex;flex-wrap:nowrap;gap:5px;align-items:center;max-width:100%}
+.profile-meta .profile-meta-row .profile-badge{white-space:nowrap}

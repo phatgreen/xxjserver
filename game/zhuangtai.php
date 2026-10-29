@@ -420,9 +420,11 @@ $html = <<<HTML
             <h1 class="profile-name">$ztPlayerSafe</h1>
             <div class="profile-meta">
                 <span class="profile-badge realm">✦ $player->jingjie $player->cengci</span>
-                <span class="profile-badge">🎖️ $sf</span>
-                <span class="profile-badge">Cấp $player->ulv</span>
-                $tnZtBadge
+                <span class="profile-meta-row">
+                    <span class="profile-badge">🎖️ $sf</span>
+                    <span class="profile-badge">Cấp $player->ulv</span>
+                    $tnZtBadge
+                </span>
             </div>
         </div>
     </div>
