@@ -369,6 +369,9 @@ tyt_lock_if_dead($player, $encode, $sid);
 $floorText = ($floor > 150) ? 'Đã phá tháp' : 'Tầng '.$floor.' / 150';
 $bestText = intval($state['best_floor']).' / 150';
 $bossPanel = '';
+// Ô biểu tượng quái tầng: tầng ×50 🐲 đỏ, ×10 👹 cam, thường 👺 tím
+$tytBossEmo = ($floor % 50 == 0) ? '🐲' : (($floor % 10 == 0) ? '👹' : '👺');
+$tytBossColor = ($floor % 50 == 0) ? '#ef4444' : (($floor % 10 == 0) ? '#f97316' : '#a855f7');
 if ($boss) {
     $bossName = tyt_h($boss['name']);
     $maxSkip = max(1, intval($state['best_floor'] * 0.8));
@@ -381,7 +384,7 @@ if ($boss) {
 <section class="tyt-panel boss">
     <div class="tyt-boss-badge">Thủ tầng</div>
     <div class="tyt-kicker">Trận tiếp theo</div>
-    <h2>$bossName</h2>
+    <div class="tyt-boss-head"><span class="item-art" style="--ra:$tytBossColor"><span class="bag-emo">$tytBossEmo</span></span><h2>$bossName</h2></div>
     <div class="tyt-boss-grid">
         <div><span>Cấp</span><b>{$boss['lv']}</b></div>
         <div><span>HP</span><b>{$boss['hp']}</b></div>

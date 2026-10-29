@@ -8783,3 +8783,25 @@ body.tcg-bg-body .nv-item{flex-wrap:wrap!important}
 body.tcg-bg-body .nv-item .nv-info{flex:1 1 calc(100% - 52px)!important}
 body.tcg-bg-body .nv-item .nv-bar-wrap{flex:1 1 0!important;width:auto!important;min-width:0!important;margin-left:48px!important}
 }
+/* ===== Tông Môn / Vấn Đỉnh Đài / Tỏa Yêu Tháp / Sào Thú: ô ảnh chung (--ra) ===== */
+body.tcg-bg-body .vdd-row{justify-content:flex-start!important}
+body.tcg-bg-body .vdd-row .vdd-row-info{flex:1 1 auto;min-width:0}
+body.tcg-bg-body .vdd-ava.item-art,body.tcg-bg-body .tcg-club-ava.item-art{width:42px!important;height:42px!important;border-radius:50%!important;overflow:hidden}
+body.tcg-bg-body .vdd-ava.item-art img,body.tcg-bg-body .tcg-club-ava.item-art img{width:100%!important;height:100%!important;object-fit:cover!important;filter:none!important}
+body.tcg-bg-body .vdd-top-row span{font-size:13px}
+body.tcg-bg-body .vdd-top-row.top1,body.tcg-bg-body .vdd-top-row.top2,body.tcg-bg-body .vdd-top-row.top3{border-radius:8px;padding:6px 6px!important;margin:2px 0}
+body.tcg-bg-body .vdd-top-row.top1{background:linear-gradient(90deg,rgba(250,204,21,.28),transparent);font-size:14px}
+body.tcg-bg-body .vdd-top-row.top2{background:linear-gradient(90deg,rgba(226,232,240,.20),transparent)}
+body.tcg-bg-body .vdd-top-row.top3{background:linear-gradient(90deg,rgba(251,146,60,.22),transparent)}
+body.tcg-bg-body .vdd-top-row.top1 span,body.tcg-bg-body .vdd-top-row.top2 span,body.tcg-bg-body .vdd-top-row.top3 span{font-size:20px;line-height:1}
+body.tcg-bg-body .tcg-club-member{display:flex!important;align-items:center!important;gap:8px!important}
+.tyt-boss-head{display:flex;align-items:center;gap:10px}
+.tyt-boss-head h2{margin:0}
+body.tcg-bg-body .tyt-boss-head .item-art{width:52px!important;height:52px!important}
+body.tcg-bg-body .tyt-boss-head .item-art .bag-emo{font-size:30px}
+body.tcg-bg-body .sth-map-card{border-color:color-mix(in srgb,var(--ra) 45%,transparent)!important}
+body.tcg-bg-body .sth-map-num.item-art{width:46px!important;height:46px!important;min-width:46px!important;font-size:inherit!important}
+body.tcg-bg-body .sth-map-num.item-art .bag-emo{font-size:24px}
+/* Sào Thú: 1 cột để tên bản đồ + yêu cầu không bị ép; số thứ tự gắn góc ô biểu tượng */
+body.tcg-bg-body .sth-map-list{grid-template-columns:1fr!important;gap:6px!important}
+.item-art .bag-qty{position:absolute;right:-6px;bottom:-6px;padding:0 5px;border-radius:7px;font-size:10px;font-weight:1000;line-height:15px;color:#fff;background:rgba(8,15,40,.92);border:1px solid color-mix(in srgb,var(--ra) 70%,transparent)}

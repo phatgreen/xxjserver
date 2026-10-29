@@ -61,7 +61,7 @@ function vdd_sync_recent_players($dblj)
 function vdd_opponents($sid, $score, $dblj)
 {
     $stmt = $dblj->prepare("
-        SELECT ap.sid, ap.score, ap.wins, ap.losses, g.uname, g.ulv
+        SELECT ap.sid, ap.score, ap.wins, ap.losses, g.uname, g.ulv, g.usex
         FROM arena_player ap
         INNER JOIN game1 g ON g.sid = ap.sid
         WHERE ap.sid <> ?
@@ -280,7 +280,9 @@ foreach ($opponents as $op) {
     $score = intval($op['score']);
     $wl = intval($op['wins']).' / '.intval($op['losses']);
     $btn = $leftFights > 0 ? '<a class="vdd-btn fight" href="?cmd='.$fight.'">Khiêu chiến</a>' : '<span class="vdd-btn disabled">Hết lượt</span>';
-    $opponentHtml .= '<div class="vdd-row"><div><b>'.$name.'</b><span>Cấp '.$lv.' · Điểm '.$score.' · Thắng/Thua '.$wl.'</span></div>'.$btn.'</div>';
+    // Ảnh đại diện đối thủ làm điểm nhấn (giống ô vật phẩm Túi đồ)
+    $opAvatar = \player\player_avatar_img(isset($op['usex']) ? $op['usex'] : 1);
+    $opponentHtml .= '<div class="vdd-row"><span class="vdd-ava item-art" style="--ra:#f97316"><img src="./'.$opAvatar.'" alt=""></span><div class="vdd-row-info"><b>'.$name.'</b><span>Cấp '.$lv.' · Điểm '.$score.' · Thắng/Thua '.$wl.'</span></div>'.$btn.'</div>';
 }
 if ($opponentHtml == '') {
     $opponentHtml = '<div class="vdd-empty">Chưa có đối thủ phù hợp.</div>';
@@ -292,7 +294,8 @@ $pos = 0;
 foreach ($topRows as $row) {
     $pos++;
     $active = ($row['sid'] == $sid) ? ' active' : '';
-    $topHtml .= '<div class="vdd-top-row'.$active.'"><span>#'.$pos.'</span><b>'.vdd_h($row['uname']).'</b><em>'.intval($row['score']).' điểm</em></div>';
+    $medal = $pos == 1 ? '🥇' : ($pos == 2 ? '🥈' : ($pos == 3 ? '🥉' : '#'.$pos));   // Top 3 huy chương
+    $topHtml .= '<div class="vdd-top-row'.$active.($pos <= 3 ? ' top'.$pos : '').'"><span>'.$medal.'</span><b>'.vdd_h($row['uname']).'</b><em>'.intval($row['score']).' điểm</em></div>';
 }
 
 $battleBlock = $battleHtml != '' ? '<section class="vdd-panel"><div class="vdd-kicker">Diễn biến gần nhất</div>'.$battleHtml.'</section>' : '';

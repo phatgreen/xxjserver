@@ -1218,9 +1218,11 @@ HTML;
         $ucmd = $encode->encode("cmd=getplayerinfo&uid=$memberUid&sid=$player->sid");
         $safeName = htmlspecialchars($otherplayer->uname, ENT_QUOTES, 'UTF-8');
         $safeRank = htmlspecialchars($chenhao, ENT_QUOTES, 'UTF-8');
+        $memberAvatar = \player\player_avatar_img(isset($otherplayer->usex) ? $otherplayer->usex : 1);
 
         $playerlist .= <<<HTML
 <a class="tcg-club-member" href="?cmd=$ucmd">
+    <span class="tcg-club-ava item-art" style="--ra:#fbbf24"><img src="./{$memberAvatar}" alt=""></span>
     <span class="tcg-club-rank $rankClass">$safeRank</span>
     <span class="tcg-club-member-name">$safeName</span>
 </a>

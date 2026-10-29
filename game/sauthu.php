@@ -305,8 +305,13 @@ if ($yeuthuConfig && isset($yeuthuConfig['maps'])) {
         $showPayCmd = $encode->encode("cmd=sauthu&canshu=pay_bua&pay_bua_id=$buaId&sid=$sid");
         $buyBuaCmd = $encode->encode("cmd=sauthu&canshu=buy_bua&buy_bua_id=$buaId&sid=$sid");
 
-        $mapHtml .= '<div class="sth-map-card '.$statusClass.'">';
-        $mapHtml .= '<div class="sth-map-num">'.$i.'</div>';
+        // Ô biểu tượng bản đồ theo tên (Rừng 🌲, Động 🕳, Núi ⛰ …), viền theo màu độ khó (--ra)
+        $mapEmo = '🗺';
+        foreach (array('Rừng Lửa' => '🌋', 'Rừng' => '🌲', 'Động Rồng' => '🐲', 'Động' => '🕳', 'Núi' => '⛰', 'Hồ' => '🌊', 'Thâm Uyên' => '🌑', 'Thung Lũng' => '🏞', 'Cung' => '🏯', 'Thiên Địa' => '🌌') as $mk => $me) {
+            if (mb_strpos($map['name'], $mk, 0, 'UTF-8') !== false) { $mapEmo = $me; break; }
+        }
+        $mapHtml .= '<div class="sth-map-card '.$statusClass.'" style="--ra:'.$tierColor.'">';
+        $mapHtml .= '<div class="sth-map-num item-art"><span class="bag-emo">'.$mapEmo.'</span><b class="bag-qty">'.$i.'</b></div>';
         $mapHtml .= '<div class="sth-map-info">';
         $mapHtml .= '<div class="sth-map-name">'.sth_h($map['name']).'</div>';
         $mapHtml .= '<div class="sth-map-tier" style="color:'.$tierColor.'">'.$tierName.'</div>';
