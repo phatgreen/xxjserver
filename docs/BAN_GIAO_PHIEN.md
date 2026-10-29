@@ -2,6 +2,7 @@
 
 > Cập nhật 2026-10-28. Nhánh làm việc: **`claude/tong-quan-du-an`** (repo `phatgreen/xxjserver` — **hiện đang Public, cần chuyển Private + đổi mật khẩu MySQL**).
 > Tổng quan kiến trúc: `docs/TONG_QUAN_DU_AN.md`. Kế hoạch mở rộng tổng: `docs/PLAN_MO_RONG_NOI_DUNG.md`.
+> **Phiên 2026-10-28/29:** tổng hợp thay đổi + 5 migration bắt buộc trên máy chủ ở `docs/TONG_HOP_PHIEN_2026-10-28_29.md` (đọc mục 0 trước).
 
 ## 1. Bối cảnh & quy ước
 
