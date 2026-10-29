@@ -8857,3 +8857,24 @@ body.tcg-bg-body .ypinfo-hero.ypinfo-hero-art{display:flex!important;justify-con
 .jn-trade{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#dcecff;font-weight:800}
 .jn-equip{display:flex;gap:8px;flex-wrap:wrap}
 body.tcg-bg-body .djinfo-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+/* ===== NPC — khung Tương tác: nút, kết quả, danh sách vật phẩm (mẫu npc/muban/*) ===== */
+body.tcg-bg-body .npc-actions-box .npc-act,body.tcg-bg-body .npc-actions-box a.npc-act:link,body.tcg-bg-body .npc-actions-box a.npc-act:visited{display:inline-flex!important;align-items:center;gap:6px;margin:4px 4px 4px 0!important;padding:8px 14px!important;border-radius:10px!important;font-weight:900!important;color:#fff!important;text-decoration:none!important;border:1px solid rgba(125,211,252,.45)!important;background:linear-gradient(180deg,#2563eb,#1d4ed8)!important;box-shadow:0 0 12px rgba(56,189,248,.25)!important;cursor:pointer}
+body.tcg-bg-body .npc-actions-box .npc-act:hover{filter:brightness(1.15)}
+.npc-result{margin:6px 0;padding:9px 12px;border-radius:10px;font-weight:800;line-height:1.5}
+.npc-result.ok{background:rgba(22,163,74,.20);border:1px solid rgba(74,222,128,.45);color:#bbf7d0}
+.npc-result.bad{background:rgba(185,28,28,.20);border:1px solid rgba(248,113,113,.45);color:#fecaca}
+.npc-quote{margin:4px 0 8px;color:#c7d2fe;font-style:italic}
+.npc-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.npc-form input{flex:1 1 180px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(125,211,252,.35);background:rgba(8,15,40,.8);color:#fff}
+.npc-list-title{margin:6px 0;color:#fde68a;font-weight:900}
+.npc-item{--ra:#7dd3fc;display:flex;align-items:center;gap:10px;margin:6px 0;padding:6px 8px;border-radius:12px;border:1px solid color-mix(in srgb,var(--ra) 45%,transparent);background:linear-gradient(180deg,rgba(20,42,86,.75),rgba(10,24,60,.82))}
+body.tcg-bg-body .npc-item .item-art{width:40px!important;height:40px!important}
+body.tcg-bg-body .npc-item .item-art .bag-emo{font-size:20px}
+body.tcg-bg-body .npc-item .npc-item-name{flex:1 1 auto;min-width:0;color:#fff!important;font-weight:900;text-decoration:none!important}
+.npc-item-price{color:#fde68a;font-weight:900;white-space:nowrap}
+body.tcg-bg-body .npc-item .npc-buy{padding:5px 12px!important;border-radius:9px!important;color:#fff!important;font-weight:900;text-decoration:none!important;background:linear-gradient(180deg,#16a34a,#15803d)!important;border:1px solid rgba(74,222,128,.45)!important;white-space:nowrap}
+body.tcg-bg-body .npc-actions-box .npc-item a.npc-item-name,body.tcg-bg-body .npc-actions-box .npc-item a.npc-item-name:link,body.tcg-bg-body .npc-actions-box .npc-item a.npc-item-name:visited{display:block!important;flex:1 1 auto!important;width:auto!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;color:#fff!important;text-align:left!important;font-size:14px!important;font-weight:900!important}
+body.tcg-bg-body .npc-actions-box .npc-item a.npc-buy{display:inline-flex!important;width:auto!important;min-width:0!important;min-height:0!important;margin:0!important;flex:0 0 auto!important}
+body.tcg-bg-body .npc-actions-box a.npc-act{display:inline-flex!important;width:auto!important;grid-template-columns:none!important;justify-content:flex-start!important;text-align:left!important}
+body.tcg-bg-body .npc-actions-box a.npc-act b{display:inline!important;margin:0 2px!important}
+body.tcg-bg-body .npc-actions-box a.npc-act,body.tcg-bg-body .npc-actions-box a.npc-act:link,body.tcg-bg-body .npc-actions-box a.npc-act:visited{display:inline-block!important;line-height:1.5!important;min-height:0!important}

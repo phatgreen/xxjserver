@@ -10,17 +10,10 @@ $gonowmid = $encode->encode("cmd=gomid&newmid=$player->nowmid&sid=$sid");
 $gaiming =$encode->encode("cmd=npc&&nid=$nid&canshu=gaiming&sid=$sid");
 //$gm =  $encode->encode("cmd=gaiming&canshu2=gaiming2&sid=$sid");
 $gnhtml=<<<HTML
-<div align="center">
-==重新做人==<br/>
-隐姓埋名<br/>
-不问世事<br/>
-又或者...<br/>
-大杀四方<br>
-<a href="?cmd=$gaiming">修改名字</a>
-<!--<a href="?cmd=$gm">修改名字2</a>-->
-
-</div>
+<div class="npc-quote">✨ Làm lại cuộc đời — mai danh ẩn tích, không màng thế sự… hoặc đổi tên tung hoành tứ phương.</div>
+<a class="npc-act" href="?cmd=$gaiming">✏️ Đổi tên — <b>200</b> Ma thạch</a>
 HTML;
+$ts = '';
 
 
 $czb = $player->uczb;
@@ -29,7 +22,7 @@ if (isset($canshu)){
     switch ($canshu){
         case "gaiming":
             if ($czb<200){
-                $gnhtml= "<hr/>穷是一种病，穷疯了还想着改名字？<br/>改名需要支付魔石200！<hr>";
+                $gnhtml= "<div class='npc-result bad'>Nghèo cũng là một loại bệnh — đổi tên cần <b>200 Ma thạch</b>!</div>";
                 break;}
 				
 $gnhtml=<<<HTML
@@ -39,10 +32,9 @@ $gnhtml=<<<HTML
 <input type="hidden" name="sid" value="$sid">
 <input type="hidden" name="canshu" value="addclub">
 
-<div align="center">
-<input name="gaibian" placeholder="新大名:">
-<br><br>
-<input type="submit" value="更改" style="background-color: #49bb7c;color: white;border-radius: 4px;">
+<div class="npc-form">
+<input name="gaibian" placeholder="Tên mới (6–12 byte)" maxlength="12">
+<button type="submit" class="npc-act">Đổi tên (−200 Ma thạch)</button>
 </div>
 </form>
 HTML;
@@ -50,14 +42,14 @@ HTML;
              break;
              case "addclub":
             if ($czb<200){
-                $ts= "<hr>魔石不足200，无法修改<hr>";
+                $ts= "<div class='npc-result bad'>Ma thạch không đủ 200, không thể đổi tên.</div>";
                 break;
             }
 
            $gaibian = htmlspecialchars($gaibian);
 
             if (strlen($gaibian)<6 || strlen($gaibian)>12){
-                $ts = "<hr/>名称过长或过短<hr/>";
+                $ts = "<div class='npc-result bad'>Tên quá dài hoặc quá ngắn.</div>";
                 break;
             }
 			if ($player->uczb>200){
@@ -68,15 +60,15 @@ HTML;
                  $stmt->execute(array($gaibian, $sid));
                  $ret = $stmt->rowCount();
 
-            $ts.= "<hr/>大虾，名字更改成功[$gaibian]<hr/>";}
+            $ts.= "<div class='npc-result ok'>Đại hiệp, đổi tên thành công: <b>$gaibian</b></div>";}
 			else {
-				$ts = "<hr/>魔石不足200，无法创建<hr/>";
+				$ts = "<div class='npc-result bad'>Ma thạch không đủ 200, không thể đổi tên.</div>";
 			}
             break;
     }
 
 }
-echo $ts;
+$gnhtml = $ts . $gnhtml;   // thông báo hiện trong khung Tương tác của NPC
 ?>
 
 

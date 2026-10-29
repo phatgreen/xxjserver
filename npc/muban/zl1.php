@@ -3,8 +3,8 @@
 $player = player\getplayer($sid,$dblj);
 $rehp = $encode->encode("cmd=npc&nid=$nid&canshu=rehp&sid=$sid");
 $npchtml =<<<HTML
-游戏错误
- <p><a href="?cmd=$gonowmid">返回游戏</a></p>;
+Lỗi trò chơi
+ <p><a href="?cmd=$gonowmid">Quay lại trò chơi</a></p>
 HTML;
 $xiaohao = round($player->ulv*(8.2 + $player->ulv/2));
 if ($nid!=''){
@@ -16,17 +16,16 @@ if ($nid!=''){
                     \player\changeplayersx('uhp',$player->umaxhp,$sid,$dblj);
                     $player = player\getplayer($sid,$dblj);
                     $gnhtml =<<<HTML
-                    <br/>$npc->nname:少侠，你的的气血已经恢复了！<br/>
-                    生命：$player->uhp/$player->umaxhp<br/>
+                    <div class="npc-result ok">❤️ <b>$npc->nname:</b> Thiếu hiệp, khí huyết của ngươi đã hồi phục!<br/>Sinh mệnh: <b>$player->uhp/$player->umaxhp</b></div>
 HTML;
                 }else{
-                    $gnhtml ="<br/>我这里只接待重伤人士<br/>";
+                    $gnhtml ="<div class='npc-result bad'>Ta chỉ tiếp người bị trọng thương (khí huyết bằng 0).</div>";
                 }
                 break;
         }
     }else{
         $gnhtml =<<<HTML
-        <br/><a href="?cmd=$rehp">生命恢复需要[$xiaohao]灵石(没有灵石不收费)</a><br/>
+        <a class="npc-act" href="?cmd=$rehp">❤️ Hồi phục sinh mệnh — <b>$xiaohao</b> Linh thạch (không đủ Linh thạch thì miễn phí)</a>
 HTML;
         }
 }

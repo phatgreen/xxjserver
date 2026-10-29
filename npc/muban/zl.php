@@ -4,8 +4,8 @@ $player = player\getplayer($sid,$dblj);
 $npc = player\getnpc($nid,$dblj);
 $rehp = $encode->encode("cmd=npc&nid=$nid&canshu=rehp&sid=$sid");
 $npchtml =<<<HTML
-游戏错误
- <p><a href="?cmd=$gonowmid">返回游戏</a></p>;
+Lỗi trò chơi
+ <p><a href="?cmd=$gonowmid">Quay lại trò chơi</a></p>
 HTML;
 
 
@@ -58,11 +58,10 @@ if ($nid!=''){
                     \player\changeplayersx('uhp',$player->umaxhp,$sid,$dblj);
                     $player = player\getplayer($sid,$dblj);
                     $gnhtml =<<<HTML
-                    <br/>$npc->nname:Thiếu hiệp, nhờ lão phu không ngừng nỗ lực cứu giúp, ngươi bây giờ đã khôi phục! Lại có thể đi đánh nhau<br/>
-                    Sinh mệnh: $player->uhp/$player->umaxhp<br/>
+                    <div class="npc-result ok">❤️ <b>$npc->nname:</b> Thiếu hiệp, nhờ lão phu không ngừng nỗ lực cứu giúp, ngươi đã khôi phục! Lại có thể đi đánh nhau rồi.<br/>Sinh mệnh: <b>$player->uhp/$player->umaxhp</b></div>
 HTML;
                 }else{
-                    $gnhtml ="<br/>Ngài tật xấu này không trị được a. . .<font color='#BC4613'>【Cứu giúp thất bại】</font>$sjhtml"
+                    $gnhtml ="<div class='npc-result bad'>Đại hiệp! Bệnh này của ngài khó trị lắm... <b>【Cứu giúp thất bại】</b> (chỉ chữa khi khí huyết ≤ 1000)</div>$sjhtml"
 					;
 					
                 }
@@ -85,7 +84,7 @@ HTML;
 	  <use class="text" xlink:href="#id"></use>
 	</svg></use>
 		
-        <br/><a href="?cmd=$rehp">Bắt mạch chữa bệnh</a><br/>
+        <a class="npc-act" href="?cmd=$rehp">🩺 Bắt mạch chữa bệnh — <b>$xiaohao</b> Linh thạch</a>
 		
 		
 HTML;

@@ -103,7 +103,7 @@ if (!function_exists('cw_stage_html')) {
             . '<div class="cws-stat"><span>⚔️ Công</span><b>' . intval($chongwu->cwgj) . '</b></div>'
             . '<div class="cws-stat"><span>🛡 Phòng</span><b>' . intval($chongwu->cwfy) . '</b></div>'
             . '</div>'
-            . '<div class="cws-figure"><img src="./images/sungvat/san_khau_linh_thu.jpg" alt="Linh thú"></div>'
+            . '<div class="cws-figure"><div class="zb-art" style="--ra:' . $c . '"><span class="bag-emo">' . \player\pet_emoji($chongwu->cwname) . '</span><span class="zb-art-ra">' . $q['short'] . '</span></div></div>'   // biểu tượng theo tên, viền theo phẩm
             . '<div class="cws-side cws-side-right">'
             . '<div class="cws-stat"><span>💥 Bạo kích</span><b>' . cw_e($chongwu->cwbj) . '</b></div>'
             . '<div class="cws-stat"><span>🩸 Né / Hút máu</span><b>' . cw_e($chongwu->cwxx) . '</b></div>'
