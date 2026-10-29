@@ -3208,7 +3208,7 @@ function getJingJieHtml($level, $rangesjj = null, $jingjieColor = null) {
 	if ($innerLv == 0){
 		// Không còn cảnh giới kế tiếp => đỉnh phong, không còn đột phá
 		if (isset($rangesjj[$jingjieIndex])) {
-			$stage = 'Pháp Tắc Hộ Thuẫn Nhập Cảnh - Tỉ Lệ Đột Phá +10%';
+			$stage = 'Pháp Tắc Hộ Thuẫn Nhập Cảnh - <span style="white-space:nowrap">Tỉ Lệ Đột Phá +10%</span>'; // cụm tỉ lệ không bị ngắt dòng
 		} else {
 			$stage = 'Đại Đạo Đỉnh Phong';
 		}
