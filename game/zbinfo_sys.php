@@ -67,10 +67,17 @@ $zbNameHtml = zbinfo_sys_html($zbName);
 $toolHtml = zbinfo_sys_html($tool);
 $zbinfoHtml = nl2br(zbinfo_sys_html($zbinfo));
 
+// Ảnh trang bị + phẩm chất làm trọng tâm (giống trang chi tiết trang bị đang có)
+$zbsRa = isset($zhuangbei->rarity) ? intval($zhuangbei->rarity) : 1;
+$zbsRaColor = \player\zhuangbei_rarity_color($zbsRa);
+$zbsRaName = zbinfo_sys_html(\player\zhuangbei_rarity_name($zbsRa));
+$zbsImg = \player\zhuangbei_image_path((object) array('zbid' => $zbid), \player\zhuangbei_slot_icon($toolIndex));
+
 $html = <<<HTML
 <div class="zbinfo-sys-page">
     <div class="zbinfo-sys-panel">
         <div class="zbinfo-sys-hero">
+            <div class="zb-art" style="--ra:$zbsRaColor"><img src="$zbsImg" alt=""><span class="zb-art-ra">$zbsRaName</span></div>
             <div class="zbinfo-sys-kicker">THÔNG TIN TRANG BỊ</div>
             <div class="zbinfo-sys-title" style="--zb-color:$zbColor;">
                 <span>【 $zbNameHtml 】</span>

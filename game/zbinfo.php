@@ -339,6 +339,7 @@ $zbRarity = isset($zhuangbei->rarity) ? intval($zhuangbei->rarity) : 1;
 $zbRarityName = \player\zhuangbei_rarity_name($zbRarity);
 $zbRarityColor = \player\zhuangbei_rarity_color($zbRarity);
 $zbBadgeHtml = '<span class="zb-badge rarity" style="color:'.$zbRarityColor.'">'.$zbRarityName.'</span>';
+$zbQhBadge = $qianghua != '' ? '<b class="zb-art-qh">' . $qianghua . '</b>' : '';   // +cường hóa gắn góc ảnh
 $zbElemCard = '';
 $zbElsList = \player\zhuangbei_elements_parse($zbElem);
 $zbElemBadges = '';
@@ -375,7 +376,7 @@ $html = <<<HTML
                 <div class="cws-stat"><span>🛡️ Phòng ngự</span><b>$zhuangbei->zbfy</b></div>
                 <div class="cws-stat"><span>❤️ HP</span><b>$zhuangbei->zbhp</b></div>
             </div>
-            <div class="cws-figure zb-figure"><img src="$zbImg" alt="$zhuangbei->zbname"></div>
+            <div class="cws-figure zb-figure"><div class="zb-art" style="--ra:$zbRarityColor"><img src="$zbImg" alt="$zhuangbei->zbname">$zbQhBadge<span class="zb-art-ra">$zbRarityName</span></div></div>
             <div class="cws-side cws-side-right">
                 <div class="cws-stat"><span>💥 Bạo kích</span><b>$zhuangbei->zbbj%</b></div>
                 <div class="cws-stat"><span>🩸 Hút máu</span><b>$zhuangbei->zbxx%</b></div>

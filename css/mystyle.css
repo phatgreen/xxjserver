@@ -8842,3 +8842,9 @@ body.tcg-bg-body .tz-equip-left{display:flex!important;align-items:center!import
 body.tcg-bg-body .news-task-toggle{display:flex!important;align-items:center!important;gap:8px!important}
 body.tcg-bg-body .news-task-ico.item-art{width:34px!important;height:34px!important;border-radius:9px!important}
 body.tcg-bg-body .news-task-ico.item-art .bag-emo{font-size:17px}
+/* ===== Chi tiết trang bị: ảnh to trong khung phẩm chất, +cường hóa góc, nhãn phẩm dưới ảnh ===== */
+body.tcg-bg-body .zb-art{position:relative!important;width:118px!important;height:118px!important;margin:0 auto 14px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:20px!important;border:2px solid var(--ra)!important;background:radial-gradient(circle,color-mix(in srgb,var(--ra) 35%,#0b1533),#0b1533 70%)!important;box-shadow:0 0 22px color-mix(in srgb,var(--ra) 60%,transparent),inset 0 0 16px rgba(0,0,0,.5)!important;animation:zbArtGlow 2.6s ease-in-out infinite}
+body.tcg-bg-body .zb-art img{width:92px!important;height:92px!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--ra) 75%,transparent))!important}
+.zb-art-qh{position:absolute;right:-8px;top:-8px;padding:1px 7px;border-radius:9px;font-size:13px;font-weight:1000;color:#fff;background:linear-gradient(180deg,#f97316,#b91c1c);border:1px solid #fed7aa;box-shadow:0 0 10px rgba(249,115,22,.7)}
+.zb-art-ra{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);padding:0 9px;border-radius:999px;font-size:11px;font-weight:1000;line-height:18px;white-space:nowrap;color:var(--ra);background:#0b1533;border:1px solid color-mix(in srgb,var(--ra) 70%,transparent)}
+@keyframes zbArtGlow{0%,100%{box-shadow:0 0 18px color-mix(in srgb,var(--ra) 50%,transparent),inset 0 0 16px rgba(0,0,0,.5)}50%{box-shadow:0 0 30px color-mix(in srgb,var(--ra) 75%,transparent),inset 0 0 16px rgba(0,0,0,.5)}}
