@@ -58,7 +58,8 @@ if ($boss->bosszb != '') {
         $zbcmd = $encode->encode("cmd=zbinfo_sys&zbid=$zbkzb->zbid&sid=$sid");
         $color = tcg_bossinfo_e($zbkzb->zbys);
         $name = tcg_bossinfo_e($zbkzb->zbname);
-        $dropItems[] = "<a class=\"tcg-boss-drop equip\" href=\"?cmd=$zbcmd\" style=\"--drop-color:$color;color:$color;\">$name</a>";
+        $dImg = \player\zhuangbei_image_path((object) array('zbid' => $zbkzb->zbid), \player\zhuangbei_slot_icon(isset($zbkzb->zbtool) ? intval($zbkzb->zbtool) : 0));
+        $dropItems[] = "<a class=\"tcg-boss-drop equip\" href=\"?cmd=$zbcmd\" style=\"--drop-color:$color;color:$color;--ra:$color\"><i class=\"item-art\"><img src=\"$dImg\" alt=\"\"></i>$name</a>";
     }
 }
 
@@ -73,7 +74,8 @@ if ($boss->bossdj != '') {
 
         $djinfo = $encode->encode("cmd=djinfo&djid=$dj->djid&sid=$sid");
         $name = tcg_bossinfo_e($dj->djname);
-        $dropItems[] = "<a class=\"tcg-boss-drop daoju\" href=\"?cmd=$djinfo\">$name</a>";
+        list($dEmo, $dColor) = \player\item_emoji($dj->djname, '📦');
+        $dropItems[] = "<a class=\"tcg-boss-drop daoju\" href=\"?cmd=$djinfo\" style=\"--ra:$dColor\"><i class=\"item-art\"><span class=\"bag-emo\">$dEmo</span></i>$name</a>";
     }
 }
 
@@ -88,7 +90,8 @@ if ($boss->bossyp != '') {
 
         $ypinfo = $encode->encode("cmd=ypinfo&ypid=$yp->ypid&sid=$sid");
         $name = tcg_bossinfo_e($yp->ypname);
-        $dropItems[] = "<a class=\"tcg-boss-drop yaopin\" href=\"?cmd=$ypinfo\">$name</a>";
+        list($dEmo, $dColor) = \player\item_emoji($yp->ypname, '💊');
+        $dropItems[] = "<a class=\"tcg-boss-drop yaopin\" href=\"?cmd=$ypinfo\" style=\"--ra:$dColor\"><i class=\"item-art\"><span class=\"bag-emo\">$dEmo</span></i>$name</a>";
     }
 }
 
@@ -109,7 +112,7 @@ $bossinfohtml = <<<HTML
                 <div class="tcg-boss-sub">Sát khí đang bao phủ khu vực. Chỉ nên khiêu chiến khi đã chuẩn bị đầy đủ.</div>
                 <div class="tcg-boss-danger-line"><span>⚠ Cấp uy hiếp</span><b>NGUY HIỂM</b></div>
             </div>
-            <div class="tcg-boss-mark"><span>MA THÚ</span></div>
+            <div class="tcg-boss-mark"><span><b class="tcg-boss-emo">👹</b>MA THÚ</span></div>
         </div>
 
         <div class="tcg-boss-warning">

@@ -58,7 +58,7 @@
                 0 24px 64px rgba(0, 0, 0, 0.55);
 }
 
-.ga-box.ga-warning {
+.ga-box.ga-warning, .ga-box.ga-wait {
     border-color: rgba(250, 204, 21, 0.42);
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset,
                 0 0 32px rgba(250, 204, 21, 0.14),
@@ -109,7 +109,7 @@
                 0 0 24px rgba(251, 71, 115, 0.18);
 }
 
-.ga-warning .ga-icon {
+.ga-warning .ga-icon, .ga-wait .ga-icon {
     background: linear-gradient(180deg, rgba(250, 204, 21, 0.35), rgba(180, 83, 9, 0.55));
     box-shadow: 0 0 20px rgba(250, 204, 21, 0.3) inset,
                 0 0 24px rgba(250, 204, 21, 0.18);
@@ -149,7 +149,7 @@
     text-shadow: 0 0 10px rgba(251, 71, 115, 0.5);
 }
 
-.ga-warning .ga-label {
+.ga-warning .ga-label, .ga-wait .ga-label {
     color: #fde68a;
     text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
 }
@@ -209,7 +209,7 @@
                 0 0 14px rgba(251, 71, 115, 0.18) inset;
 }
 
-.ga-warning .ga-btn {
+.ga-warning .ga-btn, .ga-wait .ga-btn {
     background: linear-gradient(180deg, #f59e0b, #b45309);
     border-color: rgba(245, 158, 11, 0.45);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
@@ -254,7 +254,7 @@
 }
 
 .ga-error .ga-icon { animation-name: ga-iconPulseError; }
-.ga-warning .ga-icon { animation-name: ga-iconPulseWarning; }
+.ga-warning .ga-icon, .ga-wait .ga-icon { animation-name: ga-iconPulseWarning; }
 .ga-info .ga-icon { animation-name: ga-iconPulseInfo; }
 
 @keyframes ga-iconPulseError {

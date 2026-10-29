@@ -27,6 +27,7 @@ var GameAlert = (function() {
             case 'success': return '\u2713';
             case 'error':   return '\u2717';
             case 'warning': return '\u26A0';
+            case 'wait':    return '\u23F3';   // ⏳ chưa tới giờ (không phải lỗi)
             default:        return '\u2139';
         }
     }
@@ -36,6 +37,7 @@ var GameAlert = (function() {
             case 'success': return 'Th\u00e0nh c\u00f4ng';
             case 'error':   return 'L\u1ed7i';
             case 'warning': return 'C\u1ea3nh b\u00e1o';
+            case 'wait':    return 'Vui l\u00f2ng ch\u1edd';
             default:        return 'Th\u00f4ng b\u00e1o';
         }
     }
@@ -103,7 +105,7 @@ var GameAlert = (function() {
             if (xhr.readyState !== 4) return;
             try {
                 var d = JSON.parse(xhr.responseText);
-                show(d.msg, d.ok ? 'success' : 'error');
+                show(d.msg, d.ok ? 'success' : (d.type || 'error'));   // server có thể gửi type: 'wait' / 'warning' / 'info'
                 if (d.ok) {
                     if (onSuccess) onSuccess(d);
                     if (reload) setTimeout(function() { location.reload(); }, reloadDelay);

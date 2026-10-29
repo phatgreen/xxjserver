@@ -229,7 +229,8 @@ $cxallguaiwu = $cxjg->fetchAll(PDO::FETCH_ASSOC);
 $gwhtml = '';
 for ($i = 0;$i<count($cxallguaiwu);$i++){
     $gwcmd = $encode->encode("cmd=getginfo&gid=".$cxallguaiwu[$i]['id']."&gyid=".$cxallguaiwu[$i]['gyid']."&sid=$sid&nowmid=$player->nowmid");
-    $gwhtml .="<a class='tcg-pill monster-pill' href='?cmd=$gwcmd'>".$cxallguaiwu[$i]['gname']."</a>";
+    $gwEmo = \player\pet_emoji(strip_tags($cxallguaiwu[$i]['gname']));
+    $gwhtml .="<a class='tcg-pill monster-pill' data-emo='".($gwEmo === '🐾' ? '👾' : $gwEmo)."' href='?cmd=$gwcmd'>".$cxallguaiwu[$i]['gname']."</a>";
 }
 
 $sql = "select * from game1 where nowmid='$player->nowmid' AND sfzx = 1";//获取当前地图玩家

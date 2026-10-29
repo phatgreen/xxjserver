@@ -20,8 +20,12 @@ for ($i=0;$i<count($cxallmap);$i++){
         $gomid = $encode->encode("cmd=gomid&newmid=$mid&sid=$sid");
         $regionName = htmlspecialchars(strip_tags($qyame), ENT_QUOTES, 'UTF-8');
         $mapName = htmlspecialchars(strip_tags($mname), ENT_QUOTES, 'UTF-8');
+        $amEmo = '🗺';
+        foreach (array('Thôn' => '🏘', 'Thành' => '🏯', 'Điện' => '🏛', 'Trấn' => '🏮', 'Lâm' => '🌲', 'Hoa' => '🌸', 'Sơn' => '⛰', 'Môn' => '⛩', 'Hải' => '🌊', 'Động' => '🕳', 'Cốc' => '🏞', 'Biên' => '🧱', 'Đô' => '🏰', 'Các' => '🏯', 'Trại' => '⛺', 'Mộ' => '⚰', 'Nhai' => '🪨', 'Khẩu' => '🚪', 'Cảnh' => '🌌', 'Lạc' => '🏕') as $ak => $ae) {
+            if (mb_strpos($mapName, $ak, 0, 'UTF-8') !== false) { $amEmo = $ae; break; }
+        }
         $map .=<<<HTML
-        <a class="allmap-card" href="?cmd=$gomid">
+        <a class="allmap-card" href="?cmd=$gomid" data-emo="$amEmo">
             <span class="allmap-region">[$regionName]</span>
             <span class="allmap-name">$mapName</span>
         </a>

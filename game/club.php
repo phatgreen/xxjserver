@@ -105,7 +105,7 @@ $isAjax = $isAjaxEarly
     || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest')
     || (isset($_SERVER['HTTP_X_GAME_AJAX']) && $_SERVER['HTTP_X_GAME_AJAX'] === '1');
 
-function ajaxJson($ok, $msg) {
+function ajaxJson($ok, $msg, $type = '') {   // $type: '' (mặc định thành công / lỗi) | 'wait' (chưa tới giờ) | 'warning' | 'info'
     while (ob_get_level()) {
         ob_end_clean();
     }
@@ -113,7 +113,9 @@ function ajaxJson($ok, $msg) {
         header('Content-Type: application/json; charset=utf-8');
     }
     @ini_set('display_errors', '0');
-    echo json_encode(array('ok' => $ok, 'msg' => $msg));
+    $out = array('ok' => $ok, 'msg' => $msg);
+    if ($type !== '') $out['type'] = $type;
+    echo json_encode($out);
     flush();
     die();
 }
@@ -396,7 +398,8 @@ HTML;
 
                         $ucmd = $encode->encode("cmd=club&canshu=zhiwei&zhiwei=$zhiwei&uid=$targetUid&sid=$sid");
                         $safeName = htmlspecialchars($otherplayer->uname, ENT_QUOTES, 'UTF-8');
-                        $playerlist .= "<a class='tcg-club-member-name' href='?cmd=$ucmd'>$safeName</a>";
+                        $rzAva = \player\player_avatar_img(isset($otherplayer->usex) ? $otherplayer->usex : 1);
+                        $playerlist .= "<a class='tcg-club-member' href='?cmd=$ucmd'><span class='tcg-club-ava item-art' style='--ra:#fbbf24'><img src='./$rzAva' alt=''></span><span class='tcg-club-member-name'>$safeName</span></a>";
                     }
 
                     if ($playerlist === '') {
@@ -418,52 +421,25 @@ HTML;
                     exit($renzhihtml);
                 }
 
-                if (intval($clubplayer->uclv) == 1) {
-                    $no2cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=2&sid=$sid");
-                    $no3cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=3&sid=$sid");
-                    $no4cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=4&sid=$sid");
-                    $no5cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=5&sid=$sid");
-                    $no6cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=6&sid=$sid");
-                    $no7cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=7&sid=$sid");
-                    $no8cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=8&sid=$sid");
-                    $no9cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=9&sid=$sid");
-                    $no10cmd = $encode->encode("cmd=club&canshu=renzhi&zhiwei=10&sid=$sid");
-					$no11cmd = $encode->encode("cmd=club&canshu=renzhi&zhiwei=11&sid=$sid");
-                    $renzhihtml = "<div class='tcg-club-rank-actions'>"
-                        . "<a href='?cmd=$no2cmd'>Phó Chưởng Môn</a>"
-                        . "<a href='?cmd=$no3cmd'>Trưởng Lão</a>"
-                        . "<a href='?cmd=$no4cmd'>Chấp Sự</a>"
-                        . "<a href='?cmd=$no5cmd'>Thánh Tử</a>"
-                        . "<a href='?cmd=$no6cmd'>Chân Truyền</a>"
-                        . "<a href='?cmd=$no7cmd'>Thiên Kiêu</a>"
-                        . "<a href='?cmd=$no8cmd'>Tinh Anh</a>"
-                        . "<a href='?cmd=$no9cmd'>Nội Môn Đệ Tử</a>"
-                        . "<a href='?cmd=$no10cmd'>Ngoại Môn Đệ Tử</a>"
-						. "<a href='?cmd=$no11cmd'>Đệ Tử Tạp Dịch</a>"
-                        . "</div>";
-                }
-
-                if (intval($clubplayer->uclv) == 2) {
-                    $no3cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=3&sid=$sid");
-                    $no4cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=4&sid=$sid");
-                    $no5cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=5&sid=$sid");
-                    $no6cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=6&sid=$sid");
-                    $no7cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=7&sid=$sid");
-                    $no8cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=8&sid=$sid");
-                    $no9cmd  = $encode->encode("cmd=club&canshu=renzhi&zhiwei=9&sid=$sid");
-                    $no10cmd = $encode->encode("cmd=club&canshu=renzhi&zhiwei=10&sid=$sid");
-					$no11cmd = $encode->encode("cmd=club&canshu=renzhi&zhiwei=11&sid=$sid");
-                    $renzhihtml = "<div class='tcg-club-rank-actions'>"
-                        . "<a href='?cmd=$no3cmd'>Trưởng Lão</a>"
-                        . "<a href='?cmd=$no4cmd'>Chấp Sự</a>"
-                        . "<a href='?cmd=$no5cmd'>Thánh Tử</a>"
-                        . "<a href='?cmd=$no6cmd'>Chân Truyền</a>"
-                        . "<a href='?cmd=$no7cmd'>Thiên Kiêu</a>"
-                        . "<a href='?cmd=$no8cmd'>Tinh Anh</a>"
-                        . "<a href='?cmd=$no9cmd'>Nội Môn Đệ Tử</a>"
-                        . "<a href='?cmd=$no10cmd'>Ngoại Môn Đệ Tử</a>"
-						. "<a href='?cmd=$no11cmd'>Đệ Tử Tạp Dịch</a>"
-                        . "</div>";
+                // Khung chọn chức vị: chia 3 nhóm, mỗi chức 1 ô có biểu tượng + màu; chỉ hiện chức thấp hơn chức của mình
+                $myLv = intval($clubplayer->uclv);
+                if ($myLv == 1 || $myLv == 2) {
+                    $rzGroups = array(
+                        'Cao tầng' => array(2 => array('Phó Chưởng Môn', '👑', '#f472b6'), 3 => array('Trưởng Lão', '🧙', '#c084fc'), 4 => array('Chấp Sự', '📜', '#60a5fa')),
+                        'Hạch tâm' => array(5 => array('Thánh Tử', '🌟', '#fde047'), 6 => array('Chân Truyền', '🔱', '#fb923c'), 7 => array('Thiên Kiêu', '⚡', '#38bdf8'), 8 => array('Tinh Anh', '💠', '#22d3ee')),
+                        'Đệ tử' => array(9 => array('Nội Môn Đệ Tử', '🥋', '#4ade80'), 10 => array('Ngoại Môn Đệ Tử', '🧑', '#a3e635'), 11 => array('Đệ Tử Tạp Dịch', '🧹', '#94a3b8')),
+                    );
+                    $renzhihtml = "<div class='tcg-club-section tcg-rz'><div class='tcg-club-section-title'>⚜ Nhậm chức — chọn chức vị để bổ nhiệm</div>";
+                    foreach ($rzGroups as $gName => $gList) {
+                        $cells = '';
+                        foreach ($gList as $zw => $info) {
+                            if ($zw <= $myLv) continue;
+                            $zwCmd = $encode->encode("cmd=club&canshu=renzhi&zhiwei=$zw&sid=$sid");
+                            $cells .= "<a class='tcg-rz-item' style='--ra:{$info[2]}' href='?cmd=$zwCmd'><span class='item-art'><span class='bag-emo'>{$info[1]}</span></span><b>{$info[0]}</b></a>";
+                        }
+                        if ($cells !== '') $renzhihtml .= "<div class='tcg-rz-group'>$gName</div><div class='tcg-rz-grid'>$cells</div>";
+                    }
+                    $renzhihtml .= "</div>";
                 }
             }
             break;
@@ -792,7 +768,7 @@ HTML;
             if ($lastClaim <= 0) {
                 $stOnline = $dblj->prepare("UPDATE clubplayer SET online_claim_at = ? WHERE sid = ? AND clubid = ?");
                 $stOnline->execute(array($now, $sid, $myClubId));
-                if ($isAjax) ajaxJson(false, 'Bắt đầu tính giờ online, quay lại sau 1 giờ để nhận');
+                if ($isAjax) ajaxJson(false, 'Bắt đầu tính giờ online, quay lại sau 1 giờ để nhận', 'wait');
                 echo '<div class="tcg-club-notice">Bắt đầu tính giờ online, quay lại sau 1 giờ để nhận</div>';
                 break;
             }
@@ -800,7 +776,7 @@ HTML;
 
             if ($hoursPassed < 1) {
                 $nextClaim = ceil((3600 - ($now - $lastClaim)) / 60);
-                if ($isAjax) ajaxJson(false, "Còn $nextClaim phút nữa mới nhận được");
+                if ($isAjax) ajaxJson(false, "Còn $nextClaim phút nữa mới nhận được", 'wait');
                 echo '<div class="tcg-club-notice">Còn '.$nextClaim.' phút nữa mới nhận được</div>';
                 break;
             }
@@ -1016,7 +992,7 @@ HTML;
             $stBoss = $dblj->prepare("UPDATE club SET boss_date = ? WHERE clubid = ? AND boss_date <> ?");
             $stBoss->execute(array($today, $myClubId, $today));
             if ($stBoss->rowCount() < 1) {
-                if ($isAjax) ajaxJson(false, 'Boss tông môn đã bị tiêu diệt hôm nay');
+                if ($isAjax) ajaxJson(false, 'Boss tông môn đã bị tiêu diệt hôm nay', 'wait');
                 echo '<div class="tcg-club-notice">Boss tông môn đã bị tiêu diệt hôm nay</div>';
                 break;
             }

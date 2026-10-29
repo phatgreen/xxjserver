@@ -173,7 +173,8 @@ if (isset($canshu) && ($canshu == 'dig' || $canshu == 'dig5')) {
                 $itemLabel = isset($itemName['djname']) ? $itemName['djname'] : 'Vật phẩm';
                 $line .= ' +' . $reward['item']['count'] . ' ' . $itemLabel;
             }
-            $itemsHtml .= '<div class="hm-result-row"><span>Lần '.$i.'</span><b>'.$line.'</b></div>';
+            list($hmEmo) = \player\item_emoji(strip_tags($line), '⛏');
+            $itemsHtml .= '<div class="hm-result-row"><span>Lần '.$i.'</span><i class="hm-ico item-art" style="--ra:#34d399"><span class="bag-emo">'.$hmEmo.'</span></i><b>'.$line.'</b></div>';
         }
 
         $stmt = $dblj->prepare("UPDATE game1 SET uyxb = uyxb + ?, uczb = uczb - ? + ? WHERE sid = ? AND uczb >= ?");
@@ -223,7 +224,8 @@ foreach (hm_recent_logs($sid, $dblj) as $log) {
     if (intval($log['czb_reward']) > 0) {
         $rewardLine .= ' +'.intval($log['czb_reward']).' Ma thạch';
     }
-    $logHtml .= '<div class="hm-log-row"><span>'.hm_h($log['created_at']).'</span><b>'.hm_h($log['note']).'</b><em>'.$rewardLine.'</em></div>';
+    list($hmEmo) = \player\item_emoji($log['note'], '⛏');
+    $logHtml .= '<div class="hm-log-row"><span>'.hm_h($log['created_at']).'</span><b><i class="hm-ico item-art" style="--ra:#34d399"><span class="bag-emo">'.$hmEmo.'</span></i>'.hm_h($log['note']).'</b><em>'.$rewardLine.'</em></div>';
 }
 if ($logHtml == '') {
     $logHtml = '<div class="hm-empty">Chưa có lượt đào nào.</div>';

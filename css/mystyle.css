@@ -8805,3 +8805,28 @@ body.tcg-bg-body .sth-map-num.item-art .bag-emo{font-size:24px}
 /* Sào Thú: 1 cột để tên bản đồ + yêu cầu không bị ép; số thứ tự gắn góc ô biểu tượng */
 body.tcg-bg-body .sth-map-list{grid-template-columns:1fr!important;gap:6px!important}
 .item-art .bag-qty{position:absolute;right:-6px;bottom:-6px;padding:0 5px;border-radius:7px;font-size:10px;font-weight:1000;line-height:15px;color:#fff;background:rgba(8,15,40,.92);border:1px solid color-mix(in srgb,var(--ra) 70%,transparent)}
+/* ===== Bản đồ / Thế giới / Boss / Hầm Mỏ: biểu tượng thay ♨ chung ===== */
+body.tcg-bg-body .tcg-pill.monster-pill[data-emo]:before{content:attr(data-emo)!important;text-shadow:none!important;font-size:15px}
+body.tcg-bg-body .tcg-pill.boss-pill:before{content:"👹"!important;text-shadow:none!important;font-size:15px}
+body.tcg-bg-body .tcg-pill.npc-pill:before{content:"🧙"!important;text-shadow:none!important;font-size:15px}
+body.tcg-bg-body .tcg-pill.player-pill:before{content:"🧑"!important;text-shadow:none!important;font-size:15px}
+body.tcg-bg-body .allmap-card[data-emo]:before{content:attr(data-emo)!important;font-size:22px!important;line-height:1!important;text-shadow:none!important;filter:drop-shadow(0 0 6px rgba(125,211,252,.6))}
+body.tcg-bg-body .tcg-boss-drop{display:inline-flex!important;align-items:center!important;gap:6px!important;padding-left:4px!important}
+body.tcg-bg-body .tcg-boss-drop .item-art{width:28px!important;height:28px!important;border-radius:8px!important;border-width:1.5px!important}
+body.tcg-bg-body .tcg-boss-drop .item-art img{width:22px!important;height:22px!important}
+body.tcg-bg-body .tcg-boss-drop .item-art .bag-emo{font-size:15px}
+.tcg-boss-emo{display:block;font-size:30px;line-height:1;margin-bottom:2px;font-style:normal}
+body.tcg-bg-body .hm-ico.item-art{display:inline-flex!important;vertical-align:middle;width:26px!important;height:26px!important;border-radius:7px!important;margin-right:6px;border-width:1.5px!important;font-style:normal}
+body.tcg-bg-body .hm-ico.item-art .bag-emo{font-size:14px}
+body.tcg-bg-body .hm-result-row{display:flex!important;align-items:center!important;gap:6px}
+/* Tông Môn — khung Nhậm chức */
+.tcg-rz-group{margin:8px 2px 4px;font-size:11px;font-weight:900;color:#9fcaff;text-transform:uppercase;letter-spacing:.5px}
+.tcg-rz-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.tcg-rz-item{--ra:#7dd3fc;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px;border-radius:12px;text-decoration:none!important;text-align:center;border:1px solid color-mix(in srgb,var(--ra) 50%,transparent);background:radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--ra) 20%,transparent),transparent 62%),linear-gradient(180deg,rgba(20,42,86,.80),rgba(10,24,60,.86));transition:transform .15s,box-shadow .15s}
+.tcg-rz-item:hover{transform:translateY(-2px);box-shadow:0 0 14px color-mix(in srgb,var(--ra) 45%,transparent)}
+.tcg-rz-item b{font-size:12px;font-weight:900;color:var(--ra);line-height:1.2}
+body.tcg-bg-body .tcg-rz-item .item-art{width:40px!important;height:40px!important}
+body.tcg-bg-body .tcg-rz-item .item-art .bag-emo{font-size:20px}
+@media(max-width:480px){.tcg-rz-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+body.tcg-bg-body .tcg-rz .tcg-rz-item{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;margin:0!important;min-height:0!important;padding:8px 4px!important}
+body.tcg-bg-body .tcg-rz .tcg-rz-item b{line-height:1.25!important}
