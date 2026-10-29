@@ -122,8 +122,38 @@ if (!function_exists(__NAMESPACE__ . '\\daoju_config_rows_by_ids')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\item_icon_file')) {
+    // Ảnh vật phẩm (images/daoju/*.png) theo từ khoá trong tên, từ khoá cụ thể đặt trước. Trả tên file hoặc ''.
+    function item_icon_file($name){
+        static $map = array(
+            array('Tiên Thảo', 'thao_duoc'), array('Phù Lục Tàn', 'tan_quyen'), array('Tàn Quyển', 'tan_quyen'), array('Tàn Chương', 'tan_quyen'), array('Toái Phiến', 'toai_phien'),
+            array('Phù', 'phu_luc'), array('Lệnh', 'lenh_bai'), array('Bí Tịch', 'bi_tich'), array('Quyển', 'bi_tich'),
+            array('Hồi Hồn', 'hoi_hon'), array('Hoàn Hồn', 'hoi_hon'), array('Diên Thọ', 'dien_tho'), array('Tiên Đào', 'dien_tho'),
+            array('Tu Vi Đan', 'tu_vi_dan'), array('Đột Phá', 'dot_pha_dan'), array('Tẩy', 'tay_tuy'), array('Tố Thể', 'to_the'),
+            array('Khai Phú', 'khai_phu'), array('Thể Lực', 'the_luc'), array('Huyết Mạch Đan', 'huyet_mach_dan'), array('Thái Cực', 'thai_cuc'),
+            array('Cửu Dương', 'huyet_mach_dan'), array('Cửu Âm', 'dan_xanh'), array('Kim Cương', 'dan_vang'), array('Ngọc Nữ', 'dan_hong'),
+            array('Hàng Long', 'dan_vang'), array('Thần Chiếu', 'dan_tim'), array('Dịch Cân', 'dan_xanh_luc'), array('Ưng Trảo', 'dan_nau'),
+            array('Nội Đan', 'dan_tim'), array('Đan Thảo', 'thao_duoc'), array('Đan', 'dan_vang'), array('Hoàn', 'dan_vang'), array('Thang', 'thang_duoc'), array('Tán', 'tan_duoc'),
+            array('Túi', 'tui'), array('Thẻ', 'the_bai'), array('Rương', 'ruong'), array('Hộp', 'hop_qua'),
+            array('Cường Hóa Thạch', 'cuong_hoa_thach'), array('Hỏa Tinh', 'hoa_thach'), array('Thủy Tinh', 'thuy_thach'), array('Mộc Tinh', 'moc_thach'),
+            array('Kim Tinh', 'kim_thach'), array('Thổ Tinh', 'tho_thach'), array('Bình Anh', 'tim_thach'), array('Huyết Thạch', 'huyet_thach'),
+            array('Tinh Thể', 'tinh_the'), array('Thánh Thạch', 'thanh_thach'), array('Thần Thạch', 'than_thach'), array('Thiên Cơ', 'tinh_the'),
+            array('Huyền Thạch', 'tim_thach'), array('Ngọc', 'ngoc'), array('Thạch', 'cuong_hoa_thach'), array('Đá', 'cuong_hoa_thach'),
+            array('Linh Chi', 'linh_chi'), array('Phục Linh', 'linh_chi'), array('Nhân Tham', 'nhan_sam'), array('Sâm', 'nhan_sam'), array('Liên', 'lien_hoa'),
+            array('Thảo', 'thao_duoc'), array('Dược', 'thao_duoc'), array('Hoa', 'hoa'), array('Quả', 'qua'),
+            array('Vũ', 'vu_mao'), array('Lông', 'vu_mao'), array('Tiên Lộ', 'tien_lo')
+        );
+        $name = (string)$name;
+        if ($name === '') return '';
+        foreach ($map as $m) {
+            if (mb_stripos($name, $m[0], 0, 'UTF-8') !== false) return $m[1];
+        }
+        return '';
+    }
+}
+
 if (!function_exists(__NAMESPACE__ . '\\item_emoji')) {
-    // Biểu tượng vật phẩm theo từ khoá trong tên (đạo cụ / dược phẩm / đan dược chưa có ảnh riêng). Trả array(emoji, màu).
+    // Biểu tượng vật phẩm theo từ khoá trong tên: có ảnh images/daoju thì trả thẻ <img>, chưa có thì emoji. Trả array(biểu tượng, màu).
     function item_emoji($name, $default = '📦'){
         static $map = array(
             array('Hồi Hồn', '👻', '#a78bfa'), array('Diên Thọ', '⏳', '#fbbf24'), array('Thọ', '⏳', '#fbbf24'),
@@ -131,7 +161,7 @@ if (!function_exists(__NAMESPACE__ . '\\item_emoji')) {
             array('Tẩy', '🌀', '#38bdf8'), array('Tố Thể', '🩸', '#f87171'), array('Khai Phú', '🌟', '#fde047'),
             array('Đan', '💊', '#f472b6'), array('Hoàn', '💊', '#f472b6'), array('Tán', '💊', '#f472b6'), array('Thang', '🍵', '#34d399'),
             array('Túi', '💰', '#fbbf24'), array('Thẻ', '🎫', '#60a5fa'), array('Quyển', '📜', '#fcd34d'), array('Bí Tịch', '📘', '#60a5fa'),
-            array('Phù', '🧧', '#f87171'), array('Lệnh', '🔖', '#fca5a5'), array('Rương', '🎁', '#fbbf24'), array('Hộp', '🎁', '#fbbf24'),
+            array('Phù', '📜', '#f87171'), array('Lệnh', '🔖', '#fca5a5'), array('Rương', '🎁', '#fbbf24'), array('Hộp', '🎁', '#fbbf24'),
             array('Thạch', '💎', '#38bdf8'), array('Đá', '💎', '#38bdf8'), array('Tinh', '✨', '#a5f3fc'), array('Ngọc', '🔷', '#22d3ee'),
             array('Thảo', '🌿', '#4ade80'), array('Dược', '🌿', '#4ade80'), array('Hoa', '🌸', '#f9a8d4'), array('Quả', '🍑', '#fb923c'),
             array('Vũ', '🪶', '#e2e8f0'), array('Lông', '🪶', '#e2e8f0'), array('Huyết', '🩸', '#f87171'), array('Cốt', '🦴', '#e5e7eb'),
@@ -139,10 +169,14 @@ if (!function_exists(__NAMESPACE__ . '\\item_emoji')) {
             array('Hỏa', '🔥', '#fb923c'), array('Thổ', '🪨', '#d6a26b')
         );
         $name = (string)$name;
+        $color = '#7dd3fc';
+        $emo = $default;
         foreach ($map as $m) {
-            if (mb_stripos($name, $m[0], 0, 'UTF-8') !== false) return array($m[1], $m[2]);
+            if (mb_stripos($name, $m[0], 0, 'UTF-8') !== false) { $emo = $m[1]; $color = $m[2]; break; }
         }
-        return array($default, '#7dd3fc');
+        $file = item_icon_file($name);
+        if ($file !== '') $emo = '<img class="item-ico" src="./images/daoju/' . $file . '.png" alt="">';
+        return array($emo, $color);
     }
 }
 

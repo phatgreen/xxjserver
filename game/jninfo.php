@@ -73,7 +73,7 @@ $jnStats = array(array('⚔️ Công kích', $jineng->jngj), array('🛡️ Phò
 ?>
 <div class="djinfo-page">
     <section class="djinfo-hero">
-        <div class="zb-art" style="--ra:#f87171"><span class="bag-emo">🧧</span><span class="zb-art-ra">Phù lục</span></div>
+        <div class="zb-art" style="--ra:#f87171"><span class="bag-emo"><img class="item-ico" src="./images/daoju/phu_luc.png" alt=""></span><span class="zb-art-ra">Phù lục</span></div>
         <div class="djinfo-head">
             <div class="djinfo-eyebrow">Thông tin phù lục</div>
             <h1><?php echo $jnName; ?></h1>

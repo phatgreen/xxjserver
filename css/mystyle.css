@@ -8899,3 +8899,6 @@ body.tcg-bg-body .tn-pill .item-art .bag-emo{font-size:24px}
 .tn-pill-name small{color:#a9c8f6;font-size:11px}
 .tn-pill-btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 body.tcg-bg-body .fk-lock .zb-art{margin:0 auto 14px!important}
+/* Ảnh vật phẩm images/daoju thay emoji trong .bag-emo: cỡ theo font-size của từng ô (các ô có luật img riêng vẫn ưu tiên) */
+.bag-emo img.item-ico{display:block;width:1.5em;height:1.5em;object-fit:contain}
+body.tcg-bg-body .zb-art .bag-emo img.item-ico{width:92px;height:92px}

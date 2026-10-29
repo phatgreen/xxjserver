@@ -32,7 +32,7 @@ if ($jineng) {
             $alljn .= <<<HTML
 <div class="bag-item-card jineng" style="--ra:#60a5fa">
     <div class="bag-item-index">$suoyin</div>
-    <div class="bag-item-icon emo"><span class="bag-emo">📘</span><b class="bag-qty">x$jnsum</b></div>
+    <div class="bag-item-icon emo"><span class="bag-emo"><img class="item-ico" src="./images/daoju/phu_luc.png" alt=""></span><b class="bag-qty">x$jnsum</b></div>
     <div class="bag-item-main">
         <a class="bag-item-name" href="?cmd=$jncmd">$jnname</a>
         <div class="bag-item-meta">Số lượng: <b>x$jnsum</b></div>
