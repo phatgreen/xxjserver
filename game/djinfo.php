@@ -109,7 +109,7 @@ $formSection = $daoju
 <div class="djinfo-page">
     <section class="djinfo-hero">
         <?php list($djEmo, $djEmoColor) = \player\item_emoji($ydaoju ? $ydaoju->djname : '', '📦'); ?>
-        <div class="djinfo-icon item-art" style="--ra:<?php echo $djEmoColor; ?>"><span class="bag-emo"><?php echo $djEmo; ?></span></div>
+        <div class="zb-art" style="--ra:<?php echo $djEmoColor; ?>"><span class="bag-emo"><?php echo $djEmo; ?></span><span class="zb-art-ra">Đạo cụ</span></div>
         <div class="djinfo-head">
             <div class="djinfo-eyebrow">Thông tin đạo cụ</div>
             <h1><?php echo $name; ?></h1>

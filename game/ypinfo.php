@@ -97,11 +97,13 @@ if ($tishi != ''){
     $tishiHtml = '<div class="ypinfo-alert'.$tishiClass.'">'.$tishi.'</div>';
 }
 
+// Khung biểu tượng dược phẩm theo tên (giống chi tiết trang bị)
+list($ypEmo, $ypEmoColor) = \player\item_emoji($yaopin->ypname, '💊');
 $ypinfo = <<<HTML
 <div class="ypinfo-page">
     <div class="ypinfo-card">
-        <div class="ypinfo-hero">
-            <img class="ypinfo-img" src="./images/yaopin.png" alt="Dược phẩm">
+        <div class="ypinfo-hero ypinfo-hero-art">
+            <div class="zb-art" style="--ra:$ypEmoColor"><span class="bag-emo">$ypEmo</span><span class="zb-art-ra">Dược phẩm</span></div>
         </div>
 
         <div class="ypinfo-name">{$yaopin->ypname}</div>
