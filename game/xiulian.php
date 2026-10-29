@@ -315,15 +315,15 @@ $realm_label = xl_realm_label($player->jingjie);
     </div>
 
     <div class="xl-stats">
-        <div class="xl-stat"><span>Tu luyện</span><b><?= $real_exp_rate_text ?>/s</b></div>
-        <div class="xl-stat"><span>Đột phá</span><b id="xl_eta"><?= $break_ready ? 'Sẵn sàng' : xl_time($break_left) ?></b></div>
-        <div class="xl-stat"><span>Tấn Công</span><b><?= xl_num($player->ugj) ?></b></div>
-        <div class="xl-stat"><span>Phòng Thủ</span><b><?= xl_num($player->ufy) ?></b></div>
-        <div class="xl-stat"><span>Khí Huyết</span><b><?= xl_num($player->umaxhp) ?></b></div>
-        <div class="xl-stat"><span>Bạo Kích</span><b><?= xl_num($player->ubj) ?></b></div>
-        <div class="xl-stat"><span>Hút Máu</span><b><?= xl_num($player->uxx) ?></b></div>
-        <div class="xl-stat"><span>Trang bị</span><b class="xl-plus">+<?= xl_rate_text($equip_bonus_percent) ?>%</b></div>
-        <div class="xl-stat"><span>Hấp thụ</span><b class="<?= $absorb_total >= 0 ? 'xl-plus' : 'xl-minus' ?>"><?= ($absorb_total >= 0 ? '+' : '') ?><?= xl_rate_text($absorb_total) ?>%</b></div>
+        <div class="xl-stat"><span>🧘 Tu luyện</span><b><?= $real_exp_rate_text ?>/s</b></div>
+        <div class="xl-stat"><span>💥 Đột phá</span><b id="xl_eta"><?= $break_ready ? 'Sẵn sàng' : xl_time($break_left) ?></b></div>
+        <div class="xl-stat"><span>⚔️ Tấn Công</span><b><?= xl_num($player->ugj) ?></b></div>
+        <div class="xl-stat"><span>🛡 Phòng Thủ</span><b><?= xl_num($player->ufy) ?></b></div>
+        <div class="xl-stat"><span>❤️ Khí Huyết</span><b><?= xl_num($player->umaxhp) ?></b></div>
+        <div class="xl-stat"><span>💢 Bạo Kích</span><b><?= xl_num($player->ubj) ?></b></div>
+        <div class="xl-stat"><span>🩸 Hút Máu</span><b><?= xl_num($player->uxx) ?></b></div>
+        <div class="xl-stat"><span>🗡 Trang bị</span><b class="xl-plus">+<?= xl_rate_text($equip_bonus_percent) ?>%</b></div>
+        <div class="xl-stat"><span>🌀 Hấp thụ</span><b class="<?= $absorb_total >= 0 ? 'xl-plus' : 'xl-minus' ?>"><?= ($absorb_total >= 0 ? '+' : '') ?><?= xl_rate_text($absorb_total) ?>%</b></div>
     </div>
 
     <div class="xl-modes">

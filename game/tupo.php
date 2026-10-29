@@ -119,7 +119,7 @@ if ((isset($canshu) && $canshu == 'tanthu_dan') || ($lientuc > 0 && $player->uex
     list($ttOk, $ttMsg) = \player\tanthu_use_pill($sid, $dblj);
     if ($ttOk) $player = \player\getplayer($sid, $dblj);
 }
-$tssb1 = makePopup('error', 'Tu vi không đủ');
+$tssb1 = makePopup('tip', '⏳ Tu vi chưa đầy — hãy tiếp tục tu luyện');   // chưa đủ điều kiện, không phải lỗi
 
 $ts = '';
 $resultHtml = '';
@@ -277,7 +277,7 @@ if ($tupo != 8) {
             }
         }
     } else {
-        $resultHtml = tupo_result('bad', 'Tu vi không đủ', 'Cần đạt '.$player->umaxexp.' tu vi để mở đột phá.');
+        $resultHtml = tupo_result('bad', '⏳ Tu vi chưa đầy', 'Cần đạt '.number_format($player->umaxexp).' tu vi để mở đột phá — hãy tiếp tục tu luyện.');
         $ts .= $tssb1;
     }
 }
@@ -449,14 +449,14 @@ $ts
                 <div class="break-bar"><i></i></div>
             </div>
             <div class="break-bless">
-                <div><span>Cơ bản</span><b>$baseRate%</b></div>
-                <div><span>Cấp độ</span><b>-$levelPenalty%</b></div>
-                <div><span>Cảnh giới</span><b>-$realmPenalty%</b></div>
-                <div><span>Milestone</span><b>+$psjs%</b></div>
-                <div><span>Trang bị</span><b>+$zbsjs%</b></div>
-                <div><span>Thiên Phú</span><b>+$tpBreak%</b></div>
-                <div><span>Đan</span><b>+$danBonus%</b></div>
-                <div><span>Sự kiện</span><b>+$evBonus%</b></div>
+                <div><span>🎯 Cơ bản</span><b>$baseRate%</b></div>
+                <div><span>📉 Cấp độ</span><b>-$levelPenalty%</b></div>
+                <div><span>🏔 Cảnh giới</span><b>-$realmPenalty%</b></div>
+                <div><span>🏁 Mốc cấp</span><b>+$psjs%</b></div>
+                <div><span>🛡 Trang bị</span><b>+$zbsjs%</b></div>
+                <div><span>🌟 Thiên Phú</span><b>+$tpBreak%</b></div>
+                <div><span>💊 Đan</span><b>+$danBonus%</b></div>
+                <div><span>🎉 Sự kiện</span><b>+$evBonus%</b></div>
             </div>
         </section>
 
