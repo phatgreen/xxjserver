@@ -8742,3 +8742,13 @@ body.tcg-bg-body .tcg-eq-art img{width:40px;height:40px}
 body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .zb-elem-name{display:none}
 body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-badges{gap:3px!important;justify-content:center!important}
 body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .zb-badge.elem{padding:0 3px!important;min-width:0!important}
+/* ===== Cửa hàng + Thiên Cơ Các: ô ảnh / biểu tượng làm trọng tâm, màu theo phẩm chất (--ra) giống Túi đồ ===== */
+.tcg-shop-item,.tcg-tcc-item{--ra:#7dd3fc}
+.shop-compact .tcg-shop-item,.tcc-compact .tcg-tcc-item{border-color:color-mix(in srgb,var(--ra) 50%,transparent)!important;background:radial-gradient(circle at 50% 28%,color-mix(in srgb,var(--ra) 18%,transparent),transparent 60%),linear-gradient(180deg,rgba(20,42,86,.80),rgba(10,24,60,.86))!important}
+.shop-compact .tcg-shop-item:hover,.tcc-compact .tcg-tcc-item:hover{box-shadow:0 0 16px color-mix(in srgb,var(--ra) 45%,transparent)!important}
+.shop-compact .tcg-shop-icon,.tcg-tcc-art{position:relative;width:54px!important;height:54px!important;display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto;border-radius:12px!important;border:2px solid var(--ra)!important;background:radial-gradient(circle,color-mix(in srgb,var(--ra) 30%,#0b1533),#0b1533 72%)!important;box-shadow:0 0 12px color-mix(in srgb,var(--ra) 55%,transparent),inset 0 0 10px rgba(0,0,0,.45)!important}
+.shop-compact .tcg-shop-icon img,.tcg-tcc-art img{width:44px!important;height:44px!important;object-fit:contain!important;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 70%,transparent))!important}
+.tcg-shop-icon .bag-emo,.tcg-tcc-art .bag-emo{font-size:28px;line-height:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 75%,transparent))}
+.tcc-compact .tcg-tcc-item{padding:9px 6px 7px!important;gap:4px!important}
+.tcc-compact .tcg-tcc-list{gap:6px!important}
+.shop-compact .tcg-shop-item{padding:8px 5px!important;gap:5px!important}

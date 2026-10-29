@@ -101,12 +101,20 @@ function tcg_shop_item_html($index, $name, $color, $price, $unitName, $infoCmd, 
     $priceClass = $isMagic ? 'purple' : 'gold';
     $safeName = tcg_shop_text($name);
     $safeUnit = tcg_shop_text($unitName);
-    $iconHtml = $img != '' ? '<img src="'.$img.'" alt="">' : $icon;
+    // Ảnh trang bị nếu có; không thì biểu tượng theo tên vật phẩm. --ra: màu viền / phát sáng ô
+    $ra = $color;
+    if ($img != '') {
+        $iconHtml = '<img src="'.$img.'" alt="">';
+    } else {
+        list($emo, $emoColor) = \player\item_emoji($name, '📦');
+        $iconHtml = '<span class="bag-emo">'.$emo.'</span>';
+        if ($color == '#cbd5e1' || $color == '') $ra = $emoColor;
+    }
     // Ô vật phẩm hẹp: chỉ ghi biểu tượng tiền + số (1.000), đơn vị đầy đủ để ở title
     $priceText = is_numeric($price) ? number_format($price, 0, ',', '.') : tcg_shop_text($price);
 
     return <<<HTML
-<div class="tcg-shop-item">
+<div class="tcg-shop-item" style="--ra:$ra">
     <div class="tcg-shop-icon">$iconHtml</div>
     <div class="tcg-shop-info">
         <div class="tcg-shop-title-line">

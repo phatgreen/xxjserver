@@ -385,8 +385,14 @@ if ($currentTab === 'wg') {
 
             $disabledClass = $canBuy ? '' : ' disabled';
 
-            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '" data-f="' . $rarity . '" data-ok="' . ($canBuy ? 1 : 0) . '">';
-            $itemsHtml .= '<div class="tcg-tcc-item-color" style="background:' . $wgys . '"></div>';
+            // Ô ảnh bí tịch: ảnh võ công nếu có file, không thì biểu tượng theo loại; màu theo phẩm (--ra)
+            $wgImgId = isset($cfg['wgid']) ? intval($cfg['wgid']) : intval($cfg['id']);
+            $wgEmo = array('khinh_cong' => '🍃', 'noi_cong' => '🧘', 'ngoai_cong' => '👊', 'tap_ky' => '🌀');
+            $wgArt = is_file(__DIR__ . '/../images/wugong/' . $wgImgId . '.png')
+                ? '<img src="./images/wugong/' . $wgImgId . '.png" alt="">'
+                : '<span class="bag-emo">' . (isset($wgEmo[$cat]) ? $wgEmo[$cat] : '📕') . '</span>';
+            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '" data-f="' . $rarity . '" data-ok="' . ($canBuy ? 1 : 0) . '" style="--ra:' . $wgys . '">';
+            $itemsHtml .= '<div class="tcg-tcc-art">' . $wgArt . '</div>';
             $itemsHtml .= '<div class="tcg-tcc-item-info">';
             $itemsHtml .= '<div class="tcg-tcc-item-name" style="color:' . $wgys . '">' . $wgname . '</div>';
             $itemsHtml .= '<div class="tcg-tcc-item-meta">';
@@ -514,8 +520,9 @@ if ($currentTab === 'wg') {
 
             $disabledClass = $canBuy ? '' : ' disabled';
 
-            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '" data-f="g' . $giai . '" data-ok="' . ($canBuy ? 1 : 0) . '">';
-            $itemsHtml .= '<div class="tcg-tcc-item-color" style="background:' . $cpys . '"></div>';
+            // Ô ảnh công pháp: images/congphap/1..12.svg như trang Công Pháp; màu theo phẩm (--ra)
+            $itemsHtml .= '<div class="tcg-tcc-item' . $disabledClass . '" data-f="g' . $giai . '" data-ok="' . ($canBuy ? 1 : 0) . '" style="--ra:' . $cpys . '">';
+            $itemsHtml .= '<div class="tcg-tcc-art"><img src="./images/congphap/' . min(12, max(1, intval($cfg['cpid']))) . '.svg" alt=""></div>';
             $itemsHtml .= '<div class="tcg-tcc-item-info">';
             $itemsHtml .= '<div class="tcg-tcc-item-name" style="color:' . $cpys . '">' . $cpname . '</div>';
             $itemsHtml .= '<div class="tcg-tcc-item-meta">';
