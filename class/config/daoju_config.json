@@ -722,5 +722,35 @@
         "no_shop": 1,
         "no_trade": 1,
         "use_effect": {"type": "tanthu_x2"}
+    },
+    "121": {
+        "djname": "Diên Thọ Đan",
+        "djzl": "121",
+        "djinfo": "Đan kéo dài tuổi thọ: tuổi giảm 10% thọ nguyên hiện tại. Mua tại trang Thọ Nguyên (giá theo cảnh giới). Không dùng được khi đã Tọa Hóa.",
+        "djid": 121,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1,
+        "use_effect": {"type": "thonguyen_dientho"}
+    },
+    "122": {
+        "djname": "Đại Tỉnh Hồi Hồn Đan",
+        "djzl": "122",
+        "djinfo": "Gọi hồn phách quy vị: nhân vật đã Tọa Hóa (hết thọ nguyên) sống lại với 15% thọ nguyên. Mua bằng Linh Thạch tại trang Thọ Nguyên.",
+        "djid": 122,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1,
+        "use_effect": {"type": "thonguyen_daitinh"}
+    },
+    "123": {
+        "djname": "Cửu Chuyển Hoàn Hồn Đan",
+        "djzl": "123",
+        "djinfo": "Tiên đan chín lần luyện: nhân vật đã Tọa Hóa sống lại với 50% thọ nguyên. Mua bằng Ma Thạch tại trang Thọ Nguyên.",
+        "djid": 123,
+        "djyxb": 0,
+        "djjg": 0,
+        "no_shop": 1,
+        "use_effect": {"type": "thonguyen_cuuchuyen"}
     }
 }

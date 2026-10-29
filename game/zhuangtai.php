@@ -347,6 +347,17 @@ if (intval($player->umaxexp) > 0) {
 $energyValue = isset($player->ustamina) ? intval($player->ustamina) : 100;
 $energyMax = isset($player->umaxstamina) ? intval($player->umaxstamina) : 100;
 $energyPercent = $energyMax > 0 ? min(100, max(0, intval(round($energyValue * 100 / $energyMax)))) : 0;
+// Thọ nguyên: thanh % tuổi đã dùng, bấm vào mở trang Thọ Nguyên
+$tnZt = \player\thonguyen_status($player, $dblj);
+$tnZtHtml = '';
+if ($tnZt) {
+    $tnZtUsed = min(100, max(0, intval(round(100 - $tnZt['left_pct']))));
+    $tnZtColor = $tnZt['dead'] ? '#e5534b' : ($tnZt['cut'] > 0 ? '#d9a33f' : '#7fb2ff');
+    $tnZtHtml = '<a class="profile-bar" style="display:block;text-decoration:none;color:inherit" href="?cmd=' . $encode->encode("cmd=thonguyen&sid=$sid") . '">'
+        . '<div class="profile-bar-title"><span>⏳ ' . ($tnZt['dead'] ? 'Đã Tọa Hóa' : 'Tuổi / Thọ nguyên') . '</span><span>'
+        . \player\thonguyen_years_text($tnZt['age']) . ' / ' . \player\thonguyen_years_text($tnZt['life']) . '</span></div>'
+        . '<div class="profile-bar-track"><div class="profile-bar-fill" style="width:' . $tnZtUsed . '%;background:' . $tnZtColor . '"></div></div></a>';
+}
 
 $chienLuc = \player\combat_power($player);
 $chienLucText = number_format($chienLuc, 0, '.', '.');
@@ -421,6 +432,7 @@ $html = <<<HTML
             <div class="profile-bar-title"><span>⚡ Thể lực</span><span>$energyValue / $energyMax</span></div>
             <div class="profile-bar-track"><div class="profile-bar-fill energy" style="width:$energyPercent%"></div></div>
         </div>
+        $tnZtHtml
         <div class="profile-bar profile-bar-fullwidth">
             <div class="profile-bar-title"><span>✨ Tu vi</span><span>$player->uexp / $player->umaxexp</span></div>
             <div class="profile-bar-track"><div class="profile-bar-fill exp" style="width:$expPercent%"></div></div>

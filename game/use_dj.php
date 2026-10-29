@@ -86,6 +86,10 @@ if (isset($djid) && intval($djid) > 0) {
                 // Quà Tân Thủ (Tu Vi Đan / Túi Linh Thạch / Thẻ ×2) — class/function/tanthu.php; tatca=1: mở hết túi
                 list($ttOk, $useNotice) = \player\tanthu_use_item($sid, intval($djid), $effectType, isset($tatca) && intval($tatca) === 1, $dblj);
                 $useType = $ttOk ? 'ok' : 'bad';
+            } elseif (strpos($effectType, 'thonguyen_') === 0) {
+                // Diên Thọ Đan / Đại Tỉnh Hồi Hồn Đan / Cửu Chuyển Hoàn Hồn Đan — class/function/thonguyen.php
+                list($tnOk, $useNotice) = \player\thonguyen_use_item($sid, intval($djid), $effectType, $dblj);
+                $useType = $tnOk ? 'ok' : 'bad';
             } elseif ($effectType === 'linhcan_wash') {
                 // Tẩy Linh Đan: khong reroll o day; dan mo trang chon hanh (Task 7)
                 $washCmd = $encode->encode("cmd=linhcan_wash&sid=$sid");

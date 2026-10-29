@@ -403,7 +403,8 @@ switch ($cmd){
 			'huyetmach_upgrade'=>'game/huyetmach_upgrade.php',
 			'quydoi'=>'game/quydoi.php',
 			'sauthu'=>'game/sauthu.php',
-			'phoban'=>'game/phoban.php'
+			'phoban'=>'game/phoban.php',
+			'thonguyen'=>'game/thonguyen.php' // Tuổi & Thọ Nguyên
 		];
 
 		// router
@@ -535,6 +536,14 @@ if (!isset($sid) || $sid==''){
 			exit();
 		}
 		$ym = 'game/feature_locked.php';
+	} elseif (\player\thonguyen_block_cmd($cmd) && \player\thonguyen_is_dead($player, $dblj)) {
+		// Tọa Hóa (hết thọ nguyên): khoá tu luyện / chiến đấu / đột phá -> trang Thọ Nguyên để dùng Hồi Hồn Đan
+		if ($isAjaxEarly) {
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode(array('ok' => false, 'msg' => 'Đã Tọa Hóa (hết thọ nguyên) — dùng Hồi Hồn Đan để sống lại.'));
+			exit();
+		}
+		$ym = 'game/thonguyen.php';
 	} elseif (!$isAjaxEarly && ($fkVisit = \player\feature_key_for_cmd($cmd)) !== '') {
 		// Cơ Duyên loại "ghé tính năng": lần đầu mở trang tính năng (đã mở theo cấp)
 		\player\nhiemvu_coduyen_event($sid, 'visit:' . $fkVisit, $dblj);

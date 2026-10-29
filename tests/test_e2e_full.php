@@ -800,12 +800,14 @@ block('Quy đổi / Đổi quà', function () {
     go('quy đổi số âm bị chặn', "cmd=quydoi&sid=$SID", array('mt_amount' => -5), '');
     chk('số âm: không đổi', $mt0 === intval(row()['uczb']), '');
     go('trang Đổi quà', "cmd=duihuan&sid=$SID", null, '');
-    $mt0 = intval(row()['uczb']);
-    go('nhập giftcode vip666sss', "cmd=duihuan&dhm=vip666sss&sid=$SID", null, '');
-    chk('giftcode: +8888 MT', intval(row()['uczb']) - $mt0 === 8888, '+' . (intval(row()['uczb']) - $mt0));
-    $mt0 = intval(row()['uczb']);
-    go('nhập lại giftcode (đã dùng)', "cmd=duihuan&dhm=vip666sss&sid=$SID", null, '');
-    chk('giftcode chỉ nhận 1 lần', intval(row()['uczb']) === $mt0, '');
+    // vip666sss đã xoá (sql/migrate_giftcode_tanthu2.php) ⇒ thử mã tân thủ daotam: +10 Tân Thủ Tu Vi Đan (LT có thể lẫn thưởng khác cùng lượt)
+    $djn = function () use ($SID) { return intval(q1("SELECT COALESCE(SUM(djsum),0) FROM playerdaoju WHERE sid = ? AND djid = 118", array($SID))); };
+    $n0 = $djn();
+    go('nhập giftcode daotam', "cmd=duihuan&dhm=daotam&sid=$SID", null, '');
+    chk('giftcode: +10 Tân Thủ Tu Vi Đan', $djn() - $n0 === 10, '+' . ($djn() - $n0));
+    $n0 = $djn();
+    go('nhập lại giftcode (đã dùng)', "cmd=duihuan&dhm=daotam&sid=$SID", null, '');
+    chk('giftcode chỉ nhận 1 lần', $djn() === $n0, '');
 });
 
 // ============================ 19. XẾP HẠNG / CHAT / BẢN ĐỒ / HẢO HỮU ============================

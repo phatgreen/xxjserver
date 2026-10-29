@@ -114,6 +114,7 @@ $base_exp_per_sec = round($player->ulv * $vip_bonus * $exp_multiplier * min(1.3,
 $equip_bonus_percent = min(30, max(0, floatval($player->tupoexp))); // trần 30% như các buff tu luyện khác
 $exp_per_sec = round($base_exp_per_sec * (1 + $equip_bonus_percent / 100) * (1 + $tp_exp_bonus / 100) * (1 + $club_exp_bonus / 100), 4); // linh khí thực nhận mỗi giây (Thiên Phú nhân NGOÀI chuỗi min() — Task 11 [CHOT])
 $exp_per_sec = round($exp_per_sec * \player\tanthu_x2_mult($sid, $dblj), 4); // Thẻ ×2 Hấp Thụ Linh Khí (quà tân thủ) — nhân ngoài như Thiên Phú
+$exp_per_sec = round($exp_per_sec * \player\thonguyen_absorb_mult($player, $dblj), 4); // Thọ nguyên còn ≤ 20/10/5% ⇒ −20/30/40%
 $base_exp_per_min = round($base_exp_per_sec * 60, 2);
 $exp_per_min = round($exp_per_sec * 60, 2);
 $base_exp_rate_text = xl_rate_text($base_exp_per_sec);

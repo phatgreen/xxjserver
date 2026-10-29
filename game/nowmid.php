@@ -73,6 +73,13 @@ if ($nvOff['exp'] > 0) {
     $nvMapNoticeHtml .= '<a class="tcg-nv-notice" style="display:block;text-decoration:none" href="?cmd=' . $nvOffCmd . '">🧘 Bế quan '
         . $nvOff['hours'] . ' giờ — nhận ' . number_format($nvOff['exp']) . ' tu vi ›</a>';
 }
+// Thọ nguyên: sắp cạn / đã Tọa Hóa thì nhắc
+$tnMid = \player\thonguyen_status($player, $dblj);
+if ($tnMid && ($tnMid['dead'] || $tnMid['cut'] > 0)) {
+    $nvMapNoticeHtml .= '<a class="tcg-nv-notice" style="display:block;text-decoration:none" href="?cmd=' . $encode->encode("cmd=thonguyen&sid=$sid") . '">'
+        . ($tnMid['dead'] ? '🪦 Thọ nguyên đã cạn — Tọa Hóa. Dùng Hồi Hồn Đan để sống lại ›'
+            : '⏳ Thọ nguyên còn ' . round($tnMid['left_pct'], 1) . '% — hấp thụ linh khí −' . $tnMid['cut'] . '% ›') . '</a>';
+}
 if ($clmid->playerinfo != ''){
     $clmid->playerinfo .='<br/>';
 }

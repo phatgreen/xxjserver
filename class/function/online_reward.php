@@ -147,7 +147,8 @@ if (!function_exists(__NAMESPACE__ . '\\offline_reward_on_login')) {
         $used = ($r && $r['day'] === $today) ? intval($r['hours_today']) : 0;
         $grant = min($hours, $maxH - $used);
         if ($grant <= 0) return 0;
-        $exp = intval(floor(nhiemvu_level_need(intval($player->ulv)) * $pct * $grant / 100));
+        $exp = intval(floor(nhiemvu_level_need(intval($player->ulv)) * $pct * $grant / 100 * thonguyen_absorb_mult($player, $dblj)));   // Thọ nguyên cạn: −20/30/40%, Tọa Hóa: 0
+        if ($exp <= 0) return 0;
         $up = $dblj->prepare("INSERT INTO player_offline_reward (sid, pending_exp, pending_hours, day, hours_today) VALUES (?, ?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE pending_exp = pending_exp + VALUES(pending_exp), pending_hours = pending_hours + VALUES(pending_hours),
             hours_today = IF(day = VALUES(day), hours_today + VALUES(hours_today), VALUES(hours_today)), day = VALUES(day)");
