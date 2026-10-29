@@ -119,7 +119,10 @@ if (!function_exists(__NAMESPACE__ . '\\nav_quest_dot')) {
             $stmt->execute(array($sid, date('Y-m-d'), $sid, nhiemvu_current_week_num(), $sid, nhiemvu_current_month()));
             if ($stmt->fetchColumn()) return true;
             // Lộ Trình Cảnh Giới: có mốc đã đạt chưa nhận
-            return nhiemvu_realm_has_claimable($sid, nhiemvu_player_level($sid, $dblj), $dblj);
+            $lv = nhiemvu_player_level($sid, $dblj);
+            if (nhiemvu_realm_has_claimable($sid, $lv, $dblj)) return true;
+            // Quà Tân Thủ 3 ngày (điểm danh / mốc trực tuyến) chưa nhận — class/function/tanthu.php
+            return function_exists(__NAMESPACE__ . '\\tanthu_has_claimable') && tanthu_has_claimable($sid, $lv, $dblj);
         } catch (\Exception $e) {
             return false;
         }
@@ -129,7 +132,7 @@ if (!function_exists(__NAMESPACE__ . '\\nav_quest_dot')) {
 if (!function_exists(__NAMESPACE__ . '\\nav_quest_tab_dots')) {
     // Chấm đỏ từng tab trong trang Nhiệm Vụ — cùng nguồn với nav_quest_dot() để người chơi tìm được chỗ nhận thưởng.
     function nav_quest_tab_dots($sid, $lv, $dblj){
-        $dots = array('daily' => false, 'weekly' => false, 'monthly' => false, 'canhgioi' => false);
+        $dots = array('daily' => false, 'weekly' => false, 'monthly' => false, 'canhgioi' => false, 'online' => false);
         $checks = array(
             'daily'   => array("SELECT 1 FROM player_nhiemvu_daily WHERE sid = ? AND reset_date = ? AND completed = 1 AND claimed = 0 AND quest_id <> 'daily_bonus' LIMIT 1", date('Y-m-d')),
             'weekly'  => array("SELECT 1 FROM player_nhiemvu_weekly WHERE sid = ? AND week_number = ? AND completed = 1 AND claimed = 0 LIMIT 1", nhiemvu_current_week_num()),
@@ -142,6 +145,7 @@ if (!function_exists(__NAMESPACE__ . '\\nav_quest_tab_dots')) {
                 $dots[$k] = (bool)$stmt->fetchColumn();
             }
             $dots['canhgioi'] = nhiemvu_realm_has_claimable($sid, $lv, $dblj);
+            $dots['online'] = function_exists(__NAMESPACE__ . '\\tanthu_has_claimable') && tanthu_has_claimable($sid, $lv, $dblj);
         } catch (\Exception $e) {
         }
         return $dots;

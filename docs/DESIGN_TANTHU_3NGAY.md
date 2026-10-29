@@ -165,6 +165,6 @@ Hồi quy:
 
 ### 8.4 Còn để ý
 
-- Chưa có **chấm đỏ** ở nút Nhiệm Vụ khi có quà tân thủ chưa nhận (làm thêm nếu cần).
+- **Chấm đỏ** (đã làm): nút Nhiệm Vụ ở thanh dưới + tab Trực Tuyến hiện chấm khi còn quà điểm danh hoặc mốc online đã đủ giờ chưa nhận (`tanthu_has_claimable()`, `class/function/dieu_huong.php`).
 - Tên giftcode `tanthu` / `nhomtele`: đổi trong bảng `duihuan` (cột `dhm`, chữ thường) trước khi công bố.
 - Chưa chạy mô phỏng người chơi thật nhiều ngày trên server. Bảng mục 4 là mô hình; quà, trần và phí đã kiểm thật từng phần ở 8.3.

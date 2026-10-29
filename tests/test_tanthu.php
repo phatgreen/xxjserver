@@ -128,16 +128,29 @@ setp($s2, array('ulv' => 50, 'uexp' => 0, 'sfxl' => 1, 'xiuliantime' => date('Y-
 page("cmd=endxiulian&sid=$s2");
 tassert('T4 đối chứng không thẻ = 90.000 tu vi', intval(q1("SELECT uexp FROM game1 WHERE sid = ?", array($s2))), 90000);
 
-// ── T5. Điểm danh + mốc trực tuyến ─────────────────────────────
+// ── T5. Điểm danh + mốc trực tuyến (+ chấm đỏ nút Nhiệm Vụ / tab Trực Tuyến) ─
 $p0 = dj($sid, $PILL); $b0 = dj($sid, $BAG);
+$db->prepare("DELETE FROM player_online_reward WHERE sid = ?")->execute(array($sid));
+$lvT = intval(q1("SELECT ulv FROM game1 WHERE sid = ?", array($sid)));
+ttrue('T5 chưa điểm danh: chấm đỏ Quà Tân Thủ', \player\tanthu_has_claimable($sid, $lvT, $db));
+$td = \player\nav_quest_tab_dots($sid, $lvT, $db);
+ttrue('T5 chưa điểm danh: chấm đỏ tab Trực Tuyến + nút Nhiệm Vụ', !empty($td['online']) && \player\nav_quest_dot($sid, $db));
+if ($old) ttrue('T5 nhân vật cũ: không có chấm Quà Tân Thủ', !\player\tanthu_has_claimable($old, 94, $db));
 page("cmd=nhiemvu&action=claim_tanthu&tkind=daily&tab=online&sid=$sid");
+$td = \player\nav_quest_tab_dots($sid, $lvT, $db);
+ttrue('T5 điểm danh xong, chưa đủ giờ online: hết chấm tab Trực Tuyến', empty($td['online']) && !\player\tanthu_has_claimable($sid, $lvT, $db));
 ttrue('T5 điểm danh ngày 1: +30 đan, +1 túi', dj($sid, $PILL) - $p0 === 30 && dj($sid, $BAG) - $b0 === 1);
 page("cmd=nhiemvu&action=claim_tanthu&tkind=daily&tab=online&sid=$sid");
 tassert('T5 điểm danh lần 2: không cộng', dj($sid, $PILL) - $p0, 30);
 $h = page("cmd=nhiemvu&action=claim_tanthu&tkind=on0&tab=online&sid=$sid");
 ttrue('T5 mốc 1 giờ khi chưa đủ giờ: từ chối', dj($sid, $PILL) - $p0 === 30 && strpos($h, 'Chưa đủ') !== false);
 $db->prepare("REPLACE INTO player_online_reward (sid, day, seconds, last_ts, claimed) VALUES (?, ?, 3700, ?, '')")->execute(array($sid, date('Y-m-d'), time()));
+ttrue('T5 đủ 61 phút online: có chấm lại (mốc 1 giờ chờ nhận)', \player\tanthu_has_claimable($sid, $lvT, $db));
+$hn = page("cmd=nhiemvu&tab=daily&sid=$sid");
+ttrue('T5 trang Nhiệm Vụ: tab Trực Tuyến có chấm đỏ', (bool)preg_match('/Trực Tuyến<i class="nav-dot"><\/i>/u', $hn));
+$db->prepare("REPLACE INTO player_online_reward (sid, day, seconds, last_ts, claimed) VALUES (?, ?, 3700, ?, '')")->execute(array($sid, date('Y-m-d'), time()));
 page("cmd=nhiemvu&action=claim_tanthu&tkind=on0&tab=online&sid=$sid");
+ttrue('T5 nhận mốc 1 giờ xong: hết chấm', !\player\tanthu_has_claimable($sid, $lvT, $db));
 ttrue('T5 mốc 1 giờ (đủ 61 phút): +6 đan, +1 túi', dj($sid, $PILL) - $p0 === 36 && dj($sid, $BAG) - $b0 === 2);
 $h = page("cmd=nhiemvu&tab=online&sid=$sid");
 ttrue('T5 tab Trực Tuyến có thẻ "Quà Tân Thủ — Ngày 1/3"', strpos($h, 'Quà Tân Thủ — Ngày 1/3') !== false);

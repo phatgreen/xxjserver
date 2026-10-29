@@ -207,6 +207,19 @@ if (!function_exists(__NAMESPACE__ . '\\tanthu_status')) {
     }
 }
 
+if (!function_exists(__NAMESPACE__ . '\\tanthu_has_claimable')) {
+    // Chấm đỏ: còn quà điểm danh hoặc mốc trực tuyến đã đủ giờ mà chưa nhận (chỉ nhân vật còn trong 3 ngày tân thủ).
+    function tanthu_has_claimable($sid, $lv, $dblj){
+        $s = tanthu_status($sid, $lv, $dblj);
+        if (!$s) return false;
+        if (!$s['daily']['claimed']) return true;
+        foreach ($s['online'] as $m) {
+            if ($m['reached'] && !$m['claimed']) return true;
+        }
+        return false;
+    }
+}
+
 if (!function_exists(__NAMESPACE__ . '\\tanthu_claim')) {
     // Nhận quà điểm danh ($kind = 'daily') hoặc mốc trực tuyến ($kind = 'on<idx>') của ngày tuổi hiện tại.
     function tanthu_claim($sid, $kind, $lv, $dblj){
