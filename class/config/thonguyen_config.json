@@ -1,7 +1,7 @@
 {
-    "_note": "Thọ Nguyên (docs/DESIGN_THONGUYEN.md). Tuổi tính theo GIỜ THẬT kể cả offline: hours_per_year giờ = 1 tuổi. Thọ nguyên = (gốc cảnh giới + phần tăng theo cấp trong cảnh giới) × (1 + % thưởng hệ thống). realm_base[i] = thọ nguyên lúc vào cảnh giới i (cấp 50×i); sau mốc cuối nhân growth mỗi cảnh giới, từ Phi Thăng (phithang_index) nhân thêm phithang_jump rồi tien_growth mỗi cảnh giới. Cân theo mô phỏng 5 năm: người chơi 1h/ngày luôn còn ≥ 1/3 thọ nguyên.",
+    "_note": "Thọ Nguyên (docs/DESIGN_THONGUYEN.md). Tuổi tính theo GIỜ THẬT kể cả offline: hours_per_year giờ = 1 tuổi. Thọ nguyên = (gốc cảnh giới + phần tăng theo cấp trong cảnh giới) × (1 + % thưởng hệ thống). realm_base[i] = thọ nguyên lúc vào cảnh giới i (cấp 50×i); sau mốc cuối nhân growth mỗi cảnh giới, từ Phi Thăng (phithang_index) nhân thêm phithang_jump rồi tien_growth mỗi cảnh giới. Cân theo mô phỏng 5 năm CÓ quà Tân Thủ (ngày 3 đã cấp ~220–310 nên 5 cảnh giới đầu để số nhỏ; người chơi đứng lâu từ cấp ~220 nên Ngự Khí trở đi tăng mạnh): người chơi 1h/ngày luôn còn ≥ 1/3 thọ nguyên.",
     "hours_per_year": 2,
-    "realm_base": [60, 400, 700, 1500, 2500, 4000, 6000, 9000, 18000, 25000, 35000, 50000, 70000, 100000, 140000],
+    "realm_base": [60, 100, 120, 150, 180, 800, 2700, 7000, 12000, 21000, 30000, 42000, 60000, 85000, 120000],
     "growth": 1.4,
     "phithang_index": 25,
     "phithang_jump": 2,

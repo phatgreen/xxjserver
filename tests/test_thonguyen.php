@@ -100,10 +100,10 @@ ttrue('T2 lùi mốc 10 giờ ⇒ 5 tuổi', abs($s['age'] - 5) < 0.05, round($s
 setp($sid, array('ulv' => 50));
 $p = \player\getplayer($sid, $db);
 list($b0) = \player\thonguyen_bonus_pct($p);
-ttrue('T3 cấp 50 (vào Luyện Thể) gốc 400', abs(\player\thonguyen_lifespan($p) / (1 + $b0 / 100) - 400) < 0.01, round(\player\thonguyen_lifespan($p), 1));
+ttrue('T3 cấp 50 (vào Luyện Thể) gốc 100', abs(\player\thonguyen_lifespan($p) / (1 + $b0 / 100) - 100) < 0.01, round(\player\thonguyen_lifespan($p), 1));
 setp($sid, array('ulv' => 75));
 $p = \player\getplayer($sid, $db);
-ttrue('T3 cấp 75 = 400 + (700−400)×0,6×25/50 = 490', abs(\player\thonguyen_lifespan($p) / (1 + $b0 / 100) - 490) < 0.01);
+ttrue('T3 cấp 75 = 100 + (120−100)×0,6×25/50 = 106', abs(\player\thonguyen_lifespan($p) / (1 + $b0 / 100) - 106) < 0.01);
 // phẩm chất thật do getplayer nạp từ bảng riêng từng hệ ⇒ thử trên bản sao object
 $p = clone \player\getplayer($sid, $db);
 $p->huyetmach_quality = 6; $p->thechat_quality = 1; $p->tianfu_quality = 1; $p->linhcan_total_lv = 0;
