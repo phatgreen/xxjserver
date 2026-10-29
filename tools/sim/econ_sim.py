@@ -74,13 +74,16 @@ GEAR_HALF = {1: 1.7, 10: 3.8, 30: 12.3, 60: 56.3, 120: 201.6, 200: 501.8, 300: 1
 def gear_salvage(T): return max(GEAR_RAR[T] * 50, 10 * (GEAR_HALF[T] + 0.18) - 20)   # đồ dư: bán NPC hoặc phân giải ra đá (10 LT/viên), lấy cái lợi hơn (bagzb.php)
 def ugj_est(L): return boss_hp(L) / 50 + 10.5 * L   # công ước lượng khớp giả định "boss cùng cấp 50 đòn" (boss DEF ≈ 14·cấp)
 
-def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0, full=False, sell_pill=True, fixed=False):
+def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0, full=False, sell_pill=True, fixed=False, newbie=None, start_wd=0):
     # marks: ngày ghi số liệu; cult_bonus: % EXP tu luyện cộng thêm (Tông Môn)
     # full: thêm Boss Linh Căn, Hầm Mỏ, Vấn Đỉnh Đài, Tông Môn tự lập, Luyện Đan / Chế Tạo, bán đồ dư, Đột Phá Đan rơi từ boss,
     #       sửa linh căn đột phá theo từng hệ, Huyết Mạch bế tắc với F2P; sell_pill: bán Đột Phá Đan cho NPC (luật hiện tại)
     # fixed: luật sau sửa E1–E5 (2026-10-29): đan bán NPC 10% + không rơi khi chênh >= 35; Cường Hóa Thạch không bán (đồ dư chỉ bán
     #        25/phẩm); boss Linh Căn hồi 120' sau khi bị hạ; Cơ Duyên Huyết Mạch tặng 32 Huyết Thạch ⇒ boss mạch huyết 5 lượt/ngày;
     #        độc tính luyện đan giảm 3/giờ (hết trần 115 lò)
+    # newbie: quà tân thủ 3 ngày đầu (bản thiết kế docs/DESIGN_TANTHU_3NGAY.md) — dict:
+    #   pill = {ngày: (cố định, mỗi giờ online)} Tân Thủ Tu Vi Đan (lấp đầy 1 thanh tu vi), lt = {ngày: (cố định, mỗi giờ)},
+    #   card_days = số ngày thẻ ×2 hấp thụ linh khí; start_wd: thứ trong tuần của ngày tạo nhân vật (0 = thứ 2 … 5 = T7, 6 = CN)
     random.seed(seed)
     owned = dict((s, 0) for s in range(1, 16))   # bậc trang bị đang mặc theo ô
     def gb():
@@ -109,9 +112,9 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
     L, exp, lt, mt = 1, 0.0, 2000.0, 0
     S = dict(mt_pet=0, lt_in=0, lt_boss=0, lt_mob=0, lt_quest=0, lt_tower=0, lt_tupo=0, lt_cult=0, lt_feat=0, mt_boss=0, mt_quest=0,
              e_cult=0, e_mob=0, e_quest=0, e_tower=0, tupo_try=0, tupo_ok=0, lv_lost=0, kills=0, boss=0, tf=0,
-             lt_pill=0, lt_sell=0, lt_mine=0, lt_vdd=0, lt_lcb=0, lt_club=0, mt_vdd=0, mt_club=0, e_club=0, lcb=0, pills=0, cboss=0, ld=0)
+             pill_used=0, lt_newbie=0, lt_pill=0, lt_sell=0, lt_mine=0, lt_vdd=0, lt_lcb=0, lt_club=0, mt_vdd=0, mt_club=0, e_club=0, lcb=0, pills=0, cboss=0, ld=0)
     F = dict(gear=0, pet_q=-1, pet_lv=1, pet_x=0.0, lc=[0] * 5, lc_stage=0, tf_lv=0, tf_q=0, tf_open=0, hm=0, tc=0, ch=0, wg_dj=0, wg_x=0.0, wg_max=0.0, cp=0,
-             lc_st=[0] * 5, st=0.0, ba=0.0, lcw=0, brk_week=0, club=0, clv=0, cexp=0.0, cd=set())
+             pill=0.0, lt_nb=0.0, lc_st=[0] * 5, st=0.0, ba=0.0, lcw=0, brk_week=0, club=0, clv=0, cexp=0.0, cd=set())
     stamina, tower_best, tower_now, ch_done = 100, 0, 0, 0
     out = {}
     def add_lt(v, k): nonlocal lt; lt += v; S[k] += v; S['lt_in'] += v
@@ -123,25 +126,35 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         exp += v; S[k] += v
     def try_tupo(wd):
         nonlocal L, exp, lt
-        while exp >= need(L):
+        while True:
+            if exp < need(L) and F['pill'] >= 1 and lt + F['lt_nb'] >= tupo_cost(L) and L < pill_cap():
+                F['pill'] -= 1; S['pill_used'] += 1; S['e_quest'] += need(L) - exp; exp = need(L)   # Tân Thủ Tu Vi Đan
+            if exp < need(L): return
             c = tupo_cost(L)
-            if lt < c: return
-            lt -= c; S['lt_tupo'] += c; S['tupo_try'] += 1
+            if lt + F['lt_nb'] < c: return
+            nb_ = min(F['lt_nb'], c); F['lt_nb'] -= nb_   # Túi Linh Thạch Tân Thủ: chỉ trả phí đột phá, dùng trước
+            lt -= c - nb_; S['lt_tupo'] += c; S['tupo_try'] += 1
             a, b = random.randint(1, 100), random.randint(1, 100)
             if b <= rate(L, wd, gb()):
                 exp -= need(L); L += 1; S['tupo_ok'] += 1; S['tf'] += 5
                 inner = L % 50
                 if inner == 1 and L > 1: add_exp(need(L) * .15, 'e_quest'); add_lt(10 * L * (1 + L / 100), 'lt_quest'); add_mt(10 * (L / 10 + 3), 'mt_quest')
                 elif inner in (10, 20, 30, 40): add_exp(need(L) * .05, 'e_quest'); add_lt(2 * L * (1 + L / 100), 'lt_quest')
-            elif a <= 1: exp = 0; L = max(1, L - 1); S['lv_lost'] += 1; return
-            elif a <= 2: exp = 0; return
-            elif a <= 3: exp /= 4; return
-            elif a <= 4: exp /= 2; return
+            elif a <= 1: exp = 0; L = max(1, L - 1); S['lv_lost'] += 1   # mất tu vi: vòng sau tự thoát nếu không còn đan
+            elif a <= 2: exp = 0
+            elif a <= 3: exp /= 4
+            elif a <= 4: exp /= 2
     def cb(): return cult_bonus + (F['clv'] if full else 0)   # Tông Môn: +cấp% EXP tu luyện (xiulian.php)
+    def card(): return 2 if (newbie and cur_day[0] < newbie.get('card_days', 0)) else 1   # thẻ ×2 hấp thụ linh khí tân thủ
+    cur_day = [0]
+    def pill_cap():   # Tân Thủ Tu Vi Đan chỉ dùng được dưới trần cấp theo ngày tuổi nhân vật, hết hạn sau ngày cuối
+        if not newbie: return 0
+        caps = newbie.get('cap', {})
+        return caps.get(cur_day[0] + 1, 0)
     def cult_tick(minutes, wd, allow_lt=True):
         nonlocal lt
         per_min = math.ceil(L ** 1.15 / 5)
-        mult = (1 + gc() / 100) * (1 + cb() / 100)
+        mult = (1 + gc() / 100) * (1 + cb() / 100) * card()
         if exp >= need(L): try_tupo(wd)
         if exp >= need(L): return
         if allow_lt and lt >= per_min * minutes * 3 + tupo_cost(L) * 3:
@@ -256,7 +269,12 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
                     F['cexp'] += up_lt / 10 + up_mt - up_ex; add_exp(up_lt / 10 + up_mt, 'e_club'); F['clv'] += 1
 
     for day in range(days):
-        wd = day % 7
+        wd = (day + start_wd) % 7
+        cur_day[0] = day
+        if newbie and day + 1 in newbie.get('pill', {}):
+            pf, ph = newbie['pill'][day + 1]; F['pill'] += pf + ph * min(online_h, 12)   # mốc online tính tối đa 12h
+        if newbie and day + 1 in newbie.get('lt', {}):
+            lf, lh = newbie['lt'][day + 1]; v = lf + lh * min(online_h, 12); F['lt_nb'] += v; S['lt_newbie'] += v
         bar = need(L)
         if full and L >= 80 and random.random() < 5 / 8:
             # D8 (thắng PvP 3) vào bộ 5/8 nhưng máy chủ 1 người không có đối thủ ⇒ mất 1 nhiệm vụ + thưởng đủ 5
@@ -293,7 +311,7 @@ def sim(days, online_h, seed=1, hunt=True, marks=(1, 3, 7, 14, 30), cult_bonus=0
         per_min = math.ceil(L ** 1.15 / 5)
         use_lt = lt >= per_min * 180 * 3 + tupo_cost(L) * 3
         off_min = min(180 if use_lt else 30, off_h * 60)
-        mult = (1 + gc() / 100) * (1 + cb() / 100)
+        mult = (1 + gc() / 100) * (1 + cb() / 100) * card()
         if off_min > 0 and min(need(L), L * (2 if use_lt else 1) * mult * off_min * 60) > need(L) * 0.02 * bq:
             cult_tick(off_min, wd, use_lt)
         else:
