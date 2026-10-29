@@ -43,10 +43,11 @@ if ($yaodan) {
                 $ydColor = htmlspecialchars($yaodan1->ydys, ENT_QUOTES, 'UTF-8');
             }
 
+            list($ydEmo) = \player\item_emoji($ydnameRaw, '⚗');
             $allyd .= <<<HTML
-<div class="bag-item-card yaodan">
+<div class="bag-item-card yaodan" style="--ra:$ydColor">
     <div class="bag-item-index">$suoyin</div>
-    <div class="bag-item-icon yd">⚗</div>
+    <div class="bag-item-icon emo"><span class="bag-emo">$ydEmo</span><b class="bag-qty">x$ydsum</b></div>
     <div class="bag-item-main">
         <a class="bag-item-name" style="color:$ydColor" href="?cmd=$ydcmd">$ydname</a>
         <div class="bag-item-meta">Số lượng <b>x$ydsum</b> · Đan dược tu luyện</div>

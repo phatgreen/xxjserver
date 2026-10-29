@@ -25,10 +25,11 @@ if ($yaopin) {
             $ypcmd = $encode->encode("cmd=ypinfo&ypid=$ypid&sid=$sid");
             $useypcmd = $encode->encode("cmd=ypinfo&canshu=useyp&ypid=$ypid&sid=$sid");
 
+            list($ypEmo, $ypEmoColor) = \player\item_emoji($ypnameRaw, '💊');
             $allyp .= <<<HTML
-<div class="bag-item-card yaopin">
+<div class="bag-item-card yaopin" style="--ra:$ypEmoColor">
     <div class="bag-item-index">$suoyin</div>
-    <div class="bag-item-icon yp">💊</div>
+    <div class="bag-item-icon emo"><span class="bag-emo">$ypEmo</span><b class="bag-qty">x$ypsum</b></div>
     <div class="bag-item-main">
         <a class="bag-item-name" href="?cmd=$ypcmd">$ypname</a>
         <div class="bag-item-meta">Số lượng <b>x$ypsum</b> · Dược phẩm hồi phục</div>

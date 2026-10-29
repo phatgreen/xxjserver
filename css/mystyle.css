@@ -8720,3 +8720,25 @@ body.tcg-bg-body .tb-compact .tb-slot.is-worn .tb-thumb img{max-width:46px;max-h
 body.tcg-bg-body .tb-compact .tb-slot.is-worn .tb-qh{right:-6px;bottom:-6px;padding:0 5px;border-radius:7px;font-size:11px;color:#fff;background:linear-gradient(180deg,#f97316,#b91c1c);border:1px solid #fed7aa;box-shadow:0 0 8px rgba(249,115,22,.6)}
 body.tcg-bg-body .tb-compact .tb-slot.is-worn:hover{box-shadow:0 0 18px color-mix(in srgb,var(--ra) 50%,transparent)}
 .tb-compact .tb-ra{padding:0 6px;border-radius:999px;font-size:9px;font-weight:900;line-height:14px;color:var(--ra);border:1px solid color-mix(in srgb,var(--ra) 60%,transparent);background:color-mix(in srgb,var(--ra) 14%,transparent);white-space:nowrap}
+/* ===== Túi đồ: ảnh / biểu tượng vật phẩm làm trọng tâm, màu theo phẩm chất / loại (--ra) ===== */
+.bag-item-card{--ra:#7dd3fc}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card{border-color:color-mix(in srgb,var(--ra) 50%,transparent)!important;background:radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--ra) 20%,transparent),transparent 62%),linear-gradient(180deg,rgba(20,42,86,.80),rgba(10,24,60,.86))!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card:hover{box-shadow:0 0 16px color-mix(in srgb,var(--ra) 45%,transparent)!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-icon{position:relative!important;width:56px!important;height:56px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:2px solid var(--ra)!important;background:radial-gradient(circle,color-mix(in srgb,var(--ra) 30%,#0b1533),#0b1533 72%)!important;box-shadow:0 0 12px color-mix(in srgb,var(--ra) 55%,transparent),inset 0 0 10px rgba(0,0,0,.45)!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-icon img{width:46px!important;height:46px!important;object-fit:contain;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 70%,transparent))}
+.bag-item-icon .bag-emo{font-size:30px;line-height:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--ra) 75%,transparent))}
+.bag-item-icon .bag-qty{position:absolute;right:-6px;bottom:-6px;padding:0 5px;border-radius:7px;font-size:10px;font-weight:1000;line-height:15px;color:#fff;background:rgba(8,15,40,.92);border:1px solid color-mix(in srgb,var(--ra) 70%,transparent)}
+.bag-item-icon .bag-qty.qh{background:linear-gradient(180deg,#f97316,#b91c1c);border-color:#fed7aa;box-shadow:0 0 8px rgba(249,115,22,.6)}
+/* Gọn khoảng viền để đỡ hiện thanh cuộn */
+body.tcg-bg-body .bag-page.bag-compact .bag-list{gap:6px!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card{padding:7px 4px 6px!important}
+/* Xem người chơi khác: bỏ khung cuộn trang bị, thẻ gọn hơn để thấy đủ 16 ô */
+body.tcg-bg-body .tcg-profile-equip-grid{max-height:none!important;overflow:visible!important;padding-right:0!important;gap:6px!important}
+body.tcg-bg-body .tcg-profile-equip.tcg-eq-card{min-height:62px!important;padding:6px!important;gap:8px!important}
+body.tcg-bg-body .tcg-eq-art{flex-basis:50px;width:50px;height:50px}
+body.tcg-bg-body .tcg-eq-art img{width:40px;height:40px}
+@media(max-width:760px){body.tcg-bg-body .tcg-profile-equip-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+/* Túi trang bị dạng lưới: hệ ngũ hành chỉ hiện biểu tượng, các nhãn chung 1 hàng ⇒ thẻ thấp và đều */
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .zb-elem-name{display:none}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .bag-item-badges{gap:3px!important;justify-content:center!important}
+body.tcg-bg-body .bag-page.bag-compact .bag-list .bag-item-card .zb-badge.elem{padding:0 3px!important;min-width:0!important}

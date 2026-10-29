@@ -220,7 +220,7 @@ for ($i=0;$i<count($retzb);$i++){
     $zbBadge = '';
     foreach (\player\zhuangbei_elements_parse($zbElem) as $nhEl) {
         $zbBadge .= '<span class="zb-badge elem" style="color:'.\player\zhuangbei_element_color_ui($nhEl).'">'
-            . \player\zhuangbei_element_icon($nhEl) . ' ' . \player\zhuangbei_element_name($nhEl) . '</span>';
+            . \player\zhuangbei_element_icon($nhEl) . '<span class="zb-elem-name"> ' . \player\zhuangbei_element_name($nhEl) . '</span></span>';
     }
     $zbRarityHtml = '<span class="zb-badge rarity" style="color:'.$rarityColor.'">'.$rarityName.'</span>';
 
@@ -249,9 +249,9 @@ for ($i=0;$i<count($retzb);$i++){
         : '';
 
     $zbhtml .= '
-    <div class="bag-item-card zhuangbei'.($isEquip ? ' equipped' : '').'">
+    <div class="bag-item-card zhuangbei'.($isEquip ? ' equipped' : '').'" style="--ra:'.$rarityColor.'">
         <div class="bag-item-index">'.$hangshu.'</div>
-        <div class="bag-item-icon"><img src="'.$zbImg.'" alt=""></div>
+        <div class="bag-item-icon"><img src="'.$zbImg.'" alt="">'.($qhhtml !== '' ? '<b class="bag-qty qh">'.strip_tags($qhhtml).'</b>' : '').'</div>
         <div class="bag-item-main">
             <a class="bag-item-name"'.\player\itemtip_attr_for($zhuangbei, $player, $dblj).' style="color:'.$zbys.'" href="?cmd='.$chakanzb.'">'.$zbname.'<span class="bag-enhance">'.$qhhtml.'</span></a>
             <div class="bag-item-badges">'.$zbRarityHtml.$zbBadge.'</div>

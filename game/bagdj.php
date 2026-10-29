@@ -152,10 +152,11 @@ for ($i=0;$i<count($retdj);$i++){
             }
         }
 
+        list($djEmo, $djEmoColor) = \player\item_emoji(($daojuConfig && isset($daojuConfig->djname)) ? $daojuConfig->djname : '', '📦');
         $djhtml .= '
-        <div class="bag-item-card daoju">
+        <div class="bag-item-card daoju" style="--ra:'.$djEmoColor.'">
             <div class="bag-item-index">'.$hangshu.'</div>
-            <div class="bag-item-icon">'.$djsum.'</div>
+            <div class="bag-item-icon emo"><span class="bag-emo">'.$djEmo.'</span><b class="bag-qty">x'.$djsum.'</b></div>
             <div class="bag-item-main">
                 <a class="bag-item-name" href="'.$self.'?cmd='.$chakandj.'">'.$djname.'</a>
                 <div class="bag-item-meta">Đạo cụ'.(($canUseDjuse && $useLeft <= 0) ? ' • <b style="color:#fca5a5">Đã dùng 2/2</b>' : '').'</div>
