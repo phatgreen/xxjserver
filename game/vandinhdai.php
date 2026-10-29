@@ -167,7 +167,8 @@ $battleHtml = '';
 $rewardTimeNotice = '<div class="vdd-notice reward">Chốt thưởng top 100 mỗi ngày lúc 21:00.</div>';
 $rewardNotice = '';
 if ($myDailyReward) {
-    $rewardNotice = '<div class="vdd-notice reward">Thưởng top '.intval($myDailyReward['rank_no']).' hôm nay: +'.number_format(intval($myDailyReward['yxb_reward']), 0, ',', '.').' Linh thạch, +'.number_format(intval($myDailyReward['czb_reward']), 0, ',', '.').' Ma thạch.</div>';
+    $rewardNotice = '<div class="vdd-notice reward">Thưởng top '.intval($myDailyReward['rank_no']).' hôm nay: +'.number_format(intval($myDailyReward['yxb_reward']), 0, ',', '.').' Linh thạch, +'.number_format(intval($myDailyReward['czb_reward']), 0, ',', '.').' Ma thạch'
+        . (($vddDt = vdd_daily_reward_table()) && !empty($vddDt[intval($myDailyReward['rank_no'])]['dientho']) ? ', +' . intval($vddDt[intval($myDailyReward['rank_no'])]['dientho']) . ' Diên Thọ Đan' : '') . '.</div>';
 }
 
 if (isset($canshu) && $canshu == 'fight' && isset($target) && $target != '') {
@@ -297,7 +298,7 @@ foreach ($topRows as $row) {
 $battleBlock = $battleHtml != '' ? '<section class="vdd-panel"><div class="vdd-kicker">Diễn biến gần nhất</div>'.$battleHtml.'</section>' : '';
 $rewardRows = '';
 foreach (vdd_daily_reward_table() as $rewardRank => $reward) {
-    $rewardRows .= '<div class="vdd-reward-row"><span>Top '.$rewardRank.'</span><b>'.number_format($reward['yxb'], 0, ',', '.').' Linh thạch</b><em>'.number_format($reward['czb'], 0, ',', '.').' Ma thạch</em></div>';
+    $rewardRows .= '<div class="vdd-reward-row"><span>Top '.$rewardRank.'</span><b>'.number_format($reward['yxb'], 0, ',', '.').' Linh thạch</b><em>'.number_format($reward['czb'], 0, ',', '.').' Ma thạch'.(!empty($reward['dientho']) ? ' · '.intval($reward['dientho']).' Diên Thọ Đan' : '').'</em></div>';
 }
 
 $safeName = vdd_h($player->uname);

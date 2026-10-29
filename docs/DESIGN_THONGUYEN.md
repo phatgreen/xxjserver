@@ -43,3 +43,15 @@ Tuổi tính theo giờ thật (12 tuổi/ngày) mà sau 3 ngày quà người c
 Bản 2 (đã bỏ) dùng Ngự Khí 800 / Luyện Khí 2.700 / Trúc Cơ 7.000… để người chơi 1h/ngày không bao giờ chết. Muốn quay lại hoặc đổi tốc độ tuổi (`hours_per_year` 24 = 1 ngày thật 1 tuổi) thì chỉ sửa `thonguyen_config.json`.
 
 Chỉnh số: sửa `realm_base`, `growth`, `tien_growth`, `penalty`, `price`… trong `thonguyen_config.json` (không cần sửa code).
+
+## 4. Nguồn Diên Thọ Đan (djid 121) — "khó nhưng có đường"
+
+| Nguồn | Lượng | Ghi chú |
+|---|---|---|
+| Mốc trực tuyến 240 phút / ngày | 1 viên / ngày | `nhiemvu_reward_rules.json` → `online.milestones` |
+| Tỏa Yêu Tháp tầng 50 / 100 / 150 | 1 viên / tầng, tối đa 3 viên / tuần | `game/toayeuthap.php` `tyt_floor_rewards` (cả tự động vượt) |
+| Vấn Đỉnh Đài chốt 21:00 | top 1: 3 · top 2–3: 2 · top 4–10: 1 / ngày | `class/function/vandinhdai_reward.php` |
+| Giftcode / Phát quà GM | tuỳ GM | trang GM: thêm đạo cụ 121 vào giftcode hoặc tab Phát quà |
+| Mua ở trang Thọ Nguyên | 1.000 × (cảnh giới+1)^1,5 LT | |
+
+Nhu cầu ở cấp 200–350: 1 viên (−10% thọ nguyên) bù ~1,5–2,5 ngày tuổi ⇒ cần ~0,4–0,7 viên/ngày. Người chơi ≥ 4h/ngày + leo tháp đủ dùng; người chơi ít phải mua bằng LT hoặc chờ quà GM.

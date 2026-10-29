@@ -3,17 +3,17 @@ if (!function_exists('vdd_daily_reward_table')) {
     function vdd_daily_reward_table()
     {
         $table = array(
-            1 => array('yxb' => 10000, 'czb' => 100),
-            2 => array('yxb' => 8500, 'czb' => 85),
-            3 => array('yxb' => 7200, 'czb' => 72),
-            4 => array('yxb' => 6000, 'czb' => 60),
-            5 => array('yxb' => 5000, 'czb' => 50),
-            6 => array('yxb' => 4200, 'czb' => 42),
-            7 => array('yxb' => 3500, 'czb' => 35),
-            8 => array('yxb' => 2800, 'czb' => 28),
-            9 => array('yxb' => 2200, 'czb' => 22),
-            10 => array('yxb' => 1600, 'czb' => 16)
-        );
+            1 => array('yxb' => 10000, 'czb' => 100, 'dientho' => 3),
+            2 => array('yxb' => 8500, 'czb' => 85, 'dientho' => 2),
+            3 => array('yxb' => 7200, 'czb' => 72, 'dientho' => 2),
+            4 => array('yxb' => 6000, 'czb' => 60, 'dientho' => 1),
+            5 => array('yxb' => 5000, 'czb' => 50, 'dientho' => 1),
+            6 => array('yxb' => 4200, 'czb' => 42, 'dientho' => 1),
+            7 => array('yxb' => 3500, 'czb' => 35, 'dientho' => 1),
+            8 => array('yxb' => 2800, 'czb' => 28, 'dientho' => 1),
+            9 => array('yxb' => 2200, 'czb' => 22, 'dientho' => 1),
+            10 => array('yxb' => 1600, 'czb' => 16, 'dientho' => 1)
+        );   // dientho: số Diên Thọ Đan (djid VDD_DIENTHO_DJID, docs/DESIGN_THONGUYEN.md mục 4)
 
         for ($i = 11; $i <= 20; $i++) {
             $table[$i] = array(
@@ -39,6 +39,8 @@ if (!function_exists('vdd_daily_reward_table')) {
         return $table;
     }
 }
+
+if (!defined('VDD_DIENTHO_DJID')) define('VDD_DIENTHO_DJID', 121);   // Diên Thọ Đan — khớp class/config/thonguyen_config.json items.dientho
 
 if (!function_exists('vdd_issue_daily_rewards')) {
     function vdd_issue_daily_rewards($dblj, $force = false)
@@ -83,6 +85,16 @@ if (!function_exists('vdd_issue_daily_rewards')) {
             $insertReward->execute(array($rewardDate, $row['sid'], $rank, intval($row['score']), $yxb, $czb));
             if ($insertReward->rowCount() > 0) {
                 $updatePlayer->execute(array($yxb, $czb, $row['sid']));
+                $dt = isset($rewards[$rank]['dientho']) ? intval($rewards[$rank]['dientho']) : 0;
+                if ($dt > 0) {
+                    // cron chỉ nạp pdo.php ⇒ ghi thẳng playerdaoju (kèm uid, khóa chính uid+djid) như tyt_give_item
+                    $up = $dblj->prepare("UPDATE playerdaoju SET djsum = djsum + ? WHERE sid = ? AND djid = ?");
+                    $up->execute(array($dt, $row['sid'], VDD_DIENTHO_DJID));
+                    if ($up->rowCount() < 1) {
+                        $dblj->prepare("INSERT INTO playerdaoju (sid, uid, djid, djsum) SELECT sid, uid, ?, ? FROM game1 WHERE sid = ? LIMIT 1")
+                             ->execute(array(VDD_DIENTHO_DJID, $dt, $row['sid']));
+                    }
+                }
                 $issued++;
             }
         }

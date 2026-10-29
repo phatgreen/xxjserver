@@ -195,6 +195,24 @@ $s = st($sid);
 ttrue('T8 Diên Thọ Đan: tuổi −10% thọ nguyên', abs(($before['age'] - $s['age']) - $s['life'] * 0.1) < 0.2, round($before['age'], 1) . ' → ' . round($s['age'], 1));
 tassert('T8 giá Diên Thọ 1.000 LT', intval(q1("SELECT uyxb FROM game1 WHERE sid = ?", array($sid))), 9000);
 
+// ── T9. Nguồn Diên Thọ Đan: mốc online 240', top Vấn Đỉnh Đài, tầng 50 Tỏa Yêu Tháp ──
+$rules = \player\nhiemvu_rules();
+$m240 = null; foreach ($rules['online']['milestones'] as $m) if (intval($m['minutes']) === 240) $m240 = $m;
+ttrue('T9 mốc online 240 phút có 1 Diên Thọ Đan', $m240 && in_array(array('type' => 'daoju', 'id' => 121, 'count' => 1), $m240['items'], true));
+require_once __DIR__ . '/../class/function/vandinhdai_reward.php';
+$vt = vdd_daily_reward_table();
+tassert('T9 bảng VĐĐ: top 1/2/3/4/10/11 = 3/2/2/1/1/0 Diên Thọ Đan', array($vt[1]['dientho'], $vt[2]['dientho'], $vt[3]['dientho'], $vt[4]['dientho'], $vt[10]['dientho'], isset($vt[11]['dientho']) ? $vt[11]['dientho'] : 0), array(3, 2, 2, 1, 1, 0));
+// Chốt thưởng thật: nhân vật test top 1 (chỉ trên DB thử — xoá thưởng hôm nay rồi phát lại bằng --force)
+$db->exec("DELETE FROM arena_daily_reward WHERE reward_date = CURDATE()");
+$db->prepare("REPLACE INTO arena_player (sid, score, wins) VALUES (?, 99999999, 1)")->execute(array($sid));
+$dt0 = dj($sid, 121);
+vdd_issue_daily_rewards($db, true);
+tassert('T9 chốt thưởng VĐĐ top 1: +3 Diên Thọ Đan', dj($sid, 121) - $dt0, 3);
+$db->prepare("DELETE FROM arena_player WHERE sid = ?")->execute(array($sid));
+$db->exec("DELETE FROM arena_daily_reward WHERE reward_date = CURDATE()");
+$tyt = file_get_contents(__DIR__ . '/../game/toayeuthap.php');
+ttrue('T9 Tỏa Yêu Tháp tầng 50/100/150 thưởng Diên Thọ Đan', strpos($tyt, "array('id' => 121, 'count' => 1)") !== false);
+
 t_clean($db);
 echo $fails ? "\n$fails FAIL\n" : "\nALL PASS\n";
 exit($fails ? 1 : 0);

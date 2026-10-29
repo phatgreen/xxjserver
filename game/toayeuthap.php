@@ -176,6 +176,7 @@ function tyt_floor_rewards($floor)
         for ($i = 0; $i < 5; $i++) {
             $items[] = array('id' => 32 + mt_rand(0, 4), 'count' => 1);
         }
+        $items[] = array('id' => 121, 'count' => 1);   // Diên Thọ Đan (thọ nguyên) — tầng 50/100/150, tối đa 3 viên/tuần
     } elseif ($floor % 10 == 0) {
         $ltReward += 200;
         $items[] = array('id' => 32 + mt_rand(0, 4), 'count' => 1);
@@ -496,7 +497,7 @@ $html = <<<HTML
                 <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">LT cơ bản</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">50 + tầng×5</b></div>
                 <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">Tầng chẵn</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">+50 LT + Cường Hóa Thạch</b></div>
                 <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">Tầng ×10</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">+200 LT + Đá Nguyên Tố</b></div>
-                <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">Tầng 50/100/150</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">+1000 LT + 5 Đá Nguyên Tố</b></div>
+                <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">Tầng 50/100/150</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">+1000 LT + 5 Đá Nguyên Tố + 1 Diên Thọ Đan</b></div>
                 <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">Reset tuần</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">Thứ 2 hằng tuần</b></div>
                 <div style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:12px;padding:11px"><span style="display:block;color:#d8c7a6;font-size:12px;font-weight:900">Tự động vượt</span><b style="display:block;margin-top:5px;color:#fff;font-size:16px;font-weight:1000">Đến 80% kỷ lục</b></div>
             </div>

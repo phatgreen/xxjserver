@@ -14,7 +14,7 @@
             {"minutes": 30,  "lt_mult": 4,  "items": [{"type": "daoju",  "id": 1, "count": 1}]},
             {"minutes": 60,  "lt_mult": 6,  "stamina": 20},
             {"minutes": 120, "lt_mult": 8,  "items": [{"type": "daoju",  "id": 1, "count": 2}]},
-            {"minutes": 240, "lt_mult": 10, "mt": 3}
+            {"minutes": 240, "lt_mult": 10, "mt": 3, "items": [{"type": "daoju", "id": 121, "count": 1}]}
         ]
     }
 }
